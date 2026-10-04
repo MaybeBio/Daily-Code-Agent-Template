@@ -1,0 +1,31 @@
+name: daily-feed
+on:
+  workflow_dispatch: {}
+concurrency: {group: daily-feed, cancel-in-progress: false}
+permissions: {contents: write, issues: write}
+env:
+  TZ: Asia/Shanghai
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install ghresearcher -r requirements.txt
+      - run: python scripts/daily.py --config config.yaml --issue-body /tmp/issue.md --issue-title /tmp/issue.title
+      - name: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "no changes" && exit 0
+          git commit -m "daily: $(date +%F)"
+          git pull --rebase
+          git push
+      - name: open issue
+        run: |
+          if [ -s /tmp/issue.md ]; then
+            gh issue create --title "$(cat /tmp/issue.title)" --body-file /tmp/issue.md || true
+          fi
