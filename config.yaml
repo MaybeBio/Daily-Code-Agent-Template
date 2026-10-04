@@ -5,6 +5,7 @@ site_base_url: ""
 search_placeholder: ""
 llm:
   concurrency: 8
+  min_score: 5
 daily:
   enable_repo_table: true
   watchlists:
