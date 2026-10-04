@@ -39,7 +39,7 @@ def run(cfg: dict, date: str) -> dict:
     candidates, seen = [], []
     for full_name, r in pool.items():
         if not r.get("pushed_at"):
-            meta = gh.repo_meta(full_name)
+            meta = gh.safe_repo_meta(full_name)
             r.update({k: meta[k] for k in ("pushed_at", "stars", "language", "description", "url")})
         status = classify(r, reg["repos"].get(full_name))
         r["status"] = status

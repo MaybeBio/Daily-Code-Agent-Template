@@ -1,4 +1,4 @@
-import json, subprocess
+import ast, json, subprocess
 
 def run(cmd: list[str], **kw) -> str:
     kw.setdefault("capture_output", True)
@@ -11,7 +11,9 @@ def search_repos(config_path: str, updated: str, fields: list[str]) -> list[dict
            "--updated", updated, "--json", ",".join(fields)]
     out = run(cmd)
     start, end = out.find("["), out.rfind("]")
-    return json.loads(out[start:end + 1])
+    if start == -1 or end <= start:
+        raise ValueError(f"no result array in ghresearcher stdout: {out[:500]!r}")
+    return ast.literal_eval(out[start:end + 1])
 
 def repo_meta(full_name: str) -> dict:
     out = run(["gh", "api", f"repos/{full_name}"])
@@ -23,3 +25,10 @@ def repo_meta(full_name: str) -> dict:
 def fetch_readme(full_name: str) -> str:
     return run(["gh", "api", f"repos/{full_name}/readme",
                 "-H", "Accept: application/vnd.github.raw"])
+
+def safe_repo_meta(full_name: str) -> dict:
+    try:
+        return repo_meta(full_name)
+    except Exception:
+        return {"full_name": full_name, "url": "", "language": "",
+                "stars": 0, "description": "", "pushed_at": ""}

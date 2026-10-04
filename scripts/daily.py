@@ -1,4 +1,4 @@
-import argparse, os, sys
+import argparse, os, subprocess, sys
 from datetime import date as _date, timedelta
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts import common, logs, gh  # noqa: E402
@@ -23,7 +23,11 @@ def collect(date: str, cfg: dict) -> list[dict]:
             cmd.append("--org")
         if received:
             cmd += ["-r", "-l", "30"]
-        text = gh.run(cmd)
+        try:
+            text = gh.run(cmd)
+        except subprocess.CalledProcessError as e:
+            print(f"[daily] watchlist {key} skipped: {e}", file=sys.stderr)
+            continue
         with open(os.path.join(out_dir, f"{date[8:10]}.txt"), "w", encoding="utf-8") as f:
             f.write(text)
         for full_name, info in logs.repos_from_events(logs.extract_events(text)).items():
@@ -32,7 +36,7 @@ def collect(date: str, cfg: dict) -> list[dict]:
             e["event"] = info["kinds"][0] if len(info["kinds"]) == 1 else "mixed"
     rows = []
     for full_name, e in table.items():
-        meta = gh.repo_meta(full_name)
+        meta = gh.safe_repo_meta(full_name)
         rows.append({**e, "stars": meta["stars"], "language": meta["language"],
                      "description": meta["description"], "url": meta["url"]})
     rows.sort(key=lambda r: r["stars"], reverse=True)

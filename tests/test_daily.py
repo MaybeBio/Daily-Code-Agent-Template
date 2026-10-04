@@ -1,6 +1,23 @@
+import os, subprocess
 from scripts import daily
 
 CFG = {"topic": "demo", "title": "Demo", "daily": {"enable_repo_table": True}}
+
+def test_collect_skips_failing_watchlist(monkeypatch, tmp_path):
+    for name in ("users", "users_core", "orgs"):
+        d = tmp_path / "monitor" / "lists"
+        d.mkdir(parents=True, exist_ok=True)
+        (d / f"{name}.txt").write_text("# comment only\n", encoding="utf-8")
+    monkeypatch.setattr(daily.common, "ROOT", str(tmp_path))
+
+    def boom(cmd, **kw):
+        raise subprocess.CalledProcessError(1, ["ghresearcher"])
+
+    monkeypatch.setattr(daily.gh, "run", boom)
+    cfg = {"daily": {"watchlists": {"users": "monitor/lists/users.txt",
+                                    "users_core": "monitor/lists/users_core.txt",
+                                    "orgs": "monitor/lists/orgs.txt"}}}
+    assert daily.collect("2026-10-04", cfg) == []
 
 def test_build_daily_issue_table():
     table = [{"full_name": "a/b", "who": ["alice"], "event": "star",

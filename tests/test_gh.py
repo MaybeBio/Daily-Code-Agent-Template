@@ -1,4 +1,4 @@
-import json
+import json, subprocess
 from scripts import gh
 
 def test_search_repos_parses_json(monkeypatch):
@@ -6,6 +6,19 @@ def test_search_repos_parses_json(monkeypatch):
     monkeypatch.setattr(gh, "run", lambda cmd, **kw: payload)
     out = gh.search_repos("q.yaml", ">=2026-09-27", ["fullName", "stargazersCount"])
     assert out[0]["fullName"] == "a/b"
+
+def test_search_repos_parses_python_repr(monkeypatch):
+    payload = "[{'fullName': 'a/b', 'stargazersCount': 3}]"
+    monkeypatch.setattr(gh, "run", lambda cmd, **kw: payload)
+    out = gh.search_repos("q.yaml", ">=2026-09-27", ["fullName", "stargazersCount"])
+    assert out[0]["fullName"] == "a/b"
+
+def test_safe_repo_meta_falls_back_on_error(monkeypatch):
+    def boom(cmd, **kw):
+        raise subprocess.CalledProcessError(1, ["gh"])
+    monkeypatch.setattr(gh, "run", boom)
+    assert gh.safe_repo_meta("a/b") == {"full_name": "a/b", "url": "", "language": "",
+                                        "stars": 0, "description": "", "pushed_at": ""}
 
 def test_repo_meta_maps_fields(monkeypatch):
     raw = json.dumps({"full_name": "a/b", "html_url": "u", "language": "Python",
