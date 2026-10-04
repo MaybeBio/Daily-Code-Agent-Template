@@ -19,15 +19,27 @@ def _row(r):
         r["full_name"], r["url"], r["language"], r["stars"], r.get("pushed_at", ""),
         r["status"], r["score"] if r["score"] is not None else "-", r["one_liner"])
 
+def _section(heading, rows):
+    if not rows:
+        return []
+    out = [f"## {heading}（{len(rows)}）", "",
+           "| repo | url | language | stars | last_commit | status | score | one_liner |",
+           "|---|---|---|---|---|---|---|---|"]
+    out += [_row(r) for r in rows]
+    out.append("")
+    return out
+
 def build_weekly_issue(scored, cfg, start, end):
-    scored = sorted(scored, key=lambda r: (r["score"] is not None, r["score"] or 0), reverse=True)
-    n_new = sum(1 for r in scored if r["status"] == "new")
-    n_upd = sum(1 for r in scored if r["status"] == "updated")
+    by = {"new": [], "updated": []}
+    for r in scored:
+        by.setdefault(r["status"], []).append(r)
+    for rows in by.values():
+        rows.sort(key=lambda r: (r["score"] is not None, r["score"] or 0), reverse=True)
+    n_new, n_upd = len(by.get("new", [])), len(by.get("updated", []))
     title = f"\U0001F50D 每周仓库发现 {end} · {n_new} 新增 / {n_upd} 更新"
-    body = [f"# {title}", "", f"- 窗口:{start} → {end}", f"- 课题:{cfg.get('topic','')}", "",
-            "| repo | url | language | stars | last_commit | status | score | one_liner |",
-            "|---|---|---|---|---|---|---|---|"]
-    body += [_row(r) for r in scored]
+    body = [f"# {title}", "", f"- 窗口:{start} → {end}", f"- 课题:{cfg.get('topic','')}", ""]
+    body += _section("新增", by.get("new", []))
+    body += _section("更新", by.get("updated", []))
     return title, "\n".join(body) + "\n"
 
 def main():
