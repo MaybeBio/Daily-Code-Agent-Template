@@ -1,0 +1,15 @@
+topic: idr-repos
+title: IDR 相关仓库追踪
+window_days: 7
+site_base_url: ""
+search_placeholder: ""
+llm:
+  concurrency: 8
+daily:
+  enable_repo_table: true
+  watchlists:
+    users: monitor/lists/users.txt
+    users_core: monitor/lists/users_core.txt
+    orgs: monitor/lists/orgs.txt
+search:
+  config: queries/search_repos.yaml
