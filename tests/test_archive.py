@@ -98,3 +98,29 @@ def test_export_wiki_command(monkeypatch):
                         lambda cmd, **kw: captured.append(cmd) or None)
     archive.export_wiki("codewiki", "a/b", "/dest")
     assert captured == [["repowiki-cli", "codewiki", "cp", "a/b", "/dest"]]
+
+def test_wiki_dest_uses_google_code_wiki_for_codewiki(monkeypatch, tmp_path):
+    monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
+    archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
+                             [{"full_name": "a/b", "score": 8, "one_liner": "x"}])
+    dests = {}
+    def fake_clone(fn, dest):
+        return True
+    def fake_wiki(src, fn, dest):
+        dests[src] = dest
+        return True
+    archive.run({"llm": {"min_score": 5}}, "2026-10-05", clone=fake_clone, wiki=fake_wiki)
+    assert dests["deepwiki"].endswith("deepwiki")
+    assert dests["zread"].endswith("zread")
+    assert dests["codewiki"].endswith("google_code_wiki")
+
+def test_run_isolates_raising_archive(monkeypatch, tmp_path):
+    monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
+    archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
+                             [{"full_name": "a/b", "score": 8, "one_liner": "x"}])
+    def raise_clone(fn, dest):
+        raise RuntimeError("boom")
+    out = archive.run({"llm": {"min_score": 5}}, "2026-10-05", clone=raise_clone,
+                      wiki=lambda s, fn, d: True)
+    assert out[0]["clone_ok"] is False
+    assert out[0]["wikis"] == {"deepwiki": False, "codewiki": False, "zread": False}

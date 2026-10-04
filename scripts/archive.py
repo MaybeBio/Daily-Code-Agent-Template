@@ -41,13 +41,21 @@ def archive_one(row, clone, wiki):
     return {"full_name": full_name, "score": row.get("score"),
             "one_liner": row.get("one_liner", ""), "clone_ok": clone_ok, "wikis": wikis}
 
+def _safe_archive_one(row, clone, wiki):
+    try:
+        return archive_one(row, clone, wiki)
+    except Exception:
+        return {"full_name": row["full_name"], "score": row.get("score"),
+                "one_liner": row.get("one_liner", ""), "clone_ok": False,
+                "wikis": {s: False for s in WIKI_SOURCES}}
+
 def run(cfg, date, clone=None, wiki=None):
     clone = clone or clone_repo
     wiki = wiki or export_wiki
     min_score = int(cfg.get("llm", {}).get("min_score", 5))
     scored_path = common.data_dir("scored", f"{date}.json")
     scored = common.load_json(scored_path) if os.path.exists(scored_path) else []
-    archived = [archive_one(r, clone, wiki) for r in threshold(scored, min_score)]
+    archived = [_safe_archive_one(r, clone, wiki) for r in threshold(scored, min_score)]
     common.dump_json(common.data_dir("archive", f"{date}.json"), archived)
     return archived
 

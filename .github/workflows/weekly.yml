@@ -16,6 +16,7 @@ jobs:
         with: {python-version: '3.11'}
       - run: pip install ghresearcher pyrepowiki-cli -r requirements.txt
       - run: npm install -g degit
+      - run: command -v repowiki-cli && command -v degit
       - name: weekly
         run: bash scripts/run_weekly.sh
         env:

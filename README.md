@@ -6,8 +6,8 @@ Scheduled GitHub-repo tracking template: a daily free-metadata feed plus a weekl
 > v1+v2 覆盖「发现 + 打分 + 归档」:每日免费元数据流、每周 README 打分,以及高分仓库的浅克隆(degit)+ wiki 归档(deepwiki/zread/codewiki)。静态 Pages 站点仍属 v3,尚未实现。
 > v1+v2 cover **discovery + scoring + archive**: the daily feed, weekly scoring, and shallow-clone (degit) + wiki archive (deepwiki/zread/codewiki) for high-score repos. The static Pages site remains v3.
 
-依赖 / Depends on:`ghresearcher` CLI(PyPI `ghresearcher`)与 `gh` CLI(`gh auth login`)。本地需 Python 3.11+。
-Requires the `ghresearcher` CLI (PyPI `ghresearcher`) and the authenticated `gh` CLI.
+依赖 / Depends on:`ghresearcher` CLI(PyPI `ghresearcher`)、`pyrepowiki-cli`(PyPI `pyrepowiki-cli`,v2 归档)、Node.js + `degit`(npm,v2 浅克隆)与 `gh` CLI(`gh auth login`)。本地需 Python 3.11+。
+Requires the `ghresearcher` CLI (PyPI `ghresearcher`), `pyrepowiki-cli` (PyPI `pyrepowiki-cli`, v2 archive), Node.js + `degit` (npm, v2 clone), and the authenticated `gh` CLI.
 
 ## 快速开始 / Quickstart
 
@@ -31,7 +31,7 @@ gh auth login                         # 供 gh api 使用 / for gh api
 python scripts/daily.py --config config.yaml \
     --issue-body /tmp/issue.md --issue-title /tmp/issue.title
 
-# 每周 / weekly (search → merge → score → issue)
+# 每周 / weekly (search → merge → score → archive → issue)
 bash scripts/run_weekly.sh
 ```
 
