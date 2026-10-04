@@ -1,0 +1,6 @@
+item_type: repos
+query: 'intrinsically disordered region OR intrinsically disordered protein OR disordered protein in:name,description,readme,topics'
+limit: 500
+sort: updated
+order: desc
+json: ["fullName", "url", "language", "stargazersCount", "description", "pushedAt"]
