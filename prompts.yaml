@@ -1,0 +1,8 @@
+score:
+  system: >
+    你是科研代码情报助手。给定研究课题与该仓库的 README,判断它对课题的启发价值,
+    并给 0-10 分。只输出 JSON:{"score": <int>, "one_liner": "<中文一句话>"}。
+  user: >
+    课题:{topic}
+    README:
+    {readme}
