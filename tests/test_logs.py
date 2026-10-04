@@ -37,3 +37,9 @@ def test_repos_from_events_dedups_and_groups():
     out = logs.repos_from_events(logs.extract_events("\n".join(recs)))
     assert out["x/y"]["who"] == ["A"]
     assert set(out["x/y"]["kinds"]) == {"star", "push"}
+
+def test_push_repo_not_confused_by_slash_in_commit():
+    rec = ("2026-08-13 13:56:16 | \U0001F680 jnwei pushed to aqlaboratory/openfold-3 "
+           "- [fb027a4] (expanded) Merge pull request #358 from CesarPuentes/feat/user-default-runner-yaml")
+    ev = logs.parse_event(rec)
+    assert ev["repo"] == "aqlaboratory/openfold-3"

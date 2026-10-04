@@ -7,7 +7,9 @@ _KIND_HINTS = [("starred", "star"), ("pushed to", "push"), ("forked", "fork"),
                ("opened PR", "pr"), ("reopened PR", "pr"), ("closed PR", "pr"),
                ("created branch", "branch"), ("opened issue", "issue"),
                ("created issue", "issue")]
-_REPO = re.compile(r"\b([A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*)\b")
+_ANCHOR = re.compile(
+    r"(?:starred|pushed to|forked|\bin\b|\bat\b)\s+"
+    r"([A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*)")
 
 def unwrap_records(text: str) -> list[str]:
     out, buf = [], None
@@ -40,13 +42,9 @@ def parse_event(record: str) -> dict | None:
     # 去掉 emoji 与首个人名/actor token
     stripped = re.sub(r"^[^\w]+\s*", "", body)          # 去 emoji
     actor = stripped.split()[0] if stripped.split() else ""
-    # 仓库：优先取 'at owner/repo' 或最后出现的 owner/repo
-    at = re.search(r"\bat\s+([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)", body)
-    if at:
-        repo = at.group(1)
-    else:
-        cands = [c for c in _REPO.findall(body) if not c.startswith("feat/")]
-        repo = cands[-1] if cands else None
+    # 仓库：锚定事件动词/介词后第一个 owner/repo
+    m2 = _ANCHOR.search(body)
+    repo = m2.group(1) if m2 else None
     return {"ts": ts, "kind": kind, "actor": actor, "repo": repo, "text": body}
 
 def extract_events(text: str) -> list[dict]:
