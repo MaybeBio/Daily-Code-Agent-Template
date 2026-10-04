@@ -14,7 +14,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: pip install ghresearcher -r requirements.txt
+      - run: pip install ghresearcher pyrepowiki-cli -r requirements.txt
+      - run: npm install -g degit
       - name: weekly
         run: bash scripts/run_weekly.sh
         env:

@@ -1,10 +1,10 @@
-# Daily-Code-Agent-Template (v1)
+# Daily-Code-Agent-Template (v1 + v2)
 
 定时追踪 GitHub 仓库的自动化模板:每天抓取"免费元数据"动态流,每周对候选仓库的 README 做 LLM 打分,并把结果推送到 GitHub Issue + CSV。
 Scheduled GitHub-repo tracking template: a daily free-metadata feed plus a weekly README-LLM scoring pass, pushed to a GitHub Issue + CSV.
 
-> v1 仅覆盖「发现(discovery)+ 打分(scoring)」。高分仓库的浅克隆(degit)、wiki 归档(deepwiki/zread/codewiki)与静态 Pages 站点属于 v2/v3,尚未实现。
-> v1 covers **discovery + scoring only**. Shallow clone (degit), wiki archive (deepwiki/zread/codewiki) and the static Pages site are deferred to v2/v3.
+> v1+v2 覆盖「发现 + 打分 + 归档」:每日免费元数据流、每周 README 打分,以及高分仓库的浅克隆(degit)+ wiki 归档(deepwiki/zread/codewiki)。静态 Pages 站点仍属 v3,尚未实现。
+> v1+v2 cover **discovery + scoring + archive**: the daily feed, weekly scoring, and shallow-clone (degit) + wiki archive (deepwiki/zread/codewiki) for high-score repos. The static Pages site remains v3.
 
 依赖 / Depends on:`ghresearcher` CLI(PyPI `ghresearcher`)与 `gh` CLI(`gh auth login`)。本地需 Python 3.11+。
 Requires the `ghresearcher` CLI (PyPI `ghresearcher`) and the authenticated `gh` CLI.
@@ -23,6 +23,8 @@ Requires the `ghresearcher` CLI (PyPI `ghresearcher`) and the authenticated `gh`
 ```bash
 pip install -r requirements.txt
 pip install ghresearcher              # 需要 / required for search + monitor
+pip install pyrepowiki-cli           # 需要 / required for wiki archive (v2)
+npm install -g degit                 # 需要 / required for shallow clone (v2)
 gh auth login                         # 供 gh api 使用 / for gh api
 
 # 每日 / daily
