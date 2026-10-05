@@ -20,7 +20,7 @@ def _wire(monkeypatch, tmp_path, pushed_at):
 def test_e2e_then_seen_on_second_run(monkeypatch, tmp_path):
     _wire(monkeypatch, tmp_path, "2026-10-03")
     cfg = {"topic": "t", "title": "T", "window_days": 7, "llm": {"concurrency": 1},
-           "search": {"config": "q.yaml"}}
+           "search": {"config": "q.yaml", "queries": ["x in:name"]}}
     search.run(cfg, "2026-10-04", ">=2026-09-27")
     cands = merge.run(cfg, "2026-10-04")["candidates"]
     assert len(cands) == 1 and cands[0]["status"] == "new"

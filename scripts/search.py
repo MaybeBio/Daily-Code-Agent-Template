@@ -1,4 +1,5 @@
 import argparse, os, sys
+import yaml
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts import common, gh  # noqa: E402
 
@@ -9,10 +10,24 @@ def _norm(d: dict) -> dict:
             "language": d.get("language") or "", "stars": d.get("stargazersCount", 0),
             "description": d.get("description") or "", "pushed_at": d.get("pushedAt", "")}
 
+def _queries(search_cfg: dict, qcfg_path: str) -> list[str]:
+    if search_cfg.get("queries"):
+        return list(search_cfg["queries"])
+    with open(qcfg_path, encoding="utf-8") as f:      # 兼容旧式单查询
+        q = yaml.safe_load(f) or {}
+    if q.get("query"):
+        return [q["query"]]
+    raise ValueError(f"no queries in config search.queries or {qcfg_path}")
+
 def run(cfg: dict, date: str, since: str) -> list[dict]:
     qcfg = os.path.join(common.ROOT, cfg["search"]["config"])
-    rows = [_norm(d) for d in gh.search_repos(qcfg, since, FIELDS)]
-    rows = [r for r in rows if r["full_name"]]
+    merged: dict[str, dict] = {}
+    for query in _queries(cfg["search"], qcfg):
+        for d in gh.search_repos(qcfg, since, FIELDS, query=query):
+            n = _norm(d)
+            if n["full_name"]:
+                merged[n["full_name"]] = n
+    rows = list(merged.values())
     common.dump_json(common.data_dir("search", f"{date}.json"), rows)
     return rows
 

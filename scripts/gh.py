@@ -6,9 +6,12 @@ def run(cmd: list[str], **kw) -> str:
     kw.setdefault("check", True)
     return subprocess.run(cmd, **kw).stdout
 
-def search_repos(config_path: str, updated: str, fields: list[str]) -> list[dict]:
-    cmd = ["ghresearcher", "search", "--config", config_path,
-           "--updated", updated, "--json", ",".join(fields)]
+def search_repos(config_path: str, updated: str, fields: list[str],
+                 query: str | None = None) -> list[dict]:
+    cmd = ["ghresearcher", "search"]
+    if query:
+        cmd += ["repos", query]
+    cmd += ["--config", config_path, "--updated", updated, "--json", ",".join(fields)]
     out = run(cmd)
     start, end = out.find("["), out.rfind("]")
     if start == -1 or end <= start:

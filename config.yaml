@@ -22,3 +22,17 @@ daily:
     orgs: monitor/lists/orgs.txt
 search:
   config: queries/search_repos.yaml
+  # GitHub 仓库搜索:多查询并集(逐条查询后按 full_name 去重)。换课题时改这里。
+  # ⚠️ 不要用单条 `A OR B OR C in:字段`(in: 只作用于最后一个词,噪声爆炸),
+  #    也不要用裸 3 字母缩写(IDR/IDP/LLPS 会被 gh 子串命中,如意大利语 "Idrogeologica")。
+  #    每条查询都用「引号短语 + in:name,description,topics」,独立且简单,跨库稳定。
+  queries:
+    - '"intrinsically disordered" in:name,description,topics'
+    - '"disordered protein" in:name,description,topics'
+    - '"disordered proteins" in:name,description,topics'
+    - '"disordered region" in:name,description,topics'
+    - '"disordered regions" in:name,description,topics'
+    - '"biomolecular condensate" in:name,description,topics'
+    - '"biomolecular condensates" in:name,description,topics'
+    - '"phase separation" in:name,description,topics'
+    - 'topic:intrinsically-disordered-protein'

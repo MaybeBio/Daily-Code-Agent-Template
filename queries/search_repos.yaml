@@ -1,5 +1,8 @@
+# ghresearcher/gh search 的通用参数(limit/sort/order/json)。
+# ⚠️ 这里只能放 gh 认识的字段 —— ghresearcher 会把 config 里每个键原样转成 `gh` 的 flag,
+#    未知字段(如 queries)会变成 `--queries` 直接报错。
+# 实际查询串在 config.yaml 的 search.queries(多查询并集,由 search.py 逐条执行并去重)。
 item_type: repos
-query: 'intrinsically disordered region OR intrinsically disordered protein OR disordered protein in:name,description,readme,topics'
 limit: 500
 sort: updated
 order: desc

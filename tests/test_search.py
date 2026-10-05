@@ -1,10 +1,34 @@
 from scripts import search
 
-def test_run_normalizes_and_writes(monkeypatch, tmp_path):
+def _qcfg(tmp_path, text="item_type: repos\nlimit: 500\n"):
+    qdir = tmp_path / "queries"
+    qdir.mkdir(exist_ok=True)
+    (qdir / "search_repos.yaml").write_text(text)
+    return "queries/search_repos.yaml"
+
+def test_run_unions_and_dedups_queries(monkeypatch, tmp_path):
     monkeypatch.setattr(search.common, "ROOT", str(tmp_path))
-    monkeypatch.setattr(search.gh, "search_repos", lambda *a, **k: [{
-        "fullName": "a/b", "url": "u", "language": "Python", "stargazersCount": 7,
-        "description": "d", "pushedAt": "2026-10-03T00:00:00Z"}])
-    rows = search.run({"search": {"config": "q.yaml"}}, "2026-10-04", ">=2026-09-27")
-    assert rows[0]["full_name"] == "a/b" and rows[0]["stars"] == 7
+    cfgpath = _qcfg(tmp_path)
+    def fake_search(cfg_path, updated, fields, query=None):
+        assert query in ("A in:name", "B in:name")
+        base = [{"fullName": "a/b", "url": "u", "language": "Python",
+                 "stargazersCount": 7, "description": "d", "pushedAt": "2026-10-03T00:00:00Z"}]
+        if query == "B in:name":
+            base.append({"fullName": "c/d", "url": "u2", "language": "Go",
+                         "stargazersCount": 1, "description": "", "pushedAt": "2026-10-02T00:00:00Z"})
+        return base
+    monkeypatch.setattr(search.gh, "search_repos", fake_search)
+    cfg = {"search": {"config": cfgpath, "queries": ["A in:name", "B in:name"]}}
+    rows = search.run(cfg, "2026-10-04", ">=2026-09-27")
+    assert sorted(r["full_name"] for r in rows) == ["a/b", "c/d"]   # a/b deduped across queries
     assert (tmp_path / "data" / "search" / "2026-10-04.json").exists()
+
+def test_run_falls_back_to_single_query_in_yaml(monkeypatch, tmp_path):
+    monkeypatch.setattr(search.common, "ROOT", str(tmp_path))
+    cfgpath = _qcfg(tmp_path, "item_type: repos\nquery: 'X in:name'\n")
+    monkeypatch.setattr(search.gh, "search_repos",
+                        lambda *a, **k: [{"fullName": "a/b", "url": "u", "language": "",
+                                          "stargazersCount": 1, "description": "",
+                                          "pushedAt": "2026-10-03T00:00:00Z"}])
+    rows = search.run({"search": {"config": cfgpath}}, "2026-10-04", ">=2026-09-27")
+    assert rows[0]["full_name"] == "a/b" and rows[0]["stars"] == 1
