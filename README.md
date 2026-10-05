@@ -11,8 +11,8 @@ Requires the `ghresearcher` CLI (PyPI `ghresearcher`), `pyrepowiki-cli` (PyPI `p
 
 ## 快速开始 / Quickstart
 
-1. **配置 / Configure** — 编辑 `config.yaml`(`topic` / `title` / `window_days`)并按主题填写 `monitor/lists/{users,users_core,orgs}.txt`(每行一个真实 GitHub 用户或 org;`users_core.txt` 必须是 `users.txt` 的子集,它只收窄更嘈杂的 received 流)。
-   Edit `config.yaml` (`topic` / `title` / `window_days`) and fill `monitor/lists/{users,users_core,orgs}.txt` with real GitHub users/orgs — one per line.
+1. **配置 / Configure** — 编辑 `config.yaml`(`topic` slug / `title` 显示名 / `topic_desc` 喂给 LLM 的课题说明 / `window_days` / `search.queries` 搜索查询列表)并按主题填写 `monitor/lists/{users,users_core,orgs}.txt`(每行一个真实 GitHub 用户或 org;`users_core.txt` 必须是 `users.txt` 的子集,它只收窄更嘈杂的 received 流)。
+   Edit `config.yaml` (`topic` slug / `title` / `topic_desc` — the human-readable brief fed to the LLM / `window_days` / `search.queries` — the list of search queries) and fill `monitor/lists/{users,users_core,orgs}.txt` with real GitHub users/orgs — one per line.
 2. **密钥 / Secrets** — 在仓库设置里添加 Secrets `LLM_BASE_URL`、`LLM_API_KEY`,以及变量 Variable `LLM_MODEL`(OpenAI 兼容接口)。
    Add repo Secrets `LLM_BASE_URL` / `LLM_API_KEY` and Variable `LLM_MODEL` (OpenAI-compatible endpoint).
 3. **调度 / Schedule** — 用外部 cron(如 Cron-job.org)按需触发两个 `workflow_dispatch` 工作流 `daily-feed` 与 `weekly-discovery`。GitHub 原生 `schedule` 在此不可靠,故不使用;cron 用 UTC。
