@@ -1,4 +1,5 @@
-import argparse, os, shutil, subprocess, sys
+import argparse, os, shutil, subprocess, sys, time
+from concurrent.futures import ThreadPoolExecutor
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts import common  # noqa: E402
 
@@ -15,21 +16,24 @@ def repo_dir(full_name):
 def _wiki_dir(source):
     return "google_code_wiki" if source == "codewiki" else source
 
+def _run_retry(cmd, tag, attempts=3):
+    last = None
+    for i in range(attempts):
+        try:
+            subprocess.run(cmd, capture_output=True, text=True, check=True)
+            return True
+        except Exception as e:          # 网络/限流/非零退出 → 有界重试
+            last = e
+            if i < attempts - 1:
+                time.sleep(2 ** i)
+    print(f"[{tag} failed] {' '.join(cmd)}: {last}", file=sys.stderr)
+    return False
+
 def clone_repo(full_name, dest):
-    try:
-        subprocess.run(["degit", full_name, dest, "--force"],
-                       capture_output=True, text=True, check=True)
-        return True
-    except Exception:
-        return False
+    return _run_retry(["degit", full_name, dest, "--force"], "clone")
 
 def export_wiki(source, full_name, dest):
-    try:
-        subprocess.run(["repowiki-cli", source, "cp", full_name, dest],
-                       capture_output=True, text=True, check=True)
-        return True
-    except Exception:
-        return False
+    return _run_retry(["repowiki-cli", source, "cp", full_name, dest], f"wiki:{source}")
 
 def archive_one(row, clone, wiki):
     full_name = row["full_name"]
@@ -44,7 +48,8 @@ def archive_one(row, clone, wiki):
 def _safe_archive_one(row, clone, wiki):
     try:
         return archive_one(row, clone, wiki)
-    except Exception:
+    except Exception as e:
+        print(f"[archive failed] {row['full_name']}: {e}", file=sys.stderr)
         return {"full_name": row["full_name"], "score": row.get("score"),
                 "one_liner": row.get("one_liner", ""), "clone_ok": False,
                 "wikis": {s: False for s in WIKI_SOURCES}}
@@ -55,7 +60,11 @@ def run(cfg, date, clone=None, wiki=None):
     min_score = int(cfg.get("llm", {}).get("min_score", 5))
     scored_path = common.data_dir("scored", f"{date}.json")
     scored = common.load_json(scored_path) if os.path.exists(scored_path) else []
-    archived = [_safe_archive_one(r, clone, wiki) for r in threshold(scored, min_score)]
+    keep = threshold(scored, min_score)
+    # 低并发:网络工具(degit/repowiki-cli)串行太慢,但太高会触发 repowiki 限流。
+    workers = max(1, int(cfg.get("archive", {}).get("concurrency", 4)))
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        archived = list(ex.map(lambda r: _safe_archive_one(r, clone, wiki), keep))
     common.dump_json(common.data_dir("archive", f"{date}.json"), archived)
     return archived
 
@@ -66,7 +75,11 @@ def main():
     a = ap.parse_args()
     cfg = common.load_config(a.config)
     date = a.date or common.today()
-    print(len(run(cfg, date)))
+    out = run(cfg, date)
+    ok_clone = sum(1 for r in out if r["clone_ok"])
+    ok_wiki = {s: sum(1 for r in out if r["wikis"].get(s)) for s in WIKI_SOURCES}
+    print(f"{len(out)} archived; clone ok {ok_clone}/{len(out)}; "
+          + "; ".join(f"{s} {n}/{len(out)}" for s, n in ok_wiki.items()))
 
 if __name__ == "__main__":
     main()

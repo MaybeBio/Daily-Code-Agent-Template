@@ -114,6 +114,36 @@ def test_wiki_dest_uses_google_code_wiki_for_codewiki(monkeypatch, tmp_path):
     assert dests["zread"].endswith("zread")
     assert dests["codewiki"].endswith("google_code_wiki")
 
+def test_clone_repo_retries_then_gives_up(monkeypatch, capsys):
+    calls = []
+    def boom(cmd, **kw):
+        calls.append(cmd)
+        raise RuntimeError("net")
+    monkeypatch.setattr(archive.subprocess, "run", boom)
+    monkeypatch.setattr(archive.time, "sleep", lambda s: None)
+    assert archive.clone_repo("a/b", "/d") is False
+    assert len(calls) == 3                              # 有界重试
+    assert "[clone failed]" in capsys.readouterr().err  # 不再静默
+
+def test_clone_repo_retries_then_succeeds(monkeypatch):
+    n = {"i": 0}
+    def flaky(cmd, **kw):
+        n["i"] += 1
+        if n["i"] == 1:
+            raise RuntimeError("transient")
+    monkeypatch.setattr(archive.subprocess, "run", flaky)
+    monkeypatch.setattr(archive.time, "sleep", lambda s: None)
+    assert archive.clone_repo("a/b", "/d") is True
+    assert n["i"] == 2
+
+def test_run_archives_all_keepers_concurrently(monkeypatch, tmp_path):
+    monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
+    scored = [{"full_name": f"o{i}/r", "score": 8, "one_liner": "x"} for i in range(6)]
+    archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"), scored)
+    out = archive.run({"llm": {"min_score": 5}, "archive": {"concurrency": 3}}, "2026-10-05",
+                      clone=lambda fn, d: True, wiki=lambda s, fn, d: True)
+    assert sorted(r["full_name"] for r in out) == sorted(r["full_name"] for r in scored)
+
 def test_run_isolates_raising_archive(monkeypatch, tmp_path):
     monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
     archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),

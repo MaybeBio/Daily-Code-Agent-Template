@@ -14,6 +14,10 @@ search_placeholder: ""
 llm:
   concurrency: 8
   min_score: 5
+archive:
+  # degit + repowiki-cli 的网络并发数。串行太慢(55 仓库 ~4h),太高会触发
+  # repowiki(deepwiki/zread)限流 —— 实测串行时仍有 47/55 wiki 失败,故取低并发。
+  concurrency: 4
 daily:
   enable_repo_table: true
   watchlists:
