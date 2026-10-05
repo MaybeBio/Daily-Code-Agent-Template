@@ -1,0 +1,14 @@
+<a class="repo-card" href="{{ BASE }}/repos/{{ repo_dir_name(r.full_name) }}/">
+  <div class="repo-number">{{ card_index }}</div>
+  <div class="repo-card-main">
+    <div class="repo-meta">
+      <span class="score score-{{ score_tier(r.score) }}">{{ r.score if r.score is not none else "-" }}</span>
+      {% if r.language %}<span class="lang">{{ r.language }}</span>{% endif %}
+      {% if r.stars %}<span class="stars">★ {{ r.stars }}</span>{% endif %}
+      {% if r.status %}<span class="status">{{ r.status }}</span>{% endif %}
+      <span>{{ r.pushed_at[:10] }}</span>
+    </div>
+    <h2>{{ r.full_name }}</h2>
+    <p class="card-summary">{{ r.one_liner }}</p>
+  </div>
+</a>
