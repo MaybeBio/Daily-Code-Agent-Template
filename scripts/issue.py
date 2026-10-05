@@ -23,8 +23,8 @@ def _section(heading, rows):
     if not rows:
         return []
     out = [f"## {heading}（{len(rows)}）", "",
-           "| repo | url | language | stars | last_commit | status | score | one_liner |",
-           "|---|---|---|---|---|---|---|---|"]
+           "| repo | language | stars | last_commit | status | score | one_liner |",
+           "|---|---|---|---|---|---|---|"]
     out += [_row(r) for r in rows]
     out.append("")
     return out
