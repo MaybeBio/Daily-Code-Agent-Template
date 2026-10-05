@@ -21,3 +21,9 @@ def test_dump_json_creates_parents(tmp_path, monkeypatch):
     path = common.data_dir("daily", "x.json")
     common.dump_json(path, {"k": 1})
     assert json.load(open(path))["k"] == 1
+
+def test_topic_brief_prefers_desc_then_title_then_slug():
+    assert common.topic_brief({"topic": "slug", "topic_desc": "D"}) == "D"
+    assert common.topic_brief({"topic": "slug", "title": "T"}) == "T"
+    assert common.topic_brief({"topic": "slug"}) == "slug"
+    assert common.topic_brief({}) == ""

@@ -14,10 +14,10 @@ def make_client() -> OpenAI:
 def model_name() -> str:
     return os.environ.get("LLM_MODEL", DEFAULT_MODEL).strip() or DEFAULT_MODEL
 
-def score_repo(client, model, prompts, topic, readme) -> dict:
+def score_repo(client, model, prompts, topic_desc, readme) -> dict:
     p = prompts["score"]
     msgs = [{"role": "system", "content": p["system"]},
-            {"role": "user", "content": p["user"].format(topic=topic, readme=readme[:12000])}]
+            {"role": "user", "content": p["user"].format(topic=topic_desc, readme=readme[:12000])}]
     last = None
     for attempt in range(4):
         try:
@@ -31,10 +31,10 @@ def score_repo(client, model, prompts, topic, readme) -> dict:
                 time.sleep(2 ** attempt)
     raise last
 
-def build_code_card(client, model, prompts, topic, readme) -> dict:
+def build_code_card(client, model, prompts, topic_desc, readme) -> dict:
     p = prompts["code_card"]
     msgs = [{"role": "system", "content": p["system"]},
-            {"role": "user", "content": p["user"].format(topic=topic, readme=readme[:12000])}]
+            {"role": "user", "content": p["user"].format(topic=topic_desc, readme=readme[:12000])}]
     last = None
     for attempt in range(4):
         try:

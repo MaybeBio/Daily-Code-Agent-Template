@@ -6,7 +6,7 @@ from scripts.agent import load_prompts  # noqa: E402
 
 def _score_one(row, cfg, client, prompts, model, fetch):
     readme = fetch(row["full_name"])
-    return agent.score_repo(client, model, prompts, cfg["topic"], readme)
+    return agent.score_repo(client, model, prompts, common.topic_brief(cfg), readme)
 
 def run(cfg, date, client=None, fetch=None):
     fetch = fetch or gh.fetch_readme

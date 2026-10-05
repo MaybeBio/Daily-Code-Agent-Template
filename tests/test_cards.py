@@ -71,6 +71,20 @@ def test_run_missing_scored_yields_empty(monkeypatch, tmp_path):
                     card_fn=lambda c, m, p, t, r: {"card": "x"})
     assert out == [] and calls == []
 
+def test_run_passes_topic_brief_not_slug(monkeypatch, tmp_path):
+    monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
+    cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
+                           [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                             "status": "new", "score": 8, "one_liner": "x"}])
+    monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
+    seen = {}
+    def capture(c, m, p, topic, readme):
+        seen["topic"] = topic
+        return {"card": "x"}
+    cards.run({"topic": "slug-x", "topic_desc": "A real description", "llm": {"min_score": 5}},
+              "2026-10-05", client=object(), fetch=lambda fn: "r", card_fn=capture)
+    assert seen["topic"] == "A real description"
+
 def test_build_code_card_parses_json():
     client = _fake_client('{"card": "## 是什么\\nhello"}')
     out = agent.build_code_card(client, "m", PROMPTS, "topic", "README")

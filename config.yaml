@@ -1,5 +1,13 @@
 topic: idr-repos
 title: IDR 相关仓库追踪
+# 课题说明(喂给 LLM 判相关性/打分用;与 topic(slug) 分开)。换课题时改这里。
+topic_desc: >
+  固有无序区/无序蛋白(IDR/IDP)及其相分离与生物分子凝聚体(LLPS/condensates)方向的
+  研究代码与工具仓库。包括:IDR/无序区的识别与预测、无序蛋白构象系综的生成与分析、
+  相分离/凝聚体的建模与模拟、无序蛋白语言模型、IDR 介导的结合/互作建模等。
+  只关注真正面向 IDR/无序蛋白/相分离的仓库;其它领域的仓库(如计算机视觉、时间序列、
+  机器人、遥感、通用化学/物理、金融等)即使名称或 README 里出现 "disordered" 等词,
+  也不属于本课题。
 window_days: 7
 site_base_url: ""
 search_placeholder: ""

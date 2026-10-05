@@ -17,6 +17,21 @@ def test_run_scores_and_updates_registry(monkeypatch, tmp_path):
     assert reg["repos"]["a/b"]["score"] == 9
     assert reg["repos"]["a/b"]["last_scored_commit"] == "2026-10-03"
 
+def test_run_passes_topic_brief_not_slug(monkeypatch, tmp_path):
+    monkeypatch.setattr(score.common, "ROOT", str(tmp_path))
+    score.common.dump_json(str(tmp_path / "data" / "candidates" / "2026-10-04.json"),
+                           [{"full_name": "a/b", "url": "u", "pushed_at": "t",
+                             "stars": 1, "language": "", "description": "", "status": "new"}])
+    monkeypatch.setattr(score, "load_prompts", lambda p: PROMPTS)
+    seen = {}
+    def capture(client, model, prompts, topic, readme):
+        seen["topic"] = topic
+        return {"score": 1, "one_liner": ""}
+    monkeypatch.setattr(score.agent, "score_repo", capture)
+    cfg = {"topic": "slug-x", "topic_desc": "A real description", "llm": {"concurrency": 1}}
+    score.run(cfg, "2026-10-04", client=object(), fetch=lambda fn: "r")
+    assert seen["topic"] == "A real description"
+
 def test_fetch_failure_is_marked_not_raised(monkeypatch, tmp_path):
     monkeypatch.setattr(score.common, "ROOT", str(tmp_path))
     score.common.dump_json(str(tmp_path / "data" / "candidates" / "2026-10-04.json"),

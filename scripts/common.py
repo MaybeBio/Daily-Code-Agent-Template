@@ -9,6 +9,14 @@ def load_config(path: str) -> dict:
     with open(path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
+def topic_brief(cfg: dict) -> str:
+    """人类可读的课题说明,喂给 LLM;优先 topic_desc,其次 title,最后 topic(slug)。"""
+    for key in ("topic_desc", "title", "topic"):
+        val = (cfg.get(key) or "").strip()
+        if val:
+            return val
+    return ""
+
 def data_dir(*parts: str) -> str:
     d = os.path.join(ROOT, "data", *parts[:-1])
     os.makedirs(d, exist_ok=True)

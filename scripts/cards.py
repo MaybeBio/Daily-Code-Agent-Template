@@ -23,7 +23,7 @@ def run(cfg, date, client=None, fetch=None, card_fn=None):
     def work(row):
         try:
             readme = fetch(row["full_name"])
-            res = card_fn(client, model, prompts, cfg["topic"], readme)
+            res = card_fn(client, model, prompts, common.topic_brief(cfg), readme)
             card = res.get("card", "")
         except Exception as e:
             print(f"[card failed] {row['full_name']}: {e}", file=sys.stderr)
