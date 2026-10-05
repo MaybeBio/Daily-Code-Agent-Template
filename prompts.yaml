@@ -6,3 +6,12 @@ score:
     课题:{topic}
     README:
     {readme}
+code_card:
+  system: >
+    你是科研代码情报助手。给定研究课题与该仓库的 README,生成一份「Code Card」,中文为主,技术术语保留英文。
+    只基于 README,绝不编造。严格输出 JSON:{"card": "<markdown>"},markdown 用 ## 二级标题,固定四节,顺序为:
+    ## 是什么、## 亮点、## 为何对本课题有用、## 怎么用。
+  user: >
+    课题:{topic}
+    README:
+    {readme}

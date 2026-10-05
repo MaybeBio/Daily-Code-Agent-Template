@@ -30,3 +30,20 @@ def score_repo(client, model, prompts, topic, readme) -> dict:
             if attempt < 3:
                 time.sleep(2 ** attempt)
     raise last
+
+def build_code_card(client, model, prompts, topic, readme) -> dict:
+    p = prompts["code_card"]
+    msgs = [{"role": "system", "content": p["system"]},
+            {"role": "user", "content": p["user"].format(topic=topic, readme=readme[:12000])}]
+    last = None
+    for attempt in range(4):
+        try:
+            r = client.chat.completions.create(model=model, messages=msgs, temperature=0.0,
+                                                response_format={"type": "json_object"})
+            obj = json.loads(r.choices[0].message.content)
+            return {"card": str(obj.get("card", ""))}
+        except Exception as e:      # 网络/限流/解析
+            last = e
+            if attempt < 3:
+                time.sleep(2 ** attempt)
+    raise last
