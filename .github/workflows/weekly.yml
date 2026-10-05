@@ -23,6 +23,12 @@ jobs:
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           LLM_MODEL: ${{ vars.LLM_MODEL }}
+      - name: open issue
+        run: |
+          : > data/latest_issue.txt
+          if [ -s /tmp/issue.md ]; then
+            url=$(gh issue create --title "$(cat /tmp/issue.title)" --body-file /tmp/issue.md) && echo "$url" > data/latest_issue.txt || true
+          fi
       - name: commit
         run: |
           git config user.name "github-actions[bot]"
@@ -31,8 +37,3 @@ jobs:
           git diff --cached --quiet && echo "no changes" && exit 0
           git commit -m "weekly: $(date +%F)"
           for i in 1 2 3; do git pull --rebase && git push && break || sleep $((i*5)); done
-      - name: open issue
-        run: |
-          if [ -s /tmp/issue.md ]; then
-            gh issue create --title "$(cat /tmp/issue.title)" --body-file /tmp/issue.md || true
-          fi

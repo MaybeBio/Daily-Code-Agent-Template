@@ -9,6 +9,7 @@ echo "[weekly] search";       "$PY" scripts/search.py --config config.yaml --sin
 echo "[weekly] merge";        "$PY" scripts/merge.py  --config config.yaml
 echo "[weekly] score";        "$PY" scripts/score.py  --config config.yaml
 echo "[weekly] archive";      "$PY" scripts/archive.py --config config.yaml
+echo "[weekly] cards";        "$PY" scripts/cards.py   --config config.yaml
 echo "[weekly] issue";        "$PY" scripts/issue.py  --config config.yaml \
     --issue-body /tmp/issue.md --issue-title /tmp/issue.title
 echo "[weekly] done"

@@ -1,10 +1,10 @@
-# Daily-Code-Agent-Template (v1 + v2)
+# Daily-Code-Agent-Template (v1 + v2 + v3)
 
 定时追踪 GitHub 仓库的自动化模板:每天抓取"免费元数据"动态流,每周对候选仓库的 README 做 LLM 打分,并把结果推送到 GitHub Issue + CSV。
 Scheduled GitHub-repo tracking template: a daily free-metadata feed plus a weekly README-LLM scoring pass, pushed to a GitHub Issue + CSV.
 
-> v1+v2 覆盖「发现 + 打分 + 归档」:每日免费元数据流、每周 README 打分,以及高分仓库的浅克隆(degit)+ wiki 归档(deepwiki/zread/codewiki)。静态 Pages 站点仍属 v3,尚未实现。
-> v1+v2 cover **discovery + scoring + archive**: the daily feed, weekly scoring, and shallow-clone (degit) + wiki archive (deepwiki/zread/codewiki) for high-score repos. The static Pages site remains v3.
+> v1+v2+v3 覆盖「发现 + 打分 + 归档 + 站点」:每日免费元数据流、每周 README 打分、高分仓库的浅克隆(degit)+ wiki 归档,以及把这些高分仓库渲染成静态 Pages 站点(每仓库一张富 code card,附当周 Issue 链接)。
+> v1+v2+v3 cover **discovery + scoring + archive + site**: the daily feed, weekly scoring, shallow-clone (degit) + wiki archive, and a static Pages site with one rich code card per high-score repo plus the weekly Issue link.
 
 依赖 / Depends on:`ghresearcher` CLI(PyPI `ghresearcher`)、`pyrepowiki-cli`(PyPI `pyrepowiki-cli`,v2 归档)、Node.js + `degit`(npm,v2 浅克隆)与 `gh` CLI(`gh auth login`)。本地需 Python 3.11+。
 Requires the `ghresearcher` CLI (PyPI `ghresearcher`), `pyrepowiki-cli` (PyPI `pyrepowiki-cli`, v2 archive), Node.js + `degit` (npm, v2 clone), and the authenticated `gh` CLI.
@@ -25,6 +25,7 @@ pip install -r requirements.txt
 pip install ghresearcher              # 需要 / required for search + monitor
 pip install pyrepowiki-cli           # 需要 / required for wiki archive (v2)
 npm install -g degit                 # 需要 / required for shallow clone (v2)
+pip install jinja2 markdown            # 需要 / required for site build (v3)
 gh auth login                         # 供 gh api 使用 / for gh api
 
 # 每日 / daily
@@ -33,6 +34,9 @@ python scripts/daily.py --config config.yaml \
 
 # 每周 / weekly (search → merge → score → archive → issue)
 bash scripts/run_weekly.sh
+
+# 站点 / site (v3)
+python scripts/build_site.py --out-dir . --config config.yaml
 ```
 
 ## 测试 / Tests
