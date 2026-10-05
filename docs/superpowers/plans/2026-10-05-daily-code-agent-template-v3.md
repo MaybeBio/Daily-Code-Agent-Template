@@ -81,10 +81,10 @@ def test_run_cards_only_keepers(monkeypatch, tmp_path):
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     out = cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
                     client=object(), fetch=lambda fn: "README",
-                    card_fn=lambda c, m, p, topic, readme: {"card": "card:" + fn})
+                    card_fn=lambda c, m, p, topic, readme: {"card": "card:" + readme})
     assert [r["full_name"] for r in out] == ["hi/a"]
     saved = cards.common.load_json(str(tmp_path / "data" / "cards" / "2026-10-05.json"))
-    assert saved[0]["card"] == "card:hi/a"
+    assert saved[0]["card"] == "card:README"
     assert set(saved[0]) == {"full_name", "url", "language", "stars", "pushed_at",
                              "status", "score", "one_liner", "card"}
 
