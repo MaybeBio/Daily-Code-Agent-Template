@@ -1,0 +1,607 @@
+[
+  {
+    "full_name": "idptools/afrc",
+    "score": 9,
+    "one_liner": "该仓库提供序列特异的解析Flory无规线团参考模型，可直接用于IDR构象系综的基准比较与距离/接触分析，对课题有高度启发价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "Vincentqyw/cv-arxiv-daily",
+    "score": 8,
+    "one_liner": "该仓库系统整理了SLAM、SFM、视觉定位等最新论文与代码，对研究SLAM方向具有很高的参考价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": true,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "lixus7/Time-Series-Works-Conferences",
+    "score": 8,
+    "one_liner": "该仓库系统整理了时间序列领域的最新研究论文与会议信息，对时间序列基础模型、预测、异常检测等课题具有直接且丰富的参考价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": true,
+      "codewiki": false,
+      "zread": true
+    }
+  },
+  {
+    "full_name": "mdozmorov/scRNA-seq_notes",
+    "score": 8,
+    "one_liner": "该仓库系统整理了scRNA-seq分析工具、流程和最佳实践，对单细胞数据分析课题具有很高的参考价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "AspirinCode/awesome-AI4MolConformation-MD",
+    "score": 8,
+    "one_liner": "该仓库系统整理了AI与分子构象动力学结合的前沿文献与工具，对课题有较高参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "KULL-Centre/CALVADOS",
+    "score": 8,
+    "one_liner": "该仓库提供粗粒化隐式溶剂模拟工具，对研究无序蛋白相分离行为有直接参考价值，但需结合具体课题评估适用性。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": true,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "idptools/starling",
+    "score": 8,
+    "one_liner": "该仓库提供基于扩散模型的固有无序蛋白构象系综预测工具，与IDR构象研究高度相关，可直接用于生成和分析无序蛋白构象。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": true,
+      "codewiki": false,
+      "zread": true
+    }
+  },
+  {
+    "full_name": "rotskoff-group/idiom",
+    "score": 8,
+    "one_liner": "该仓库提供针对固有无序蛋白区域（IDR）的专用蛋白质语言模型，支持生成、嵌入提取和强化学习后训练，对IDR相关研究具有直接且重要的参考价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": true,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "YuzeHao2023/daily-arxiv-ai4physics",
+    "score": 8,
+    "one_liner": "该仓库系统整理了科学机器学习与PINNs领域的最新论文，对课题研究有直接且丰富的参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "holehouse-lab/soursop",
+    "score": 8,
+    "one_liner": "该仓库提供针对无序蛋白模拟的全面分析工具，与IDR构象分析课题高度相关，可直接用于计算Rg、距离图、NMR可观测量和系综重加权等关键指标。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": true,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "Zenteomics/awesome-proteomics",
+    "score": 8,
+    "one_liner": "该仓库是质谱蛋白质组学工具与资源的精选清单，对idr-repos课题中蛋白质组学数据资源与工具调研有直接参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "notwhiteblank/PhaSePred",
+    "score": 8,
+    "one_liner": "该仓库提供基于序列预测蛋白质相分离倾向的完整工具，与IDR研究高度相关，可直接用于计算IDR相关特征并预测相分离能力。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "RLCL-EIT/robotics_arxiv_daily",
+    "score": 8,
+    "one_liner": "该仓库是灵巧操作与具身智能领域的每日arXiv论文精选列表，与课题高度相关，可快速追踪前沿进展。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "exopoiesis/arxiv-radar-physics",
+    "score": 8,
+    "one_liner": "该仓库系统追踪科学机器学习与PDE学习的最新论文，对课题有较高参考价值，但需结合具体研究方向进一步筛选。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "zhangxincode/Steering-Activation-Paper-Arxiv",
+    "score": 8,
+    "one_liner": "该仓库系统收集了激活引导与内部表征控制的前沿论文，对研究idr-repos课题具有直接且丰富的参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "doublepoints/cv-arxiv-daily",
+    "score": 8,
+    "one_liner": "该仓库系统整理了SLAM、SFM等视觉定位领域的最新论文，对idr-repos课题有直接且丰富的参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "BoHuangLab/CELL-FM",
+    "score": 8,
+    "one_liner": "该仓库提供从序列到显微图像的生成模型，可直接用于虚拟实验和表型分析，对蛋白质定位与凝聚体研究有高启发价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "SatbirSingh071/Disease-Classification-Geo",
+    "score": 8,
+    "one_liner": "该仓库提供了从GEO数据获取到机器学习分类、可解释性和富集分析的完整可复现流水线，对疾病分类课题有直接的方法论参考价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "strawvivishortcake/IDR_Literature_Pipeline",
+    "score": 8,
+    "one_liner": "该仓库提供了从DisProt和PubMed系统收集IDR相关文献的完整流水线，对构建IDR研究知识库和文献挖掘有直接参考价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "sherry6247/HyperIDR",
+    "score": 8,
+    "one_liner": "该仓库提供基于多尺度语义超网络的蛋白质内在无序区域识别方法，与课题高度相关，代码和数据集完整，具有直接参考价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "im-va-3/jax-md-main",
+    "score": 8,
+    "one_liner": "该仓库提供可微分的分子动力学模拟框架，与IDR课题中涉及的无序蛋白或凝聚态模拟高度相关，其端到端可微特性可支持力场优化与逆向设计。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "zezhishao/DailyArXiv",
+    "score": 7,
+    "one_liner": "该仓库持续追踪时间序列预测前沿论文，对课题有较高参考价值，但需自行筛选与课题直接相关的内容。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": true,
+      "codewiki": false,
+      "zread": true
+    }
+  },
+  {
+    "full_name": "Jianqiuer/Awesome6DPoseEstimation",
+    "score": 7,
+    "one_liner": "该仓库系统整理了6D位姿估计、点云配准与分割等前沿论文，对idr-repos课题具有直接且丰富的参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "yqhuang722/DailyArxiv",
+    "score": 7,
+    "one_liner": "该仓库持续追踪图基础模型最新论文，与课题高度相关，可提供前沿思路和基准参考。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "Ponkux/DailyArXiv-cp",
+    "score": 7,
+    "one_liner": "该仓库持续追踪具身智能与3D场景生成等前沿论文，可为idr-repos课题提供最新研究动态与灵感参考。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "YuzeHao2023/daily-arxiv-ai4geo",
+    "score": 7,
+    "one_liner": "该仓库系统整理了地球科学AI前沿论文，对地震、成像等方向有直接参考价值，但需自行筛选与课题相关的具体内容。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "zeaoji/MyDailyArXiv",
+    "score": 7,
+    "one_liner": "该仓库持续追踪模型编辑领域最新论文，为idr-repos课题提供前沿研究动态和灵感来源。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "exopoiesis/arxiv-radar-chemistry",
+    "score": 7,
+    "one_liner": "该仓库系统追踪分子表示、性质预测及ML力场等前沿论文，对AI4Science课题有较高参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "gitesei/MEM-CALVADOS",
+    "score": 7,
+    "one_liner": "该仓库提供膜界面柔性蛋白的粗粒化模型，对研究膜相关无序蛋白的构象与相互作用有直接参考价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "HolobiomicsLab/Magnolia-AI",
+    "score": 7,
+    "one_liner": "该仓库展示了一个面向计算化学研究的持久化记忆AI代理框架，其记忆审查、来源追踪和协议沉淀机制对构建可复现的科研代码工作流有直接借鉴价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "chunqing403/protein-design-radar",
+    "score": 7,
+    "one_liner": "该仓库是蛋白质设计前沿论文雷达，与课题高度相关，可提供最新文献追踪和分类参考，但本身非代码实现。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "kaizhangnju/desolvation-CG-model",
+    "score": 7,
+    "one_liner": "该仓库提供去溶剂化参数化粗粒化模型及完整模拟分析流程，对研究IDP相分离机制有直接参考价值，但需自行适配具体课题。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "tjaglal11/Bayesian-Analysis-of-SAXS-Data",
+    "score": 7,
+    "one_liner": "该仓库提供贝叶斯重加权方法分析SAXS数据，对无序蛋白构象系综研究有直接启发，但需结合课题具体需求评估适用性。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "CobanAkdemirlab/NMDescapediseasegene_paper",
+    "score": 7,
+    "one_liner": "该仓库提供了NMD逃逸注释与特征提取的完整流程，对研究无义突变介导的mRNA降解机制及疾病关联具有直接参考价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "MaybeBio/Daily-ArXiv-AI4Bio",
+    "score": 7,
+    "one_liner": "该仓库提供IDR、蛋白-DNA建模等计算生物学方向的每日arXiv论文自动追踪，与课题高度相关，可高效获取最新文献。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "enhansome/enhansome-structural-bioinformatics",
+    "score": 7,
+    "one_liner": "该仓库系统整理了结构生物信息学中蛋白质折叠与对接的经典工具和资源，对理解idr相关算法背景有参考价值，但非直接针对idr实现。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "enhansome/enhansome-ai-for-science",
+    "score": 7,
+    "one_liner": "该仓库是AI4Science资源大全，虽非直接代码库，但涵盖论文检索、图表生成、科研Agent等工具，对科研代码情报工作有较高参考价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "exopoiesis/arxiv-radar-polymer",
+    "score": 7,
+    "one_liner": "该仓库系统追踪聚合物信息学与AI材料设计的最新论文，对相关课题有较高参考价值，但需注意部分条目与课题主题无关。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "sduhoulab/EFR-pathogenic",
+    "score": 7,
+    "one_liner": "该仓库提供基于ESM-2的早期折叠残基预测框架，与IDR预测在蛋白质语言模型应用和疾病关联分析上高度相关，可直接借鉴其模型架构与训练流程。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "Menrae/ppi-interface-transfer",
+    "score": 7,
+    "one_liner": "该课题系统评估了AlphaFold预测结构对蛋白结合位点预测模型的影响，对结构生物信息学中预测结构的可靠性验证具有重要参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "ARU-Bioinformatics/yeast-data-ai",
+    "score": 7,
+    "one_liner": "该仓库是一个结合酵母基因必需性预测的AI辅助数据科学教学实践，对生物信息学教学和AI辅助科研流程设计有启发价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "mattyb4/Cluster-Scout",
+    "score": 7,
+    "one_liner": "该仓库提供癌症突变与PTM位点3D邻近性分析流程，对研究突变聚类和功能注释有直接参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "suhaanthayyil/idrfeat",
+    "score": 7,
+    "one_liner": "该仓库为IDR区域提供全面的特征提取工具，对研究内在无序区域功能及变异影响有直接参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "aliabghari/BioLitAgent",
+    "score": 7,
+    "one_liner": "该仓库展示了多智能体文献挖掘与监管情报平台架构，对构建自动化科研文献分析系统有直接参考价值，但课题聚焦于仓库元数据而非生物工艺领域，需迁移其智能体编排与知识管理思路。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "emalacs/idp-pharmacophore-tools",
+    "score": 7,
+    "one_liner": "该工具针对无序蛋白动态药效团建模，与IDP相关课题高度相关，提供从MD轨迹提取药效团的完整流程，具有直接参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "emalacs/Scalone_IDP_Pharmacophore_Mapping_2026",
+    "score": 7,
+    "one_liner": "该仓库提供从分子动力学模拟中提取无序蛋白动态药效团图谱的完整流程，对研究IDP药物靶点有直接启发价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "zamydm/GIMLET",
+    "score": 7,
+    "one_liner": "该仓库提供了一套完整的离子通道多尺度模拟与分析方法，对研究离子通道的结构与功能关系具有直接参考价值。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "mayupsc/IDRmutant",
+    "score": 7,
+    "one_liner": "该仓库提供IDR突变与无序性预测的完整实现，对研究IDR突变效应和磷酸化模拟有直接参考价值，但依赖外部工具且未授权。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "ai4s-research/awesome-ai-for-science",
+    "score": 6,
+    "one_liner": "该仓库是AI4Science资源大全，虽非直接针对idr-repos，但其中论文转代码、科研智能体等工具对复现和扩展IDR相关工作有参考价值。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": true
+    }
+  },
+  {
+    "full_name": "steineggerlab/afesm-analysis",
+    "score": 6,
+    "one_liner": "该仓库展示了大规模蛋白质结构数据库的聚类、域注释和新型折叠发现流程，对蛋白质结构分析课题有参考价值，但需根据具体研究方向评估相关性。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": true,
+      "codewiki": false,
+      "zread": true
+    }
+  },
+  {
+    "full_name": "smaniches/alphafold-sovereign-mcp",
+    "score": 6,
+    "one_liner": "该仓库展示了如何将多个生物医学数据源封装为MCP工具并构建本地知识图谱，对idr-repos课题的架构设计有参考价值，但核心是AlphaFold结构生物学而非图像数据仓库。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "riddhikad9b-ux/Comparative_Genomics_Stress_Resilient_Animals",
+    "score": 6,
+    "one_liner": "该仓库展示了从序列到结构的完整计算流程，对研究IDR相关课题有方法学参考价值，但课题方向不明确，针对性有限。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "cynch-L/adcsim_conjugation_model",
+    "score": 6,
+    "one_liner": "该仓库提供IgG1半胱氨酸偶联的DAR分布计算模型，对ADC药物设计有参考价值，但需重新校准且不直接适用于idr相关课题。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "MaybeBio/PDB-MD-Suite",
+    "score": 6,
+    "one_liner": "该仓库提供PDB/MMCIF结构预处理工具，对分子动力学模拟工作流有实用价值，但与本课题idr-repos的直接关联有限。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  },
+  {
+    "full_name": "SometimesJade/SometimesJade",
+    "score": 5,
+    "one_liner": "该仓库展示了生物信息学技能和项目，但缺乏与idr-repos直接相关的数据仓库或图像分析内容，启发有限。",
+    "clone_ok": false,
+    "wikis": {
+      "deepwiki": false,
+      "codewiki": false,
+      "zread": false
+    }
+  }
+]

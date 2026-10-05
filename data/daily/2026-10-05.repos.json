@@ -1,0 +1,350 @@
+[
+  {
+    "full_name": "eternity4719/HowToLiveBetter",
+    "who": [
+      "chao1224"
+    ],
+    "event": "star",
+    "stars": 42708,
+    "language": "HTML",
+    "description": "高性价比人生指南: 长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
+    "url": "https://github.com/eternity4719/HowToLiveBetter"
+  },
+  {
+    "full_name": "siteboon/claudecodeui",
+    "who": [
+      "QizhiPei"
+    ],
+    "event": "star",
+    "stars": 13941,
+    "language": "TypeScript",
+    "description": "Use Claude Code, OpenCode, Cursor CLI, and Codex on mobile and web with CloudCLI (aka Claude Code UI). CloudCLI is a free open source webui/GUI that helps you manage your Claude Code session and projects remotely.",
+    "url": "https://github.com/siteboon/claudecodeui"
+  },
+  {
+    "full_name": "aqlaboratory/openfold",
+    "who": [
+      "Walnosimaj"
+    ],
+    "event": "fork",
+    "stars": 3435,
+    "language": "Python",
+    "description": "Trainable, memory-efficient, and GPU-friendly PyTorch reproduction of AlphaFold 2",
+    "url": "https://github.com/aqlaboratory/openfold"
+  },
+  {
+    "full_name": "steineggerlab/foldseek",
+    "who": [
+      "AGrantUEA",
+      "milot-mirdita"
+    ],
+    "event": "issue",
+    "stars": 1298,
+    "language": "C",
+    "description": "Foldseek enables fast and sensitive comparisons of large structure sets.",
+    "url": "https://github.com/steineggerlab/foldseek"
+  },
+  {
+    "full_name": "HannesStark/boltzgen",
+    "who": [
+      "HannesStark"
+    ],
+    "event": "mixed",
+    "stars": 1072,
+    "language": "Jupyter Notebook",
+    "description": "BoltzGen: Toward Universal Binder Design",
+    "url": "https://github.com/HannesStark/boltzgen"
+  },
+  {
+    "full_name": "aqlaboratory/openfold-3",
+    "who": [
+      "LaelaZorana",
+      "OtoYuki",
+      "heathcliff233",
+      "jandom",
+      "jnwei",
+      "qas2100"
+    ],
+    "event": "mixed",
+    "stars": 888,
+    "language": "Python",
+    "description": "A fully open source biomolecular structure prediction model based on AlphaFold3",
+    "url": "https://github.com/aqlaboratory/openfold-3"
+  },
+  {
+    "full_name": "baker-laboratory/RoseTTAFold-All-Atom",
+    "who": [
+      "ZJXUyexiancai"
+    ],
+    "event": "star",
+    "stars": 825,
+    "language": "Python",
+    "description": "",
+    "url": "https://github.com/baker-laboratory/RoseTTAFold-All-Atom"
+  },
+  {
+    "full_name": "Graylab/DL4Proteins-notebooks",
+    "who": [
+      "heidiiii-b"
+    ],
+    "event": "star",
+    "stars": 730,
+    "language": "Jupyter Notebook",
+    "description": "Colab Notebooks covering deep learning tools for biomolecular structure prediction and design",
+    "url": "https://github.com/Graylab/DL4Proteins-notebooks"
+  },
+  {
+    "full_name": "RosettaCommons/RFantibody",
+    "who": [
+      "HannesStark"
+    ],
+    "event": "mixed",
+    "stars": 539,
+    "language": "Python",
+    "description": "",
+    "url": "https://github.com/RosettaCommons/RFantibody"
+  },
+  {
+    "full_name": "JuliaMolSim/Molly.jl",
+    "who": [
+      "jgreener64"
+    ],
+    "event": "mixed",
+    "stars": 496,
+    "language": "Julia",
+    "description": "Molecular simulation in Julia",
+    "url": "https://github.com/JuliaMolSim/Molly.jl"
+  },
+  {
+    "full_name": "PacesaLab/BindCraft2",
+    "who": [
+      "HannesStark"
+    ],
+    "event": "mixed",
+    "stars": 408,
+    "language": "Python",
+    "description": "Easy to use suite for designing a wide range of protein binder modalities.",
+    "url": "https://github.com/PacesaLab/BindCraft2"
+  },
+  {
+    "full_name": "ai4protein/VenusFactory2",
+    "who": [
+      "Jianxinnn"
+    ],
+    "event": "star",
+    "stars": 250,
+    "language": "Python",
+    "description": "🏭 AI agent platform with skills for protein engineering, the noob-friendly AI tutorial tool for life science professionals. (ACL Demo2025, arXiv 2026)",
+    "url": "https://github.com/ai4protein/VenusFactory2"
+  },
+  {
+    "full_name": "steineggerlab/folddisco",
+    "who": [
+      "CharlesWangCW123",
+      "Magnushhoie"
+    ],
+    "event": "star",
+    "stars": 218,
+    "language": "Rust",
+    "description": "Fast indexing and search of discontinuous motifs in protein structures",
+    "url": "https://github.com/steineggerlab/folddisco"
+  },
+  {
+    "full_name": "zadorlab/sella",
+    "who": [
+      "jsunn-y"
+    ],
+    "event": "star",
+    "stars": 182,
+    "language": "Python",
+    "description": "A Python software package for saddle point optimization and minimization of atomic systems.",
+    "url": "https://github.com/zadorlab/sella"
+  },
+  {
+    "full_name": "KULL-Centre/CALVADOS",
+    "who": [
+      "rimaud"
+    ],
+    "event": "star",
+    "stars": 99,
+    "language": "Python",
+    "description": "",
+    "url": "https://github.com/KULL-Centre/CALVADOS"
+  },
+  {
+    "full_name": "THGLab/HiQBind",
+    "who": [
+      "nicetone9"
+    ],
+    "event": "star",
+    "stars": 88,
+    "language": "Jupyter Notebook",
+    "description": "Workflow to clean up and fix structural problems in protein-ligand binding datasets",
+    "url": "https://github.com/THGLab/HiQBind"
+  },
+  {
+    "full_name": "ProteinDesignLab/protpardelle-1c",
+    "who": [
+      "CharlesWangCW123"
+    ],
+    "event": "star",
+    "stars": 86,
+    "language": "Python",
+    "description": "Updated Protpardelle models with more robust motif scaffolding and multichain support",
+    "url": "https://github.com/ProteinDesignLab/protpardelle-1c"
+  },
+  {
+    "full_name": "idptools/starling",
+    "who": [
+      "jlotthammer"
+    ],
+    "event": "push",
+    "stars": 78,
+    "language": "Jupyter Notebook",
+    "description": "STARLING - conSTruction of intrinsicAlly disoRdered proteins ensembles efficientLy vIa multi-dimeNsional Generative models",
+    "url": "https://github.com/idptools/starling"
+  },
+  {
+    "full_name": "idptools/goose",
+    "who": [
+      "Rattailjuicer"
+    ],
+    "event": "issue",
+    "stars": 28,
+    "language": "Python",
+    "description": "A python package for generating disordered sequences and disorder sequence variants.",
+    "url": "https://github.com/idptools/goose"
+  },
+  {
+    "full_name": "rotskoff-group/idiom",
+    "who": [
+      "Junjie-Zhu"
+    ],
+    "event": "star",
+    "stars": 19,
+    "language": "Python",
+    "description": "A protein language model for intrinsically disordered regions",
+    "url": "https://github.com/rotskoff-group/idiom"
+  },
+  {
+    "full_name": "sokrypton/localfold",
+    "who": [
+      "sokrypton"
+    ],
+    "event": "push",
+    "stars": 18,
+    "language": "JavaScript",
+    "description": "",
+    "url": "https://github.com/sokrypton/localfold"
+  },
+  {
+    "full_name": "steineggerlab/folddisco-analysis",
+    "who": [
+      "CharlesWangCW123"
+    ],
+    "event": "star",
+    "stars": 7,
+    "language": "Python",
+    "description": "Scripts to benchmark folddisco",
+    "url": "https://github.com/steineggerlab/folddisco-analysis"
+  },
+  {
+    "full_name": "coleygroup/coleygroup.github.io",
+    "who": [
+      "luost26"
+    ],
+    "event": "pr",
+    "stars": 5,
+    "language": "SCSS",
+    "description": "Coley Research Group website",
+    "url": "https://github.com/coleygroup/coleygroup.github.io"
+  },
+  {
+    "full_name": "GENTEL-lab/Fold2Reason",
+    "who": [
+      "yliust"
+    ],
+    "event": "push",
+    "stars": 3,
+    "language": "Python",
+    "description": "Official code for Fold2Reason: Enhancing general reasoning in language models through protein-structure post-training.",
+    "url": "https://github.com/GENTEL-lab/Fold2Reason"
+  },
+  {
+    "full_name": "ZengZichao/SciGlyph",
+    "who": [
+      "Zuricho"
+    ],
+    "event": "star",
+    "stars": 2,
+    "language": "HTML",
+    "description": "SciGlyph — AI-assisted scientific illustration SVG asset library · 12 categories · 2,830 assets · CC BY 4.0 (AI 生成，使用前请核实准确性)",
+    "url": "https://github.com/ZengZichao/SciGlyph"
+  },
+  {
+    "full_name": "gitesei/MEM-CALVADOS",
+    "who": [
+      "gitesei"
+    ],
+    "event": "push",
+    "stars": 2,
+    "language": "Python",
+    "description": "",
+    "url": "https://github.com/gitesei/MEM-CALVADOS"
+  },
+  {
+    "full_name": "sokrypton/aoe-beta",
+    "who": [
+      "sokrypton"
+    ],
+    "event": "push",
+    "stars": 1,
+    "language": "JavaScript",
+    "description": "",
+    "url": "https://github.com/sokrypton/aoe-beta"
+  },
+  {
+    "full_name": "Graylab/LambdaDockScore",
+    "who": [
+      "naokob"
+    ],
+    "event": "star",
+    "stars": 1,
+    "language": "Python",
+    "description": "2025 Machine Learning for Structural Biology (MLSB) Workshop",
+    "url": "https://github.com/Graylab/LambdaDockScore"
+  },
+  {
+    "full_name": "Junjie-Zhu/SurPass",
+    "who": [
+      "Junjie-Zhu"
+    ],
+    "event": "push",
+    "stars": 0,
+    "language": "Python",
+    "description": "",
+    "url": "https://github.com/Junjie-Zhu/SurPass"
+  },
+  {
+    "full_name": "luost26/coleygroup.github.io",
+    "who": [
+      "luost26"
+    ],
+    "event": "push",
+    "stars": 0,
+    "language": "SCSS",
+    "description": "Coley Research Group website",
+    "url": "https://github.com/luost26/coleygroup.github.io"
+  },
+  {
+    "full_name": "BioComputingUP/dome-tracking",
+    "who": [
+      "github-actions"
+    ],
+    "event": "push",
+    "stars": 0,
+    "language": "Python",
+    "description": "Uptime and code-activity tracking for the DOME ecosystem: DOME Registry, DOME-ML, DOME Copilot, OSAI, DOME Observatory",
+    "url": "https://github.com/BioComputingUP/dome-tracking"
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "full_name": "moses-lab/faidr-fit",
+    "url": "https://github.com/moses-lab/faidr-fit",
+    "language": "JavaScript",
+    "stars": 2,
+    "description": "FAIDR-Fit: Explore the molecular features and function of intrinsically disordered regions (IDRs) across the human proteome in your browser",
+    "pushed_at": "2026-09-29T13:35:29Z",
+    "status": "new"
+  },
+  {
+    "full_name": "BanerjeeLab-repertoire/pycat-napari",
+    "url": "https://github.com/BanerjeeLab-repertoire/pycat-napari",
+    "language": "Python",
+    "stars": 1,
+    "description": "Python Condensate Analysis Toolbox (PyCAT) for bio-image analysis, especially biomolecular condensates and fluorescence microscopy images.",
+    "pushed_at": "2026-10-02T21:11:08Z",
+    "status": "new"
+  },
+  {
+    "full_name": "tersignhq/evidence-record-conformance",
+    "url": "https://github.com/tersignhq/evidence-record-conformance",
+    "language": "Python",
+    "stars": 1,
+    "description": "Two-sided conformance vectors for the evidence-record layer — independence, completeness, anchored existence, phase separation, offer/decision/boundary binding. stdlib-only verifier + independent TypeScript cross-check; live Bitcoin-anchored vectors; externally reproduced byte-identically.",
+    "pushed_at": "2026-10-01T15:16:28Z",
+    "status": "new"
+  },
+  {
+    "full_name": "rauscher-lab/zephyr",
+    "url": "https://github.com/rauscher-lab/zephyr",
+    "language": "Python",
+    "stars": 0,
+    "description": "A generative diffusion model for sampling disordered protein structures trained on MD datasets.",
+    "pushed_at": "2026-10-02T18:54:20Z",
+    "status": "new"
+  },
+  {
+    "full_name": "api-evangelist/dewpoint-therapeutics",
+    "url": "https://github.com/api-evangelist/dewpoint-therapeutics",
+    "language": "",
+    "stars": 0,
+    "description": "Dewpoint Therapeutics — independent third-party profile of a public API surface, by API Evangelist. Dewpoint Therapeutics is a biotechnology company applying the emerging science of biomolecular condensates to drug discovery. Founded in 2018 and headquartered in Boston, Massachusetts, with an additional research site in Dresden, Germany, Dewpoint h",
+    "pushed_at": "2026-10-04T17:38:08Z",
+    "status": "new"
+  },
+  {
+    "full_name": "comphy-lab/coalescence-non-Newtonian",
+    "url": "https://github.com/comphy-lab/coalescence-non-Newtonian",
+    "language": "Python",
+    "stars": 0,
+    "description": "DNS of viscoelastic drop coalescence as a proxy for biomolecular condensate fusion",
+    "pushed_at": "2026-10-03T17:41:58Z",
+    "status": "new"
+  },
+  {
+    "full_name": "gzerze/ddft_for_biomolecular_condensates",
+    "url": "https://github.com/gzerze/ddft_for_biomolecular_condensates",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "DDFT code for solving biomolecular condensate dynamics using FiPy and parameterization by coarse-grained OpenMM Simulations.",
+    "pushed_at": "2026-09-30T15:14:40Z",
+    "status": "new"
+  },
+  {
+    "full_name": "LihuaJinMSM/reusable-energy-absorbing-multiscale-structures-by-polymerization-induced-phase-separation",
+    "url": "https://github.com/LihuaJinMSM/reusable-energy-absorbing-multiscale-structures-by-polymerization-induced-phase-separation",
+    "language": "",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-03T07:10:48Z",
+    "status": "new"
+  },
+  {
+    "full_name": "wkf-phy/interface-mediated-secondary-phase-separation",
+    "url": "https://github.com/wkf-phy/interface-mediated-secondary-phase-separation",
+    "language": "MATLAB",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T22:53:35Z",
+    "status": "new"
+  },
+  {
+    "full_name": "Shashwat-arch/MAC2-Modularity-Aided-Contrastive-Clustering-with-Phase-Separation-Regularization",
+    "url": "https://github.com/Shashwat-arch/MAC2-Modularity-Aided-Contrastive-Clustering-with-Phase-Separation-Regularization",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T06:05:05Z",
+    "status": "new"
+  },
+  {
+    "full_name": "haokezhou8/psdelta",
+    "url": "https://github.com/haokezhou8/psdelta",
+    "language": "Python",
+    "stars": 0,
+    "description": "Predicting how sequence changes alter liquid-liquid phase separation: condition-aware, uncertainty-aware LLPS modelling",
+    "pushed_at": "2026-09-28T15:28:21Z",
+    "status": "new"
+  }
+]

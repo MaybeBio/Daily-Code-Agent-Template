@@ -1,0 +1,107 @@
+repo,url,language,stars,last_commit,status,score,one_liner
+ai4s-research/awesome-ai-for-science,https://github.com/ai4s-research/awesome-ai-for-science,,2010,2026-10-04T08:32:26Z,new,6,该仓库是AI4Science资源大全，虽非直接针对idr-repos，但其中论文转代码、科研智能体等工具对复现和扩展IDR相关工作有参考价值。
+Vincentqyw/cv-arxiv-daily,https://github.com/Vincentqyw/cv-arxiv-daily,Python,1500,2026-09-28T16:36:31Z,new,8,该仓库系统整理了SLAM、SFM、视觉定位等最新论文与代码，对研究SLAM方向具有很高的参考价值。
+lixus7/Time-Series-Works-Conferences,https://github.com/lixus7/Time-Series-Works-Conferences,,1036,2026-09-29T11:59:09Z,new,8,该仓库系统整理了时间序列领域的最新研究论文与会议信息，对时间序列基础模型、预测、异常检测等课题具有直接且丰富的参考价值。
+mdozmorov/scRNA-seq_notes,https://github.com/mdozmorov/scRNA-seq_notes,R,820,2026-10-03T01:05:16Z,new,8,该仓库系统整理了scRNA-seq分析工具、流程和最佳实践，对单细胞数据分析课题具有很高的参考价值。
+zezhishao/DailyArXiv,https://github.com/zezhishao/DailyArXiv,Python,451,2026-10-04T19:46:21Z,new,7,该仓库持续追踪时间序列预测前沿论文，对课题有较高参考价值，但需自行筛选与课题直接相关的内容。
+Beliavsky/Fortran-code-on-GitHub,https://github.com/Beliavsky/Fortran-code-on-GitHub,,389,2026-09-30T23:35:25Z,new,1,该仓库是Fortran代码索引列表，与idr-repos课题无直接关联，仅可能提供少量参考。
+Jianqiuer/Awesome6DPoseEstimation,https://github.com/Jianqiuer/Awesome6DPoseEstimation,Python,321,2026-10-04T04:51:48Z,new,7,该仓库系统整理了6D位姿估计、点云配准与分割等前沿论文，对idr-repos课题具有直接且丰富的参考价值。
+AspirinCode/awesome-AI4MolConformation-MD,https://github.com/AspirinCode/awesome-AI4MolConformation-MD,,307,2026-10-03T11:11:14Z,new,8,该仓库系统整理了AI与分子构象动力学结合的前沿文献与工具，对课题有较高参考价值。
+AI-in-Transportation-Lab/awesome-mechanistic-interpretability,https://github.com/AI-in-Transportation-Lab/awesome-mechanistic-interpretability,JavaScript,164,2026-10-04T03:52:24Z,new,0,该仓库是机械可解释性领域的资源列表，与课题idr-repos无直接关联，参考价值极低。
+KentoNishi/awesome-all-you-need-papers,https://github.com/KentoNishi/awesome-all-you-need-papers,Python,161,2026-10-02T16:51:06Z,new,1,该仓库仅收集标题含'all you need'的论文列表，与idr-repos课题无直接技术或方法关联，启发价值极低。
+Tavish9/awesome-daily-AI-arxiv,https://github.com/Tavish9/awesome-daily-AI-arxiv,Python,121,2026-10-04T08:15:21Z,new,0,该仓库是AI论文每日摘要列表，与课题idr-repos无直接关联，缺乏针对性启发。
+iszhanjiawei/flow_matching_arxiv_daily,https://github.com/iszhanjiawei/flow_matching_arxiv_daily,Python,106,2026-10-04T03:33:00Z,new,2,该仓库是Flow Matching相关论文的每日更新列表，与idr-repos课题无直接关联，仅可能提供少量相关文献线索。
+KULL-Centre/CALVADOS,https://github.com/KULL-Centre/CALVADOS,Python,99,2026-09-28T20:55:29Z,new,8,该仓库提供粗粒化隐式溶剂模拟工具，对研究无序蛋白相分离行为有直接参考价值，但需结合具体课题评估适用性。
+idptools/starling,https://github.com/idptools/starling,Jupyter Notebook,78,2026-10-05T00:25:37Z,new,8,该仓库提供基于扩散模型的固有无序蛋白构象系综预测工具，与IDR构象研究高度相关，可直接用于生成和分析无序蛋白构象。
+Xuchen-Li/cv-arxiv-daily,https://github.com/Xuchen-Li/cv-arxiv-daily,Python,48,2026-09-28T16:38:07Z,new,2,该仓库是视觉目标跟踪领域的论文列表，与idr-repos课题关联度低，仅可能提供少量相关文献参考。
+ZhuYingJessica/cv-daily,https://github.com/ZhuYingJessica/cv-daily,Python,47,2026-10-05T02:31:41Z,new,2,该仓库是深度估计与语义分割论文的持续更新列表，对特定课题的代码启发有限，但可作为文献追踪参考。
+YuzeHao2023/daily-arxiv-ai4chem,https://github.com/YuzeHao2023/daily-arxiv-ai4chem,Python,32,2026-09-28T16:29:47Z,new,2,该仓库是AI/图神经网络论文列表，与idr-repos课题关联度低，仅个别分子表示相关论文可能略有参考。
+joheras/Lecturas,https://github.com/joheras/Lecturas,Jupyter Notebook,20,2026-10-02T11:28:51Z,new,2,该仓库是个人阅读清单，与idr-repos课题无直接关联，仅个别AI相关条目可能提供间接参考。
+zeleny-ondrej/STNN-Weekly-Arxiv,https://github.com/zeleny-ondrej/STNN-Weekly-Arxiv,Python,20,2026-09-29T01:21:45Z,new,1,该仓库仅为时空神经网络论文列表，与idr-repos课题无直接关联，参考价值有限。
+YuzeHao2023/daily-arxiv-ai4bio,https://github.com/YuzeHao2023/daily-arxiv-ai4bio,Python,20,2026-09-28T16:35:36Z,new,0,该仓库是生物信息学论文列表，与idr-repos课题无直接关联。
+Lyz103/LLM-Agent-Paper-daily,https://github.com/Lyz103/LLM-Agent-Paper-daily,Python,20,2026-09-28T16:31:54Z,new,1,该仓库是AI智能体论文的汇总列表，与idr-repos课题无直接关联，参考价值有限。
+pstAmbition/DailyArXiv_Multimodal,https://github.com/pstAmbition/DailyArXiv_Multimodal,Python,19,2026-10-04T06:40:41Z,new,2,该仓库是自动抓取arXiv论文的列表，与idr-repos课题无直接关联，仅个别多模态论文可能有间接参考价值。
+leelige/article,https://github.com/leelige/article,JavaScript,18,2026-10-04T13:31:42Z,new,0,该仓库是arxiv论文自动更新列表，与idr-repos课题无直接关联，缺乏针对性启发。
+rotskoff-group/idiom,https://github.com/rotskoff-group/idiom,Python,18,2026-10-02T17:11:37Z,new,8,该仓库提供针对固有无序蛋白区域（IDR）的专用蛋白质语言模型，支持生成、嵌入提取和强化学习后训练，对IDR相关研究具有直接且重要的参考价值。
+YuzeHao2023/daily-arxiv-ai4physics,https://github.com/YuzeHao2023/daily-arxiv-ai4physics,Python,16,2026-09-28T16:08:00Z,new,8,该仓库系统整理了科学机器学习与PINNs领域的最新论文，对课题研究有直接且丰富的参考价值。
+NY1024/AgentSafety-Papers,https://github.com/NY1024/AgentSafety-Papers,Python,12,2026-10-04T20:47:17Z,new,2,该仓库是LLM Agent安全论文追踪列表，与idr-repos课题无直接关联，仅可能提供安全研究背景参考。
+holehouse-lab/soursop,https://github.com/holehouse-lab/soursop,Jupyter Notebook,12,2026-10-01T15:57:55Z,new,8,该仓库提供针对无序蛋白模拟的全面分析工具，与IDR构象分析课题高度相关，可直接用于计算Rg、距离图、NMR可观测量和系综重加权等关键指标。
+mlnjsh/ai-research-radar,https://github.com/mlnjsh/ai-research-radar,Python,11,2026-10-04T20:38:46Z,new,2,该仓库是自动追踪arXiv论文的雷达工具，与idr-repos课题无直接关联，仅可能提供论文检索的参考价值。
+cnlinxi/LLM-paper-daily,https://github.com/cnlinxi/LLM-paper-daily,Python,10,2026-09-28T16:45:43Z,new,1,该仓库仅为论文列表，与idr-repos课题无直接关联，参考价值极低。
+yqhuang722/DailyArxiv,https://github.com/yqhuang722/DailyArxiv,Python,8,2026-10-04T16:35:53Z,new,7,该仓库持续追踪图基础模型最新论文，与课题高度相关，可提供前沿思路和基准参考。
+robert-mcdermott/proteoscope,https://github.com/robert-mcdermott/proteoscope,JavaScript,8,2026-09-30T14:37:51Z,new,2,该仓库是蛋白质结构可视化工具，与idr-repos课题关联度低，但其中结构比对和数据分析方法或可间接参考。
+Zenteomics/awesome-proteomics,https://github.com/Zenteomics/awesome-proteomics,,8,2026-09-28T02:32:55Z,new,8,该仓库是质谱蛋白质组学工具与资源的精选清单，对idr-repos课题中蛋白质组学数据资源与工具调研有直接参考价值。
+Ponkux/DailyArXiv-cp,https://github.com/Ponkux/DailyArXiv-cp,Python,6,2026-10-04T10:35:13Z,new,7,该仓库持续追踪具身智能与3D场景生成等前沿论文，可为idr-repos课题提供最新研究动态与灵感参考。
+polyidoit/Arxiv-TQFT,https://github.com/polyidoit/Arxiv-TQFT,Python,6,2026-10-04T03:38:48Z,new,1,该仓库仅为arXiv论文列表，无代码实现，对科研代码情报价值极低。
+YuzeHao2023/daily-arxiv-ai4polymer,https://github.com/YuzeHao2023/daily-arxiv-ai4polymer,Python,5,2026-09-28T16:31:44Z,new,2,该仓库是自监督学习论文的广泛列表，与idr-repos课题关联度低，仅个别表示学习论文可能有间接参考价值。
+YuzeHao2023/daily-arxiv-ai4economy,https://github.com/YuzeHao2023/daily-arxiv-ai4economy,Python,5,2026-09-28T16:27:09Z,new,2,该仓库是经济金融领域论文列表，与idr-repos课题关联度低，仅可能提供少量相关文献参考。
+YuzeHao2023/daily-arxiv-ai4geo,https://github.com/YuzeHao2023/daily-arxiv-ai4geo,Python,5,2026-09-28T16:16:06Z,new,7,该仓库系统整理了地球科学AI前沿论文，对地震、成像等方向有直接参考价值，但需自行筛选与课题相关的具体内容。
+zeaoji/MyDailyArXiv,https://github.com/zeaoji/MyDailyArXiv,Python,4,2026-10-04T19:43:35Z,new,7,该仓库持续追踪模型编辑领域最新论文，为idr-repos课题提供前沿研究动态和灵感来源。
+steineggerlab/afesm-analysis,https://github.com/steineggerlab/afesm-analysis,Jupyter Notebook,4,2026-10-02T07:34:25Z,new,6,该仓库展示了大规模蛋白质结构数据库的聚类、域注释和新型折叠发现流程，对蛋白质结构分析课题有参考价值，但需根据具体研究方向评估相关性。
+smaniches/alphafold-sovereign-mcp,https://github.com/smaniches/alphafold-sovereign-mcp,Python,4,2026-10-01T00:48:13Z,new,6,该仓库展示了如何将多个生物医学数据源封装为MCP工具并构建本地知识图谱，对idr-repos课题的架构设计有参考价值，但核心是AlphaFold结构生物学而非图像数据仓库。
+theneao/CV-SAR-Seg-arxiv-daily,https://github.com/theneao/CV-SAR-Seg-arxiv-daily,Python,4,2026-09-28T16:49:38Z,new,2,该仓库是CV-SAR分割论文的每日更新列表，与idr-repos课题关联度低，仅可能提供边缘检测等方法的文献参考。
+iszhanjiawei/TTS_arxiv_daily,https://github.com/iszhanjiawei/TTS_arxiv_daily,Python,3,2026-10-04T04:26:02Z,new,0,该仓库是TTS论文列表，与idr-repos课题无直接关联。
+idptools/afrc,https://github.com/idptools/afrc,Python,3,2026-09-30T18:35:04Z,new,9,该仓库提供序列特异的解析Flory无规线团参考模型，可直接用于IDR构象系综的基准比较与距离/接触分析，对课题有高度启发价值。
+dvlan26/daily-arxiv-ai4sensor,https://github.com/dvlan26/daily-arxiv-ai4sensor,Python,2,2026-10-05T02:44:59Z,new,2,该仓库是跨领域论文列表，与idr-repos课题关联度低，仅个别时间序列方法可能间接相关。
+guozhihuan01-hash/embodied-nav-papers,https://github.com/guozhihuan01-hash/embodied-nav-papers,Python,2,2026-10-04T10:27:13Z,new,1,该仓库是具身导航论文列表，与idr-repos课题无直接关联，仅可能提供少量相关研究背景参考。
+exopoiesis/arxiv-radar-chemistry,https://github.com/exopoiesis/arxiv-radar-chemistry,Python,2,2026-10-04T04:43:27Z,new,7,该仓库系统追踪分子表示、性质预测及ML力场等前沿论文，对AI4Science课题有较高参考价值。
+gitesei/MEM-CALVADOS,https://github.com/gitesei/MEM-CALVADOS,Python,2,2026-10-04T16:29:35Z,new,7,该仓库提供膜界面柔性蛋白的粗粒化模型，对研究膜相关无序蛋白的构象与相互作用有直接参考价值。
+HolobiomicsLab/Magnolia-AI,https://github.com/HolobiomicsLab/Magnolia-AI,Python,2,2026-09-29T15:27:52Z,new,7,该仓库展示了一个面向计算化学研究的持久化记忆AI代理框架，其记忆审查、来源追踪和协议沉淀机制对构建可复现的科研代码工作流有直接借鉴价值。
+Cosmos-Logic-Institute-CLI/Infinite-Virtual,https://github.com/Cosmos-Logic-Institute-CLI/Infinite-Virtual,,2,2026-09-29T03:22:24Z,new,1,该仓库为XR显示技术项目，与idr-repos课题无直接关联，仅可能涉及视觉或交互技术启发。
+DZRRRRRR/my_arxiv_daily,https://github.com/DZRRRRRR/my_arxiv_daily,Python,2,2026-09-28T16:44:45Z,new,2,该仓库是图像扩散模型论文的汇总列表，与idr-repos课题无直接关联，仅可能提供相关文献参考。
+notwhiteblank/PhaSePred,https://github.com/notwhiteblank/PhaSePred,Python,2,2026-09-28T14:15:47Z,new,8,该仓库提供基于序列预测蛋白质相分离倾向的完整工具，与IDR研究高度相关，可直接用于计算IDR相关特征并预测相分离能力。
+exopoiesis/arxiv-radar-electrochemistry,https://github.com/exopoiesis/arxiv-radar-electrochemistry,Python,1,2026-10-04T06:40:13Z,new,2,该仓库是电化学与矿物催化领域的论文列表，与idr-repos课题无直接关联，仅可能提供少量跨领域启发。
+RLCL-EIT/robotics_arxiv_daily,https://github.com/RLCL-EIT/robotics_arxiv_daily,Python,1,2026-10-04T06:34:10Z,new,8,该仓库是灵巧操作与具身智能领域的每日arXiv论文精选列表，与课题高度相关，可快速追踪前沿进展。
+chunqing403/protein-design-radar,https://github.com/chunqing403/protein-design-radar,HTML,1,2026-10-04T06:02:50Z,new,7,该仓库是蛋白质设计前沿论文雷达，与课题高度相关，可提供最新文献追踪和分类参考，但本身非代码实现。
+InsomaniacElf/sg-tamil-tts-resources-,https://github.com/InsomaniacElf/sg-tamil-tts-resources-,,1,2026-10-04T05:33:38Z,new,2,该仓库是TTS资源列表，与idr-repos课题关联度低，仅可能提供少量相关论文或数据参考。
+exopoiesis/arxiv-radar-physics,https://github.com/exopoiesis/arxiv-radar-physics,Python,1,2026-10-04T04:00:24Z,new,8,该仓库系统追踪科学机器学习与PDE学习的最新论文，对课题有较高参考价值，但需结合具体研究方向进一步筛选。
+CultureBotAI/proteintraitsmech,https://github.com/CultureBotAI/proteintraitsmech,Python,1,2026-10-03T22:35:01Z,new,2,该仓库是蛋白质序列/结构特征的知识库，与idr-repos课题关联度低，仅可能在数据建模或本体映射方面有微弱参考价值。
+BioKT/Skills-BIOKT,https://github.com/BioKT/Skills-BIOKT,Python,1,2026-10-02T22:20:58Z,new,0,该仓库是分子模拟与计算生物化学的Claude Code技能集，与idr-repos课题无直接关联。
+kaizhangnju/desolvation-CG-model,https://github.com/kaizhangnju/desolvation-CG-model,Jupyter Notebook,1,2026-10-02T19:07:33Z,new,7,该仓库提供去溶剂化参数化粗粒化模型及完整模拟分析流程，对研究IDP相分离机制有直接参考价值，但需自行适配具体课题。
+CYandYue/Auto-Get-Papers-pro,https://github.com/CYandYue/Auto-Get-Papers-pro,Python,1,2026-10-02T08:43:21Z,new,2,该仓库是自动更新的arXiv论文列表，与idr-repos课题无直接关联，仅个别论文可能涉及不确定性建模，启发价值有限。
+tjaglal11/Bayesian-Analysis-of-SAXS-Data,https://github.com/tjaglal11/Bayesian-Analysis-of-SAXS-Data,Python,1,2026-10-01T15:33:52Z,new,7,该仓库提供贝叶斯重加权方法分析SAXS数据，对无序蛋白构象系综研究有直接启发，但需结合课题具体需求评估适用性。
+Cosmos-Logic-Institute-CLI/THE-UNIVERSE-COPILOT-PROJECT,https://github.com/Cosmos-Logic-Institute-CLI/THE-UNIVERSE-COPILOT-PROJECT,,1,2026-09-29T03:21:51Z,new,3,该仓库是哲学性熵增理论宣言，与idr-repos课题无直接技术关联，仅可能提供抽象思维启发。
+CobanAkdemirlab/NMDescapediseasegene_paper,https://github.com/CobanAkdemirlab/NMDescapediseasegene_paper,R,1,2026-09-28T17:05:10Z,new,7,该仓库提供了NMD逃逸注释与特征提取的完整流程，对研究无义突变介导的mRNA降解机制及疾病关联具有直接参考价值。
+api-evangelist/topos-bio,https://github.com/api-evangelist/topos-bio,,0,2026-10-04T19:54:43Z,new,2,该仓库仅为API Evangelist对Topos Bio公司的占位简介，无实质技术内容，对idr-repos课题启发价值很低。
+xrose3159/DailyArXiv,https://github.com/xrose3159/DailyArXiv,Python,0,2026-10-04T19:44:40Z,new,1,该仓库仅为arXiv论文自动抓取列表，与idr-repos课题无直接关联，参考价值有限。
+api-evangelist/peptone,https://github.com/api-evangelist/peptone,,0,2026-10-04T19:43:26Z,new,0,该仓库仅为API Evangelist对Peptone公司的占位档案，无任何代码或技术内容，对idr-repos课题无启发价值。
+MaybeBio/Daily-ArXiv-AI4Bio,https://github.com/MaybeBio/Daily-ArXiv-AI4Bio,Python,0,2026-10-04T17:04:33Z,new,7,该仓库提供IDR、蛋白-DNA建模等计算生物学方向的每日arXiv论文自动追踪，与课题高度相关，可高效获取最新文献。
+riddhikad9b-ux/Comparative_Genomics_Stress_Resilient_Animals,https://github.com/riddhikad9b-ux/Comparative_Genomics_Stress_Resilient_Animals,Jupyter Notebook,0,2026-10-04T10:37:28Z,new,6,该仓库展示了从序列到结构的完整计算流程，对研究IDR相关课题有方法学参考价值，但课题方向不明确，针对性有限。
+enhansome/enhansome-structural-bioinformatics,https://github.com/enhansome/enhansome-structural-bioinformatics,,0,2026-10-04T10:31:26Z,new,7,该仓库系统整理了结构生物信息学中蛋白质折叠与对接的经典工具和资源，对理解idr相关算法背景有参考价值，但非直接针对idr实现。
+zhangxincode/Steering-Activation-Paper-Arxiv,https://github.com/zhangxincode/Steering-Activation-Paper-Arxiv,Python,0,2026-10-04T08:57:35Z,new,8,该仓库系统收集了激活引导与内部表征控制的前沿论文，对研究idr-repos课题具有直接且丰富的参考价值。
+enhansome/enhansome-ai-for-science,https://github.com/enhansome/enhansome-ai-for-science,,0,2026-10-04T05:39:35Z,new,7,该仓库是AI4Science资源大全，虽非直接代码库，但涵盖论文检索、图表生成、科研Agent等工具，对科研代码情报工作有较高参考价值。
+iszhanjiawei/dubbing-dubber-arxiv-daily,https://github.com/iszhanjiawei/dubbing-dubber-arxiv-daily,Python,0,2026-10-04T04:46:49Z,new,1,该仓库是TTS与配音论文的每日更新列表，与idr-repos课题无直接关联，仅可能提供少量相关论文线索。
+exopoiesis/arxiv-radar-polymer,https://github.com/exopoiesis/arxiv-radar-polymer,Python,0,2026-10-04T04:04:16Z,new,7,该仓库系统追踪聚合物信息学与AI材料设计的最新论文，对相关课题有较高参考价值，但需注意部分条目与课题主题无关。
+doublepoints/cv-arxiv-daily,https://github.com/doublepoints/cv-arxiv-daily,Python,0,2026-10-04T01:09:42Z,new,8,该仓库系统整理了SLAM、SFM等视觉定位领域的最新论文，对idr-repos课题有直接且丰富的参考价值。
+DerekDLP/arxivpaper-daily,https://github.com/DerekDLP/arxivpaper-daily,Python,0,2026-10-04T00:26:42Z,new,0,该仓库是虚假新闻检测领域的论文列表，与课题'idr-repos'无直接关联。
+kmsouthard/surfaceome_topography,https://github.com/kmsouthard/surfaceome_topography,Python,0,2026-10-02T23:06:02Z,new,0,该仓库是细胞表面蛋白高度估计的生物信息学流程，与idr-repos课题无直接关联。
+t-hossein/ypfh-esterase-solubility-design,https://github.com/t-hossein/ypfh-esterase-solubility-design,Monkey C,0,2026-10-02T20:56:16Z,new,2,该课题为酶可溶性理性设计，与idr-repos无直接关联，仅提供计算设计流程参考。
+spacenship/newDailyArxiv,https://github.com/spacenship/newDailyArxiv,Python,0,2026-10-02T20:53:25Z,new,0,该仓库是自动抓取arXiv论文的每日论文列表，与idr-repos课题无直接关联，缺乏针对性启发价值。
+sduhoulab/EFR-pathogenic,https://github.com/sduhoulab/EFR-pathogenic,Python,0,2026-10-02T13:49:42Z,new,7,该仓库提供基于ESM-2的早期折叠残基预测框架，与IDR预测在蛋白质语言模型应用和疾病关联分析上高度相关，可直接借鉴其模型架构与训练流程。
+u107207006/ID-Lottery-Global-Manifesto,https://github.com/u107207006/ID-Lottery-Global-Manifesto,HTML,0,2026-10-02T11:42:57Z,new,0,该README为台湾地区选举政治宣传内容，与科研代码仓库主题完全无关，无任何启发价值。
+Menrae/ppi-interface-transfer,https://github.com/Menrae/ppi-interface-transfer,Python,0,2026-10-01T22:15:37Z,new,7,该课题系统评估了AlphaFold预测结构对蛋白结合位点预测模型的影响，对结构生物信息学中预测结构的可靠性验证具有重要参考价值。
+BoHuangLab/CELL-FM,https://github.com/BoHuangLab/CELL-FM,Jupyter Notebook,0,2026-10-01T21:35:06Z,new,8,该仓库提供从序列到显微图像的生成模型，可直接用于虚拟实验和表型分析，对蛋白质定位与凝聚体研究有高启发价值。
+M-YP/Mutational-Landscape-of-Neuroblastoma,https://github.com/M-YP/Mutational-Landscape-of-Neuroblastoma,Shell,0,2026-10-01T13:15:39Z,new,2,该课题聚焦神经母细胞瘤突变与免疫治疗，与idr-repos仓库主题无直接关联，仅可能提供生物信息学流程参考。
+ARU-Bioinformatics/yeast-data-ai,https://github.com/ARU-Bioinformatics/yeast-data-ai,JavaScript,0,2026-10-01T12:32:57Z,new,7,该仓库是一个结合酵母基因必需性预测的AI辅助数据科学教学实践，对生物信息学教学和AI辅助科研流程设计有启发价值。
+SometimesJade/SometimesJade,https://github.com/SometimesJade/SometimesJade,,0,2026-10-01T10:19:02Z,new,5,该仓库展示了生物信息学技能和项目，但缺乏与idr-repos直接相关的数据仓库或图像分析内容，启发有限。
+Ruqing1963/kakutani-statistical-pharmacology-X,https://github.com/Ruqing1963/kakutani-statistical-pharmacology-X,Python,0,2026-10-01T02:10:32Z,new,2,该仓库聚焦于阿尔茨海默病相关无序蛋白的统计药理学理论，与idr-repos课题的直接关联性较弱，但其中对内在无序蛋白的建模方法或可提供边缘性参考。
+sircalch/alphacert,https://github.com/sircalch/alphacert,Python,0,2026-09-30T23:40:03Z,new,2,该工具专注于蛋白质结构预测的质量评估，与IDR仓库课题无直接关联，仅可能在IDR结构验证方面有间接参考价值。
+mattyb4/Cluster-Scout,https://github.com/mattyb4/Cluster-Scout,Python,0,2026-09-30T22:41:43Z,new,7,该仓库提供癌症突变与PTM位点3D邻近性分析流程，对研究突变聚类和功能注释有直接参考价值。
+cynch-L/adcsim_conjugation_model,https://github.com/cynch-L/adcsim_conjugation_model,Python,0,2026-09-30T15:23:50Z,new,6,该仓库提供IgG1半胱氨酸偶联的DAR分布计算模型，对ADC药物设计有参考价值，但需重新校准且不直接适用于idr相关课题。
+AlanaAnnaman/astrobiology,https://github.com/AlanaAnnaman/astrobiology,Python,0,2026-09-30T11:21:24Z,new,2,该仓库是酵母极端环境生存的转录组分析，与idr-repos课题关联度低，仅可能提供极端环境生物信息学方法参考。
+SatbirSingh071/Disease-Classification-Geo,https://github.com/SatbirSingh071/Disease-Classification-Geo,Jupyter Notebook,0,2026-09-30T06:45:54Z,new,8,该仓库提供了从GEO数据获取到机器学习分类、可解释性和富集分析的完整可复现流水线，对疾病分类课题有直接的方法论参考价值。
+MaybeBio/PDB-MD-Suite,https://github.com/MaybeBio/PDB-MD-Suite,Python,0,2026-09-30T05:17:59Z,new,6,该仓库提供PDB/MMCIF结构预处理工具，对分子动力学模拟工作流有实用价值，但与本课题idr-repos的直接关联有限。
+suhaanthayyil/idrfeat,https://github.com/suhaanthayyil/idrfeat,Python,0,2026-09-30T00:28:40Z,new,7,该仓库为IDR区域提供全面的特征提取工具，对研究内在无序区域功能及变异影响有直接参考价值。
+aliabghari/BioLitAgent,https://github.com/aliabghari/BioLitAgent,Python,0,2026-09-29T21:55:14Z,new,7,该仓库展示了多智能体文献挖掘与监管情报平台架构，对构建自动化科研文献分析系统有直接参考价值，但课题聚焦于仓库元数据而非生物工艺领域，需迁移其智能体编排与知识管理思路。
+strawvivishortcake/IDR_Literature_Pipeline,https://github.com/strawvivishortcake/IDR_Literature_Pipeline,Python,0,2026-09-29T18:51:32Z,new,8,该仓库提供了从DisProt和PubMed系统收集IDR相关文献的完整流水线，对构建IDR研究知识库和文献挖掘有直接参考价值。
+CNIC-Proteomics/bioDataHub,https://github.com/CNIC-Proteomics/bioDataHub,Python,0,2026-09-29T16:17:26Z,new,4,该仓库是蛋白质组学数据库构建脚本集，包含FASTA下载、诱饵序列生成、DSSP计算等，对蛋白质组学相关课题有部分参考价值，但非通用科研代码库。
+sherry6247/HyperIDR,https://github.com/sherry6247/HyperIDR,Python,0,2026-09-29T15:58:44Z,new,8,该仓库提供基于多尺度语义超网络的蛋白质内在无序区域识别方法，与课题高度相关，代码和数据集完整，具有直接参考价值。
+emalacs/idp-pharmacophore-tools,https://github.com/emalacs/idp-pharmacophore-tools,Python,0,2026-09-29T12:57:55Z,new,7,该工具针对无序蛋白动态药效团建模，与IDP相关课题高度相关，提供从MD轨迹提取药效团的完整流程，具有直接参考价值。
+ywitzky/HPSAnalysis.jl,https://github.com/ywitzky/HPSAnalysis.jl,Julia,0,2026-09-29T12:43:49Z,new,2,该仓库是分子动力学模拟分析工具，与idr-repos课题关联度低，仅可能提供少量数据处理思路。
+emalacs/Scalone_IDP_Pharmacophore_Mapping_2026,https://github.com/emalacs/Scalone_IDP_Pharmacophore_Mapping_2026,Python,0,2026-09-29T11:09:35Z,new,7,该仓库提供从分子动力学模拟中提取无序蛋白动态药效团图谱的完整流程，对研究IDP药物靶点有直接启发价值。
+eerstar/LLM-Agent-paper-daily,https://github.com/eerstar/LLM-Agent-paper-daily,Python,0,2026-09-28T17:24:51Z,new,1,该仓库仅为论文列表聚合，与idr-repos课题无直接关联，参考价值有限。
+jiangnan030-del/ai-arxiv-daily,https://github.com/jiangnan030-del/ai-arxiv-daily,Python,0,2026-09-28T16:24:37Z,new,1,该仓库是LLM/AI论文列表，与idr-repos课题无直接关联，仅可能提供少量背景参考。
+mahesh27dx/mahesh27dx.github.io,https://github.com/mahesh27dx/mahesh27dx.github.io,HTML,0,2026-09-28T16:15:05Z,new,1,该仓库是个人学术主页源码，与IDR仓库研究课题无直接关联，仅可能提供研究者背景参考。
+zamydm/GIMLET,https://github.com/zamydm/GIMLET,Jupyter Notebook,0,2026-09-28T15:38:55Z,new,7,该仓库提供了一套完整的离子通道多尺度模拟与分析方法，对研究离子通道的结构与功能关系具有直接参考价值。
+mayupsc/IDRmutant,https://github.com/mayupsc/IDRmutant,R,0,2026-09-28T07:05:51Z,new,7,该仓库提供IDR突变与无序性预测的完整实现，对研究IDR突变效应和磷酸化模拟有直接参考价值，但依赖外部工具且未授权。
+im-va-3/jax-md-main,https://github.com/im-va-3/jax-md-main,Jupyter Notebook,0,2026-09-28T04:26:50Z,new,8,该仓库提供可微分的分子动力学模拟框架，与IDR课题中涉及的无序蛋白或凝聚态模拟高度相关，其端到端可微特性可支持力场优化与逆向设计。

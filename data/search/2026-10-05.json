@@ -1,0 +1,162 @@
+[
+  {
+    "full_name": "idptools/starling",
+    "url": "https://github.com/idptools/starling",
+    "language": "Jupyter Notebook",
+    "stars": 78,
+    "description": "STARLING - conSTruction of intrinsicAlly disoRdered proteins ensembles efficientLy vIa multi-dimeNsional Generative models",
+    "pushed_at": "2026-10-05T00:25:37Z"
+  },
+  {
+    "full_name": "api-evangelist/topos-bio",
+    "url": "https://github.com/api-evangelist/topos-bio",
+    "language": "",
+    "stars": 0,
+    "description": "Topos Bio — independent third-party profile of a public API surface, by API Evangelist. Topos Bio is an AI-native drug discovery company building all-atom foundation models for intrinsically disordered proteins (IDPs) — dynamic, flexible proteins implicated in diseases such as Alzheimer's and prostate cancer.",
+    "pushed_at": "2026-10-04T19:54:43Z"
+  },
+  {
+    "full_name": "api-evangelist/peptone",
+    "url": "https://github.com/api-evangelist/peptone",
+    "language": "",
+    "stars": 0,
+    "description": "Peptone — independent third-party profile of a public API surface, by API Evangelist. Peptone is a computational drug-discovery biotech building a Product Engine that targets intrinsically disordered proteins (IDPs). It couples experimental measurement of disordered proteins in solution with enhanced-sampling simulation and generative machine-learn",
+    "pushed_at": "2026-10-04T19:43:26Z"
+  },
+  {
+    "full_name": "rotskoff-group/idiom",
+    "url": "https://github.com/rotskoff-group/idiom",
+    "language": "Python",
+    "stars": 18,
+    "description": "A protein language model for intrinsically disordered regions",
+    "pushed_at": "2026-10-02T17:11:37Z"
+  },
+  {
+    "full_name": "holehouse-lab/soursop",
+    "url": "https://github.com/holehouse-lab/soursop",
+    "language": "Jupyter Notebook",
+    "stars": 12,
+    "description": "SOURSOP is an analysis suite for molecular simulations of intrinsically disordered proteins",
+    "pushed_at": "2026-10-01T15:57:55Z"
+  },
+  {
+    "full_name": "M-YP/Mutational-Landscape-of-Neuroblastoma",
+    "url": "https://github.com/M-YP/Mutational-Landscape-of-Neuroblastoma",
+    "language": "Shell",
+    "stars": 0,
+    "description": "A standardized pipeline for neuroblastoma mutation analysis to uncover overlooked, clinically relevant variants and candidate immunotherapy biomarkers, including intrinsically disordered regions (IDRs), differentially methylated regions (DMRs), and neoantigens.",
+    "pushed_at": "2026-10-01T13:15:39Z"
+  },
+  {
+    "full_name": "Ruqing1963/kakutani-statistical-pharmacology-X",
+    "url": "https://github.com/Ruqing1963/kakutani-statistical-pharmacology-X",
+    "language": "Python",
+    "stars": 0,
+    "description": "Statistical Pharmacology via Kakutani Dichotomy X: Blocking amyloid nucleation of intrinsically disordered tau and Abeta42 monomers via tail-exponent stabilization, asymmetric baseline cubic corrections, and finite-mode crossover.",
+    "pushed_at": "2026-10-01T02:10:32Z"
+  },
+  {
+    "full_name": "suhaanthayyil/idrfeat",
+    "url": "https://github.com/suhaanthayyil/idrfeat",
+    "language": "Python",
+    "stars": 0,
+    "description": "Feature extraction for intrinsically disordered protein regions, for fitness and variant-effect modeling",
+    "pushed_at": "2026-09-30T00:28:40Z"
+  },
+  {
+    "full_name": "moses-lab/faidr-fit",
+    "url": "https://github.com/moses-lab/faidr-fit",
+    "language": "JavaScript",
+    "stars": 2,
+    "description": "FAIDR-Fit: Explore the molecular features and function of intrinsically disordered regions (IDRs) across the human proteome in your browser",
+    "pushed_at": "2026-09-29T13:35:29Z"
+  },
+  {
+    "full_name": "rauscher-lab/zephyr",
+    "url": "https://github.com/rauscher-lab/zephyr",
+    "language": "Python",
+    "stars": 0,
+    "description": "A generative diffusion model for sampling disordered protein structures trained on MD datasets.",
+    "pushed_at": "2026-10-02T18:54:20Z"
+  },
+  {
+    "full_name": "api-evangelist/dewpoint-therapeutics",
+    "url": "https://github.com/api-evangelist/dewpoint-therapeutics",
+    "language": "",
+    "stars": 0,
+    "description": "Dewpoint Therapeutics — independent third-party profile of a public API surface, by API Evangelist. Dewpoint Therapeutics is a biotechnology company applying the emerging science of biomolecular condensates to drug discovery. Founded in 2018 and headquartered in Boston, Massachusetts, with an additional research site in Dresden, Germany, Dewpoint h",
+    "pushed_at": "2026-10-04T17:38:08Z"
+  },
+  {
+    "full_name": "comphy-lab/coalescence-non-Newtonian",
+    "url": "https://github.com/comphy-lab/coalescence-non-Newtonian",
+    "language": "Python",
+    "stars": 0,
+    "description": "DNS of viscoelastic drop coalescence as a proxy for biomolecular condensate fusion",
+    "pushed_at": "2026-10-03T17:41:58Z"
+  },
+  {
+    "full_name": "BanerjeeLab-repertoire/pycat-napari",
+    "url": "https://github.com/BanerjeeLab-repertoire/pycat-napari",
+    "language": "Python",
+    "stars": 1,
+    "description": "Python Condensate Analysis Toolbox (PyCAT) for bio-image analysis, especially biomolecular condensates and fluorescence microscopy images.",
+    "pushed_at": "2026-10-02T21:11:08Z"
+  },
+  {
+    "full_name": "gzerze/ddft_for_biomolecular_condensates",
+    "url": "https://github.com/gzerze/ddft_for_biomolecular_condensates",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "DDFT code for solving biomolecular condensate dynamics using FiPy and parameterization by coarse-grained OpenMM Simulations.",
+    "pushed_at": "2026-09-30T15:14:40Z"
+  },
+  {
+    "full_name": "LihuaJinMSM/reusable-energy-absorbing-multiscale-structures-by-polymerization-induced-phase-separation",
+    "url": "https://github.com/LihuaJinMSM/reusable-energy-absorbing-multiscale-structures-by-polymerization-induced-phase-separation",
+    "language": "",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-03T07:10:48Z"
+  },
+  {
+    "full_name": "wkf-phy/interface-mediated-secondary-phase-separation",
+    "url": "https://github.com/wkf-phy/interface-mediated-secondary-phase-separation",
+    "language": "MATLAB",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T22:53:35Z"
+  },
+  {
+    "full_name": "tersignhq/evidence-record-conformance",
+    "url": "https://github.com/tersignhq/evidence-record-conformance",
+    "language": "Python",
+    "stars": 1,
+    "description": "Two-sided conformance vectors for the evidence-record layer — independence, completeness, anchored existence, phase separation, offer/decision/boundary binding. stdlib-only verifier + independent TypeScript cross-check; live Bitcoin-anchored vectors; externally reproduced byte-identically.",
+    "pushed_at": "2026-10-01T15:16:28Z"
+  },
+  {
+    "full_name": "Shashwat-arch/MAC2-Modularity-Aided-Contrastive-Clustering-with-Phase-Separation-Regularization",
+    "url": "https://github.com/Shashwat-arch/MAC2-Modularity-Aided-Contrastive-Clustering-with-Phase-Separation-Regularization",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T06:05:05Z"
+  },
+  {
+    "full_name": "haokezhou8/psdelta",
+    "url": "https://github.com/haokezhou8/psdelta",
+    "language": "Python",
+    "stars": 0,
+    "description": "Predicting how sequence changes alter liquid-liquid phase separation: condition-aware, uncertainty-aware LLPS modelling",
+    "pushed_at": "2026-09-28T15:28:21Z"
+  },
+  {
+    "full_name": "notwhiteblank/PhaSePred",
+    "url": "https://github.com/notwhiteblank/PhaSePred",
+    "language": "Python",
+    "stars": 2,
+    "description": "Predict protein phase-separation propensity from amino-acid sequence — open implementation of Chen et al. 2022 PNAS",
+    "pushed_at": "2026-09-28T14:15:47Z"
+  }
+]

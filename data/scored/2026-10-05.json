@@ -1,0 +1,123 @@
+[
+  {
+    "full_name": "moses-lab/faidr-fit",
+    "url": "https://github.com/moses-lab/faidr-fit",
+    "language": "JavaScript",
+    "stars": 2,
+    "description": "FAIDR-Fit: Explore the molecular features and function of intrinsically disordered regions (IDRs) across the human proteome in your browser",
+    "pushed_at": "2026-09-29T13:35:29Z",
+    "status": "new",
+    "score": 9,
+    "one_liner": "FAIDR-Fit 是一个面向人类蛋白质组中固有无序区(IDR)探索的 Web 工具,直接服务于 IDR 识别与功能图谱研究,与课题高度相关。"
+  },
+  {
+    "full_name": "BanerjeeLab-repertoire/pycat-napari",
+    "url": "https://github.com/BanerjeeLab-repertoire/pycat-napari",
+    "language": "Python",
+    "stars": 1,
+    "description": "Python Condensate Analysis Toolbox (PyCAT) for bio-image analysis, especially biomolecular condensates and fluorescence microscopy images.",
+    "pushed_at": "2026-10-02T21:11:08Z",
+    "status": "new",
+    "score": 8,
+    "one_liner": "PyCAT 是一个基于 napari 的生物分子凝聚体图像分析工具箱，专注于凝聚体的检测、测量与表征，与相分离/凝聚体课题高度相关。"
+  },
+  {
+    "full_name": "tersignhq/evidence-record-conformance",
+    "url": "https://github.com/tersignhq/evidence-record-conformance",
+    "language": "Python",
+    "stars": 1,
+    "description": "Two-sided conformance vectors for the evidence-record layer — independence, completeness, anchored existence, phase separation, offer/decision/boundary binding. stdlib-only verifier + independent TypeScript cross-check; live Bitcoin-anchored vectors; externally reproduced byte-identically.",
+    "pushed_at": "2026-10-01T15:16:28Z",
+    "status": "new",
+    "score": 0,
+    "one_liner": "该仓库是关于代理商务证据记录层的一致性测试向量，与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "rauscher-lab/zephyr",
+    "url": "https://github.com/rauscher-lab/zephyr",
+    "language": "Python",
+    "stars": 0,
+    "description": "A generative diffusion model for sampling disordered protein structures trained on MD datasets.",
+    "pushed_at": "2026-10-02T18:54:20Z",
+    "status": "new",
+    "score": 10,
+    "one_liner": "Zephyr 是一个基于扩散模型生成无序蛋白构象系综的代码库，直接面向 IDP 构象采样，与课题高度相关且为可用工具。"
+  },
+  {
+    "full_name": "api-evangelist/dewpoint-therapeutics",
+    "url": "https://github.com/api-evangelist/dewpoint-therapeutics",
+    "language": "",
+    "stars": 0,
+    "description": "Dewpoint Therapeutics — independent third-party profile of a public API surface, by API Evangelist. Dewpoint Therapeutics is a biotechnology company applying the emerging science of biomolecular condensates to drug discovery. Founded in 2018 and headquartered in Boston, Massachusetts, with an additional research site in Dresden, Germany, Dewpoint h",
+    "pushed_at": "2026-10-04T17:38:08Z",
+    "status": "new",
+    "score": 0,
+    "one_liner": "该仓库是API Evangelist对Dewpoint Therapeutics公司公开API的第三方简介，无任何IDR/无序蛋白/相分离相关代码或内容，与课题完全无关。"
+  },
+  {
+    "full_name": "comphy-lab/coalescence-non-Newtonian",
+    "url": "https://github.com/comphy-lab/coalescence-non-Newtonian",
+    "language": "Python",
+    "stars": 0,
+    "description": "DNS of viscoelastic drop coalescence as a proxy for biomolecular condensate fusion",
+    "pushed_at": "2026-10-03T17:41:58Z",
+    "status": "new",
+    "score": 0,
+    "one_liner": "该仓库是液滴聚并的非牛顿流体有限元/边界元模拟工具，与无序蛋白、相分离或生物分子凝聚体完全无关。"
+  },
+  {
+    "full_name": "gzerze/ddft_for_biomolecular_condensates",
+    "url": "https://github.com/gzerze/ddft_for_biomolecular_condensates",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "DDFT code for solving biomolecular condensate dynamics using FiPy and parameterization by coarse-grained OpenMM Simulations.",
+    "pushed_at": "2026-09-30T15:14:40Z",
+    "status": "new",
+    "score": 9,
+    "one_liner": "该仓库提供基于序列依赖RPA+FH自由能的DDFT框架，用于生物分子凝聚体的非平衡演化模拟，直接面向相分离建模，是高度相关的可运行研究代码。"
+  },
+  {
+    "full_name": "LihuaJinMSM/reusable-energy-absorbing-multiscale-structures-by-polymerization-induced-phase-separation",
+    "url": "https://github.com/LihuaJinMSM/reusable-energy-absorbing-multiscale-structures-by-polymerization-induced-phase-separation",
+    "language": "",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-03T07:10:48Z",
+    "status": "new",
+    "score": null,
+    "one_liner": "[fetch failed]"
+  },
+  {
+    "full_name": "wkf-phy/interface-mediated-secondary-phase-separation",
+    "url": "https://github.com/wkf-phy/interface-mediated-secondary-phase-separation",
+    "language": "MATLAB",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T22:53:35Z",
+    "status": "new",
+    "score": 7,
+    "one_liner": "该仓库提供相分离界面介导二次相分离的MATLAB相场模型代码，直接面向相分离/凝聚体建模，但未聚焦IDR/无序蛋白，方法可迁移。"
+  },
+  {
+    "full_name": "Shashwat-arch/MAC2-Modularity-Aided-Contrastive-Clustering-with-Phase-Separation-Regularization",
+    "url": "https://github.com/Shashwat-arch/MAC2-Modularity-Aided-Contrastive-Clustering-with-Phase-Separation-Regularization",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T06:05:05Z",
+    "status": "new",
+    "score": 0,
+    "one_liner": "这是一个图聚类框架，与无序蛋白/相分离完全无关，仅借用相分离术语作为正则化器名称。"
+  },
+  {
+    "full_name": "haokezhou8/psdelta",
+    "url": "https://github.com/haokezhou8/psdelta",
+    "language": "Python",
+    "stars": 0,
+    "description": "Predicting how sequence changes alter liquid-liquid phase separation: condition-aware, uncertainty-aware LLPS modelling",
+    "pushed_at": "2026-09-28T15:28:21Z",
+    "status": "new",
+    "score": 9,
+    "one_liner": "PSdelta 是一个面向液-液相分离(LLPS)的序列变异效应预测工具,直接针对本课题的相分离建模与预测方向,且提供可运行的代码、数据脚本和实验数据整合,高度相关且形态完整。"
+  }
+]

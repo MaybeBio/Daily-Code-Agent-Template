@@ -1,0 +1,72 @@
+Fetching events for target(s): kiharalab, honig-lab, ai4protein, GENTEL-lab, steineggerlab, biomed-AI, BioComputingUP, ProteinDesignLab, sparks-lab-org, baker-laboratory, Graylab, isblab, THGLab, idptools, holehouse-lab, Pappulab, KULL-Centre, aqlaboratory, JingHuangLab, AIDD-LiLab...
+
+2026-10-05 20:19:51 | ⭐️ heidiiii-b starred Graylab/DL4Proteins-notebooks
+2026-10-05 20:04:09 | 💬 milot-mirdita created issue 'Riboseek web server jobs failing' in steineggerlab/foldseek
+2026-10-05 19:53:25 | ⭐️ Jianxinnn starred ai4protein/VenusFactory2
+2026-10-05 19:25:20 | 💬 heathcliff233 created issue 'Inference determinism: atom aggregation, feature seeding, and chunk-size reuse' in aqlaboratory/openfold-3
+2026-10-05 19:02:35 | 🐛 AGrantUEA opened issue in steineggerlab/foldseek: 'Riboseek web server jobs failing'
+2026-10-05 18:57:54 | 🔹 heathcliff233 performed PullRequestReviewEvent on aqlaboratory/openfold-3
+2026-10-05 18:57:53 | 🔹 heathcliff233 performed PullRequestReviewCommentEvent on aqlaboratory/openfold-3
+2026-10-05 18:47:34 | ⭐️ naokob starred Graylab/LambdaDockScore
+2026-10-05 18:01:14 | 💬 jandom created issue 'fix: multi-gpu nodes hangs in run_openfold predict' in aqlaboratory/openfold-3
+2026-10-05 16:36:15 | 🚀 yliust pushed to GENTEL-lab/Fold2Reason
+    - [37dbd4a] (expanded) docs: add paper citation to README
+2026-10-05 15:39:03 | 🚀 github-actions pushed to BioComputingUP/dome-tracking
+    - [5d1c823] (expanded) tracker data 2026-10-05
+2026-10-05 15:13:11 | 🚀 jnwei pushed to aqlaboratory/openfold-3
+    - [542d9d0] (expanded) ci-monitoring: 2026-10-05 — 0/3 passed · 0 skipped · 0 queued · 3 need attention
+2026-10-05 15:12:31 | 🚀 github-actions pushed to BioComputingUP/dome-tracking
+    - [a5fa620] (expanded) tracker data 2026-10-05
+2026-10-05 15:04:22 | 🐛 Rattailjuicer opened issue in idptools/goose: 'GOOSE colab cannot set up'
+2026-10-05 15:00:48 | 🐛 jnwei closed issue in aqlaboratory/openfold-3: '[BUG] `--num-model-seeds 1` runs at seed 2746317213, not the default seed 42 (seeds derived from hardcoded `start_seed = 42`, override not logged)'
+2026-10-05 15:00:45 | 🔀 OtoYuki merged PR in aqlaboratory/openfold-3
+2026-10-05 14:54:22 | 🚀 github-actions pushed to BioComputingUP/dome-tracking
+    - [ea89a04] (expanded) tracker data 2026-10-05
+2026-10-05 14:27:11 | 🔀 jnwei labeled PR in aqlaboratory/openfold-3
+2026-10-05 14:27:00 | 🔀 jnwei unlabeled PR in aqlaboratory/openfold-3
+2026-10-05 14:26:57 | 🔹 jnwei performed PullRequestReviewEvent on aqlaboratory/openfold-3
+2026-10-05 14:26:48 | 🔹 jnwei performed DeleteEvent on aqlaboratory/openfold-3
+2026-10-05 14:26:46 | 🚀 jnwei pushed to aqlaboratory/openfold-3
+    - [d52b080] (expanded) Merge pull request #437 from aqlaboratory/jandom/2026-10/fix/mypy-baseline-sync
+2026-10-05 14:26:45 | 🔀 jandom merged PR in aqlaboratory/openfold-3
+2026-10-05 09:46:33 | 🔀 jnwei labeled PR in aqlaboratory/openfold-3
+2026-10-05 09:41:53 | 💬 OtoYuki created issue 'Start --num_model_seeds from the configured seed instead of a fixed 42' in aqlaboratory/openfold-3
+2026-10-05 09:41:51 | 🔹 OtoYuki performed PullRequestReviewCommentEvent on aqlaboratory/openfold-3
+2026-10-05 09:41:51 | 🔹 OtoYuki performed PullRequestReviewEvent on aqlaboratory/openfold-3
+2026-10-05 09:41:50 | 🔹 OtoYuki performed PullRequestReviewEvent on aqlaboratory/openfold-3
+2026-10-05 09:41:49 | 🔹 OtoYuki performed PullRequestReviewCommentEvent on aqlaboratory/openfold-3
+2026-10-05 09:14:09 | 🚀 github-actions pushed to BioComputingUP/dome-tracking
+    - [eb6a11b] (expanded) tracker data 2026-10-05
+2026-10-05 09:14:03 | 🔹 jnwei performed PullRequestReviewEvent on aqlaboratory/openfold-3
+2026-10-05 09:12:01 | 🔹 jnwei performed PullRequestReviewCommentEvent on aqlaboratory/openfold-3
+2026-10-05 09:10:36 | 💬 jnwei created issue '[BUG] `--num-model-seeds 1` runs at seed 2746317213, not the default seed 42 (seeds derived from hardcoded `start_seed = 42`, override not logged)' in aqlaboratory/openfold-3
+2026-10-05 09:06:09 | 🔹 jnwei performed PullRequestReviewCommentEvent on aqlaboratory/openfold-3
+2026-10-05 09:03:03 | 🚀 github-actions pushed to BioComputingUP/dome-tracking
+    - [93b9e1c] (expanded) tracker data 2026-10-05
+2026-10-05 08:48:04 | 🚀 github-actions pushed to BioComputingUP/dome-tracking
+    - [76a98dc] (expanded) tracker data 2026-10-05
+2026-10-05 08:25:37 | 🚀 jlotthammer pushed to idptools/starling
+    - [2a7a563] (expanded) Validate BME theta and include fused forces
+2026-10-05 06:30:03 | 🚀 github-actions pushed to BioComputingUP/dome-tracking
+    - [53917dd] (expanded) tracker data 2026-10-04
+2026-10-05 05:47:29 | ⭐️ chsolis starred KULL-Centre/_2024_Cao_CALVADOSCOM
+2026-10-05 05:39:22 | 🚀 github-actions pushed to BioComputingUP/dome-tracking
+    - [e517999] (expanded) tracker data 2026-10-04
+2026-10-05 03:47:16 | ⭐️ nicetone9 starred THGLab/HiQBind
+2026-10-05 03:26:25 | 🍴 qas2100 forked aqlaboratory/openfold-3
+2026-10-05 03:26:20 | ⭐️ qas2100 starred aqlaboratory/openfold-3
+2026-10-05 01:16:13 | 🍴 Walnosimaj forked aqlaboratory/openfold
+2026-10-04 22:36:20 | 🔀 jandom opened PR in aqlaboratory/openfold-3
+2026-10-04 17:31:33 | ⭐️ CharlesWangCW123 starred steineggerlab/folddisco-analysis
+2026-10-04 17:31:30 | ⭐️ CharlesWangCW123 starred steineggerlab/folddisco
+2026-10-04 17:28:15 | 💬 LaelaZorana created issue '[BUG] Paired MSA truncation ranks rows with an int64 product that silently overflows' in aqlaboratory/openfold-3
+2026-10-04 15:09:18 | 🚀 jnwei pushed to aqlaboratory/openfold-3
+    - [7710c07] (expanded) ci-monitoring: 2026-10-04 — 3/3 passed · 0 skipped · 0 queued · 0 need attention
+2026-10-04 12:50:04 | ⭐️ ZJXUyexiancai starred baker-laboratory/RoseTTAFold-All-Atom
+2026-10-04 10:35:18 | ⭐️ CharlesWangCW123 starred ProteinDesignLab/protpardelle-1c
+2026-10-04 09:21:22 | 🚀 github-actions pushed to BioComputingUP/dome-tracking
+    - [8596d37] (expanded) tracker data 2026-10-04
+2026-10-04 05:00:27 | ⭐️ Magnushhoie starred steineggerlab/folddisco
+2026-10-04 03:38:02 | ⭐️ rimaud starred KULL-Centre/CALVADOS
+2026-10-04 02:08:35 | 🚀 github-actions pushed to BioComputingUP/dome-tracking
+    - [10f9f36] (expanded) tracker data 2026-10-03

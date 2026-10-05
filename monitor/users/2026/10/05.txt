@@ -1,0 +1,60 @@
+Fetching events for target(s): alexholehouse, HFChenLab, Junjie-Zhu, sirius777coder, Barakhsaana, Zuricho, Immortals-33, weitinging, ji-xiaoyue, Zirui-Fan, borrytod, xlab-BioAI, SII-ShenggengLin, xtanh, wangwrx, mapleleaf6, tyang816, mingchen-li, code4luck, zy-zhou, riacd, terry-r123, bzho3923, Xinheng-He, lujiarui, ChenDdon, AspirinCode, bjing2016, prokia, Gonglab-THU, meneshail, xinshi-chen, amyxlu, LirongWu, OdinZhang, EDAPINENUT, QizhiPei, thematrixmaster, zaixizhang, pascalnotin, jsunn-y, Leo-T-Zang, WillHua127, wenjiegroup, Shenggan, yangnianzu0515, chao1224, blt2114, Oxer11, shichence, ChrisAllenMing, jchodera, jgreener64, HannesStark, Peldom, luost26, sokrypton, lmqfly...
+
+2026-10-05 19:33:46 | ⭐️ Junjie-Zhu starred rotskoff-group/idiom
+2026-10-05 19:11:33 | 🚀 Junjie-Zhu pushed to Junjie-Zhu/SurPass
+    - [9e00579] (expanded) reorganize, remove triangle update
+2026-10-05 19:02:30 | 🚀 jgreener64 pushed to JuliaMolSim/Molly.jl
+    - [a34aec2] (expanded) build based on c321718
+2026-10-05 12:27:36 | ⭐️ Zuricho starred ZengZichao/SciGlyph
+2026-10-05 11:04:35 | 🚀 sokrypton pushed to sokrypton/aoe-beta
+    - [741e9cc] (expanded) Beta: logic.js review fixes — archer range techs, foot-only garrison, bell/mop-up/carcass, hashing (aoe character-mode b24de7f)
+2026-10-05 08:52:47 | ⭐️ chao1224 starred eternity4719/HowToLiveBetter
+2026-10-05 07:04:21 | 🚀 HannesStark pushed to HannesStark/boltzgen
+    - [2b61378] (expanded) Package affinity normalization and load it independently of cwd
+2026-10-05 05:43:48 | 🚀 HannesStark pushed to HannesStark/boltzgen
+    - [f8de5f3] (expanded) Publish affinity archives atomically for safe reuse
+2026-10-05 04:52:35 | 🚀 HannesStark pushed to HannesStark/boltzgen
+    - [bf86fb9] (expanded) Exercise filter rules with current affinity and ESM score inputs
+2026-10-05 04:52:34 | 🚀 HannesStark pushed to HannesStark/boltzgen
+    - [48fe9c6] (expanded) Keep SASA fixtures independent of global thread initialization
+2026-10-05 04:42:47 | 🚀 HannesStark pushed to HannesStark/boltzgen
+    - [4879ef5] (expanded) Merge current main and preserve source context through parser repairs
+2026-10-05 04:26:14 | 🚀 HannesStark pushed to HannesStark/boltzgen
+    - [fb9118d] (expanded) Wrap the annotated mmCIF helper signature
+2026-10-05 04:14:36 | 🔀 HannesStark merged PR in HannesStark/boltzgen
+2026-10-05 03:56:14 | 🚀 HannesStark pushed to HannesStark/boltzgen
+    - [a8b9502] (expanded) Preserve distinct residue indices when fusing cropped chains
+2026-10-05 02:34:19 | 🚀 HannesStark pushed to HannesStark/boltzgen
+    - [56b7cf4] (expanded) Respect unsuccessful analysis when collecting refolding metrics
+2026-10-05 01:42:31 | 🔀 HannesStark opened PR in HannesStark/boltzgen
+2026-10-05 01:42:29 | 🆕 HannesStark created branch 'stark/fix/boltzgen-filter-rule-integrity' at HannesStark/boltzgen
+2026-10-05 01:42:26 | 🔀 HannesStark opened PR in HannesStark/boltzgen
+2026-10-05 01:42:22 | 🔀 HannesStark opened PR in HannesStark/boltzgen
+2026-10-05 01:42:21 | 🆕 HannesStark created branch 'stark/fix/boltzgen-pdb-parser-integrity' at HannesStark/boltzgen
+2026-10-05 01:36:14 | 🔀 HannesStark opened PR in HannesStark/boltzgen
+2026-10-05 01:36:02 | 🆕 HannesStark created branch 'stark/fix/boltzgen-export-consistency' at HannesStark/boltzgen
+2026-10-05 01:33:10 | 🔀 HannesStark opened PR in HannesStark/boltzgen
+2026-10-05 01:32:51 | 🆕 HannesStark created branch 'stark/feature/esmfold2-ipsae' at HannesStark/boltzgen
+2026-10-05 00:08:24 | 🔀 luost26 merged PR in coleygroup/coleygroup.github.io
+2026-10-04 23:56:52 | 🔀 luost26 opened PR in coleygroup/coleygroup.github.io
+2026-10-04 23:52:08 | 🚀 luost26 pushed to luost26/coleygroup.github.io
+    - [8e0e67d] (expanded) Merge pull request #1 from luost26/copilot/move-sarah-cao-to-alumni
+2026-10-04 10:40:48 | ⭐️ QizhiPei starred siteboon/claudecodeui
+2026-10-04 07:23:24 | 🔀 HannesStark opened PR in RosettaCommons/RFantibody
+2026-10-04 07:21:38 | 🍴 HannesStark forked RosettaCommons/RFantibody
+2026-10-04 05:42:30 | 🔀 HannesStark opened PR in PacesaLab/BindCraft2
+2026-10-04 05:41:06 | 🍴 HannesStark forked PacesaLab/BindCraft2
+2026-10-04 05:37:26 | 🚀 jgreener64 pushed to JuliaMolSim/Molly.jl
+    - [13bcb83] (expanded) build based on c321718
+2026-10-04 05:34:03 | 💬 jgreener64 created issue 'Fix shared-memory races in kernel_min_max! / kernel_min_max_triclinic!' in JuliaMolSim/Molly.jl
+2026-10-04 05:33:46 | 🚀 jgreener64 pushed to JuliaMolSim/Molly.jl
+    - [c321718] (expanded) Merge pull request #296 from vchuravy/vc/min-max-race
+2026-10-04 04:52:01 | ⭐️ jsunn-y starred zadorlab/sella
+2026-10-04 03:00:56 | 🔀 HannesStark merged PR in HannesStark/boltzgen
+2026-10-04 02:45:45 | 🚀 sokrypton pushed to sokrypton/localfold
+    - [2ddef06] (expanded) native/af3 README: this round's shared kernels on an L4 - AF2 5-6%, ESMFold2 1.5-2%
+2026-10-04 02:35:04 | 🚀 HannesStark pushed to HannesStark/boltzgen
+    - [5325c94] (expanded) Clarify symmetry support for direct YAML inverse folding
+2026-10-04 02:27:10 | 🔀 HannesStark opened PR in HannesStark/boltzgen
+2026-10-04 01:33:23 | 🚀 sokrypton pushed to sokrypton/localfold
+    - [c632ff7] (expanded) native: the fused triangle on an L4 (output kernel at 4 warps where 8 do not fit) - 22% a fold there; 48-key flash tiles
