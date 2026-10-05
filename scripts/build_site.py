@@ -90,7 +90,10 @@ def build_site(out_dir, config=None):
     this_week = [r for r in records if r["date"] == latest_date] if records else []
     issue_url = load_issue_url(out_dir)
 
+    latest_by_repo = {}
     for r in records:
+        latest_by_repo.setdefault(r["full_name"], r)
+    for r in latest_by_repo.values():
         page = env.get_template("code.html").render(repo=r, card_html=_md_to_html(r.get("card", "")))
         page_dir = os.path.join(site_dir, "repos", repo_dir_name(r["full_name"]))
         os.makedirs(page_dir, exist_ok=True)
@@ -111,10 +114,13 @@ def build_site(out_dir, config=None):
     shutil.copy(os.path.join(TEMPLATES, "assets", "style.css"),
                 os.path.join(assets_dir, "style.css"))
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="Build the static site from data/.")
     parser.add_argument("--out-dir", default=".", help="Repo root")
     parser.add_argument("--config", default=None, help="Path to config.yaml")
     args = parser.parse_args()
     cfg = load_config(args.config) if args.config else None
     build_site(args.out_dir, cfg)
+
+if __name__ == "__main__":
+    main()

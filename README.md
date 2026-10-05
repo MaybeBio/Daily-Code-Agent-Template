@@ -32,7 +32,7 @@ gh auth login                         # 供 gh api 使用 / for gh api
 python scripts/daily.py --config config.yaml \
     --issue-body /tmp/issue.md --issue-title /tmp/issue.title
 
-# 每周 / weekly (search → merge → score → archive → issue)
+# 每周 / weekly (search → merge → score → archive → cards → issue)
 bash scripts/run_weekly.sh
 
 # 站点 / site (v3)

@@ -64,3 +64,20 @@ def test_build_site_empty_card(tmp_path):
     build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
     detail = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
     assert "Code Card" not in detail
+
+def test_build_site_latest_card_wins(tmp_path):
+    d = str(tmp_path / "data" / "cards")
+    os.makedirs(d, exist_ok=True)
+    older = {"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+             "pushed_at": "t", "status": "new", "score": 7, "one_liner": "old",
+             "card": "## 是什么\nOLD"}
+    newer = {"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+             "pushed_at": "t", "status": "new", "score": 9, "one_liner": "new",
+             "card": "## 是什么\nNEW"}
+    with open(os.path.join(d, "2026-09-28.json"), "w", encoding="utf-8") as f:
+        json.dump([older], f, ensure_ascii=False)
+    with open(os.path.join(d, "2026-10-05.json"), "w", encoding="utf-8") as f:
+        json.dump([newer], f, ensure_ascii=False)
+    build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
+    detail = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
+    assert "NEW" in detail and "OLD" not in detail

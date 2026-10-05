@@ -25,7 +25,8 @@ def run(cfg, date, client=None, fetch=None, card_fn=None):
             readme = fetch(row["full_name"])
             res = card_fn(client, model, prompts, cfg["topic"], readme)
             card = res.get("card", "")
-        except Exception:
+        except Exception as e:
+            print(f"[card failed] {row['full_name']}: {e}", file=sys.stderr)
             card = ""
         return card_record(row, card)
     with ThreadPoolExecutor(max_workers=int(cfg.get("llm", {}).get("concurrency", 8))) as ex:
@@ -40,7 +41,8 @@ def main():
     a = ap.parse_args()
     cfg = common.load_config(a.config)
     date = a.date or common.today()
-    print(len(run(cfg, date)))
+    out = run(cfg, date)
+    print(f"{sum(1 for r in out if r['card'])}/{len(out)} cards")
 
 if __name__ == "__main__":
     main()
