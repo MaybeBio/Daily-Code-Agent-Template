@@ -5,7 +5,6 @@
       <span class="score score-{{ score_tier(r.score) }}">{{ r.score if r.score is not none else "-" }}</span>
       {% if r.language %}<span class="lang">{{ r.language }}</span>{% endif %}
       {% if r.stars %}<span class="stars">★ {{ r.stars }}</span>{% endif %}
-      {% if r.status %}<span class="status">{{ r.status }}</span>{% endif %}
       <span>{{ (r.pushed_at or "")[:10] }}</span>
     </div>
     <h2>{{ r.full_name }}</h2>

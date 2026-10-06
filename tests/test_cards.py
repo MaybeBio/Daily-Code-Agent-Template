@@ -11,18 +11,18 @@ def _fake_client(content):
 
 def test_card_record_shape():
     row = {"full_name": "a/b", "url": "https://github.com/a/b", "language": "Python",
-           "stars": 5, "pushed_at": "t", "status": "new", "score": 8, "one_liner": "x"}
+           "stars": 5, "pushed_at": "t", "score": 8, "one_liner": "x"}
     out = cards.card_record(row, "## 是什么\n...")
     assert out == {"full_name": "a/b", "url": "https://github.com/a/b", "language": "Python",
-                   "stars": 5, "pushed_at": "t", "status": "new", "score": 8,
+                   "stars": 5, "pushed_at": "t", "score": 8,
                    "one_liner": "x", "card": "## 是什么\n..."}
 
 def test_run_cards_only_keepers(monkeypatch, tmp_path):
     monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
     scored = [
-        {"full_name": "hi/a", "url": "u", "language": "Python", "stars": 1, "status": "new",
+        {"full_name": "hi/a", "url": "u", "language": "Python", "stars": 1,
          "score": 9, "one_liner": "x"},
-        {"full_name": "lo/b", "url": "u", "language": "Go", "stars": 1, "status": "new",
+        {"full_name": "lo/b", "url": "u", "language": "Go", "stars": 1,
          "score": 2, "one_liner": "y"},
     ]
     cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"), scored)
@@ -34,13 +34,13 @@ def test_run_cards_only_keepers(monkeypatch, tmp_path):
     saved = cards.common.load_json(str(tmp_path / "data" / "cards" / "2026-10-05.json"))
     assert saved[0]["card"] == "card:README"
     assert set(saved[0]) == {"full_name", "url", "language", "stars", "pushed_at",
-                             "status", "score", "one_liner", "card"}
+                             "score", "one_liner", "card"}
 
 def test_run_card_failure_is_isolated(monkeypatch, tmp_path):
     monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
     cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
                            [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
-                             "status": "new", "score": 8, "one_liner": "x"}])
+                             "score": 8, "one_liner": "x"}])
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     def boom(fn):
         raise RuntimeError("fetch failed")
@@ -53,9 +53,9 @@ def test_run_defaults_min_score_when_absent(monkeypatch, tmp_path):
     monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
     cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
                            [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
-                             "status": "new", "score": 4, "one_liner": "x"},
+                             "score": 4, "one_liner": "x"},
                             {"full_name": "c/d", "url": "u", "language": "Py", "stars": 1,
-                             "status": "new", "score": 6, "one_liner": "y"}])
+                             "score": 6, "one_liner": "y"}])
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     out = cards.run({"topic": "t"}, "2026-10-05",
                     client=object(), fetch=lambda fn: "r",
@@ -75,7 +75,7 @@ def test_run_passes_topic_brief_not_slug(monkeypatch, tmp_path):
     monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
     cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
                            [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
-                             "status": "new", "score": 8, "one_liner": "x"}])
+                             "score": 8, "one_liner": "x"}])
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     seen = {}
     def capture(c, m, p, topic, readme):

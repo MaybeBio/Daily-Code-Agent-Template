@@ -43,3 +43,13 @@ def test_push_repo_not_confused_by_slash_in_commit():
            "- [fb027a4] (expanded) Merge pull request #358 from CesarPuentes/feat/user-default-runner-yaml")
     ev = logs.parse_event(rec)
     assert ev["repo"] == "aqlaboratory/openfold-3"
+
+def test_repo_at_end_when_issue_title_has_colon():
+    # 仓库在 'in' 之后、标题之前,取 headline 上最后一个 owner/repo
+    rec = "2026-10-05 20:04:09 | \U0001F4AC milot-mirdita created issue 'Riboseek web server jobs failing' in steineggerlab/foldseek"
+    assert logs.parse_event(rec)["repo"] == "steineggerlab/foldseek"
+
+def test_review_event_on_repo_parsed():
+    # 'on' 句式(旧锚点表未覆盖,现应解析到仓库)
+    rec = "2026-10-05 22:52:29 | \U0001F539 jnwei performed PullRequestReviewEvent on aqlaboratory/openfold-3"
+    assert logs.parse_event(rec)["repo"] == "aqlaboratory/openfold-3"

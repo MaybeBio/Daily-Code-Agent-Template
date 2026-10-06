@@ -3,17 +3,17 @@ from scripts import issue
 
 SCORED = [
     {"full_name": "a/b", "url": "u", "language": "Py", "stars": 9,
-     "pushed_at": "2026-10-03", "status": "updated", "score": 9, "one_liner": "hi"},
+     "pushed_at": "2026-10-03", "score": 9, "one_liner": "hi"},
     {"full_name": "c/d", "url": "u2", "language": "R", "stars": 2,
-     "pushed_at": "2026-10-02", "status": "new", "score": 5, "one_liner": "yo"},
+     "pushed_at": "2026-10-02", "score": 5, "one_liner": "yo"},
 ]
 
-def test_issue_groups_and_sorts():
+def test_issue_single_table_sorted_by_score():
     title, body = issue.build_weekly_issue(SCORED, {"title": "T", "topic": "t"}, "2026-09-27", "2026-10-04")
-    assert "1 新增" in title and "1 更新" in title
-    assert "## 新增（1）" in body and "## 更新（1）" in body
-    # grouped: 新增 section (c/d) precedes 更新 section (a/b); each section present
-    assert body.index("## 新增") < body.index("c/d") < body.index("## 更新") < body.index("a/b")
+    assert "每周仓库发现" in title and "2 个" in title
+    assert "## 候选仓库（2）" in body
+    # 按 score 降序:a/b(9) 在 c/d(5) 之前
+    assert body.index("a/b") < body.index("c/d")
 
 def test_issue_table_columns_match_header():
     _, body = issue.build_weekly_issue(SCORED, {"topic": "t"}, "2026-09-27", "2026-10-04")
@@ -29,4 +29,4 @@ def test_csv_columns(tmp_path):
     issue.write_csv(SCORED, str(p))
     rows = list(csv.DictReader(open(p)))
     assert list(rows[0].keys()) == ["repo", "url", "language", "stars",
-                                    "last_commit", "status", "score", "one_liner"]
+                                    "last_commit", "score", "one_liner"]

@@ -39,7 +39,14 @@ def test_daily_issue_includes_per_list_logs():
     _, body = daily.build_daily_issue([], raw_lines=1, cfg=CFG, date="2026-10-04", logs=logs)
     assert "## users 原始动态" in body and "starred a/b" in body
     assert "Fetching events for target(s):" not in body      # 前缀行被去掉
-    assert body.count("(无事件)") == 2                        # orgs + received
+    assert "## orgs 原始动态" not in body                     # 空清单整段省略
+    assert "## received 原始动态" not in body
+
+def test_daily_issue_log_lines_use_hard_breaks():
+    logs = {"users": "2026-10-04 10:00:00 | ⭐️ alice starred a/b\n"
+                     "2026-10-04 11:00:00 | 🚀 alice pushed to a/b\n"}
+    _, body = daily.build_daily_issue([], raw_lines=2, cfg=CFG, date="2026-10-04", logs=logs)
+    assert "starred a/b  \n" in body                         # 行尾双空格 = 硬换行
 
 def test_daily_issue_size_guard_links():
     big = "2026-10-04 10:00:00 | ⭐️ a starred a/b\n" * 3000   # > 60000 字符

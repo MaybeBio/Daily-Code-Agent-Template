@@ -7,9 +7,14 @@ _KIND_HINTS = [("starred", "star"), ("pushed to", "push"), ("forked", "fork"),
                ("opened PR", "pr"), ("reopened PR", "pr"), ("closed PR", "pr"),
                ("created branch", "branch"), ("opened issue", "issue"),
                ("created issue", "issue")]
-_ANCHOR = re.compile(
-    r"(?:starred|pushed to|forked|\bin\b|\bat\b)\s+"
-    r"([A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*)")
+# 仓库 = 时间戳行(headline)末尾的 owner/repo。commit 详情在缩进续行上,经
+# unwrap_records 并进同一 record,故先按 " - [hash]" 切掉详情再在 headline 上取
+# 最后一个 owner/repo:既避开 commit message 里的 "a/b",又让分支名 'x/y' 在前、
+# 真仓库在后时取到真仓库。
+_DETAIL = re.compile(r"\s+-\s*\[[0-9a-fA-F]{4,}\]")
+# owner 以字母数字开头(GitHub 登录名规则);repo 段允许下划线开头,如
+# KULL-Centre/_2024_Cao_CALVADOSCOM
+_REPO = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*/[A-Za-z0-9._-]+")
 
 def unwrap_records(text: str) -> list[str]:
     out, buf = [], None
@@ -42,9 +47,10 @@ def parse_event(record: str) -> dict | None:
     # 去掉 emoji 与首个人名/actor token
     stripped = re.sub(r"^[^\w]+\s*", "", body)          # 去 emoji
     actor = stripped.split()[0] if stripped.split() else ""
-    # 仓库：锚定事件动词/介词后第一个 owner/repo
-    m2 = _ANCHOR.search(body)
-    repo = m2.group(1) if m2 else None
+    # 仓库:切掉 commit 详情后,取 headline 上最后一个 owner/repo
+    headline = _DETAIL.split(body, maxsplit=1)[0]
+    matches = _REPO.findall(headline)
+    repo = matches[-1] if matches else None
     return {"ts": ts, "kind": kind, "actor": actor, "repo": repo, "text": body}
 
 def extract_events(text: str) -> list[dict]:

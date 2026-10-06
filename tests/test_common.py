@@ -8,14 +8,6 @@ def test_load_config_has_required_keys(tmp_path):
     assert cfg["topic"] == "demo"
     assert cfg["llm"]["concurrency"] == 8
 
-def test_registry_roundtrip(tmp_path, monkeypatch):
-    monkeypatch.setattr(common, "ROOT", str(tmp_path))
-    reg = common.read_registry()
-    assert reg["repos"] == {}
-    reg["repos"]["a/b"] = {"first_seen": "2026-10-04", "last_commit": "x"}
-    common.write_registry(reg)
-    assert common.read_registry()["repos"]["a/b"]["last_commit"] == "x"
-
 def test_dump_json_creates_parents(tmp_path, monkeypatch):
     monkeypatch.setattr(common, "ROOT", str(tmp_path))
     path = common.data_dir("daily", "x.json")

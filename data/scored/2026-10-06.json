@@ -1,0 +1,2365 @@
+[
+  {
+    "full_name": "eternity4719/HowToLiveBetter",
+    "who": [
+      "chao1224"
+    ],
+    "event": "star",
+    "stars": 43735,
+    "language": "HTML",
+    "description": "高性价比人生指南: 长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
+    "url": "https://github.com/eternity4719/HowToLiveBetter",
+    "pushed_at": "2026-10-06T03:03:14Z",
+    "score": 0,
+    "one_liner": "该仓库是一份关于个人生活、健康、法律与财务建议的中文指南，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "siteboon/claudecodeui",
+    "who": [
+      "QizhiPei"
+    ],
+    "event": "star",
+    "stars": 13954,
+    "language": "TypeScript",
+    "description": "Use Claude Code, OpenCode, Cursor CLI, and Codex on mobile and web with CloudCLI (aka Claude Code UI). CloudCLI is a free open source webui/GUI that helps you manage your Claude Code session and projects remotely.",
+    "url": "https://github.com/siteboon/claudecodeui",
+    "pushed_at": "2026-10-05T03:35:26Z",
+    "score": 0,
+    "one_liner": "该仓库是面向Claude Code等AI编程助手的桌面/移动端UI工具，与无序蛋白、相分离等课题完全无关。"
+  },
+  {
+    "full_name": "aqlaboratory/openfold",
+    "who": [
+      "Walnosimaj"
+    ],
+    "event": "fork",
+    "stars": 3435,
+    "language": "Python",
+    "description": "Trainable, memory-efficient, and GPU-friendly PyTorch reproduction of AlphaFold 2",
+    "url": "https://github.com/aqlaboratory/openfold",
+    "pushed_at": "2025-12-16T09:41:53Z",
+    "score": 2,
+    "one_liner": "OpenFold 是 AlphaFold2 的 PyTorch 复现,面向通用蛋白结构预测,不针对 IDR/无序蛋白或相分离,与本课题对象无关。"
+  },
+  {
+    "full_name": "ai4s-research/awesome-ai-for-science",
+    "url": "https://github.com/ai4s-research/awesome-ai-for-science",
+    "language": "",
+    "stars": 2011,
+    "description": "A curated list of awesome AI tools, libraries, papers, datasets, and frameworks that accelerate scientific discovery — from physics and chemistry to biology, materials, and beyond.",
+    "pushed_at": "2026-10-05T08:33:40Z",
+    "score": 1,
+    "one_liner": "这是一个跨学科的 AI for Science 资源清单，涵盖各领域工具与论文，与 IDR/无序蛋白/相分离课题无直接关联，仅作为通用资源列表价值有限。"
+  },
+  {
+    "full_name": "steineggerlab/foldseek",
+    "who": [
+      "AGrantUEA",
+      "milot-mirdita"
+    ],
+    "event": "issue",
+    "stars": 1298,
+    "language": "C",
+    "description": "Foldseek enables fast and sensitive comparisons of large structure sets.",
+    "url": "https://github.com/steineggerlab/foldseek",
+    "pushed_at": "2026-09-09T09:30:49Z",
+    "score": 2,
+    "one_liner": "Foldseek 是通用蛋白结构比对与搜索工具，不面向 IDR/无序蛋白或相分离，仅方法上可能间接相关。"
+  },
+  {
+    "full_name": "HannesStark/boltzgen",
+    "who": [
+      "HannesStark"
+    ],
+    "event": "mixed",
+    "stars": 1072,
+    "language": "Jupyter Notebook",
+    "description": "BoltzGen: Toward Universal Binder Design",
+    "url": "https://github.com/HannesStark/boltzgen",
+    "pushed_at": "2026-10-06T02:55:01Z",
+    "score": 1,
+    "one_liner": "BoltzGen 是面向蛋白质/多肽/抗体与小分子结合的蛋白质设计工具，与 IDR/无序蛋白/相分离课题无关。"
+  },
+  {
+    "full_name": "aqlaboratory/openfold-3",
+    "who": [
+      "LaelaZorana",
+      "OtoYuki",
+      "heathcliff233",
+      "jandom",
+      "jnwei",
+      "qas2100"
+    ],
+    "event": "mixed",
+    "stars": 888,
+    "language": "Python",
+    "description": "A fully open source biomolecular structure prediction model based on AlphaFold3",
+    "url": "https://github.com/aqlaboratory/openfold-3",
+    "pushed_at": "2026-10-05T07:13:11Z",
+    "score": 4,
+    "one_liner": "OpenFold3-preview 是 AlphaFold3 的开源复现,面向通用生物分子结构预测,虽可预测蛋白结构但非专门针对 IDR/无序蛋白或相分离,方法可迁移但对象不直接相关。"
+  },
+  {
+    "full_name": "microsoft/bioemu",
+    "url": "https://github.com/microsoft/bioemu",
+    "language": "Python",
+    "stars": 886,
+    "description": "Inference code for scalable emulation of protein equilibrium ensembles with generative deep learning",
+    "pushed_at": "2026-10-01T14:32:31Z",
+    "score": 6,
+    "one_liner": "BioEmu 是一个用生成式深度学习从序列采样蛋白质平衡构象系综的工具，虽非专门针对 IDR/相分离，但其构象采样能力对无序蛋白构象系综研究有直接可迁移价值。"
+  },
+  {
+    "full_name": "baker-laboratory/RoseTTAFold-All-Atom",
+    "who": [
+      "ZJXUyexiancai"
+    ],
+    "event": "star",
+    "stars": 825,
+    "language": "Python",
+    "description": "",
+    "url": "https://github.com/baker-laboratory/RoseTTAFold-All-Atom",
+    "pushed_at": "2026-05-18T23:44:19Z",
+    "score": 4,
+    "one_liner": "RoseTTAFold All-Atom 是通用生物分子结构预测工具，可处理蛋白、核酸、小分子等复合物，但并非专门面向 IDR/无序蛋白或相分离，方法可迁移但对象不直接相关。"
+  },
+  {
+    "full_name": "Graylab/DL4Proteins-notebooks",
+    "who": [
+      "heidiiii-b"
+    ],
+    "event": "star",
+    "stars": 730,
+    "language": "Jupyter Notebook",
+    "description": "Colab Notebooks covering deep learning tools for biomolecular structure prediction and design",
+    "url": "https://github.com/Graylab/DL4Proteins-notebooks",
+    "pushed_at": "2026-04-17T16:37:05Z",
+    "score": 3,
+    "one_liner": "这是一个面向蛋白质深度学习教学的开源Jupyter笔记本系列，涵盖AlphaFold、RFDiffusion等通用蛋白建模方法，但未专门针对IDR/无序蛋白或相分离，仅方法上可部分迁移。"
+  },
+  {
+    "full_name": "mdozmorov/HiC_tools",
+    "url": "https://github.com/mdozmorov/HiC_tools",
+    "language": "Python",
+    "stars": 653,
+    "description": "A collection of tools for Hi-C data analysis",
+    "pushed_at": "2026-10-03T12:34:56Z",
+    "score": 0,
+    "one_liner": "该仓库是Hi-C染色质构象数据分析工具与论文列表，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Soulmate-Halo/heterogeneous-gpu-pd-lab",
+    "url": "https://github.com/Soulmate-Halo/heterogeneous-gpu-pd-lab",
+    "language": "Python",
+    "stars": 650,
+    "description": "使用稠密算力卡对稀疏大显存主机进行加速，主机包括 AI Max+ 395、M3 512G、DGX Spark 等。",
+    "pushed_at": "2026-09-30T09:30:12Z",
+    "score": 0,
+    "one_liner": "该仓库是DeepSeek大模型在异构GPU上的推理性能优化与部署记录，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "RosettaCommons/RFantibody",
+    "who": [
+      "HannesStark"
+    ],
+    "event": "mixed",
+    "stars": 539,
+    "language": "Python",
+    "description": "",
+    "url": "https://github.com/RosettaCommons/RFantibody",
+    "pushed_at": "2026-09-23T22:17:32Z",
+    "score": 1,
+    "one_liner": "RFantibody 是抗体从头设计的结构生物学工具，与 IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "JuliaMolSim/Molly.jl",
+    "who": [
+      "jgreener64"
+    ],
+    "event": "mixed",
+    "stars": 496,
+    "language": "Julia",
+    "description": "Molecular simulation in Julia",
+    "url": "https://github.com/JuliaMolSim/Molly.jl",
+    "pushed_at": "2026-10-05T16:06:07Z",
+    "score": 6,
+    "one_liner": "Molly.jl 是一个通用的分子动力学模拟包，虽非专门面向 IDR/相分离，但其可微模拟能力已被用于开发无序蛋白力场，方法可迁移至本课题。"
+  },
+  {
+    "full_name": "Graylab/IgFold",
+    "who": [
+      "myuan12"
+    ],
+    "event": "star",
+    "stars": 436,
+    "language": "Python",
+    "description": "Fast, accurate antibody structure prediction from deep learning on massive set of natural antibodies",
+    "url": "https://github.com/Graylab/IgFold",
+    "pushed_at": "2026-09-09T17:43:44Z",
+    "score": 2,
+    "one_liner": "IgFold 是抗体结构预测工具，面向抗体而非无序蛋白/IDR/相分离，与本课题对象无关，仅方法上可能部分可迁移。"
+  },
+  {
+    "full_name": "PacesaLab/BindCraft2",
+    "who": [
+      "HannesStark"
+    ],
+    "event": "mixed",
+    "stars": 409,
+    "language": "Python",
+    "description": "Easy to use suite for designing a wide range of protein binder modalities.",
+    "url": "https://github.com/PacesaLab/BindCraft2",
+    "pushed_at": "2026-10-05T21:20:48Z",
+    "score": 2,
+    "one_liner": "BindCraft2 是蛋白结合物从头设计工具，虽支持无序靶标输入，但核心是折叠蛋白结合物设计，非 IDR/相分离方向。"
+  },
+  {
+    "full_name": "Beliavsky/Fortran-code-on-GitHub",
+    "url": "https://github.com/Beliavsky/Fortran-code-on-GitHub",
+    "language": "",
+    "stars": 389,
+    "description": "Directory of Fortran codes on GitHub, arranged by topic",
+    "pushed_at": "2026-09-30T23:35:25Z",
+    "score": 0,
+    "one_liner": "这是一个Fortran语言代码仓库索引列表，涵盖艺术、天文、物理等多个领域，与IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "AspirinCode/awesome-AI4MolConformation-MD",
+    "url": "https://github.com/AspirinCode/awesome-AI4MolConformation-MD",
+    "language": "",
+    "stars": 307,
+    "description": "List of molecules (small molecules, RNA, peptide, protein, enzymes, antibody,  and PPIs)  conformations and molecular dynamics (force fields) using generative artificial intelligence and deep learning",
+    "pushed_at": "2026-10-03T11:11:14Z",
+    "score": 5,
+    "one_liner": "这是一个AI4分子构象与分子动力学的论文与工具列表仓库，涵盖蛋白构象系综与无序蛋白构象系综相关文献，但形态为资源清单而非代码工具，且对象不专门针对IDR/相分离。"
+  },
+  {
+    "full_name": "krzysztofdudek/ResearcherSkill",
+    "url": "https://github.com/krzysztofdudek/ResearcherSkill",
+    "language": "Python",
+    "stars": 265,
+    "description": "One file. Your AI coding agent becomes a scientist. 30+ experiments while you sleep.",
+    "pushed_at": "2026-10-05T19:08:04Z",
+    "score": 0,
+    "one_liner": "该仓库是面向AI编码代理的自动化科研技能插件，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "ai4protein/VenusFactory2",
+    "who": [
+      "Jianxinnn"
+    ],
+    "event": "star",
+    "stars": 250,
+    "language": "Python",
+    "description": "🏭 AI agent platform with skills for protein engineering, the noob-friendly AI tutorial tool for life science professionals. (ACL Demo2025, arXiv 2026)",
+    "url": "https://github.com/ai4protein/VenusFactory2",
+    "pushed_at": "2026-09-25T05:09:27Z",
+    "score": 4,
+    "one_liner": "VenusFactory2 是一个面向蛋白质工程的通用 Agent 平台,集成蛋白语言模型与数据库,但并非专门针对 IDR/无序蛋白或相分离,相关性有限。"
+  },
+  {
+    "full_name": "attila-lendvai/maru",
+    "url": "https://github.com/attila-lendvai/maru",
+    "language": "Common Lisp",
+    "stars": 226,
+    "description": "Maru - a tiny self-hosting lisp dialect",
+    "pushed_at": "2026-10-03T13:20:30Z",
+    "score": 0,
+    "one_liner": "这是一个自举的Lisp编程语言实现仓库，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "steineggerlab/folddisco",
+    "who": [
+      "CharlesWangCW123",
+      "Magnushhoie"
+    ],
+    "event": "star",
+    "stars": 218,
+    "language": "Rust",
+    "description": "Fast indexing and search of discontinuous motifs in protein structures",
+    "url": "https://github.com/steineggerlab/folddisco",
+    "pushed_at": "2026-09-18T08:34:11Z",
+    "score": 2,
+    "one_liner": "Folddisco 是蛋白质结构不连续基序搜索工具，面向折叠蛋白结构而非无序蛋白/相分离，与本课题对象无关。"
+  },
+  {
+    "full_name": "zadorlab/sella",
+    "who": [
+      "jsunn-y"
+    ],
+    "event": "star",
+    "stars": 182,
+    "language": "Python",
+    "description": "A Python software package for saddle point optimization and minimization of atomic systems.",
+    "url": "https://github.com/zadorlab/sella",
+    "pushed_at": "2026-09-02T23:08:47Z",
+    "score": 0,
+    "one_liner": "Sella 是用于寻找一阶鞍点的分子优化工具，面向催化与化学反应路径，与 IDR/无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "AI-in-Transportation-Lab/awesome-mechanistic-interpretability",
+    "url": "https://github.com/AI-in-Transportation-Lab/awesome-mechanistic-interpretability",
+    "language": "JavaScript",
+    "stars": 164,
+    "description": "A carefully curated collection of high-quality libraries, projects, tutorials, research papers, and other essential resources focused on Mechanistic Interpretability, a growing subfield in machine learning interpretability research that aims to reverse-engineer neural networks into understandable computational components.",
+    "pushed_at": "2026-10-05T03:38:08Z",
+    "score": 0,
+    "one_liner": "该仓库是机械可解释性(Mechanistic Interpretability)领域的论文与资源列表,与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "inoue0426/awesome-computational-biology",
+    "url": "https://github.com/inoue0426/awesome-computational-biology",
+    "language": "Python",
+    "stars": 159,
+    "description": "Awesome list of computational biology.",
+    "pushed_at": "2026-10-05T03:18:08Z",
+    "score": 3,
+    "one_liner": "这是一个计算生物学的综合资源列表，涵盖数据库、软件和论文，但未专门聚焦于无序蛋白/IDR/相分离，仅作为领域内泛化清单，对课题价值有限。"
+  },
+  {
+    "full_name": "standardgalactic/standardgalactic",
+    "url": "https://github.com/standardgalactic/standardgalactic",
+    "language": "Jupyter Notebook",
+    "stars": 155,
+    "description": "Original Pirate Material",
+    "pushed_at": "2026-10-05T21:33:25Z",
+    "score": 0,
+    "one_liner": "该仓库是个人创意项目集合，涉及字母翻译、语言、几何等，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "katopz/katgpt-rs",
+    "url": "https://github.com/katopz/katgpt-rs",
+    "language": "Rust",
+    "stars": 134,
+    "description": "A neuro-symbolic micro-Transformer with speculative decoding, constraint pruning, recurrent attention, and adaptive test-time scaling — built in Rust.",
+    "pushed_at": "2026-10-06T02:33:33Z",
+    "score": 0,
+    "one_liner": "这是一个 Rust 实现的神经符号微型 Transformer 推理加速项目,与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "KULL-Centre/CALVADOS",
+    "who": [
+      "rimaud"
+    ],
+    "event": "star",
+    "stars": 99,
+    "language": "Python",
+    "description": "",
+    "url": "https://github.com/KULL-Centre/CALVADOS",
+    "pushed_at": "2026-09-28T20:55:29Z",
+    "score": 10,
+    "one_liner": "CALVADOS 是面向 IDP 的粗粒化隐式溶剂模拟工具，用于预测无序蛋白的液-液相分离行为，与课题高度相关且为可用的代码工具。"
+  },
+  {
+    "full_name": "vastgroup/vast-tools",
+    "url": "https://github.com/vastgroup/vast-tools",
+    "language": "Perl",
+    "stars": 95,
+    "description": "A toolset for profiling alternative splicing events in RNA-Seq data.",
+    "pushed_at": "2026-10-03T20:04:31Z",
+    "score": 1,
+    "one_liner": "该仓库是RNA-seq可变剪接分析工具，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "flyark/AFM-LIS",
+    "url": "https://github.com/flyark/AFM-LIS",
+    "language": "Jupyter Notebook",
+    "stars": 90,
+    "description": "Local Interaction Score (LIS) for structure prediction analysis",
+    "pushed_at": "2026-10-05T15:57:17Z",
+    "score": 7,
+    "one_liner": "该仓库提供从结构预测输出中计算局部互作分数(LIS/iLIS)的工具,专门用于识别涉及SLiMs或IDR的瞬时/柔性蛋白互作,与IDR介导的结合建模高度相关,但主要面向PPI发现而非IDR本身。"
+  },
+  {
+    "full_name": "THGLab/HiQBind",
+    "who": [
+      "nicetone9"
+    ],
+    "event": "star",
+    "stars": 88,
+    "language": "Jupyter Notebook",
+    "description": "Workflow to clean up and fix structural problems in protein-ligand binding datasets",
+    "url": "https://github.com/THGLab/HiQBind",
+    "pushed_at": "2026-03-18T22:59:57Z",
+    "score": 1,
+    "one_liner": "该仓库是蛋白-配体结合数据集构建工作流，与IDR/无序蛋白/相分离无关，仅属结构生物学领域但对象不相关。"
+  },
+  {
+    "full_name": "ProteinDesignLab/protpardelle-1c",
+    "who": [
+      "CharlesWangCW123"
+    ],
+    "event": "star",
+    "stars": 86,
+    "language": "Python",
+    "description": "Updated Protpardelle models with more robust motif scaffolding and multichain support",
+    "url": "https://github.com/ProteinDesignLab/protpardelle-1c",
+    "pushed_at": "2026-10-02T07:24:24Z",
+    "score": 2,
+    "one_liner": "Protpardelle-1c 是通用蛋白质生成模型，面向蛋白质设计而非 IDR/无序蛋白或相分离，与本课题对象无关。"
+  },
+  {
+    "full_name": "idptools/starling",
+    "who": [
+      "jlotthammer"
+    ],
+    "event": "push",
+    "stars": 78,
+    "language": "Jupyter Notebook",
+    "description": "STARLING - conSTruction of intrinsicAlly disoRdered proteins ensembles efficientLy vIa multi-dimeNsional Generative models",
+    "url": "https://github.com/idptools/starling",
+    "pushed_at": "2026-10-05T20:10:56Z",
+    "score": 10,
+    "one_liner": "STARLING 是一个从序列预测无序蛋白构象系综的扩散模型工具，直接面向 IDR 构象系综生成，与课题高度相关且为可用的代码工具。"
+  },
+  {
+    "full_name": "zhaisilong/awesome-peptide",
+    "url": "https://github.com/zhaisilong/awesome-peptide",
+    "language": "Python",
+    "stars": 49,
+    "description": "List of papers about Peptide research using Deep Learning",
+    "pushed_at": "2026-10-03T11:23:14Z",
+    "score": 1,
+    "one_liner": "这是一个多肽研究论文列表仓库，涵盖设计、合成、递送等广泛主题，与IDR/无序蛋白/相分离课题无关。"
+  },
+  {
+    "full_name": "ZhangGroup-MITChemistry/OpenABC",
+    "url": "https://github.com/ZhangGroup-MITChemistry/OpenABC",
+    "language": "Jupyter Notebook",
+    "stars": 45,
+    "description": "OpenMM implementation of MOFF, MRG-CG, and HPS models.",
+    "pushed_at": "2026-09-29T19:30:18Z",
+    "score": 10,
+    "one_liner": "OpenABC 是面向生物分子凝聚体粗粒化模拟的 GPU 加速工具包，支持 HPS、MOFF、Mpipi 等无序蛋白相分离力场，与本课题高度相关且为可直接使用的代码工具。"
+  },
+  {
+    "full_name": "PINNeAPPle-Labs/PINNeAPPle",
+    "url": "https://github.com/PINNeAPPle-Labs/PINNeAPPle",
+    "language": "Python",
+    "stars": 36,
+    "description": "Pinneaple is an open-source Physics AI toolkit for Physics-Informed Neural Networks (PINNs), scientific ML, geometry processing, solvers, and reproducible training pipelines.",
+    "pushed_at": "2026-10-05T22:06:38Z",
+    "score": 1,
+    "one_liner": "这是一个通用的物理信息神经网络(PINN)研究平台,面向PDE求解、流体、热传导等经典物理问题,与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "YuzeHao2023/daily-arxiv-ai4chem",
+    "url": "https://github.com/YuzeHao2023/daily-arxiv-ai4chem",
+    "language": "Python",
+    "stars": 32,
+    "description": "🎓Automatically Update AI4Chem Papers Daily using Github Actions",
+    "pushed_at": "2026-10-05T16:50:09Z",
+    "score": 0,
+    "one_liner": "这是一个通用图神经网络/分子表示学习的论文列表仓库，与IDR/无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "idptools/goose",
+    "who": [
+      "Rattailjuicer"
+    ],
+    "event": "issue",
+    "stars": 28,
+    "language": "Python",
+    "description": "A python package for generating disordered sequences and disorder sequence variants.",
+    "url": "https://github.com/idptools/goose",
+    "pushed_at": "2026-09-02T18:41:57Z",
+    "score": 10,
+    "one_liner": "GOOSE 是专门用于生成和设计无序蛋白(IDR)序列及其变体的 Python 工具包,支持指定物理化学性质、序列优化和互作设计,与课题高度相关且为可用的代码工具。"
+  },
+  {
+    "full_name": "tfatykhov/awesome-agent-memory",
+    "url": "https://github.com/tfatykhov/awesome-agent-memory",
+    "language": "",
+    "stars": 24,
+    "description": "Curated research on memory systems for LLM agents",
+    "pushed_at": "2026-10-03T19:53:32Z",
+    "score": 0,
+    "one_liner": "该仓库是面向LLM智能体记忆系统的论文资源清单，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "KULL-Centre/_2024_Cao_CALVADOSCOM",
+    "who": [
+      "chsolis"
+    ],
+    "event": "star",
+    "stars": 21,
+    "language": "Jupyter Notebook",
+    "description": "",
+    "url": "https://github.com/KULL-Centre/_2024_Cao_CALVADOSCOM",
+    "pushed_at": "2025-04-07T09:25:21Z",
+    "score": 9,
+    "one_liner": "CALVADOS 3 是面向无序蛋白和多结构域蛋白的粗粒化模拟与参数优化代码仓库，直接用于 IDP 构象系综生成与相分离相关模拟，与课题高度相关且为可运行工具。"
+  },
+  {
+    "full_name": "zeleny-ondrej/STNN-Weekly-Arxiv",
+    "url": "https://github.com/zeleny-ondrej/STNN-Weekly-Arxiv",
+    "language": "Python",
+    "stars": 20,
+    "description": "Scraping repository of the most relevant topics with regards to Spatio-Temporal Neural Networks available in the arXiv archive. The repository and workflow is based on https://github.com/SpikingChen/SNN-Daily-Arxiv.",
+    "pushed_at": "2026-10-06T01:59:12Z",
+    "score": 0,
+    "one_liner": "该仓库是时空神经网络方向的论文列表，内容涉及医学影像、机器人、通信等，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "SmartTensors/NMFk.jl",
+    "url": "https://github.com/SmartTensors/NMFk.jl",
+    "language": "HTML",
+    "stars": 20,
+    "description": "Nonnegative Matrix Factorization + k-means clustering and physics constraints for Unsupervised and Physics-Informed Machine Learning",
+    "pushed_at": "2026-10-05T17:10:25Z",
+    "score": 1,
+    "one_liner": "该仓库是通用的非负矩阵分解与聚类机器学习工具，应用于气候、水文、材料等广泛领域，与无序蛋白/相分离课题无关。"
+  },
+  {
+    "full_name": "YuzeHao2023/daily-arxiv-ai4bio",
+    "url": "https://github.com/YuzeHao2023/daily-arxiv-ai4bio",
+    "language": "Python",
+    "stars": 20,
+    "description": "🎓Automatically Update AI4Bio Papers Daily using Github Actions",
+    "pushed_at": "2026-10-05T16:56:54Z",
+    "score": 1,
+    "one_liner": "这是一个跨领域的 arXiv 论文汇总列表,虽含蛋白质结构条目但未聚焦 IDR/无序蛋白/相分离,且无代码工具,与本课题无关。"
+  },
+  {
+    "full_name": "rotskoff-group/idiom",
+    "who": [
+      "Junjie-Zhu"
+    ],
+    "event": "star",
+    "stars": 19,
+    "language": "Python",
+    "description": "A protein language model for intrinsically disordered regions",
+    "url": "https://github.com/rotskoff-group/idiom",
+    "pushed_at": "2026-10-02T17:11:37Z",
+    "score": 10,
+    "one_liner": "IDiom 是专为固有无序蛋白区域(IDR)训练的自回归蛋白质语言模型,支持 IDR 生成、嵌入提取、微调与可解释性分析,与课题高度相关且为可直接使用的工具。"
+  },
+  {
+    "full_name": "sokrypton/localfold",
+    "who": [
+      "sokrypton"
+    ],
+    "event": "push",
+    "stars": 18,
+    "language": "JavaScript",
+    "description": "",
+    "url": "https://github.com/sokrypton/localfold",
+    "pushed_at": "2026-10-03T18:45:44Z",
+    "score": 2,
+    "one_liner": "LocalFold 是浏览器端通用蛋白结构预测工具，基于 AlphaFold 2/3，不针对 IDR/无序蛋白或相分离，与本课题无关。"
+  },
+  {
+    "full_name": "leelige/article",
+    "url": "https://github.com/leelige/article",
+    "language": "JavaScript",
+    "stars": 18,
+    "description": "",
+    "pushed_at": "2026-10-05T16:30:51Z",
+    "score": 0,
+    "one_liner": "该仓库是 arXiv 论文自动汇总列表，内容涉及数据库、查询优化、物理材料等，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "GENTEL-lab/Fold2Reason",
+    "who": [
+      "yliust"
+    ],
+    "event": "push",
+    "stars": 16,
+    "language": "Python",
+    "description": "Official code for Fold2Reason: Enhancing general reasoning in language models through protein-structure post-training.",
+    "url": "https://github.com/GENTEL-lab/Fold2Reason",
+    "pushed_at": "2026-10-05T08:36:14Z",
+    "score": 2,
+    "one_liner": "Fold2Reason 是面向蛋白质结构后训练语言模型的通用推理与结构读取工具，不涉及 IDR/无序蛋白/相分离，仅以蛋白质结构为通用推理测试对象，与本课题无关。"
+  },
+  {
+    "full_name": "YuzeHao2023/daily-arxiv-ai4physics",
+    "url": "https://github.com/YuzeHao2023/daily-arxiv-ai4physics",
+    "language": "Python",
+    "stars": 16,
+    "description": "🎓Automatically Update AI4Physics Papers Daily using Github Actions",
+    "pushed_at": "2026-10-05T16:29:01Z",
+    "score": 0,
+    "one_liner": "该仓库是科学机器学习与PINNs领域的论文列表，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "YuzeHao2023/daily-arxiv-ai4math",
+    "url": "https://github.com/YuzeHao2023/daily-arxiv-ai4math",
+    "language": "Python",
+    "stars": 15,
+    "description": "🎓Automatically Update AI4math Papers Daily using Github Actions",
+    "pushed_at": "2026-10-05T16:44:18Z",
+    "score": 0,
+    "one_liner": "该仓库是形式化方法与自动推理领域的论文列表，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "YuzeHao2023/daily-arxiv-ai4cheme",
+    "url": "https://github.com/YuzeHao2023/daily-arxiv-ai4cheme",
+    "language": "Python",
+    "stars": 14,
+    "description": "🎓Automatically Update AI4Chemical-Engineering Papers Daily using Github Actions",
+    "pushed_at": "2026-10-05T16:59:26Z",
+    "score": 0,
+    "one_liner": "该仓库是化学工程/过程建模领域的论文列表，与无序蛋白、相分离等课题完全无关。"
+  },
+  {
+    "full_name": "NY1024/AgentSafety-Papers",
+    "url": "https://github.com/NY1024/AgentSafety-Papers",
+    "language": "Python",
+    "stars": 12,
+    "description": "Daily Tracking of LLM Agent Security Papers on arXiv",
+    "pushed_at": "2026-10-05T23:37:08Z",
+    "score": 0,
+    "one_liner": "该仓库是LLM Agent安全方向的arXiv论文每日追踪列表，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "holehouse-lab/soursop",
+    "url": "https://github.com/holehouse-lab/soursop",
+    "language": "Jupyter Notebook",
+    "stars": 12,
+    "description": "SOURSOP is an analysis suite for molecular simulations of intrinsically disordered proteins",
+    "pushed_at": "2026-10-01T15:57:55Z",
+    "score": 10,
+    "one_liner": "SOURSOP 是专为无序蛋白/IDR 构象系综分析设计的 Python 工具包，提供尺度、接触、NMR 可观测量和系综重加权等丰富功能，与课题高度相关且为可直接使用的代码工具。"
+  },
+  {
+    "full_name": "uncscode/particula",
+    "url": "https://github.com/uncscode/particula",
+    "language": "Python",
+    "stars": 12,
+    "description": "Particula is an open-source, aerosol simulation library.",
+    "pushed_at": "2026-10-04T18:41:49Z",
+    "score": 0,
+    "one_liner": "该仓库是气溶胶科学粒子模拟器，面向气溶胶动力学与相变，与无序蛋白/相分离凝聚体课题无关。"
+  },
+  {
+    "full_name": "mlnjsh/ai-research-radar",
+    "url": "https://github.com/mlnjsh/ai-research-radar",
+    "language": "Python",
+    "stars": 11,
+    "description": "📡 Self-updating AI research tracker — New papers from arXiv every 6 hours, auto-summarized, trending topics, citation tracking. Powered by GitHub Actions.",
+    "pushed_at": "2026-10-05T23:28:33Z",
+    "score": 0,
+    "one_liner": "这是一个自动抓取 arXiv 论文的 AI 研究雷达仓库,面向通用机器学习/LLM/计算机视觉等领域,与 IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "robert-mcdermott/proteoscope",
+    "url": "https://github.com/robert-mcdermott/proteoscope",
+    "language": "JavaScript",
+    "stars": 8,
+    "description": "A 3D viewer and analysis workbench for protein and nucleic-acid structures, predicted complexes, density maps and structural proteomics data. One self-contained program for your own computer, installed with one command; your files stay on your machine.",
+    "pushed_at": "2026-09-30T14:37:51Z",
+    "score": 3,
+    "one_liner": "Proteoscope 是通用蛋白/核酸结构可视化与分析工具，虽能显示无序区但非面向 IDR/相分离的专门工具，价值有限。"
+  },
+  {
+    "full_name": "hoonjet/NVIDIA-PhysicsNeMo-Tutorial",
+    "url": "https://github.com/hoonjet/NVIDIA-PhysicsNeMo-Tutorial",
+    "language": "Python",
+    "stars": 8,
+    "description": "Self-study material for NVIDIA PhysicsNeMo (an open-source Python framework for building, training, and fine-tuning physics AI models)",
+    "pushed_at": "2026-09-29T23:56:35Z",
+    "score": 0,
+    "one_liner": "该仓库是 NVIDIA PhysicsNeMo 的物理模拟 AI 教程集,面向 PDE 求解、神经算子等通用物理问题,与 IDR/无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "steineggerlab/folddisco-analysis",
+    "who": [
+      "CharlesWangCW123"
+    ],
+    "event": "star",
+    "stars": 7,
+    "language": "Python",
+    "description": "Scripts to benchmark folddisco",
+    "url": "https://github.com/steineggerlab/folddisco-analysis",
+    "pushed_at": "2026-09-18T08:25:27Z",
+    "score": 2,
+    "one_liner": "该仓库是Folddisco的基准测试脚本，面向蛋白质结构基序搜索而非IDR/相分离，与课题对象无关。"
+  },
+  {
+    "full_name": "Rousseau-Team/spaed",
+    "url": "https://github.com/Rousseau-Team/spaed",
+    "language": "Jupyter Notebook",
+    "stars": 7,
+    "description": "Segmentation of phage endolysin domains",
+    "pushed_at": "2026-10-04T19:29:57Z",
+    "score": 4,
+    "one_liner": "SPAED 是基于 AlphaFold PAE 文件进行噬菌体内溶素结构域分割的工具，虽涉及末端无序区识别，但对象并非 IDR/相分离，方法可部分迁移。"
+  },
+  {
+    "full_name": "Ponkux/DailyArXiv-cp",
+    "url": "https://github.com/Ponkux/DailyArXiv-cp",
+    "language": "Python",
+    "stars": 6,
+    "description": "copied from https://github.com/zezhishao/DailyArXiv",
+    "pushed_at": "2026-10-05T11:29:39Z",
+    "score": 0,
+    "one_liner": "这是一个按关键词自动抓取 arXiv 论文的每日论文列表仓库,当前内容全部为具身智能/机器人/3D场景重建等无关领域,与 IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "missuse/ragp",
+    "url": "https://github.com/missuse/ragp",
+    "language": "R",
+    "stars": 6,
+    "description": "Filter plant hydroxyproline rich glycoproteins ",
+    "pushed_at": "2026-10-05T18:07:20Z",
+    "score": 3,
+    "one_liner": "ragp 是植物羟脯氨酸富集糖蛋白分析工具，虽含无序区预测功能但非核心，且已停止维护，与课题相关性有限。"
+  },
+  {
+    "full_name": "polyidoit/Arxiv-TQFT",
+    "url": "https://github.com/polyidoit/Arxiv-TQFT",
+    "language": "Python",
+    "stars": 6,
+    "description": "Arxiv prepring on TQFT, topological order and generalized symmetry. [The original version is modified from the source code by Vincentqyw]",
+    "pushed_at": "2026-10-05T03:18:21Z",
+    "score": 0,
+    "one_liner": "该仓库是量子场论、拓扑序等物理领域的 arXiv 论文列表，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "coleygroup/coleygroup.github.io",
+    "who": [
+      "luost26"
+    ],
+    "event": "pr",
+    "stars": 5,
+    "language": "SCSS",
+    "description": "Coley Research Group website",
+    "url": "https://github.com/coleygroup/coleygroup.github.io",
+    "pushed_at": "2026-10-04T16:08:24Z",
+    "score": 0,
+    "one_liner": "这是MIT Coley研究组的实验室网站仓库，用于维护成员、论文和新闻页面，与IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "talkowski-lab/variant-interpretation",
+    "url": "https://github.com/talkowski-lab/variant-interpretation",
+    "language": "WDL",
+    "stars": 5,
+    "description": "",
+    "pushed_at": "2026-10-05T21:47:52Z",
+    "score": 0,
+    "one_liner": "该仓库是基因组结构变异注释与过滤工具，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "YuzeHao2023/daily-arxiv-ai4polymer",
+    "url": "https://github.com/YuzeHao2023/daily-arxiv-ai4polymer",
+    "language": "Python",
+    "stars": 5,
+    "description": "🎓Automatically Update AI4Polymer Papers Daily using Github Actions",
+    "pushed_at": "2026-10-05T16:52:44Z",
+    "score": 0,
+    "one_liner": "这是一个自监督学习论文的每日arXiv汇总列表，涵盖视觉、语音、医疗影像等广泛领域，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "zot/mini-spec",
+    "url": "https://github.com/zot/mini-spec",
+    "language": "Go",
+    "stars": 5,
+    "description": "A Claude skill that implements 3-level spec-driven CRC-based design",
+    "pushed_at": "2026-10-03T16:03:59Z",
+    "score": 0,
+    "one_liner": "这是一个用于AI辅助软件设计流程的规范工具，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "zeaoji/MyDailyArXiv",
+    "url": "https://github.com/zeaoji/MyDailyArXiv",
+    "language": "Python",
+    "stars": 4,
+    "description": "",
+    "pushed_at": "2026-10-05T22:47:37Z",
+    "score": 0,
+    "one_liner": "这是一个按关键词自动抓取 arXiv 论文的每日论文列表仓库，内容涉及模型编辑、扩散模型、CLIP 等，与 IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "smaniches/alphafold-sovereign-mcp",
+    "url": "https://github.com/smaniches/alphafold-sovereign-mcp",
+    "language": "Python",
+    "stars": 4,
+    "description": "BioMed MCP over AlphaFold DB + 8 public sources, with SQLite knowledge graph, offline mode, and explicit clinical-use limits.",
+    "pushed_at": "2026-10-05T09:22:46Z",
+    "score": 2,
+    "one_liner": "这是一个封装AlphaFold DB等公共数据库的MCP服务器，面向变异临床报告和药物靶点分析，与IDR/无序蛋白/相分离课题无关。"
+  },
+  {
+    "full_name": "Ocean-JH/arXivDaily-AI4Mat",
+    "url": "https://github.com/Ocean-JH/arXivDaily-AI4Mat",
+    "language": "HTML",
+    "stars": 3,
+    "description": "Daily automatic updates of the latest arXiv papers on AI for materials science.",
+    "pushed_at": "2026-10-06T02:18:25Z",
+    "score": 0,
+    "one_liner": "这是一个AI for Materials Science的arXiv论文自动追踪与展示仓库,与IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "idptools/afrc",
+    "url": "https://github.com/idptools/afrc",
+    "language": "Python",
+    "stars": 3,
+    "description": "Implementation of our reference polymer model for an unfolded protein as an ideal chain",
+    "pushed_at": "2026-09-30T18:35:04Z",
+    "score": 9,
+    "one_liner": "AFRC 是一个面向无序蛋白的序列特异性参考模型工具，提供构象系综生成与尺寸分布计算，与课题高度相关且为可用的代码工具。"
+  },
+  {
+    "full_name": "iopwsy/arXiv_cond-mat",
+    "url": "https://github.com/iopwsy/arXiv_cond-mat",
+    "language": "Python",
+    "stars": 3,
+    "description": "利用GitHub Action 与LLM自动更新arXiv凝聚态物理相关论文",
+    "pushed_at": "2026-10-05T12:12:59Z",
+    "score": 0,
+    "one_liner": "该仓库是凝聚态物理arXiv论文的自动更新与导读页面，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "ahmedkerouat/black-hole-papers",
+    "url": "https://github.com/ahmedkerouat/black-hole-papers",
+    "language": "Python",
+    "stars": 3,
+    "description": "automated list of black hole papers using arxiv api.",
+    "pushed_at": "2026-10-05T04:19:32Z",
+    "score": 0,
+    "one_liner": "该仓库是黑洞物理论文的自动列表，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "SFGLab/MultiMM",
+    "url": "https://github.com/SFGLab/MultiMM",
+    "language": "Python",
+    "stars": 3,
+    "description": "A genomewide multiscale energy minimization model.",
+    "pushed_at": "2026-10-02T10:42:47Z",
+    "score": 2,
+    "one_liner": "MultiMM 是面向人类全基因组 3D 结构重建的 OpenMM 工具，虽涉及染色质相分离，但对象是基因组结构而非无序蛋白/IDR，与本课题无关。"
+  },
+  {
+    "full_name": "hyperpolymath/boinc-boinc",
+    "url": "https://github.com/hyperpolymath/boinc-boinc",
+    "language": "Rust",
+    "stars": 3,
+    "description": "Oblibeny BOINC Platform for distributed computing projects",
+    "pushed_at": "2026-10-01T20:11:11Z",
+    "score": 0,
+    "one_liner": "这是一个名为Oblibeny的编程语言项目，利用BOINC进行分布式形式验证，与IDR/无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "ZengZichao/SciGlyph",
+    "who": [
+      "Zuricho"
+    ],
+    "event": "star",
+    "stars": 2,
+    "language": "HTML",
+    "description": "SciGlyph — AI-assisted scientific illustration SVG asset library · 12 categories · 2,830 assets · CC BY 4.0 (AI 生成，使用前请核实准确性)",
+    "url": "https://github.com/ZengZichao/SciGlyph",
+    "pushed_at": "2026-10-05T04:26:25Z",
+    "score": 0,
+    "one_liner": "这是一个科研绘图SVG素材库，与IDR/无序蛋白/相分离研究完全无关。"
+  },
+  {
+    "full_name": "gitesei/MEM-CALVADOS",
+    "who": [
+      "gitesei"
+    ],
+    "event": "push",
+    "stars": 2,
+    "language": "Python",
+    "description": "",
+    "url": "https://github.com/gitesei/MEM-CALVADOS",
+    "pushed_at": "2026-10-04T16:29:35Z",
+    "score": 9,
+    "one_liner": "MEM-CALVADOS 是面向膜界面柔性蛋白的粗粒化模型工具，基于 CALVADOS 框架，与无序蛋白相分离建模高度相关，提供可运行的代码与示例。"
+  },
+  {
+    "full_name": "exopoiesis/arxiv-radar-chemistry",
+    "url": "https://github.com/exopoiesis/arxiv-radar-chemistry",
+    "language": "Python",
+    "stars": 2,
+    "description": "Daily-curated chemistry-relevant papers from arXiv with abstracts, canonical tags, and generated Pages views.",
+    "pushed_at": "2026-10-05T04:20:33Z",
+    "score": 1,
+    "one_liner": "这是一个通用化学/材料领域的 arXiv 论文汇总仓库，虽含蛋白质条目但并非面向 IDR/相分离，属于无关领域论文列表。"
+  },
+  {
+    "full_name": "HolobiomicsLab/Magnolia-AI",
+    "url": "https://github.com/HolobiomicsLab/Magnolia-AI",
+    "language": "Python",
+    "stars": 2,
+    "description": "",
+    "pushed_at": "2026-09-29T15:27:52Z",
+    "score": 1,
+    "one_liner": "这是一个面向计算化学研究的AI智能体框架，与IDR/无序蛋白/相分离课题无关。"
+  },
+  {
+    "full_name": "moses-lab/faidr-fit",
+    "url": "https://github.com/moses-lab/faidr-fit",
+    "language": "JavaScript",
+    "stars": 2,
+    "description": "FAIDR-Fit: Explore the molecular features and function of intrinsically disordered regions (IDRs) across the human proteome in your browser",
+    "pushed_at": "2026-09-29T13:35:29Z",
+    "score": 9,
+    "one_liner": "FAIDR-Fit 是一个面向人类蛋白质组中固有无序区(IDR)探索的 Web 工具,直接服务于 IDR 识别与功能图谱研究,与课题高度相关。"
+  },
+  {
+    "full_name": "fermga/TNFR-Python-Engine",
+    "url": "https://github.com/fermga/TNFR-Python-Engine",
+    "language": "Python",
+    "stars": 2,
+    "description": "Python research framework for coherent patterns on graph-coupled networks: nodal dynamics, structural operators, diagnostics and scoped mathematical studies.",
+    "pushed_at": "2026-10-05T12:24:27Z",
+    "score": 0,
+    "one_liner": "该仓库是名为 TNFR 的通用网络动力学/涌现理论引擎,与无序蛋白、相分离或生物分子凝聚体完全无关。"
+  },
+  {
+    "full_name": "guozhihuan01-hash/embodied-nav-papers",
+    "url": "https://github.com/guozhihuan01-hash/embodied-nav-papers",
+    "language": "Python",
+    "stars": 2,
+    "description": "Auto-updated list of embodied navigation papers from arXiv (2024–Now)",
+    "pushed_at": "2026-10-05T11:15:11Z",
+    "score": 0,
+    "one_liner": "该仓库是具身导航/视觉语言导航领域的论文自动汇总列表，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "smart-data-models/dataModel.ERA",
+    "url": "https://github.com/smart-data-models/dataModel.ERA",
+    "language": "Python",
+    "stars": 2,
+    "description": "Data models mapped from the ERA ontology https://data-interop.era.europa.eu/era-vocabulary/",
+    "pushed_at": "2026-10-04T21:00:31Z",
+    "score": 0,
+    "one_liner": "该仓库是欧洲铁路基础设施数据模型(ERA本体)的NGSI映射,与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "sokrypton/aoe-beta",
+    "who": [
+      "sokrypton"
+    ],
+    "event": "push",
+    "stars": 1,
+    "language": "JavaScript",
+    "description": "",
+    "url": "https://github.com/sokrypton/aoe-beta",
+    "pushed_at": "2026-10-06T02:02:45Z",
+    "score": 0,
+    "one_liner": "这是一个名为 Age of Epochs II 的游戏项目,与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Graylab/LambdaDockScore",
+    "who": [
+      "naokob"
+    ],
+    "event": "star",
+    "stars": 1,
+    "language": "Python",
+    "description": "2025 Machine Learning for Structural Biology (MLSB) Workshop",
+    "url": "https://github.com/Graylab/LambdaDockScore",
+    "pushed_at": "2026-09-18T00:04:36Z",
+    "score": 1,
+    "one_liner": "该仓库是蛋白-蛋白对接打分函数优化工具，与IDR/无序蛋白/相分离无直接关联，仅属结构生物学领域但对象不相关。"
+  },
+  {
+    "full_name": "CultureBotAI/proteintraitsmech",
+    "url": "https://github.com/CultureBotAI/proteintraitsmech",
+    "language": "Python",
+    "stars": 1,
+    "description": "ProteinTraits",
+    "pushed_at": "2026-10-06T02:08:25Z",
+    "score": 3,
+    "one_liner": "这是一个蛋白质序列/结构特征的知识库仓库，虽在SEQUENCE轴中提及无序区域（SEQ_DISORDER），但仅作为众多特征之一，并非面向IDR/相分离的专门工具或模型，形态为数据/知识库而非研究代码。"
+  },
+  {
+    "full_name": "CobanAkdemirlab/NMDescapediseasegene_paper",
+    "url": "https://github.com/CobanAkdemirlab/NMDescapediseasegene_paper",
+    "language": "R",
+    "stars": 1,
+    "description": "",
+    "pushed_at": "2026-10-05T16:49:24Z",
+    "score": 5,
+    "one_liner": "该仓库是NMD逃逸注释与特征提取流程，虽包含IDR特征提取和MetaPredict无序预测，但核心对象是PTC变体与NMD，而非IDR/相分离本身，方法可部分迁移。"
+  },
+  {
+    "full_name": "BioKT/Skills-BIOKT",
+    "url": "https://github.com/BioKT/Skills-BIOKT",
+    "language": "Python",
+    "stars": 1,
+    "description": "",
+    "pushed_at": "2026-10-05T14:31:49Z",
+    "score": 5,
+    "one_liner": "该仓库是计算生物化学的 Claude Code 技能集,涵盖 GROMACS/PLUMED 模拟与增强采样,虽涉及无序蛋白但非专门面向 IDR/相分离的工具,方法可迁移。"
+  },
+  {
+    "full_name": "RLCL-EIT/robotics_arxiv_daily",
+    "url": "https://github.com/RLCL-EIT/robotics_arxiv_daily",
+    "language": "Python",
+    "stars": 1,
+    "description": "",
+    "pushed_at": "2026-10-05T06:27:55Z",
+    "score": 0,
+    "one_liner": "该仓库是机器人灵巧操作与具身智能领域的 arXiv 论文每日汇总，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "chunqing403/protein-design-radar",
+    "url": "https://github.com/chunqing403/protein-design-radar",
+    "language": "HTML",
+    "stars": 1,
+    "description": "",
+    "pushed_at": "2026-10-05T05:51:18Z",
+    "score": 2,
+    "one_liner": "这是一个蛋白质设计领域的每日论文雷达/文献目录仓库，虽属结构生物学领域，但并非面向IDR/相分离的代码或工具，且形态为论文列表，价值有限。"
+  },
+  {
+    "full_name": "kaizhangnju/desolvation-CG-model",
+    "url": "https://github.com/kaizhangnju/desolvation-CG-model",
+    "language": "Jupyter Notebook",
+    "stars": 1,
+    "description": "",
+    "pushed_at": "2026-10-02T19:07:33Z",
+    "score": 10,
+    "one_liner": "该仓库提供去溶剂化参数化粗粒化模型模拟IDP单链与相分离的完整代码、脚本与绘图工具，直接面向无序蛋白相分离建模，高度契合课题。"
+  },
+  {
+    "full_name": "tjaglal11/Bayesian-Analysis-of-SAXS-Data",
+    "url": "https://github.com/tjaglal11/Bayesian-Analysis-of-SAXS-Data",
+    "language": "Python",
+    "stars": 1,
+    "description": "All code related to SAXS Analysis and Bayesian Inference",
+    "pushed_at": "2026-10-01T15:33:52Z",
+    "score": 9,
+    "one_liner": "该仓库提供基于贝叶斯推断的SAXS数据重加权工具，专门用于固有无序蛋白构象系综的优化与分析，与课题高度相关且为可运行代码。"
+  },
+  {
+    "full_name": "Laura-Filkova/CB2330-KICKASS-PROJECT",
+    "url": "https://github.com/Laura-Filkova/CB2330-KICKASS-PROJECT",
+    "language": "Jupyter Notebook",
+    "stars": 1,
+    "description": "",
+    "pushed_at": "2026-10-05T23:14:08Z",
+    "score": 6,
+    "one_liner": "课程项目用简单统计模型拟合FINCHES预测的IDR磷酸化前后互作参数变化，对象相关但形态为教学项目，方法简单可迁移。"
+  },
+  {
+    "full_name": "exopoiesis/arxiv-radar-electrochemistry",
+    "url": "https://github.com/exopoiesis/arxiv-radar-electrochemistry",
+    "language": "Python",
+    "stars": 1,
+    "description": "Daily-curated electrochemistry-relevant papers from arXiv with abstracts, canonical tags, and generated Pages views. ",
+    "pushed_at": "2026-10-05T06:37:52Z",
+    "score": 0,
+    "one_liner": "该仓库是CO2还原、电催化、矿物表面等领域的arXiv论文汇总列表，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "deepikagupta8050/deepikagupta8050",
+    "url": "https://github.com/deepikagupta8050/deepikagupta8050",
+    "language": "",
+    "stars": 1,
+    "description": "",
+    "pushed_at": "2026-10-03T03:40:57Z",
+    "score": 0,
+    "one_liner": "这是一个个人简历/作品集展示仓库，内容为全栈开发技能与项目介绍，与IDR/无序蛋白/相分离课题无关。"
+  },
+  {
+    "full_name": "BanerjeeLab-repertoire/pycat-napari",
+    "url": "https://github.com/BanerjeeLab-repertoire/pycat-napari",
+    "language": "Python",
+    "stars": 1,
+    "description": "Python Condensate Analysis Toolbox (PyCAT) for bio-image analysis, especially biomolecular condensates and fluorescence microscopy images.",
+    "pushed_at": "2026-10-02T21:11:08Z",
+    "score": 8,
+    "one_liner": "PyCAT 是一个基于 napari 的生物分子凝聚体荧光图像分析工具箱，专注于凝聚体检测、定量与表征，与相分离/凝聚体课题高度相关且为可用的代码工具。"
+  },
+  {
+    "full_name": "Om-Talaviya/agentic-multimodal-research-platform",
+    "url": "https://github.com/Om-Talaviya/agentic-multimodal-research-platform",
+    "language": "Python",
+    "stars": 1,
+    "description": "High level system architecture of the Agentic Multimodal Research Platform, showing the user interface, API and agent orchestration layer, model routing, data/storage components, and supporting infrastructure.",
+    "pushed_at": "2026-09-30T18:45:46Z",
+    "score": 1,
+    "one_liner": "这是一个通用AI科研操作系统，涵盖多领域但未专门针对IDR/无序蛋白/相分离，仅泛泛提及结构生物学，与课题无关。"
+  },
+  {
+    "full_name": "Risho11/NIPS-pipeline",
+    "url": "https://github.com/Risho11/NIPS-pipeline",
+    "language": "HTML",
+    "stars": 1,
+    "description": "The central holder of all updates to the pipeline.",
+    "pushed_at": "2026-10-05T21:09:03Z",
+    "score": 0,
+    "one_liner": "该仓库是高分子膜制造与表征的自动化系统,涉及非溶剂诱导相分离(NIPS)膜,与无序蛋白/IDR/生物分子凝聚体完全无关。"
+  },
+  {
+    "full_name": "SihoonSung/Daily-Paper-Summary",
+    "url": "https://github.com/SihoonSung/Daily-Paper-Summary",
+    "language": "Python",
+    "stars": 1,
+    "description": "Daily AI & Computer Science Paper Summaries by Friday Assistant",
+    "pushed_at": "2026-10-05T19:05:39Z",
+    "score": 0,
+    "one_liner": "这是一个跨领域的每日论文摘要归档仓库，内容涵盖材料、机器人、物理等，与IDR/无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "yoonalimsuwan/REAL-FOLD-ONE",
+    "url": "https://github.com/yoonalimsuwan/REAL-FOLD-ONE",
+    "language": "Python",
+    "stars": 1,
+    "description": "SUPPORT FOR PROTEIN (Multimer) , DNA , DNA Origami , RNA  , LIGANDS AND HTS (and their complexes) / All Elements (Inorganic materials) , (Alloys) , (Crystals) / Full-atom With Langevin MD , CH 3D With ThinFilm 3D , PFC 3D  : 6th-Order & Higher Operators / to EDA , QEDA Application Together STANDARD ONE for Qubit Architectures",
+    "pushed_at": "2026-10-05T11:50:57Z",
+    "score": 2,
+    "one_liner": "该仓库是通用蛋白质/DNA/RNA结构精修与突变扫描工具，未针对无序蛋白或相分离，与课题对象无关。"
+  },
+  {
+    "full_name": "by-carlos/plan-staged-rollout",
+    "url": "https://github.com/by-carlos/plan-staged-rollout",
+    "language": "Python",
+    "stars": 1,
+    "description": "Claude Code plugin — run big projects as many small, resumable sessions instead of one huge one.",
+    "pushed_at": "2026-10-03T07:49:25Z",
+    "score": 0,
+    "one_liner": "这是一个Claude Code插件，用于将大型项目分解为多个小阶段执行，与无序蛋白/相分离研究完全无关。"
+  },
+  {
+    "full_name": "gunnchOS3k/spectrumx-ai-ran-gary",
+    "url": "https://github.com/gunnchOS3k/spectrumx-ai-ran-gary",
+    "language": "Python",
+    "stars": 1,
+    "description": "EDGE-RAN Gary: AI-Native RAN Controller for Equitable Spectrum Allocation (SpectrumX Competition)",
+    "pushed_at": "2026-10-02T18:14:52Z",
+    "score": 0,
+    "one_liner": "这是一个面向6G无线通信频谱感知与资源分配的AI原生无线电研究仓库，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "tersignhq/tersign-js",
+    "url": "https://github.com/tersignhq/tersign-js",
+    "language": "TypeScript",
+    "stars": 1,
+    "description": "TypeScript SDK + MCP server for Tersign, the evidence layer for the agent economy — counter-signed EIP-712 receipts, hash-chained action and disclosure records, refunds, disputes, venue-ready evidence envelopes. npm: tersign",
+    "pushed_at": "2026-10-02T16:19:03Z",
+    "score": 0,
+    "one_liner": "该仓库是面向AI代理经济的区块链证据账本工具，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "bhuyanamitnishanka-debug/Rasashastra-AI-Rare-Earth-Processing-Digital-Twin",
+    "url": "https://github.com/bhuyanamitnishanka-debug/Rasashastra-AI-Rare-Earth-Processing-Digital-Twin",
+    "language": "TypeScript",
+    "stars": 1,
+    "description": "Rasashastra-AI: Rare-Earth Processing Digital Twin",
+    "pushed_at": "2026-10-02T10:55:17Z",
+    "score": 0,
+    "one_liner": "该仓库是稀土冶金数字孪生与3D可视化工程仓库，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "lslumass/HyresBuilder",
+    "url": "https://github.com/lslumass/HyresBuilder",
+    "language": "Python",
+    "stars": 1,
+    "description": "Prepare HyRes protein and iConRNA simulations.",
+    "pushed_at": "2026-10-02T02:52:12Z",
+    "score": 9,
+    "one_liner": "HyresBuilder 是用于 HyRes/iCon 粗粒化模拟的建模与运行工具，直接支持 IDP/相分离凝聚体（如 LAF1-RGG、TDP43）的模拟，与课题高度相关且为可用的代码工具。"
+  },
+  {
+    "full_name": "tersignhq/evidence-record-conformance",
+    "url": "https://github.com/tersignhq/evidence-record-conformance",
+    "language": "Python",
+    "stars": 1,
+    "description": "Two-sided conformance vectors for the evidence-record layer — independence, completeness, anchored existence, phase separation, offer/decision/boundary binding. stdlib-only verifier + independent TypeScript cross-check; live Bitcoin-anchored vectors; externally reproduced byte-identically.",
+    "pushed_at": "2026-10-01T15:16:28Z",
+    "score": 0,
+    "one_liner": "该仓库是关于代理商业证据记录层的一致性测试向量，与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "conscious-collective/school-for-agents",
+    "url": "https://github.com/conscious-collective/school-for-agents",
+    "language": "",
+    "stars": 1,
+    "description": " Open training platform for ethical AI agents. OpenSkills-compatible skill manifests with built-in guardrails, when an agent learns a skill, it inherits the constraints.",
+    "pushed_at": "2026-10-01T01:41:55Z",
+    "score": 0,
+    "one_liner": "这是一个面向AI智能体伦理训练的平台，与无序蛋白/相分离课题完全无关，仅README中偶然出现'phase separation'一词。"
+  },
+  {
+    "full_name": "Geckos-Ink/trech",
+    "url": "https://github.com/Geckos-Ink/trech",
+    "language": "Python",
+    "stars": 1,
+    "description": "Physical and chemical simulation engine through statistical prediction starting from GEANT4",
+    "pushed_at": "2026-09-29T13:15:33Z",
+    "score": 1,
+    "one_liner": "TRECH 是一个基于 Geant4 的多尺度物理模拟与机器学习工具包，面向光学、流体、化学、MRI 等通用场景，与 IDR/无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "Cosmos-Logic-Institute-CLI/THE-UNIVERSE-COPILOT-PROJECT",
+    "url": "https://github.com/Cosmos-Logic-Institute-CLI/THE-UNIVERSE-COPILOT-PROJECT",
+    "language": "",
+    "stars": 1,
+    "description": "The Universe is the Chief Pilot. I am merely the Co-pilot",
+    "pushed_at": "2026-09-29T03:21:51Z",
+    "score": 0,
+    "one_liner": "该仓库是一个充满哲学隐喻和知识产权声明的个人宣传/占位仓库，与IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Junjie-Zhu/SurPass",
+    "who": [
+      "Junjie-Zhu"
+    ],
+    "event": "push",
+    "stars": 0,
+    "language": "Python",
+    "description": "",
+    "url": "https://github.com/Junjie-Zhu/SurPass",
+    "pushed_at": "2026-10-05T11:11:32Z",
+    "score": null,
+    "one_liner": "[fetch failed]"
+  },
+  {
+    "full_name": "luost26/coleygroup.github.io",
+    "who": [
+      "luost26"
+    ],
+    "event": "push",
+    "stars": 0,
+    "language": "SCSS",
+    "description": "Coley Research Group website",
+    "url": "https://github.com/luost26/coleygroup.github.io",
+    "pushed_at": "2026-10-04T15:52:07Z",
+    "score": 0,
+    "one_liner": "这是MIT Coley研究组的实验室网站仓库，用于维护网页和成员信息，与IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "BioComputingUP/dome-tracking",
+    "who": [
+      "github-actions"
+    ],
+    "event": "push",
+    "stars": 0,
+    "language": "Python",
+    "description": "Uptime and code-activity tracking for the DOME ecosystem: DOME Registry, DOME-ML, DOME Copilot, OSAI, DOME Observatory",
+    "url": "https://github.com/BioComputingUP/dome-tracking",
+    "pushed_at": "2026-10-06T03:08:10Z",
+    "score": 0,
+    "one_liner": "该仓库是DOME生态系统的网站可用性与代码活动监控工具，与IDR/无序蛋白/相分离研究完全无关。"
+  },
+  {
+    "full_name": "EDAPINENUT/EDAPINENUT.github.io",
+    "who": [
+      "EDAPINENUT"
+    ],
+    "event": "push",
+    "stars": 0,
+    "language": "CSS",
+    "description": "PAGE",
+    "url": "https://github.com/EDAPINENUT/EDAPINENUT.github.io",
+    "pushed_at": "2026-10-05T15:48:54Z",
+    "score": 0,
+    "one_liner": "这是一个个人网站占位仓库，无任何与无序蛋白或相分离相关的技术内容。"
+  },
+  {
+    "full_name": "spacenship/newDailyArxiv",
+    "url": "https://github.com/spacenship/newDailyArxiv",
+    "language": "Python",
+    "stars": 0,
+    "description": "daily paper from Arxiv",
+    "pushed_at": "2026-10-05T22:51:59Z",
+    "score": 1,
+    "one_liner": "这是一个按关键词自动抓取 arXiv 论文的每日论文列表仓库，当前展示的是药物-靶点亲和力预测等药物发现方向，与 IDR/无序蛋白/相分离课题无关。"
+  },
+  {
+    "full_name": "jonathansearch/ratiss-bio",
+    "url": "https://github.com/jonathansearch/ratiss-bio",
+    "language": "Python",
+    "stars": 0,
+    "description": "RATISS Labs biological research project dedicated to reproducible methods and artefacts.",
+    "pushed_at": "2026-10-05T22:43:05Z",
+    "score": 3,
+    "one_liner": "这是一个以蝙蝠超能力为目标的拓扑蛋白工程仓库，虽涉及IDP（如CIRBP）和相分离相关概念，但核心是量子计算与持久同源性的跨学科宣传性项目，形态上更像个人展示而非面向IDR/相分离的实用工具。"
+  },
+  {
+    "full_name": "MaybeBio/Daily-ArXiv-AI4Bio",
+    "url": "https://github.com/MaybeBio/Daily-ArXiv-AI4Bio",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-05T17:01:25Z",
+    "score": 3,
+    "one_liner": "这是一个自动抓取计算生物学arXiv论文的每日汇总仓库，虽包含IDR主题的论文列表，但本身是文献追踪工具而非面向IDR/相分离的研究代码或工具。"
+  },
+  {
+    "full_name": "zeynepguneryilmaz/InterfaceScout",
+    "url": "https://github.com/zeynepguneryilmaz/InterfaceScout",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-05T12:10:15Z",
+    "score": 2,
+    "one_liner": "InterfaceScout 是预测蛋白质在材料界面接触区域的工具，面向折叠蛋白与材料吸附，与 IDR/相分离课题无关，仅提及 IDP 作为使用限制。"
+  },
+  {
+    "full_name": "zhangxincode/Steering-Activation-Paper-Arxiv",
+    "url": "https://github.com/zhangxincode/Steering-Activation-Paper-Arxiv",
+    "language": "Python",
+    "stars": 0,
+    "description": "A daily arXiv collector for papers about steering activations and internal representations in LLMs, VLMs, diffusion language models, multimodal foundation models, and related language-model systems.",
+    "pushed_at": "2026-10-05T09:51:10Z",
+    "score": 1,
+    "one_liner": "该仓库是LLM激活引导与内部表征控制的论文收集列表，与IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "ezippo/hoomd3_phosphorylation",
+    "url": "https://github.com/ezippo/hoomd3_phosphorylation",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "MD simulation with phosporylation step",
+    "pushed_at": "2026-10-05T09:16:43Z",
+    "score": 9,
+    "one_liner": "该仓库提供基于HPS/CALVADOS粗粒化模型的MD模拟框架，专门用于无序蛋白磷酸化及其凝聚体的分子模拟，与课题高度相关且为可运行代码工具。"
+  },
+  {
+    "full_name": "enhansome/enhansome-ai-for-science",
+    "url": "https://github.com/enhansome/enhansome-ai-for-science",
+    "language": "",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-05T05:23:14Z",
+    "score": 1,
+    "one_liner": "这是一个AI for Science的通用资源列表，涵盖各学科工具，与IDR/无序蛋白/相分离课题无直接关联。"
+  },
+  {
+    "full_name": "api-evangelist/topos-bio",
+    "url": "https://github.com/api-evangelist/topos-bio",
+    "language": "",
+    "stars": 0,
+    "description": "Topos Bio — independent third-party profile of a public API surface, by API Evangelist. Topos Bio is an AI-native drug discovery company building all-atom foundation models for intrinsically disordered proteins (IDPs) — dynamic, flexible proteins implicated in diseases such as Alzheimer's and prostate cancer.",
+    "pushed_at": "2026-10-04T19:54:43Z",
+    "score": 0,
+    "one_liner": "该仓库是 API Evangelist 对 Topos Bio 公司公开 API 的第三方简介占位页，无任何 IDR/无序蛋白/相分离相关技术内容。"
+  },
+  {
+    "full_name": "api-evangelist/peptone",
+    "url": "https://github.com/api-evangelist/peptone",
+    "language": "",
+    "stars": 0,
+    "description": "Peptone — independent third-party profile of a public API surface, by API Evangelist. Peptone is a computational drug-discovery biotech building a Product Engine that targets intrinsically disordered proteins (IDPs). It couples experimental measurement of disordered proteins in solution with enhanced-sampling simulation and generative machine-learn",
+    "pushed_at": "2026-10-04T19:43:26Z",
+    "score": 0,
+    "one_liner": "该仓库是API Evangelist对Peptone公司公开API的第三方档案，不含任何软件或与IDR/相分离相关的技术内容。"
+  },
+  {
+    "full_name": "riddhikad9b-ux/Comparative_Genomics_Stress_Resilient_Animals",
+    "url": "https://github.com/riddhikad9b-ux/Comparative_Genomics_Stress_Resilient_Animals",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "A computational pipeline analyzing tardigrade stress tolerance proteins (Dsup, CAHS1) vs. model organism orthologs. Features sequence identity matrices, biophysical profiling, phylogenetic trees, and AlphaFold structural mapping.",
+    "pushed_at": "2026-10-04T10:37:28Z",
+    "score": 6,
+    "one_liner": "该仓库是缓步动物应激蛋白的比较基因组学与结构生物物理分析流程，虽涉及IDP的AlphaFold无序区分析，但对象是特定物种蛋白而非通用IDR/相分离工具，方法可部分迁移。"
+  },
+  {
+    "full_name": "kmsouthard/surfaceome_topography",
+    "url": "https://github.com/kmsouthard/surfaceome_topography",
+    "language": "Python",
+    "stars": 0,
+    "description": "database production code for the surface height database",
+    "pushed_at": "2026-10-02T23:06:02Z",
+    "score": 3,
+    "one_liner": "该仓库是估算细胞表面蛋白高度的管线，虽在计算生物学领域并涉及无序区，但核心对象是细胞表面地形而非IDR/相分离，仅作为边缘相关。"
+  },
+  {
+    "full_name": "Menrae/ppi-interface-transfer",
+    "url": "https://github.com/Menrae/ppi-interface-transfer",
+    "language": "Python",
+    "stars": 0,
+    "description": "Benchmarking how well PeSTo (Protein Structure Transformer) predicts protein-protein interaction interfaces on AlphaFold-predicted versus experimental Protein Data Bank structures, with error analysis stratified by predicted Local Distance Difference Test (pLDDT) scores and a confidence-aware fine-tuning approach.",
+    "pushed_at": "2026-10-01T22:15:37Z",
+    "score": 3,
+    "one_liner": "该仓库基准测试PeSTo蛋白互作界面预测器在AlphaFold预测结构上的表现，虽涉及蛋白结构预测与互作，但对象是蛋白结合界面而非IDR/无序蛋白或相分离，仅间接相关。"
+  },
+  {
+    "full_name": "BoHuangLab/CELL-FM",
+    "url": "https://github.com/BoHuangLab/CELL-FM",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T21:35:06Z",
+    "score": 7,
+    "one_liner": "CELL-FM 是一个从蛋白序列生成荧光显微图像的生成模型，其 CondenSeq 应用直接面向无序肽的相分离凝聚体滴定分析，属于本课题相关工具，但核心对象是通用蛋白定位成像而非专门针对 IDR/相分离建模。"
+  },
+  {
+    "full_name": "M-YP/Mutational-Landscape-of-Neuroblastoma",
+    "url": "https://github.com/M-YP/Mutational-Landscape-of-Neuroblastoma",
+    "language": "Shell",
+    "stars": 0,
+    "description": "A standardized pipeline for neuroblastoma mutation analysis to uncover overlooked, clinically relevant variants and candidate immunotherapy biomarkers, including intrinsically disordered regions (IDRs), differentially methylated regions (DMRs), and neoantigens.",
+    "pushed_at": "2026-10-01T13:15:39Z",
+    "score": 1,
+    "one_liner": "该仓库是神经母细胞瘤NGS突变分析流程，仅提及IDR作为生物标志物背景，并非面向IDR/相分离的代码或工具，与课题无关。"
+  },
+  {
+    "full_name": "ARU-Bioinformatics/yeast-data-ai",
+    "url": "https://github.com/ARU-Bioinformatics/yeast-data-ai",
+    "language": "JavaScript",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T12:32:57Z",
+    "score": 1,
+    "one_liner": "这是一个面向生物信息学学生的酵母基因必需性教学实践项目，虽涉及蛋白质语言模型和AlphaFold，但核心对象是酵母基因而非IDR/相分离，与本课题无关。"
+  },
+  {
+    "full_name": "SometimesJade/SometimesJade",
+    "url": "https://github.com/SometimesJade/SometimesJade",
+    "language": "",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T10:19:02Z",
+    "score": 4,
+    "one_liner": "个人简历仓库，含一个用IUPred2A比较转录因子与代谢酶无序性的小项目，对象部分相关但形态为个人主页，价值有限。"
+  },
+  {
+    "full_name": "zhuojin05/running-af2",
+    "url": "https://github.com/zhuojin05/running-af2",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T07:57:25Z",
+    "score": 7,
+    "one_liner": "该仓库是面向Munc13-1蛋白及其活性区凝聚体的AlphaFold2多聚体结构预测流水线，虽以结构预测为主而非直接建模相分离，但针对含IDR的蛋白复合物进行构象预测，与课题部分相关且提供可运行代码。"
+  },
+  {
+    "full_name": "Ruqing1963/kakutani-statistical-pharmacology-X",
+    "url": "https://github.com/Ruqing1963/kakutani-statistical-pharmacology-X",
+    "language": "Python",
+    "stars": 0,
+    "description": "Statistical Pharmacology via Kakutani Dichotomy X: Blocking amyloid nucleation of intrinsically disordered tau and Abeta42 monomers via tail-exponent stabilization, asymmetric baseline cubic corrections, and finite-mode crossover.",
+    "pushed_at": "2026-10-01T02:10:32Z",
+    "score": 7,
+    "one_liner": "该仓库提供针对Tau和Aβ等IDP淀粉样成核相变的统计药理学建模代码，直接面向IDR/相变主题，但形态偏理论论文配套代码，非通用工具。"
+  },
+  {
+    "full_name": "sircalch/alphacert",
+    "url": "https://github.com/sircalch/alphacert",
+    "language": "Python",
+    "stars": 0,
+    "description": "alphacert - Scientific simulation quality-control and validation toolkit",
+    "pushed_at": "2026-09-30T23:40:03Z",
+    "score": 5,
+    "one_liner": "AlphaCert 是 AlphaFold 预测结构的质控工具，虽涉及 IDR 的 pLDDT 分类，但主要面向通用蛋白结构验证，非 IDR/相分离专项工具，方法可部分迁移。"
+  },
+  {
+    "full_name": "mattyb4/Cluster-Scout",
+    "url": "https://github.com/mattyb4/Cluster-Scout",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-30T22:41:43Z",
+    "score": 3,
+    "one_liner": "这是一个癌症突变与PTM位点3D邻近性分析工具，虽使用AIUPred计算无序分数，但核心对象是癌症突变和翻译后修饰，并非IDR/相分离研究，仅部分方法可迁移。"
+  },
+  {
+    "full_name": "cynch-L/adcsim_conjugation_model",
+    "url": "https://github.com/cynch-L/adcsim_conjugation_model",
+    "language": "Python",
+    "stars": 0,
+    "description": "Stepwise model of IgG1 cysteine conjugation: sequence QC, disulfide reduction, thiol exposure, activation, coupling, and DAR statistics. Simulates process windows, provides first-pass DAR estimates, and identifies potential loading bottlenecks or underperforming process steps. Computational, not experimental.",
+    "pushed_at": "2026-09-30T15:23:50Z",
+    "score": 1,
+    "one_liner": "该仓库是抗体药物偶联物(ADC)的DAR分布计算模型,与固有无序蛋白/相分离完全无关,仅README中提及铰链区无序但非研究对象。"
+  },
+  {
+    "full_name": "AlanaAnnaman/astrobiology",
+    "url": "https://github.com/AlanaAnnaman/astrobiology",
+    "language": "Python",
+    "stars": 0,
+    "description": "Bioinformatics analyses of life in extreme environments",
+    "pushed_at": "2026-09-30T11:21:24Z",
+    "score": 2,
+    "one_liner": "这是一个天体生物学/极端环境酵母RNA-seq分析仓库，仅在一项发现中提及一个无序蛋白，并非面向IDR/相分离的工具或研究仓库。"
+  },
+  {
+    "full_name": "MaybeBio/PDB-MD-Suite",
+    "url": "https://github.com/MaybeBio/PDB-MD-Suite",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-30T05:17:59Z",
+    "score": 2,
+    "one_liner": "这是一个面向分子动力学模拟的PDB/MMCIF结构文件预处理工具，与IDR/无序蛋白/相分离课题无关，仅属通用结构生物学工具。"
+  },
+  {
+    "full_name": "suhaanthayyil/idrfeat",
+    "url": "https://github.com/suhaanthayyil/idrfeat",
+    "language": "Python",
+    "stars": 0,
+    "description": "Feature extraction for intrinsically disordered protein regions, for fitness and variant-effect modeling",
+    "pushed_at": "2026-09-30T00:28:40Z",
+    "score": 9,
+    "one_liner": "idrfeat 是一个面向 IDR 的注释与特征提取工具，计算组成、电荷、低复杂度、相分离信号等特征，直接服务于 IDR 功能与变异研究，与课题高度相关且为可用的代码工具。"
+  },
+  {
+    "full_name": "strawvivishortcake/IDR_Literature_Pipeline",
+    "url": "https://github.com/strawvivishortcake/IDR_Literature_Pipeline",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-29T18:51:32Z",
+    "score": 6,
+    "one_liner": "该仓库是面向IDR的文献收集与文本提取流水线，对象高度相关但形态为数据处理工具而非预测/建模代码，价值中等。"
+  },
+  {
+    "full_name": "CNIC-Proteomics/bioDataHub",
+    "url": "https://github.com/CNIC-Proteomics/bioDataHub",
+    "language": "Python",
+    "stars": 0,
+    "description": "Scripts that create databases used by iSanXoT",
+    "pushed_at": "2026-09-29T16:17:26Z",
+    "score": 3,
+    "one_liner": "该仓库是蛋白质组学数据库构建脚本集，虽包含DisProt无序蛋白数据下载和AlphaFold结构处理，但核心是通用蛋白数据库流程，并非面向IDR/相分离的专门工具。"
+  },
+  {
+    "full_name": "sherry6247/HyperIDR",
+    "url": "https://github.com/sherry6247/HyperIDR",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-29T15:58:44Z",
+    "score": 9,
+    "one_liner": "HyperIDR 是一个面向固有无序区识别的多尺度语义超网络模型代码仓库，提供训练、预测流程与数据集，与课题高度相关且为可用的工具。"
+  },
+  {
+    "full_name": "emalacs/idp-pharmacophore-tools",
+    "url": "https://github.com/emalacs/idp-pharmacophore-tools",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-29T12:57:55Z",
+    "score": 9,
+    "one_liner": "面向IDP的MD轨迹药效团提取工具，直接针对无序蛋白构象系综分析，与课题高度相关且为可安装代码包。"
+  },
+  {
+    "full_name": "ywitzky/HPSAnalysis.jl",
+    "url": "https://github.com/ywitzky/HPSAnalysis.jl",
+    "language": "Julia",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-29T12:43:49Z",
+    "score": 9,
+    "one_liner": "HPSAnalysis 是面向 IDP 粗粒化分子动力学模拟与构象分析（如回转半径计算）的 Julia 工具集，直接服务于无序蛋白构象系综研究。"
+  },
+  {
+    "full_name": "emalacs/Scalone_IDP_Pharmacophore_Mapping_2026",
+    "url": "https://github.com/emalacs/Scalone_IDP_Pharmacophore_Mapping_2026",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-29T11:09:35Z",
+    "score": 9,
+    "one_liner": "面向IDP药物靶标的动态药效团映射工具，从MD轨迹提取IDP-配体互作模式并生成体积药效团图谱，含交互式查看器与可运行pipeline，与课题高度相关。"
+  },
+  {
+    "full_name": "rauscher-lab/zephyr",
+    "url": "https://github.com/rauscher-lab/zephyr",
+    "language": "Python",
+    "stars": 0,
+    "description": "A generative diffusion model for sampling disordered protein structures trained on MD datasets.",
+    "pushed_at": "2026-10-05T12:45:17Z",
+    "score": 10,
+    "one_liner": "Zephyr 是一个面向无序蛋白构象采样的生成扩散模型代码库，直接针对 IDP 构象系综生成，与课题高度相关且为可用工具。"
+  },
+  {
+    "full_name": "LeTanPhuc-01/LeTanPhuc-01",
+    "url": "https://github.com/LeTanPhuc-01/LeTanPhuc-01",
+    "language": "",
+    "stars": 0,
+    "description": "Config files for my GitHub profile.",
+    "pushed_at": "2026-10-05T03:38:58Z",
+    "score": 1,
+    "one_liner": "这是一个个人开发者主页，仅提及一个预测半无序蛋白区域的框架项目，但无实质代码或工具内容，与课题相关性极低。"
+  },
+  {
+    "full_name": "enhansome/enhansome-computational-biology",
+    "url": "https://github.com/enhansome/enhansome-computational-biology",
+    "language": "",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-05T16:00:05Z",
+    "score": 2,
+    "one_liner": "这是一个计算生物学领域的资源汇总仓库，但内容广泛，未专门针对IDR/无序蛋白/相分离，且形态为列表而非代码工具，与课题相关性低。"
+  },
+  {
+    "full_name": "BMS-chem/DomainMapper",
+    "url": "https://github.com/BMS-chem/DomainMapper",
+    "language": "HTML",
+    "stars": 0,
+    "description": "An interactive tool to build and annotate maps of protein domain organisation.",
+    "pushed_at": "2026-10-05T13:32:37Z",
+    "score": 3,
+    "one_liner": "DomainMapper 是一个蛋白质结构域示意图绘制工具，可标注无序区域，但非面向 IDR/相分离的计算或建模工具，仅边缘相关。"
+  },
+  {
+    "full_name": "rodrigoms765-ops/cv-curve-fitter",
+    "url": "https://github.com/rodrigoms765-ops/cv-curve-fitter",
+    "language": "Python",
+    "stars": 0,
+    "description": "Curve Fitter for Cyclic Voltammetry using a Diffusion Model",
+    "pushed_at": "2026-10-06T01:00:36Z",
+    "score": 0,
+    "one_liner": "该仓库是循环伏安法数据拟合与扩散模拟引擎，面向电化学薄膜材料，与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "mukherjeesutanu/moonlighting-plm",
+    "url": "https://github.com/mukherjeesutanu/moonlighting-plm",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "What do protein language models know about moonlighting proteins? A linear-probe benchmark of 9 pLMs with homology-aware CV and confound controls.",
+    "pushed_at": "2026-10-01T17:40:29Z",
+    "score": 3,
+    "one_liner": "该仓库研究蛋白语言模型对兼职蛋白(moonlighting proteins)的编码能力,虽提及无序区是其盲点,但对象并非IDR/相分离,仅方法可部分迁移。"
+  },
+  {
+    "full_name": "exopoiesis/arxiv-radar-polymer",
+    "url": "https://github.com/exopoiesis/arxiv-radar-polymer",
+    "language": "Python",
+    "stars": 0,
+    "description": "Daily-curated polymer-relevant papers from arXiv with abstracts, canonical tags, and generated Pages views.",
+    "pushed_at": "2026-10-05T03:36:32Z",
+    "score": 1,
+    "one_liner": "这是一个聚合物材料领域的论文列表仓库，与无序蛋白/相分离课题无关。"
+  },
+  {
+    "full_name": "api-evangelist/dewpoint-therapeutics",
+    "url": "https://github.com/api-evangelist/dewpoint-therapeutics",
+    "language": "",
+    "stars": 0,
+    "description": "Dewpoint Therapeutics — independent third-party profile of a public API surface, by API Evangelist. Dewpoint Therapeutics is a biotechnology company applying the emerging science of biomolecular condensates to drug discovery. Founded in 2018 and headquartered in Boston, Massachusetts, with an additional research site in Dresden, Germany, Dewpoint h",
+    "pushed_at": "2026-10-04T17:38:08Z",
+    "score": 0,
+    "one_liner": "该仓库是API Evangelist对Dewpoint Therapeutics公司公开API的第三方简介，不含任何IDR/无序蛋白/相分离相关代码或工具，与课题完全无关。"
+  },
+  {
+    "full_name": "comphy-lab/coalescence-non-Newtonian",
+    "url": "https://github.com/comphy-lab/coalescence-non-Newtonian",
+    "language": "Python",
+    "stars": 0,
+    "description": "DNS of viscoelastic drop coalescence as a proxy for biomolecular condensate fusion",
+    "pushed_at": "2026-10-03T17:41:58Z",
+    "score": 0,
+    "one_liner": "该仓库是液滴聚并的非牛顿流体有限元/边界元模拟工具，与无序蛋白、相分离或生物分子凝聚体完全无关。"
+  },
+  {
+    "full_name": "harshavcsn/Lipidation_Classifier_Predictor",
+    "url": "https://github.com/harshavcsn/Lipidation_Classifier_Predictor",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-30T16:24:14Z",
+    "score": 7,
+    "one_liner": "该仓库预测三肽形成纤维/液滴/亚稳态组装，直接面向生物分子凝聚体（液滴）分类，但对象为脂化三肽而非IDR/无序蛋白，方法可迁移但相关性有限。"
+  },
+  {
+    "full_name": "gzerze/ddft_for_biomolecular_condensates",
+    "url": "https://github.com/gzerze/ddft_for_biomolecular_condensates",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "DDFT code for solving biomolecular condensate dynamics using FiPy and parameterization by coarse-grained OpenMM Simulations.",
+    "pushed_at": "2026-09-30T15:14:40Z",
+    "score": 9,
+    "one_liner": "该仓库提供基于序列依赖RPA+FH自由能的DDFT框架，用于生物分子凝聚体的非平衡演化模拟，直接面向相分离建模，是高度相关的可运行研究代码。"
+  },
+  {
+    "full_name": "pfdsim/pfdsim",
+    "url": "https://github.com/pfdsim/pfdsim",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-06T02:37:20Z",
+    "score": 0,
+    "one_liner": "这是一个化工流程模拟器(PFDSim),面向化学过程工程,与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "enhansome/enhansome-agi-cocosci",
+    "url": "https://github.com/enhansome/enhansome-agi-cocosci",
+    "language": "",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-06T02:26:33Z",
+    "score": 0,
+    "one_liner": "该仓库是人工智能与计算认知科学领域的论文资源列表，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "HNTP/Reindustrialization-Chemistry",
+    "url": "https://github.com/HNTP/Reindustrialization-Chemistry",
+    "language": "HTML",
+    "stars": 0,
+    "description": "2026 Chemical Engineering Modpack for Mindustry Recipe Hell",
+    "pushed_at": "2026-10-06T01:23:25Z",
+    "score": 0,
+    "one_liner": "这是一个工厂建造游戏的模组，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Christopherchorkey/agape",
+    "url": "https://github.com/Christopherchorkey/agape",
+    "language": "Lean",
+    "stars": 0,
+    "description": "A formally specified adaptive dynamical substrate for studying emergent cognition through local interaction rules.",
+    "pushed_at": "2026-10-05T23:52:21Z",
+    "score": 0,
+    "one_liner": "这是一个用Lean形式化验证的通用自适应动力学系统，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Jun-Lucis/BIG-theory",
+    "url": "https://github.com/Jun-Lucis/BIG-theory",
+    "language": "",
+    "stars": 0,
+    "description": "Boundary Information Geometry (BIG): reduced mathematical models and prospective numerical tests of system-dependent boundary geometry, response, history, branch structure, reconfiguration, and limits of quantitative transfer.",
+    "pushed_at": "2026-10-05T22:11:11Z",
+    "score": 0,
+    "one_liner": "该仓库是边界信息几何学（BIG）的数学与数值研究项目，与无序蛋白/相分离完全无关，属于通用数学/物理领域。"
+  },
+  {
+    "full_name": "ss52/slag-metal-eq-rsm",
+    "url": "https://github.com/ss52/slag-metal-eq-rsm",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-05T21:01:11Z",
+    "score": 0,
+    "one_liner": "该仓库是钢铁冶金中电炉渣-金属体系的热力学活度计算工具,与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Eafergan/Quantitative-analysis-and-modeling-of-the-Notch-transcriptional-response",
+    "url": "https://github.com/Eafergan/Quantitative-analysis-and-modeling-of-the-Notch-transcriptional-response",
+    "language": "Python",
+    "stars": 0,
+    "description": "These are the Python codes used for my thesis",
+    "pushed_at": "2026-10-05T20:25:12Z",
+    "score": 1,
+    "one_liner": "该仓库是Notch信号通路转录响应的定量成像与动力学建模工具，与IDR/无序蛋白/相分离课题无关。"
+  },
+  {
+    "full_name": "MetopRBr/metop-constellation",
+    "url": "https://github.com/MetopRBr/metop-constellation",
+    "language": "HTML",
+    "stars": 0,
+    "description": "Update Metop phases from EUMETSAT TLEs",
+    "pushed_at": "2026-10-05T19:04:45Z",
+    "score": 0,
+    "one_liner": "该仓库是 Metop 气象卫星星座图自动更新工具,与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "neerajpatekar99-blip/M.E.T.S",
+    "url": "https://github.com/neerajpatekar99-blip/M.E.T.S",
+    "language": "",
+    "stars": 0,
+    "description": "multivalent energy transfer system.",
+    "pushed_at": "2026-10-05T17:35:32Z",
+    "score": 0,
+    "one_liner": "该仓库是固态锂电池架构项目，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "albertriveramera/Neuroscience_Game",
+    "url": "https://github.com/albertriveramera/Neuroscience_Game",
+    "language": "JavaScript",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-05T17:34:58Z",
+    "score": 0,
+    "one_liner": "这是一个神经科学博士考试训练游戏，与IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "reifam-dev/daily-python-practice",
+    "url": "https://github.com/reifam-dev/daily-python-practice",
+    "language": "Python",
+    "stars": 0,
+    "description": "Daily Python coding practice (PyCharm) — quizzes, full apps, error fixing",
+    "pushed_at": "2026-10-05T16:32:11Z",
+    "score": 0,
+    "one_liner": "这是一个日常 Python 编程练习仓库，内容为 OOP 基础与小型应用开发，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "2411415626/cv-arxiv-daily",
+    "url": "https://github.com/2411415626/cv-arxiv-daily",
+    "language": "Python",
+    "stars": 0,
+    "description": "CV Papers Daily & most popular ai",
+    "pushed_at": "2026-10-05T16:27:35Z",
+    "score": 0,
+    "one_liner": "该仓库是音频/图像/视频编码与压缩领域的论文列表，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "julianealdag/hplc-retention-prediction",
+    "url": "https://github.com/julianealdag/hplc-retention-prediction",
+    "language": "Python",
+    "stars": 0,
+    "description": "Predicting HPLC retention time across chromatographic methods with RDKit descriptors and scikit-learn",
+    "pushed_at": "2026-10-05T16:00:50Z",
+    "score": 0,
+    "one_liner": "该仓库是HPLC保留时间预测工具，面向小分子色谱分析，与IDR/无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "TEMDERLENZZ/tenderlenz-sih-2026",
+    "url": "https://github.com/TEMDERLENZZ/tenderlenz-sih-2026",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-05T15:48:48Z",
+    "score": 0,
+    "one_liner": "这是一个政府招标文件合规性文档提取系统，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Sifwaku/sifwaku-heatwatch",
+    "url": "https://github.com/Sifwaku/sifwaku-heatwatch",
+    "language": "Python",
+    "stars": 0,
+    "description": "Zambian weather monitoring and heat-risk dashboard for agriculture and public services.",
+    "pushed_at": "2026-10-05T15:32:48Z",
+    "score": 0,
+    "one_liner": "这是一个赞比亚天气与热风险仪表盘项目，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "failinginno/VOgame",
+    "url": "https://github.com/failinginno/VOgame",
+    "language": "C++",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-05T15:17:32Z",
+    "score": 0,
+    "one_liner": "这是一个基于 Phaser 和 React 的 2D MMORPG 游戏客户端/服务器项目,与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "vivarium-collective/viva-readdy",
+    "url": "https://github.com/vivarium-collective/viva-readdy",
+    "language": "Python",
+    "stars": 0,
+    "description": "Process-bigraph wrapper for the ReaDDy particle-based reaction-diffusion simulator",
+    "pushed_at": "2026-10-05T15:13:38Z",
+    "score": 6,
+    "one_liner": "这是一个基于ReaDDy的粒子反应扩散模拟器封装，支持相分离等生物物理模拟，但并非专门面向IDR/无序蛋白，方法可迁移至本课题。"
+  },
+  {
+    "full_name": "made-in-abyss/MedicalAI",
+    "url": "https://github.com/made-in-abyss/MedicalAI",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-05T14:20:48Z",
+    "score": 0,
+    "one_liner": "该仓库是面向药物制剂工程与法规合规的AI系统，与IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "kristianDKAndersen/advisor",
+    "url": "https://github.com/kristianDKAndersen/advisor",
+    "language": "JavaScript",
+    "stars": 0,
+    "description": "Advisor — strong-model orchestrator with worker-agent delegation",
+    "pushed_at": "2026-10-05T13:39:54Z",
+    "score": 0,
+    "one_liner": "这是一个多智能体任务编排与代码生成工具，与无序蛋白/相分离研究完全无关。"
+  },
+  {
+    "full_name": "kazuma0606/quantum-study",
+    "url": "https://github.com/kazuma0606/quantum-study",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-05T12:52:05Z",
+    "score": 0,
+    "one_liner": "这是一个个人量子计算学习与实现仓库，涉及微分几何、量子力学和Qiskit，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "NetCraft-Dev/NetCraft",
+    "url": "https://github.com/NetCraft-Dev/NetCraft",
+    "language": "C#",
+    "stars": 0,
+    "description": "A from-scratch reimplementation of the Minecraft 26.2 in C#/.NET 10",
+    "pushed_at": "2026-10-05T11:53:21Z",
+    "score": 0,
+    "one_liner": "这是一个用C#重写Minecraft的仓库，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "NathaliaLietuvaite/PQMS-SOVEREIGN-CORE-ANDROID-APP",
+    "url": "https://github.com/NathaliaLietuvaite/PQMS-SOVEREIGN-CORE-ANDROID-APP",
+    "language": "Kotlin",
+    "stars": 0,
+    "description": "The PQMS-ODOS-MTSC System goes mobile!",
+    "pushed_at": "2026-10-05T11:16:36Z",
+    "score": 0,
+    "one_liner": "该仓库是一个关于AI主权认知核心的Android应用，内容涉及量子物理、宇宙学等伪科学概念，与IDR/无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "LawrieV/DubaiMate-Cahn-Hilliard",
+    "url": "https://github.com/LawrieV/DubaiMate-Cahn-Hilliard",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-05T10:31:17Z",
+    "score": 2,
+    "one_liner": "该仓库是通用Cahn-Hilliard相分离方程的数值模拟教学代码，面向二元流体/合金等材料体系，与IDR/无序蛋白/生物分子凝聚体无直接关联，仅方法上可迁移。"
+  },
+  {
+    "full_name": "HeechanKim-Lab/plant-epigenomics-wetlab",
+    "url": "https://github.com/HeechanKim-Lab/plant-epigenomics-wetlab",
+    "language": "",
+    "stars": 0,
+    "description": "Standard operating procedures and execution logs covering molecular biology protocols at the Plant Immunity & Epigenetics Laboratory.",
+    "pushed_at": "2026-10-05T08:59:45Z",
+    "score": 0,
+    "one_liner": "该仓库是植物表观遗传学湿实验协议与记录，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Kitakyushulassavirus728/ResearcherSkill",
+    "url": "https://github.com/Kitakyushulassavirus728/ResearcherSkill",
+    "language": "Python",
+    "stars": 0,
+    "description": "Turn AI coding agents into research assistants that design, test, and refine experiments with one file",
+    "pushed_at": "2026-10-05T06:00:24Z",
+    "score": 0,
+    "one_liner": "该仓库是面向AI编程代理的通用实验自动化技能文件，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "exopoiesis/arxiv-radar-chem-eng",
+    "url": "https://github.com/exopoiesis/arxiv-radar-chem-eng",
+    "language": "Python",
+    "stars": 0,
+    "description": "Daily-curated chemical engineering-relevant papers from arXiv with abstracts, canonical tags, and generated Pages views.",
+    "pushed_at": "2026-10-05T03:59:23Z",
+    "score": 0,
+    "one_liner": "该仓库是化工过程建模、系统辨识与控制领域的论文列表，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "ecsszilard/sc-jahn-teller-d4h-symmetry",
+    "url": "https://github.com/ecsszilard/sc-jahn-teller-d4h-symmetry",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-04T22:40:40Z",
+    "score": 0,
+    "one_liner": "该仓库是凝聚态物理中超导与Jahn-Teller效应的平均场模拟，与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "moritzbrantner/physics-engine",
+    "url": "https://github.com/moritzbrantner/physics-engine",
+    "language": "Rust",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-04T21:01:02Z",
+    "score": 0,
+    "one_liner": "这是一个通用物理引擎仓库，专注于刚体碰撞与模拟，与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "MisbahUddinRafi/FourierLab",
+    "url": "https://github.com/MisbahUddinRafi/FourierLab",
+    "language": "JavaScript",
+    "stars": 0,
+    "description": "FourierLab is a signal processing web app that explores frequency-domain information through MRI images and audio spectrograms. It lets users manipulate frequency components, magnitude, and phase, then compare the reconstructed signals with the originals.",
+    "pushed_at": "2026-10-04T18:15:09Z",
+    "score": 0,
+    "one_liner": "FourierLab 是信号处理课程项目,面向 MRI 与音频的频域分析,与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "muhammad7hadii/flight-emissions-app",
+    "url": "https://github.com/muhammad7hadii/flight-emissions-app",
+    "language": "Python",
+    "stars": 0,
+    "description": "Flight Fuel & CO₂ Emissions Calculator — Streamlit app combining basic aircraft performance with fuel cost and emissions comparison.",
+    "pushed_at": "2026-10-03T20:21:58Z",
+    "score": 0,
+    "one_liner": "这是一个航空燃油与碳排放计算器应用，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "rujopujo/polyloop",
+    "url": "https://github.com/rujopujo/polyloop",
+    "language": "JavaScript",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-03T18:10:28Z",
+    "score": 0,
+    "one_liner": "该仓库是电子废弃物塑料识别与回收系统，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "grayson-harrington/interactive-wallpaper",
+    "url": "https://github.com/grayson-harrington/interactive-wallpaper",
+    "language": "JavaScript",
+    "stars": 0,
+    "description": "A collection of Processing/Python creative-coding sketches ported to p5.js, served locally as a live macOS wallpaper via Plash",
+    "pushed_at": "2026-10-03T17:17:35Z",
+    "score": 0,
+    "one_liner": "这是一个 macOS 动态壁纸项目,包含 p5.js 动画和分相模拟等视觉特效,与 IDR/无序蛋白/相分离研究完全无关。"
+  },
+  {
+    "full_name": "rakStar91/RecipeRadar",
+    "url": "https://github.com/rakStar91/RecipeRadar",
+    "language": "Lua",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-03T11:57:54Z",
+    "score": 0,
+    "one_liner": "这是一个《魔兽世界》游戏插件，用于追踪专业配方，与无序蛋白/相分离研究完全无关。"
+  },
+  {
+    "full_name": "NicoNiCoN11/paper-cli",
+    "url": "https://github.com/NicoNiCoN11/paper-cli",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-03T09:13:54Z",
+    "score": 1,
+    "one_liner": "这是一个从PubMed检索近期论文的命令行工具，与IDR/无序蛋白/相分离课题无关，仅示例中提及核仁相关关键词。"
+  },
+  {
+    "full_name": "LihuaJinMSM/reusable-energy-absorbing-multiscale-structures-by-polymerization-induced-phase-separation",
+    "url": "https://github.com/LihuaJinMSM/reusable-energy-absorbing-multiscale-structures-by-polymerization-induced-phase-separation",
+    "language": "",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-03T07:10:48Z",
+    "score": null,
+    "one_liner": "[fetch failed]"
+  },
+  {
+    "full_name": "hyoseokp/langtang-2026-cascade",
+    "url": "https://github.com/hyoseokp/langtang-2026-cascade",
+    "language": "Python",
+    "stars": 0,
+    "description": "Reconstruction code for the 26 August 2026 Langtang rock-ice avalanche and 180-km flood",
+    "pushed_at": "2026-10-03T04:11:06Z",
+    "score": 0,
+    "one_liner": "该仓库是喜马拉雅山区岩石-冰崩与洪水模拟的重建代码，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Liamir/autodiff-control",
+    "url": "https://github.com/Liamir/autodiff-control",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-02T23:03:11Z",
+    "score": 0,
+    "one_liner": "该仓库是面向动力系统控制的学习稀疏多项式控制器框架，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "jemsbhai/TOMLTransformers",
+    "url": "https://github.com/jemsbhai/TOMLTransformers",
+    "language": "Python",
+    "stars": 0,
+    "description": "Transistor-level energy modeling of transformer inference (TOML extension)",
+    "pushed_at": "2026-10-02T18:00:48Z",
+    "score": 0,
+    "one_liner": "该仓库是晶体管级Transformer推理能耗建模工具，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "manisrimaps1987-blip/gridguard-ai---smart-grid---electricity-intelligence",
+    "url": "https://github.com/manisrimaps1987-blip/gridguard-ai---smart-grid---electricity-intelligence",
+    "language": "TypeScript",
+    "stars": 0,
+    "description": "AI-powered Smart Grid & Energy Intelligence platform for real-time electricity monitoring, demand forecasting, anomaly detection, fault analysis, renewable energy tracking, and energy optimization.",
+    "pushed_at": "2026-10-02T15:24:08Z",
+    "score": 0,
+    "one_liner": "这是一个智能电网与电力分配监控平台，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "manisrimaps1987-blip/gridguard-ai",
+    "url": "https://github.com/manisrimaps1987-blip/gridguard-ai",
+    "language": "TypeScript",
+    "stars": 0,
+    "description": "GridGuard AI is an AI-powered grid reliability platform that monitors electricity-grid conditions, detects anomalies, forecasts power demand, assesses equipment risk, and provides explainable insights through an interactive smart-grid dashboard.",
+    "pushed_at": "2026-10-02T15:12:02Z",
+    "score": 0,
+    "one_liner": "这是一个智能电网与电力分配监控平台，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "stepassaretti/Insects",
+    "url": "https://github.com/stepassaretti/Insects",
+    "language": "JavaScript",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-02T14:50:27Z",
+    "score": 0,
+    "one_liner": "这是一个昆虫运动学可视化模拟的Three.js项目，与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "CambridgeCentreForProteomics/oopsie",
+    "url": "https://github.com/CambridgeCentreForProteomics/oopsie",
+    "language": "HTML",
+    "stars": 0,
+    "description": "Repo for Telerman OOPSIE paper",
+    "pushed_at": "2026-10-02T13:37:44Z",
+    "score": 1,
+    "one_liner": "该仓库是面向RNA结合蛋白组学质谱数据标准化与差异分析的R脚本，与IDR/无序蛋白/相分离课题无关。"
+  },
+  {
+    "full_name": "Yu-TingSun/LitGap",
+    "url": "https://github.com/Yu-TingSun/LitGap",
+    "language": "JavaScript",
+    "stars": 0,
+    "description": "Find missing papers in your Zotero library",
+    "pushed_at": "2026-10-02T04:21:50Z",
+    "score": 0,
+    "one_liner": "这是一个Zotero文献管理插件，用于通过引文网络发现隐藏论文和AI辅助绘制研究领域地图，与IDR/无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "wkf-phy/interface-mediated-secondary-phase-separation",
+    "url": "https://github.com/wkf-phy/interface-mediated-secondary-phase-separation",
+    "language": "MATLAB",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T22:53:35Z",
+    "score": 7,
+    "one_liner": "该仓库提供相分离相场模型（Cahn-Hilliard）的MATLAB代码与数据，直接面向相分离/凝聚体建模，但未明确针对IDR/无序蛋白，对象部分相关。"
+  },
+  {
+    "full_name": "nitinredddy/Memory-Resource-Leak-Regression-Detector",
+    "url": "https://github.com/nitinredddy/Memory-Resource-Leak-Regression-Detector",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T19:03:58Z",
+    "score": 0,
+    "one_liner": "这是一个内存与资源泄漏回归检测工具，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "BishopLabWayne/SCheng_etal_2026",
+    "url": "https://github.com/BishopLabWayne/SCheng_etal_2026",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "Code that accompanies the manuscript \"Controlled component segregation in vapor-deposited organic semiconductor glass mixtures\" by S. Cheng et. al.",
+    "pushed_at": "2026-10-01T19:06:46Z",
+    "score": 0,
+    "one_liner": "该仓库是气相沉积有机半导体玻璃混合物的相分离模拟代码，属于材料科学领域，与无序蛋白/相分离凝聚体无关。"
+  },
+  {
+    "full_name": "Jumqyc/Laughlin_MonteCarlo",
+    "url": "https://github.com/Jumqyc/Laughlin_MonteCarlo",
+    "language": "C++",
+    "stars": 0,
+    "description": "High performance Monte Carlo simulation of charge density of Laughlin wavefunction. ",
+    "pushed_at": "2026-10-01T15:38:22Z",
+    "score": 0,
+    "one_liner": "该仓库是分数量子霍尔效应的蒙特卡洛模拟工具，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "GNicholas2003/DeadWeights-Cahn-Hilliard",
+    "url": "https://github.com/GNicholas2003/DeadWeights-Cahn-Hilliard",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T12:14:49Z",
+    "score": 2,
+    "one_liner": "该仓库是通用Cahn-Hilliard相分离方程的数值模拟教学代码，面向二元流体/合金等材料体系，不涉及无序蛋白或生物分子凝聚体，仅方法上可迁移但对象与领域均不相关。"
+  },
+  {
+    "full_name": "Owais-SciML/3dgan",
+    "url": "https://github.com/Owais-SciML/3dgan",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T11:09:57Z",
+    "score": 0,
+    "one_liner": "该仓库是面向材料微观结构生成的3D GAN工具，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "dev02019/awesome-agentic-patterns",
+    "url": "https://github.com/dev02019/awesome-agentic-patterns",
+    "language": "HTML",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T10:56:20Z",
+    "score": 0,
+    "one_liner": "该仓库是AI智能体模式的资源清单，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "hhchoi1022/7DT_calculator",
+    "url": "https://github.com/hhchoi1022/7DT_calculator",
+    "language": "Python",
+    "stars": 0,
+    "description": "7DT observation calculator: visibility, exposure time / SNR, overhead, 7DS tile matcher and observation-mode builder (Streamlit)",
+    "pushed_at": "2026-10-01T10:04:22Z",
+    "score": 0,
+    "one_liner": "这是7DT望远镜观测计算工具(可见性、曝光时间、天区匹配等),与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "kirchherr/TUC",
+    "url": "https://github.com/kirchherr/TUC",
+    "language": "Python",
+    "stars": 0,
+    "description": "TUC is The Universal Compute: an early-stage open-source prototype exploring whether compute intent can be represented through a hardware-independent interface.",
+    "pushed_at": "2026-10-01T08:45:10Z",
+    "score": 0,
+    "one_liner": "该仓库是硬件无关计算意图与编译器后端调度的研究原型，与无序蛋白/相分离完全无关。"
+  },
+  {
+    "full_name": "Shashwat-arch/MAC2-Modularity-Aided-Contrastive-Clustering-with-Phase-Separation-Regularization",
+    "url": "https://github.com/Shashwat-arch/MAC2-Modularity-Aided-Contrastive-Clustering-with-Phase-Separation-Regularization",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-01T06:05:05Z",
+    "score": 0,
+    "one_liner": "这是一个深度图聚类框架，与无序蛋白/相分离课题完全无关，仅借用了相分离术语作为正则化器名称。"
+  },
+  {
+    "full_name": "SamMorales11/Q-Markowitz",
+    "url": "https://github.com/SamMorales11/Q-Markowitz",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "A quantum finance project benchmarking the Quantum Approximate Optimization Algorithm (QAOA) against classical exact solvers for Markowitz portfolio optimization using Qiskit.",
+    "pushed_at": "2026-09-30T23:28:23Z",
+    "score": 0,
+    "one_liner": "该仓库是量子金融投资组合优化项目，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Laserpete/Kreuzmeyer-WashceHebeMuehle",
+    "url": "https://github.com/Laserpete/Kreuzmeyer-WashceHebeMuehle",
+    "language": "",
+    "stars": 0,
+    "description": "Repair of agricultural equipment",
+    "pushed_at": "2026-09-30T17:41:18Z",
+    "score": 0,
+    "one_liner": "该仓库记录了一台苹果粉碎机的维修过程，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Amoru-Bek/CVE-2025-59528-Poc",
+    "url": "https://github.com/Amoru-Bek/CVE-2025-59528-Poc",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-30T16:58:18Z",
+    "score": 0,
+    "one_liner": "这是一个针对Flowise AI的CVE漏洞利用工具，与固有无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Ayka11/reality_engine",
+    "url": "https://github.com/Ayka11/reality_engine",
+    "language": "TypeScript",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-02T10:52:25Z",
+    "score": 0,
+    "one_liner": "这是一个交互式物理沙盒模拟器，涉及体素物理、文明演化和AI代理，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "SamMousaviES/SamMousaviES",
+    "url": "https://github.com/SamMousaviES/SamMousaviES",
+    "language": "",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-30T09:31:14Z",
+    "score": 0,
+    "one_liner": "这是化学工程/多相流模拟方向的个人主页仓库，与无序蛋白/相分离生物凝聚体课题完全无关。"
+  },
+  {
+    "full_name": "roastrofficial-ctrl/What-if-Porter",
+    "url": "https://github.com/roastrofficial-ctrl/What-if-Porter",
+    "language": "Python",
+    "stars": 0,
+    "description": "What if: network-addressable computers were considered a catastrophic design mistake? A protocol emerged that handles comms publicly and awaits private collection and acknowledgement from the host service. We represent \"The Host Isolation Principle\"",
+    "pushed_at": "2026-09-30T07:46:59Z",
+    "score": 0,
+    "one_liner": "该仓库是网络通信协议(PORTER)的实现,与无序蛋白/相分离完全无关,仅README中偶然出现'phase separation'一词但指网络协议概念。"
+  },
+  {
+    "full_name": "horken7/nanoparticle-streamlit-app",
+    "url": "https://github.com/horken7/nanoparticle-streamlit-app",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-30T07:06:50Z",
+    "score": 0,
+    "one_liner": "该仓库是用于TEM图像中纳米颗粒检测的计算机视觉应用，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "ourdao/ourdao-frontend",
+    "url": "https://github.com/ourdao/ourdao-frontend",
+    "language": "TypeScript",
+    "stars": 0,
+    "description": "OurDAO frontend — Next.js web app for the OurDAO lending DAO on Stellar Soroban.",
+    "pushed_at": "2026-09-30T01:09:24Z",
+    "score": 0,
+    "one_liner": "这是一个基于Stellar区块链的DAO借贷前端应用，与无序蛋白/相分离研究完全无关。"
+  },
+  {
+    "full_name": "jkzero87/jira-rag",
+    "url": "https://github.com/jkzero87/jira-rag",
+    "language": "Python",
+    "stars": 0,
+    "description": "On-prem RAG over 59k Apache Spark JIRA issues: Postgres + pgvector, LLM query parser, bge-reranker, local 27B generation with verified citations. Measured end to end on a single 16 GB GPU.",
+    "pushed_at": "2026-10-01T19:30:35Z",
+    "score": 0,
+    "one_liner": "这是一个基于Apache Spark JIRA的检索增强生成(RAG)系统,与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "Droid-DevX/ROS2_Dynamic_Topology_Reconfiguration",
+    "url": "https://github.com/Droid-DevX/ROS2_Dynamic_Topology_Reconfiguration",
+    "language": "Python",
+    "stars": 0,
+    "description": "A ROS 2 system implementing closed-loop, bidirectional ring consensus for coordinated circular orbit formation, with real-time motor fault injection and dynamic topology reconfiguration validated on physical Crazyflie 2.1 nano-quadrotors.",
+    "pushed_at": "2026-09-29T21:17:43Z",
+    "score": 0,
+    "one_liner": "该仓库是ROS 2无人机蜂群动态拓扑重构与容错一致性控制项目，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "vishnuvcr/Daily-Options",
+    "url": "https://github.com/vishnuvcr/Daily-Options",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-29T09:59:34Z",
+    "score": 0,
+    "one_liner": "这是一个印度NSE期权交易策略研究仓库，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "hardiksood21/nanoformula-ai",
+    "url": "https://github.com/hardiksood21/nanoformula-ai",
+    "language": "Python",
+    "stars": 0,
+    "description": " ML-based nanoparticle formulation optimizer for Dr. Ruchi Chawla's Lab",
+    "pushed_at": "2026-09-29T09:32:37Z",
+    "score": 0,
+    "one_liner": "该仓库是面向纳米颗粒制剂设计与化学信息学的机器学习平台，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "AaronValverdee/visualcheme",
+    "url": "https://github.com/AaronValverdee/visualcheme",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-29T08:58:49Z",
+    "score": 0,
+    "one_liner": "这是一个化学工程单元操作模拟与可视化平台,与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "25a31a4353/Akashvani",
+    "url": "https://github.com/25a31a4353/Akashvani",
+    "language": "TypeScript",
+    "stars": 0,
+    "description": "Akashvani is an AI-powered disaster intelligence platform for identifying hazard-prone areas, assessing population vulnerability and carrying capacity, prioritizing relocation needs, and visualizing real-time geospatial, weather, environmental, and historical disaster data through an interactive map.",
+    "pushed_at": "2026-09-29T08:53:09Z",
+    "score": 0,
+    "one_liner": "这是一个面向印度灾害风险区划与疏散决策的GIS平台，与无序蛋白/相分离课题完全无关。"
+  },
+  {
+    "full_name": "SIGNALLING-PAPER/SIGNALLING-PAPER",
+    "url": "https://github.com/SIGNALLING-PAPER/SIGNALLING-PAPER",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-09-29T07:20:42Z",
+    "score": 8,
+    "one_liner": "该仓库提供粗粒化Langevin动力学模拟与LAMMPS输入文件，研究细胞内支架蛋白的相分离（LLPS）对受体聚集的影响，直接面向相分离/凝聚体建模，属于本课题核心方向。"
+  },
+  {
+    "full_name": "Ruqing1963/kakutani-statistical-pharmacology-VI",
+    "url": "https://github.com/Ruqing1963/kakutani-statistical-pharmacology-VI",
+    "language": "TeX",
+    "stars": 0,
+    "description": "Paper VI of Statistical Pharmacology via Kakutani Dichotomy: Wasserstein separation W_1(phi_+, phi_-) of broken phases under a Rieffel cone seminorm, certified to [0.229028, 0.229032]; the single-step scan barrier 5/12; discrete infinity-Laplacian cone geodesics; and a 2.77x FEP variance reduction for cooperative alchemical paths.",
+    "pushed_at": "2026-09-29T04:08:01Z",
+    "score": 1,
+    "one_liner": "该仓库是统计药理学/数学论文配套代码，涉及Wasserstein相分离与自由能微扰，但对象是抽象数学相变而非IDR/无序蛋白/生物分子凝聚体，与课题无关。"
+  },
+  {
+    "full_name": "mafirs/evidence-first",
+    "url": "https://github.com/mafirs/evidence-first",
+    "language": "Shell",
+    "stars": 0,
+    "description": "A staged prompt workflow for evidence-first AI coding.",
+    "pushed_at": "2026-09-29T02:49:28Z",
+    "score": 0,
+    "one_liner": "该仓库是面向AI编程工作流的提示词模板集，与无序蛋白/相分离课题完全无关。"
+  }
+]
