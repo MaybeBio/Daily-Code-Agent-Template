@@ -1,8 +1,0 @@
-include LICENSE
-include MANIFEST.in
-
-graft soursop
-global-exclude *.py[cod] __pycache__ *.so
-
-recursive-include soursop/data *
-include soursop/_version.py

@@ -1,2 +1,0 @@
-arxiv>=2.0
-pyyaml
