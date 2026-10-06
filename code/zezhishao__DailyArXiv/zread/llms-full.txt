@@ -1,0 +1,1451 @@
+# Overview
+
+
+
+The DailyArXiv project is an automated paper aggregation system that fetches the latest research papers from arXiv based on predefined keywords and presents them in an organized, readable format. This project serves as a personalized research assistant for developers and researchers who want to stay updated with the latest developments in specific technical domains.
+
+## Project Architecture
+
+The system follows a modular architecture with clear separation of concerns:
+
+```mermaid
+graph TD
+    A[GitHub Actions Scheduler] --> B[main.py - Main Script]
+    B --> C[utils.py - Utility Functions]
+    C --> D[arXiv API]
+    C --> E[README.md Generation]
+    C --> F[Issue Template Generation]
+    
+    G[Configuration] --> B
+    H[Keywords: Time Series, Trajectory, GNN] --> B
+    
+    subgraph "Core Components"
+        B
+        C
+    end
+    
+    subgraph "External Services"
+        D
+        A
+    end
+    
+    subgraph "Output Artifacts"
+        E
+        F
+    end
+```
+
+## Core Features
+
+| Feature | Description | Implementation |
+|---------|-------------|----------------|
+| **Automated Paper Fetching** | Retrieves latest papers from arXiv API based on keywords | [utils.py#L16-L48](utils.py#L16-L48) |
+| **Keyword-Based Filtering** | Supports multiple research domains with configurable keywords | [main.py#L25](main.py#L25) |
+| **Content Generation** | Creates formatted README.md and GitHub Issues with paper tables | [utils.py#L80-L127](utils.py#L80-L127) |
+| **Retry Logic** | Handles API failures with automatic retries | [utils.py#L60-L69](utils.py#L60-L69) |
+| **Backup System** | Safeguards existing files during updates | [utils.py#L128-L140](utils.py#L128-L140) |
+
+## Project Structure
+
+```
+DailyArXiv/
+├── main.py                 # Main execution script
+├── utils.py               # Core utility functions
+├── requirements.txt       # Python dependencies
+├── README.md             # Generated paper listings
+├── ISSUE_TEMPLATE.md     # GitHub issue template
+└── workflows/
+    └── update.yaml       # GitHub Actions workflow
+```
+
+## Key Components
+
+### Main Script (`main.py`)
+The orchestrator that coordinates the entire paper fetching and content generation process. It manages keyword processing, API calls, and file operations with built-in error handling and recovery mechanisms.
+
+### Utility Functions (`utils.py`)
+Contains the core business logic including:
+- **API Integration**: Direct communication with arXiv's REST API [utils.py#L16-L48](utils.py#L16-L48)
+- **Data Processing**: Paper filtering, deduplication, and formatting
+- **Table Generation**: Markdown table creation for different output formats [utils.py#L80-L127](utils.py#L80-L127)
+- **File Management**: Backup and restore operations for safety
+
+### Dependencies
+The project uses minimal, focused dependencies:
+- `easydict`: Simplified dictionary access
+- `feedparser`: RSS/Atom feed parsing for arXiv responses
+- `pytz`: Timezone handling for Beijing-based scheduling
+
+## Research Domains
+
+Currently configured to monitor three key research areas:
+
+| Domain | Description | Paper Limit |
+|--------|-------------|-------------|
+| Time Series | Time series analysis, forecasting, and temporal data modeling | 100 papers |
+| Trajectory | Motion analysis, path planning, and trajectory optimization | 100 papers |
+| Graph Neural Networks | GNN architectures, graph representation learning | 100 papers |
+
+## Output Formats
+
+The system generates two complementary outputs:
+
+1. **README.md**: Comprehensive listings with full abstracts and details
+2. **GitHub Issues**: Summarized versions suitable for email notifications
+
+> [!TIP]
+> The project uses Beijing timezone (Asia/Shanghai) for scheduling and date formatting, ensuring consistent daily updates regardless of the server's geographic location.
+
+## Next Steps
+
+To get started with DailyArXiv, continue with:
+- [Quick Start](2-quick-start) for immediate setup and usage
+- [Installation and Dependencies](3-installation-and-dependencies) for detailed environment setup
+- [Configuration and Customization](4-configuration-and-customization) to tailor the system to your research needs
+
+> [!TIP]
+> The system includes built-in rate limiting (5-second delays between API calls) to prevent being blocked by arXiv's servers during bulk paper fetching operations.
+
+# Quick Start
+
+
+
+DailyArXiv is an automated paper aggregation system that fetches the latest academic papers from arXiv based on predefined keywords and generates daily reports. This quick start guide will help you get the system running in minutes.
+
+## System Architecture Overview
+
+The project follows a simple yet effective architecture with clear separation of concerns:
+
+```mermaid
+graph TB
+    A[main.py] --> B[utils.py]
+    A --> C[README.md]
+    A --> D[ISSUE_TEMPLATE.md]
+    B --> E[arXiv API]
+    F[GitHub Actions] --> A
+    G[requirements.txt] --> A
+    
+    subgraph "Core Components"
+        A[Main Script<br/>Orchestration Logic]
+        B[Utility Functions<br/>API & Data Processing]
+    end
+    
+    subgraph "Output Files"
+        C[Daily Paper Report]
+        D[GitHub Issue Template]
+    end
+    
+    subgraph "Dependencies"
+        E[External API]
+        F[Automation Trigger]
+        G[Python Packages]
+    end
+```
+
+## Prerequisites and Setup
+
+### System Requirements
+- Python 3.7 or higher
+- Git repository with GitHub Actions enabled
+- Internet connection for arXiv API access
+
+### Installation Steps
+
+1. **Clone the repository** and navigate to the project directory
+2. **Install dependencies** using the requirements file:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+The required packages are minimal and focused:
+- `easydict`: For simplified dictionary access
+- `feedparser`: For parsing arXiv RSS feeds
+- `pytz`: For timezone handling
+
+### Project Structure
+
+```
+DailyArXiv/
+├── main.py                 # Main orchestration script
+├── utils.py               # Core utility functions
+├── requirements.txt       # Python dependencies
+├── README.md             # Generated daily paper report
+├── ISSUE_TEMPLATE.md     # GitHub issue template
+└── workflows/
+    └── update.yaml       # GitHub Actions workflow
+```
+
+## Running Your First Paper Fetch
+
+### Manual Execution
+
+Execute the main script to fetch papers immediately:
+
+```bash
+python main.py
+```
+
+This will:
+1. Fetch papers for each configured keyword ([main.py#L25](main.py#L25))
+2. Generate a README.md with paper tables
+3. Create an issue template for GitHub
+4. Handle API failures with automatic retries ([utils.py#L60](utils.py#L60))
+
+### Automated Daily Execution
+
+For continuous paper updates, the system integrates with GitHub Actions. The workflow automatically runs daily, fetching the latest papers and updating your repository.
+
+## Configuration Options
+
+### Keyword Customization
+
+Modify the search keywords in [main.py#L25](main.py#L25):
+
+```python
+keywords = ["Time Series", "Trajectory", "Graph Neural Networks"]
+```
+
+### Result Limits
+
+Adjust the number of papers fetched:
+- `max_result = 100` - Maximum papers per keyword from API ([main.py#L27](main.py#L27))
+- `issues_result = 15` - Papers included in GitHub issues ([main.py#L28](main.py#L28))
+
+### Output Columns
+
+Customize displayed information by modifying [main.py#L33](main.py#L33):
+
+```python
+column_names = ["Title", "Link", "Abstract", "Date", "Comment"]
+```
+
+Available columns include: Title, Authors, Abstract, Link, Tags, Comment, Date
+
+## Expected Output
+
+After successful execution, you'll find:
+
+1. **README.md**: Organized paper tables by keyword with full abstracts
+2. **ISSUE_TEMPLATE.md**: Formatted template for daily GitHub issues (15 papers per keyword)
+3. **Console output**: Progress indicators and error messages
+
+> [!TIP]
+> The system includes robust error handling with automatic retries (up to 6 attempts) for arXiv API failures, ensuring reliable daily updates even with temporary network issues.
+
+## Next Steps
+
+For deeper customization and advanced features, explore:
+- **[Installation and Dependencies](3-installation-and-dependencies)** - Detailed setup instructions
+- **[Configuration and Customization](4-configuration-and-customization)** - Advanced configuration options
+- **[GitHub Actions Integration](5-github-actions-integration)** - Automation setup guide
+
+The system is designed for immediate use with sensible defaults while offering extensive customization for specific research needs.
+
+# Installation and Dependencies
+
+
+
+This guide covers the complete setup process for DailyArXiv, including Python environment requirements, dependency installation, and system prerequisites for running the arXiv paper automation system.
+
+## System Requirements
+
+DailyArXiv is a Python-based application designed to run on most modern operating systems. The project has minimal system requirements but depends on specific Python libraries for arXiv API integration and data processing.
+
+### Python Version
+- **Minimum**: Python 3.6+
+- **Recommended**: Python 3.8 or later
+- **Required modules**: Standard library modules including `datetime`, `urllib`, `time`, `os`, and `shutil`
+
+### Operating System Support
+- **Linux**: Full compatibility (Ubuntu, CentOS, Debian, etc.)
+- **macOS**: Full compatibility
+- **Windows**: Compatible with Python 3.8+ (may require additional setup for certain dependencies)
+
+## Dependency Installation
+
+The project uses three core external libraries that are essential for its functionality:
+
+### Core Dependencies
+
+| Library | Version | Purpose | Installation |
+|---------|---------|---------|-------------|
+| `easydict` | Latest | Dictionary access with dot notation for cleaner code | `pip install easydict` |
+| `feedparser` | Latest | Parse RSS/Atom feeds from arXiv API responses | `pip install feedparser` |
+| `pytz` | Latest | Timezone handling for Beijing time calculations | `pip install pytz` |
+
+### Installation Methods
+
+#### Method 1: Using requirements.txt (Recommended)
+```bash
+# Clone the repository
+git clone https://github.com/zezhishao/DailyArXiv.git
+cd DailyArXiv
+
+# Install all dependencies
+pip install -r requirements.txt
+```
+
+#### Method 2: Individual Installation
+```bash
+pip install easydict feedparser pytz
+```
+
+#### Method 3: Virtual Environment (Best Practice)
+```bash
+# Create virtual environment
+python -m venv dailyarxiv-env
+
+# Activate environment
+# On Linux/macOS:
+source dailyarxiv-env/bin/activate
+# On Windows:
+dailyarxiv-env\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+## Project Structure Overview
+
+Understanding the project structure is crucial for proper setup and customization:
+
+```mermaid
+graph TD
+    A[DailyArXiv Root] --> B[main.py - Main execution script]
+    A --> C[utils.py - Core utilities and API functions]
+    A --> D[requirements.txt - Dependencies list]
+    A --> E[ISSUE_TEMPLATE.md - GitHub issue template]
+    A --> F[README.md - Generated paper updates]
+    A --> G[workflows/]
+    G --> H[update.yaml - GitHub Actions workflow]
+    
+    B --> I[Imports pytz for timezone]
+    B --> J[Uses utils functions]
+    C --> K[Imports feedparser for arXiv API]
+    C --> L[Uses easydict for data handling]
+    C --> M[Imports pytz for time functions]
+```
+
+## Key Dependencies Explained
+
+### feedparser - arXiv API Integration
+The `feedparser` library is essential for parsing XML responses from the arXiv API. It handles the complex RSS/Atom feed structure returned by arXiv's query system [utils.py#L16-L48]. This dependency enables the project to:
+
+- Parse arXiv API responses efficiently
+- Handle XML feed parsing with robust error handling
+- Extract paper metadata including titles, abstracts, and links
+
+### pytz - Timezone Management
+`pytz` is used for timezone-aware datetime operations, specifically for Beijing time calculations [main.py#L10], [main.py#L15]. This ensures:
+
+- Accurate date formatting for paper updates
+- Consistent timezone handling across different environments
+- Proper scheduling for automated workflows
+
+### easydict - Data Structure Management
+The `easydict` library provides dictionary access using dot notation, making the code more readable and maintainable [utils.py#L18], [utils.py#L30]. It simplifies:
+
+- Access to nested paper metadata
+- Code readability and maintenance
+- Data structure manipulation
+
+## Verification and Testing
+
+After installation, verify your setup with these steps:
+
+### 1. Dependency Verification
+```bash
+# Check installed packages
+pip list | grep -E "(easydict|feedparser|pytz)"
+
+# Test Python imports
+python -c "import feedparser, pytz, easydict; print('All dependencies imported successfully')"
+```
+
+### 2. Basic Functionality Test
+```python
+# Test basic imports and timezone functionality
+import pytz
+from datetime import datetime
+
+beijing_timezone = pytz.timezone('Asia/Shanghai')
+current_date = datetime.now(beijing_timezone).strftime("%Y-%m-%d")
+print(f"Current Beijing date: {current_date}")
+```
+
+## Common Installation Issues
+
+### Issue 1: pip Installation Fails
+**Solution**: Upgrade pip and use wheel
+```bash
+pip install --upgrade pip
+pip install wheel
+pip install -r requirements.txt
+```
+
+### Issue 2: Windows Compatibility
+**Solution**: Use Windows-specific package installation
+```bash
+# On Windows, you may need:
+pip install --upgrade setuptools
+pip install -r requirements.txt --no-cache-dir
+```
+
+### Issue 3: Permission Errors
+**Solution**: Use user installation or virtual environment
+```bash
+# User installation
+pip install --user -r requirements.txt
+
+# Or use virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+## Next Steps
+
+After successful installation, proceed to [Configuration and Customization](4-configuration-and-customization) to:
+
+- Set up your arXiv search keywords
+- Configure paper filtering criteria
+- Customize output formatting
+- Set up automated workflows
+
+For a complete overview of the project architecture and capabilities, visit [Overview](1-overview) or jump directly to [Quick Start](2-quick-start) for immediate usage instructions.
+
+# Configuration and Customization
+
+
+
+This guide explains how to configure and customize the DailyArXiv project to match your specific research interests and workflow requirements. The project offers several configuration options that control paper fetching behavior, output formatting, and automation settings.
+
+## Core Configuration Options
+
+The main configuration parameters are defined in [`main.py`](main.py#L25-L33) and control the fundamental behavior of the paper fetching system:
+
+```python
+keywords = ["Time Series", "Trajectory", "Graph Neural Networks"]  # Research keywords
+max_result = 100  # Maximum query results from arXiv API for each keyword
+issues_result = 15  # Maximum papers to be included in GitHub issues
+column_names = ["Title", "Link", "Abstract", "Date", "Comment"]  # Display columns
+```
+
+### Keyword Configuration
+
+The `keywords` list defines your research interests. Each keyword creates a separate section in the README and GitHub issues. The system supports both single-word and multi-word keywords:
+
+- **Single-word keywords**: Use "AND" logic (search in both title and abstract)
+- **Multi-word keywords**: Use "OR" logic (search in title OR abstract)
+
+### Result Limits
+
+Two important parameters control the number of papers processed:
+
+| Parameter | Purpose | Default | Recommended Range |
+|-----------|---------|---------|------------------|
+| `max_result` | Maximum papers fetched per keyword from arXiv API | 100 | 50-200 |
+| `issues_result` | Maximum papers displayed in GitHub issues | 15 | 10-30 |
+
+> [!TIP]
+> Setting `max_result` too high may result in API rate limiting. The built-in retry mechanism in [`utils.py`](utils.py#L60-L68) handles temporary failures but extended delays may occur.
+
+## Column Display Configuration
+
+The `column_names` parameter controls which paper information is displayed. Available columns include:
+
+- **Title**: Paper title
+- **Authors**: Author list
+- **Abstract**: Paper abstract
+- **Link**: arXiv URL
+- **Tags**: Subject categories
+- **Comment**: arXiv comments
+- **Date**: Last updated date
+
+Current configuration omits Authors in GitHub issues for better readability, as seen in [`main.py`](main.py#L63).
+
+## Workflow Architecture
+
+The configuration system follows a modular architecture:
+
+```mermaid
+graph TD
+    A[Configuration Parameters] --> B[Paper Fetching]
+    A --> C[Content Generation]
+    A --> D[Output Formatting]
+    
+    B --> E[arXiv API Request]
+    B --> F[Tag Filtering]
+    B --> G[Column Selection]
+    
+    C --> H[README Generation]
+    C --> I[Issue Template Creation]
+    
+    D --> J[Table Formatting]
+    D --> K[Column Visibility]
+```
+
+## Advanced Customization
+
+### Tag Filtering
+
+The system automatically filters papers by subject categories in [`utils.py`](utils.py#L49-L58). By default, it includes papers from "cs" (Computer Science) and "stat" (Statistics) fields. You can modify the `target_fields` parameter to include other disciplines.
+
+### Retry Logic
+
+The retry mechanism in [`utils.py`](utils.py#L60-L68) provides robust error handling:
+
+- **Default retries**: 6 attempts
+- **Wait time**: 30 minutes between retries
+- **Trigger**: Empty result lists from arXiv API
+
+> [!TIP]
+> The retry logic handles arXiv API instability but increases execution time when triggered. Monitor GitHub Actions logs to identify patterns of API failures.
+
+## Project Structure
+
+```
+DailyArXiv/
+├── main.py              # Main configuration and execution logic
+├── utils.py             # API integration and data processing
+├── workflows/
+│   └── update.yaml      # GitHub Actions automation
+├── requirements.txt     # Python dependencies
+├── README.md           # Generated paper listings
+└── ISSUE_TEMPLATE.md   # Generated issue templates
+```
+
+## Next Steps
+
+After configuring your keywords and display preferences, proceed to [GitHub Actions Integration](5-github-actions-integration) to set up automated daily updates. For deeper understanding of the paper fetching mechanism, see [ArXiv API Integration](6-arxiv-api-integration).
+
+# GitHub Actions Integration
+
+
+
+The DailyArXiv project leverages GitHub Actions to automate the daily fetching and publishing of academic papers from arXiv. This integration ensures that your repository stays up-to-date with the latest research papers in your specified fields without manual intervention.
+
+## Workflow Architecture
+
+The automation system is built around a single GitHub Actions workflow that orchestrates the entire paper fetching and publishing process. Here's the complete workflow architecture:
+
+```mermaid
+flowchart TD
+    A[Daily Trigger<br/>UTC 00:00] --> B[Setup Python Environment]
+    B --> C[Install Dependencies]
+    C --> D[Backup Existing Files]
+    D --> E[Fetch Papers from arXiv API]
+    E --> F[Process & Format Papers]
+    F --> G[Update README.md]
+    G --> H[Update Issue Template]
+    H --> I[Commit Changes]
+    I --> J{Success?}
+    J -->|Yes| K[Clean Up Backups]
+    J -->|No| L[Restore Files & Exit]
+    K --> M[End]
+    L --> M
+```
+
+## Core Components
+
+### Main Application Logic
+
+The automation is driven by [`main.py`](main.py#L1-L73), which serves as the orchestrator for the entire workflow. Key responsibilities include:
+
+- **Date Management**: Tracks current and last update dates using Beijing timezone ([`pytz.timezone('Asia/Shanghai')`](main.py#L8))
+- **Keyword Configuration**: Defines search keywords ["Time Series", "Trajectory", "Graph Neural Networks"]([`main.py#L15-L16])
+- **Result Limiting**: Sets maximum 100 papers per keyword, 15 for issues ([`main.py#L17-L18`](main.py#L17-L18))
+- **File Management**: Handles backup and restoration of README and issue template files
+
+### Utility Functions
+
+The [`utils.py`](utils.py#L1-L148) module provides core functionality for:
+
+- **arXiv API Integration**: [`request_paper_with_arXiv_api()`](utils.py#L9-L39) handles API communication with proper URL encoding and response parsing
+- **Data Processing**: [`filter_tags()`](utils.py#L41-L49) filters papers by academic fields (cs, stat)
+- **Retry Logic**: [`get_daily_papers_by_keyword_with_retries()`](utils.py#L51-L58) implements robust error handling with 30-minute retry intervals
+- **Table Generation**: [`generate_table()`](utils.py#L60-L98) creates formatted markdown tables with collapsible abstracts
+- **File Operations**: Backup/restore functions for safe file management
+
+### Dependencies
+
+The workflow requires minimal dependencies specified in [`requirements.txt`](requirements.txt#L1-L3):
+
+| Package | Purpose |
+|---------|---------|
+| `easydict` | Dictionary access with dot notation for cleaner code |
+| `feedparser` | Parse arXiv RSS/Atom feeds |
+| `pytz` | Timezone handling for Beijing time |
+
+> [!TIP]
+> The workflow implements a sophisticated retry mechanism that waits 30 minutes between attempts when the arXiv API returns unexpected empty results, ensuring reliability during API rate limiting or temporary issues.
+
+## Output Generation
+
+### README.md Updates
+
+The workflow generates comprehensive updates to [`README.md`](README.md#L1-L200) with:
+
+- **Keyword Sections**: Each search keyword creates a dedicated section
+- **Formatted Tables**: Papers displayed with title links, dates, collapsible abstracts, and comments
+- **Automatic Linking**: Paper titles are automatically linked to their arXiv URLs
+- **Date Tracking**: "Last update" field maintains the current Beijing date
+
+### Issue Template Generation
+
+Creates daily issue templates with:
+- **Dynamic Titles**: "Latest X Papers - Date" format
+- **Subset Display**: Shows top 15 papers per keyword without abstracts for cleaner issue view
+- **Consistent Formatting**: Maintains the same professional presentation as README
+
+## Project Structure
+
+```
+项目结构（.）
+├── ISSUE_TEMPLATE.md          # Generated daily issue template
+├── README.md                  # Main paper listing (auto-updated)
+├── main.py                    # Main orchestration script
+├── requirements.txt           # Python dependencies
+├── utils.py                   # Core utility functions
+└── workflows/
+    └── update.yaml            # GitHub Actions workflow
+```
+
+> [!TIP]
+> The backup/restore system ensures that if the paper fetching fails, the repository is automatically restored to its previous state, preventing corruption of existing content.
+
+## Integration Benefits
+
+This GitHub Actions integration provides:
+
+- **Automated Updates**: Daily paper fetching without manual intervention
+- **Reliability**: Built-in retry logic and error handling
+- **Consistency**: Standardized formatting across all outputs
+- **Scalability**: Easy to add new keywords or modify search parameters
+- **Version Control**: All changes are tracked through Git commits
+
+## Next Steps
+
+To fully understand the system, continue with:
+- [ArXiv API Integration](6-arxiv-api-integration) for detailed API interaction patterns
+- [Paper Fetching and Filtering](7-paper-fetching-and-filtering) for data processing logic
+- [Automated Workflow Management](9-automated-workflow-management) for advanced scheduling options
+
+The GitHub Actions integration serves as the foundation for a fully automated academic paper curation system that keeps your repository current with minimal maintenance overhead.
+
+# ArXiv API Integration
+
+
+
+The DailyArXiv project leverages the official arXiv API to systematically fetch and process academic papers based on specified keywords. This integration forms the core data acquisition layer, enabling automated daily paper collection with robust error handling and filtering capabilities.
+
+## API Request Architecture
+
+The arXiv API integration is built around the `request_paper_with_arXiv_api` function, which constructs HTTP requests to arXiv's REST endpoint and parses the XML response into structured data. The function implements a comprehensive paper extraction pipeline that handles multiple metadata fields.
+
+```python
+def request_paper_with_arXiv_api(keyword: str, max_results: int, link: str = "OR") -> List[Dict[str, str]]:
+```
+
+The API request follows this standardized URL pattern:
+```
+http://export.arxiv.org/api/query?search_query=ti:{keyword}+{operator}+abs:{keyword}&max_results={max_results}&sortBy=lastUpdatedDate
+```
+
+> [!TIP]
+> The search query combines title (`ti:`) and abstract (`abs:`) searches using configurable logical operators (OR/AND), ensuring comprehensive coverage of relevant papers.
+
+## Data Extraction Pipeline
+
+The parsing process extracts seven core metadata fields from each arXiv entry:
+
+| Field | Source | Processing |
+|-------|--------|------------|
+| Title | `entry.title` | Space normalization and newline removal |
+| Abstract | `entry.summary` | Space normalization and newline removal |
+| Authors | `entry.authors` | List of author names with space normalization |
+| Link | `entry.link` | Direct arXiv paper URL |
+| Tags | `entry.tags` | Academic subject classifications |
+| Comment | `entry.arxiv_comment` | Optional author comments |
+| Date | `entry.updated` | Last updated timestamp |
+
+The extraction uses the `feedparser` library to parse XML responses and `EasyDict` for flexible attribute access [utils.py#L23-L46].
+
+## Intelligent Filtering System
+
+After raw data extraction, papers undergo a two-stage filtering process:
+
+### Tag-Based Field Filtering
+The `filter_tags` function restricts results to specific academic domains:
+```python
+def filter_tags(papers: List[Dict[str, str]], target_fileds: List[str]=["cs", "stat"]) -> List[Dict[str, str]]:
+```
+
+This filters papers by examining the primary field prefix in arXiv tags (e.g., "cs.AI", "stat.ML") [utils.py#L49-L58].
+
+### Column Selection
+The final processing step selects only the columns specified for display:
+```python
+papers = [{column_name: paper[column_name] for column_name in column_names} for paper in papers]
+```
+
+## Retry Mechanism and Error Handling
+
+The integration includes robust error handling through the `get_daily_papers_by_keyword_with_retries` function, which implements an exponential backoff strategy:
+
+```python
+def get_daily_papers_by_keyword_with_retries(keyword: str, column_names: List[str], max_result: int, link: str = "OR", retries: int = 6) -> List[Dict[str, str]]:
+```
+
+> [!TIP]
+> When arXiv API returns unexpected empty lists, the system automatically retries up to 6 times with 30-minute intervals between attempts [utils.py#L60-L68].
+
+## Integration Flow
+
+```mermaid
+flowchart TD
+    A[Keyword Input] --> B[Construct API Request]
+    B --> C[HTTP Request to arXiv]
+    C --> D[Parse XML Response]
+    D --> E[Extract Paper Metadata]
+    E --> F[Filter by Academic Fields]
+    F --> G[Select Display Columns]
+    G --> H{Results Valid?}
+    H -->|Yes| I[Return Papers]
+    H -->|No| J[Retry Logic]
+    J --> K[Wait 30 Minutes]
+    K --> C
+```
+
+## Configuration Parameters
+
+The API integration supports several configurable parameters:
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `keyword` | str | - | Search term for paper matching |
+| `max_results` | int | 100 | Maximum papers per request |
+| `link` | str | "OR" | Logical operator between title/abstract search |
+| `retries` | int | 6 | Number of retry attempts on failure |
+| `target_fields` | List[str] | ["cs", "stat"] | Academic fields to include |
+
+The system is designed to handle concurrent keyword searches, as evidenced by the main workflow that processes multiple keywords in sequence [main.py#L25].
+
+## Next Steps
+
+For understanding how the fetched papers are processed and formatted, continue to [Paper Fetching and Filtering](7-paper-fetching-and-filtering). To learn about the automated execution workflow, see [Automated Workflow Management](9-automated-workflow-management).
+
+# Paper Fetching and Filtering
+
+
+
+The DailyArXiv project implements a sophisticated paper fetching and filtering system that automatically retrieves relevant academic papers from arXiv based on predefined keywords. This system combines API integration, intelligent filtering, and retry mechanisms to ensure reliable daily updates of research papers.
+
+## Architecture Overview
+
+The paper fetching process follows a structured pipeline that transforms raw arXiv API responses into organized, filtered paper collections. The system is designed to handle API limitations and ensure data consistency through multiple layers of processing.
+
+```mermaid
+flowchart TD
+    A[Keyword Input] --> B[API Request Builder]
+    B --> C[arXiv API Call]
+    C --> D[Response Parser]
+    D --> E[Paper Data Extraction]
+    E --> F[Tag Filtering]
+    F --> G[Column Selection]
+    G --> H[Retry Logic]
+    H --> I[Filtered Papers Output]
+    
+    J[Configuration] --> A
+    K[Target Fields] --> F
+    L[Column Names] --> G
+```
+
+## Core Fetching Mechanism
+
+### API Integration
+
+The system connects to arXiv's public API through the `request_paper_with_arXiv_api` function in [utils.py](utils.py#L16-L47). This function constructs sophisticated search queries that search both titles and abstracts:
+
+```python
+url = "http://export.arxiv.org/api/query?search_query=ti:{0}+{2}+abs:{0}&max_results={1}&sortBy=lastUpdatedDate"
+```
+
+The API query supports two logical operators:
+- **OR**: Used for multi-word keywords, finding papers containing any part of the keyword phrase
+- **AND**: Used for single-word keywords, requiring presence in both title and abstract
+
+### Data Extraction and Processing
+
+Each API response undergoes comprehensive data extraction, capturing seven key fields:
+- **Title**: Paper title with whitespace normalization
+- **Authors**: List of author names with proper formatting
+- **Abstract**: Research abstract with cleaned whitespace
+- **Link**: Direct URL to the arXiv paper
+- **Tags**: Subject classification tags (e.g., "cs.AI", "stat.ML")
+- **Comment**: Additional author comments if available
+- **Date**: Last updated timestamp
+
+> [!TIP]
+> The system uses `remove_duplicated_spaces()` function to ensure consistent text formatting across all paper data, preventing display issues in generated tables.
+
+## Intelligent Filtering System
+
+### Tag-Based Field Filtering
+
+The `filter_tags` function [utils.py](utils.py#L49-L58) implements a sophisticated filtering mechanism that categorizes papers by academic disciplines. By default, the system targets computer science (`cs`) and statistics (`stat`) fields:
+
+```python
+if tag.split(".")[0] in target_fileds:
+    results.append(paper)
+    break
+```
+
+This approach ensures that only papers from relevant academic domains are included in the final output, automatically filtering out papers from unrelated fields like physics (`physics`), mathematics (`math`), or quantitative biology (`q-bio`).
+
+### Column Selection and Display
+
+The system provides flexible column selection through the `column_names` configuration in [main.py](main.py#L33). The default configuration includes:
+- Title (for quick identification)
+- Link (for direct access)
+- Abstract (for content preview)
+- Date (for temporal context)
+- Comment (for additional insights)
+
+> [!TIP]
+> Different output formats use different column sets - README files include abstracts for comprehensive reading, while GitHub Issues exclude abstracts to maintain readability.
+
+## Retry and Error Handling
+
+### Robust Retry Mechanism
+
+The system implements a sophisticated retry strategy through `get_daily_papers_by_keyword_with_retries` [utils.py](utils.py#L60-L68). This addresses the noted instability of the arXiv API [main.py](main.py#L12):
+
+- **Maximum 6 retry attempts** per keyword
+- **30-minute delay** between retries to avoid rate limiting
+- **Graceful failure handling** with file restoration capabilities
+
+### Configuration Parameters
+
+The fetching behavior is controlled by several key parameters in [main.py](main.py#L25-L33):
+
+| Parameter | Default Value | Purpose |
+|-----------|---------------|---------|
+| `keywords` | `["Time Series", "Trajectory", "Graph Neural Networks"]` | Search terms for paper discovery |
+| `max_result` | `100` | Maximum papers per keyword from API |
+| `issues_result` | `15` | Papers displayed in GitHub Issues |
+| `column_names` | `["Title", "Link", "Abstract", "Date", "Comment"]` | Display columns for output |
+
+## Integration with Workflow System
+
+The paper fetching system is designed to work seamlessly with the automated workflow management. The main execution loop in [main.py](main.py#L50-L68) processes each keyword sequentially:
+
+1. **Keyword-specific query optimization** (single words use AND, multi-word use OR)
+2. **Retry-enabled paper fetching** with failure protection
+3. **Dual output generation** (README and Issues templates)
+4. **Rate limiting** with 5-second delays between API calls
+
+The system maintains data integrity through backup and restore mechanisms, ensuring that failed attempts don't corrupt existing content.
+
+## Next Steps
+
+For a complete understanding of the paper processing pipeline, continue to [Content Generation and Formatting](8-content-generation-and-formatting) which details how the fetched papers are transformed into readable markdown tables and formatted for different output channels. To understand how this fetching system operates within the broader automation framework, review [Automated Workflow Management](9-automated-workflow-management).
+
+# Content Generation and Formatting
+
+
+
+The DailyArXiv project implements a sophisticated content generation and formatting system that transforms raw arXiv paper data into structured, readable Markdown documents. This system handles the conversion of API responses into formatted tables, manages different output formats for various use cases, and ensures consistent presentation across generated content.
+
+## Table Generation Engine
+
+The core of the content formatting system is the `generate_table()` function in [utils.py](utils.py#L80-L126), which transforms paper data into structured Markdown tables. This function implements intelligent formatting rules to optimize readability while preserving essential information.
+
+### Column Processing Logic
+
+The table generation follows a hierarchical processing approach:
+
+1. **Title and Link Integration**: Combines paper titles with their arXiv URLs into clickable Markdown links with bold formatting for emphasis
+2. **Date Normalization**: Converts ISO date format (e.g., "2021-08-01T00:00:00Z") to clean date format ("2021-08-01")
+3. **Content-Specific Formatting**: Applies different formatting rules based on column type
+
+```mermaid
+flowchart TD
+    A[Raw Paper Data] --> B[Column Processing]
+    B --> C[Title/Link: Bold + URL]
+    B --> D[Date: Format Cleanup]
+    B --> E[Abstract: Collapsible Details]
+    B --> F[Authors: First Author + et al.]
+    B --> G[Tags: Truncate with Details]
+    B --> H[Comments: Length-based Formatting]
+    C --> I[Formatted Row]
+    D --> I
+    E --> I
+    F --> I
+    G --> I
+    H --> I
+    I --> J[Markdown Table Assembly]
+```
+
+### Smart Content Handling
+
+The system implements several intelligent content handling strategies:
+
+- **Abstract Management**: Abstracts are wrapped in collapsible `<details>` elements to maintain page cleanliness while allowing full access to content [utils.py#L96-L97]
+- **Author Display**: Only the first author is displayed with "et al." suffix for multi-author papers [utils.py#L99-L100]
+- **Tag Processing**: Long tag lists are truncated with expandable details for better table formatting [utils.py#L101-L106]
+- **Comment Formatting**: Comments longer than 20 characters are similarly handled with collapsible sections [utils.py#L107-L113]
+
+> [!TIP]
+> The formatting system uses conditional length checks (20 characters for comments, 10 characters for tags) to determine when to apply collapsible formatting, ensuring optimal table readability across different content types.
+
+## Dual Output Generation
+
+The system generates two distinct output formats tailored for different purposes:
+
+### README.md Generation
+
+The main documentation file receives complete paper data including abstracts, providing comprehensive information for readers browsing the repository [main.py#L50-L67]. This format prioritizes information completeness.
+
+### Issue Template Generation
+
+The GitHub Issue template receives a subset of papers (limited by `issues_result`) with abstracts excluded [main.py#L63]. This creates a cleaner, more focused format suitable for GitHub Issue notifications while directing users to the main repository for detailed viewing.
+
+## File Management System
+
+Content generation incorporates robust file management to prevent data loss during updates:
+
+1. **Backup Creation**: Existing files are backed up before modification [utils.py#L128-L132]
+2. **Atomic Writing**: New content is written to fresh file instances [main.py#L38-L43]
+3. **Cleanup**: Backup files are removed after successful generation [utils.py#L138-L142]
+4. **Recovery**: Failed operations trigger file restoration from backups [main.py#L60]
+
+## Dynamic Content Assembly
+
+The content generation process iterates through configured keywords, creating structured sections for each research area [main.py#L50-L68]. For each keyword, the system:
+
+- Determines search strategy (AND/OR logic) based on keyword complexity
+- Fetches papers using the retry-enabled API function
+- Generates appropriately formatted tables for both output formats
+- Implements rate limiting between API calls to prevent blocking
+
+> [!TIP]
+> The system uses a 5-second sleep interval between keyword processing cycles [main.py#L68] to respect arXiv API rate limits and ensure reliable operation across multiple keyword queries.
+
+## Integration Points
+
+The content generation system seamlessly integrates with the broader DailyArXiv architecture:
+
+- **Data Input**: Consumes filtered paper data from the [Paper Fetching and Filtering](7-paper-fetching-and-filtering) system
+- **Configuration**: Utilizes column definitions and formatting parameters from the main configuration
+- **Output**: Produces files that trigger [Automated Workflow Management](9-automated-workflow-management) processes
+
+The modular design ensures that content generation can be customized independently from data fetching and workflow management, allowing for flexible formatting adaptations without disrupting core functionality.
+
+For understanding how papers are initially retrieved and processed, refer to [Paper Fetching and Filtering](7-paper-fetching-and-filtering). To see how the generated content integrates with automated workflows, explore [Automated Workflow Management](9-automated-workflow-management).
+
+# Automated Workflow Management
+
+
+
+The DailyArXiv project implements a sophisticated automated workflow management system that orchestrates daily paper fetching, processing, and content generation. This system operates through a combination of scheduled execution, error recovery mechanisms, and atomic file operations to ensure reliable daily updates without manual intervention.
+
+## Workflow Architecture Overview
+
+The automated workflow follows a sequential execution pattern with built-in resilience and recovery capabilities:
+
+```mermaid
+flowchart TD
+    A[Daily Trigger] --> B[Date Validation]
+    B --> C[File Backup]
+    C --> D[Keyword Processing Loop]
+    D --> E[API Request with Retry]
+    E --> F[Content Generation]
+    F --> G[File Writing]
+    G --> H{More Keywords?}
+    H -->|Yes| D
+    H -->|No| I[Cleanup]
+    I --> J[Success Completion]
+    
+    E -->|API Failure| K[Retry Logic]
+    K -->|Max Retries| L[File Restore]
+    L --> M[Error Exit]
+    
+    G -->|Write Failure| L
+```
+
+## Core Automation Components
+
+### Date Management and Validation
+
+The workflow begins with date validation to prevent duplicate daily runs. The system compares the current Beijing timezone date against the last update timestamp stored in README.md [main.py#L9-L18](main.py#L9-L18):
+
+```python
+# Get current beijing time date in the format of "2021-08-01"
+current_date = datetime.now(beijing_timezone).strftime("%Y-%m-%d")
+# Get last update date from README.md
+with open("README.md", "r") as f:
+    while True:
+        line = f.readline()
+        if "Last update:" in line: break
+    last_update_date = line.split(": ")[1].strip()
+```
+
+### Atomic File Operations
+
+The system implements a critical backup-and-restore mechanism to ensure data integrity during updates [utils.py#L119-L132](utils.py#L119-L132):
+
+- **Backup Phase**: Before any modifications, `back_up_files()` creates temporary copies of README.md and ISSUE_TEMPLATE.md
+- **Restore Phase**: If any step fails, `restore_files()` recovers the original files
+- **Cleanup Phase**: After successful completion, `remove_backups()` removes the temporary copies
+
+This atomic operation pattern prevents partial updates that could leave the repository in an inconsistent state.
+
+### Keyword-Based Processing Pipeline
+
+The workflow processes research papers through a configurable keyword system [main.py#L21-L23](main.py#L21-L23):
+
+```python
+keywords = ["Time Series", "Trajectory", "Graph Neural Networks"]
+max_result = 100  # maximum query results from arXiv API for each keyword
+issues_result = 15  # maximum papers to be included in the issue
+```
+
+For each keyword, the system:
+
+1. Determines the appropriate search logic (AND/OR) based on keyword complexity [main.py#L34-L35](main.py#L34-L35)
+2. Executes API requests with retry logic through `get_daily_papers_by_keyword_with_retries()` [utils.py#L67-L75](utils.py#L67-L75)
+3. Generates formatted content for both README.md and GitHub Issues
+4. Implements rate limiting with 5-second delays between API calls [main.py#L48](main.py#L48)
+
+## Error Handling and Recovery Strategies
+
+### Multi-Level Retry Mechanism
+
+The system implements a sophisticated retry strategy at multiple levels:
+
+**API Level Retries**: The `get_daily_papers_by_keyword_with_retries()` function provides up to 6 retry attempts with 30-minute delays between failures [utils.py#L67-L75](utils.py#L67-L75):
+
+```python
+for _ in range(retries):
+    papers = get_daily_papers_by_keyword(keyword, column_names, max_result, link)
+    if len(papers) > 0: return papers
+    else:
+        print("Unexpected empty list, retrying...")
+        time.sleep(60 * 30)  # wait for 30 minutes
+```
+
+**Workflow Level Recovery**: If any keyword processing fails, the entire workflow triggers file restoration and exits gracefully [main.py#L40-L45](main.py#L40-L45):
+
+```python
+if papers is None:  # failed to get papers
+    print("Failed to get papers!")
+    f_rm.close()
+    f_is.close()
+    restore_files()
+    sys.exit("Failed to get papers!")
+```
+
+> [!TIP]
+> The dual-level retry mechanism handles both transient API failures and persistent data issues, ensuring the system can recover from temporary network problems while avoiding infinite loops on permanent failures.
+
+## Content Generation Automation
+
+### Dual-Output Generation
+
+The workflow simultaneously generates two different output formats:
+
+1. **README.md Updates**: Full paper listings with abstracts for comprehensive documentation [main.py#L26-L33](main.py#L26-33)
+2. **GitHub Issues**: Curated summaries with limited papers for daily notifications [main.py#L35-L38](main.py#L35-38)
+
+The system uses the `generate_table()` function to create formatted markdown tables with collapsible abstracts and processed metadata [utils.py#L77-L118](utils.py#L77-L118).
+
+### Dynamic Content Formatting
+
+The automated formatting includes:
+
+- **Title Processing**: Converts paper titles into markdown links with bold formatting
+- **Author Truncation**: Displays first author with "et al." for multi-author papers
+- **Abstract Collapsing**: Uses HTML details/summary tags for expandable abstracts
+- **Date Standardization**: Converts ISO timestamps to readable date formats
+- **Tag Management**: Handles long tag lists with collapsible formatting
+
+## Configuration and Customization
+
+The workflow supports easy customization through key parameters:
+
+| Parameter | Purpose | Default Value | Location |
+|-----------|---------|---------------|----------|
+| `keywords` | Research topics to fetch | ["Time Series", "Trajectory", "Graph Neural Networks"] | [main.py#L21](main.py#L21) |
+| `max_result` | Papers per keyword from API | 100 | [main.py#L22](main.py#L22) |
+| `issues_result` | Papers for GitHub Issues | 15 | [main.py#L23](main.py#L23) |
+| `column_names` | Display columns for output | ["Title", "Link", "Abstract", "Date", "Comment"] | [main.py#L25](main.py#L25) |
+
+> [!TIP]
+> The system's modular design allows easy extension - adding new keywords requires only updating the keywords list, while modifying output formats involves changing the column_names configuration.
+
+## Integration with External Systems
+
+### ArXiv API Integration
+
+The workflow interfaces with the arXiv API through the `request_paper_with_arXiv_api()` function [utils.py#L11-L35](utils.py#L11-L35), which:
+
+- Constructs search queries with proper URL encoding
+- Handles both single-word and multi-word keywords with appropriate AND/OR logic
+- Parses XML responses using feedparser
+- Extracts and normalizes paper metadata
+
+### GitHub Actions Compatibility
+
+While the current implementation appears to be a standalone Python script, the architecture is designed for easy integration with GitHub Actions or other CI/CD systems. The atomic file operations and comprehensive error handling make it suitable for scheduled execution environments.
+
+## Monitoring and Observability
+
+The workflow provides basic monitoring through:
+
+- Console output for retry attempts and failures
+- Date-based execution tracking in README.md
+- File system state management through backup/restore operations
+
+For production deployment, additional logging and alerting mechanisms could be integrated to provide real-time workflow status monitoring.
+
+---
+
+The DailyArXiv automated workflow management system demonstrates robust software engineering practices with its comprehensive error handling, atomic operations, and modular design. This architecture ensures reliable daily updates while maintaining flexibility for customization and extension.
+
+For deeper understanding of the paper fetching mechanisms, see [ArXiv API Integration](6-arxiv-api-integration), and for details on content formatting, refer to [Content Generation and Formatting](8-content-generation-and-formatting).
+
+# Error Handling and Retry Logic
+
+
+
+The DailyArXiv project implements a robust error handling and retry mechanism to ensure reliable paper fetching from the arXiv API. This documentation examines the architectural patterns and implementation details of the system's resilience strategies.
+
+## Architecture Overview
+
+The error handling system follows a layered approach with retry logic at the API interaction level and file system safeguards for data integrity:
+
+```mermaid
+flowchart TD
+    A[Main Execution] --> B[File Backup]
+    B --> C[API Request with Retries]
+    C --> D{API Response Valid?}
+    D -->|Yes| E[Process Papers]
+    D -->|No| F[Wait 30 Minutes]
+    F --> G{Retries Remaining?}
+    G -->|Yes| C
+    G -->|No| H[Return None]
+    E --> I[Generate Output]
+    I --> J[Cleanup Backups]
+    H --> K[Restore Files]
+    K --> L[Cleanup Backups]
+```
+
+## Core Retry Mechanism
+
+The primary retry logic is implemented in the `get_daily_papers_by_keyword_with_retries` function, which handles the intermittent empty list responses from the arXiv API [utils.py#L60-L68](utils.py#L60-L68):
+
+```python
+def get_daily_papers_by_keyword_with_retries(keyword: str, column_names: List[str], max_result: int, link: str = "OR", retries: int = 6) -> List[Dict[str, str]]:
+    for _ in range(retries):
+        papers = get_daily_papers_by_keyword(keyword, column_names, max_result, link)
+        if len(papers) > 0: return papers
+        else:
+            print("Unexpected empty list, retrying...")
+            time.sleep(60 * 30) # wait for 30 minutes
+    # failed
+    return None
+```
+
+### Retry Strategy Parameters
+
+| Parameter | Default Value | Purpose |
+|-----------|---------------|---------|
+| `retries` | 6 | Maximum number of retry attempts |
+| `wait_time` | 30 minutes | Delay between retry attempts |
+| `success_condition` | `len(papers) > 0` | Validates API response contains data |
+
+The system implements a **backoff strategy** with fixed 30-minute intervals between attempts, designed to handle temporary API availability issues while avoiding excessive request rates.
+
+## API-Level Error Handling
+
+The base API request function includes input validation and structured error handling [utils.py#L16-L47](utils.py#L16-L47):
+
+```python
+def request_paper_with_arXiv_api(keyword: str, max_results: int, link: str = "OR") -> List[Dict[str, str]]:
+    assert link in ["OR", "AND"], "link should be 'OR' or 'AND'"
+    # URL construction and request handling
+    url = "http://export.arxiv.org/api/query?search_query=ti:{0}+{2}+abs:{0}&max_results={1}&sortBy=lastUpdatedDate".format(keyword, max_results, link)
+    response = urllib.request.urlopen(url).read().decode('utf-8')
+    feed = feedparser.parse(response)
+```
+
+### Input Validation
+- **Link Parameter**: Enforced to be either "OR" or "AND" using assertion
+- **URL Encoding**: Proper encoding of special characters to prevent request failures
+- **Response Parsing**: Safe parsing using feedparser library
+
+## File System Safeguards
+
+The project implements a comprehensive backup and restore system to protect against data corruption during execution:
+
+### Backup Operations
+The system creates temporary backups before modifying critical files [utils.py#L128-L131](utils.py#L128-L131):
+
+```python
+def back_up_files():
+    # back up README.md and ISSUE_TEMPLATE.md
+    shutil.move("README.md", "README.md.bk")
+    shutil.move(".github/ISSUE_TEMPLATE.md", ".github/ISSUE_TEMPLATE.md.bk")
+```
+
+### Recovery Mechanisms
+Two recovery paths are available depending on execution outcome:
+
+**Successful Execution** [utils.py#L138-L141](utils.py#L138-L141):
+```python
+def remove_backups():
+    # remove README.md and ISSUE_TEMPLATE.md
+    os.remove("README.md.bk")
+    os.remove(".github/ISSUE_TEMPLATE.md.bk")
+```
+
+**Failed Execution** [utils.py#L133-L136](utils.py#L133-L136):
+```python
+def restore_files():
+    # restore README.md and ISSUE_TEMPLATE.md
+    shutil.move("README.md.bk", "README.md")
+    shutil.move(".github/ISSUE_TEMPLATE.md.bk", ".github/ISSUE_TEMPLATE.md")
+```
+
+## Error Scenarios and Handling
+
+| Error Type | Detection Method | Recovery Strategy |
+|------------|------------------|-------------------|
+| API Empty Response | `len(papers) == 0` | Retry with 30-minute delay |
+| API Invalid Link | `assert link in ["OR", "AND"]` | Immediate failure with assertion |
+| File System Error | Exception during file operations | Restore from backup |
+| Network Timeout | Request failure | Retry mechanism handles transparently |
+
+## Implementation Best Practices
+
+> [!TIP]
+> The retry logic specifically targets the documented issue where "arXiv API seems to sometimes return an unexpected empty list" [main.py#L12](main.py#L12). This targeted approach avoids over-engineering while addressing the most common failure mode.
+
+> [!TIP]
+> The file backup system uses atomic move operations rather than copy operations, ensuring that either the complete original file or the complete new file exists at any time, preventing partial file states.
+
+## Integration Points
+
+The error handling system integrates with the main workflow through these key points:
+
+1. **Initialization**: `back_up_files()` called at workflow start [main.py#L35](main.py#L35)
+2. **Data Fetching**: Retry wrapper used for each keyword processing 
+3. **Cleanup**: Conditional restore or remove based on execution success [main.py#L70-L72](main.py#L70-L72)
+
+This comprehensive error handling architecture ensures the DailyArXiv system can gracefully handle API inconsistencies and maintain data integrity throughout the automated paper fetching process.
+
+## Next Steps
+
+For understanding how this error handling integrates with the broader system architecture, see [Automated Workflow Management](9-automated-workflow-management). To learn about the core API functionality that these error handling patterns protect, refer to [ArXiv API Integration](6-arxiv-api-integration).
+
+# Customization and Extension
+
+
+
+This comprehensive guide explores the advanced customization capabilities and extension patterns available in the DailyArXiv system. The project is designed with a modular architecture that enables developers to tailor paper fetching, filtering, and output generation to their specific research domains and workflow requirements.
+
+## Architecture Overview
+
+The DailyArXiv system follows a clean separation of concerns with two main modules:
+
+```mermaid
+graph TD
+    A[main.py - Orchestration] --> B[utils.py - Core Functions]
+    A --> C[Configuration Layer]
+    B --> D[ArXiv API Integration]
+    B --> E[Data Processing]
+    B --> F[Output Generation]
+    C --> G[Keywords & Parameters]
+    C --> H[Column Selection]
+    C --> I[Filtering Rules]
+```
+
+The core execution flow is orchestrated through [main.py](main.py#L50-L68), which iterates through configured keywords and applies consistent processing pipelines to generate both README content and GitHub issues.
+
+> [!TIP]
+> The system uses a backup/restore mechanism for file operations ([utils.py#L128-L141](utils.py#L128-L141)), ensuring data integrity during automated updates and providing a safety net for custom modifications.
+
+## Keyword Configuration
+
+### Search Keywords
+
+The primary customization point is the keyword configuration in [main.py#L25](main.py#L25):
+
+```python
+keywords = ["Time Series", "Trajectory", "Graph Neural Networks"]
+```
+
+Each keyword defines a research domain section in the output. The system automatically determines the search strategy based on keyword complexity:
+
+- **Single-word keywords**: Use "AND" logic to search both title and abstract ([main.py#L53](main.py#L53))
+- **Multi-word keywords**: Use "OR" logic for broader coverage ([main.py#L54](main.py#L54))
+
+### Advanced Search Strategies
+
+The search logic is implemented in [utils.py#L16-L47](utils.py#L16-L47) through the `request_paper_with_arXiv_api` function. The URL construction supports complex queries:
+
+```python
+url = "http://export.arxiv.org/api/query?search_query=ti:{0}+{2}+abs:{0}&max_results={1}&sortBy=lastUpdatedDate"
+```
+
+Custom search strategies can be implemented by modifying the URL pattern or extending the function to accept additional parameters like date ranges, specific categories, or author filters.
+
+## Column Customization
+
+### Available Data Fields
+
+The system extracts comprehensive paper metadata from the ArXiv API ([utils.py#L25-L46](utils.py#L25-L46)):
+
+| Field | Description | Processing |
+|-------|-------------|------------|
+| Title | Paper title | Linked to ArXiv URL |
+| Authors | Author list | First author + "et al." |
+| Abstract | Paper summary | Collapsible display |
+| Link | ArXiv URL | Integrated with title |
+| Tags | Category tags | Collapsible if long |
+| Comment | ArXiv comments | Collapsible if long |
+| Date | Update timestamp | Formatted as YYYY-MM-DD |
+
+### Column Selection
+
+Configure display columns in [main.py#L33](main.py#L33):
+
+```python
+column_names = ["Title", "Link", "Abstract", "Date", "Comment"]
+```
+
+> [!TIP]
+> The system automatically handles column formatting in [utils.py#L80-L126](utils.py#L80-L126), including special processing for titles (bold + links), dates (formatting), and long content (collapsible sections).
+
+## Filtering and Processing Extensions
+
+### Tag-Based Filtering
+
+The current implementation filters papers to computer science and statistics fields ([utils.py#L49-L58](utils.py#L49-L58)):
+
+```python
+def filter_tags(papers: List[Dict[str, str]], target_fileds: List[str]=["cs", "stat"]) -> List[Dict[str, str]]:
+```
+
+Custom filtering rules can be implemented by:
+- Modifying `target_fields` to include specific ArXiv categories
+- Adding custom logic for paper relevance scoring
+- Implementing date-based or citation-based filtering
+
+### Retry Logic and Error Handling
+
+The system includes robust retry mechanisms for API reliability ([utils.py#L60-L68](utils.py#L60-L68)):
+
+- **Default retries**: 6 attempts with 30-minute intervals
+- **Failure handling**: Graceful degradation with file restoration
+- **Rate limiting**: Built-in delays between keyword processing ([main.py#L68](main.py#L68))
+
+## Output Format Customization
+
+### Table Generation
+
+The `generate_table` function ([utils.py#L80-L126](utils.py#L80-L126)) creates Markdown tables with sophisticated formatting:
+
+- **Headers**: Bold formatting with separator lines
+- **Content**: Automatic column processing and formatting
+- **Collapsible sections**: `<details>` tags for long content
+- **Links**: Integrated title-ArXiv URL combinations
+
+### Template Customization
+
+Output templates are defined in [main.py#L37-L48](main.py#L37-L48):
+
+#### README Template
+```python
+f_rm.write("# Daily Papers\n")
+f_rm.write("The project automatically fetches the latest papers from arXiv based on keywords.\n\n...")
+```
+
+#### Issue Template
+```python
+f_is.write("---\n")
+f_is.write("title: Latest {0} Papers - {1}\n".format(issues_result, get_daily_date()))
+f_is.write("labels: documentation\n")
+f_is.write("---\n")
+```
+
+## Extension Patterns
+
+### Adding New Data Sources
+
+To integrate additional academic databases:
+
+1. **Create new API functions** following the pattern of `request_paper_with_arXiv_api`
+2. **Implement data normalization** to match the existing paper structure
+3. **Add configuration options** for source selection
+4. **Extend filtering logic** for source-specific requirements
+
+### Custom Processing Pipelines
+
+Implement specialized processing by extending the core workflow:
+
+```python
+# Example: Custom relevance scoring
+def score_paper_relevance(paper: Dict, custom_criteria: Dict) -> float:
+    # Implement custom scoring logic
+    pass
+
+# Integration point in main workflow
+papers = [p for p in papers if score_paper_relevance(p, criteria) > threshold]
+```
+
+### Output Channel Extensions
+
+Beyond README and GitHub issues, consider adding:
+
+- **Email notifications**: Integrate with SMTP services
+- **RSS feeds**: Generate XML feeds for subscription services
+- **Database storage**: Persist papers for historical analysis
+- **Web dashboards**: Create interactive browsing interfaces
+
+## Configuration Management
+
+### Parameter Overrides
+
+Key configuration parameters in [main.py](main.py#L27-L33):
+
+| Parameter | Purpose | Default | Customization Impact |
+|-----------|---------|---------|---------------------|
+| `max_result` | API results per keyword | 100 | Controls paper volume |
+| `issues_result` | Papers per issue | 15 | Issue content length |
+| `column_names` | Display columns | Custom selection | Output format |
+| `keywords` | Search domains | Research-specific | Content scope |
+
+### Environment-Based Configuration
+
+For deployment flexibility, consider externalizing configuration:
+
+```python
+# Example: Environment-based configuration
+import os
+
+keywords = os.getenv('ARXIV_KEYWORDS', 'Time Series,Trajectory').split(',')
+max_result = int(os.getenv('MAX_RESULTS', '100'))
+```
+
+## Next Steps
+
+For comprehensive understanding of the system architecture and implementation details, refer to:
+
+- [ArXiv API Integration](6-arxiv-api-integration) for detailed API usage patterns
+- [Paper Fetching and Filtering](7-paper-fetching-and-filtering) for advanced filtering techniques
+- [Content Generation and Formatting](8-content-generation-and-formatting) for output customization
+- [Automated Workflow Management](9-automated-workflow-management) for deployment strategies
+
+The modular design of DailyArXiv ensures that customizations can be implemented with minimal code changes while maintaining system reliability and performance.

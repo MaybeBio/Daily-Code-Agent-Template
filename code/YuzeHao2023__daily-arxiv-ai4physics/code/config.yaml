@@ -1,0 +1,49 @@
+base_url: "https://arxiv.paperswithcode.com/api/v0/papers/"
+user_name: "YuzeHao2023"
+repo_name: "daily-arxiv-ai4physics"
+show_authors: True
+show_links: True
+show_badge: True
+max_results: 10
+
+publish_readme: True
+publish_gitpage: True
+publish_wechat: False
+
+# file paths
+json_readme_path: './docs/ai4physics-arxiv-daily.json'
+json_gitpage_path: './docs/ai4physics-arxiv-daily-web.json'
+json_wechat_path: './docs/ai4physics-arxiv-daily-wechat.json'
+
+md_readme_path: 'README.md'
+md_gitpage_path: './docs/index.md'
+md_wechat_path: './docs/wechat.md'
+
+# keywords to search
+keywords:
+    "Scientific Machine Learning & PINNs":
+        filters: ["Scientific Machine Learning", "SciML", "Physics-Informed Neural Networks", "PINNs", "Neural Operators", "DeepONet", "Neural Differential Equations", "Operator Learning", "Hamiltonian Neural Networks", "Lagrangian Neural Networks", "Symmetry-Preserving ML", "Equivariant Neural Networks", "Inductive Bias"]
+
+    "Dynamical Systems & PDE Learning":
+        filters: ["Partial Differential Equations", "PDE Learning", "Dynamical Systems", "Chaotic Systems", "Reduced-Order Modeling", "ROM", "Koopman Operator", "Time-Series Prediction", "Surrogate Modeling", "Data-Driven Physics"]
+
+    "Quantum Physics & Information":
+        filters: ["Quantum Machine Learning", "QML", "Quantum Many-Body Systems", "Variational Quantum Algorithms", "VQE", "QAOA", "Quantum State Reconstruction", "Quantum Error Correction", "Quantum Circuit Learning", "Hamiltonian Learning", "Schrödinger Equation", "Tensor Networks"]
+
+    "Materials Science & Condensed Matter":
+        filters: ["Condensed Matter Physics", "Materials Discovery", "Crystal Structure Prediction", "Machine Learning Interatomic Potentials", "MLIP", "Force Fields", "DFT Surrogate", "Electronic Structure", "Phase Transitions", "Topological Insulators", "Graph Neural Networks for Materials", "Battery Materials"]
+
+    "Fluid Dynamics & Plasma Physics":
+        filters: ["Computational Fluid Dynamics", "CFD", "Turbulence Modeling", "Navier-Stokes Equations", "RANS", "LES", "Flow Control", "Magnetohydrodynamics", "MHD", "Plasma Physics", "Fusion Energy", "Tokamak Control", "Laser-Plasma Interaction"]
+
+    "Particle & High Energy Physics":
+        filters: ["High Energy Physics", "HEP", "Particle Physics", "Jet Tagging", "Particle Reconstruction", "Event Classification", "Collider Physics", "Lattice QCD", "Detector Simulation", "Fast Simulation", "Anomaly Detection", "Physics Beyond the Standard Model"]
+
+    "Astrophysics & Cosmology":
+        filters: ["Astrophysics", "Cosmology", "Dark Matter", "Dark Energy", "Gravitational Waves", "LIGO", "Cosmological Simulations", "Galaxy Formation", "Strong Lensing", "Black Holes", "Astrostatistics"]
+
+    "Climate, Weather & Geophysics":
+        filters: ["Weather Forecasting", "Climate Modeling", "Atmospheric Physics", "Seismic Inversion", "Earthquake Prediction", "Oceanography", "Remote Sensing", "Hydrology", "Data Assimilation"]
+
+    "Generative Models & Discovery":
+        filters: ["Generative Models for Physics", "Diffusion Models", "Normalizing Flows", "Symbolic Regression", "Equation Discovery", "AI4Science", "Inverse Problems", "Uncertainty Quantification", "Bayesian Inference", "Scientific Discovery"]

@@ -1,0 +1,337 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2024-2026 Santiago Maniches
+
+[build-system]
+requires = ["hatchling>=1.30.1"]
+build-backend = "hatchling.build"
+
+# ── Project metadata ───────────────────────────────────────────────────────
+
+[project]
+name = "alphafold-sovereign-mcp"
+version = "1.4.10"
+description = "MCP server wrapping AlphaFold DB and 8 other biomedical data sources, with a local SQLite knowledge graph."
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Santiago Maniches", email = "santiago@topologica.ai"},
+]
+maintainers = [
+    {name = "Santiago Maniches", email = "santiago@topologica.ai"},
+]
+keywords = [
+    "alphafold",
+    "protein-structure",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "llm",
+    "claude",
+    "structural-biology",
+    "bioinformatics",
+    "persistent-homology",
+    "topological-data-analysis",
+    "precision-medicine",
+    "drug-discovery",
+    "disease-ontology",
+    "knowledge-graph",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Typing :: Typed",
+]
+
+# ── Runtime dependencies ────────────────────────────────────────────────────────
+
+dependencies = [
+    # MCP framework. Floor is 3.0.0 because that is the lowest release the whole
+    # tool surface is verified against: every tool passes `annotations=` to
+    # `@mcp.tool`, which FastMCP <=2.0.0 rejects outright (`TypeError: unexpected
+    # keyword argument 'annotations'`), and the 2.x line is not contiguously
+    # usable either (2.11.2 cannot import `AnyFunction`, 2.14.0 ships without its
+    # `pydantic_settings` dependency). Every stable 3.x release serves the full
+    # 30-tool surface over stdio. Capped below 4 so a fresh install never
+    # auto-adopts an untested major: FastMCP has broken these exact APIs across
+    # majors before, and CI pins a single locked version.
+    "fastmcp>=3.0.0,<4",
+    # HTTP — async, HTTP/2, keep-alive
+    "httpx[http2]>=0.27.0",
+    # Retry / rate-limiting
+    "tenacity>=9.0.0",
+    "aiolimiter>=1.1.0",
+    # Data validation
+    "pydantic>=2.7.0",
+    # Logging
+    "structlog>=24.1.0",
+    # Numeric
+    "numpy>=1.26.0",
+    # Platform paths (replaces hard-coded Windows paths)
+    "platformdirs>=4.10.0",
+    # Security floor on a transitive of `mcp` (mcp itself permits older PyJWT
+    # releases). PyJWT 2.13.x is affected by the September 2026 advisory set;
+    # 2.15.0 is the first release that closes the full set currently reported by
+    # pip-audit. Keep the floor in published Requires-Dist so downstream
+    # resolvers cannot legally select a vulnerable transitive version.
+    "pyjwt[crypto]>=2.15.0",
+]
+
+[project.optional-dependencies]
+# Topology / TDA (heavy; not required for pure API use)
+tda = [
+    "gudhi>=3.9.0",
+    "ripser>=0.6.15",
+    "scikit-learn>=1.4.0",
+    "scipy>=1.13.0",
+]
+# Full dev environment
+dev = [
+    "pytest>=8.2.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=5.0.0",
+    "pytest-xdist>=3.5.0",
+    "pytest-benchmark>=4.0.0",
+    "pytest-mock>=3.14.0",
+    "hypothesis>=6.155.1",
+    "respx>=0.21.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+    "nox>=2024.3.2",
+    "black>=24.4.0",
+    "pre-commit>=3.7.0",
+]
+# Documentation site (mkdocs-material) — `uv pip install -e ".[docs]"`
+docs = [
+    "mkdocs>=1.5.0",
+    # ``imaging`` extra pulls in cairosvg + pillow for the social-card
+    # (Open Graph preview) plugin; the Cairo/Pango system libraries are
+    # installed in the docs CI workflow.
+    "mkdocs-material[imaging]>=9.7.7",
+    "mkdocstrings[python]>=0.25.0",
+    "pymdown-extensions>=10.0",
+    # mkdocs-material's dependency tree includes requests -> urllib3.
+    # Keep the patched floor scoped to docs rather than normal runtime.
+    "urllib3>=2.8.0",
+]
+# Security scanning (CI). bandit is the SAST gate and pip-audit is the
+# dependency-advisory gate; nothing else belongs in this environment, because
+# pip-audit audits the environment it runs in and every extra tool here adds
+# its own dependency tree to that audit (safety was dropped for exactly that
+# reason: it hard-requires nltk, which carried an unpatched advisory).
+security = [
+    "bandit[toml]>=1.7.8",
+    "pip-audit>=2.7.0",
+    # pip-audit depends on requests -> urllib3. Keep the advisory fix scoped
+    # to the audit environment rather than adding urllib3 to normal runtime.
+    "urllib3>=2.8.0",
+]
+
+[project.urls]
+Homepage = "https://topologica.ai"
+Repository = "https://github.com/smaniches/alphafold-sovereign-mcp"
+Documentation = "https://smaniches.github.io/alphafold-sovereign-mcp/"
+"Bug Tracker" = "https://github.com/smaniches/alphafold-sovereign-mcp/issues"
+Changelog = "https://github.com/smaniches/alphafold-sovereign-mcp/blob/main/CHANGELOG.md"
+
+[project.scripts]
+alphafold-sovereign = "alphafold_sovereign.__main__:main"
+alphafold-sovereign-mcp = "alphafold_sovereign.__main__:main"
+
+# ── Hatch build ───────────────────────────────────────────────────────────────────
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/alphafold_sovereign"]
+exclude = ["_archive"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "tests/",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "CHANGELOG.md",
+    "PATENTS.md",
+    "pyproject.toml",
+]
+
+# ── Ruff (linter + formatter) ───────────────────────────────────────────────────────
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+extend-exclude = ["_archive"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "N",    # pep8-naming
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "SIM",  # flake8-simplify
+    "TCH",  # flake8-type-checking
+    "TID",  # flake8-tidy-imports
+    "RUF",  # Ruff-specific rules
+    "ANN",  # flake8-annotations (enforces type hints)
+    "S",    # flake8-bandit (security)
+    "PT",   # flake8-pytest-style
+    "ERA",  # eradicate (commented-out code)
+    "PL",   # pylint
+    "PERF", # perflint
+]
+ignore = [
+    "S101",    # assert usage in tests
+    "PLR0913", # too many arguments (domain objects need many)
+    "ERA001",  # allow some commented-out code
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN", "S", "PLR"]
+"_archive/**" = ["ALL"]  # legacy monolith and its supporting modules — archived
+# Scientific tools use magic numbers (thresholds, Betti indices) and Unicode
+# (Greek letters, en-dashes in range notation) that are intentional and readable.
+# Long lines in multi-line string literals are acceptable in tool docstrings.
+# PLR0911/PLR0912/PLR0915: complex disease/variant synthesis functions are
+# intentionally large (they fuse 8+ data sources per call).
+# E741: `l` is used as a generator var for `labels` in comprehensions.
+"src/alphafold_sovereign/tools/**" = [
+    "PLR2004", "RUF001", "RUF002", "RUF003", "E501", "ANN401", "PLC0415",
+    "SIM105", "TC003", "B905", "S110",
+    "PLR0911", "PLR0912", "PLR0915", "E741",
+]
+# SQLite queries constructed from controlled allowlist table names, not user input.
+# PLW0603 global singleton pattern is intentional for the KG cache.
+"src/alphafold_sovereign/storage/**" = [
+    "PLR2004", "S608", "PLW0603", "B905", "TC003", "E501",
+    "ANN401", "PLC0415",
+]
+# PLR0917: private executor adapters mirror fixed SQLite schema rows; the public
+# storage API is keyword-only, while these synchronous helpers are not user-facing.
+"src/alphafold_sovereign/storage/knowledge_graph.py" = ["PLR0917"]
+# Scientific docstrings and field descriptions use en-dash range notation.
+# AlphaMissense thresholds (0.564/0.340) are calibrated constants, not magic values.
+"src/alphafold_sovereign/domain/**" = ["RUF001", "RUF002", "PLR2004"]
+# json body parameter must be Any; urllib lazy-import is intentional;
+# **kwargs: Any is the standard pattern for passing through to parent __init__.
+"src/alphafold_sovereign/clients/_base.py" = ["ANN401", "PLC0415", "TC003", "E501"]
+# Scientific docstrings, Unicode range notation, **kwargs passthrough
+"src/alphafold_sovereign/clients/**" = [
+    "RUF001", "RUF002", "ANN401", "PLC0415", "TC003",
+    "PLR2004", "PERF401", "B905", "SIM105", "E501",
+]
+# Fuzz harnesses: TestOneInput is mandated by Atheris; try-except-pass is
+# standard fuzzing idiom; annotations and perf lints are not relevant.
+"fuzz/**" = ["N802", "SIM105", "PERF401", "ANN", "S"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["alphafold_sovereign"]
+
+# ── Mypy ──────────────────────────────────────────────────────────────────────────────────
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_return_any = true
+warn_unused_ignores = true
+warn_unreachable = true
+disallow_any_generics = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+show_error_codes = true
+
+# Exclude legacy monolith until decomposed
+[[tool.mypy.overrides]]
+module = "alphafold_sovereign.alphafold_mcp"
+ignore_errors = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = [
+    "gudhi.*",
+    "ripser.*",
+    "aiolimiter.*",
+    "tenacity.*",
+]
+ignore_missing_imports = true
+
+# ── Pytest ──────────────────────────────────────────────────────────────────────────────────
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "-ra",
+]
+markers = [
+    "unit: pure unit tests (no I/O)",
+    "integration: tests against real upstreams (slow, network required)",
+    "property: Hypothesis property-based tests",
+    "e2e: full end-to-end agent tests",
+    "perf: performance benchmarks",
+    "security: security-focused tests",
+    "golden: end-to-end golden examples replayed from recorded upstream fixtures",
+]
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning:mcp",
+    "ignore::DeprecationWarning:pydantic",
+    "ignore::DeprecationWarning:httpx",
+    "ignore::PendingDeprecationWarning",
+    "ignore::ResourceWarning",
+]
+
+# ── Coverage ─────────────────────────────────────────────────────────────────────────────
+
+[tool.coverage.run]
+source = ["src/alphafold_sovereign"]
+omit = [
+    "tests/*",
+    "_archive/*",
+]
+branch = true
+
+[tool.coverage.report]
+fail_under = 100
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "@(abc\\.)?abstractmethod",
+]
+
+# ── Bandit (security linting) ───────────────────────────────────────────────────────────────
+
+[tool.bandit]
+targets = ["src/alphafold_sovereign"]
+exclude = ["_archive"]
+skips = ["B101"]  # assert in tests
+
+# ── Nox sessions (run via: nox -s <session>) ───────────────────────────────────
+# Sessions: lint, type, test, cov, security, docs, bench
+# See noxfile.py for definitions.

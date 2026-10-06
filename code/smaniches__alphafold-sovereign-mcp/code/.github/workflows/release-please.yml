@@ -1,0 +1,132 @@
+name: Release Please
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write          # release-please creates release commits/tags
+      pull-requests: write      # release-please opens/updates the release PR
+      issues: write             # release-please transitions PR lifecycle labels
+      # Needed so this workflow can dispatch release.yml after release-please
+      # creates the GitHub Release. workflow_dispatch is the documented exception
+      # that lets a GITHUB_TOKEN-driven workflow start a downstream workflow —
+      # without it the release: published / tag-push events authored by
+      # GITHUB_TOKEN are suppressed and PyPI never sees the new version.
+      #   docs: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
+      actions: write
+    steps:
+      # A merged Release Please PR should transition from `autorelease: pending`
+      # to `autorelease: tagged`. If GitHub/API timing leaves it pending, a normal
+      # invocation must not open a second release PR against a nonexistent tag.
+      # Recovery mode lets release-please create only the outstanding release;
+      # it is also available through workflow_dispatch for an explicit retry.
+      - name: Detect merged pending release
+        id: mode
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          pending_json="$(
+            gh pr list \
+              --repo "$GITHUB_REPOSITORY" \
+              --state merged \
+              --label "autorelease: pending" \
+              --json number
+          )"
+          pending_count="$(jq 'length' <<<"$pending_json")"
+          if (( pending_count > 1 )); then
+            echo "::error::multiple merged release PRs remain autorelease: pending"
+            jq -r '.[].number' <<<"$pending_json" >&2
+            exit 1
+          fi
+          if (( pending_count == 1 )); then
+            pending_pr="$(jq -r '.[0].number' <<<"$pending_json")"
+            echo "recovery_only=true" >>"$GITHUB_OUTPUT"
+            echo "pending_pr=$pending_pr" >>"$GITHUB_OUTPUT"
+            echo "Recovering merged pending release PR #$pending_pr; new release-PR creation is disabled."
+          else
+            echo "recovery_only=false" >>"$GITHUB_OUTPUT"
+            echo "pending_pr=" >>"$GITHUB_OUTPUT"
+          fi
+
+      # RELEASE_PLEASE_TOKEN remains optional for one narrow reason: events and
+      # branch updates authored with the default GITHUB_TOKEN do not start normal
+      # follow-up workflows. A fine-grained PAT or GitHub App token lets the
+      # release PR and the uv.lock sync commit receive the ordinary PR CI suite.
+      # It is not an approval mechanism: this workflow contains no merge command.
+      # A maintainer must review the prepared release PR, wait for required checks,
+      # and merge it manually. That merge is the publication approval boundary.
+      - id: release
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+          skip-github-pull-request: ${{ steps.mode.outputs.recovery_only }}
+
+      - name: Require pending-release recovery to create a release
+        if: ${{ steps.mode.outputs.recovery_only == 'true' && steps.release.outputs.release_created != 'true' }}
+        env:
+          PENDING_PR: ${{ steps.mode.outputs.pending_pr }}
+        run: |
+          echo "::error::Release Please did not create the release for pending PR #$PENDING_PR"
+          exit 1
+
+      # release-please stamps the new version onto every surface EXCEPT uv.lock's
+      # own editable self-package entry: uv.lock is machine-generated, not a
+      # release-please extra-file, so its version lags pyproject on the release PR
+      # and trips the Version Coherence guard (scripts/version_coherence.py).
+      # Regenerate uv.lock on the release branch and push only when it changed.
+      # On a version-only bump this rewrites exactly the self-version line.
+      - name: Check out the release PR branch
+        if: ${{ steps.release.outputs.pr }}
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Guard fromJSON: GitHub evaluates a step's `with:`/`env:` expressions
+          # even when the `if:` is false, so a bare fromJSON(steps.release.outputs.pr)
+          # throws "Error reading JToken" on every no-op push where pr == ''. The
+          # `pr && fromJSON(...) || ''` idiom short-circuits safely.
+          ref: ${{ steps.release.outputs.pr && fromJSON(steps.release.outputs.pr).headBranchName || '' }}
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Set up uv
+        if: ${{ steps.release.outputs.pr }}
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+
+      - name: Sync uv.lock self-version on the release PR
+        if: ${{ steps.release.outputs.pr }}
+        env:
+          RELEASE_BRANCH: ${{ steps.release.outputs.pr && fromJSON(steps.release.outputs.pr).headBranchName || '' }}
+        run: |
+          set -euo pipefail
+          uv lock
+          if git diff --quiet -- uv.lock; then
+            echo "uv.lock already coherent with pyproject; nothing to push."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add uv.lock
+            git commit -s -m "chore: sync uv.lock self-version for the release"
+            git push origin "HEAD:$RELEASE_BRANCH"
+          fi
+
+      # A release is created only after a maintainer manually merges the prepared
+      # release PR. At that point, dispatch the existing exact-tag pipeline for
+      # build, SLSA provenance, SBOMs, Sigstore signing, and PyPI publishing.
+      - name: Dispatch build + sign + PyPI publish (release.yml)
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run release.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref "${{ steps.release.outputs.tag_name }}" \
+            --field tag="${{ steps.release.outputs.tag_name }}"

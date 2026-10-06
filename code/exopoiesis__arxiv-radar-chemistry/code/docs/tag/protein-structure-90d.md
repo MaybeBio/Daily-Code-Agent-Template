@@ -1,0 +1,246 @@
+---
+layout: page
+title: "protein-structure (90d)"
+current_tag: protein-structure
+current_window: 90d
+---
+
+<header class="tag-header">
+  <h1>protein-structure — 90d</h1>
+  <span class="paper-count">38 papers</span>
+  <nav class="window-nav"><a href="protein-structure-7d.html">7d</a> <a href="protein-structure-30d.html">30d</a> <strong>90d</strong> <a href="protein-structure-360d.html">360d</a> <a href="protein-structure-all.html">all</a></nav>
+  <a class="back-link" href="../">← all tags</a>
+</header>
+
+<table class="papers">
+<thead><tr><th>Date</th><th>Title</th><th>Authors</th><th>arXiv</th></tr></thead>
+<tbody>
+<tr class="paper">
+<td>2026-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.01358.html">Fold&#x27;EM: Direct atomic structure inference from Cryo-EM particles</a></div><div class="paper-tags"><a href="ab-initio-90d.html">ab-initio</a> · <a href="generative-model-90d.html">generative-model</a> · <a href="structure-prediction-90d.html">structure-prediction</a></div></td>
+<td>Advaith Maddipatla et al.</td>
+<td><a href="http://arxiv.org/abs/2610.01358">2610.01358</a></td>
+</tr>
+<tr class="paper">
+<td>2026-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.01382.html">Gacha Decoding: Eliciting Diverse Generations Through Instruction Following</a></div></td>
+<td>Scott Geng et al.</td>
+<td><a href="http://arxiv.org/abs/2610.01382">2610.01382</a></td>
+</tr>
+<tr class="paper">
+<td>2026-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.01773.html">CODesign: Consistency from Data to Trajectory in All-Atom Protein Binder Co-Design</a></div><div class="paper-tags"><a href="drug-discovery-90d.html">drug-discovery</a></div></td>
+<td>Yuanle Mo et al.</td>
+<td><a href="http://arxiv.org/abs/2610.01773">2610.01773</a></td>
+</tr>
+<tr class="paper">
+<td>2026-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.02128.html">Sample complexity bounds for categorical Markov random fields via Discrete Diffusions</a></div></td>
+<td>Shivam Kumar et al.</td>
+<td><a href="http://arxiv.org/abs/2610.02128">2610.02128</a></td>
+</tr>
+<tr class="paper">
+<td>2026-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.02189.html">Generative modeling of intrinsically disordered protein regions by reinforcing sparse autoencoder features</a></div><div class="paper-tags"><a href="protein-llm-90d.html">protein-llm</a> · <a href="reinforcement-learning-90d.html">reinforcement-learning</a></div></td>
+<td>Jason X. Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2610.02189">2610.02189</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.34153.html">SPINET: Sheaf Protein Inverse Folding Network</a></div><div class="paper-tags"><a href="molecular-dynamics-90d.html">molecular-dynamics</a></div></td>
+<td>Jens Lundsgaard et al.</td>
+<td><a href="http://arxiv.org/abs/2609.34153">2609.34153</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.32309.html">PhiFold: Towards Dynamic Protein Design with Physics-Structured Covariance Modeling</a></div><div class="paper-tags"><a href="generative-model-90d.html">generative-model</a> · <a href="protein-function-90d.html">protein-function</a></div></td>
+<td>Yutian Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2609.32309">2609.32309</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.31077.html">Quantum Approximate Optimisation Algorithm for Protein Sidechain Packing</a></div><div class="paper-tags"><a href="drug-discovery-90d.html">drug-discovery</a></div></td>
+<td>Sebastian O. M. Stewart et al.</td>
+<td><a href="http://arxiv.org/abs/2609.31077">2609.31077</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.28113.html">Position-dependent friction in protein folding from a GLE derived with a non-stationary localized projection distribution</a></div></td>
+<td>Salma Salem et al.</td>
+<td><a href="http://arxiv.org/abs/2609.28113">2609.28113</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.24842.html">Towards Accurate Prediction of Mutation-Induced Changes in Protein Structure</a></div><div class="paper-tags"><a href="structure-prediction-90d.html">structure-prediction</a></div></td>
+<td>Zhuoyi Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2609.24842">2609.24842</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.19770.html">TorchCraft: Unified binder design by inverting an all-atom structure predictor</a></div></td>
+<td> TorchCraft Team et al.</td>
+<td><a href="http://arxiv.org/abs/2609.19770">2609.19770</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.05818.html">Agentic BAIM-LLM Evaluation (ABLE): Benchmarking LLM Use of Protein Design Tools</a></div></td>
+<td>Bryce Cai et al.</td>
+<td><a href="http://arxiv.org/abs/2609.05818">2609.05818</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.03377.html">SimpleDesign: A Joint Model for Protein Sequence and Structure Codesign</a></div><div class="paper-tags"><a href="drug-discovery-90d.html">drug-discovery</a> · <a href="generative-model-90d.html">generative-model</a></div></td>
+<td>Jiarui Lu et al.</td>
+<td><a href="http://arxiv.org/abs/2609.03377">2609.03377</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.04465.html">The physical foundation beneath protein generative modeling</a></div><div class="paper-tags"><a href="drug-discovery-90d.html">drug-discovery</a> · <a href="generative-model-90d.html">generative-model</a></div></td>
+<td>Tianyu Lu et al.</td>
+<td><a href="http://arxiv.org/abs/2609.04465">2609.04465</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.02113.html">Logarithmic-scale variational quantum eigensolver for off-lattice protein structure prediction in continuous torsional angle space</a></div><div class="paper-tags"><a href="structure-prediction-90d.html">structure-prediction</a></div></td>
+<td>Fabio Cumbo et al.</td>
+<td><a href="http://arxiv.org/abs/2609.02113">2609.02113</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.01353.html">SymFold: Synergizing Evolutionary and Structural Priors for Accurate Protein Inverse Folding</a></div><div class="paper-tags"><a href="drug-discovery-90d.html">drug-discovery</a> · <a href="protein-llm-90d.html">protein-llm</a></div></td>
+<td>Handong Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2609.01353">2609.01353</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.26585.html">GRAS: Guided Reduced-Variance Proposals and Adaptive Selection for Training-Free Reward Alignment in Discrete Diffusion</a></div><div class="paper-tags"><a href="diffusion-model-90d.html">diffusion-model</a></div></td>
+<td>Kwanyoung Kim</td>
+<td><a href="http://arxiv.org/abs/2608.26585">2608.26585</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.26747.html">AgentFold: Closed-Loop Agentic Search for Protein Folding Model Design</a></div></td>
+<td>Mingquan Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2608.26747">2608.26747</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.27408.html">Reservoir: A Large-Scale Simulated Dataset for Training and Evaluating Epidemiological Models</a></div><div class="paper-tags"><a href="structure-prediction-90d.html">structure-prediction</a></div></td>
+<td>Carson Dudley et al.</td>
+<td><a href="http://arxiv.org/abs/2608.27408">2608.27408</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.21700.html">Scalable quantum simulation of continuous-time generative models via tensor networks</a></div><div class="paper-tags"><a href="diffusion-model-90d.html">diffusion-model</a> · <a href="enhanced-sampling-90d.html">enhanced-sampling</a> · <a href="monte-carlo-90d.html">monte-carlo</a></div></td>
+<td>Nathan X. Kodama et al.</td>
+<td><a href="http://arxiv.org/abs/2608.21700">2608.21700</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.16094.html">Protein Structure Prediction: From Evolutionary Constraints to Generative Modeling</a></div><div class="paper-tags"><a href="structure-prediction-90d.html">structure-prediction</a></div></td>
+<td>Wengan He et al.</td>
+<td><a href="http://arxiv.org/abs/2608.16094">2608.16094</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.12192.html">How to Spend Your Oracle Budget: Practical Guidance for Protein Structure Prediction Models</a></div><div class="paper-tags"><a href="generative-model-90d.html">generative-model</a> · <a href="structure-prediction-90d.html">structure-prediction</a></div></td>
+<td>Aleksandra Kalisz et al.</td>
+<td><a href="http://arxiv.org/abs/2608.12192">2608.12192</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.05491.html">A Quantum Circuit Framework for Protein Ensemble-Level Energetics</a></div><div class="paper-tags"><a href="free-energy-90d.html">free-energy</a> · <a href="molecular-dynamics-90d.html">molecular-dynamics</a></div></td>
+<td>Pratik Patil et al.</td>
+<td><a href="http://arxiv.org/abs/2608.05491">2608.05491</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.02536.html">Committors and Reaction Rates from Trial Functions That Violate the Boundary Conditions</a></div><div class="paper-tags"><a href="string-method-90d.html">string-method</a> · <a href="umbrella-sampling-90d.html">umbrella-sampling</a></div></td>
+<td>Magnus Petersen et al.</td>
+<td><a href="http://arxiv.org/abs/2608.02536">2608.02536</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.02866.html">Expanding Protein Structure Prediction into Conformational State Space</a></div><div class="paper-tags"><a href="structure-prediction-90d.html">structure-prediction</a></div></td>
+<td>Devlina Chakravarty et al.</td>
+<td><a href="http://arxiv.org/abs/2608.02866">2608.02866</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.23975.html">Plato-Bio: verification-first biological novelty screening with temporal rediscovery and structural benchmarks</a></div></td>
+<td>Stefan G. Creadore</td>
+<td><a href="http://arxiv.org/abs/2607.23975">2607.23975</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.24109.html">Earthquake Aftershock Forecasting using Conditional Generative Models</a></div><div class="paper-tags"><a href="diffusion-model-90d.html">diffusion-model</a> · <a href="structure-prediction-90d.html">structure-prediction</a></div></td>
+<td>Weiqiang Zhu</td>
+<td><a href="http://arxiv.org/abs/2607.24109">2607.24109</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.23518.html">Chamaileon: Cross-Context Binder Design with Contextualized Modeling and Mixed Sampling</a></div><div class="paper-tags"><a href="generative-model-90d.html">generative-model</a></div></td>
+<td>Hengyuan Cao et al.</td>
+<td><a href="http://arxiv.org/abs/2607.23518">2607.23518</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.22777.html">LC-SEPLM: long-range contact-supervised adaptation for sequence-only protein representation learning</a></div><div class="paper-tags"><a href="protein-llm-90d.html">protein-llm</a></div></td>
+<td>Chen Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2607.22777">2607.22777</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.20744.html">Analyzing \b{eta}-Lactamase Evolution from the Principle of Least Action Perspective</a></div></td>
+<td>Pablo Garay et al.</td>
+<td><a href="http://arxiv.org/abs/2607.20744">2607.20744</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.18835.html">ABOPD: Antibody CDR Design via On-Policy Distillation</a></div><div class="paper-tags"><a href="generative-model-90d.html">generative-model</a></div></td>
+<td>Zhuo Yang et al.</td>
+<td><a href="http://arxiv.org/abs/2607.18835">2607.18835</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.19237.html">DBMol: Design of High-Affinity, Target-Specific Small Molecules through Structure Prediction Models</a></div><div class="paper-tags"><a href="drug-discovery-90d.html">drug-discovery</a> · <a href="molecular-generation-90d.html">molecular-generation</a> · <a href="protein-ligand-90d.html">protein-ligand</a> · <a href="structure-prediction-90d.html">structure-prediction</a></div></td>
+<td>Yiming Qin et al.</td>
+<td><a href="http://arxiv.org/abs/2607.19237">2607.19237</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.16038.html">SciForge: An AI-Native, Multimodal Workbench for Scientific Discovery</a></div><div class="paper-tags"><a href="drug-discovery-90d.html">drug-discovery</a> · <a href="molecular-generation-90d.html">molecular-generation</a></div></td>
+<td> SciForge Team et al.</td>
+<td><a href="http://arxiv.org/abs/2607.16038">2607.16038</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.16087.html">Neural spectroscopy of AlphaFold2 reveals encoded protein conformational landscapes</a></div></td>
+<td>Kaustav Mehta</td>
+<td><a href="http://arxiv.org/abs/2607.16087">2607.16087</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.12474.html">From Observation to Insight: Mechanistic World Models and the Quest for Autonomous Discovery</a></div></td>
+<td>Ingmar Posner et al.</td>
+<td><a href="http://arxiv.org/abs/2607.12474">2607.12474</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.13503.html">Exploring the Alignment of Generation and Understanding in Protein Structure Modeling</a></div><div class="paper-tags"><a href="diffusion-model-90d.html">diffusion-model</a> · <a href="generative-model-90d.html">generative-model</a></div></td>
+<td>Junde Xu et al.</td>
+<td><a href="http://arxiv.org/abs/2607.13503">2607.13503</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.09039.html">Variable-Length Generative Protein Design via Generalized Poisson Flow</a></div><div class="paper-tags"><a href="generative-model-90d.html">generative-model</a></div></td>
+<td>Chaoran Cheng et al.</td>
+<td><a href="http://arxiv.org/abs/2607.09039">2607.09039</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.09838.html">G2P Explorer: A Native iOS Framework for Residue-Level Genomics to Proteomics Visualization and Structural Variant Interpretation</a></div></td>
+<td>Arifa Akter Eva et al.</td>
+<td><a href="http://arxiv.org/abs/2607.09838">2607.09838</a></td>
+</tr>
+</tbody></table>

@@ -1,0 +1,4098 @@
+---
+layout: page
+title: "quantum-chemistry (all)"
+current_tag: quantum-chemistry
+current_window: all
+---
+
+<header class="tag-header">
+  <h1>quantum-chemistry — all</h1>
+  <span class="paper-count">680 papers</span>
+  <nav class="window-nav"><a href="quantum-chemistry-7d.html">7d</a> <a href="quantum-chemistry-30d.html">30d</a> <a href="quantum-chemistry-90d.html">90d</a> <a href="quantum-chemistry-360d.html">360d</a> <strong>all</strong></nav>
+  <a class="back-link" href="../">← all tags</a>
+</header>
+
+<table class="papers">
+<thead><tr><th>Date</th><th>Title</th><th>Authors</th><th>arXiv</th></tr></thead>
+<tbody>
+<tr class="paper">
+<td>2026-10-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.03528.html">Breaking the chain: geometry-native state preparation with ASPIRE</a></div></td>
+<td>Fredrik Hasselgren et al.</td>
+<td><a href="http://arxiv.org/abs/2610.03528">2610.03528</a></td>
+</tr>
+<tr class="paper">
+<td>2026-10-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.03624.html">Symmetry-preserving quantum compilation</a></div></td>
+<td>Maryam Mudassar et al.</td>
+<td><a href="http://arxiv.org/abs/2610.03624">2610.03624</a></td>
+</tr>
+<tr class="paper">
+<td>2026-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.01549.html">Molecular Dynamics with Nuclear Effects on Quantum Computers</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Lukas Haßfurth et al.</td>
+<td><a href="http://arxiv.org/abs/2610.01549">2610.01549</a></td>
+</tr>
+<tr class="paper">
+<td>2026-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.01954.html">Hardware-Efficient Ground-State Preparation using Variational Imaginary-Time Majorana Evolution</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Federico Santona et al.</td>
+<td><a href="http://arxiv.org/abs/2610.01954">2610.01954</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.37207.html">Near-Optimal Quantum Algorithm and Complexity Analysis for Riccati Problems</a></div></td>
+<td>Jingyao Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2609.37207">2609.37207</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.36266.html">Quantifying Teleportation Overhead in Distributed Unitary Coupled-Cluster Ansätze</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Grier M. Jones et al.</td>
+<td><a href="http://arxiv.org/abs/2609.36266">2609.36266</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.33847.html">Performance vs Portability in Heterogeneous HPC Environments: Why Pre-execution Benchmarking is Required</a></div></td>
+<td>Mindaugas Macernis</td>
+<td><a href="http://arxiv.org/abs/2609.33847">2609.33847</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.31471.html">Communication: Becke Weights as a Partitioning Scheme for Phase Space Electronic Structure Theory</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Ben Curlee et al.</td>
+<td><a href="http://arxiv.org/abs/2609.31471">2609.31471</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.29098.html">Evaluation-efficient quantum architecture search with ZX-calculus-based topological reuse</a></div></td>
+<td>Chenlu Li et al.</td>
+<td><a href="http://arxiv.org/abs/2609.29098">2609.29098</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.29337.html">Nonorthogonal variational quantum simulation for quantum chemistry</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Zongkang Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2609.29337">2609.29337</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.27750.html">Uncertainty prediction in composite quantum chemistry approaches</a></div></td>
+<td>Jakub Lang et al.</td>
+<td><a href="http://arxiv.org/abs/2609.27750">2609.27750</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.26859.html">Quantum Chemistry in a Novel Hybrid Dipolar Atom-Ion Mixture</a></div></td>
+<td>Claudia Galantini et al.</td>
+<td><a href="http://arxiv.org/abs/2609.26859">2609.26859</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.23621.html">On the statistical theory of strong electrolytes and high-temperature plasmas: New applications of the work by Yukhnovskii and Kelbg II</a></div><div class="paper-tags"><a href="battery-materials-all.html">battery-materials</a> · <a href="phase-transition-all.html">phase-transition</a></div></td>
+<td>W. Ebeling et al.</td>
+<td><a href="http://arxiv.org/abs/2609.23621">2609.23621</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.22729.html">Can Chemically Inspired Parameter Initialization Mitigate Barren Plateaus in Variational Quantum Eigensolvers?</a></div></td>
+<td>Zhangyu Yang et al.</td>
+<td><a href="http://arxiv.org/abs/2609.22729">2609.22729</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.19535.html">Symmetry-driven correlation patterns in one-dimensional periodic fermionic systems: closed-form expressions and exact selection rules for correlation functions, entanglement entropies and mutual information</a></div></td>
+<td>Celestino Angeli</td>
+<td><a href="http://arxiv.org/abs/2609.19535">2609.19535</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.19901.html">Hydrogen isotope mixing entropy in ammonia clusters</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a></div></td>
+<td>Klavs Hansen et al.</td>
+<td><a href="http://arxiv.org/abs/2609.19901">2609.19901</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.20464.html">Neutral atom quantum computing for materials science and quantum chemistry</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>J. D. Pritchard</td>
+<td><a href="http://arxiv.org/abs/2609.20464">2609.20464</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.21085.html">Triply-Scalable Equivariant Gaussian Process Modeling</a></div><div class="paper-tags"><a href="property-prediction-all.html">property-prediction</a></div></td>
+<td>Tim Steinert et al.</td>
+<td><a href="http://arxiv.org/abs/2609.21085">2609.21085</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.22342.html">Gradient-estimator design overcomes trainability barriers in neural-network-based variational optimization</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Yi-Ran Xue et al.</td>
+<td><a href="http://arxiv.org/abs/2609.22342">2609.22342</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.13018.html">First application of the transcorrelated method to noncovalent interactions: The A24 dataset</a></div></td>
+<td>Johannes Hauskrecht et al.</td>
+<td><a href="http://arxiv.org/abs/2609.13018">2609.13018</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.10006.html">Signature of Short-Range Order in Static Response of the Three-Dimensional Electron Gas</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Muhammed H. Güneş et al.</td>
+<td><a href="http://arxiv.org/abs/2609.10006">2609.10006</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.08908.html">A Platform-aware Compilation Framework for Fault-tolerant Quantum Computation</a></div></td>
+<td>Srushti Patil et al.</td>
+<td><a href="http://arxiv.org/abs/2609.08908">2609.08908</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.09304.html">Multivariate quantum state preparation with optimized tensor networks</a></div></td>
+<td>Matthew L. Sims-Goh et al.</td>
+<td><a href="http://arxiv.org/abs/2609.09304">2609.09304</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.07452.html">Universal reduced order modelling for the nuclear finite amplitude method</a></div></td>
+<td>Emma Vancayseele et al.</td>
+<td><a href="http://arxiv.org/abs/2609.07452">2609.07452</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.07591.html">Topology Obstructs Pure Foundation Neural Quantum States</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Timothy Heightman et al.</td>
+<td><a href="http://arxiv.org/abs/2609.07591">2609.07591</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.05838.html">High-Resolution Dynamical Eigenspectroscopy via Variational Trotter Compression on a Superconducting Qubit Processor</a></div></td>
+<td>Liyang Sui et al.</td>
+<td><a href="http://arxiv.org/abs/2609.05838">2609.05838</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.03168.html">Stochastic Tensor Contraction for Efficient MP2 Exchange</a></div></td>
+<td>Jiace Sun et al.</td>
+<td><a href="http://arxiv.org/abs/2609.03168">2609.03168</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.01871.html">Latent unified smooth Hamiltonians for excited state chemistry</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>David Juergens et al.</td>
+<td><a href="http://arxiv.org/abs/2609.01871">2609.01871</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.27177.html">ElemCo.jl: A Julia package for electron-correlation methods</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Daniel Kats et al.</td>
+<td><a href="http://arxiv.org/abs/2608.27177">2608.27177</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.25760.html">From estimate to proof: certified ground-state energy bounds for singular Schrödinger operators</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a></div></td>
+<td>Xuefeng Liu</td>
+<td><a href="http://arxiv.org/abs/2608.25760">2608.25760</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.24655.html">Efficient, precise DFT calculations of NMR shieldings: Revisiting the finite field approach</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Xiao Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2608.24655">2608.24655</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.24979.html">FrontierChallenge: Evaluating Scientific Workflow Completion</a></div><div class="paper-tags"><a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Liangcai Su et al.</td>
+<td><a href="http://arxiv.org/abs/2608.24979">2608.24979</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.02119.html">Better accuracy with fewer qubits: Single-particle basis set optimization for quantum chemistry on quantum computers</a></div></td>
+<td>Subimal Deb et al.</td>
+<td><a href="http://arxiv.org/abs/2608.02119">2608.02119</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.22892.html">Deterministic Preparation of Arbitrary Spin Eigenfunctions</a></div></td>
+<td>Wenxuan Tao et al.</td>
+<td><a href="http://arxiv.org/abs/2608.22892">2608.22892</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.22642.html">Mol-JEPA: A multimodal Joint Embedding Predictive Architecture for Molecules</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a></div></td>
+<td>Florian Rottach et al.</td>
+<td><a href="http://arxiv.org/abs/2608.22642">2608.22642</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.19834.html">Nuclear-Electronic Orbital Subsystem Density Functional Theory</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Denis G. Artiukhin</td>
+<td><a href="http://arxiv.org/abs/2608.19834">2608.19834</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.18982.html">Monroe: A Molecular Foundation Model for In-Context Probabilistic Inference</a></div><div class="paper-tags"><a href="molecular-representation-all.html">molecular-representation</a></div></td>
+<td>Blazej Banaszewski et al.</td>
+<td><a href="http://arxiv.org/abs/2608.18982">2608.18982</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.10520.html">Higher-Order Topological States with Cleavage-Dependent Dirac Mass</a></div></td>
+<td>Hongyu Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2608.10520">2608.10520</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.15577.html">Qutrit-Native Spatial-Orbital Encoding for Resource-Efficient Quantum Chemistry Simulation</a></div></td>
+<td>Sumin Lim</td>
+<td><a href="http://arxiv.org/abs/2608.15577">2608.15577</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.12830.html">Improved Measurement Cost Scaling in the Nonorthogonal Quantum Eigensolver</a></div></td>
+<td>Mingyu Kang et al.</td>
+<td><a href="http://arxiv.org/abs/2608.12830">2608.12830</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.12297.html">Eigenstate Preparation Through Near-Optimal Eigenprobability Filtering</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a></div></td>
+<td>Po-Wei Huang et al.</td>
+<td><a href="http://arxiv.org/abs/2608.12297">2608.12297</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.09570.html">Eigenvalue asymptotics for the one-particle density matrix and one-particle kinetic energy density operator</a></div></td>
+<td>Søren Fournais et al.</td>
+<td><a href="http://arxiv.org/abs/2608.09570">2608.09570</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.08454.html">Finite-Temperature Spin-Adapted ROKS and TDDFT</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Xiaoyu Zhang</td>
+<td><a href="http://arxiv.org/abs/2608.08454">2608.08454</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.11261.html">Temperature-Driven Sequential Modeling for the Prediction of Annual Power Conversion Efficiency Profiles of Organic Photovoltaic Materials: Douala Case Study</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a> · <a href="gnn-all.html">gnn</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Steve Cabrel Teguia Kouam et al.</td>
+<td><a href="http://arxiv.org/abs/2608.11261">2608.11261</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.07354.html">Beyond the Four-Decade DIIS Default:Auxiliary-Curvature Acceleration of Self-Consistent-Field Calculations</a></div></td>
+<td>Peng Bao et al.</td>
+<td><a href="http://arxiv.org/abs/2608.07354">2608.07354</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.05314.html">Machine learning for sample-based quantum diagonalization: generative configuration recovery and the classical-simulability frontier</a></div></td>
+<td>Nicolás Bonilla Vargas</td>
+<td><a href="http://arxiv.org/abs/2608.05314">2608.05314</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.05463.html">Structured Tensor Approximation from Lateral Slice Sampling via Basis and Manifold Priors</a></div></td>
+<td>Jeongmin Chae et al.</td>
+<td><a href="http://arxiv.org/abs/2608.05463">2608.05463</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.06415.html">Ground-State Energy Estimation of HeH$^{+}$, ArH$^{+}$, and H$_2$O via Sample-Based Quantum Diagonalization</a></div></td>
+<td>Jubin Park et al.</td>
+<td><a href="http://arxiv.org/abs/2608.06415">2608.06415</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.19318.html">SoK: Adversarial Robustness of the Variational Quantum Eigensolver via Red-Teaming</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Ahmed Azaz Humdoon et al.</td>
+<td><a href="http://arxiv.org/abs/2607.19318">2607.19318</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.18126.html">CutBackdoor: A Circuit Cut Triggered Backdoor Attack on Variational Quantum Algorithms</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Ahatesham Bhuiyan et al.</td>
+<td><a href="http://arxiv.org/abs/2607.18126">2607.18126</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.18427.html">Aromatic molecular emitters in a hexagonal boron nitride stack</a></div><div class="paper-tags"><a href="vdw-correction-all.html">vdw-correction</a></div></td>
+<td>Tianyu Fang et al.</td>
+<td><a href="http://arxiv.org/abs/2607.18427">2607.18427</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.13737.html">Implementations of Quantum and Classical Topology-Aligned Architectures for Molecular Property Prediction</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>James T. Pegg et al.</td>
+<td><a href="http://arxiv.org/abs/2607.13737">2607.13737</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.14025.html">The WEST code for large-scale excited-state materials simulations</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a> · <a href="materials-discovery-all.html">materials-discovery</a> · <a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Victor Wen-zhe Yu et al.</td>
+<td><a href="http://arxiv.org/abs/2607.14025">2607.14025</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.14083.html">Cluster-configurational study of G-center in Silicon</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Narayan Pokhrel et al.</td>
+<td><a href="http://arxiv.org/abs/2607.14083">2607.14083</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.11711.html">Correlation-consistent Gaussian basis sets for copper solids from material-constrained atomic optimization</a></div></td>
+<td>Jincheng Yu et al.</td>
+<td><a href="http://arxiv.org/abs/2607.11711">2607.11711</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.11847.html">Optimal tomography of bosonic and fermionic Gaussian states</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Senrui Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2607.11847">2607.11847</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.09976.html">GPU-Accelerated Host-Aware Dead-Measurement Detection in Hybrid Quantum--Classical Programs: Full Version</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Yanbin Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2607.09976">2607.09976</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.08178.html">State-Averaged Density Matrix Embedding Theory for Local Excitations</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Zhe-Bin Guan et al.</td>
+<td><a href="http://arxiv.org/abs/2607.08178">2607.08178</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.08220.html">Quantum linear solvers for quantum chemistry: prospects of exponential quantum advantage</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a></div></td>
+<td>Peniel Bertrand Tsemo et al.</td>
+<td><a href="http://arxiv.org/abs/2607.08220">2607.08220</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.07110.html">Probing Extended Recognition Sites in Zn-Metalloproteins via Quantum Chemistry and Polarizable Molecular Dynamics</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Nohad Gresh et al.</td>
+<td><a href="http://arxiv.org/abs/2607.07110">2607.07110</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.07546.html">An analytical solution of a quantum system with non-Markovian behavior: The Bixon-Jortner system in time domain</a></div></td>
+<td>Osman Cevheroğlu et al.</td>
+<td><a href="http://arxiv.org/abs/2607.07546">2607.07546</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.09769.html">Challenges in the simulation of enzymatic transition states with emerging multireference character</a></div></td>
+<td>Valentin Kasper et al.</td>
+<td><a href="http://arxiv.org/abs/2607.09769">2607.09769</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.03820.html">Matter-wave Induced Transparenc</a></div></td>
+<td>Tongkang wang et al.</td>
+<td><a href="http://arxiv.org/abs/2607.03820">2607.03820</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.01560.html">Symmetry conservation with Trotterization and Quantum Phase Estimation</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Edith Leal-Sánchez et al.</td>
+<td><a href="http://arxiv.org/abs/2607.01560">2607.01560</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.02242.html">Computable measures of fermionic non-Gaussianity from the covariance matrix</a></div></td>
+<td>Poetri Sonya Tarabunga et al.</td>
+<td><a href="http://arxiv.org/abs/2607.02242">2607.02242</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.00575.html">Reducing quantum resources for ADAPT-VQE via plateau-operator elimination and correlated mean-field downfolding</a></div></td>
+<td>Phuoc Minh Vo et al.</td>
+<td><a href="http://arxiv.org/abs/2607.00575">2607.00575</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.20176.html">Quantum-Accelerated Self-Consistent Field: A Hybrid Algorithm</a></div></td>
+<td>Alexis Ralli et al.</td>
+<td><a href="http://arxiv.org/abs/2606.20176">2606.20176</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.20184.html">Operator Learning for efficient Quantum Computation</a></div></td>
+<td>Paul Over et al.</td>
+<td><a href="http://arxiv.org/abs/2606.20184">2606.20184</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.20805.html">Distribution Complexity of Electronic Structure Simulations on Quantum Supercomputers</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Jason Necaise et al.</td>
+<td><a href="http://arxiv.org/abs/2606.20805">2606.20805</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.20729.html">LLM-Guided Test-Time Discovery of Quantum-Chemical Approximation Algorithms</a></div><div class="paper-tags"><a href="chemical-space-all.html">chemical-space</a> · <a href="materials-discovery-all.html">materials-discovery</a> · <a href="mlip-all.html">mlip</a></div></td>
+<td>Masaya Hagai et al.</td>
+<td><a href="http://arxiv.org/abs/2606.20729">2606.20729</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.17761.html">Constrained Optimization Algorithms for Orbital Optimization in Quantum Chemistry</a></div></td>
+<td>Junzhe Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2606.17761">2606.17761</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.17357.html">Pulse-optimised circuit elements for scalable and noise-resilient quantum chemistry</a></div></td>
+<td>Henrik Gothen et al.</td>
+<td><a href="http://arxiv.org/abs/2606.17357">2606.17357</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.15801.html">MAPS: A Novel Multi-Axial Projective Sphere for Geometrically Visualizing Higher d-Valued Quantum State-Space of Qudits</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Ali Al-Bayaty</td>
+<td><a href="http://arxiv.org/abs/2606.15801">2606.15801</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.14207.html">Fast and accurate simulation of Raman spectra of gold-organic systems</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Auguste Tetenoire et al.</td>
+<td><a href="http://arxiv.org/abs/2606.14207">2606.14207</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.13118.html">Hamiltonian-Aware ADAPT Variational Quantum Eigensolver for Molecular Ground-State Simulation</a></div></td>
+<td>Runhong He et al.</td>
+<td><a href="http://arxiv.org/abs/2606.13118">2606.13118</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.13380.html">An LLM System for Autonomous Variational Quantum Circuit Design</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Kenya Sakka et al.</td>
+<td><a href="http://arxiv.org/abs/2606.13380">2606.13380</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.13387.html">Representation-Induced Symmetry Trapping in Adaptive Variational Quantum Simulations of Multi-Reference Topologies</a></div></td>
+<td>Hermawan Kresno Dipojono</td>
+<td><a href="http://arxiv.org/abs/2606.13387">2606.13387</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.11574.html">Range-Aware Bayesian Optimization for Discovering Diverse Designs within Target Property Windows</a></div><div class="paper-tags"><a href="bayesian-optimization-all.html">bayesian-optimization</a></div></td>
+<td>Shengli Jiang et al.</td>
+<td><a href="http://arxiv.org/abs/2606.11574">2606.11574</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.11809.html">Symplectic and Thermodynamically Consistent Molecular Dynamics in the Frequency Domain</a></div><div class="paper-tags"><a href="mlip-all.html">mlip</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Kyunghoon Han et al.</td>
+<td><a href="http://arxiv.org/abs/2606.11809">2606.11809</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.12026.html">Generalizing Perron--Frobenius theory and eigenvector-based centralities to networks with complex edge weights</a></div></td>
+<td>Yu Tian et al.</td>
+<td><a href="http://arxiv.org/abs/2606.12026">2606.12026</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.12404.html">Collective neutrino oscillations: Many-body non-forward effects and non-classicality</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Julien Froustey et al.</td>
+<td><a href="http://arxiv.org/abs/2606.12404">2606.12404</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.10075.html">An algorithm for dynamical quantum optimal transport with applications to quantum chemistry</a></div></td>
+<td>Genevieve Dusson et al.</td>
+<td><a href="http://arxiv.org/abs/2606.10075">2606.10075</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.05865.html">Symmetry-adapted qubit encoding with complete active space and Bravyi--Kitaev mapping for quantum chemistry on a quantum computer</a></div></td>
+<td>Dario Picozzi et al.</td>
+<td><a href="http://arxiv.org/abs/2606.05865">2606.05865</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.06015.html">Quantum computing for accurate large-scale electronic-structure calculations: DFT-embedded, post-processed quantum-selected configuration interaction</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Tuan Minh Do et al.</td>
+<td><a href="http://arxiv.org/abs/2606.06015">2606.06015</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.04955.html">Expressibility, Noise, and Error Mitigation in VQE Ansatz Selection</a></div></td>
+<td>Peter Annis et al.</td>
+<td><a href="http://arxiv.org/abs/2606.04955">2606.04955</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.05148.html">Variational low-energy subspaces for chemically accurate excited states</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Clemens Giuliani et al.</td>
+<td><a href="http://arxiv.org/abs/2606.05148">2606.05148</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.05297.html">Continuous-variable ADAPT-VQE for bosonic lattice models</a></div></td>
+<td>Dimitrios Athanasakos et al.</td>
+<td><a href="http://arxiv.org/abs/2606.05297">2606.05297</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.04186.html">Quantum Information Harvesting with the Parallel Quantum Flow Algorithm</a></div></td>
+<td>Nicholas P. Bauman et al.</td>
+<td><a href="http://arxiv.org/abs/2606.04186">2606.04186</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.01611.html">Peptide Structure Prediction Using Counter-Diabatic Quantum Approximate Optimization Algorithm (CD-QAOA)</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a> · <a href="replica-exchange-all.html">replica-exchange</a> · <a href="structure-prediction-all.html">structure-prediction</a></div></td>
+<td>Sung Won Yun et al.</td>
+<td><a href="http://arxiv.org/abs/2606.01611">2606.01611</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.02662.html">Improvise, Adapt, Overcome: An On-The-Fly Multifidelity Algorithm for Efficient Machine Learning</a></div></td>
+<td>Vivin Vinod et al.</td>
+<td><a href="http://arxiv.org/abs/2606.02662">2606.02662</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.29622.html">MōLe-Λ: Learning the Coupled-Cluster Response State for Energies, Gradients, and Properties</a></div></td>
+<td>Andreas Burger et al.</td>
+<td><a href="http://arxiv.org/abs/2605.29622">2605.29622</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.30143.html">End-to-End Molecular Dynamics with a Langevin Thermostat on Quantum Circuits</a></div><div class="paper-tags"><a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Masari Watanabe et al.</td>
+<td><a href="http://arxiv.org/abs/2605.30143">2605.30143</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.28049.html">Automated Unitary Coupled Cluster Circuit Design via Differentiable Quantum Architecture Search</a></div></td>
+<td>Jianpeng Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2605.28049">2605.28049</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.28637.html">Excited States from Restricted Open Shell Plane-Wave DFT</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Michael J. Sahre et al.</td>
+<td><a href="http://arxiv.org/abs/2605.28637">2605.28637</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.28690.html">Latent-Conditioned Parameterized Quantum Circuits as Universal Approximators for Distributions over Quantum States</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Quoc Hoan Tran et al.</td>
+<td><a href="http://arxiv.org/abs/2605.28690">2605.28690</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.28936.html">Hardware-Tailored Resource Estimation for Magic-State Distillation on Silicon Spin Qubits</a></div></td>
+<td>Songqinghao Yang et al.</td>
+<td><a href="http://arxiv.org/abs/2605.28936">2605.28936</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.27285.html">Basis-Adaptive Sparse-State Simulation of Quantum Circuits</a></div></td>
+<td>Ch Nihar Kartikeya et al.</td>
+<td><a href="http://arxiv.org/abs/2605.27285">2605.27285</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.25974.html">PauLIB: A High-Performance Library for Processing Pauli Strings</a></div></td>
+<td>Florian Krötz</td>
+<td><a href="http://arxiv.org/abs/2605.25974">2605.25974</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.22394.html">Dynamic electron correlation energy for multireference wavefunction methods from one- and two-electron reduced density matrices</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a></div></td>
+<td>Michał Hapka et al.</td>
+<td><a href="http://arxiv.org/abs/2605.22394">2605.22394</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.15927.html">Data-driven complete basis set limit estimates from a minimal auxiliary basis</a></div><div class="paper-tags"><a href="molecular-representation-all.html">molecular-representation</a></div></td>
+<td>Nicolas Grimblat et al.</td>
+<td><a href="http://arxiv.org/abs/2605.15927">2605.15927</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.16189.html">Quantum Solvers for Nonlinear Matrix Equations in Quantum Chemistry</a></div></td>
+<td>Pablo Rodenas-Ruiz et al.</td>
+<td><a href="http://arxiv.org/abs/2605.16189">2605.16189</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.18877.html">Logical Resource Estimation for Quantum State Preparation with Compilation</a></div></td>
+<td>Diyi Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2605.18877">2605.18877</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.14287.html">A quantum chemistry dataset containing ground-state and conical-intersection structures of 260k molecules</a></div></td>
+<td>Jiahui Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2605.14287">2605.14287</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.14608.html">On the effective rank of canonical polyadic decomposition of electron repulsion integrals</a></div></td>
+<td>Aleksandra Oszmian et al.</td>
+<td><a href="http://arxiv.org/abs/2605.14608">2605.14608</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.15237.html">A3D: Agentic AI flow for autonomous Accelerator Design</a></div><div class="paper-tags"><a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Abinand Nallathambi et al.</td>
+<td><a href="http://arxiv.org/abs/2605.15237">2605.15237</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.15277.html">Beyond Unitary Quantum Simulation: Open-System Approaches to Quantum Chemistry toward Quantum Advantage</a></div></td>
+<td>Michael Marthaler et al.</td>
+<td><a href="http://arxiv.org/abs/2605.15277">2605.15277</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.14154.html">TSAgent: An Agentic Workflow for Autonomous Transition State Search</a></div><div class="paper-tags"><a href="catalysis-all.html">catalysis</a> · <a href="dft-all.html">dft</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Varun Madhavan et al.</td>
+<td><a href="http://arxiv.org/abs/2605.14154">2605.14154</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.12614.html">A Quantum Multi-Programming Framework to Maximize Quantum Resources for the LUCJ Ansatz</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Milana Bazayeva et al.</td>
+<td><a href="http://arxiv.org/abs/2605.12614">2605.12614</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.10265.html">Expander attention as exchange-correlation</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Karim K. Alaa El-Din et al.</td>
+<td><a href="http://arxiv.org/abs/2605.10265">2605.10265</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.10312.html">FusionRCG: Orchestrating Recursive Computation Graphs across GPU Memory Hierarchies</a></div></td>
+<td>Yihong Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2605.10312">2605.10312</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.10363.html">Accelerating Locality-Driven Integration in Quantum Chemistry with Block-Structured Matrix Multiplication</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Xinran Wei et al.</td>
+<td><a href="http://arxiv.org/abs/2605.10363">2605.10363</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.06122.html">Variationally Compressing Quantum Circuits to Approximate Nonadiabatic Molecular Quantum Dynamics</a></div></td>
+<td>Joshua M. Courtney et al.</td>
+<td><a href="http://arxiv.org/abs/2605.06122">2605.06122</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.04483.html">CDFCI: High-Performance Parallel Software for Many-Body Large-Scale Eigenvalue Problems</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Yuejia Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2605.04483">2605.04483</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.04604.html">Generative Quantum-inspired Kolmogorov-Arnold Eigensolver</a></div><div class="paper-tags"><a href="generative-model-all.html">generative-model</a></div></td>
+<td>Yu-Cheng Lin et al.</td>
+<td><a href="http://arxiv.org/abs/2605.04604">2605.04604</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.03964.html">Pretrained Model Representations as Acquisition Signals for Active Learning of MLIPs</a></div><div class="paper-tags"><a href="active-learning-all.html">active-learning</a> · <a href="mlip-all.html">mlip</a></div></td>
+<td>Eszter Varga-Umbrich et al.</td>
+<td><a href="http://arxiv.org/abs/2605.03964">2605.03964</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.02367.html">Quantum State Engineering Under Multiple Expectation-Value Constraints</a></div></td>
+<td>Anjali Mahapatra et al.</td>
+<td><a href="http://arxiv.org/abs/2605.02367">2605.02367</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.01138.html">Crossing the 12,000-atom barrier with heterogeneous quantum-classical supercomputing: quantum chemistry of protein-ligand complexes</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Kenneth M. Merz, et al.</td>
+<td><a href="http://arxiv.org/abs/2605.01138">2605.01138</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.26428.html">A Theoretical Investigation of the Thermal and Photochemical Mechanisms of Ethylbenzene Dehydrogenation on Rutile TiO$_{2}$(110)</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a> · <a href="photocatalysis-all.html">photocatalysis</a> · <a href="thermodynamic-integration-all.html">thermodynamic-integration</a></div></td>
+<td>Nico Yannik Merkt</td>
+<td><a href="http://arxiv.org/abs/2604.26428">2604.26428</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.26813.html">Classical simulation of free-fermionic dynamics and quantum chemistry with magic input</a></div></td>
+<td>Changhun Oh et al.</td>
+<td><a href="http://arxiv.org/abs/2604.26813">2604.26813</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.24634.html">Computational Design and Experimental Validation of Photoactive PARP1 Inhibitors</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a> · <a href="mlip-all.html">mlip</a> · <a href="thermodynamic-integration-all.html">thermodynamic-integration</a></div></td>
+<td>Simon Axelrod et al.</td>
+<td><a href="http://arxiv.org/abs/2604.24634">2604.24634</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.07890.html">Quantum circuit synthesis for fermionic excitations in coupled cluster theory using the Jordan-Wigner mapping</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Yu-Hao Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2601.07890">2601.07890</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.02340.html">Perturbative Variational Quantum Eigensolver via Reduced Density Matrices</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a></div></td>
+<td>Yuhan Zheng et al.</td>
+<td><a href="http://arxiv.org/abs/2504.02340">2504.02340</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.19470.html">Advancing Practical Quantum Embedding Simulations via Operator Commutativity Based State Preparation for Complex Chemical Systems</a></div></td>
+<td>Dibyendu Mondal et al.</td>
+<td><a href="http://arxiv.org/abs/2604.19470">2604.19470</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.13457.html">Excited-State Quantum Chemistry on Qumode-Based Processors via Variational Quantum Deflation</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="excited-states-all.html">excited-states</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Marlon F. Jost et al.</td>
+<td><a href="http://arxiv.org/abs/2604.13457">2604.13457</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.16928.html">Correlation-Converged Virtual Orbitals for Accurate and Efficient Quantum Molecular Simulations</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Qian Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2604.16928">2604.16928</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.08077.html">Accelerating Density Fitting with Adaptive-precision and 8-bit Integer on AI Accelerators</a></div></td>
+<td>Hua Huang et al.</td>
+<td><a href="http://arxiv.org/abs/2601.08077">2601.08077</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.15666.html">Explainable quantum regression algorithm with encoded data structure</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>C. -C. Joseph Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2604.15666">2604.15666</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.16586.html">A Systematic Survey and Benchmark of Deep Learning for Molecular Property Prediction in the Foundation Model Era</a></div><div class="paper-tags"><a href="molecular-representation-all.html">molecular-representation</a> · <a href="property-prediction-all.html">property-prediction</a></div></td>
+<td>Zongru Li et al.</td>
+<td><a href="http://arxiv.org/abs/2604.16586">2604.16586</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.19814.html">Quantum Integrated High-Performance Computing: Foundations, Architectural Elements and Future Directions</a></div><div class="paper-tags"><a href="materials-discovery-all.html">materials-discovery</a></div></td>
+<td>Suman Raj et al.</td>
+<td><a href="http://arxiv.org/abs/2604.19814">2604.19814</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.14609.html">El Agente Forjador: Task-Driven Agent Generation for Quantum Simulation</a></div></td>
+<td>Zijian Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2604.14609">2604.14609</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.01942.html">On the Quantum Theory of Molecules: Rigour, Idealization, and Uncertainty</a></div></td>
+<td>Nick Huggett et al.</td>
+<td><a href="http://arxiv.org/abs/2411.01942">2411.01942</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.13753.html">Critical point search and linear response theory for computing electronic excitation energies of molecular systems. Part II. CASSCF</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Laura Grazioli et al.</td>
+<td><a href="http://arxiv.org/abs/2604.13753">2604.13753</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.04850.html">El Agente Quntur: A research collaborator agent for quantum chemistry</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a></div></td>
+<td>Juan B. Pérez-Sánchez et al.</td>
+<td><a href="http://arxiv.org/abs/2602.04850">2602.04850</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.04849.html">El Agente Estructural: An Artificially Intelligent Molecular Editor</a></div><div class="paper-tags"><a href="generative-model-all.html">generative-model</a> · <a href="molecular-generation-all.html">molecular-generation</a> · <a href="protein-ligand-all.html">protein-ligand</a></div></td>
+<td>Changhyeok Choi et al.</td>
+<td><a href="http://arxiv.org/abs/2602.04849">2602.04849</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.11063.html">An Adaptive Log-Laguerre Spectral Method for the Radial Dirac Equation: Resolving Asymptotic Decay and Core Singularities in Atomic Calculations</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Sheng Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2604.11063">2604.11063</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.11191.html">Ensemble density functional theory of excited states: Exact N-centered formalism and practical opportunities</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Lucien Dupuy et al.</td>
+<td><a href="http://arxiv.org/abs/2604.11191">2604.11191</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.19804.html">Capturing electron correlation at mean-field cost: Assessment of i-DMFT and the underlying correlation conjecture</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Paul G. Graf et al.</td>
+<td><a href="http://arxiv.org/abs/2604.19804">2604.19804</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.22883.html">Operational interpretation of the Stabilizer Entropy</a></div></td>
+<td>Lennart Bittel et al.</td>
+<td><a href="http://arxiv.org/abs/2507.22883">2507.22883</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.10487.html">CovAngelo: A hybrid quantum-classical computing platform for accurate and scalable drug discovery</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="drug-discovery-all.html">drug-discovery</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Linn Evenseth et al.</td>
+<td><a href="http://arxiv.org/abs/2604.10487">2604.10487</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.07742.html">Gate Freezing Method for Gradient-Free Variational Quantum Algorithms in Circuit Optimization</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Joona Pankkonen et al.</td>
+<td><a href="http://arxiv.org/abs/2507.07742">2507.07742</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.03647.html">Optimizing two-qubit gates for ultracold fermions in optical lattices</a></div></td>
+<td>Jan A. P. Reuter et al.</td>
+<td><a href="http://arxiv.org/abs/2512.03647">2512.03647</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.07704.html">Trotterization with Many-body Coulomb Interactions: Convergence for General Initial Conditions and State-Dependent Improvements</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Di Fang et al.</td>
+<td><a href="http://arxiv.org/abs/2604.07704">2604.07704</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.07909.html">A Review of Variational Quantum Algorithms: Insights into Fault-Tolerant Quantum Computing</a></div></td>
+<td>Zhirao Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2604.07909">2604.07909</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.07951.html">Investigation of Automated Design of Quantum Circuits for Imaginary Time Evolution Methods Using Deep Reinforcement Learning</a></div><div class="paper-tags"><a href="reinforcement-learning-all.html">reinforcement-learning</a></div></td>
+<td>Ryo Suzuki et al.</td>
+<td><a href="http://arxiv.org/abs/2604.07951">2604.07951</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.11839.html">Molecular Quantum Control Algorithm Design by Reinforcement Learning</a></div><div class="paper-tags"><a href="reinforcement-learning-all.html">reinforcement-learning</a></div></td>
+<td>Anastasia Pipi et al.</td>
+<td><a href="http://arxiv.org/abs/2410.11839">2410.11839</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.06841.html">Spin-adapted neural network backflow for strongly correlated electrons</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Yunzhi Li et al.</td>
+<td><a href="http://arxiv.org/abs/2604.06841">2604.06841</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.07448.html">When is randomization advantageous in quantum simulation?</a></div></td>
+<td>Francesco Paganelli et al.</td>
+<td><a href="http://arxiv.org/abs/2604.07448">2604.07448</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.05345.html">End-to-End Differentiable Learning of a Single Functional for DFT and Linear-Response TDDFT</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Xiaoyu Zhang</td>
+<td><a href="http://arxiv.org/abs/2602.05345">2602.05345</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.14155.html">The Python Simulations of Chemistry Framework: 10 years of an open-source quantum chemistry project</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Qiming Sun et al.</td>
+<td><a href="http://arxiv.org/abs/2603.14155">2603.14155</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.05380.html">Molecular Excited States using Quantum Subspace Methods: Accuracy, Resource Reduction, and Error-Mitigated Hardware Implementation of q-sc-EOM</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Srivathsan Poyyapakkam Sundar et al.</td>
+<td><a href="http://arxiv.org/abs/2604.05380">2604.05380</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2404.12742.html">Relevance of on-site and intersite Coulomb interactions in the Kitaev-Heisenberg magnet Na$_3$Co$_2$SbO$_6$</a></div><div class="paper-tags"><a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Pritam Bhattacharyya et al.</td>
+<td><a href="http://arxiv.org/abs/2404.12742">2404.12742</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.03731.html">Ground-state selection via nonlinear quantum dissipation</a></div></td>
+<td>Alireza Ataei et al.</td>
+<td><a href="http://arxiv.org/abs/2604.03731">2604.03731</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.17790.html">The Convergence Frontier: Integrating Machine Learning and High Performance Quantum Computing for Next-Generation Drug Discovery</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="drug-discovery-all.html">drug-discovery</a> · <a href="enhanced-sampling-all.html">enhanced-sampling</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Narjes Ansari et al.</td>
+<td><a href="http://arxiv.org/abs/2603.17790">2603.17790</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.14822.html">Geometry of Generalized Density Functional Theories</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a></div></td>
+<td>Chih-Chun Wang</td>
+<td><a href="http://arxiv.org/abs/2511.14822">2511.14822</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.29805.html">From Density Matrices to Phase Transitions in Deep Learning: Spectral Early Warnings and Interpretability</a></div><div class="paper-tags"><a href="phase-transition-all.html">phase-transition</a></div></td>
+<td>Max Hennick et al.</td>
+<td><a href="http://arxiv.org/abs/2603.29805">2603.29805</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.01176.html">High Performance Quantum Emulation for Chemistry Applications with Hyperion</a></div></td>
+<td>Olivier Adjoua et al.</td>
+<td><a href="http://arxiv.org/abs/2604.01176">2604.01176</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.01471.html">TUNA: A streamlined quantum chemistry program for atoms and diatomics</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Harry Brough</td>
+<td><a href="http://arxiv.org/abs/2604.01471">2604.01471</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.02173.html">Modeling the emission spectra of polycyclic aromatic hydrocarbons by recurrent fluorescence</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Damien Borja et al.</td>
+<td><a href="http://arxiv.org/abs/2601.02173">2601.02173</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.18731.html">A generalized framework for quantum subspace diagonalization</a></div></td>
+<td>Paul D. Nation et al.</td>
+<td><a href="http://arxiv.org/abs/2603.18731">2603.18731</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.22778.html">Enabling Chemically Accurate Quantum Phase Estimation in the Early Fault-Tolerant Regime</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Shota Kanasugi et al.</td>
+<td><a href="http://arxiv.org/abs/2603.22778">2603.22778</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.28648.html">Hunting for quantum advantage in electronic structure calculations is a highly non-trivial task</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Örs Legeza et al.</td>
+<td><a href="http://arxiv.org/abs/2603.28648">2603.28648</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.08471.html">Learning Coulomb Potentials and Beyond with Free Fermions in Continuous Space</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Andreas Bluhm et al.</td>
+<td><a href="http://arxiv.org/abs/2510.08471">2510.08471</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.12983.html">A Global Spacetime Optimization Approach to the Real-Space Time-Dependent Schrödinger Equation</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Enze Hou et al.</td>
+<td><a href="http://arxiv.org/abs/2511.12983">2511.12983</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.01605.html">Resource Estimation for VQE on Small Molecules: Impact of Fermion Mappings and Hamiltonian Reductions</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a></div></td>
+<td>Anurag K. S. V. et al.</td>
+<td><a href="http://arxiv.org/abs/2512.01605">2512.01605</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.26359.html">Automated near-term quantum algorithm discovery for molecular ground states</a></div></td>
+<td>Fabian Finger et al.</td>
+<td><a href="http://arxiv.org/abs/2603.26359">2603.26359</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.24298.html">SpinGQE: A Generative Quantum Eigensolver for Spin Hamiltonians</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Alexander Holden et al.</td>
+<td><a href="http://arxiv.org/abs/2603.24298">2603.24298</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.24399.html">Qcombo: A Python Package for Automated Commutator Calculations of Quantum Many-Body Operators</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>L. H. Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2603.24399">2603.24399</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.24728.html">Auto-regressive Neural Quantum State Sampling for Selected Configuration Interaction</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Shane Thompson et al.</td>
+<td><a href="http://arxiv.org/abs/2603.24728">2603.24728</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.20835.html">Of gyrators and non-identical anyons</a></div></td>
+<td>O. Kashuba et al.</td>
+<td><a href="http://arxiv.org/abs/2410.20835">2410.20835</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.23761.html">Application of the aperiodic defect model to a negatively charged monovacancy in phosphorene</a></div><div class="paper-tags"><a href="2d-materials-all.html">2d-materials</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Charlotte Rickert et al.</td>
+<td><a href="http://arxiv.org/abs/2603.23761">2603.23761</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.21109.html">Measurement Reduction in Orbital-Optimized Variational Quantum Eigensolver via Orbital Compression</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Yanxian Tao et al.</td>
+<td><a href="http://arxiv.org/abs/2603.21109">2603.21109</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.21200.html">The non-uniform electron gas</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Mihaly A. Csirik et al.</td>
+<td><a href="http://arxiv.org/abs/2603.21200">2603.21200</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.21636.html">Optimal fermion-qubit mappings via quadratic assignment</a></div></td>
+<td>Mitchell Chiew et al.</td>
+<td><a href="http://arxiv.org/abs/2504.21636">2504.21636</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.08088.html">Quantum Algorithm for Low Energy Effective Hamiltonian and Quasi-Degenerate Eigenvalue Problem</a></div></td>
+<td>Chun-Tse Li et al.</td>
+<td><a href="http://arxiv.org/abs/2510.08088">2510.08088</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.08727.html">Statistical Benchmarking of Optimization Methods for Variational Quantum Eigensolver under Quantum Noise</a></div></td>
+<td>Silvie Illésová et al.</td>
+<td><a href="http://arxiv.org/abs/2510.08727">2510.08727</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.20029.html">Variance reduction methods in the estimation of Pauli sums</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Søren Fuglede Jørgensen et al.</td>
+<td><a href="http://arxiv.org/abs/2603.20029">2603.20029</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.00230.html">Reinforcement learning with learned gadgets to tackle hard quantum problems on real hardware</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a> · <a href="reinforcement-learning-all.html">reinforcement-learning</a></div></td>
+<td>Akash Kundu et al.</td>
+<td><a href="http://arxiv.org/abs/2411.00230">2411.00230</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.04171.html">A Quantum Gate Architecture via Teleportation and Entanglement</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Samuel J. Sheldon et al.</td>
+<td><a href="http://arxiv.org/abs/2512.04171">2512.04171</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.25815.html">Physically-Motivated Guiding States for Local Hamiltonians</a></div></td>
+<td>Gabriel Waite et al.</td>
+<td><a href="http://arxiv.org/abs/2509.25815">2509.25815</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.16989.html">Comment on &quot;Efficient implementation of the superposition of atomic potentials initial guess for electronic structure calculations in Gaussian basis sets&quot;</a></div></td>
+<td>Kshitijkumar A. Surjuse et al.</td>
+<td><a href="http://arxiv.org/abs/2603.16989">2603.16989</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.17062.html">Full-quantum variational dynamics simulation for time-dependent Hamiltonians with global spectral discretization</a></div></td>
+<td>Minchen Qiao et al.</td>
+<td><a href="http://arxiv.org/abs/2603.17062">2603.17062</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.15870.html">Riemannian gradient descent for Hartree-Fock theory</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Evgueni Dinvay</td>
+<td><a href="http://arxiv.org/abs/2603.15870">2603.15870</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.17990.html">Snapshot-QAOA: Extending QAOA to Quantum Hamiltonian Simulation</a></div></td>
+<td>Reuben Tate et al.</td>
+<td><a href="http://arxiv.org/abs/2412.17990">2412.17990</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.10406.html">How to Build a Quantum Supercomputer: Scaling from Hundreds to Millions of Qubits</a></div><div class="paper-tags"><a href="catalysis-all.html">catalysis</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Masoud Mohseni et al.</td>
+<td><a href="http://arxiv.org/abs/2411.10406">2411.10406</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.08696.html">Exploring pathways towards quantum advantage in quantum chemistry: the case of a molecule with half-Möbius topology</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Samuele Piccinelli et al.</td>
+<td><a href="http://arxiv.org/abs/2603.08696">2603.08696</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.11009.html">Linear-Scaling Tensor Train Sketching</a></div></td>
+<td>Paul Cazeaux et al.</td>
+<td><a href="http://arxiv.org/abs/2603.11009">2603.11009</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.20496.html">Orbital-interaction-aware deep learning model for efficient surface chemistry simulations</a></div><div class="paper-tags"><a href="catalysis-all.html">catalysis</a></div></td>
+<td>Zhihao Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2507.20496">2507.20496</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.05390.html">Quantum State Preparation Of Multiconfigurational States For Quantum Chemistry</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Gabriel Greene-Diniz et al.</td>
+<td><a href="http://arxiv.org/abs/2508.05390">2508.05390</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.09626.html">The Architecture of Inter-Level Representation</a></div></td>
+<td>Harry Sticker</td>
+<td><a href="http://arxiv.org/abs/2603.09626">2603.09626</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.09631.html">System-bath model for quantum chemistry</a></div><div class="paper-tags"><a href="band-gap-all.html">band-gap</a></div></td>
+<td>Dmitry S. Golubev et al.</td>
+<td><a href="http://arxiv.org/abs/2603.09631">2603.09631</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.09670.html">On the generalized eigenvalue problem in subspace-based excited state methods for quantum computers</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Prince Frederick Kwao et al.</td>
+<td><a href="http://arxiv.org/abs/2503.09670">2503.09670</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.09092.html">Expanding the Class of Free Fermions via Twin-Collapse Methods</a></div></td>
+<td>Jannis Ruh et al.</td>
+<td><a href="http://arxiv.org/abs/2509.09092">2509.09092</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.08883.html">Parallel iQCC Enables 200 Qubit Scale Quantum Chemistry on Accelerated Computing Platforms Surpassing Classical Benchmarks in Ruthenium Catalysts</a></div></td>
+<td>Seyyed Mehdi Hosseini Jenab et al.</td>
+<td><a href="http://arxiv.org/abs/2603.08883">2603.08883</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.14273.html">Spacetime-Efficient and Hardware-Compatible Complex Quantum Logic Units in qLDPC Codes</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Willers Yang et al.</td>
+<td><a href="http://arxiv.org/abs/2602.14273">2602.14273</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.09037.html">Optimizing Sparse SYK</a></div></td>
+<td>Matthew Ding et al.</td>
+<td><a href="http://arxiv.org/abs/2506.09037">2506.09037</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.06101.html">Quantum chemistry based on classical mechanics inspired by simulated bifurcation</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Fumihiko Aiga et al.</td>
+<td><a href="http://arxiv.org/abs/2603.06101">2603.06101</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.05319.html">The Angular Localization Function (ALF): a practical tool to measure solvent angular order with Molecular Density Functional Theory</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Maïwenn Souetre et al.</td>
+<td><a href="http://arxiv.org/abs/2603.05319">2603.05319</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.05453.html">Neural Wavefunction Calculations of μSR Spectra with Quantum Muons and Protons</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Jamie Carr et al.</td>
+<td><a href="http://arxiv.org/abs/2603.05453">2603.05453</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.05655.html">Latent space design of interatomic potentials</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="gnn-all.html">gnn</a> · <a href="mlip-all.html">mlip</a></div></td>
+<td>Susan R. Atlas</td>
+<td><a href="http://arxiv.org/abs/2603.05655">2603.05655</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.08762.html">The Open Molecules 2025 (OMol25) Dataset, Evaluations, and Models</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="battery-materials-all.html">battery-materials</a> · <a href="chemical-space-all.html">chemical-space</a> · <a href="dft-all.html">dft</a></div></td>
+<td>Daniel S. Levine et al.</td>
+<td><a href="http://arxiv.org/abs/2505.08762">2505.08762</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.17960.html">The Harrow-Hassidim-Lloyd algorithm with qutrits</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a></div></td>
+<td>Tushti Patel et al.</td>
+<td><a href="http://arxiv.org/abs/2511.17960">2511.17960</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.19582.html">Trigonometric continuous-variable gates and hybrid quantum simulations of the sine-Gordon model</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Tommaso Rainaldi et al.</td>
+<td><a href="http://arxiv.org/abs/2512.19582">2512.19582</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.23117.html">The Open Polymers 2026 (OPoly26) Dataset and Evaluations</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Daniel S. Levine et al.</td>
+<td><a href="http://arxiv.org/abs/2512.23117">2512.23117</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.04092.html">Characterizing Machine Learning Force Fields as Emerging Molecular Dynamics Workloads on Graphics Processing Units</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="mlip-all.html">mlip</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Udari De Alwis et al.</td>
+<td><a href="http://arxiv.org/abs/2603.04092">2603.04092</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.04536.html">Aromatic Species in the Molecular Universe</a></div></td>
+<td>A. G. G. M. Tielens</td>
+<td><a href="http://arxiv.org/abs/2603.04536">2603.04536</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.03013.html">A Perturbative Super-CI Approach for orbital optimization in Two-Component relativistic CASSCF</a></div></td>
+<td>Yang Guo et al.</td>
+<td><a href="http://arxiv.org/abs/2603.03013">2603.03013</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.03288.html">A Symmetry-Enabled Direct Quantum Protocol for Many-Body Green&#x27;s Functions</a></div></td>
+<td>Changhao Yi et al.</td>
+<td><a href="http://arxiv.org/abs/2509.03288">2509.03288</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.03556.html">Quantum error mitigation using energy sampling and extrapolation enhanced Clifford data regression</a></div></td>
+<td>Zhongqi Zhao et al.</td>
+<td><a href="http://arxiv.org/abs/2511.03556">2511.03556</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.07193.html">Full symmetry-breaking of electronic and nuclear dynamics for low attosecond resolution of electronic chirality</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Tianlv Xu et al.</td>
+<td><a href="http://arxiv.org/abs/2601.07193">2601.07193</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.18637.html">Universality of Many-body Projected Ensemble for Learning Quantum Data Distribution</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Quoc Hoan Tran et al.</td>
+<td><a href="http://arxiv.org/abs/2601.18637">2601.18637</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.02122.html">Optimizing fermionic Hamiltonians with classical interactions</a></div></td>
+<td>Maarten Stroeks et al.</td>
+<td><a href="http://arxiv.org/abs/2510.02122">2510.02122</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.20232.html">Coupled Cluster con MōLe: Molecular Orbital Learning for Neural Wavefunctions</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Luca Thiede et al.</td>
+<td><a href="http://arxiv.org/abs/2602.20232">2602.20232</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.05804.html">Genetic optimization of ansatz expressibility for enhanced variational quantum algorithm performance</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Manish Mallapur et al.</td>
+<td><a href="http://arxiv.org/abs/2509.05804">2509.05804</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.18156.html">Determining Molecular Ground State with Quantum Imaginary Time Evolution using Broken-Symmetry Wave Function</a></div></td>
+<td>Pawan Sharma Poudel et al.</td>
+<td><a href="http://arxiv.org/abs/2504.18156">2504.18156</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.17158.html">Stochastic tensor contraction for quantum chemistry</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Jiace Sun et al.</td>
+<td><a href="http://arxiv.org/abs/2602.17158">2602.17158</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.17886.html">El Agente Sólido: A New Age(nt) for Solid State Simulations</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="materials-discovery-all.html">materials-discovery</a> · <a href="materials-science-all.html">materials-science</a> · <a href="mlip-all.html">mlip</a></div></td>
+<td>Sai Govind Hari Kumar et al.</td>
+<td><a href="http://arxiv.org/abs/2602.17886">2602.17886</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.17902.html">El Agente Gráfico: Structured Execution Graphs for Scientific Agents</a></div><div class="paper-tags"><a href="mof-all.html">mof</a></div></td>
+<td>Jiaru Bai et al.</td>
+<td><a href="http://arxiv.org/abs/2602.17902">2602.17902</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.12887.html">Many-body post-processing of density functional calculations using the variational quantum eigensolver for Bader charge analysis</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="tmo-all.html">tmo</a></div></td>
+<td>Erik Schultheis et al.</td>
+<td><a href="http://arxiv.org/abs/2510.12887">2510.12887</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.17557.html">The Moving Born-Oppenheimer Approximation</a></div><div class="paper-tags"><a href="magnetic-properties-all.html">magnetic-properties</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Bernardo Barrera et al.</td>
+<td><a href="http://arxiv.org/abs/2502.17557">2502.17557</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.15706.html">Meta-Learning for GPU-Accelerated Quantum Many-Body Problems</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Yun-Hsuan Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2602.15706">2602.15706</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.17722.html">Identification of Solid-Electrolyte Interphase Species by Joint Characterization of Li-ion Battery Chemistry by Mass Spectrometry and Electro-Chemical Reaction Networks</a></div><div class="paper-tags"><a href="battery-materials-all.html">battery-materials</a></div></td>
+<td>Mona Abdelgaid et al.</td>
+<td><a href="http://arxiv.org/abs/2602.17722">2602.17722</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.12539.html">Predicting properties of quantum thermal states from a single trajectory</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a></div></td>
+<td>Jiaqing Jiang et al.</td>
+<td><a href="http://arxiv.org/abs/2602.12539">2602.12539</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.12560.html">Graph Neural Network Prediction of Infrared Spectra of Interstellar Polycyclic Aromatic Hydrocarbons</a></div><div class="paper-tags"><a href="gnn-all.html">gnn</a></div></td>
+<td>Guoqing Tang et al.</td>
+<td><a href="http://arxiv.org/abs/2602.12560">2602.12560</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.12993.html">Neural Quantum States Based on Selected Configurations</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Marco Julian Solanki et al.</td>
+<td><a href="http://arxiv.org/abs/2602.12993">2602.12993</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.13374.html">Adaptive Pseudoboson Density-Matrix Renormalization Group for Dilute 2D Systems</a></div></td>
+<td>Fabian J. Pauw et al.</td>
+<td><a href="http://arxiv.org/abs/2602.13374">2602.13374</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.10776.html">Efficient Operator Selection and Warm-Start Strategy for Excitations in Variational Quantum Eigensolvers</a></div></td>
+<td>Max Haas et al.</td>
+<td><a href="http://arxiv.org/abs/2602.10776">2602.10776</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.12465.html">Probabilistic Design of Parametrized Quantum Circuits through Local Gate Modifications</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Grier M. Jones et al.</td>
+<td><a href="http://arxiv.org/abs/2602.12465">2602.12465</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.09020.html">Hybrid Method of Efficient Simulation of Physics Applications for a Quantum Computer</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a></div></td>
+<td>Carla Rieger et al.</td>
+<td><a href="http://arxiv.org/abs/2602.09020">2602.09020</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.01165.html">Noise-Resilient Quantum Chemistry with Half the Qubits</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a></div></td>
+<td>Shane McFarthing et al.</td>
+<td><a href="http://arxiv.org/abs/2602.01165">2602.01165</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.04253.html">Constructing Compact ADAPT Unitary Coupled-Cluster Ansatz with Parameter-Based Criterion</a></div></td>
+<td>Runhong He et al.</td>
+<td><a href="http://arxiv.org/abs/2602.04253">2602.04253</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.04719.html">Enabling large-scale digital quantum simulations with superconducting qubits</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Laurin E. Fischer</td>
+<td><a href="http://arxiv.org/abs/2602.04719">2602.04719</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.18264.html">Parallelized Givens Ansatz for Molecular ground-states: Bridging Accuracy and Efficiency on NISQ Platforms</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>M. R. Nirmal et al.</td>
+<td><a href="http://arxiv.org/abs/2504.18264">2504.18264</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.02695.html">Integration of Variational Quantum Algorithms into Atomistic Simulation Workflows</a></div><div class="paper-tags"><a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Wilke Dononelli</td>
+<td><a href="http://arxiv.org/abs/2602.02695">2602.02695</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.05222.html">Fast Evaluation of Unbiased Atomic Forces in ab initio Variational Monte Carlo via the Lagrangian Technique</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="free-energy-all.html">free-energy</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Kousuke Nakano et al.</td>
+<td><a href="http://arxiv.org/abs/2511.05222">2511.05222</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.00555.html">Entanglement-Dependent Error Bounds for Hamiltonian Simulation</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Prateek P. Kulkarni</td>
+<td><a href="http://arxiv.org/abs/2602.00555">2602.00555</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.02578.html">Quantum chemistry with provable convergence via randomized sample-based Krylov quantum diagonalization</a></div></td>
+<td>Samuele Piccinelli et al.</td>
+<td><a href="http://arxiv.org/abs/2508.02578">2508.02578</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.11418.html">Stabilizer-based quantum simulation of fermion dynamics with local qubit encodings</a></div></td>
+<td>Anthony Gandon et al.</td>
+<td><a href="http://arxiv.org/abs/2512.11418">2512.11418</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.08305.html">ELECTRA: A Cartesian Network for 3D Charge Density Prediction with Floating Orbitals</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Jonas Elsborg et al.</td>
+<td><a href="http://arxiv.org/abs/2503.08305">2503.08305</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.13332.html">Efficient algorithms for quantum chemistry on modular quantum processors</a></div></td>
+<td>Tian Xue et al.</td>
+<td><a href="http://arxiv.org/abs/2506.13332">2506.13332</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.16474.html">Quantum phase estimation with optimal confidence interval using three control qubits</a></div></td>
+<td>Kaur Kristjuhan et al.</td>
+<td><a href="http://arxiv.org/abs/2601.16474">2601.16474</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.16564.html">A Robust Strontium Tweezer Apparatus for Quantum Computing</a></div><div class="paper-tags"><a href="magnetic-properties-all.html">magnetic-properties</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Marijn Venderbosch et al.</td>
+<td><a href="http://arxiv.org/abs/2601.16564">2601.16564</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.16913.html">Coarse-Grained Geometric Quantum Dynamics in the Tensor Network Representation</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Mo Sha et al.</td>
+<td><a href="http://arxiv.org/abs/2601.16913">2601.16913</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.22398.html">Numerical Optimization Strategies for the Variational Hamiltonian Ansatz in Noisy Quantum Environments</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>S. Illésová et al.</td>
+<td><a href="http://arxiv.org/abs/2505.22398">2505.22398</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.06316.html">Quantum matrix arithmetics with Hamiltonian evolution</a></div></td>
+<td>Christopher Kang et al.</td>
+<td><a href="http://arxiv.org/abs/2510.06316">2510.06316</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.18585.html">RECURSUM: Automated Code Generation for Recurrence Relations Exceeds Expert Optimization via LayeredCodegen</a></div></td>
+<td>Rubén Darío Guerrero</td>
+<td><a href="http://arxiv.org/abs/2604.18585">2604.18585</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.15253.html">QDK/Chemistry: A Modular Toolkit for Quantum Chemistry Applications</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Nathan A. Baker et al.</td>
+<td><a href="http://arxiv.org/abs/2601.15253">2601.15253</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.13564.html">Multi-objective fluorescent molecule design with a data-physics dual-driven generative framework</a></div><div class="paper-tags"><a href="chemical-space-all.html">chemical-space</a> · <a href="dft-all.html">dft</a> · <a href="diffusion-model-all.html">diffusion-model</a> · <a href="drug-discovery-all.html">drug-discovery</a> · <a href="excited-states-all.html">excited-states</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a> · <a href="molecular-generation-all.html">molecular-generation</a> · <a href="property-prediction-all.html">property-prediction</a></div></td>
+<td>Yanheng Li et al.</td>
+<td><a href="http://arxiv.org/abs/2601.13564">2601.13564</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2404.04620.html">Feedback-Based Quantum Algorithm for Excited States Calculation</a></div></td>
+<td>Salahuddin Abdul Rahman et al.</td>
+<td><a href="http://arxiv.org/abs/2404.04620">2404.04620</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.24063.html">Benchmarking foundation potentials against quantum chemistry methods for predicting molecular redox potentials</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="drug-discovery-all.html">drug-discovery</a></div></td>
+<td>Yicheng Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2510.24063">2510.24063</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.09951.html">Parallelizing the Variational Quantum Eigensolver: From JIT Compilation to Multi-GPU Scaling</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Rylan Malarchick et al.</td>
+<td><a href="http://arxiv.org/abs/2601.09951">2601.09951</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.10002.html">Hybrid Quantum Algorithms for Computational Chemistry: Application to the Pyridine-Li ion Complex</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Fatemeh Ghasemi et al.</td>
+<td><a href="http://arxiv.org/abs/2601.10002">2601.10002</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.12247.html">Efficient Preparation of Quantum States via Randomized Truncation</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Yue Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2510.12247">2510.12247</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.08533.html">Symmetry-Adapted State Preparation for Quantum Chemistry on Fault-Tolerant Quantum Computers</a></div></td>
+<td>Viktor Khinevich et al.</td>
+<td><a href="http://arxiv.org/abs/2601.08533">2601.08533</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.07827.html">Tensor Algebra Processing Primitives (TAPP): Towards a Standard for Tensor Operations</a></div></td>
+<td>Jan Brandejs et al.</td>
+<td><a href="http://arxiv.org/abs/2601.07827">2601.07827</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.06763.html">Quantum science with arrays of metastable helium-3 atoms</a></div></td>
+<td>Zheyuan Li et al.</td>
+<td><a href="http://arxiv.org/abs/2601.06763">2601.06763</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.06935.html">Extending the Handover-Iterative VQE to Challenging Strongly Correlated Systems: $N_2$ and Fe-S Cluster</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Pilsun Yoo et al.</td>
+<td><a href="http://arxiv.org/abs/2601.06935">2601.06935</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.07078.html">Ab Initio Characterization of C2H4N2 Isomers: Structures, electronic energies, spectroscopic parameters and formation pathways</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="string-method-all.html">string-method</a></div></td>
+<td>Oko Emmanuel Godwin et al.</td>
+<td><a href="http://arxiv.org/abs/2601.07078">2601.07078</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.07098.html">Electric field gradient in accurate quantum chemical calculations</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Andrei Derevianko et al.</td>
+<td><a href="http://arxiv.org/abs/2601.07098">2601.07098</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.06295.html">Plane partitions and spin adapted quantum states</a></div></td>
+<td>Abigail Price et al.</td>
+<td><a href="http://arxiv.org/abs/2601.06295">2601.06295</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.04621.html">Classical solution of the FeMo-cofactor model to chemical accuracy and its implications</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Huanchen Zhai et al.</td>
+<td><a href="http://arxiv.org/abs/2601.04621">2601.04621</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.05390.html">Why Are Verdazyl Radicals Non-Emissive? An Experimental and Computational Study</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a> · <a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Alexandre Malinge et al.</td>
+<td><a href="http://arxiv.org/abs/2601.05390">2601.05390</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.22572.html">Variational quantum eigensolver for chemical molecules</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Luca Ion et al.</td>
+<td><a href="http://arxiv.org/abs/2512.22572">2512.22572</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.04186.html">A Comprehensive Computational Framework for Materials Design, Ab Initio Modeling, and Molecular Docking</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="drug-discovery-all.html">drug-discovery</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="materials-science-all.html">materials-science</a> · <a href="monte-carlo-all.html">monte-carlo</a> · <a href="protein-ligand-all.html">protein-ligand</a></div></td>
+<td>Md Rakibul Karim Akanda et al.</td>
+<td><a href="http://arxiv.org/abs/2601.04186">2601.04186</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.24366.html">Spin vs. position conjugation in quantum simulations with atoms: application to quantum chemistry</a></div></td>
+<td>N. A. Moroz et al.</td>
+<td><a href="http://arxiv.org/abs/2505.24366">2505.24366</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.13534.html">Quantum algorithm for solving generalized eigenvalue problems with application to the Schrödinger equation</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Grzegorz Rajchel-Mieldzioć et al.</td>
+<td><a href="http://arxiv.org/abs/2506.13534">2506.13534</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.24308.html">Quantum Computing, Ising Formulation, and the Traveling Salesman Problem</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Omer Gurevich et al.</td>
+<td><a href="http://arxiv.org/abs/2512.24308">2512.24308</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.09183.html">Tunable Molecular Interactions Near an Atomic Feshbach Resonance: Stability and Collapse of a Molecular Bose-Einstein Condensate</a></div></td>
+<td>Zhiqiang Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2504.09183">2504.09183</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.22468.html">Quantum attomicroscopy: imaging quantum chemistry in action</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Nikolay V. Golubev et al.</td>
+<td><a href="http://arxiv.org/abs/2512.22468">2512.22468</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.19778.html">Validation of Quantum Computing for Transition Metal Oxide-based Automotive Catalysis</a></div><div class="paper-tags"><a href="catalysis-all.html">catalysis</a> · <a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a> · <a href="tmo-all.html">tmo</a></div></td>
+<td>Yuntao Gu et al.</td>
+<td><a href="http://arxiv.org/abs/2512.19778">2512.19778</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.21373.html">AInsteinBench: Benchmarking Coding Agents on Scientific Repositories</a></div><div class="paper-tags"><a href="molecular-dynamics-all.html">molecular-dynamics</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Titouan Duston et al.</td>
+<td><a href="http://arxiv.org/abs/2512.21373">2512.21373</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.21385.html">Hybrid digital-analog protocols for simulating quantum multi-body interactions</a></div></td>
+<td>Or Katz et al.</td>
+<td><a href="http://arxiv.org/abs/2512.21385">2512.21385</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.20064.html">FastMPS: Revisit Data Parallel in Large-scale Matrix Product State Sampling</a></div></td>
+<td>Yaojian Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2512.20064">2512.20064</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.20414.html">Topological resolution of conical intersection seams and the coupled cluster bifurcation via mixed Hodge modules</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Prasoon Saurabh</td>
+<td><a href="http://arxiv.org/abs/2512.20414">2512.20414</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.18952.html">Photonic variational quantum eigensolver for NISQ-compatible quantum technology</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a> · <a href="thermal-properties-all.html">thermal-properties</a></div></td>
+<td>Kang-Min Hu et al.</td>
+<td><a href="http://arxiv.org/abs/2512.18952">2512.18952</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.19152.html">Flexible Framework for Surface Hopping: From Hybrid Schemes for Machine Learning to Benchmarkable Nonadiabatic Dynamics</a></div><div class="paper-tags"><a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Jakub Martinka et al.</td>
+<td><a href="http://arxiv.org/abs/2512.19152">2512.19152</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.19413.html">Clifford Volume and Free Fermion Volume: Complementary Scalable Benchmarks for Quantum Computers</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Attila Portik et al.</td>
+<td><a href="http://arxiv.org/abs/2512.19413">2512.19413</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.19420.html">Generative Krylov Subspace Representations for Scalable Quantum Eigensolvers</a></div><div class="paper-tags"><a href="generative-model-all.html">generative-model</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Changwon Lee et al.</td>
+<td><a href="http://arxiv.org/abs/2512.19420">2512.19420</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.18203.html">Benchmarking the Impact of Active Space Selection on the VQE Pipeline for Quantum Drug Discovery</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Zhi Yin et al.</td>
+<td><a href="http://arxiv.org/abs/2512.18203">2512.18203</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.18395.html">Size-Consistent Quantum Chemistry on Quantum Computers</a></div></td>
+<td>Noah Garrett et al.</td>
+<td><a href="http://arxiv.org/abs/2512.18395">2512.18395</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.26300.html">Fermionic dynamics on a trapped-ion quantum computer beyond exact classical simulation</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Faisal Alam et al.</td>
+<td><a href="http://arxiv.org/abs/2510.26300">2510.26300</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.16539.html">Landscape Analysis of Excited States Calculation over Quantum Computers</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Hengzhun Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2512.16539">2512.16539</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.16540.html">Nonlinear Kalman varieties</a></div></td>
+<td>Flavio Salizzoni et al.</td>
+<td><a href="http://arxiv.org/abs/2512.16540">2512.16540</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.16677.html">QMCkl: A Kernel Library for Quantum Monte Carlo Applications</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Emiel Slootman et al.</td>
+<td><a href="http://arxiv.org/abs/2512.16677">2512.16677</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.22173.html">AiiDAlab: on the route to accelerate science</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a></div></td>
+<td>Aliaksandr V. Yakutovich et al.</td>
+<td><a href="http://arxiv.org/abs/2512.22173">2512.22173</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.00091.html">Deep learning optimal molecular scintillators for dark matter direct detection</a></div></td>
+<td>Cameron Cook et al.</td>
+<td><a href="http://arxiv.org/abs/2501.00091">2501.00091</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.20728.html">Improving Variational Quantum Circuit Optimization via Hybrid Algorithms and Random Axis Initialization</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Joona V. Pankkonen et al.</td>
+<td><a href="http://arxiv.org/abs/2503.20728">2503.20728</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.18939.html">Simulation of Fermionic circuits using Majorana Propagation</a></div></td>
+<td>Aaron Miller et al.</td>
+<td><a href="http://arxiv.org/abs/2503.18939">2503.18939</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.19977.html">Robust Variational Ground-State Solvers via Dissipative Quantum Feedback Models</a></div></td>
+<td>Yunyan Lee et al.</td>
+<td><a href="http://arxiv.org/abs/2507.19977">2507.19977</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.14091.html">Group Theory and Representation Theory for Identical Particles</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>James Daniel Whitfield</td>
+<td><a href="http://arxiv.org/abs/2512.14091">2512.14091</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.14449.html">Adiabatic-Inspired Hybrid Quantum-Classical Methods for Molecular Ground State Preparation</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Sean Thrasher et al.</td>
+<td><a href="http://arxiv.org/abs/2512.14449">2512.14449</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.13138.html">A Joint Quantum Computing, Neural Network and Embedding Theory Approach for the Derivation of the Universal Functional</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Martin J. Uttendorfer et al.</td>
+<td><a href="http://arxiv.org/abs/2512.13138">2512.13138</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.17229.html">Quantum Simulation of Dynamical Transition Rates in Open Quantum Systems</a></div></td>
+<td>Robson Christie et al.</td>
+<td><a href="http://arxiv.org/abs/2412.17229">2412.17229</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.12515.html">LibppRPA: An Open-Source Library for Particle-Particle Random Phase Approximation</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Jincheng Yu et al.</td>
+<td><a href="http://arxiv.org/abs/2512.12515">2512.12515</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.11627.html">Physical properties of new delafossite triangular-lattice compounds TlErSe$_2$ and TlTmSe$_2$</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Bastian Rubrecht et al.</td>
+<td><a href="http://arxiv.org/abs/2512.11627">2512.11627</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.09469.html">LiePrune: Lie Group and Quantum Geometric Dual Representation for One-Shot Structured Pruning of Quantum Neural Networks</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Haijian Shao et al.</td>
+<td><a href="http://arxiv.org/abs/2512.09469">2512.09469</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.23498.html">WTMAD-4: A Fair Weighting Scheme for GMTKN55</a></div></td>
+<td>Kyle R. Bryenton et al.</td>
+<td><a href="http://arxiv.org/abs/2509.23498">2509.23498</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.07398.html">Multiplet structure of chromium(III) dopants in wide band gap materials</a></div><div class="paper-tags"><a href="band-gap-all.html">band-gap</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Ilya Popov et al.</td>
+<td><a href="http://arxiv.org/abs/2512.07398">2512.07398</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.07537.html">XMCQDPT2-Fidelity Transfer-Learning Potentials and a Wavepacket Oscillation Model with Power-Law Decay for Ultrafast Photodynamics</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="excited-states-all.html">excited-states</a> · <a href="free-energy-all.html">free-energy</a> · <a href="mlip-all.html">mlip</a></div></td>
+<td>Ivan V. Dudakov et al.</td>
+<td><a href="http://arxiv.org/abs/2512.07537">2512.07537</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.06939.html">Numerical Algebraic Geometry for Energy Computations on Tensor Train Varieties</a></div></td>
+<td>Viktoriia Borovik et al.</td>
+<td><a href="http://arxiv.org/abs/2512.06939">2512.06939</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.06579.html">Rotational Spectra and Search for Aromatic Imines: 9-Iminofluorene and Benzophenone imine</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a></div></td>
+<td>Huanyu Ren et al.</td>
+<td><a href="http://arxiv.org/abs/2512.06579">2512.06579</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.05617.html">Toward a Theoretical Roadmap for Organic Memristive Materials</a></div><div class="paper-tags"><a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Salvador Cardona-Serra</td>
+<td><a href="http://arxiv.org/abs/2512.05617">2512.05617</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.04322.html">Quantum Chemistry Simulation of Dibenzothiophene for Asphalt Aging Analysis</a></div></td>
+<td>Om Tailor</td>
+<td><a href="http://arxiv.org/abs/2512.04322">2512.04322</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.22593.html">An Optimal Framework for Constructing Lie-Algebra Generator Pools: Application to Variational Quantum Eigensolvers for Chemistry</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Yaromir Viswanathan et al.</td>
+<td><a href="http://arxiv.org/abs/2511.22593">2511.22593</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.21430.html">Quantum electrodynamic description of the neutral hydrogen molecule ionization</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="battery-materials-all.html">battery-materials</a></div></td>
+<td>Hui-hui Miao</td>
+<td><a href="http://arxiv.org/abs/2511.21430">2511.21430</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.21965.html">Demonstration of the ODMR activity of the telecom range ClV center in SiC: a wavefunction theory analysis</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Zsolt Benedek et al.</td>
+<td><a href="http://arxiv.org/abs/2511.21965">2511.21965</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.15577.html">LFaB: Low fidelity as Bias for Active Learning in the chemical configuration space</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="active-learning-all.html">active-learning</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Vivin Vinod et al.</td>
+<td><a href="http://arxiv.org/abs/2508.15577">2508.15577</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.00578.html">Learning Potential Energy Surfaces of Hydrogen Atom Transfer Reactions in Peptides</a></div><div class="paper-tags"><a href="active-learning-all.html">active-learning</a> · <a href="dft-all.html">dft</a> · <a href="free-energy-all.html">free-energy</a> · <a href="gnn-all.html">gnn</a> · <a href="mlip-all.html">mlip</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Marlen Neubert et al.</td>
+<td><a href="http://arxiv.org/abs/2508.00578">2508.00578</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.18512.html">Neural network approximation of regularized density functionals</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a></div></td>
+<td>Mihály A. Csirik et al.</td>
+<td><a href="http://arxiv.org/abs/2511.18512">2511.18512</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.17753.html">$Δ$-ML Ensembles for Selecting Quantum Chemistry Methods to Compute Intermolecular Interactions</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Austin M. Wallace et al.</td>
+<td><a href="http://arxiv.org/abs/2511.17753">2511.17753</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.16272.html">QASER: Breaking the Depth vs. Accuracy Trade-Off for Quantum Architecture Search</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a> · <a href="reinforcement-learning-all.html">reinforcement-learning</a></div></td>
+<td>Ioana Moflic et al.</td>
+<td><a href="http://arxiv.org/abs/2511.16272">2511.16272</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.16559.html">Reinforcement learning of quantum circuit architectures for molecular potential energy curves</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a> · <a href="reinforcement-learning-all.html">reinforcement-learning</a></div></td>
+<td>Maureen Krumtünger et al.</td>
+<td><a href="http://arxiv.org/abs/2511.16559">2511.16559</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.16641.html">Stabilizing Fractional Chern States in Twisted MoTe2: Multi-band Correlations via Non-perturbative Renormalization Group</a></div></td>
+<td>Run Hou et al.</td>
+<td><a href="http://arxiv.org/abs/2511.16641">2511.16641</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.12416.html">Enhancing Chemistry on Quantum Computers with Fermionic Linear Optical Simulation</a></div></td>
+<td>Zack Hassman et al.</td>
+<td><a href="http://arxiv.org/abs/2511.12416">2511.12416</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.12923.html">Fast Quantum Many Body State Synthesis</a></div></td>
+<td>Prashasti Tiwari et al.</td>
+<td><a href="http://arxiv.org/abs/2511.12923">2511.12923</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.22460.html">Towards Practical Quantum Phase Estimation: A Modular, Scalable, and Adaptive Approach</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Alok Shukla et al.</td>
+<td><a href="http://arxiv.org/abs/2507.22460">2507.22460</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.12182.html">Chemistry-Enhanced Diffusion-Based Framework for Small-to-Large Molecular Conformation Generation</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="diffusion-model-all.html">diffusion-model</a></div></td>
+<td>Yifei Zhu et al.</td>
+<td><a href="http://arxiv.org/abs/2511.12182">2511.12182</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.16026.html">Clifford augmented density matrix renormalization group for \textit{ab initio} quantum chemistry</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Lizhong Fu et al.</td>
+<td><a href="http://arxiv.org/abs/2506.16026">2506.16026</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.14786.html">Hybrid Quantum-Classical Machine Learning with PennyLane: A Comprehensive Guide for Computational Research</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Sidney Shapiro</td>
+<td><a href="http://arxiv.org/abs/2511.14786">2511.14786</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2405.15864.html">The Singlet-Triplet Gap of Cyclobutadiene: The CIPSI-Driven CC($P$;$Q$) Study</a></div></td>
+<td>Swati S. Priyadarsini et al.</td>
+<td><a href="http://arxiv.org/abs/2405.15864">2405.15864</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.07771.html">Quantum-centric machine learning for molecular dynamics</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="free-energy-all.html">free-energy</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a> · <a href="molecular-representation-all.html">molecular-representation</a></div></td>
+<td>Yanxian Tao et al.</td>
+<td><a href="http://arxiv.org/abs/2511.07771">2511.07771</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.08289.html">Reliable Optimization Under Noise in Quantum Variational Algorithms</a></div></td>
+<td>Vojtěch Novák et al.</td>
+<td><a href="http://arxiv.org/abs/2511.08289">2511.08289</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.17546.html">Reference Quadrupole Moments of Transition Elements from Lamb Shifts in Muonic Atoms</a></div></td>
+<td>S. Rathi et al.</td>
+<td><a href="http://arxiv.org/abs/2511.17546">2511.17546</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.03324.html">Isolated quantum-state networks in ultracold molecules</a></div></td>
+<td>Tom R. Hepworth et al.</td>
+<td><a href="http://arxiv.org/abs/2511.03324">2511.03324</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.05939.html">Fast gradient-free optimization of excitations in variational quantum eigensolvers</a></div></td>
+<td>Jonas Jäger et al.</td>
+<td><a href="http://arxiv.org/abs/2409.05939">2409.05939</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.03567.html">Efficient Implementation of the Spin-Free Renormalized Internally-Contracted Multireference Coupled Cluster Theory</a></div></td>
+<td>Kalman Szenes et al.</td>
+<td><a href="http://arxiv.org/abs/2511.03567">2511.03567</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.20588.html">Excited-CAFQA: A classical simulation bootstrap for the variational estimation of molecular excited states</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Bikrant Bhattacharyya et al.</td>
+<td><a href="http://arxiv.org/abs/2509.20588">2509.20588</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.16436.html">Taming quantum systems: A tutorial for using shortcuts-to-adiabaticity, quantum optimal control, and reinforcement learning</a></div></td>
+<td>Callum W. Duncan et al.</td>
+<td><a href="http://arxiv.org/abs/2501.16436">2501.16436</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.00216.html">Automated calculation of spin, isospin branching rules for su(4) irreps</a></div></td>
+<td>S. Quintero et al.</td>
+<td><a href="http://arxiv.org/abs/2511.00216">2511.00216</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.22402.html">Machine-Learned Potentials for Solvation Modeling</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Roopshree Banchode et al.</td>
+<td><a href="http://arxiv.org/abs/2505.22402">2505.22402</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.07297.html">Data Fusion of Deep Learned Molecular Embeddings for Property Prediction</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a></div></td>
+<td>Robert J Appleton et al.</td>
+<td><a href="http://arxiv.org/abs/2504.07297">2504.07297</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.24316.html">Jacobi-Anger Density Estimation for Energy Distribution of Quantum States</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Kyeongan Park et al.</td>
+<td><a href="http://arxiv.org/abs/2510.24316">2510.24316</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.23242.html">Automated Exploration of Radical-Molecule Chemistry: The Case of Oxirane + CH in the ISM</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a></div></td>
+<td>Moritz Bensberg et al.</td>
+<td><a href="http://arxiv.org/abs/2510.23242">2510.23242</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.23303.html">Ground and excited potential energy surfaces for CaF+Ca interactions and isotope exchange reactions</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="excited-states-all.html">excited-states</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Dibyendu Sardar et al.</td>
+<td><a href="http://arxiv.org/abs/2510.23303">2510.23303</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.20236.html">Layer-to-Layer Knowledge Mixing in Graph Neural Network for Chemical Property Prediction</a></div><div class="paper-tags"><a href="gnn-all.html">gnn</a> · <a href="property-prediction-all.html">property-prediction</a></div></td>
+<td>Teng Jiek See et al.</td>
+<td><a href="http://arxiv.org/abs/2510.20236">2510.20236</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.18817.html">High-order Equivariant Flow Matching for Density Functional Theory Hamiltonian Prediction</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Seongsu Kim et al.</td>
+<td><a href="http://arxiv.org/abs/2505.18817">2505.18817</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.07778.html">Trapped-ion quantum simulation of the Fermi-Hubbard model as a lattice gauge theory using hardware-aware native gates</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a></div></td>
+<td>Dhruv Srinivasan et al.</td>
+<td><a href="http://arxiv.org/abs/2411.07778">2411.07778</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.13839.html">Quantum-selected configuration interaction with time-evolved state</a></div></td>
+<td>Mathias Mikkelsen et al.</td>
+<td><a href="http://arxiv.org/abs/2412.13839">2412.13839</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.18900.html">Foundation Models for Discovery and Exploration in Chemical Space</a></div><div class="paper-tags"><a href="battery-materials-all.html">battery-materials</a> · <a href="chemical-space-all.html">chemical-space</a> · <a href="materials-discovery-all.html">materials-discovery</a> · <a href="property-prediction-all.html">property-prediction</a></div></td>
+<td>Alexius Wadell et al.</td>
+<td><a href="http://arxiv.org/abs/2510.18900">2510.18900</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.14543.html">A recipe for local simulation of strongly-correlated fermionic matter on quantum computers: the 2D Fermi-Hubbard model</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Arash Jafarizadeh et al.</td>
+<td><a href="http://arxiv.org/abs/2408.14543">2408.14543</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.04369.html">A highly accurate procedure for computing globally optimal Wannier functions in one-dimensional crystalline insulators</a></div></td>
+<td>Abinand Gopal et al.</td>
+<td><a href="http://arxiv.org/abs/2409.04369">2409.04369</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.15678.html">Fragment, Entangle, and Consolidate: Strong Correlation through Bi-fold Quantum Circuits</a></div><div class="paper-tags"><a href="chemical-space-all.html">chemical-space</a></div></td>
+<td>Arpan Choudhury et al.</td>
+<td><a href="http://arxiv.org/abs/2510.15678">2510.15678</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.15806.html">Operator Commutativity Screening and Progressive Operator Block Reordering toward Many-body Inspired Quantum State Preparation</a></div></td>
+<td>Dibyendu Mondal et al.</td>
+<td><a href="http://arxiv.org/abs/2510.15806">2510.15806</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.01941.html">$\textit{Ab initio}$ correlated calculations without finite basis-set error: Numerically precise all-electron RPA correlation energies for diatomic molecules</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Hao Peng et al.</td>
+<td><a href="http://arxiv.org/abs/2411.01941">2411.01941</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.11706.html">Probing emergent prethermal dynamics and resonant melting on a programmable quantum simulator</a></div><div class="paper-tags"><a href="phase-transition-all.html">phase-transition</a></div></td>
+<td>Siva Darbha et al.</td>
+<td><a href="http://arxiv.org/abs/2510.11706">2510.11706</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.20066.html">Enhancing quantum computations with the synergy of auxiliary field quantum Monte Carlo and computational basis tomography</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Viktor Khinevich et al.</td>
+<td><a href="http://arxiv.org/abs/2502.20066">2502.20066</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.09151.html">The Quantum Paldus Transform: Efficient Circuits with Applications</a></div></td>
+<td>Jędrzej Burkat et al.</td>
+<td><a href="http://arxiv.org/abs/2506.09151">2506.09151</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.08142.html">Enhancing Hybrid Methods in Parameterized Quantum Circuit Optimization</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Joona V. Pankkonen et al.</td>
+<td><a href="http://arxiv.org/abs/2510.08142">2510.08142</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.07011.html">Space-filling discrete helices</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Jayanth R. Banavar et al.</td>
+<td><a href="http://arxiv.org/abs/2510.07011">2510.07011</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.07380.html">Quantum simulation of chemistry via quantum fast multipole method</a></div></td>
+<td>Dominic W. Berry et al.</td>
+<td><a href="http://arxiv.org/abs/2510.07380">2510.07380</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.18554.html">Probing the Kitaev honeycomb model on a neutral-atom quantum computer</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a></div></td>
+<td>Simon J. Evered et al.</td>
+<td><a href="http://arxiv.org/abs/2501.18554">2501.18554</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.15705.html">Gaussian-Based Periodic Grand Canonical Density Functional Theory with Implicit Solvation for Computational Electrochemistry</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Anton Z. Ni et al.</td>
+<td><a href="http://arxiv.org/abs/2508.15705">2508.15705</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.04795.html">Mixed-precision ab initio tensor network state methods adapted for NVIDIA Blackwell technology via emulated FP64 arithmetic</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Cole Brower et al.</td>
+<td><a href="http://arxiv.org/abs/2510.04795">2510.04795</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.05289.html">Overshifted Parameter-Shift Rules: Optimizing Complex Quantum Systems with Few Measurements</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Leonardo Banchi et al.</td>
+<td><a href="http://arxiv.org/abs/2510.05289">2510.05289</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.17276.html">Algebraic Varieties in Second Quantization</a></div></td>
+<td>Svala Sverrisdóttir</td>
+<td><a href="http://arxiv.org/abs/2505.17276">2505.17276</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.04227.html">A Universal Deep Learning Force Field for Molecular Dynamic Simulation and Vibrational Spectra Prediction</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="mlip-all.html">mlip</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Shengjiao Ji et al.</td>
+<td><a href="http://arxiv.org/abs/2510.04227">2510.04227</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.01670.html">QCBench: Evaluating Large Language Models on Domain-Specific Quantitative Chemistry</a></div></td>
+<td>Jiaqing Xie et al.</td>
+<td><a href="http://arxiv.org/abs/2508.01670">2508.01670</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.05730.html">Optimal Overlapping Tomography</a></div></td>
+<td>Kiara Hansenne et al.</td>
+<td><a href="http://arxiv.org/abs/2408.05730">2408.05730</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.03095.html">Typical reconstruction limit and phase transition of maximum entropy method</a></div><div class="paper-tags"><a href="phase-transition-all.html">phase-transition</a></div></td>
+<td>Masaru Hitomi et al.</td>
+<td><a href="http://arxiv.org/abs/2504.03095">2504.03095</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.09371.html">TensorRL-QAS: Reinforcement learning with tensor networks for improved quantum architecture search</a></div><div class="paper-tags"><a href="reinforcement-learning-all.html">reinforcement-learning</a></div></td>
+<td>Akash Kundu et al.</td>
+<td><a href="http://arxiv.org/abs/2505.09371">2505.09371</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.19337.html">A Perspective on Quantum Computing Applications in Quantum Chemistry using 25--100 Logical Qubits</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Yuri Alexeev et al.</td>
+<td><a href="http://arxiv.org/abs/2506.19337">2506.19337</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.25720.html">Transformer-Based Neural Networks Backflow for Strongly Correlated Electronic Structure</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Huan Ma et al.</td>
+<td><a href="http://arxiv.org/abs/2509.25720">2509.25720</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.26397.html">Are neural scaling laws leading quantum chemistry astray?</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Siwoo Lee et al.</td>
+<td><a href="http://arxiv.org/abs/2509.26397">2509.26397</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.23634.html">Tetratomic states of microwave dressed and associated ultracold 23Na40K molecules</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Zhengyu Gu et al.</td>
+<td><a href="http://arxiv.org/abs/2509.23634">2509.23634</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.20907.html">Quantum Simulation and Energy Estimation for Discretized Anharmonic oscillator</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Saurav Suman et al.</td>
+<td><a href="http://arxiv.org/abs/2509.20907">2509.20907</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.09262.html">EDBench: Large-Scale Electron Density Data for Molecular Modeling</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="drug-discovery-all.html">drug-discovery</a> · <a href="materials-science-all.html">materials-science</a> · <a href="mlip-all.html">mlip</a></div></td>
+<td>Hongxin Xiang et al.</td>
+<td><a href="http://arxiv.org/abs/2505.09262">2505.09262</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.16905.html">Accurate crystal field Hamiltonians of single-ion magnets at mean-field cost</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Linqing Peng et al.</td>
+<td><a href="http://arxiv.org/abs/2505.16905">2505.16905</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.19709.html">Quantum Computing Beyond Ground State Electronic Structure: A Review of Progress Toward Quantum Chemistry Out of the Ground State</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Alan Bidart et al.</td>
+<td><a href="http://arxiv.org/abs/2509.19709">2509.19709</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.19715.html">SMILES-Inspired Transfer Learning for Quantum Operators in Generative Quantum Eigensolver</a></div><div class="paper-tags"><a href="generative-model-all.html">generative-model</a></div></td>
+<td>Zhi Yin et al.</td>
+<td><a href="http://arxiv.org/abs/2509.19715">2509.19715</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.18882.html">A Novel Mathematical Model of Protein Interactions from the Perspective of Electron Delocalization</a></div><div class="paper-tags"><a href="protein-function-all.html">protein-function</a></div></td>
+<td>Naoto Morikawa</td>
+<td><a href="http://arxiv.org/abs/2509.18882">2509.18882</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.15166.html">Planted Solutions in Quantum Chemistry: Generating Non-Trivial Hamiltonians with Known Ground States</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Linjun Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2507.15166">2507.15166</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.16186.html">Quantum Generative Adversarial Autoencoders: Learning latent representations for quantum data generation</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Naipunnya Raj et al.</td>
+<td><a href="http://arxiv.org/abs/2509.16186">2509.16186</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.16420.html">Critical point search and linear response theory for computing electronic excitation energies of molecular systems. Part I: General framework, application to Hartree-Fock and DFT</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Laura Grazioli et al.</td>
+<td><a href="http://arxiv.org/abs/2506.16420">2506.16420</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.15193.html">TITAN: A Trajectory-Informed Technique for Adaptive Parameter Freezing in Large-Scale VQE</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a></div></td>
+<td>Yifeng Peng et al.</td>
+<td><a href="http://arxiv.org/abs/2509.15193">2509.15193</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.08183.html">Parametrized Quantum Circuit Learning for Quantum Chemical Applications</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Grier M. Jones et al.</td>
+<td><a href="http://arxiv.org/abs/2507.08183">2507.08183</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.11240.html">Nitrogen-vacancy centre in lonsdaleite: a novel nanoscale sensor?</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="band-gap-all.html">band-gap</a></div></td>
+<td>Anjay Manian et al.</td>
+<td><a href="http://arxiv.org/abs/2505.11240">2505.11240</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.17846.html">Neural Network Assisted Fermionic Compression Encoding: A Lossy-QSCI Framework for Resource-Efficient Ground-State Simulations</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Yu-cheng Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2505.17846">2505.17846</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.12679.html">Large Language Model Scaling Laws for Neural Quantum States in Quantum Chemistry</a></div></td>
+<td>Oliver Knitter et al.</td>
+<td><a href="http://arxiv.org/abs/2509.12679">2509.12679</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.12680.html">Extension of the Jordan-Wigner mapping to nonorthogonal spin orbitals for quantum computing application to valence bond approaches</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Alessia Marruzzo et al.</td>
+<td><a href="http://arxiv.org/abs/2509.12680">2509.12680</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.13096.html">Cyclic Variational Quantum Eigensolver: Escaping Barren Plateaus through Staircase Descent</a></div></td>
+<td>Hao Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2509.13096">2509.13096</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.11616.html">Excited states in auxiliary field quantum Monte Carlo</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Ankit Mahajan et al.</td>
+<td><a href="http://arxiv.org/abs/2509.11616">2509.11616</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.11728.html">Fast and Interpretable Machine Learning Modelling of Atmospheric Molecular Clusters</a></div><div class="paper-tags"><a href="molecular-representation-all.html">molecular-representation</a></div></td>
+<td>Lauri Seppäläinen et al.</td>
+<td><a href="http://arxiv.org/abs/2509.11728">2509.11728</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.01205.html">Integrated Software/Hardware Execution Models for High-Accuracy Methods in Chemistry</a></div></td>
+<td>Nicholas Bauman et al.</td>
+<td><a href="http://arxiv.org/abs/2510.01205">2510.01205</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.11317.html">Taylor series perspective on ab initio path integral Monte Carlo simulations with Fermi-Dirac statistics</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Tobias Dornheim et al.</td>
+<td><a href="http://arxiv.org/abs/2509.11317">2509.11317</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.10758.html">Moments-based quantum computation of the electric dipole moment of molecular systems</a></div></td>
+<td>Michael A. Jones et al.</td>
+<td><a href="http://arxiv.org/abs/2509.10758">2509.10758</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.05542.html">Core-Excited States of Linear and Bent Uranyl Complexes: Insights from High-Energy Resolution X-ray Spectroscopy and Relativistic Quantum Chemistry</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Wilken Aldair Misael et al.</td>
+<td><a href="http://arxiv.org/abs/2504.05542">2504.05542</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.09882.html">Quantum Computing Technology Roadmaps and Capability Assessment for Scientific Computing -- An analysis of use cases from the NERSC workload</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Daan Camps et al.</td>
+<td><a href="http://arxiv.org/abs/2509.09882">2509.09882</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.08545.html">IR Spectroscopic Studies of Gas-Phase Peptides</a></div><div class="paper-tags"><a href="protein-structure-all.html">protein-structure</a></div></td>
+<td>Åke Andersson et al.</td>
+<td><a href="http://arxiv.org/abs/2509.08545">2509.08545</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.20464.html">Quantum annealing eigensolver as a NISQ era tool for probing strong correlation effects in quantum chemistry</a></div></td>
+<td>Aashna Anil Zade et al.</td>
+<td><a href="http://arxiv.org/abs/2412.20464">2412.20464</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.19322.html">Mixed-precision numerics in scientific applications: survey and perspectives</a></div></td>
+<td>Aditya Kashi et al.</td>
+<td><a href="http://arxiv.org/abs/2412.19322">2412.19322</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.05031.html">Quantum simulation of the Hubbard model on a graphene hexagon: Strengths of IQPE and noise constraints</a></div><div class="paper-tags"><a href="2d-materials-all.html">2d-materials</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Mohammad Mirzakhani et al.</td>
+<td><a href="http://arxiv.org/abs/2506.05031">2506.05031</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.01859.html">A method to derive material-specific spin-bath model descriptions of materials displaying prevalent spin physics</a></div><div class="paper-tags"><a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Benedikt M. Schoenauer et al.</td>
+<td><a href="http://arxiv.org/abs/2504.01859">2504.01859</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.10671.html">AEGISS -- Atomic orbital and Entropy-based Guided Inference for Space Selection -- A novel semi-automated active space selection workflow for quantum chemistry and quantum computing applications</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Fabio Tarocco et al.</td>
+<td><a href="http://arxiv.org/abs/2508.10671">2508.10671</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.02251.html">Unravelling the unique kinetic interactions between N2O and unsaturated hydrocarbons</a></div></td>
+<td>Hongqing Wu et al.</td>
+<td><a href="http://arxiv.org/abs/2509.02251">2509.02251</a></td>
+</tr>
+<tr class="paper">
+<td>2025-09-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.04837.html">Resolvent-based quantum phase estimation: Towards estimation of parametrized eigenvalues</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Abhijeet Alase et al.</td>
+<td><a href="http://arxiv.org/abs/2410.04837">2410.04837</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.21325.html">Hybrid Quantum-Classical Simulations of Graphene Analogues: Adsorption Energetics Beyond DFT</a></div><div class="paper-tags"><a href="2d-materials-all.html">2d-materials</a> · <a href="dft-all.html">dft</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Archith Rayabharam et al.</td>
+<td><a href="http://arxiv.org/abs/2508.21325">2508.21325</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.21342.html">Accelerating Transpilation in Quantum Machine Learning with Haiqu&#x27;s Rivet-transpiler</a></div></td>
+<td>Aleksander Kaczmarek et al.</td>
+<td><a href="http://arxiv.org/abs/2508.21342">2508.21342</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.21729.html">Bayesian perspectives for quantum states and application to ab initio quantum chemistry</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Yannic Rath et al.</td>
+<td><a href="http://arxiv.org/abs/2508.21729">2508.21729</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.20042.html">CHEMSMART: Chemistry Simulation and Modeling Automation Toolkit for High-Efficiency Computational Chemistry Workflows</a></div><div class="paper-tags"><a href="catalysis-all.html">catalysis</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Xinglong Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2508.20042">2508.20042</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.20134.html">QAgent: An LLM-based Multi-Agent System for Autonomous OpenQASM programming</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Zhenxiao Fu et al.</td>
+<td><a href="http://arxiv.org/abs/2508.20134">2508.20134</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.18489.html">Experiences with Model Context Protocol Servers for Science and High Performance Computing</a></div></td>
+<td>Haochen Pan et al.</td>
+<td><a href="http://arxiv.org/abs/2508.18489">2508.18489</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.03140.html">HMAE: Self-Supervised Few-Shot Learning for Quantum Spin Systems</a></div><div class="paper-tags"><a href="gnn-all.html">gnn</a> · <a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Ibne Farabi Shihab et al.</td>
+<td><a href="http://arxiv.org/abs/2505.03140">2505.03140</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.15072.html">Improving VQE Parameter Quality on Noisy Quantum Processors with Cost-Effective Readout Error Mitigation</a></div></td>
+<td>Nacer Eddine Belaloui et al.</td>
+<td><a href="http://arxiv.org/abs/2508.15072">2508.15072</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.03427.html">Symmetry-breaking-induced topology in FeSe</a></div><div class="paper-tags"><a href="2d-materials-all.html">2d-materials</a> · <a href="band-gap-all.html">band-gap</a> · <a href="dft-all.html">dft</a> · <a href="magnetic-properties-all.html">magnetic-properties</a> · <a href="phase-transition-all.html">phase-transition</a></div></td>
+<td>Mikel García-Díez et al.</td>
+<td><a href="http://arxiv.org/abs/2508.03427">2508.03427</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.11270.html">Multi-QIDA method for VQE state preparation in molecular systems</a></div></td>
+<td>Fabio Tarocco et al.</td>
+<td><a href="http://arxiv.org/abs/2508.11270">2508.11270</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.10873.html">QB Ground State Energy Estimation Benchmark</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Nicole Bellonzi et al.</td>
+<td><a href="http://arxiv.org/abs/2508.10873">2508.10873</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.02160.html">Resource-optimized fault-tolerant simulation of the Fermi-Hubbard model and high-temperature superconductor models</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Angus Kan et al.</td>
+<td><a href="http://arxiv.org/abs/2411.02160">2411.02160</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.02484.html">El Agente: An Autonomous Agent for Quantum Chemistry</a></div></td>
+<td>Yunheng Zou et al.</td>
+<td><a href="http://arxiv.org/abs/2505.02484">2505.02484</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.05608.html">Ultra-Large-Scale Compilation and Manipulation of Quantum Circuits with Pandora</a></div></td>
+<td>Ioana Moflic et al.</td>
+<td><a href="http://arxiv.org/abs/2508.05608">2508.05608</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.05754.html">Benchmarking quantum computers with any quantum algorithm</a></div></td>
+<td>Stefan K. Seritan et al.</td>
+<td><a href="http://arxiv.org/abs/2508.05754">2508.05754</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.02570.html">Neural Scaling Laws Surpass Chemical Accuracy for the Many-Electron Schrödinger Equation</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a></div></td>
+<td>Du Jiang et al.</td>
+<td><a href="http://arxiv.org/abs/2508.02570">2508.02570</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.13547.html">Optimizing a parameterized controlled gate using Free Quaternion Selection</a></div></td>
+<td>Hiroyoshi Kurogi et al.</td>
+<td><a href="http://arxiv.org/abs/2409.13547">2409.13547</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.08882.html">SA-DQAS: Self-attention Enhanced Differentiable Quantum Architecture Search</a></div></td>
+<td>Yize Sun et al.</td>
+<td><a href="http://arxiv.org/abs/2406.08882">2406.08882</a></td>
+</tr>
+<tr class="paper">
+<td>2025-08-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.23468.html">On the complex zeros of the wavefunction</a></div></td>
+<td>Sacha Cerf et al.</td>
+<td><a href="http://arxiv.org/abs/2507.23468">2507.23468</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.13265.html">Molecule Graph Networks with Many-body Equivariant Interactions</a></div></td>
+<td>Zetian Mao et al.</td>
+<td><a href="http://arxiv.org/abs/2406.13265">2406.13265</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.00052.html">Learning shadows to predict quantum ground state correlations</a></div></td>
+<td>Pierre-Gabriel Rozon et al.</td>
+<td><a href="http://arxiv.org/abs/2508.00052">2508.00052</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.22517.html">Electronic Structure of Bimetallic CoRu Catalysts Modulates SWCNT Nucleation</a></div><div class="paper-tags"><a href="band-gap-all.html">band-gap</a> · <a href="catalysis-all.html">catalysis</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Alister J. Page et al.</td>
+<td><a href="http://arxiv.org/abs/2507.22517">2507.22517</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.21461.html">Shadow excited state molecular dynamics with the \DeltaSCF method</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="excited-states-all.html">excited-states</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>O. Jonathan Fajen et al.</td>
+<td><a href="http://arxiv.org/abs/2507.21461">2507.21461</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.20583.html">Real-Space Chemistry on Quantum Computers: A Fault-Tolerant Algorithm with Adaptive Grids and Transcorrelated Extension</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>César Feniou et al.</td>
+<td><a href="http://arxiv.org/abs/2507.20583">2507.20583</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.17912.html">SETOL: A Semi-Empirical Theory of (Deep) Learning</a></div></td>
+<td>Charles H Martin et al.</td>
+<td><a href="http://arxiv.org/abs/2507.17912">2507.17912</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.20317.html">Efficient Gaussian State Preparation in Quantum Circuits</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Yichen Xie et al.</td>
+<td><a href="http://arxiv.org/abs/2507.20317">2507.20317</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.20328.html">Chemical Space of Molecular Nanomotors: Optimizing Photochemical Properties for One- and Two-photon Applications</a></div><div class="paper-tags"><a href="chemical-space-all.html">chemical-space</a> · <a href="excited-states-all.html">excited-states</a> · <a href="molecular-representation-all.html">molecular-representation</a></div></td>
+<td>Alexander Mielke et al.</td>
+<td><a href="http://arxiv.org/abs/2507.20328">2507.20328</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.12607.html">Solving Constrained Combinatorial Optimization Problems with Variational Quantum Imaginary Time Evolution</a></div></td>
+<td>Xin Wei Lee et al.</td>
+<td><a href="http://arxiv.org/abs/2504.12607">2504.12607</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.19276.html">Hybrid tensor network and neural network quantum states for quantum chemistry</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Zibo Wu et al.</td>
+<td><a href="http://arxiv.org/abs/2507.19276">2507.19276</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.03073.html">Beating the natural Grover bound for low-energy estimation and state preparation</a></div></td>
+<td>Harry Buhrman et al.</td>
+<td><a href="http://arxiv.org/abs/2407.03073">2407.03073</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.14880.html">Simultaneous determination of multiple low-energy eigenstates of many-body systems on a superconducting quantum processor</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a> · <a href="free-energy-all.html">free-energy</a> · <a href="phase-transition-all.html">phase-transition</a></div></td>
+<td>Huili Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2507.14880">2507.14880</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.02575.html">Practical techniques for high-precision measurements on near-term quantum hardware and applications in molecular energy estimation</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Keijo Korhonen et al.</td>
+<td><a href="http://arxiv.org/abs/2409.02575">2409.02575</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.02726.html">A Photonic Parameter-shift Rule: Enabling Gradient Computation for Photonic Quantum Computers</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Axel Pappalardo et al.</td>
+<td><a href="http://arxiv.org/abs/2410.02726">2410.02726</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.08955.html">Fault-tolerant fermionic quantum computing</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Alexander Schuckert et al.</td>
+<td><a href="http://arxiv.org/abs/2411.08955">2411.08955</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.12554.html">Self-learning Monte Carlo Method: A Review</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Gaopei Pan et al.</td>
+<td><a href="http://arxiv.org/abs/2507.12554">2507.12554</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.01236.html">Qracle: A Graph-Neural-Network-based Parameter Initializer for Variational Quantum Eigensolvers</a></div><div class="paper-tags"><a href="gnn-all.html">gnn</a></div></td>
+<td>Chi Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2505.01236">2505.01236</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.11514.html">Quantum Information Geometry Meets DMRG: Uhlmann Gauge Improvements in Computational Methods</a></div></td>
+<td>Andrei Tudor Patrascu</td>
+<td><a href="http://arxiv.org/abs/2505.11514">2505.11514</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.02419.html">Quantum Curriculum Learning</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Quoc Hoan Tran et al.</td>
+<td><a href="http://arxiv.org/abs/2407.02419">2407.02419</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.18212.html">Exploring the Convergence and Properties of Intrinsic Bond Orbitals in Solids</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="band-gap-all.html">band-gap</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Benjamin Wöckinger et al.</td>
+<td><a href="http://arxiv.org/abs/2409.18212">2409.18212</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.12761.html">Antisymmetry rules of response properties in certain chemical spaces</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="thermodynamic-integration-all.html">thermodynamic-integration</a></div></td>
+<td>Takafumi Shiraogawa et al.</td>
+<td><a href="http://arxiv.org/abs/2502.12761">2502.12761</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.17367.html">Exploring the Properties of Light Diatomic Molecules in Strong Magnetic Fields</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a> · <a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>T. Zalialiutdinov et al.</td>
+<td><a href="http://arxiv.org/abs/2503.17367">2503.17367</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.08379.html">Advances in Machine Learning: Where Can Quantum Techniques Help?</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Samarth Kashyap et al.</td>
+<td><a href="http://arxiv.org/abs/2507.08379">2507.08379</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.08634.html">Ionization Energy of Rb$_2$ by electric field-ionization of molecular Rydberg states</a></div></td>
+<td>Manuel Alejandro Lefrán Torres et al.</td>
+<td><a href="http://arxiv.org/abs/2507.08634">2507.08634</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.12629.html">The Software Landscape for the Density Matrix Renormalization Group</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Per Sehlstedt et al.</td>
+<td><a href="http://arxiv.org/abs/2506.12629">2506.12629</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.23008.html">A Benchmark for Quantum Chemistry Relaxations via Machine Learning Interatomic Potentials</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="drug-discovery-all.html">drug-discovery</a> · <a href="materials-science-all.html">materials-science</a> · <a href="mlip-all.html">mlip</a></div></td>
+<td>Cong Fu et al.</td>
+<td><a href="http://arxiv.org/abs/2506.23008">2506.23008</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.16270.html">Quantitative agreement between experiment and theory for Vibrational Circular Dichroism enhanced by electronically excited states</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Mariia Sapova et al.</td>
+<td><a href="http://arxiv.org/abs/2506.16270">2506.16270</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.05352.html">Looking elsewhere: improving variational Monte Carlo gradients by importance sampling</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Antoine Misery et al.</td>
+<td><a href="http://arxiv.org/abs/2507.05352">2507.05352</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.03853.html">OrbitAll: A Unified Quantum Mechanical Representation Deep Learning Framework for All Molecular Systems</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="gnn-all.html">gnn</a></div></td>
+<td>Beom Seok Kang et al.</td>
+<td><a href="http://arxiv.org/abs/2507.03853">2507.03853</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.03968.html">Was Earth&#x27;s water acquired locally during the earliest phases of the Solar System formation?</a></div></td>
+<td>Lise Boitard-Crépeau et al.</td>
+<td><a href="http://arxiv.org/abs/2507.03968">2507.03968</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.02625.html">The covariance matrix spectrum of correlated charge insulators reveals hidden connections to Coupled Cluster, Matrix Product, and Rokhsar-Kivelson states</a></div></td>
+<td>Izak Snyman et al.</td>
+<td><a href="http://arxiv.org/abs/2507.02625">2507.02625</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.08009.html">Long-Term Stability of Superconducting Metal Superhydrides</a></div></td>
+<td>Vasily S. Minkov et al.</td>
+<td><a href="http://arxiv.org/abs/2507.08009">2507.08009</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.12757.html">A comprehensive theory for relativistic polaritonic chemistry: a four components ab initio treatment of molecular systems coupled to quantum fields</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="excited-states-all.html">excited-states</a> · <a href="free-energy-all.html">free-energy</a> · <a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Guillaume Thiam et al.</td>
+<td><a href="http://arxiv.org/abs/2409.12757">2409.12757</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.01902.html">Analyzing Common Electronic Structure Theory Algorithms for Distributed Quantum Computing</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Grier M. Jones et al.</td>
+<td><a href="http://arxiv.org/abs/2507.01902">2507.01902</a></td>
+</tr>
+<tr class="paper">
+<td>2025-07-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.23713.html">Photonic obstructed atomic insulator</a></div></td>
+<td>Hongyu Chen</td>
+<td><a href="http://arxiv.org/abs/2506.23713">2506.23713</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2405.05118.html">Full Version: (De/Re)-Composition of Data-Parallel Computations via Multi-Dimensional Homomorphisms</a></div></td>
+<td>Ari Rasch</td>
+<td><a href="http://arxiv.org/abs/2405.05118">2405.05118</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.11881.html">Shifting sands of hardware and software in exascale quantum mechanical simulations</a></div></td>
+<td>Ravindra Shinde et al.</td>
+<td><a href="http://arxiv.org/abs/2409.11881">2409.11881</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.05120.html">Computing Anharmonic Infrared Spectra of Polycyclic Aromatic Hydrocarbons Using Machine-Learning Molecular Dynamics</a></div><div class="paper-tags"><a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Xinghong Mai et al.</td>
+<td><a href="http://arxiv.org/abs/2503.05120">2503.05120</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.23809.html">Large-scale Neural Network Quantum States for ab initio Quantum Chemistry Simulations on Fugaku</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Hongtao Xu et al.</td>
+<td><a href="http://arxiv.org/abs/2506.23809">2506.23809</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.22029.html">Complete insensitivity to ab initio data -- A new perspective on modeling collision-induced absorption of noble gas atoms</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="thermal-properties-all.html">thermal-properties</a> · <a href="vdw-correction-all.html">vdw-correction</a></div></td>
+<td>Nikhila Ambika Chandran et al.</td>
+<td><a href="http://arxiv.org/abs/2506.22029">2506.22029</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.22408.html">Quantum-Classical Auxiliary Field Quantum Monte Carlo with Matchgate Shadows on Trapped Ion Quantum Computers</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Luning Zhao et al.</td>
+<td><a href="http://arxiv.org/abs/2506.22408">2506.22408</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.16833.html">Ultracold Interactions between Ions and Polar Molecules</a></div></td>
+<td>Leon Karpa et al.</td>
+<td><a href="http://arxiv.org/abs/2409.16833">2409.16833</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.20655.html">Sequential Quantum Computing</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Sebastián V. Romero et al.</td>
+<td><a href="http://arxiv.org/abs/2506.20655">2506.20655</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.19960.html">An ab initio foundation model of wavefunctions that accurately describes chemical bond breaking</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Adam Foster et al.</td>
+<td><a href="http://arxiv.org/abs/2506.19960">2506.19960</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.18877.html">Integrating Classical and Quantum Software for Enhanced Simulation of Realistic Chemical Systems</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Tomoya Shiota et al.</td>
+<td><a href="http://arxiv.org/abs/2506.18877">2506.18877</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.17199.html">Tighter Error Bounds for the qDRIFT Algorithm</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>I. J. David et al.</td>
+<td><a href="http://arxiv.org/abs/2506.17199">2506.17199</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.17207.html">High-precision Quantum Phase Estimation on a Trapped-ion Quantum Computer</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Andrew Tranter et al.</td>
+<td><a href="http://arxiv.org/abs/2506.17207">2506.17207</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.07231.html">Critical Limitations in Quantum-Selected Configuration Interaction Methods</a></div></td>
+<td>Peter Reinholdt et al.</td>
+<td><a href="http://arxiv.org/abs/2501.07231">2501.07231</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.09576.html">Characterizing maximally many-body entangled fermionic states by using $M$-body density matrix</a></div></td>
+<td>Irakli Giorgadze et al.</td>
+<td><a href="http://arxiv.org/abs/2412.09576">2412.09576</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.15592.html">Enhanced vibrational optical activity by near-zero index chiral effective media</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Ashis Paul et al.</td>
+<td><a href="http://arxiv.org/abs/2506.15592">2506.15592</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.06146.html">Configuration Interaction Guided Sampling with Interpretable Restricted Boltzmann Machine</a></div><div class="paper-tags"><a href="generative-model-all.html">generative-model</a></div></td>
+<td>Jorge I. Hernandez-Martinez et al.</td>
+<td><a href="http://arxiv.org/abs/2409.06146">2409.06146</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.18843.html">Efficient optimization of neural network backflow for ab-initio quantum chemistry</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>An-Jun Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2502.18843">2502.18843</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.14661.html">Approximating Hamiltonian for Hartree-Fock solutions for nonrelativistic atoms</a></div></td>
+<td>N. Q. San et al.</td>
+<td><a href="http://arxiv.org/abs/2506.14661">2506.14661</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.14711.html">High-fidelity collisional quantum gates with fermionic atoms</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Petar Bojović et al.</td>
+<td><a href="http://arxiv.org/abs/2506.14711">2506.14711</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.11318.html">Mildly-Interacting Fermionic Unitaries are Efficiently Learnable</a></div></td>
+<td>Vishnu Iyer</td>
+<td><a href="http://arxiv.org/abs/2504.11318">2504.11318</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.09297.html">A thorough study of Riemannian Newton&#x27;s Method</a></div></td>
+<td>Caio O. da Silva et al.</td>
+<td><a href="http://arxiv.org/abs/2506.09297">2506.09297</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.11632.html">How oxygen influences the catalytic activity of iron during carbon nanotube nucleation</a></div><div class="paper-tags"><a href="band-gap-all.html">band-gap</a> · <a href="catalysis-all.html">catalysis</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Ben McLean et al.</td>
+<td><a href="http://arxiv.org/abs/2506.11632">2506.11632</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.05379.html">Teacher-student training improves accuracy and efficiency of machine learning interatomic potentials</a></div><div class="paper-tags"><a href="mlip-all.html">mlip</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Sakib Matin et al.</td>
+<td><a href="http://arxiv.org/abs/2502.05379">2502.05379</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.14293.html">Ensemble Knowledge Distillation for Machine Learning Interatomic Potentials</a></div><div class="paper-tags"><a href="mlip-all.html">mlip</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Sakib Matin et al.</td>
+<td><a href="http://arxiv.org/abs/2503.14293">2503.14293</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.10429.html">Transcorrelated Theory for Transition Metal Atoms</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Kristoffer Simula et al.</td>
+<td><a href="http://arxiv.org/abs/2506.10429">2506.10429</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.09743.html">QMCTorch: Molecular Wavefunctions with Neural Components for Energy and Force Calculations</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Nicolas Renaud</td>
+<td><a href="http://arxiv.org/abs/2506.09743">2506.09743</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.09906.html">Heavier chalcogenofenchones for fundamental gas-phase studies of molecular chirality</a></div></td>
+<td>Manjinder Kour et al.</td>
+<td><a href="http://arxiv.org/abs/2506.09906">2506.09906</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.06661.html">Enhancing PySCF-based Quantum Chemistry Simulations with Modern Hardware, Algorithms, and Python Tools</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Zhichen Pu et al.</td>
+<td><a href="http://arxiv.org/abs/2506.06661">2506.06661</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.03995.html">Limitations of Quantum Hardware for Molecular Energy Estimation Using VQE</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Abel Carreras et al.</td>
+<td><a href="http://arxiv.org/abs/2506.03995">2506.03995</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.04223.html">Bridging Quantum Chemistry and MaxCut: Classical Performance Guarantees and Quantum Algorithms for the Hartree-Fock Method</a></div></td>
+<td>Alexis Ralli et al.</td>
+<td><a href="http://arxiv.org/abs/2506.04223">2506.04223</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.04527.html">A Multi-Scale Quantum Framework for Evaluating Metal-Organic Frameworks in Carbon Capture</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="mof-all.html">mof</a> · <a href="protein-ligand-all.html">protein-ligand</a></div></td>
+<td>Tom W. A. Montgomery et al.</td>
+<td><a href="http://arxiv.org/abs/2505.04527">2505.04527</a></td>
+</tr>
+<tr class="paper">
+<td>2025-06-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.02227.html">Can the Infamous Boundary Be Found in Macromolecules? Also, von Neumann vs. Schroedinger ensembles, and `Hund&#x27;s Paradox&#x27; in quantum chemistry</a></div></td>
+<td>W. David Wick</td>
+<td><a href="http://arxiv.org/abs/2506.02227">2506.02227</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.19014.html">Tokenizing Electron Cloud in Protein-Ligand Interaction Learning</a></div><div class="paper-tags"><a href="protein-ligand-all.html">protein-ligand</a></div></td>
+<td>Haitao Lin et al.</td>
+<td><a href="http://arxiv.org/abs/2505.19014">2505.19014</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.13394.html">Multireference Embedding and Fragmentation Methods for Classical and Quantum Computers: from Model Systems to Realistic Applications</a></div></td>
+<td>Shreya Verma et al.</td>
+<td><a href="http://arxiv.org/abs/2505.13394">2505.13394</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.14968.html">Quantum Measurement for Quantum Chemistry on a Quantum Computer</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="excited-states-all.html">excited-states</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Smik Patel et al.</td>
+<td><a href="http://arxiv.org/abs/2501.14968">2501.14968</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.09606.html">Comparative Analysis of GFN Methods in Geometry Optimization of Small Organic Semiconductor Molecules: A DFT Benchmarking Study</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="property-prediction-all.html">property-prediction</a></div></td>
+<td>Steve Cabrel Teguia Kouam et al.</td>
+<td><a href="http://arxiv.org/abs/2505.09606">2505.09606</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.04520.html">Advancing Molecular Machine Learning Representations with Stereoelectronics-Infused Molecular Graphs</a></div><div class="paper-tags"><a href="gnn-all.html">gnn</a> · <a href="molecular-representation-all.html">molecular-representation</a> · <a href="property-prediction-all.html">property-prediction</a></div></td>
+<td>Daniil A. Boiko et al.</td>
+<td><a href="http://arxiv.org/abs/2408.04520">2408.04520</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.19772.html">Truncated Variational Hamiltonian Ansatz: efficient quantum circuit design for quantum chemistry and material science</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Clemens Possel et al.</td>
+<td><a href="http://arxiv.org/abs/2505.19772">2505.19772</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.19909.html">Local Pseudopotential Unlocks the True Potential of Neural Network-based Quantum Monte Carlo</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Weizhong Fu et al.</td>
+<td><a href="http://arxiv.org/abs/2505.19909">2505.19909</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.21641.html">Enhancing the Harrow-Hassidim-Lloyd (HHL) algorithm in systems with large condition numbers</a></div></td>
+<td>Peniel Bertrand Tsemo et al.</td>
+<td><a href="http://arxiv.org/abs/2407.21641">2407.21641</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2404.06770.html">Vibrational ADAPT-VQE: Critical points leads to problematic convergence</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Marco Majland et al.</td>
+<td><a href="http://arxiv.org/abs/2404.06770">2404.06770</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.11091.html">Calculating the energy profile of an enzymatic reaction on a quantum computer</a></div><div class="paper-tags"><a href="mlip-all.html">mlip</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Patrick Ettenhuber et al.</td>
+<td><a href="http://arxiv.org/abs/2408.11091">2408.11091</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.04145.html">Connectivity matters: Impact of bath modes ordering and geometry in open quantum system simulation with Tensor Network States</a></div></td>
+<td>Thibaut Lacroix et al.</td>
+<td><a href="http://arxiv.org/abs/2409.04145">2409.04145</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.16021.html">Auxiliary Field Quantum Monte Carlo for Electron-Photon Correlation</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Braden M. Weight et al.</td>
+<td><a href="http://arxiv.org/abs/2505.16021">2505.16021</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.13683.html">Genesis: A Compiler Framework for Hamiltonian Simulation on Hybrid CV-DV Quantum Computers</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Zihan Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2505.13683">2505.13683</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.04044.html">Experimental Quantum Simulation of Chemical Dynamics</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a></div></td>
+<td>T. Navickas et al.</td>
+<td><a href="http://arxiv.org/abs/2409.04044">2409.04044</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.23034.html">OpenOrbitalOptimizer -- a reusable open source library for self-consistent field calculations</a></div></td>
+<td>Susi Lehtola et al.</td>
+<td><a href="http://arxiv.org/abs/2503.23034">2503.23034</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.12447.html">HORM: A Large Scale Molecular Hessian Database for Optimizing Reactive Machine Learning Interatomic Potentials</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="mlip-all.html">mlip</a></div></td>
+<td>Taoyong Cui et al.</td>
+<td><a href="http://arxiv.org/abs/2505.12447">2505.12447</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.07211.html">Tensor decomposition technique for qubit encoding of maximal-fidelity Lorentzian orbitals in real-space quantum chemistry</a></div></td>
+<td>Taichi Kosugi et al.</td>
+<td><a href="http://arxiv.org/abs/2501.07211">2501.07211</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.21686.html">Molecular Quantum Transformer</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Yuichi Kamata et al.</td>
+<td><a href="http://arxiv.org/abs/2503.21686">2503.21686</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.02646.html">Diagrammatic Monte Carlo for Finite Systems at Zero Temperature</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Stefano Brolli et al.</td>
+<td><a href="http://arxiv.org/abs/2501.02646">2501.02646</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.20006.html">Exploiting a Shortcoming of Coupled-Cluster Theory: The Extent of non-Hermiticity as a Diagnostic Indicator of Computational Accuracy</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Kaila E. Weflen et al.</td>
+<td><a href="http://arxiv.org/abs/2503.20006">2503.20006</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.09441.html">Zassenhaus Expansion in Solving the Schrödinger Equation</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Molena Nguyen et al.</td>
+<td><a href="http://arxiv.org/abs/2505.09441">2505.09441</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.09697.html">Stable Real-Space Invariants and Topology Beyond Symmetry Indicators</a></div><div class="paper-tags"><a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Yoonseok Hwang et al.</td>
+<td><a href="http://arxiv.org/abs/2505.09697">2505.09697</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.08291.html">Multireference error mitigation for quantum computation of chemistry</a></div></td>
+<td>Hang Zou et al.</td>
+<td><a href="http://arxiv.org/abs/2505.08291">2505.08291</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.07904.html">Predicting the optical properties of organometallic nanoparticles with a scale-bridging method: The importance of the embedding</a></div></td>
+<td>Mariia Poleva et al.</td>
+<td><a href="http://arxiv.org/abs/2505.07904">2505.07904</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.11396.html">Band representations in Strongly Correlated Settings: The Kitaev Honeycomb Model</a></div><div class="paper-tags"><a href="band-gap-all.html">band-gap</a></div></td>
+<td>Axel Fünfhaus et al.</td>
+<td><a href="http://arxiv.org/abs/2501.11396">2501.11396</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.14002.html">Predicting fermionic densities using a Projected Quantum Kernel method</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Francesco Perciavalle et al.</td>
+<td><a href="http://arxiv.org/abs/2504.14002">2504.14002</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.06212.html">From Fermions to Qubits: A ZX-Calculus Perspective</a></div></td>
+<td>Haytham McDowall-Rose et al.</td>
+<td><a href="http://arxiv.org/abs/2505.06212">2505.06212</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.06336.html">2D Quon Language: Unifying Framework for Cliffords, Matchgates, and Beyond</a></div></td>
+<td>Byungmin Kang et al.</td>
+<td><a href="http://arxiv.org/abs/2505.06336">2505.06336</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.14261.html">Excited state assignment and state-resolved photoelectron circular dichroism in chalcogen-substituted fenchones</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Sudheendran Vasudevan et al.</td>
+<td><a href="http://arxiv.org/abs/2503.14261">2503.14261</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.03289.html">Synthesis and characterization of a $π$-extended Clar&#x27;s goblet</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Shantanu Mishra et al.</td>
+<td><a href="http://arxiv.org/abs/2505.03289">2505.03289</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.01893.html">Estimates of loss function concentration in noisy parametrized quantum circuits</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Giulio Crognaletti et al.</td>
+<td><a href="http://arxiv.org/abs/2410.01893">2410.01893</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.14502.html">Precise Quantum Chemistry calculations with few Slater Determinants</a></div></td>
+<td>Clemens Giuliani et al.</td>
+<td><a href="http://arxiv.org/abs/2503.14502">2503.14502</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.01405.html">QCMaquis 4.0: Multi-Purpose Electronic, Vibrational, and Vibronic Structure and Dynamics Calculations with the Density Matrix Renormalization Group</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Kalman Szenes et al.</td>
+<td><a href="http://arxiv.org/abs/2505.01405">2505.01405</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.01528.html">Quantum simulation with sum-of-squares spectral amplification</a></div></td>
+<td>Robbie King et al.</td>
+<td><a href="http://arxiv.org/abs/2505.01528">2505.01528</a></td>
+</tr>
+<tr class="paper">
+<td>2025-05-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.08882.html">Automated Quantum Chemistry Code Generation with the p$^\dagger$q Package</a></div></td>
+<td>Marcus D. Liebenthal et al.</td>
+<td><a href="http://arxiv.org/abs/2501.08882">2501.08882</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.21715.html">Entanglement-Enhanced Nanoscale Single-Spin Sensing</a></div></td>
+<td>Xu Zhou et al.</td>
+<td><a href="http://arxiv.org/abs/2504.21715">2504.21715</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.20746.html">Trotterization is substantially efficient for low-energy states</a></div></td>
+<td>Kaoru Mizuta et al.</td>
+<td><a href="http://arxiv.org/abs/2504.20746">2504.20746</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.03962.html">Quantum Circuit Design using a Progressive Widening Enhanced Monte Carlo Tree Search</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Vincenzo Lipardi et al.</td>
+<td><a href="http://arxiv.org/abs/2502.03962">2502.03962</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.19317.html">Classical simulation of parity-preserving quantum circuits</a></div></td>
+<td>Carolin Wille et al.</td>
+<td><a href="http://arxiv.org/abs/2504.19317">2504.19317</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.18118.html">Development of Exotic Harmonium Model to Investigate Electron-Positively Charged Particle Correlation in Two-Component Quantum Systems</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Nahid Sadat Riyahi</td>
+<td><a href="http://arxiv.org/abs/2504.18118">2504.18118</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.17881.html">phase2: Full-State Vector Simulation of Quantum Time Evolution at Scale</a></div></td>
+<td>Marek Miller et al.</td>
+<td><a href="http://arxiv.org/abs/2504.17881">2504.17881</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.16008.html">An Error Mitigated Non-Orthogonal Quantum Eigensolver via Shadow Tomography</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Hang Ren et al.</td>
+<td><a href="http://arxiv.org/abs/2504.16008">2504.16008</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.05058.html">Unification of Finite Symmetries in Simulation of Many-body Systems on Quantum Computers</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Victor M. Bastidas et al.</td>
+<td><a href="http://arxiv.org/abs/2411.05058">2411.05058</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.12629.html">Sampling-based Quantum Optimization Algorithm with Quantum Relaxation</a></div></td>
+<td>Hiromichi Matsuyama et al.</td>
+<td><a href="http://arxiv.org/abs/2504.12629">2504.12629</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2404.13195.html">Automatic BLAS Offloading on Unified Memory Architecture: A Study on NVIDIA Grace-Hopper</a></div></td>
+<td>Junjie Li et al.</td>
+<td><a href="http://arxiv.org/abs/2404.13195">2404.13195</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.10069.html">Relativistic Quantum Simulation of Hydrogen Sulfide for Hydrogen Energy via Hybrid Quantum-Classical Algorithms</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a></div></td>
+<td>Chi-Chuan Hwang et al.</td>
+<td><a href="http://arxiv.org/abs/2504.10069">2504.10069</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.11399.html">Assessing Tensor Network Quantum Emulators for Hamiltonian Simulation of Pharmaceutical Molecules: Challenges and Limitations in Drug Discovery Applications</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Marek Kowalik et al.</td>
+<td><a href="http://arxiv.org/abs/2504.11399">2504.11399</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.15804.html">Efficient Hamiltonian Simulation: A Utility Scale Perspective for Covalent Inhibitor Reactivity Prediction</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Marek Kowalik et al.</td>
+<td><a href="http://arxiv.org/abs/2412.15804">2412.15804</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.07948.html">Pushing the Accuracy Limit of Foundation Neural Network Models with Quantum Monte Carlo Forces and Path Integrals</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Anouar Benali et al.</td>
+<td><a href="http://arxiv.org/abs/2504.07948">2504.07948</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.09813.html">A Practical Framework for Assessing the Performance of Observable Estimation in Quantum Simulation</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Siyuan Niu et al.</td>
+<td><a href="http://arxiv.org/abs/2504.09813">2504.09813</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.07568.html">Ground State Energy of He molecule Using a Four-Qubit Photonic Processor with the Variational Quantum Eigensolver</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Badie Ghavami et al.</td>
+<td><a href="http://arxiv.org/abs/2504.07568">2504.07568</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.06087.html">Accurate Ab-initio Neural-network Solutions to Large-Scale Electronic Structure Problems</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Michael Scherbela et al.</td>
+<td><a href="http://arxiv.org/abs/2504.06087">2504.06087</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.06348.html">A comprehensive framework to simulate real-time chemical dynamics on a fault-tolerant quantum computer</a></div><div class="paper-tags"><a href="molecular-dynamics-all.html">molecular-dynamics</a> · <a href="molecular-representation-all.html">molecular-representation</a></div></td>
+<td>Felipe H. da Jornada et al.</td>
+<td><a href="http://arxiv.org/abs/2504.06348">2504.06348</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.04167.html">CutQAS: Topology-aware quantum circuit cutting via reinforcement learning</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a> · <a href="reinforcement-learning-all.html">reinforcement-learning</a></div></td>
+<td>Abhishek Sadhu et al.</td>
+<td><a href="http://arxiv.org/abs/2504.04167">2504.04167</a></td>
+</tr>
+<tr class="paper">
+<td>2025-04-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.02063.html">One-dimensional conduction channels in the correlated Mott NiS2 arising from obstructed Wannier charges</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="band-gap-all.html">band-gap</a></div></td>
+<td>Mikel Iraola et al.</td>
+<td><a href="http://arxiv.org/abs/2504.02063">2504.02063</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.06617.html">Repulsive interatomic potentials calculated at three levels of theory</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="mlip-all.html">mlip</a></div></td>
+<td>Kai Nordlund et al.</td>
+<td><a href="http://arxiv.org/abs/2501.06617">2501.06617</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.02423.html">Density functional benchmark for quadruple hydrogen bonds</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a></div></td>
+<td>Usman Ahmed et al.</td>
+<td><a href="http://arxiv.org/abs/2503.02423">2503.02423</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.22221.html">Enhancing Accuracy of Quantum-Selected Configuration Interaction Calculations using Multireference Perturbation Theory: Application to Aromatic Molecules</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Soichi Shirai et al.</td>
+<td><a href="http://arxiv.org/abs/2503.22221">2503.22221</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.21328.html">Structural bias in three-dimensional autoregressive generative machine learning of organic molecules</a></div><div class="paper-tags"><a href="chemical-space-all.html">chemical-space</a> · <a href="generative-model-all.html">generative-model</a> · <a href="property-prediction-all.html">property-prediction</a></div></td>
+<td>Zsuzsanna Koczor-Benda et al.</td>
+<td><a href="http://arxiv.org/abs/2503.21328">2503.21328</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.21517.html">Ultrafast Charge-Transfer and Auger Decay Processes in Aqueous CaCl$_2$ Solution: Insights from Core-Level Spectroscopy</a></div><div class="paper-tags"><a href="catalysis-all.html">catalysis</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Denis Céolin et al.</td>
+<td><a href="http://arxiv.org/abs/2503.21517">2503.21517</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.20700.html">Orbital optimization of large active spaces via AI-accelerators</a></div></td>
+<td>Örs Legeza et al.</td>
+<td><a href="http://arxiv.org/abs/2503.20700">2503.20700</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.11391.html">Benchmarking Data Efficiency in $Δ$-ML and Multifidelity Models for Quantum Chemistry</a></div></td>
+<td>Vivin Vinod et al.</td>
+<td><a href="http://arxiv.org/abs/2410.11391">2410.11391</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.11392.html">Investigating Data Hierarchies in Multifidelity Machine Learning for Excitation Energies</a></div></td>
+<td>Vivin Vinod et al.</td>
+<td><a href="http://arxiv.org/abs/2410.11392">2410.11392</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.19847.html">Ab-initio simulation of excited-state potential energy surfaces with transferable deep quantum Monte Carlo</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Zeno Schätzle et al.</td>
+<td><a href="http://arxiv.org/abs/2503.19847">2503.19847</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.19172.html">Fast and Error-Correctable Quantum RAM</a></div></td>
+<td>Francesco Cesa et al.</td>
+<td><a href="http://arxiv.org/abs/2503.19172">2503.19172</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.17303.html">Determining the N-representability of a reduced density matrix via unitary evolution and stochastic sampling</a></div></td>
+<td>Gustavo. E. Massaccesi et al.</td>
+<td><a href="http://arxiv.org/abs/2503.17303">2503.17303</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.17320.html">Lattice Materials with Topological States Optimized On-Demand</a></div><div class="paper-tags"><a href="band-gap-all.html">band-gap</a></div></td>
+<td>Pegah Azizi et al.</td>
+<td><a href="http://arxiv.org/abs/2503.17320">2503.17320</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.19227.html">Enhancing the Scalability and Applicability of Kohn-Sham Hamiltonians for Molecular Systems</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Yunyang Li et al.</td>
+<td><a href="http://arxiv.org/abs/2502.19227">2502.19227</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.22990.html">Generalized many-body perturbation theory for the electron correlation energy: multi-reference random phase approximation via diagrammatic resummation</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Yuqi Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2410.22990">2410.22990</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.15644.html">Deep quantum Monte Carlo approach for polaritonic chemistry</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="excited-states-all.html">excited-states</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Yifan Tang et al.</td>
+<td><a href="http://arxiv.org/abs/2503.15644">2503.15644</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.05973.html">Nuclear-Electronic Orbital Multireference Configuration Interaction for Ground and Excited Vibronic States and Fundamental Insights into Multicomponent Basis Sets</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Christopher L. Malbon et al.</td>
+<td><a href="http://arxiv.org/abs/2503.05973">2503.05973</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.13789.html">Carbonic anhydrase II simulated with a universal neural network potential</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a> · <a href="mlip-all.html">mlip</a></div></td>
+<td>Timothy T. Duignan</td>
+<td><a href="http://arxiv.org/abs/2503.13789">2503.13789</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.12738.html">Enhancing Circuit Trainability with Selective Gate Activation Strategy</a></div></td>
+<td>Jeihee Cho et al.</td>
+<td><a href="http://arxiv.org/abs/2503.12738">2503.12738</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.06292.html">HIVQE: Handover Iterative Variational Quantum Eigensolver for Efficient Quantum Chemistry Calculations</a></div></td>
+<td>Aidan Pellow-Jarman et al.</td>
+<td><a href="http://arxiv.org/abs/2503.06292">2503.06292</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.11867.html">Benchmarking semi-empirical quantum chemical methods on liquid water</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Xin Wu et al.</td>
+<td><a href="http://arxiv.org/abs/2503.11867">2503.11867</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.06502.html">Chemistry-Inspired Diffusion with Non-Differentiable Guidance</a></div><div class="paper-tags"><a href="diffusion-model-all.html">diffusion-model</a> · <a href="molecular-generation-all.html">molecular-generation</a></div></td>
+<td>Yuchen Shen et al.</td>
+<td><a href="http://arxiv.org/abs/2410.06502">2410.06502</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.07397.html">Q-MARL: A quantum-inspired algorithm using neural message passing for large-scale multi-agent reinforcement learning</a></div><div class="paper-tags"><a href="reinforcement-learning-all.html">reinforcement-learning</a></div></td>
+<td>Kha Vo et al.</td>
+<td><a href="http://arxiv.org/abs/2503.07397">2503.07397</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.07839.html">Does Hessian Data Improve the Performance of Machine Learning Potentials?</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a> · <a href="materials-discovery-all.html">materials-discovery</a> · <a href="mlip-all.html">mlip</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Austin Rodriguez et al.</td>
+<td><a href="http://arxiv.org/abs/2503.07839">2503.07839</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.05647.html">Phase estimation with partially randomized time evolution</a></div></td>
+<td>Jakob Günther et al.</td>
+<td><a href="http://arxiv.org/abs/2503.05647">2503.05647</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.18135.html">Optimal-Reference Excited State Methods: Static Correlation at Polynomial Cost with Single-Reference Coupled-Cluster Approaches</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="excited-states-all.html">excited-states</a> · <a href="free-energy-all.html">free-energy</a> · <a href="photocatalysis-all.html">photocatalysis</a></div></td>
+<td>Sylvia J. Bintrim et al.</td>
+<td><a href="http://arxiv.org/abs/2501.18135">2501.18135</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2405.20408.html">Quantum encoder for fixed Hamming-weight subspaces</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Renato M. S. Farias et al.</td>
+<td><a href="http://arxiv.org/abs/2405.20408">2405.20408</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.02778.html">Efficient Quantum Chemistry Calculations on Noisy Quantum Hardware</a></div></td>
+<td>Nora Bauer et al.</td>
+<td><a href="http://arxiv.org/abs/2503.02778">2503.02778</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.06767.html">Fat-Tree QRAM: A High-Bandwidth Shared Quantum Random Access Memory for Parallel Queries</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Shifan Xu et al.</td>
+<td><a href="http://arxiv.org/abs/2502.06767">2502.06767</a></td>
+</tr>
+<tr class="paper">
+<td>2025-03-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.00487.html">Density Matrix Embedding Theory-Based Multi-Configurational Quantum Chemistry Approach to Lanthanide Single-Ion Magnets</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Yuhang Ai et al.</td>
+<td><a href="http://arxiv.org/abs/2503.00487">2503.00487</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.21081.html">Auxiliary-field quantum Monte Carlo method with quantum selected configuration interaction</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Yuichiro Yoshida et al.</td>
+<td><a href="http://arxiv.org/abs/2502.21081">2502.21081</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.00221.html">Distributed Variational Quantum Algorithm with Many-qubit for Optimization Challenges</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Seongmin Kim et al.</td>
+<td><a href="http://arxiv.org/abs/2503.00221">2503.00221</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.05636.html">What is my quantum computer good for? Quantum capability learning with physics-aware neural networks</a></div><div class="paper-tags"><a href="gnn-all.html">gnn</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Daniel Hothem et al.</td>
+<td><a href="http://arxiv.org/abs/2406.05636">2406.05636</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.17963.html">ByteQC: GPU-Accelerated Quantum Chemistry Package for Large-Scale Systems</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Zhen Guo et al.</td>
+<td><a href="http://arxiv.org/abs/2502.17963">2502.17963</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.05663.html">Simulating Chemistry with Fermionic Optical Superlattices</a></div></td>
+<td>Fotios Gkritsis et al.</td>
+<td><a href="http://arxiv.org/abs/2409.05663">2409.05663</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.18194.html">Transformation-free generation of a quasi-diabatic representation from the state-average orbital-optimized variational quantum eigensolver</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a></div></td>
+<td>Silvie Illésová et al.</td>
+<td><a href="http://arxiv.org/abs/2502.18194">2502.18194</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.09595.html">BenchQC: A Benchmarking Toolkit for Quantum Computation</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Nia Pollard et al.</td>
+<td><a href="http://arxiv.org/abs/2502.09595">2502.09595</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.13316.html">QuCLEAR: Clifford Extraction and Absorption for Quantum Circuit Optimization</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Ji Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2408.13316">2408.13316</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.06073.html">Allegro-FM: Towards Equivariant Foundation Model for Exascale Molecular Dynamics Simulations</a></div><div class="paper-tags"><a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Ken-ichi Nomura et al.</td>
+<td><a href="http://arxiv.org/abs/2502.06073">2502.06073</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.07933.html">Quantum Computing in Corrosion Modeling: Bridging Research and Industry</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Juan Manuel Aguiar Hualde et al.</td>
+<td><a href="http://arxiv.org/abs/2412.07933">2412.07933</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.12870.html">Transferable Machine Learning Potential X-MACE for Excited States using Integrated DeepSets</a></div><div class="paper-tags"><a href="chemical-space-all.html">chemical-space</a> · <a href="excited-states-all.html">excited-states</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Rhyan Barrett et al.</td>
+<td><a href="http://arxiv.org/abs/2502.12870">2502.12870</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.12960.html">Predictive simulations of the dynamical response of mesoscopic devices</a></div><div class="paper-tags"><a href="2d-materials-all.html">2d-materials</a></div></td>
+<td>Samuel Boutin et al.</td>
+<td><a href="http://arxiv.org/abs/2502.12960">2502.12960</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.13046.html">Rotational quenching of monofluorides in a cryogenic helium bath</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="thermal-properties-all.html">thermal-properties</a></div></td>
+<td>Mateo Londoño et al.</td>
+<td><a href="http://arxiv.org/abs/2502.13046">2502.13046</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.06320.html">Improving stabilizer approximation with quantum strategy</a></div></td>
+<td>Fen Zuo</td>
+<td><a href="http://arxiv.org/abs/2412.06320">2412.06320</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.08753.html">A Guide to Molecular Properties from the Bethe-Salpeter Equation</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Christof Holzer et al.</td>
+<td><a href="http://arxiv.org/abs/2502.08753">2502.08753</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.17706.html">Investigating and Mitigating Barren Plateaus in Variational Quantum Circuits: A Survey</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Jack Cunningham et al.</td>
+<td><a href="http://arxiv.org/abs/2407.17706">2407.17706</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.04432.html">Efficient simulation of quantum chemistry problems in an enlarged basis set</a></div></td>
+<td>Maxine Luo et al.</td>
+<td><a href="http://arxiv.org/abs/2407.04432">2407.04432</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.01730.html">Reducing the sampling complexity of energy estimation in quantum many-body systems using empirical variance information</a></div></td>
+<td>Alexander Gresch et al.</td>
+<td><a href="http://arxiv.org/abs/2502.01730">2502.01730</a></td>
+</tr>
+<tr class="paper">
+<td>2025-02-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.00235.html">Electronic Structure Theory with Molecular Point Group Symmetries on Quantum Annealers</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Joseph Desroches et al.</td>
+<td><a href="http://arxiv.org/abs/2502.00235">2502.00235</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.10413.html">Experimental generation of extreme electron beams for advanced accelerator applications</a></div></td>
+<td>Claudio Emma et al.</td>
+<td><a href="http://arxiv.org/abs/2411.10413">2411.10413</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.18035.html">Collect, Commit, Expand: Efficient CPQR-Based Column Selection for Extremely Wide Matrices</a></div></td>
+<td>Robin Armstrong et al.</td>
+<td><a href="http://arxiv.org/abs/2501.18035">2501.18035</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.02885.html">Beyond CCSD(T) accuracy at lower scaling with auxiliary field quantum Monte Carlo</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Ankit Mahajan et al.</td>
+<td><a href="http://arxiv.org/abs/2410.02885">2410.02885</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.01646.html">Noise-Mitigated Variational Quantum Eigensolver with Pre-training and Zero-Noise Extrapolation</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Wanqi Sun et al.</td>
+<td><a href="http://arxiv.org/abs/2501.01646">2501.01646</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.13371.html">Non-unitary Variational Quantum Eigensolver with the Localized Active Space Method and Cost Mitigation</a></div></td>
+<td>Qiaohong Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2501.13371">2501.13371</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.14289.html">Non-Iterative Disentangled Unitary Coupled-Cluster based on Lie-algebraic structure</a></div></td>
+<td>Mohammad Haidar et al.</td>
+<td><a href="http://arxiv.org/abs/2408.14289">2408.14289</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.12130.html">Quantum-enhanced neural networks for quantum many-body simulations</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Zongkang Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2501.12130">2501.12130</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.12149.html">On the practical applicability of modern DFT functionals for chemical computations. Case study of DM21 applicability for geometry optimization</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Kirill Kulaev et al.</td>
+<td><a href="http://arxiv.org/abs/2501.12149">2501.12149</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.09528.html">Comprehensive Survey of QML: From Data Analysis to Algorithmic Advancements</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Sahil Tomar et al.</td>
+<td><a href="http://arxiv.org/abs/2501.09528">2501.09528</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.09372.html">All-Electron Molecular Tunnel Ionization Based on the Weak-Field Asymptotic Theory in the Integral Representation</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="thermodynamic-integration-all.html">thermodynamic-integration</a></div></td>
+<td>Imam S. Wahyutama et al.</td>
+<td><a href="http://arxiv.org/abs/2408.09372">2408.09372</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.08820.html">Heat semigroup representation of Laplacian</a></div></td>
+<td>Evgueni Dinvay</td>
+<td><a href="http://arxiv.org/abs/2501.08820">2501.08820</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2405.03032.html">Logical Error Rates for a [[4,2,2]]-Encoded Variational Quantum Eigensolver Ansatz</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Meenambika Gowrishankar et al.</td>
+<td><a href="http://arxiv.org/abs/2405.03032">2405.03032</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.10555.html">Encoded probabilistic imaginary-time evolution on a trapped-ion quantum computer for ground and excited states of spin qubits</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a> · <a href="thermodynamic-integration-all.html">thermodynamic-integration</a></div></td>
+<td>Hirofumi Nishi et al.</td>
+<td><a href="http://arxiv.org/abs/2407.10555">2407.10555</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.06165.html">Faster quantum chemistry simulations on a quantum computer with improved tensor factorization and active volume compilation</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="drug-discovery-all.html">drug-discovery</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Athena Caesura et al.</td>
+<td><a href="http://arxiv.org/abs/2501.06165">2501.06165</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.16915.html">SOLAX: A Python solver for fermionic quantum systems with neural network support</a></div></td>
+<td>Louis Thirion et al.</td>
+<td><a href="http://arxiv.org/abs/2408.16915">2408.16915</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.02059.html">Active Learning Enables Extrapolation in Molecular Generative Models</a></div><div class="paper-tags"><a href="active-learning-all.html">active-learning</a> · <a href="chemical-space-all.html">chemical-space</a> · <a href="generative-model-all.html">generative-model</a> · <a href="molecular-generation-all.html">molecular-generation</a> · <a href="property-prediction-all.html">property-prediction</a></div></td>
+<td>Evan R. Antoniuk et al.</td>
+<td><a href="http://arxiv.org/abs/2501.02059">2501.02059</a></td>
+</tr>
+<tr class="paper">
+<td>2025-01-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.18553.html">Advancing Surface Chemistry with Large-Scale Ab-Initio Quantum Many-Body Simulations</a></div><div class="paper-tags"><a href="2d-materials-all.html">2d-materials</a> · <a href="ab-initio-all.html">ab-initio</a> · <a href="catalysis-all.html">catalysis</a> · <a href="dft-all.html">dft</a></div></td>
+<td>Zigeng Huang et al.</td>
+<td><a href="http://arxiv.org/abs/2412.18553">2412.18553</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.10882.html">Probability-based approach to hybrid classical-quantum systems of any size: Generalized Gleason and Kraus theorems</a></div></td>
+<td>S. Camalet</td>
+<td><a href="http://arxiv.org/abs/2408.10882">2408.10882</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.18973.html">Derandomized shallow shadows: Efficient Pauli learning with bounded-depth circuits</a></div></td>
+<td>Katherine Van Kirk et al.</td>
+<td><a href="http://arxiv.org/abs/2412.18973">2412.18973</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.13203.html">Matryoshka: Optimization of Dynamic Diverse Quantum Chemistry Systems via Elastic Parallelism Transformation</a></div></td>
+<td>Tuowei Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2412.13203">2412.13203</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.14466.html">Quantum expectation value estimation by doubling the number of qubits</a></div></td>
+<td>Hiroshi Yano et al.</td>
+<td><a href="http://arxiv.org/abs/2412.14466">2412.14466</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.04883.html">Signatures of supermassive charged gravitinos in liquid scintillator detectors</a></div></td>
+<td>Adrianna Kruk et al.</td>
+<td><a href="http://arxiv.org/abs/2407.04883">2407.04883</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.13271.html">Gaussian process model kernels for noisy optimization in variational quantum algorithms</a></div></td>
+<td>Luca Arceci et al.</td>
+<td><a href="http://arxiv.org/abs/2412.13271">2412.13271</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.11884.html">A Route Toward the On-Surface Synthesis of Organic Ferromagnetic Quantum Spin Chains</a></div><div class="paper-tags"><a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Fabian Paschke et al.</td>
+<td><a href="http://arxiv.org/abs/2412.11884">2412.11884</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.14347.html">$\nabla^2$DFT: A Universal Quantum Chemistry Dataset of Drug-Like Molecules and a Benchmark for Neural Network Potentials</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="drug-discovery-all.html">drug-discovery</a> · <a href="mlip-all.html">mlip</a> · <a href="property-prediction-all.html">property-prediction</a></div></td>
+<td>Kuzma Khrabrov et al.</td>
+<td><a href="http://arxiv.org/abs/2406.14347">2406.14347</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.17630.html">KANQAS: Kolmogorov-Arnold Network for Quantum Architecture Search</a></div><div class="paper-tags"><a href="reinforcement-learning-all.html">reinforcement-learning</a></div></td>
+<td>Akash Kundu et al.</td>
+<td><a href="http://arxiv.org/abs/2406.17630">2406.17630</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.19313.html">A phase-space view of vibrational energies without the Born-Oppenheimer framework</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>Xuezhi Bian et al.</td>
+<td><a href="http://arxiv.org/abs/2407.19313">2407.19313</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2404.18529.html">Qubit encoding for a mixture of localized functions</a></div></td>
+<td>Taichi Kosugi et al.</td>
+<td><a href="http://arxiv.org/abs/2404.18529">2404.18529</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.04399.html">Method-independent cusps for atomic orbitals in quantum Monte Carlo</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Trine Kay Quady et al.</td>
+<td><a href="http://arxiv.org/abs/2412.04399">2412.04399</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.03564.html">Improving Perturbation Theory with the Sum-of-Squares: Third Order</a></div></td>
+<td>M. B. Hastings</td>
+<td><a href="http://arxiv.org/abs/2412.03564">2412.03564</a></td>
+</tr>
+<tr class="paper">
+<td>2024-12-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.07628.html">Series Expansion of a Scalable Hermitian Excitonic Renormalization Method</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Marco Bauer et al.</td>
+<td><a href="http://arxiv.org/abs/2409.07628">2409.07628</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.00368.html">Basis set incompleteness errors in fixed-node diffusion Monte Carlo calculations on non-covalent interactions</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Kousuke Nakano et al.</td>
+<td><a href="http://arxiv.org/abs/2412.00368">2412.00368</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.11350.html">Quantum Algorithm for a Stochastic Multicloud Model</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Kazumasa Ueno et al.</td>
+<td><a href="http://arxiv.org/abs/2406.11350">2406.11350</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.08632.html">Ground state energy is not always convex in the number of electrons</a></div></td>
+<td>Simone Di Marino et al.</td>
+<td><a href="http://arxiv.org/abs/2409.08632">2409.08632</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.05092.html">Accurate and convergent energetics of color centers by wavefunction theory</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Zsolt Benedek et al.</td>
+<td><a href="http://arxiv.org/abs/2406.05092">2406.05092</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.16190.html">ToMSGKpoint: A user-friendly package for computing symmetry transformation properties of electronic eigenstates of nonmagnetic and magnetic crystalline materials</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="crystal-structure-all.html">crystal-structure</a> · <a href="magnetic-properties-all.html">magnetic-properties</a> · <a href="phase-transition-all.html">phase-transition</a></div></td>
+<td>Liangliang Huang et al.</td>
+<td><a href="http://arxiv.org/abs/2411.16190">2411.16190</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.14096.html">A Hybrid Qubit Encoding: Splitting Fock Space into Fermionic and Bosonic Subspaces</a></div></td>
+<td>Francisco Javier Del Arco Santos et al.</td>
+<td><a href="http://arxiv.org/abs/2411.14096">2411.14096</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.09177.html">From {\tt Ferminet} to PINN. Connections between neural network-based algorithms for high-dimensional Schrödinger Hamiltonian</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Mashhood Khan et al.</td>
+<td><a href="http://arxiv.org/abs/2410.09177">2410.09177</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.13253.html">The vDZP Basis Set Is Effective For Many Density Functionals</a></div></td>
+<td>Corin C. Wagen et al.</td>
+<td><a href="http://arxiv.org/abs/2411.13253">2411.13253</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2405.03044.html">Ultrastrong coupling limit to quantum mean force Gibbs state for anharmonic environment</a></div></td>
+<td>Prem Kumar et al.</td>
+<td><a href="http://arxiv.org/abs/2405.03044">2405.03044</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.12489.html">A polarizable CASSCF/MM approach using the interface between OpenMMPol library and CFour</a></div><div class="paper-tags"><a href="mlip-all.html">mlip</a></div></td>
+<td>Tommaso Nottoli et al.</td>
+<td><a href="http://arxiv.org/abs/2411.12489">2411.12489</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.00450.html">Hybrid Quantum-Classical Clustering for Preparing a Prior Distribution of Eigenspectrum</a></div></td>
+<td>Mengzhen Ren et al.</td>
+<td><a href="http://arxiv.org/abs/2407.00450">2407.00450</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.02617.html">Open quantum dynamics with variational non-Gaussian states and the truncated Wigner approximation</a></div></td>
+<td>Liam J. Bond et al.</td>
+<td><a href="http://arxiv.org/abs/2407.02617">2407.02617</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.08950.html">Two-dimensional Topological Quantum Chemistry and Catalog of Topological Materials</a></div><div class="paper-tags"><a href="2d-materials-all.html">2d-materials</a></div></td>
+<td>Urko Petralanda et al.</td>
+<td><a href="http://arxiv.org/abs/2411.08950">2411.08950</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.07352.html">Efficient Implementation of the Random Phase Approximation with Domain-based Local Pair Natural Orbitals</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Yu Hsuan Liang et al.</td>
+<td><a href="http://arxiv.org/abs/2411.07352">2411.07352</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.00576.html">GALIC: Hybrid Multi-Qubitwise Pauli Grouping for Quantum Computing Measurement</a></div></td>
+<td>Matthew X. Burns et al.</td>
+<td><a href="http://arxiv.org/abs/2409.00576">2409.00576</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.09541.html">Nodal higher-order topological superconductivity from C6-symmetric Dirac semimetals</a></div></td>
+<td>Guan-Hao Feng</td>
+<td><a href="http://arxiv.org/abs/2408.09541">2408.09541</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2403.07447.html">Ab-initio variational wave functions for the time-dependent many-electron Schrödinger equation</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Jannes Nys et al.</td>
+<td><a href="http://arxiv.org/abs/2403.07447">2403.07447</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.03852.html">Self-consistent Quantum Linear Response with a Polarizable Embedding environment</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a> · <a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Peter Reinholdt et al.</td>
+<td><a href="http://arxiv.org/abs/2411.03852">2411.03852</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.03900.html">Retentive Neural Quantum States: Efficient Ansätze for Ab Initio Quantum Chemistry</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Oliver Knitter et al.</td>
+<td><a href="http://arxiv.org/abs/2411.03900">2411.03900</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.02389.html">Multidimensional coherent spectroscopy of correlated lattice systems</a></div></td>
+<td>Jiyu Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2411.02389">2411.02389</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2403.03286.html">Neural network backflow for ab-initio quantum chemistry</a></div></td>
+<td>An-Jun Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2403.03286">2403.03286</a></td>
+</tr>
+<tr class="paper">
+<td>2024-11-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.01306.html">Highly Accurate Real-space Electron Densities with Neural Networks</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Lixue Cheng et al.</td>
+<td><a href="http://arxiv.org/abs/2409.01306">2409.01306</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.24220.html">Bridging Geometric States via Geometric Diffusion Bridge</a></div></td>
+<td>Shengjie Luo et al.</td>
+<td><a href="http://arxiv.org/abs/2410.24220">2410.24220</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.22798.html">Coupled-cluster theory for the ground state and for excitations</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="excited-states-all.html">excited-states</a></div></td>
+<td>Andreas Grüneis et al.</td>
+<td><a href="http://arxiv.org/abs/2410.22798">2410.22798</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.21683.html">Pushing the Limits of All-Atom Geometric Graph Neural Networks: Pre-Training, Scaling and Zero-Shot Transfer</a></div><div class="paper-tags"><a href="drug-discovery-all.html">drug-discovery</a> · <a href="gnn-all.html">gnn</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Zihan Pengmei et al.</td>
+<td><a href="http://arxiv.org/abs/2410.21683">2410.21683</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2403.09860.html">A quantum expectation identity: Applications to statistical mechanics</a></div></td>
+<td>Boris Maulén et al.</td>
+<td><a href="http://arxiv.org/abs/2403.09860">2403.09860</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.07965.html">Efficient simulation of inhomogeneously correlated systems using block interaction product states</a></div></td>
+<td>Yifan Cheng et al.</td>
+<td><a href="http://arxiv.org/abs/2408.07965">2408.07965</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.16238.html">Improved modularity and new features in ipie: Toward even larger AFQMC calculations on CPUs and GPUs at zero and finite temperatures</a></div><div class="paper-tags"><a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Tong Jiang et al.</td>
+<td><a href="http://arxiv.org/abs/2406.16238">2406.16238</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.19316.html">An Open Quantum Chemistry Property Database of 120 Kilo Molecules with 20 Million Conformers</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a></div></td>
+<td>Weiqi Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2410.19316">2410.19316</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.09121.html">Comparing Quantum Encoding Techniques</a></div></td>
+<td>Nidhi Munikote</td>
+<td><a href="http://arxiv.org/abs/2410.09121">2410.09121</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2404.06534.html">A circuit-generated quantum subspace algorithm for the variational quantum eigensolver</a></div></td>
+<td>Mark R. Hirsbrunner et al.</td>
+<td><a href="http://arxiv.org/abs/2404.06534">2404.06534</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.13299.html">Reducing Numerical Precision Requirements in Quantum Chemistry Calculations</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>William Dawson et al.</td>
+<td><a href="http://arxiv.org/abs/2407.13299">2407.13299</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.14357.html">Efficient charge-preserving excited state preparation with variational quantum algorithms</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Zohim Chandani et al.</td>
+<td><a href="http://arxiv.org/abs/2410.14357">2410.14357</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.13833.html">Analyzing Atomic Interactions in Molecules as Learned by Neural Networks</a></div><div class="paper-tags"><a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Malte Esders et al.</td>
+<td><a href="http://arxiv.org/abs/2410.13833">2410.13833</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2404.13430.html">React-OT: Optimal Transport for Generating Transition State in Chemical Reactions</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Chenru Duan et al.</td>
+<td><a href="http://arxiv.org/abs/2404.13430">2404.13430</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.14149.html">QeMFi: A Multifidelity Dataset of Quantum Chemical Properties of Diverse Molecules</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Vivin Vinod et al.</td>
+<td><a href="http://arxiv.org/abs/2406.14149">2406.14149</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.12058.html">Molecular Quantum Chemical Data Sets and Databases for Machine Learning Potentials</a></div><div class="paper-tags"><a href="chemical-space-all.html">chemical-space</a> · <a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Arif Ullah et al.</td>
+<td><a href="http://arxiv.org/abs/2408.12058">2408.12058</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.11122.html">All-electron BSE@GW method with Numeric Atom-Centered Orbitals for Extended Systems</a></div></td>
+<td>Ruiyi Zhou et al.</td>
+<td><a href="http://arxiv.org/abs/2406.11122">2406.11122</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.14920.html">Extending GPU-Accelerated Gaussian Integrals in the TeraChem Software Package to f Type Orbitals: Implementation and Applications</a></div><div class="paper-tags"><a href="catalysis-all.html">catalysis</a> · <a href="dft-all.html">dft</a></div></td>
+<td>Yuanheng Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2406.14920">2406.14920</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.08929.html">Can the electron density be interpreted information-theoretically? A critical analysis using quantum information theory</a></div></td>
+<td>Guillaume Acke et al.</td>
+<td><a href="http://arxiv.org/abs/2410.08929">2410.08929</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.19755.html">The blackbody radiation vibrational level shifts in the ground electronic state of N$_{2}^{+}$</a></div><div class="paper-tags"><a href="ab-initio-all.html">ab-initio</a> · <a href="free-energy-all.html">free-energy</a></div></td>
+<td>T. Zalialiutdinov et al.</td>
+<td><a href="http://arxiv.org/abs/2410.19755">2410.19755</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.08322.html">Extendibility of fermionic states and rigorous ground state approximations of interacting fermionic systems</a></div><div class="paper-tags"><a href="materials-science-all.html">materials-science</a></div></td>
+<td>Christian Krumnow et al.</td>
+<td><a href="http://arxiv.org/abs/2410.08322">2410.08322</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.05414.html">Positive bias makes tensor-network contraction tractable</a></div><div class="paper-tags"><a href="phase-transition-all.html">phase-transition</a></div></td>
+<td>Jiaqing Jiang et al.</td>
+<td><a href="http://arxiv.org/abs/2410.05414">2410.05414</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.03970.html">On the Convergence of CROP-Anderson Acceleration Method</a></div></td>
+<td>Ning Wan et al.</td>
+<td><a href="http://arxiv.org/abs/2410.03970">2410.03970</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2407.10523.html">Variational Quantum Imaginary Time Evolution for Matrix Product State Ansatz with Tests on Transcorrelated Hamiltonians</a></div></td>
+<td>Hao-En Li et al.</td>
+<td><a href="http://arxiv.org/abs/2407.10523">2407.10523</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2408.17198.html">Towards Symbolic XAI -- Explanation Through Human Understandable Logical Relationships Between Features</a></div></td>
+<td>Thomas Schnake et al.</td>
+<td><a href="http://arxiv.org/abs/2408.17198">2408.17198</a></td>
+</tr>
+<tr class="paper">
+<td>2024-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.00686.html">Experimental demonstration of Robust Amplitude Estimation on near-term quantum devices for chemistry applications</a></div></td>
+<td>Alexander Kunitsa et al.</td>
+<td><a href="http://arxiv.org/abs/2410.00686">2410.00686</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.17033.html">Susceptibility Formulation of Density Matrix Perturbation Theory</a></div><div class="paper-tags"><a href="dft-all.html">dft</a> · <a href="materials-science-all.html">materials-science</a></div></td>
+<td>Anders M. N. Niklasson et al.</td>
+<td><a href="http://arxiv.org/abs/2409.17033">2409.17033</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.14018.html">Spatial Signatures of Electron Correlation in Least-Squares Tensor Hyper-Contraction</a></div></td>
+<td>Chao Yin et al.</td>
+<td><a href="http://arxiv.org/abs/2409.14018">2409.14018</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.12015.html">All-in-one foundational models learning across quantum chemical levels</a></div><div class="paper-tags"><a href="dft-all.html">dft</a></div></td>
+<td>Yuxinxin Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2409.12015">2409.12015</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.10184.html">Advanced perturbation scheme for efficient polarizability computations</a></div></td>
+<td>Anoop Ajaya Kumar Nair et al.</td>
+<td><a href="http://arxiv.org/abs/2409.10184">2409.10184</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.13112.html">Nutmeg and SPICE: Models and Data for Biomolecular Machine Learning</a></div><div class="paper-tags"><a href="chemical-space-all.html">chemical-space</a> · <a href="free-energy-all.html">free-energy</a> · <a href="mlip-all.html">mlip</a> · <a href="molecular-dynamics-all.html">molecular-dynamics</a></div></td>
+<td>Peter Eastman et al.</td>
+<td><a href="http://arxiv.org/abs/2406.13112">2406.13112</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.07847.html">C3-VQA: Cryogenic Counter-based Co-processor for Variational Quantum Algorithms</a></div></td>
+<td>Yosuke Ueno et al.</td>
+<td><a href="http://arxiv.org/abs/2409.07847">2409.07847</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.08079.html">Low-Energy Magnetic States of Tb Adatom on Graphene</a></div><div class="paper-tags"><a href="2d-materials-all.html">2d-materials</a> · <a href="ab-initio-all.html">ab-initio</a> · <a href="dft-all.html">dft</a> · <a href="electronic-structure-all.html">electronic-structure</a> · <a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Monirul Shaikh et al.</td>
+<td><a href="http://arxiv.org/abs/2409.08079">2409.08079</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.07211.html">Ab initio Calculations for Astrochemistry</a></div><div class="paper-tags"><a href="free-energy-all.html">free-energy</a></div></td>
+<td>Francesca Tonolo et al.</td>
+<td><a href="http://arxiv.org/abs/2409.07211">2409.07211</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2404.18303.html">Evaluating a quantum-classical quantum Monte Carlo algorithm with Matchgate shadows</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a> · <a href="monte-carlo-all.html">monte-carlo</a></div></td>
+<td>Benchen Huang et al.</td>
+<td><a href="http://arxiv.org/abs/2404.18303">2404.18303</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2405.12238.html">Exploring Ground and Excited States via Single Reference Coupled-Cluster Theory and Algebraic Geometry</a></div><div class="paper-tags"><a href="excited-states-all.html">excited-states</a></div></td>
+<td>Svala Sverrisdóttir et al.</td>
+<td><a href="http://arxiv.org/abs/2405.12238">2405.12238</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.05777.html">Quantum Resources for Pure Thermal Shadows</a></div><div class="paper-tags"><a href="quantum-computing-all.html">quantum-computing</a></div></td>
+<td>Arnav Sharma et al.</td>
+<td><a href="http://arxiv.org/abs/2409.05777">2409.05777</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.03964.html">Benchmarking Basis Sets for Density Functional Theory Thermochemistry Calculations: Why unpolarised basis sets and the polarised 6-311G family should be avoided</a></div></td>
+<td>Samuel J. Pitman et al.</td>
+<td><a href="http://arxiv.org/abs/2409.03964">2409.03964</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.03994.html">On the Specialisation of Gaussian Basis Sets for Core-Dependent Properties</a></div></td>
+<td>Robbie T. Ireland et al.</td>
+<td><a href="http://arxiv.org/abs/2409.03994">2409.03994</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.04015.html">Comprehensive reevaluation of acetaldehyde chemistry and the underlying uncertainties</a></div></td>
+<td>Xinrui Ren et al.</td>
+<td><a href="http://arxiv.org/abs/2409.04015">2409.04015</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.02730.html">Complete and Efficient Covariants for 3D Point Configurations with Application to Learning Molecular Quantum Properties</a></div></td>
+<td>Hartmut Maennel et al.</td>
+<td><a href="http://arxiv.org/abs/2409.02730">2409.02730</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2403.09624.html">Physically motivated improvements of Variational Quantum Eigensolvers</a></div><div class="paper-tags"><a href="electronic-structure-all.html">electronic-structure</a></div></td>
+<td>Nonia Vaquero-Sabater et al.</td>
+<td><a href="http://arxiv.org/abs/2403.09624">2403.09624</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.07047.html">Photo-induced dynamics with continuous and discrete quantum baths</a></div></td>
+<td>Zhaoxuan Xie et al.</td>
+<td><a href="http://arxiv.org/abs/2406.07047">2406.07047</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.01307.html">Experimental and computational study of ethanolamine ices at astrochemical conditions</a></div></td>
+<td>R Ramachandran et al.</td>
+<td><a href="http://arxiv.org/abs/2409.01307">2409.01307</a></td>
+</tr>
+<tr class="paper">
+<td>2024-09-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2409.01436.html">Dynamic Jahn-Teller effect in the strong spin-orbit coupling regime</a></div><div class="paper-tags"><a href="crystal-structure-all.html">crystal-structure</a> · <a href="magnetic-properties-all.html">magnetic-properties</a></div></td>
+<td>Ivica Zivkovic et al.</td>
+<td><a href="http://arxiv.org/abs/2409.01436">2409.01436</a></td>
+</tr>
+</tbody></table>

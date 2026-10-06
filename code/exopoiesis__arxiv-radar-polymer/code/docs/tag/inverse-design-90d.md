@@ -1,0 +1,54 @@
+---
+layout: page
+title: "inverse-design (90d)"
+current_tag: inverse-design
+current_window: 90d
+---
+
+<header class="tag-header">
+  <h1>inverse-design — 90d</h1>
+  <span class="paper-count">6 papers</span>
+  <nav class="window-nav"><a href="inverse-design-7d.html">7d</a> <a href="inverse-design-30d.html">30d</a> <strong>90d</strong> <a href="inverse-design-360d.html">360d</a> <a href="inverse-design-all.html">all</a></nav>
+  <a class="back-link" href="../">← all tags</a>
+</header>
+
+<table class="papers">
+<thead><tr><th>Date</th><th>Title</th><th>Authors</th><th>arXiv</th></tr></thead>
+<tbody>
+<tr class="paper">
+<td>2026-09-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.27036.html">An open benchmark for machine learning-based polymer property prediction</a></div><div class="paper-tags"><a href="benchmarking-90d.html">benchmarking</a> · <a href="molecular-dynamics-90d.html">molecular-dynamics</a></div></td>
+<td>Robert W. Learsch et al.</td>
+<td><a href="http://arxiv.org/abs/2609.27036">2609.27036</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.16028.html">Molecular representation shapes the balance between target fidelity and exploration in flow based polymer generation</a></div></td>
+<td>Tianren Zhang</td>
+<td><a href="http://arxiv.org/abs/2609.16028">2609.16028</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.20979.html">Polymer Genome in the Age of Artificial Intelligence</a></div><div class="paper-tags"><a href="polymer-informatics-90d.html">polymer-informatics</a></div></td>
+<td>Jifeng Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2608.20979">2608.20979</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.00707.html">Conditional grain-graph diffusion for property-guided inverse design of polycrystalline microstructures</a></div><div class="paper-tags"><a href="benchmarking-90d.html">benchmarking</a> · <a href="diffusion-model-90d.html">diffusion-model</a> · <a href="gnn-90d.html">gnn</a> · <a href="mechanical-properties-90d.html">mechanical-properties</a> · <a href="polymer-morphology-90d.html">polymer-morphology</a></div></td>
+<td>Yuheng Zhou et al.</td>
+<td><a href="http://arxiv.org/abs/2608.00707">2608.00707</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.13199.html">Towards stealthy hyperuniform networks with optimal isotropic complete photonic band gaps using a novel inverse design procedure</a></div><div class="paper-tags"><a href="additive-manufacturing-90d.html">additive-manufacturing</a> · <a href="band-gap-90d.html">band-gap</a></div></td>
+<td>Joel Steinegger et al.</td>
+<td><a href="http://arxiv.org/abs/2607.13199">2607.13199</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.11209.html">Uncertainty-Aware Structure-Property Mapping of Spinodoid Metamaterials via Heteroscedastic Gaussian Process Regression</a></div><div class="paper-tags"><a href="mechanical-properties-90d.html">mechanical-properties</a> · <a href="polymer-morphology-90d.html">polymer-morphology</a></div></td>
+<td>Minwoo Park et al.</td>
+<td><a href="http://arxiv.org/abs/2607.11209">2607.11209</a></td>
+</tr>
+</tbody></table>

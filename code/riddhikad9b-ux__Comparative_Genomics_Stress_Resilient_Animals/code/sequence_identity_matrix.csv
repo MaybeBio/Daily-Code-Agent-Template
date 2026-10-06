@@ -1,0 +1,8 @@
+,R_varieornatus_Dsup,H_exemplaris_Dsup_like,R_varieornatus_CAHS1,R_varieornatus_MnSOD,H_sapiens_SOD2,D_melanogaster_SOD2,C_elegans_SOD2
+R_varieornatus_Dsup,100.0,69.02,3.92,4.31,7.45,4.31,5.49
+H_exemplaris_Dsup_like,69.02,100.0,4.66,4.24,7.63,5.08,5.93
+R_varieornatus_CAHS1,3.92,4.66,100.0,9.44,10.17,11.26,13.79
+R_varieornatus_MnSOD,4.31,4.24,9.44,100.0,9.75,12.88,15.02
+H_sapiens_SOD2,7.45,7.63,10.17,9.75,100.0,9.75,7.2
+D_melanogaster_SOD2,4.31,5.08,11.26,12.88,9.75,100.0,12.5
+C_elegans_SOD2,5.49,5.93,13.79,15.02,7.2,12.5,100.0

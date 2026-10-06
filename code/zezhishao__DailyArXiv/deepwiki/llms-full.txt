@@ -1,0 +1,2908 @@
+# Page: Overview
+
+# Overview
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [.github/ISSUE_TEMPLATE.md](.github/ISSUE_TEMPLATE.md)
+- [README.md](README.md)
+- [main.py](main.py)
+
+</details>
+
+
+
+This document provides a high-level introduction to the DailyArXiv system, an automated research paper aggregation tool that fetches and organizes academic papers from arXiv based on predefined keywords. The system automatically generates two primary outputs: a comprehensive paper browser and daily notification summaries, all running on a scheduled automation pipeline.
+
+For detailed information about the system's outputs and user interfaces, see [Output Formats & User Interfaces](#2). For technical implementation details, see [Core Implementation](#4). For automation and infrastructure, see [Automation & Infrastructure](#5).
+
+## System Purpose and Architecture
+
+The DailyArXiv system serves the research community by automatically collecting and organizing papers from three key domains: Time Series, Trajectory analysis, and Graph Neural Networks. The system operates entirely through GitHub's infrastructure, leveraging GitHub Actions for automation and GitHub Issues for notifications.
+
+### High-Level System Architecture
+
+```mermaid
+graph TB
+    subgraph "External Dependencies"
+        arXiv["arXiv API<br/>export.arxiv.org/api/query"]
+        GitHub["GitHub Platform<br/>Repository & Actions"]
+    end
+    
+    subgraph "Core Processing"
+        main_py["main.py<br/>Orchestration Script"]
+        utils_py["utils.py<br/>API & Processing Utils"]
+    end
+    
+    subgraph "Output Generation"
+        README["README.md<br/>Comprehensive Paper Browser"]
+        ISSUE_TEMPLATE[".github/ISSUE_TEMPLATE.md<br/>Daily Issue Summaries"]
+    end
+    
+    subgraph "Automation Infrastructure"
+        workflow[".github/workflows/<br/>Scheduled Execution"]
+        cron["Beijing Time 00:30<br/>Daily Trigger"]
+    end
+    
+    subgraph "Configuration"
+        keywords["keywords = ['Time Series',<br/>'Trajectory',<br/>'Graph Neural Networks']"]
+        limits["max_result = 100<br/>issues_result = 15"]
+    end
+    
+    %% Processing Flow
+    arXiv -->|"fetch papers"| utils_py
+    utils_py -->|"processed data"| main_py
+    main_py -->|"generate_table()"| README
+    main_py -->|"generate_table()[:15]"| ISSUE_TEMPLATE
+    
+    %% Automation Flow  
+    cron -->|"trigger"| workflow
+    workflow -->|"execute"| main_py
+    
+    %% Configuration Flow
+    keywords -->|"search terms"| main_py
+    limits -->|"result limits"| main_py
+    
+    %% Backup System
+    main_py -.->|"back_up_files()"| backup["File Backup System"]
+    backup -.->|"restore_files()"| main_py
+```
+
+**Sources:** [main.py:1-73](), [README.md:1-11](), [.github/ISSUE_TEMPLATE.md:1-7]()
+
+### Data Processing Pipeline
+
+The system follows a clear data pipeline that transforms arXiv API responses into formatted markdown tables:
+
+```mermaid
+flowchart TD
+    subgraph "Input Processing"
+        keywords_input["keywords = ['Time Series',<br/>'Trajectory', 'Graph Neural Networks']"]
+        config_input["max_result = 100<br/>issues_result = 15<br/>column_names = ['Title', 'Link',<br/>'Abstract', 'Date', 'Comment']"]
+    end
+    
+    subgraph "Data Acquisition"
+        api_call["get_daily_papers_by_keyword_with_retries()"]
+        retry_logic["Retry mechanism<br/>with error handling"]
+        xml_parse["feedparser XML processing"]
+    end
+    
+    subgraph "Data Transformation"
+        filter_tags["Filter by tags<br/>(cs.*, stat.*)"]
+        format_papers["Format paper metadata<br/>(Title, Date, Abstract, etc.)"]
+        generate_table_full["generate_table(papers)<br/>Full table with abstracts"]
+        generate_table_brief["generate_table(papers[:15])<br/>Brief table without abstracts"]
+    end
+    
+    subgraph "Output Files"
+        readme_output["README.md<br/>~100 papers per keyword"]
+        issue_output[".github/ISSUE_TEMPLATE.md<br/>~15 papers per keyword"]
+    end
+    
+    subgraph "Safety Mechanisms"
+        backup_system["back_up_files()<br/>restore_files()<br/>remove_backups()"]
+        error_handling["sys.exit() on failure<br/>File restoration"]
+    end
+    
+    %% Main flow
+    keywords_input --> api_call
+    config_input --> api_call
+    api_call --> retry_logic
+    retry_logic --> xml_parse
+    xml_parse --> filter_tags
+    filter_tags --> format_papers
+    format_papers --> generate_table_full
+    format_papers --> generate_table_brief
+    generate_table_full --> readme_output
+    generate_table_brief --> issue_output
+    
+    %% Safety flow
+    backup_system -.->|"protect"| readme_output
+    backup_system -.->|"protect"| issue_output
+    error_handling -.->|"fallback"| backup_system
+```
+
+**Sources:** [main.py:25-73](), [utils.py]() (referenced in imports)
+
+## Key System Components
+
+### Primary Keywords and Search Strategy
+
+The system focuses on three research domains defined in [main.py:25]():
+
+| Keyword | Search Logic | Purpose |
+|---------|-------------|---------|
+| `Time Series` | `OR` logic | Multi-word terms use OR between words |
+| `Trajectory` | `AND` logic | Single words search title AND abstract |
+| `Graph Neural Networks` | `OR` logic | Multi-word terms use OR between words |
+
+The search logic is determined by [main.py:53-54]() where single words use `AND` logic while multi-word phrases use `OR` logic.
+
+### Output Limits and Constraints
+
+The system operates with two distinct output limits configured in [main.py:27-28]():
+
+- **`max_result = 100`**: Maximum papers fetched from arXiv API per keyword for README.md
+- **`issues_result = 15`**: Maximum papers included in GitHub issue templates
+
+### File Management and Safety
+
+The system implements a robust backup mechanism through three key functions:
+
+```mermaid
+graph LR
+    subgraph "File Operations"
+        backup["back_up_files()"]
+        restore["restore_files()"] 
+        cleanup["remove_backups()"]
+    end
+    
+    subgraph "Protected Files"
+        readme_file["README.md"]
+        issue_file[".github/ISSUE_TEMPLATE.md"]
+    end
+    
+    subgraph "Error Handling"
+        success_path["Successful execution"]
+        failure_path["API failure or error"]
+    end
+    
+    backup -->|"create backups"| readme_file
+    backup -->|"create backups"| issue_file
+    
+    success_path --> cleanup
+    failure_path --> restore
+    
+    restore -->|"restore from backup"| readme_file
+    restore -->|"restore from backup"| issue_file
+```
+
+**Sources:** [main.py:35](), [main.py:60](), [main.py:72]()
+
+## Temporal Execution Pattern
+
+The system operates on a strict daily schedule configured in the GitHub Actions workflow:
+
+### Daily Execution Cycle
+
+```mermaid
+timeline
+    title Daily Paper Aggregation Timeline (Beijing Time)
+    
+    section Pre-Execution
+        00:00-00:29 : Quiet Period
+                    : No system activity
+    
+    section Execution Window
+        00:30 : Cron Trigger
+              : GitHub Actions activation
+              : Environment setup
+        
+        00:31-00:35 : Paper Collection
+                    : get_daily_papers_by_keyword_with_retries()
+                    : Process each keyword sequentially
+                    : 5-second delays between keywords
+        
+        00:36-00:40 : Table Generation  
+                    : generate_table() for README
+                    : generate_table()[:15] for issues
+                    : File writing operations
+    
+    section Post-Processing
+        00:41+ : Cleanup & Notification
+               : remove_backups()
+               : Git commit and push
+               : GitHub issue creation
+```
+
+The 5-second delay between keyword processing is implemented in [main.py:68]() to avoid being blocked by the arXiv API.
+
+**Sources:** [main.py:68](), [main.py:15]() (Beijing timezone), GitHub Actions workflow (referenced in automation)
+
+## Date Handling and Updates
+
+The system uses Beijing timezone for all date operations and includes update tracking:
+
+- **Current date calculation**: [main.py:15]() using `pytz.timezone('Asia/Shanghai')`
+- **Last update tracking**: [main.py:17-21]() reads from existing README.md
+- **Date formatting**: [main.py:40]() and [main.py:45]() for output files
+
+The system writes the current date to both output files to track when the data was last refreshed, providing transparency to users about data freshness.
+
+**Sources:** [main.py:10](), [main.py:15](), [main.py:40](), [main.py:45]()
+
+---
+
+# Page: Output Formats & User Interfaces
+
+# Output Formats & User Interfaces
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [.github/ISSUE_TEMPLATE.md](.github/ISSUE_TEMPLATE.md)
+- [README.md](README.md)
+
+</details>
+
+
+
+This page documents the two primary output interfaces of the DailyArXiv system and how users interact with them. The system generates dual formats optimized for different consumption patterns: a comprehensive paper browser for detailed exploration and condensed daily summaries for notifications.
+
+For technical implementation details of the processing pipeline, see [Core Implementation](#4). For automation and infrastructure details, see [Automation & Infrastructure](#5).
+
+## Overview
+
+The DailyArXiv system implements a dual output strategy to serve different user needs with the same underlying data. This approach addresses the fundamental challenge of balancing comprehensive access with digestible notifications.
+
+### Dual Output Architecture
+
+```mermaid
+graph TD
+    subgraph "Data Processing"
+        API["arXiv API Query"]
+        FILTER["Paper Filtering & Processing"]
+        FORMAT["Data Formatting"]
+    end
+    
+    subgraph "Output Generation"
+        TABLE_FULL["Full Table Generation<br/>~40 papers per keyword"]
+        TABLE_BRIEF["Brief Table Generation<br/>~15 papers per keyword"]
+    end
+    
+    subgraph "User Interfaces"
+        README["README.md<br/>Paper Browser<br/>Comprehensive Tables"]
+        ISSUE["ISSUE_TEMPLATE.md<br/>Daily Summaries<br/>Notification Format"]
+    end
+    
+    subgraph "User Interaction"
+        BROWSE["Direct Browsing<br/>GitHub Repository"]
+        NOTIFY["Email Notifications<br/>GitHub Issues"]
+        WATCH["Watch Feature<br/>Subscriptions"]
+    end
+    
+    API --> FILTER
+    FILTER --> FORMAT
+    FORMAT --> TABLE_FULL
+    FORMAT --> TABLE_BRIEF
+    
+    TABLE_FULL --> README
+    TABLE_BRIEF --> ISSUE
+    
+    README --> BROWSE
+    ISSUE --> NOTIFY
+    NOTIFY --> WATCH
+
+    style README fill:#e8f5e8
+    style ISSUE fill:#f3e5f5
+    style BROWSE fill:#e1f5fe
+    style NOTIFY fill:#fff3e0
+```
+
+Sources: [README.md:1-79](), [ISSUE_TEMPLATE.md:1-63]()
+
+### Output Characteristics
+
+| Characteristic | README.md Browser | ISSUE_TEMPLATE.md Summaries |
+|---|---|---|
+| **Paper Limit** | ~40 per keyword | ~15 per keyword |
+| **Abstract Display** | Full abstracts in collapsible details | No abstracts |
+| **Update Frequency** | Daily at 00:30 Beijing | Daily notifications |
+| **Primary Use Case** | Research exploration | Quick updates |
+| **User Access** | Direct repository browsing | Email subscriptions |
+
+Sources: [README.md:6](), [ISSUE_TEMPLATE.md:2]()
+
+## Paper Browser Interface (README.md)
+
+The primary user interface is the `README.md` file, which serves as a comprehensive paper browsing experience directly within the GitHub repository.
+
+### Table Structure and Organization
+
+The browser organizes papers into keyword-based sections with consistent table formatting:
+
+```mermaid
+graph LR
+    subgraph "README.md Structure"
+        HEADER["Header Information<br/>Last Update Date"]
+        KEYWORDS["Research Keywords<br/>Time Series<br/>Trajectory<br/>Graph Neural Networks"]
+        TABLES["Paper Tables<br/>Title | Date | Abstract | Comment"]
+    end
+    
+    subgraph "Table Features"
+        LINKS["arXiv Links<br/>Direct Paper Access"]
+        ABSTRACTS["Collapsible Abstracts<br/>details/summary tags"]
+        COMMENTS["Publication Info<br/>Conference/Journal Status"]
+        DATES["Submission Dates<br/>YYYY-MM-DD Format"]
+    end
+    
+    HEADER --> KEYWORDS
+    KEYWORDS --> TABLES
+    TABLES --> LINKS
+    TABLES --> ABSTRACTS
+    TABLES --> COMMENTS
+    TABLES --> DATES
+
+    style TABLES fill:#e8f5e8
+    style ABSTRACTS fill:#f0f8ff
+```
+
+Sources: [README.md:10-79](), [README.md:13-14]()
+
+### Interactive Elements
+
+Each paper entry includes several interactive components:
+
+- **Title Links**: Direct links to arXiv papers using format `http://arxiv.org/abs/{paper_id}`
+- **Collapsible Abstracts**: HTML `<details>` and `<summary>` tags for space-efficient abstract display
+- **Comment Information**: Publication status, page counts, and submission details
+
+Example table entry structure from the live interface:
+```markdown
+| **[Paper Title](http://arxiv.org/abs/paper_id)** | YYYY-MM-DD | <details><summary>Show</summary><p>Abstract text...</p></details> | <details><summary>Info...</summary><p>Publication details</p></details> |
+```
+
+Sources: [README.md:15-25]()
+
+### User Interaction Patterns
+
+The README.md interface supports several user workflows:
+
+1. **Sequential Browsing**: Users scan paper titles within their research areas
+2. **Selective Reading**: Click-to-expand abstracts for papers of interest  
+3. **Direct Access**: One-click navigation to full papers on arXiv
+4. **Research Tracking**: Monitor daily updates through the repository
+
+Sources: [README.md:8-9]()
+
+## Daily Issue Template System
+
+The `ISSUE_TEMPLATE.md` generates condensed summaries optimized for notification delivery through GitHub's issue system.
+
+### Template Format and Structure
+
+```mermaid
+graph TD
+    subgraph "ISSUE_TEMPLATE.md"
+        YAML["YAML Front Matter<br/>title: Latest 15 Papers<br/>labels: documentation"]
+        NOTICE["GitHub Link Notice<br/>Better Reading Experience"]
+        SECTIONS["Keyword Sections<br/>Time Series<br/>Trajectory<br/>Graph Neural Networks"]
+    end
+    
+    subgraph "Simplified Tables"
+        COLS["Three Columns Only<br/>Title | Date | Comment"]
+        NO_ABS["No Abstract Column<br/>Streamlined for Notifications"]
+        LIMIT["15 Paper Limit<br/>Per Keyword Section"]
+    end
+    
+    subgraph "Notification Flow"
+        ISSUE_CREATE["GitHub Issue Creation"]
+        EMAIL_NOTIFY["Email Notifications"]
+        USER_SUB["User Subscriptions"]
+    end
+    
+    YAML --> NOTICE
+    NOTICE --> SECTIONS
+    SECTIONS --> COLS
+    COLS --> NO_ABS
+    NO_ABS --> LIMIT
+    
+    LIMIT --> ISSUE_CREATE
+    ISSUE_CREATE --> EMAIL_NOTIFY
+    EMAIL_NOTIFY --> USER_SUB
+
+    style SECTIONS fill:#f3e5f5
+    style EMAIL_NOTIFY fill:#fff3e0
+```
+
+Sources: [ISSUE_TEMPLATE.md:1-4](), [ISSUE_TEMPLATE.md:8-9]()
+
+### Notification Integration
+
+The issue template integrates with GitHub's notification system:
+
+- **YAML Front Matter**: Configures issue title with current date and applies `documentation` label
+- **Email Integration**: Users can subscribe via GitHub's "Watch" feature for daily email delivery
+- **Cross-Reference**: Includes link back to full repository for comprehensive browsing
+
+Sources: [ISSUE_TEMPLATE.md:1-5]()
+
+### Content Optimization
+
+The template optimizes content for quick consumption:
+
+- **Reduced Columns**: Excludes abstract column to minimize email length
+- **Paper Limitation**: Shows only 15 most recent papers per keyword instead of 40
+- **Streamlined Format**: Focuses on title, date, and publication status only
+
+Example simplified table entry:
+```markdown
+| **[Paper Title](http://arxiv.org/abs/paper_id)** | YYYY-MM-DD | Publication info |
+```
+
+Sources: [ISSUE_TEMPLATE.md:8-43]()
+
+## User Access Patterns
+
+### Direct Repository Access
+
+Users can access the paper browser through several pathways:
+
+1. **GitHub Repository Browsing**: Direct navigation to `README.md` in the repository root
+2. **Search Discovery**: GitHub's search functionality indexes paper titles and abstracts
+3. **Bookmark Access**: Direct links to specific sections or the full repository
+
+### Subscription-Based Notifications
+
+The notification system enables automated updates:
+
+```mermaid
+graph LR
+    subgraph "Subscription Flow"
+        WATCH["GitHub Watch Button"]
+        SETTINGS["Notification Settings"]
+        EMAIL["Email Delivery"]
+    end
+    
+    subgraph "Daily Automation"
+        CRON["00:30 Beijing Time"]
+        WORKFLOW["GitHub Actions"]
+        ISSUE["New Issue Creation"]
+    end
+    
+    subgraph "Content Delivery"
+        TEMPLATE["Issue Template"]
+        NOTIFY["Email Notification"]
+        BROWSE["Link to Full Browser"]
+    end
+    
+    WATCH --> SETTINGS
+    SETTINGS --> EMAIL
+    
+    CRON --> WORKFLOW
+    WORKFLOW --> ISSUE
+    
+    ISSUE --> TEMPLATE
+    TEMPLATE --> NOTIFY
+    NOTIFY --> BROWSE
+
+    style EMAIL fill:#e8f5e8
+    style WORKFLOW fill:#e1f5fe
+    style NOTIFY fill:#fff3e0
+```
+
+Sources: [README.md:8](), [ISSUE_TEMPLATE.md:5]()
+
+### Research Domain Focus
+
+The system organizes content around three primary research areas:
+
+- **Time Series**: Forecasting, analysis, and temporal modeling papers
+- **Trajectory**: Path prediction, motion analysis, and spatial-temporal research  
+- **Graph Neural Networks**: Graph-based learning, network analysis, and structural modeling
+
+This domain-specific organization enables users to focus on their particular research interests while maintaining awareness of adjacent fields.
+
+Sources: [README.md:12](), [ISSUE_TEMPLATE.md:7,26,45]()
+
+---
+
+# Page: Paper Browser (README.md)
+
+# Paper Browser (README.md)
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+
+</details>
+
+
+
+This document describes the primary user interface for browsing research papers collected by the DailyArXiv system. The README.md file serves as a comprehensive paper browser that displays organized tables of recently published papers from arXiv across multiple research domains.
+
+For information about the condensed daily summaries sent as notifications, see [Daily Issue Templates](#2.2). For details about the underlying data collection and processing pipeline, see [Core Implementation](#4).
+
+## Overview and Purpose
+
+The README.md file functions as a static web interface accessible through the GitHub repository homepage. It provides users with an organized view of recently published research papers, automatically updated daily through the system's processing pipeline. The browser presents papers in a structured table format, enabling efficient discovery and access to relevant research across three primary domains: Time Series, Trajectory analysis, and Graph Neural Networks.
+
+**Sources:** [README.md:1-11]()
+
+## Table Structure and Organization
+
+### Multi-Domain Layout
+
+The paper browser organizes content into distinct sections based on research keywords, with each section containing its own dedicated table:
+
+```mermaid
+graph TD
+    subgraph "README.md Structure"
+        Header["Header Section<br/>System Description & Instructions"]
+        TS["## Time Series<br/>Research Area Section"]
+        TRAJ["## Trajectory<br/>Research Area Section"] 
+        GNN["## Graph Neural Networks<br/>Research Area Section"]
+        
+        subgraph "Table Structure (Each Section)"
+            TableHeader["| Title | Date | Abstract | Comment |"]
+            TableSep["| --- | --- | --- | --- |"]
+            TableRows["Multiple Paper Rows<br/>~40 papers per section"]
+        end
+        
+        Header --> TS
+        TS --> TRAJ
+        TRAJ --> GNN
+        
+        TS --> TableHeader
+        TRAJ --> TableHeader  
+        GNN --> TableHeader
+    end
+```
+
+**Sources:** [README.md:12-150]()
+
+### Table Column Design
+
+Each paper entry contains four standardized columns with specific formatting:
+
+| Column | Content Type | Format | Purpose |
+|--------|--------------|--------|---------|
+| `Title` | Paper title with arXiv link | `**[Title](arXiv_URL)**` | Primary identification and access |
+| `Date` | Publication date | `YYYY-MM-DD` | Temporal organization |
+| `Abstract` | Full paper abstract | `<details><summary>Show</summary><p>text</p></details>` | Detailed content preview |
+| `Comment` | arXiv metadata | `<details><summary>Truncated</summary><p>text</p></details>` | Additional paper information |
+
+**Sources:** [README.md:13-14](), [README.md:15-25]()
+
+## User Interaction Patterns
+
+### Discovery and Navigation Workflow
+
+```mermaid
+flowchart TD
+    Visit["User visits GitHub repository"]
+    Browse["Browse README.md sections"]
+    Scan["Scan paper titles by domain"]
+    
+    subgraph "Paper Evaluation"
+        Expand["Click 'Show' to expand abstract"]
+        Read["Read abstract content"]
+        Check["Check comment for metadata"]
+    end
+    
+    subgraph "Access Patterns"
+        Click["Click title link"]
+        ArXiv["Navigate to arXiv paper"]
+        Download["Download/view full paper"]
+    end
+    
+    subgraph "Subscription"
+        Watch["Click 'Watch' button"]
+        Email["Receive daily email notifications"]
+    end
+    
+    Visit --> Browse
+    Browse --> Scan
+    Scan --> Expand
+    Expand --> Read
+    Read --> Check
+    Read --> Click
+    Click --> ArXiv
+    ArXiv --> Download
+    
+    Browse --> Watch
+    Watch --> Email
+```
+
+**Sources:** [README.md:8](), [README.md:15-25]()
+
+### Content Accessibility Features
+
+The browser implements collapsible content sections to manage information density:
+
+- **Abstract Expansion**: Abstracts are collapsed by default with "Show" summary text, allowing users to selectively expand content of interest
+- **Comment Truncation**: Long comments display truncated previews (e.g., "Accep...", "16 pa...") to maintain table readability
+- **Direct arXiv Integration**: Title links provide immediate access to full papers on arXiv
+
+**Sources:** [README.md:15-25]()
+
+## Data Presentation Format
+
+### Paper Entry Structure
+
+Each paper entry follows a standardized markdown format generated by the processing pipeline:
+
+```
+|| **[Paper Title](http://arxiv.org/abs/paperID)** | YYYY-MM-DD | <details><summary>Show</summary><p>Abstract text</p></details> | <details><summary>Preview</summary><p>Comment text</p></details> |
+```
+
+### Content Limits and Filtering
+
+The browser implements several content management strategies:
+
+- **Volume Control**: Maximum of 100 papers retained per keyword section
+- **Recency Focus**: Only the most recent articles are displayed
+- **Quality Filtering**: Papers filtered by tag categories (cs.*, stat.*) during processing
+
+**Sources:** [README.md:6](), system architecture diagrams
+
+## Integration with Processing Pipeline
+
+### Data Flow from Pipeline to Browser
+
+```mermaid
+graph LR
+    subgraph "Processing Pipeline"
+        ArXivAPI["arXiv API Query<br/>utils.py"]
+        Filter["Tag Filtering<br/>cs.*, stat.*"]
+        Format["Table Generation<br/>format_table_entry()"]
+    end
+    
+    subgraph "README.md Generation"
+        TableGen["Full Table Generation<br/>~40 papers per keyword"]
+        MarkdownWrite["Markdown File Writing<br/>main.py"]
+        GitCommit["Git Commit & Push<br/>GitHub Actions"]
+    end
+    
+    subgraph "User Access"
+        GitHubPages["GitHub Repository View"]
+        Browser["Paper Browser Interface"]
+        EmailNotify["Email Notifications<br/>Watch subscribers"]
+    end
+    
+    ArXivAPI --> Filter
+    Filter --> Format
+    Format --> TableGen
+    TableGen --> MarkdownWrite
+    MarkdownWrite --> GitCommit
+    GitCommit --> GitHubPages
+    GitHubPages --> Browser
+    GitCommit --> EmailNotify
+```
+
+**Sources:** System architecture diagrams, [main.py](), [utils.py]()
+
+### Update Frequency and Versioning
+
+The README.md file undergoes daily regeneration through the automated pipeline:
+
+- **Schedule**: Updates occur daily at 00:30 Beijing time
+- **Version Control**: Each update creates a new Git commit with timestamp
+- **Last Update Tracking**: Header displays last update date for user reference
+
+**Sources:** [README.md:10](), GitHub Actions workflow
+
+## Technical Implementation Details
+
+### Markdown Generation Process
+
+The browser content is generated through a structured process within the main processing pipeline:
+
+1. **Data Collection**: Papers fetched via `utils.py` arXiv API functions
+2. **Table Assembly**: Full table generation with abstracts and comments included
+3. **File Writing**: Complete README.md regeneration with new content
+4. **Backup Management**: Safety mechanisms protect against data loss during updates
+
+### Performance Characteristics
+
+The static file approach provides several advantages:
+
+- **Fast Load Times**: No server-side processing required for user access
+- **High Availability**: Leverages GitHub's infrastructure reliability  
+- **Offline Capability**: Content accessible without active API connections
+- **SEO Optimization**: Static content easily indexed by search engines
+
+**Sources:** [main.py](), [utils.py](), system architecture diagrams
+
+---
+
+# Page: Daily Issue Templates
+
+# Daily Issue Templates
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [.github/ISSUE_TEMPLATE.md](.github/ISSUE_TEMPLATE.md)
+
+</details>
+
+
+
+This page documents the GitHub issue template system used for daily paper summary notifications in the DailyArXiv system. The issue template provides a condensed view of the latest research papers, optimized for notifications and quick browsing. For comprehensive paper browsing with full abstracts and extended listings, see [Paper Browser (README.md)](#2.1).
+
+## Purpose and Structure
+
+The daily issue template serves as a notification mechanism that automatically creates GitHub issues containing a curated summary of the latest research papers. Unlike the comprehensive README format, the issue template is designed for:
+
+- **Limited paper count**: Approximately 15 papers per research category
+- **Notification delivery**: Integration with GitHub's watch/subscription system
+- **Quick scanning**: Condensed format without full abstracts
+- **Email distribution**: Automatic email notifications to subscribers
+
+## Template Format and Organization
+
+The issue template follows a structured markdown format organized into three primary research categories:
+
+```mermaid
+graph TD
+    subgraph "ISSUE_TEMPLATE.md Structure"
+        HEADER["Issue Header"]
+        HEADER --> META["Metadata: title, labels, date"]
+        HEADER --> NOTICE["GitHub Repository Link Notice"]
+        
+        NOTICE --> TS_SECTION["Time Series Section"]
+        NOTICE --> TRAJ_SECTION["Trajectory Section"] 
+        NOTICE --> GNN_SECTION["Graph Neural Networks Section"]
+        
+        TS_SECTION --> TS_TABLE["| Title | Date | Comment |"]
+        TRAJ_SECTION --> TRAJ_TABLE["| Title | Date | Comment |"]
+        GNN_SECTION --> GNN_TABLE["| Title | Date | Comment |"]
+        
+        TS_TABLE --> TS_PAPERS["~15 Latest Papers"]
+        TRAJ_TABLE --> TRAJ_PAPERS["~15 Latest Papers"]
+        GNN_TABLE --> GNN_PAPERS["~15 Latest Papers"]
+    end
+    
+    style HEADER fill:#f9f9f9
+    style TS_SECTION fill:#e8f5e8
+    style TRAJ_SECTION fill:#fff3e0
+    style GNN_SECTION fill:#f3e5f5
+```
+
+Sources: [.github/ISSUE_TEMPLATE.md:1-64]()
+
+### Header Structure
+
+The template begins with YAML front matter containing metadata:
+
+| Field | Purpose | Example |
+|-------|---------|---------|
+| `title` | Issue title with date | "Latest 15 Papers - May 30, 2025" |
+| `labels` | Issue categorization | "documentation" |
+
+The header also includes a redirect notice pointing users to the main repository for enhanced reading experience and complete paper listings.
+
+Sources: [.github/ISSUE_TEMPLATE.md:1-6]()
+
+### Research Category Tables
+
+Each research category contains a markdown table with three columns:
+
+```mermaid
+graph LR
+    subgraph "Table Structure"
+        TITLE_COL["Title Column"]
+        DATE_COL["Date Column"]
+        COMMENT_COL["Comment Column"]
+        
+        TITLE_COL --> PAPER_LINK["arXiv Paper Link"]
+        TITLE_COL --> PAPER_TITLE["Paper Title"]
+        
+        DATE_COL --> SUBMIT_DATE["Submission Date (YYYY-MM-DD)"]
+        
+        COMMENT_COL --> DETAILS_TAG["<details> Collapsible Sections"]
+        COMMENT_COL --> VENUE_INFO["Conference/Journal Information"]
+        COMMENT_COL --> META_INFO["Page Count, Figures, etc."]
+    end
+```
+
+Sources: [.github/ISSUE_TEMPLATE.md:8-63]()
+
+## Data Processing and Generation Pipeline
+
+The issue template generation follows a streamlined process optimized for brevity and notification delivery:
+
+```mermaid
+flowchart TD
+    subgraph "Input Processing"
+        ARXIV_DATA["arXiv API Response"]
+        FILTER_LOGIC["Tag Filtering (cs.*, stat.*)"]
+        LIMIT_CONFIG["issues_result: 15"]
+    end
+    
+    subgraph "Template Generation"
+        BRIEF_FORMAT["Brief Table Generation"]
+        NO_ABSTRACTS["Abstract Exclusion"]
+        COLLAPSIBLE["Comment Collapsing"]
+    end
+    
+    subgraph "Output System"
+        TEMPLATE_FILE[".github/ISSUE_TEMPLATE.md"]
+        GITHUB_ISSUE["GitHub Issue Creation"]
+        EMAIL_NOTIFY["Email Notifications"]
+    end
+    
+    ARXIV_DATA --> FILTER_LOGIC
+    FILTER_LOGIC --> LIMIT_CONFIG
+    LIMIT_CONFIG --> BRIEF_FORMAT
+    BRIEF_FORMAT --> NO_ABSTRACTS
+    NO_ABSTRACTS --> COLLAPSIBLE
+    COLLAPSIBLE --> TEMPLATE_FILE
+    TEMPLATE_FILE --> GITHUB_ISSUE
+    GITHUB_ISSUE --> EMAIL_NOTIFY
+```
+
+Sources: [.github/ISSUE_TEMPLATE.md:1-64]()
+
+### Key Differences from README Format
+
+| Aspect | Issue Template | README Browser |
+|--------|---------------|----------------|
+| Paper Count | ~15 per category | ~40 per category |
+| Abstracts | Excluded | Full abstracts included |
+| Comments | Collapsible `<details>` tags | Full text display |
+| Update Frequency | Daily via GitHub Issues | Daily via file commits |
+| Notification Method | Email subscriptions | Repository watching |
+
+## User Interaction and Notification Mechanisms
+
+The issue template system integrates with GitHub's native notification infrastructure:
+
+```mermaid
+graph TB
+    subgraph "User Subscription Flow"
+        REPO_WATCH["Repository Watch Settings"]
+        ISSUE_WATCH["Issues Notification Enabled"]
+        EMAIL_PREF["Email Preferences"]
+    end
+    
+    subgraph "Automated Generation"
+        DAILY_CRON["Daily Cron Trigger (00:30 Beijing)"]
+        TEMPLATE_UPDATE["ISSUE_TEMPLATE.md Update"]
+        ISSUE_CREATE["GitHub Issue Creation"]
+    end
+    
+    subgraph "Notification Delivery"
+        GITHUB_NOTIFY["GitHub Notification System"]
+        EMAIL_DELIVERY["Email Delivery Service"]
+        USER_INBOX["User Email Inbox"]
+    end
+    
+    REPO_WATCH --> ISSUE_WATCH
+    ISSUE_WATCH --> EMAIL_PREF
+    
+    DAILY_CRON --> TEMPLATE_UPDATE
+    TEMPLATE_UPDATE --> ISSUE_CREATE
+    
+    ISSUE_CREATE --> GITHUB_NOTIFY
+    GITHUB_NOTIFY --> EMAIL_DELIVERY
+    EMAIL_DELIVERY --> USER_INBOX
+    
+    EMAIL_PREF -.->|Configuration| EMAIL_DELIVERY
+```
+
+Sources: [.github/ISSUE_TEMPLATE.md:5-6]()
+
+### Comment Formatting and Collapsible Content
+
+The template uses HTML `<details>` tags to make lengthy comments collapsible, improving readability while preserving information:
+
+```markdown
+<details><summary>Accep...</summary><p>Accepted as a full paper at ICLR 2025 (top 5% of scores) in Singapore</p></details>
+```
+
+This approach allows users to:
+- Quickly scan paper titles and dates
+- Expand comments for additional context when needed
+- Maintain clean visual formatting in email notifications
+
+Sources: [.github/ISSUE_TEMPLATE.md:10-62]()
+
+## Integration with GitHub Ecosystem
+
+The issue template system leverages several GitHub features for seamless operation:
+
+| GitHub Feature | Purpose | Implementation |
+|---------------|---------|----------------|
+| Issue Templates | Standardized formatting | `.github/ISSUE_TEMPLATE.md` |
+| Issue Creation | Daily notifications | Automated via GitHub Actions |
+| Watch System | User subscriptions | Native GitHub functionality |
+| Email Integration | Notification delivery | GitHub's email service |
+| Labels | Content categorization | `documentation` label |
+
+The system creates a new issue daily, allowing users to receive consistent notifications while maintaining a searchable history of daily paper summaries.
+
+Sources: [.github/ISSUE_TEMPLATE.md:1-4]()
+
+---
+
+# Page: System Architecture
+
+# System Architecture
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [.github/workflows/update.yaml](.github/workflows/update.yaml)
+- [main.py](main.py)
+- [utils.py](utils.py)
+
+</details>
+
+
+
+This document explains the technical architecture of the DailyArXiv system, covering how the core components interact, data flows through the processing pipeline, and how the automation infrastructure operates. For details about the specific output formats generated by this system, see [Output Formats & User Interfaces](#2). For implementation details of individual modules, see [Core Implementation](#4).
+
+## Overall System Components
+
+The DailyArXiv system follows a pipeline architecture with four primary layers: automation, processing, external integration, and output generation. The system is designed to run autonomously with minimal manual intervention.
+
+### Core System Architecture
+
+```mermaid
+graph TB
+    subgraph "External_Systems" ["External Systems"]
+        ARXIV_API["arXiv API<br/>export.arxiv.org/api/query"]
+        GITHUB_PLATFORM["GitHub Platform<br/>Actions, Issues, Repository"]
+    end
+    
+    subgraph "Automation_Layer" ["Automation Layer"]
+        UPDATE_WORKFLOW[".github/workflows/update.yaml<br/>Scheduled Automation"]
+        CRON_TRIGGER["Cron Schedule<br/>30 16 * * 0-4"]
+    end
+    
+    subgraph "Processing_Engine" ["Core Processing Engine"]
+        MAIN_PY["main.py<br/>Orchestration Script"]
+        UTILS_PY["utils.py<br/>API & Processing Utils"]
+        BEIJING_TZ["pytz.timezone('Asia/Shanghai')<br/>Timezone Handler"]
+    end
+    
+    subgraph "Configuration" ["Configuration"]
+        KEYWORDS["keywords = ['Time Series', 'Trajectory',<br/>'Graph Neural Networks']"]
+        LIMITS["max_result = 100<br/>issues_result = 15"]
+        COLUMNS["column_names = ['Title', 'Link',<br/>'Abstract', 'Date', 'Comment']"]
+    end
+    
+    subgraph "Output_Generation" ["Output Generation"]
+        README_MD["README.md<br/>Paper Browser Interface"]
+        ISSUE_TEMPLATE[".github/ISSUE_TEMPLATE.md<br/>Daily Summary"]
+        BACKUP_SYSTEM["File Backup System<br/>.bk files"]
+    end
+    
+    %% Data Flow
+    CRON_TRIGGER --> UPDATE_WORKFLOW
+    UPDATE_WORKFLOW --> MAIN_PY
+    MAIN_PY --> UTILS_PY
+    UTILS_PY --> ARXIV_API
+    KEYWORDS --> MAIN_PY
+    LIMITS --> MAIN_PY
+    COLUMNS --> MAIN_PY
+    MAIN_PY --> README_MD
+    MAIN_PY --> ISSUE_TEMPLATE
+    BACKUP_SYSTEM -.-> README_MD
+    BACKUP_SYSTEM -.-> ISSUE_TEMPLATE
+    UPDATE_WORKFLOW --> GITHUB_PLATFORM
+    
+    %% Processing Dependencies
+    BEIJING_TZ --> MAIN_PY
+    UTILS_PY --> BEIJING_TZ
+```
+
+**Sources:** [main.py:1-73](), [utils.py:1-148](), [.github/workflows/update.yaml:1-48]()
+
+## Data Processing Pipeline
+
+The system implements a linear processing pipeline that transforms arXiv API responses into formatted markdown tables through several distinct stages.
+
+### Processing Flow with Code Entities
+
+```mermaid
+flowchart TD
+    subgraph "Input_Stage" ["Input Configuration"]
+        KEYWORDS_INIT["keywords = ['Time Series',<br/>'Trajectory', 'Graph Neural Networks']"]
+        MAX_RESULT["max_result = 100"]
+        ISSUES_RESULT["issues_result = 15"]
+        COLUMN_NAMES["column_names = ['Title', 'Link',<br/>'Abstract', 'Date', 'Comment']"]
+    end
+    
+    subgraph "API_Stage" ["arXiv API Integration"]
+        GET_PAPERS["get_daily_papers_by_keyword_with_retries()"]
+        REQUEST_API["request_paper_with_arXiv_api()"]
+        FEEDPARSER["feedparser.parse(response)"]
+        FILTER_TAGS["filter_tags(papers, ['cs', 'stat'])"]
+    end
+    
+    subgraph "Processing_Stage" ["Data Transformation"]
+        EASYDICT_CONVERSION["EasyDict(entry)"]
+        FIELD_EXTRACTION["Title, Abstract, Authors,<br/>Link, Tags, Comment, Date"]
+        REMOVE_SPACES["remove_duplicated_spaces()"]
+        COLUMN_SELECTION["Select column_names only"]
+    end
+    
+    subgraph "Output_Stage" ["Table Generation"]
+        GENERATE_TABLE_FULL["generate_table(papers)"]
+        GENERATE_TABLE_BRIEF["generate_table(papers[:issues_result],<br/>ignore_keys=['Abstract'])"]
+        MARKDOWN_FORMATTING["Markdown table with<br/>collapsible sections"]
+    end
+    
+    subgraph "File_Stage" ["File Operations"]
+        BACKUP["back_up_files()"]
+        WRITE_README["f_rm.write(rm_table)"]
+        WRITE_ISSUE["f_is.write(is_table)"]
+        REMOVE_BACKUP["remove_backups()"]
+    end
+    
+    %% Flow connections
+    KEYWORDS_INIT --> GET_PAPERS
+    MAX_RESULT --> GET_PAPERS
+    COLUMN_NAMES --> GET_PAPERS
+    GET_PAPERS --> REQUEST_API
+    REQUEST_API --> FEEDPARSER
+    FEEDPARSER --> FILTER_TAGS
+    FILTER_TAGS --> EASYDICT_CONVERSION
+    EASYDICT_CONVERSION --> FIELD_EXTRACTION
+    FIELD_EXTRACTION --> REMOVE_SPACES
+    REMOVE_SPACES --> COLUMN_SELECTION
+    COLUMN_SELECTION --> GENERATE_TABLE_FULL
+    COLUMN_SELECTION --> GENERATE_TABLE_BRIEF
+    
+    BACKUP --> WRITE_README
+    BACKUP --> WRITE_ISSUE
+    GENERATE_TABLE_FULL --> WRITE_README
+    GENERATE_TABLE_BRIEF --> WRITE_ISSUE
+    WRITE_README --> REMOVE_BACKUP
+    WRITE_ISSUE --> REMOVE_BACKUP
+```
+
+**Sources:** [main.py:25-72](), [utils.py:16-78](), [utils.py:80-126]()
+
+## Component Integration and Dependencies
+
+The system's modules are tightly integrated through function calls and shared data structures. The `main.py` script orchestrates the entire process while `utils.py` provides specialized functionality.
+
+### Module Interaction Map
+
+```mermaid
+graph TB
+    subgraph "main_py_module" ["main.py Module"]
+        MAIN_IMPORTS["from utils import<br/>get_daily_papers_by_keyword_with_retries,<br/>generate_table, back_up_files,<br/>restore_files, remove_backups"]
+        MAIN_LOOP["for keyword in keywords:<br/>    papers = get_daily_papers_by_keyword_with_retries()<br/>    rm_table = generate_table(papers)<br/>    is_table = generate_table(papers[:issues_result])"]
+        TIMEZONE_SETUP["beijing_timezone = pytz.timezone('Asia/Shanghai')<br/>current_date = datetime.now(beijing_timezone)"]
+        FILE_HANDLING["f_rm = open('README.md', 'w')<br/>f_is = open('.github/ISSUE_TEMPLATE.md', 'w')"]
+    end
+    
+    subgraph "utils_py_module" ["utils.py Module"]
+        API_FUNCTIONS["request_paper_with_arXiv_api()<br/>get_daily_papers_by_keyword()<br/>get_daily_papers_by_keyword_with_retries()"]
+        PROCESSING_FUNCTIONS["filter_tags()<br/>remove_duplicated_spaces()<br/>generate_table()"]
+        FILE_FUNCTIONS["back_up_files()<br/>restore_files()<br/>remove_backups()"]
+        DATE_FUNCTIONS["get_daily_date()"]
+    end
+    
+    subgraph "external_deps" ["External Dependencies"]
+        FEEDPARSER_LIB["feedparser.parse()"]
+        EASYDICT_LIB["EasyDict()"]
+        PYTZ_LIB["pytz.timezone()"]
+        URLLIB_LIB["urllib.request.urlopen()"]
+    end
+    
+    %% Integration flows
+    MAIN_IMPORTS --> API_FUNCTIONS
+    MAIN_IMPORTS --> PROCESSING_FUNCTIONS
+    MAIN_IMPORTS --> FILE_FUNCTIONS
+    MAIN_LOOP --> API_FUNCTIONS
+    MAIN_LOOP --> PROCESSING_FUNCTIONS
+    TIMEZONE_SETUP --> PYTZ_LIB
+    FILE_HANDLING --> FILE_FUNCTIONS
+    
+    API_FUNCTIONS --> FEEDPARSER_LIB
+    API_FUNCTIONS --> URLLIB_LIB
+    PROCESSING_FUNCTIONS --> EASYDICT_LIB
+    DATE_FUNCTIONS --> PYTZ_LIB
+```
+
+**Sources:** [main.py:6-7](), [main.py:50-68](), [utils.py:9-11](), [utils.py:60-78]()
+
+## Error Handling and Resilience Architecture
+
+The system implements multiple layers of error handling to ensure reliable operation despite potential API failures or network issues.
+
+| Component | Error Handling Mechanism | Implementation | Fallback Action |
+|-----------|-------------------------|----------------|-----------------|
+| **arXiv API Requests** | Retry with exponential backoff | `get_daily_papers_by_keyword_with_retries()` with 6 retries, 30-minute delays | System exit with error message |
+| **Empty Response Detection** | Result validation | Check `len(papers) > 0` after each API call | Retry up to 6 times |
+| **File Operations** | Backup and restore system | `back_up_files()`, `restore_files()` before critical operations | Restore original files on failure |
+| **Rate Limiting** | Deliberate delays | `time.sleep(5)` between keyword queries | Prevent API blocking |
+| **GitHub Actions** | Workflow-level error handling | Ubuntu container with Python 3.9 environment | Workflow failure notification |
+
+**Sources:** [utils.py:60-68](), [main.py:56-61](), [main.py:68](), [utils.py:128-141]()
+
+## File Management and Backup System
+
+The system implements a robust file management strategy to prevent data loss during updates and provide recovery mechanisms.
+
+### File Operation Flow
+
+```mermaid
+sequenceDiagram
+    participant M as "main.py"
+    participant U as "utils.py"
+    participant FS as "File System"
+    
+    Note over M,FS: Initialization Phase
+    M->>U: back_up_files()
+    U->>FS: shutil.move("README.md", "README.md.bk")
+    U->>FS: shutil.move(".github/ISSUE_TEMPLATE.md", ".github/ISSUE_TEMPLATE.md.bk")
+    
+    Note over M,FS: Processing Phase
+    M->>FS: open("README.md", "w")
+    M->>FS: open(".github/ISSUE_TEMPLATE.md", "w")
+    
+    alt Success Case
+        M->>M: Process all keywords successfully
+        M->>U: remove_backups()
+        U->>FS: os.remove("README.md.bk")
+        U->>FS: os.remove(".github/ISSUE_TEMPLATE.md.bk")
+    else Failure Case
+        M->>M: papers is None (API failure)
+        M->>U: restore_files()
+        U->>FS: shutil.move("README.md.bk", "README.md")
+        U->>FS: shutil.move(".github/ISSUE_TEMPLATE.md.bk", ".github/ISSUE_TEMPLATE.md")
+        M->>M: sys.exit("Failed to get papers!")
+    end
+```
+
+**Sources:** [main.py:35](), [main.py:56-61](), [main.py:72](), [utils.py:128-141]()
+
+## Automation Infrastructure Integration
+
+The system integrates with GitHub's automation infrastructure through GitHub Actions, providing scheduled execution and automated deployment.
+
+### GitHub Actions Integration Points
+
+| Integration Point | Configuration | Purpose |
+|------------------|---------------|---------|
+| **Scheduling** | `cron: '30 16 * * 0-4'` | Monday-Friday at 00:30 Beijing time |
+| **Permissions** | `contents: write`, `issues: write` | Repository modification and issue creation |
+| **Environment** | `ubuntu-latest`, `python-version: '3.9'` | Consistent execution environment |
+| **Dependencies** | `pip install -r requirements.txt` | Runtime dependency management |
+| **Execution** | `python main.py` | Primary script invocation |
+| **Deployment** | `github-actions-x/commit@v2.9` | Automated commit and push |
+| **Notification** | `JasonEtco/create-an-issue@v2` | User notification system |
+
+The workflow commits changes to both `README.md` and `.github/ISSUE_TEMPLATE.md` files, maintaining the dual-output architecture that serves different user interaction patterns.
+
+**Sources:** [.github/workflows/update.yaml:7-48]()
+
+---
+
+# Page: Core Implementation
+
+# Core Implementation
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [main.py](main.py)
+- [utils.py](utils.py)
+
+</details>
+
+
+
+This document provides detailed technical documentation of the processing logic, API interactions, and data transformation pipeline that powers the DailyArXiv system. It covers the core implementation components that fetch, process, and format research papers from arXiv.
+
+For specific details about the main orchestration workflow, see [Main Processing Pipeline](#4.1). For comprehensive coverage of utility functions and API integration patterns, see [Utility Functions & API Integration](#4.2). For higher-level system design, see [System Architecture](#3).
+
+## Processing Architecture
+
+The core implementation consists of two primary modules that work together to transform arXiv API responses into formatted markdown outputs. The system employs a pipeline architecture where data flows through distinct processing stages.
+
+### Core Data Processing Pipeline
+
+```mermaid
+flowchart TD
+    subgraph "Configuration Layer"
+        keywords["keywords = ['Time Series', 'Trajectory', 'Graph Neural Networks']"]
+        max_result["max_result = 100"]
+        issues_result["issues_result = 15"]
+        column_names["column_names = ['Title', 'Link', 'Abstract', 'Date', 'Comment']"]
+    end
+    
+    subgraph "API Layer"
+        request_paper_with_arXiv_api["request_paper_with_arXiv_api()"]
+        arxiv_response["arXiv XML Response"]
+        feedparser_parse["feedparser.parse()"]
+    end
+    
+    subgraph "Data Processing Layer"
+        filter_tags["filter_tags()"]
+        get_daily_papers_by_keyword["get_daily_papers_by_keyword()"]
+        get_daily_papers_by_keyword_with_retries["get_daily_papers_by_keyword_with_retries()"]
+    end
+    
+    subgraph "Output Generation Layer"
+        generate_table_full["generate_table() - Full"]
+        generate_table_brief["generate_table() - Brief"]
+        readme_output["README.md"]
+        issue_output["ISSUE_TEMPLATE.md"]
+    end
+    
+    subgraph "File Management Layer"
+        back_up_files["back_up_files()"]
+        restore_files["restore_files()"]
+        remove_backups["remove_backups()"]
+    end
+    
+    keywords --> get_daily_papers_by_keyword_with_retries
+    max_result --> request_paper_with_arXiv_api
+    column_names --> get_daily_papers_by_keyword
+    
+    get_daily_papers_by_keyword_with_retries --> get_daily_papers_by_keyword
+    get_daily_papers_by_keyword --> request_paper_with_arXiv_api
+    request_paper_with_arXiv_api --> arxiv_response
+    arxiv_response --> feedparser_parse
+    feedparser_parse --> filter_tags
+    filter_tags --> generate_table_full
+    filter_tags --> generate_table_brief
+    
+    back_up_files --> readme_output
+    back_up_files --> issue_output
+    generate_table_full --> readme_output
+    generate_table_brief --> issue_output
+    
+    readme_output --> remove_backups
+    issue_output --> remove_backups
+    
+    restore_files -.->|"On Error"| readme_output
+    restore_files -.->|"On Error"| issue_output
+```
+
+**Sources:** [main.py:25-28](), [main.py:33](), [main.py:55](), [main.py:62-63](), [utils.py:16](), [utils.py:49](), [utils.py:60](), [utils.py:70](), [utils.py:80]()
+
+### Paper Data Structure Transformation
+
+The system transforms raw arXiv API responses through multiple data structure conversions to produce the final markdown output.
+
+```mermaid
+flowchart LR
+    subgraph "Raw arXiv Response"
+        xml_entry["XML Entry"]
+        title_raw["entry.title"]
+        summary_raw["entry.summary"]
+        authors_raw["entry.authors[]"]
+        link_raw["entry.link"]
+        tags_raw["entry.tags[]"]
+        comment_raw["entry.arxiv_comment"]
+        updated_raw["entry.updated"]
+    end
+    
+    subgraph "EasyDict Paper Object"
+        paper_title["paper.Title"]
+        paper_abstract["paper.Abstract"]
+        paper_authors["paper.Authors[]"]
+        paper_link["paper.Link"]
+        paper_tags["paper.Tags[]"]
+        paper_comment["paper.Comment"]
+        paper_date["paper.Date"]
+    end
+    
+    subgraph "Filtered Paper Object"
+        filtered_columns["Selected Columns Only"]
+        cs_stat_tags["cs.* and stat.* Tags Only"]
+    end
+    
+    subgraph "Formatted Table Object"
+        formatted_title["**[Title](Link)**"]
+        formatted_date["YYYY-MM-DD"]
+        formatted_abstract["<details><summary>Show</summary><p>Abstract</p></details>"]
+        formatted_authors["First Author et al."]
+        formatted_comment["Truncated or Collapsed"]
+    end
+    
+    xml_entry --> paper_title
+    title_raw --> paper_title
+    summary_raw --> paper_abstract
+    authors_raw --> paper_authors
+    link_raw --> paper_link
+    tags_raw --> paper_tags
+    comment_raw --> paper_comment
+    updated_raw --> paper_date
+    
+    paper_title --> filtered_columns
+    paper_abstract --> filtered_columns
+    paper_tags --> cs_stat_tags
+    
+    filtered_columns --> formatted_title
+    filtered_columns --> formatted_date
+    filtered_columns --> formatted_abstract
+    filtered_columns --> formatted_authors
+    filtered_columns --> formatted_comment
+```
+
+**Sources:** [utils.py:27-46](), [utils.py:49-58](), [utils.py:77](), [utils.py:80-126]()
+
+## API Integration Layer
+
+### arXiv API Query Construction
+
+The system constructs specialized queries for the arXiv API that search both titles and abstracts for specified keywords. The query logic uses different linking strategies based on keyword complexity.
+
+| Parameter | Value | Purpose |
+|-----------|-------|---------|
+| `search_query` | `ti:"keyword"+OR/AND+abs:"keyword"` | Searches both title and abstract fields |
+| `max_results` | 100 (configurable) | Limits results per query |
+| `sortBy` | `lastUpdatedDate` | Ensures recent papers appear first |
+| `link` | `OR` (multi-word) / `AND` (single-word) | Controls keyword matching strategy |
+
+The URL construction in `request_paper_with_arXiv_api()` creates properly encoded queries:
+
+**Sources:** [utils.py:16-23](), [main.py:53-54]()
+
+### Response Processing and Error Handling
+
+The system implements a robust retry mechanism to handle arXiv API inconsistencies. The `get_daily_papers_by_keyword_with_retries()` function provides automatic retry logic with exponential backoff.
+
+```mermaid
+flowchart TD
+    start["get_daily_papers_by_keyword_with_retries()"]
+    attempt["Attempt API Call"]
+    check_results["len(papers) > 0?"]
+    success["Return papers"]
+    wait["time.sleep(60 * 30)"]
+    retry_check["retries < 6?"]
+    fail_return["return None"]
+    
+    start --> attempt
+    attempt --> check_results
+    check_results -->|"Yes"| success
+    check_results -->|"No"| wait
+    wait --> retry_check
+    retry_check -->|"Yes"| attempt
+    retry_check -->|"No"| fail_return
+```
+
+**Sources:** [utils.py:60-68](), [main.py:56-61]()
+
+## Data Filtering and Processing
+
+### Tag-Based Filtering
+
+The `filter_tags()` function implements subject area filtering to focus on computer science and statistics papers. It examines the tag prefix before the first dot to determine subject classification.
+
+```python
+# Filtering logic from utils.py:49-58
+target_fields = ["cs", "stat"]  # Computer Science and Statistics
+for tag in paper.Tags:
+    if tag.split(".")[0] in target_fields:
+        # Paper belongs to target subject area
+        results.append(paper)
+        break
+```
+
+**Sources:** [utils.py:49-58]()
+
+### Column Selection and Data Cleaning
+
+The system processes raw paper data through several cleaning operations:
+
+| Function | Operation | Purpose |
+|----------|-----------|---------|
+| `remove_duplicated_spaces()` | Normalize whitespace | Clean up formatting inconsistencies |
+| Column selection | Extract specified fields only | Reduce data to required columns |
+| Date formatting | Convert ISO format to YYYY-MM-DD | Standardize date display |
+
+**Sources:** [utils.py:13-14](), [utils.py:77](), [utils.py:89]()
+
+## Output Generation Engine
+
+### Markdown Table Generation
+
+The `generate_table()` function converts processed paper data into markdown tables with specialized formatting for different content types. It handles dual output modes: full tables for README.md and brief tables for issue templates.
+
+```mermaid
+flowchart TD
+    subgraph "Input Processing"
+        papers_input["List[Dict[str, str]] papers"]
+        ignore_keys["ignore_keys parameter"]
+    end
+    
+    subgraph "Formatting Rules"
+        title_format["Title: **[Title](Link)**"]
+        date_format["Date: YYYY-MM-DD"]
+        abstract_format["Abstract: <details> collapsible"]
+        authors_format["Authors: First Author et al."]
+        comment_format["Comment: Truncated if long"]
+    end
+    
+    subgraph "Table Structure"
+        header_gen["Generate Header Row"]
+        separator_gen["Generate Separator Row"]
+        body_gen["Generate Data Rows"]
+    end
+    
+    subgraph "Output"
+        markdown_table["Markdown Table String"]
+    end
+    
+    papers_input --> title_format
+    papers_input --> date_format
+    papers_input --> abstract_format
+    papers_input --> authors_format
+    papers_input --> comment_format
+    
+    ignore_keys --> abstract_format
+    
+    title_format --> header_gen
+    date_format --> header_gen
+    abstract_format --> header_gen
+    authors_format --> header_gen
+    comment_format --> header_gen
+    
+    header_gen --> separator_gen
+    separator_gen --> body_gen
+    body_gen --> markdown_table
+```
+
+**Sources:** [utils.py:80-126](), [main.py:62-63]()
+
+### File Management and Safety Mechanisms
+
+The system implements a comprehensive backup and restore mechanism to ensure data integrity during file operations.
+
+| Function | Purpose | Files Affected |
+|----------|---------|----------------|
+| `back_up_files()` | Create safety copies | README.md → README.md.bk<br/>ISSUE_TEMPLATE.md → ISSUE_TEMPLATE.md.bk |
+| `restore_files()` | Rollback on error | Restore from .bk files |
+| `remove_backups()` | Cleanup after success | Delete .bk files |
+
+**Sources:** [utils.py:128-141](), [main.py:35](), [main.py:60](), [main.py:72]()
+
+## Configuration and Parameters
+
+The core implementation uses several key configuration parameters that control system behavior:
+
+| Parameter | Location | Value | Impact |
+|-----------|----------|-------|---------|
+| `keywords` | [main.py:25]() | `["Time Series", "Trajectory", "Graph Neural Networks"]` | Determines search scope |
+| `max_result` | [main.py:27]() | `100` | API query limit per keyword |
+| `issues_result` | [main.py:28]() | `15` | Papers included in issue templates |
+| `column_names` | [main.py:33]() | `["Title", "Link", "Abstract", "Date", "Comment"]` | Output table structure |
+| `beijing_timezone` | [main.py:10]() | `Asia/Shanghai` | Timezone for date operations |
+
+**Sources:** [main.py:25-33](), [main.py:10]()
+
+---
+
+# Page: Main Processing Pipeline
+
+# Main Processing Pipeline
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [main.py](main.py)
+
+</details>
+
+
+
+## Purpose and Scope
+
+This document covers the main orchestration script that coordinates the daily paper aggregation process. The pipeline is implemented in `main.py` and serves as the central controller that fetches papers, processes them, and generates output files. For detailed information about the utility functions and API integration used by this pipeline, see [Utility Functions & API Integration](#4.2). For information about the output formats produced by this pipeline, see [Output Formats & User Interfaces](#2).
+
+The main processing pipeline handles:
+- Daily execution coordination and date validation
+- Sequential processing of research keywords
+- Dual output generation for different user interfaces
+- Error handling and file backup/restore operations
+- Rate limiting and API interaction management
+
+## Pipeline Overview
+
+The main processing pipeline follows a sequential workflow that processes each keyword independently and generates two distinct output formats.
+
+```mermaid
+flowchart TD
+    START["main.py execution starts"]
+    INIT["beijing_timezone = pytz.timezone('Asia/Shanghai')"]
+    DATE_CHECK["current_date = datetime.now(beijing_timezone)"]
+    READ_LAST["Read last update date from README.md"]
+    
+    CONFIG["keywords = ['Time Series', 'Trajectory', 'Graph Neural Networks']<br/>max_result = 100<br/>issues_result = 15"]
+    
+    BACKUP["back_up_files()"]
+    OPEN_FILES["Open README.md and ISSUE_TEMPLATE.md for writing"]
+    WRITE_HEADERS["Write file headers with current_date"]
+    
+    LOOP_START["for keyword in keywords:"]
+    SET_LINK["Determine link type: 'AND' or 'OR'"]
+    GET_PAPERS["get_daily_papers_by_keyword_with_retries()"]
+    CHECK_PAPERS{"papers is None?"}
+    
+    GEN_TABLES["rm_table = generate_table(papers)<br/>is_table = generate_table(papers[:issues_result])"]
+    WRITE_TABLES["Write tables to both files"]
+    SLEEP["time.sleep(5)"]
+    
+    NEXT_KEYWORD["Next keyword"]
+    CLOSE_FILES["Close both output files"]
+    CLEANUP["remove_backups()"]
+    END["Pipeline complete"]
+    
+    ERROR_HANDLE["restore_files()<br/>sys.exit('Failed to get papers!')"]
+    
+    START --> INIT
+    INIT --> DATE_CHECK
+    DATE_CHECK --> READ_LAST
+    READ_LAST --> CONFIG
+    CONFIG --> BACKUP
+    BACKUP --> OPEN_FILES
+    OPEN_FILES --> WRITE_HEADERS
+    WRITE_HEADERS --> LOOP_START
+    LOOP_START --> SET_LINK
+    SET_LINK --> GET_PAPERS
+    GET_PAPERS --> CHECK_PAPERS
+    CHECK_PAPERS -->|Yes| ERROR_HANDLE
+    CHECK_PAPERS -->|No| GEN_TABLES
+    GEN_TABLES --> WRITE_TABLES
+    WRITE_TABLES --> SLEEP
+    SLEEP --> NEXT_KEYWORD
+    NEXT_KEYWORD -->|More keywords| LOOP_START
+    NEXT_KEYWORD -->|Complete| CLOSE_FILES
+    CLOSE_FILES --> CLEANUP
+    CLEANUP --> END
+```
+
+**Sources:** [main.py:1-73]()
+
+## Initialization and Configuration
+
+The pipeline begins with timezone configuration and parameter setup. The system operates on Beijing time to ensure consistent daily scheduling.
+
+### Timezone and Date Handling
+
+```mermaid
+graph LR
+    TIMEZONE["beijing_timezone"]
+    CURRENT["current_date"]
+    LAST["last_update_date"]
+    README["README.md"]
+    
+    TIMEZONE -->|"pytz.timezone('Asia/Shanghai')"| CURRENT
+    CURRENT -->|"datetime.now(beijing_timezone).strftime('%Y-%m-%d')"| COMPARISON["Date comparison logic"]
+    README -->|"Read line with 'Last update:'"| LAST
+    LAST --> COMPARISON
+```
+
+The date checking mechanism reads the last update date from the existing README.md file to prevent duplicate processing, though the check is currently commented out [main.py:22-23]().
+
+### Keyword and Result Configuration
+
+| Parameter | Value | Purpose |
+|-----------|-------|---------|
+| `keywords` | `["Time Series", "Trajectory", "Graph Neural Networks"]` | Research domains to search |
+| `max_result` | `100` | Maximum papers per keyword for README.md |
+| `issues_result` | `15` | Maximum papers per keyword for issue template |
+| `column_names` | `["Title", "Link", "Abstract", "Date", "Comment"]` | Output table structure |
+
+**Sources:** [main.py:10-34]()
+
+## Main Processing Loop
+
+The core processing logic iterates through each keyword and generates content for both output files simultaneously.
+
+### Keyword Processing Flow
+
+```mermaid
+graph TD
+    KEYWORD_START["keyword in keywords"]
+    WRITE_HEADERS["f_rm.write('## {keyword}')<br/>f_is.write('## {keyword}')"]
+    
+    LINK_LOGIC{"len(keyword.split()) == 1?"}
+    AND_LINK["link = 'AND'"]
+    OR_LINK["link = 'OR'"]
+    
+    API_CALL["get_daily_papers_by_keyword_with_retries(keyword, column_names, max_result, link)"]
+    
+    NULL_CHECK{"papers is None?"}
+    ERROR_PATH["Close files<br/>restore_files()<br/>sys.exit()"]
+    
+    TABLE_GEN["rm_table = generate_table(papers)<br/>is_table = generate_table(papers[:issues_result], ignore_keys=['Abstract'])"]
+    
+    WRITE_OUTPUT["f_rm.write(rm_table)<br/>f_is.write(is_table)"]
+    RATE_LIMIT["time.sleep(5)"]
+    
+    KEYWORD_START --> WRITE_HEADERS
+    WRITE_HEADERS --> LINK_LOGIC
+    LINK_LOGIC -->|"Yes"| AND_LINK
+    LINK_LOGIC -->|"No"| OR_LINK
+    AND_LINK --> API_CALL
+    OR_LINK --> API_CALL
+    API_CALL --> NULL_CHECK
+    NULL_CHECK -->|"Yes"| ERROR_PATH
+    NULL_CHECK -->|"No"| TABLE_GEN
+    TABLE_GEN --> WRITE_OUTPUT
+    WRITE_OUTPUT --> RATE_LIMIT
+```
+
+### Link Type Determination Logic
+
+The system uses different search strategies based on keyword complexity:
+- **Single word keywords**: Uses `AND` logic to search for papers containing the keyword in both title and abstract
+- **Multi-word keywords**: Uses `OR` logic for broader matching
+
+This logic is implemented in [main.py:53-54]().
+
+**Sources:** [main.py:50-69]()
+
+## Output Generation Strategy
+
+The pipeline employs a dual-output strategy, generating two different views of the same data for different use cases.
+
+### File Writing Process
+
+```mermaid
+graph LR
+    subgraph "File Operations"
+        F_RM["f_rm = open('README.md', 'w')"]
+        F_IS["f_is = open('.github/ISSUE_TEMPLATE.md', 'w')"]
+    end
+    
+    subgraph "Header Generation"
+        RM_HEADER["README.md header<br/>Project description<br/>Last update: {current_date}"]
+        IS_HEADER["ISSUE_TEMPLATE.md header<br/>YAML frontmatter<br/>Title with date"]
+    end
+    
+    subgraph "Content Processing"
+        PAPERS["papers data"]
+        FULL_TABLE["generate_table(papers)"]
+        BRIEF_TABLE["generate_table(papers[:15], ignore_keys=['Abstract'])"]
+    end
+    
+    F_RM --> RM_HEADER
+    F_IS --> IS_HEADER
+    PAPERS --> FULL_TABLE
+    PAPERS --> BRIEF_TABLE
+    FULL_TABLE --> F_RM
+    BRIEF_TABLE --> F_IS
+```
+
+### Output Differentiation
+
+| Output File | Content Strategy | Paper Limit | Abstract Inclusion |
+|-------------|------------------|-------------|-------------------|
+| `README.md` | Comprehensive browsing | 100 per keyword | Yes |
+| `ISSUE_TEMPLATE.md` | Daily notifications | 15 per keyword | No |
+
+The README.md receives the full table with abstracts for detailed browsing, while the issue template gets a condensed version without abstracts for notification purposes [main.py:62-63]().
+
+**Sources:** [main.py:37-48](), [main.py:62-67]()
+
+## Error Handling and Backup System
+
+The pipeline implements a comprehensive backup and restore mechanism to ensure data integrity during processing.
+
+### Backup and Restore Flow
+
+```mermaid
+graph TD
+    START_BACKUP["back_up_files()"]
+    PROCESSING["Main processing loop"]
+    SUCCESS_CHECK{"Processing successful?"}
+    
+    NORMAL_END["f_rm.close()<br/>f_is.close()<br/>remove_backups()"]
+    
+    ERROR_DETECT["papers is None"]
+    ERROR_CLEANUP["f_rm.close()<br/>f_is.close()<br/>restore_files()<br/>sys.exit()"]
+    
+    START_BACKUP --> PROCESSING
+    PROCESSING --> SUCCESS_CHECK
+    SUCCESS_CHECK -->|"Yes"| NORMAL_END
+    SUCCESS_CHECK -->|"No"| ERROR_DETECT
+    ERROR_DETECT --> ERROR_CLEANUP
+```
+
+### Error Detection Points
+
+The pipeline checks for failures at the API level:
+- **Null response detection**: If `get_daily_papers_by_keyword_with_retries()` returns `None`, the pipeline immediately triggers error recovery
+- **File state preservation**: Original README.md and ISSUE_TEMPLATE.md are restored from backups
+- **Clean exit**: The process terminates with an error message to prevent incomplete updates
+
+### Rate Limiting Strategy
+
+To prevent API blocking, the pipeline includes a 5-second delay between keyword processing cycles [main.py:68]().
+
+**Sources:** [main.py:35](), [main.py:56-61](), [main.py:70-72]()
+
+## Function Integration Points
+
+The main pipeline coordinates with utility functions from `utils.py`:
+
+| Function Call | Purpose | Parameters |
+|---------------|---------|------------|
+| `get_daily_papers_by_keyword_with_retries()` | Fetch papers with retry logic | keyword, column_names, max_result, link |
+| `generate_table()` | Convert papers to markdown table | papers, ignore_keys (optional) |
+| `back_up_files()` | Create backup copies | None |
+| `restore_files()` | Restore from backups on error | None |
+| `remove_backups()` | Clean up backup files | None |
+| `get_daily_date()` | Format date for issue title | None |
+
+**Sources:** [main.py:6-7](), [main.py:45](), [main.py:55](), [main.py:62-63]()
+
+---
+
+# Page: Utility Functions & API Integration
+
+# Utility Functions & API Integration
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [utils.py](utils.py)
+
+</details>
+
+
+
+This document covers the `utils.py` module, which provides the core utility functions for arXiv API integration, data processing, table generation, and system operations. This module serves as the foundation layer that the main processing pipeline depends on for all external API interactions and data transformations.
+
+For information about how these utilities are orchestrated together, see [Main Processing Pipeline](#4.1). For details about the automated scheduling that triggers these functions, see [GitHub Actions Workflow](#5.1).
+
+## arXiv API Integration
+
+The system's primary external dependency is the arXiv.org API, which provides access to research paper metadata. The API integration is built around a robust request-retry pattern designed for automated daily operations.
+
+### Core API Functions
+
+The `request_paper_with_arXiv_api()` function [utils.py:16-47]() forms the foundation of all paper retrieval operations. It constructs queries targeting both paper titles and abstracts using the arXiv export API format:
+
+```
+http://export.arxiv.org/api/query?search_query=ti:{keyword}+OR+abs:{keyword}&max_results={count}&sortBy=lastUpdatedDate
+```
+
+The function handles several critical aspects:
+- URL encoding and special character safety [utils.py:21]()
+- XML response parsing using `feedparser` [utils.py:23]()
+- Data extraction into standardized paper objects [utils.py:25-46]()
+- Text normalization via `remove_duplicated_spaces()` [utils.py:13-14]()
+
+### Paper Data Structure
+
+Each paper object contains the following standardized fields:
+- **Title**: Cleaned paper title [utils.py:32]()
+- **Abstract**: Full paper summary [utils.py:34]()
+- **Authors**: List of author names [utils.py:36]()
+- **Link**: Direct arXiv paper URL [utils.py:38]()
+- **Tags**: arXiv subject classification tags [utils.py:40]()
+- **Comment**: Optional metadata (pages, figures, etc.) [utils.py:42]()
+- **Date**: Last updated timestamp [utils.py:44]()
+
+### Retry Mechanism
+
+The `get_daily_papers_by_keyword_with_retries()` function [utils.py:60-68]() implements a robust retry strategy to handle API failures:
+
+```mermaid
+flowchart TD
+    START["get_daily_papers_by_keyword_with_retries()"] --> ATTEMPT["Attempt API Call"]
+    ATTEMPT --> CHECK{"Papers Retrieved?"}
+    CHECK -->|Yes| SUCCESS["Return Papers"]
+    CHECK -->|No| WAIT["Wait 30 Minutes"]
+    WAIT --> RETRY{"Retries < 6?"}
+    RETRY -->|Yes| ATTEMPT
+    RETRY -->|No| FAIL["Return None"]
+    
+    SUCCESS --> END
+    FAIL --> END
+```
+
+**Sources:** [utils.py:60-68]()
+
+## Data Processing Pipeline
+
+The data processing layer transforms raw arXiv API responses into filtered, formatted datasets suitable for table generation.
+
+### Tag Filtering System
+
+The `filter_tags()` function [utils.py:49-58]() implements subject area filtering to focus on computer science and statistics papers:
+
+| Filter Criteria | Implementation | Purpose |
+|-----------------|----------------|---------|
+| Computer Science | `cs.*` tags | Core ML/AI research |
+| Statistics | `stat.*` tags | Statistical methods |
+| Tag Matching | First part before `.` | Broad category filtering |
+
+The filtering logic examines each paper's tags and includes papers with at least one matching subject area [utils.py:54-57]().
+
+### Column Selection and Data Transformation
+
+The `get_daily_papers_by_keyword()` function [utils.py:70-78]() orchestrates the complete data processing pipeline:
+
+```mermaid
+flowchart LR
+    API["request_paper_with_arXiv_api()"] --> FILTER["filter_tags()"]
+    FILTER --> SELECT["Column Selection"]
+    SELECT --> OUTPUT["Filtered Papers"]
+    
+    API --> |"All Fields"| FILTER
+    FILTER --> |"cs.*, stat.* only"| SELECT
+    SELECT --> |"Specified Columns"| OUTPUT
+```
+
+**Sources:** [utils.py:70-78]()
+
+## Table Generation System
+
+The `generate_table()` function [utils.py:80-126]() converts processed paper data into GitHub-flavored markdown tables with specialized formatting for different content types.
+
+### Field-Specific Formatting Rules
+
+| Field | Formatting Strategy | Implementation |
+|-------|-------------------|----------------|
+| **Title** | Bold markdown link | `**[title](url)**` [utils.py:87]() |
+| **Date** | ISO date truncation | `YYYY-MM-DD` format [utils.py:89]() |
+| **Abstract** | Collapsible details | `<details><summary>Show</summary>` [utils.py:97]() |
+| **Authors** | First author + "et al." | Simplified attribution [utils.py:100]() |
+| **Tags** | Truncated or collapsible | Context-sensitive display [utils.py:101-106]() |
+| **Comment** | Conditional collapsible | Based on length [utils.py:107-113]() |
+
+### Table Structure Generation
+
+The table generation process follows a two-phase approach:
+
+```mermaid
+flowchart TD
+    subgraph "Phase 1: Data Formatting"
+        INPUT["Raw Paper Data"] --> PROCESS["Format Each Field"]
+        PROCESS --> FORMATTED["Formatted Paper Objects"]
+    end
+    
+    subgraph "Phase 2: Markdown Generation"
+        FORMATTED --> HEADER["Generate Table Header"]
+        HEADER --> SEPARATOR["Add Column Separators"]
+        SEPARATOR --> BODY["Generate Table Rows"]
+        BODY --> OUTPUT["Complete Markdown Table"]
+    end
+    
+    PROCESS --> |"Title, Date, Abstract, etc."| FORMATTED
+    HEADER --> |"**Column** format"| SEPARATOR
+    BODY --> |"| cell | cell | cell |"| OUTPUT
+```
+
+**Sources:** [utils.py:80-126]()
+
+## File Management Utilities
+
+The system includes robust file management functions to ensure data safety during the automated update process.
+
+### Backup and Restore Operations
+
+Three complementary functions handle file safety:
+
+| Function | Purpose | Files Affected |
+|----------|---------|----------------|
+| `back_up_files()` | Create `.bk` copies | `README.md`, `ISSUE_TEMPLATE.md` [utils.py:128-131]() |
+| `restore_files()` | Revert from backups | Restore original files [utils.py:133-136]() |
+| `remove_backups()` | Clean up `.bk` files | Delete backup copies [utils.py:138-141]() |
+
+### File Operation Flow
+
+```mermaid
+flowchart LR
+    ORIGINAL["Original Files"] --> BACKUP["back_up_files()"]
+    BACKUP --> PROTECTED["Protected State"]
+    PROTECTED --> PROCESS["File Processing"]
+    PROCESS --> SUCCESS{"Success?"}
+    SUCCESS -->|Yes| CLEANUP["remove_backups()"]
+    SUCCESS -->|No| RESTORE["restore_files()"]
+    CLEANUP --> COMPLETE["Process Complete"]
+    RESTORE --> ROLLBACK["Files Restored"]
+```
+
+**Sources:** [utils.py:128-141]()
+
+## Date and Time Utilities
+
+The `get_daily_date()` function [utils.py:143-147]() provides timezone-aware date formatting specifically configured for Beijing time operations.
+
+### Beijing Timezone Configuration
+
+The system uses `pytz.timezone('Asia/Shanghai')` for consistent date formatting across all operations, ensuring that daily updates align with the intended schedule regardless of server location.
+
+Output format: `"March 1, 2021"` - Human-readable date strings for display in generated content.
+
+**Sources:** [utils.py:143-147]()
+
+## External Dependencies and Integration Points
+
+The utilities module integrates several external libraries to provide its functionality:
+
+| Library | Purpose | Key Usage |
+|---------|---------|-----------|
+| `feedparser` | XML parsing | arXiv API response handling [utils.py:9,23]() |
+| `pytz` | Timezone handling | Beijing time calculations [utils.py:3,145]() |
+| `easydict` | Object notation | Simplified data access [utils.py:10,28,29]() |
+| `urllib` | HTTP requests | arXiv API communication [utils.py:7,20-22]() |
+| `shutil` | File operations | Backup/restore functionality [utils.py:4,130,131,135,136]() |
+
+**Sources:** [utils.py:1-11]()
+
+---
+
+# Page: Automation & Infrastructure
+
+# Automation & Infrastructure
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [.github/workflows/update.yaml](.github/workflows/update.yaml)
+- [requirements.txt](requirements.txt)
+
+</details>
+
+
+
+This section documents the automated systems that maintain the DailyArXiv paper aggregation service without manual intervention. It covers the GitHub Actions-based automation pipeline, scheduling mechanisms, and infrastructure dependencies that enable continuous operation. For detailed workflow implementation, see [GitHub Actions Workflow](#5.1). For system dependencies and configuration details, see [Dependencies & Configuration](#5.2).
+
+## Automation Overview
+
+The DailyArXiv system operates as a fully automated service using GitHub's native infrastructure. The automation consists of a scheduled workflow that executes the paper collection pipeline, updates repository content, and notifies users through GitHub's issue system.
+
+### Core Automation Components
+
+The automation infrastructure is built around several key components:
+
+| Component | Purpose | Implementation |
+|-----------|---------|----------------|
+| **GitHub Actions Workflow** | Orchestrates daily execution | [`.github/workflows/update.yaml`]() |
+| **Cron Scheduling** | Triggers execution at specific times | Line 8: `'30 16 * * 0-4'` |
+| **Automated Commits** | Updates repository content | Uses `github-actions-x/commit@v2.9` |
+| **Issue Creation** | Generates user notifications | Uses `JasonEtco/create-an-issue@v2` |
+| **Environment Setup** | Configures Python runtime | Uses `actions/setup-python@v4` |
+
+**Automation Architecture**
+```mermaid
+graph TB
+    subgraph "GitHub Infrastructure"
+        CRON["Cron Scheduler<br/>30 16 * * 0-4"]
+        ACTIONS["GitHub Actions<br/>ubuntu-latest runner"]
+        SECRETS["GitHub Secrets<br/>GITHUB_TOKEN"]
+    end
+    
+    subgraph "Workflow Pipeline"
+        CHECKOUT["Checkout Step<br/>actions/checkout@v3"]
+        PYTHON["Python Setup<br/>actions/setup-python@v4"]
+        DEPS["Install Dependencies<br/>pip install -r requirements.txt"]
+        EXECUTE["Execute Pipeline<br/>python main.py"]
+        COMMIT["Commit Changes<br/>github-actions-x/commit@v2.9"]
+        NOTIFY["Create Issue<br/>JasonEtco/create-an-issue@v2"]
+    end
+    
+    subgraph "Repository Updates"
+        README["README.md"]
+        TEMPLATE[".github/ISSUE_TEMPLATE.md"]
+        ISSUES["GitHub Issues<br/>Daily Notifications"]
+    end
+    
+    CRON -->|"Triggers"| ACTIONS
+    ACTIONS -->|"Executes"| CHECKOUT
+    CHECKOUT --> PYTHON
+    PYTHON --> DEPS
+    DEPS --> EXECUTE
+    EXECUTE --> COMMIT
+    COMMIT --> NOTIFY
+    
+    COMMIT -->|"Updates"| README
+    COMMIT -->|"Updates"| TEMPLATE
+    NOTIFY -->|"Creates"| ISSUES
+    
+    SECRETS -->|"Authenticates"| COMMIT
+    SECRETS -->|"Authenticates"| NOTIFY
+```
+
+Sources: [`.github/workflows/update.yaml:1-48`]()
+
+## Scheduling System
+
+The system operates on a weekday schedule aligned with Beijing time zone, executing Monday through Friday at 00:30 Beijing time (16:30 UTC). This timing ensures fresh papers are available for the research community at the start of each workday.
+
+### Schedule Configuration
+
+The cron expression `'30 16 * * 0-4'` in [`.github/workflows/update.yaml:8`]() defines the execution schedule:
+
+- **Minute**: 30
+- **Hour**: 16 (UTC, equivalent to 00:30 Beijing time)  
+- **Day of Month**: * (every day)
+- **Month**: * (every month)
+- **Day of Week**: 0-4 (Sunday through Thursday, accounting for timezone offset)
+
+### Trigger Mechanisms
+
+The workflow supports two trigger types defined in [`.github/workflows/update.yaml:3-8`]():
+
+| Trigger Type | Purpose | Configuration |
+|--------------|---------|---------------|
+| **Schedule** | Production daily execution | `cron: '30 16 * * 0-4'` |
+| **Label** | Testing and manual execution | `types: [created]` |
+
+**Scheduling Flow**
+```mermaid
+sequenceDiagram
+    participant CRON as "GitHub Cron Scheduler"
+    participant WORKFLOW as "update.yaml Workflow"
+    participant RUNNER as "ubuntu-latest Runner"
+    participant REPO as "Repository"
+    
+    Note over CRON: Monday-Friday 16:30 UTC
+    CRON->>WORKFLOW: "Trigger scheduled execution"
+    WORKFLOW->>RUNNER: "Provision virtual environment"
+    RUNNER->>REPO: "Checkout code"
+    Note over RUNNER: "Execute paper collection pipeline"
+    RUNNER->>REPO: "Commit updated files"
+    RUNNER->>REPO: "Create notification issue"
+```
+
+Sources: [`.github/workflows/update.yaml:3-8`]()
+
+## Workflow Pipeline
+
+The automation pipeline executes as a sequence of coordinated steps, each with specific responsibilities and dependencies. The workflow runs on GitHub's `ubuntu-latest` runners with necessary permissions for content modification and issue creation.
+
+### Pipeline Steps
+
+**Step Execution Flow**
+```mermaid
+flowchart TD
+    START["Workflow Triggered"]
+    
+    subgraph "Environment Setup"
+        CHECKOUT["actions/checkout@v3<br/>Clone repository"]
+        PYTHON_SETUP["actions/setup-python@v4<br/>Python 3.9"]
+        INSTALL_DEPS["pip install -r requirements.txt<br/>easydict, feedparser, pytz"]
+    end
+    
+    subgraph "Core Processing"
+        EXECUTE["python main.py<br/>Paper collection & processing"]
+    end
+    
+    subgraph "Output Generation"
+        COMMIT["github-actions-x/commit@v2.9<br/>Update README.md, ISSUE_TEMPLATE.md"]
+        CREATE_ISSUE["JasonEtco/create-an-issue@v2<br/>Generate notification issue"]
+    end
+    
+    START --> CHECKOUT
+    CHECKOUT --> PYTHON_SETUP
+    PYTHON_SETUP --> INSTALL_DEPS
+    INSTALL_DEPS --> EXECUTE
+    EXECUTE --> COMMIT
+    COMMIT --> CREATE_ISSUE
+    
+    style EXECUTE fill:#fff2cc
+    style COMMIT fill:#e1f5fe
+    style CREATE_ISSUE fill:#f3e5f5
+```
+
+### Step Implementation Details
+
+Each workflow step is implemented with specific GitHub Actions and configurations:
+
+| Step | Action | Configuration | Purpose |
+|------|--------|---------------|---------|
+| **Repository Checkout** | `actions/checkout@v3` | Default settings | Clone latest repository state |
+| **Python Environment** | `actions/setup-python@v4` | `python-version: '3.9'` | Setup consistent Python runtime |
+| **Dependency Installation** | Native `pip` | `requirements.txt` | Install required packages |
+| **Core Execution** | Native `python` | `main.py` | Execute paper collection pipeline |
+| **Content Commit** | `github-actions-x/commit@v2.9` | Force add, specific files | Update repository content |
+| **Issue Creation** | `JasonEtco/create-an-issue@v2` | Template-based | Generate user notifications |
+
+### Authentication and Permissions
+
+The workflow operates with GitHub token authentication defined in [`.github/workflows/update.yaml:10-12`]():
+
+```yaml
+permissions:
+  contents: write
+  issues: write
+```
+
+The `GITHUB_TOKEN` secret provides authentication for:
+- Committing changes to the repository
+- Creating GitHub issues for notifications
+- Accessing repository metadata
+
+Sources: [`.github/workflows/update.yaml:14-48`]()
+
+## Infrastructure Dependencies
+
+The system relies on minimal external dependencies to maintain reliability and reduce maintenance overhead. All dependencies are managed through GitHub's infrastructure and standard Python package management.
+
+### Runtime Environment
+
+The automation environment is standardized across executions:
+
+| Component | Version/Specification | Source |
+|-----------|----------------------|---------|
+| **Operating System** | `ubuntu-latest` | GitHub Actions runner |
+| **Python Runtime** | `3.9` | [`.github/workflows/update.yaml:24`]() |
+| **Package Manager** | `pip` (default) | Standard Python installation |
+
+### Python Dependencies
+
+The system requires three core Python packages defined in [`requirements.txt:1-3`]():
+
+| Package | Purpose | Usage in System |
+|---------|---------|-----------------|
+| **easydict** | Configuration management | Settings and parameter handling |
+| **feedparser** | XML/RSS parsing | Processing arXiv API responses |
+| **pytz** | Timezone handling | Beijing time calculations |
+
+These dependencies are chosen for:
+- **Minimal footprint**: Only essential libraries
+- **Stability**: Well-established packages with infrequent breaking changes  
+- **Functionality**: Core capabilities for API interaction and data processing
+
+### GitHub Infrastructure Integration
+
+The system leverages several GitHub platform features:
+
+**Platform Integration Architecture**
+```mermaid
+graph LR
+    subgraph "GitHub Platform Services"
+        ACTIONS["GitHub Actions<br/>Workflow execution"]
+        ISSUES["Issues System<br/>Notification delivery"]
+        REPO["Repository<br/>Content hosting"]
+        TOKENS["Secrets Management<br/>Authentication"]
+    end
+    
+    subgraph "External Services"
+        ARXIV["arXiv API<br/>export.arxiv.org"]
+        EMAIL["Email Notifications<br/>GitHub's email system"]
+    end
+    
+    subgraph "Automation System"
+        WORKFLOW["update.yaml<br/>Workflow definition"]
+        PYTHON_ENV["Python 3.9<br/>Processing runtime"]
+        DEPS["requirements.txt<br/>Package dependencies"]
+    end
+    
+    WORKFLOW -->|"Executes on"| ACTIONS
+    ACTIONS -->|"Accesses"| REPO
+    ACTIONS -->|"Creates"| ISSUES
+    ACTIONS -->|"Uses"| TOKENS
+    
+    PYTHON_ENV -->|"Queries"| ARXIV
+    ISSUES -->|"Triggers"| EMAIL
+    
+    DEPS -->|"Configures"| PYTHON_ENV
+```
+
+Sources: [`.github/workflows/update.yaml:1-48`](), [`requirements.txt:1-3`]()
+
+## Reliability and Error Handling
+
+The automation infrastructure includes several mechanisms to ensure reliable operation and graceful handling of failures.
+
+### Built-in Reliability Features
+
+| Feature | Implementation | Purpose |
+|---------|----------------|---------|
+| **Atomic Operations** | GitHub Actions step isolation | Prevent partial updates |
+| **Authentication Management** | `GITHUB_TOKEN` secrets | Secure, automatic credential handling |
+| **Environment Consistency** | Fixed Python version, Ubuntu runner | Reproducible execution environment |
+| **Selective File Updates** | `files: README.md .github/ISSUE_TEMPLATE.md` | Only update necessary content |
+
+### Failure Recovery
+
+The system handles common failure scenarios through GitHub Actions' native capabilities:
+
+- **Network Issues**: GitHub Actions automatically retry failed API calls
+- **Permission Errors**: Workflow permissions are explicitly defined and validated
+- **Dependency Failures**: Package installation errors halt execution before data processing
+- **Execution Failures**: Failed runs are logged and reported through GitHub's interface
+
+### Monitoring and Observability
+
+Execution status and errors are tracked through GitHub's built-in systems:
+
+- **Workflow Run History**: Complete execution logs available in Actions tab
+- **Commit History**: Automated commits show successful executions
+- **Issue Creation**: Failed issue creation indicates notification problems
+- **User Notifications**: Email delivery through GitHub's notification system
+
+The system prioritizes **fail-fast** behavior - if any step fails, subsequent steps are not executed, preventing inconsistent repository states.
+
+Sources: [`.github/workflows/update.yaml:10-48`]()
+
+---
+
+# Page: GitHub Actions Workflow
+
+# GitHub Actions Workflow
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [.github/workflows/update.yaml](.github/workflows/update.yaml)
+
+</details>
+
+
+
+This document provides detailed documentation of the automated GitHub Actions workflow that orchestrates the daily paper aggregation process. The workflow is responsible for scheduling, executing, and deploying the paper collection pipeline, handling all automation aspects of the DailyArXiv system.
+
+For information about the core processing logic executed by this workflow, see [Main Processing Pipeline](#4.1). For details about system dependencies managed by this workflow, see [Dependencies & Configuration](#5.2).
+
+## Workflow Overview
+
+The GitHub Actions workflow is defined in [.github/workflows/update.yaml:1-48]() and serves as the primary automation engine for the DailyArXiv system. It operates on a scheduled basis to fetch, process, and publish research papers automatically without manual intervention.
+
+### Workflow Configuration
+
+| Property | Value | Purpose |
+|----------|-------|---------|
+| **Name** | `Update` | Workflow identifier in GitHub Actions |
+| **Runner** | `ubuntu-latest` | Execution environment |
+| **Python Version** | `3.9` | Runtime version for processing scripts |
+| **Schedule** | `30 16 * * 0-4` | Monday-Friday at 00:30 Beijing time |
+| **Permissions** | `contents: write`, `issues: write` | Repository modification rights |
+
+**Workflow Execution Timeline**
+
+```mermaid
+timeline
+    title GitHub Actions Workflow Execution
+    
+    section Trigger Phase
+        00:30 Beijing : Cron Schedule Activates
+                     : "30 16 * * 0-4" UTC trigger
+                     : Workflow "Update" starts
+        
+    section Environment Setup
+        Step 1 : Checkout Repository
+              : "actions/checkout@v3"
+              : Clone master branch
+        
+        Step 2 : Python Environment
+              : "actions/setup-python@v4" 
+              : Install Python 3.9
+        
+        Step 3 : Dependencies
+              : "pip install -r requirements.txt"
+              : Load required packages
+        
+    section Core Processing
+        Step 4 : Execute Pipeline
+              : "python main.py"
+              : Run paper collection
+              : Generate output files
+        
+    section Deployment
+        Step 5 : Commit Changes
+              : "github-actions-x/commit@v2.9"
+              : Push README.md updates
+              : Push ISSUE_TEMPLATE.md updates
+        
+        Step 6 : User Notification
+              : "JasonEtco/create-an-issue@v2"
+              : Create GitHub issue
+              : Trigger email notifications
+```
+
+Sources: [.github/workflows/update.yaml:1-48]()
+
+## Trigger Mechanisms
+
+The workflow supports two trigger mechanisms for different operational scenarios:
+
+### Scheduled Execution
+
+The primary trigger uses a cron schedule defined at [.github/workflows/update.yaml:7-8]():
+
+```
+schedule:
+  - cron: '30 16 * * 0-4' # 00:30 Beijing time every Monday to Friday
+```
+
+This schedule translates to:
+- **UTC Time**: 16:30 (4:30 PM)
+- **Beijing Time**: 00:30 (12:30 AM next day)
+- **Frequency**: Monday through Friday only
+- **Weekend Behavior**: No automatic execution on weekends
+
+### Manual Testing Trigger
+
+A secondary trigger mechanism exists for testing purposes at [.github/workflows/update.yaml:4-6]():
+
+```
+label:
+  types:
+    - created # for test
+```
+
+This allows manual workflow execution when labels are created on issues or pull requests.
+
+**Trigger Integration Diagram**
+
+```mermaid
+flowchart TD
+    subgraph "External Triggers"
+        CRON["Cron Schedule<br/>30 16 * * 0-4"]
+        LABEL["Label Creation<br/>Manual Testing"]
+    end
+    
+    subgraph "GitHub Actions Engine"
+        WORKFLOW["update.yaml<br/>Workflow Definition"]
+        RUNNER["ubuntu-latest<br/>Execution Environment"]
+    end
+    
+    subgraph "Processing Pipeline"
+        CHECKOUT["actions/checkout@v3<br/>Repository Access"]
+        PYTHON["actions/setup-python@v4<br/>Python 3.9 Runtime"]
+        DEPS["pip install<br/>requirements.txt"]
+        MAIN["python main.py<br/>Core Processing"]
+    end
+    
+    subgraph "Output Actions"
+        COMMIT["github-actions-x/commit@v2.9<br/>File Updates"]
+        ISSUE["JasonEtco/create-an-issue@v2<br/>Notifications"]
+    end
+    
+    CRON --> WORKFLOW
+    LABEL --> WORKFLOW
+    WORKFLOW --> RUNNER
+    RUNNER --> CHECKOUT
+    CHECKOUT --> PYTHON
+    PYTHON --> DEPS
+    DEPS --> MAIN
+    MAIN --> COMMIT
+    MAIN --> ISSUE
+    
+    COMMIT --> FILES["README.md<br/>.github/ISSUE_TEMPLATE.md"]
+    ISSUE --> NOTIFY["GitHub Issue<br/>Email Notifications"]
+```
+
+Sources: [.github/workflows/update.yaml:3-8]()
+
+## Job Configuration and Permissions
+
+### Security Permissions
+
+The workflow requires specific permissions defined at [.github/workflows/update.yaml:10-12]():
+
+| Permission | Scope | Purpose |
+|------------|-------|---------|
+| `contents: write` | Repository files | Modify README.md and ISSUE_TEMPLATE.md |
+| `issues: write` | GitHub issues | Create notification issues |
+
+### Job Definition
+
+The single job `update_daily_papers` is configured at [.github/workflows/update.yaml:15-16]() with:
+- **Runner**: `ubuntu-latest` for reliable Linux environment
+- **Isolation**: Each execution runs in a fresh container
+- **Concurrency**: Single job execution prevents conflicts
+
+Sources: [.github/workflows/update.yaml:10-16]()
+
+## Step-by-Step Execution Flow
+
+### Step 1: Repository Checkout
+
+[.github/workflows/update.yaml:18-19]() configures repository access:
+
+```yaml
+- name: Checkout repository
+  uses: actions/checkout@v3
+```
+
+This step:
+- Clones the repository to the runner filesystem
+- Provides access to source code and configuration files
+- Uses the stable `v3` version of the checkout action
+
+### Step 2: Python Environment Setup
+
+[.github/workflows/update.yaml:21-24]() establishes the runtime environment:
+
+```yaml
+- name: Set up Python
+  uses: actions/setup-python@v4
+  with:
+    python-version: '3.9'
+```
+
+Key aspects:
+- **Version Pinning**: Python 3.9 for consistent behavior
+- **Package Manager**: pip is available for dependency installation
+- **Virtual Environment**: Isolated from system packages
+
+### Step 3: Dependency Installation
+
+[.github/workflows/update.yaml:26-27]() installs required packages:
+
+```yaml
+- name: Install dependencies
+  run: pip install -r requirements.txt
+```
+
+This step loads all Python packages needed for the processing pipeline as defined in the requirements.txt file.
+
+### Step 4: Core Processing Execution
+
+[.github/workflows/update.yaml:29-31]() runs the main processing logic:
+
+```yaml
+- name: Update papers
+  run: |
+    python main.py
+```
+
+This executes the core paper collection and processing pipeline documented in [Main Processing Pipeline](#4.1).
+
+### Step 5: File Commitment and Deployment
+
+[.github/workflows/update.yaml:33-42]() handles output file management:
+
+```yaml
+- name: Commit and push changes
+  uses: github-actions-x/commit@v2.9
+  with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    push-branch: 'master'
+    commit-message: '✏️ Update papers automatically.'
+    force-add: 'true'
+    files: README.md .github/ISSUE_TEMPLATE.md
+    name: Zezhishao
+    email: 864453277@qq.com
+```
+
+Configuration details:
+- **Target Branch**: `master` for production deployment
+- **Files**: Only README.md and ISSUE_TEMPLATE.md are committed
+- **Force Add**: Ensures files are included even if gitignored
+- **Author Identity**: Consistent commit attribution
+
+### Step 6: User Notification
+
+[.github/workflows/update.yaml:44-47]() creates user notifications:
+
+```yaml
+- name: Create an issue to notify
+  uses: JasonEtco/create-an-issue@v2
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+This step creates a GitHub issue that triggers email notifications to repository watchers.
+
+**Step Execution Flow Diagram**
+
+```mermaid
+flowchart TD
+    subgraph "GitHub Actions Runner ubuntu-latest"
+        START["Workflow Start<br/>update_daily_papers job"]
+        
+        STEP1["actions/checkout@v3<br/>Clone Repository"]
+        STEP2["actions/setup-python@v4<br/>Install Python 3.9"]
+        STEP3["pip install -r requirements.txt<br/>Load Dependencies"]
+        STEP4["python main.py<br/>Execute Processing"]
+        STEP5["github-actions-x/commit@v2.9<br/>Commit Files"]
+        STEP6["JasonEtco/create-an-issue@v2<br/>Create Notification"]
+        
+        END["Workflow Complete"]
+    end
+    
+    subgraph "File System"
+        REPO["Repository Files<br/>Source Code"]
+        REQ["requirements.txt<br/>Dependencies"]
+        MAIN["main.py<br/>Processing Script"]
+        OUTPUT["README.md<br/>ISSUE_TEMPLATE.md"]
+    end
+    
+    subgraph "GitHub Platform"
+        MASTER["master branch<br/>Production"]
+        ISSUES["GitHub Issues<br/>Notifications"]
+        EMAIL["Email System<br/>User Notifications"]
+    end
+    
+    START --> STEP1
+    STEP1 --> REPO
+    STEP1 --> STEP2
+    STEP2 --> STEP3
+    STEP3 --> REQ
+    STEP3 --> STEP4
+    STEP4 --> MAIN
+    STEP4 --> OUTPUT
+    STEP4 --> STEP5
+    STEP5 --> MASTER
+    STEP5 --> STEP6
+    STEP6 --> ISSUES
+    STEP6 --> END
+    
+    ISSUES --> EMAIL
+```
+
+Sources: [.github/workflows/update.yaml:17-48]()
+
+## Integration with System Components
+
+The GitHub Actions workflow serves as the orchestration layer that connects all system components:
+
+### Input Dependencies
+
+- **Source Code**: Main processing scripts accessed via checkout
+- **Configuration**: requirements.txt and embedded parameters
+- **Scheduling**: Cron-based timing for regular execution
+
+### Output Targets
+
+- **Repository Files**: README.md and ISSUE_TEMPLATE.md updates
+- **Version Control**: Automatic git commits to master branch
+- **User Interface**: GitHub issue creation for notifications
+
+### External Service Integration
+
+**System Integration Map**
+
+```mermaid
+graph TB
+    subgraph "GitHub Actions Workflow"
+        WORKFLOW["update.yaml<br/>Workflow Definition"]
+        JOB["update_daily_papers<br/>Job Execution"]
+    end
+    
+    subgraph "Processing Components"
+        MAIN_PY["main.py<br/>Orchestration Script"]
+        UTILS_PY["utils.py<br/>API Functions"]
+        DEPS["requirements.txt<br/>Package Dependencies"]
+    end
+    
+    subgraph "Output Files"
+        README["README.md<br/>Paper Browser"]
+        TEMPLATE[".github/ISSUE_TEMPLATE.md<br/>Daily Summary"]
+    end
+    
+    subgraph "GitHub Platform"
+        ACTIONS["GitHub Actions<br/>Execution Engine"]
+        REPO["Repository<br/>File Storage"]
+        ISSUES_SYS["Issues System<br/>Notifications"]
+    end
+    
+    subgraph "External APIs"
+        ARXIV["arXiv API<br/>Paper Source"]
+        EMAIL_SVC["Email Service<br/>User Notifications"]
+    end
+    
+    WORKFLOW --> ACTIONS
+    ACTIONS --> JOB
+    JOB --> MAIN_PY
+    MAIN_PY --> UTILS_PY
+    UTILS_PY --> ARXIV
+    
+    JOB --> DEPS
+    MAIN_PY --> README
+    MAIN_PY --> TEMPLATE
+    
+    JOB --> REPO
+    JOB --> ISSUES_SYS
+    ISSUES_SYS --> EMAIL_SVC
+    
+    README --> REPO
+    TEMPLATE --> REPO
+```
+
+Sources: [.github/workflows/update.yaml:1-48]()
+
+## Error Handling and Monitoring
+
+### Failure Modes
+
+The workflow includes several points where failures can occur:
+
+1. **Network Issues**: arXiv API unavailability during paper fetching
+2. **Processing Errors**: Python script exceptions in main.py execution
+3. **Git Conflicts**: Concurrent modifications to target files
+4. **Permission Issues**: GitHub token or repository access problems
+
+### Built-in Resilience
+
+- **Atomic Operations**: Each step completes fully or fails completely
+- **Clean Environment**: Fresh runner for each execution eliminates state issues
+- **Force Add**: Ensures file updates succeed even with git conflicts
+- **Token Authentication**: Automatic GitHub token management
+
+### Monitoring Capabilities
+
+GitHub Actions provides built-in monitoring through:
+- **Execution Logs**: Detailed step-by-step output capture
+- **Failure Notifications**: Email alerts for workflow failures
+- **History Tracking**: Complete execution history and timing data
+- **Manual Retry**: Ability to re-run failed workflows
+
+Sources: [.github/workflows/update.yaml:33-42]()
+
+---
+
+# Page: Dependencies & Configuration
+
+# Dependencies & Configuration
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [.gitignore](.gitignore)
+- [requirements.txt](requirements.txt)
+
+</details>
+
+
+
+This document covers the system dependencies, Python package requirements, and configuration management for the DailyArXiv system. It details the minimal external dependencies required for the automated paper aggregation pipeline and explains how configuration is managed through hardcoded constants and environment setup.
+
+For information about the automated deployment workflow, see [GitHub Actions Workflow](#5.1). For details about the core processing implementation, see [Core Implementation](#4).
+
+## Python Dependencies
+
+The DailyArXiv system maintains a minimal dependency footprint with only three external Python packages required for operation.
+
+### Core Dependencies Overview
+
+```mermaid
+graph TB
+    subgraph "Python Runtime Environment"
+        PYTHON["python 3.9+"]
+    end
+    
+    subgraph "Required Packages"
+        EASYDICT["easydict"]
+        FEEDPARSER["feedparser"] 
+        PYTZ["pytz"]
+    end
+    
+    subgraph "Core Modules"
+        MAIN["main.py"]
+        UTILS["utils.py"]
+    end
+    
+    subgraph "External APIs"
+        ARXIV_API["arXiv API"]
+        GITHUB_API["GitHub API"]
+    end
+    
+    PYTHON --> EASYDICT
+    PYTHON --> FEEDPARSER
+    PYTHON --> PYTZ
+    
+    EASYDICT --> UTILS
+    FEEDPARSER --> UTILS
+    PYTZ --> UTILS
+    
+    UTILS --> MAIN
+    MAIN --> ARXIV_API
+    MAIN --> GITHUB_API
+```
+
+**Sources:** [requirements.txt:1-3]()
+
+### Dependency Details
+
+| Package | Version | Purpose | Usage Location |
+|---------|---------|---------|----------------|
+| `easydict` | Latest | Configuration object management | [utils.py]() for paper data structures |
+| `feedparser` | Latest | XML/RSS parsing | [utils.py]() for arXiv API response processing |
+| `pytz` | Latest | Timezone handling | [main.py]() for Beijing timezone operations |
+
+The system intentionally avoids version pinning to ensure compatibility with the latest package releases and security updates in the GitHub Actions environment.
+
+**Sources:** [requirements.txt:1-3]()
+
+## Configuration Management
+
+The DailyArXiv system uses embedded configuration constants rather than external configuration files. This approach simplifies deployment and reduces the number of files that need to be managed.
+
+### Configuration Architecture
+
+```mermaid
+graph LR
+    subgraph "Configuration Sources"
+        HARDCODED["Hardcoded Constants"]
+        ENV_VARS["Environment Variables"]
+        GITHUB_SECRETS["GitHub Secrets"]
+    end
+    
+    subgraph "Configuration Categories"
+        API_CONFIG["API Configuration"]
+        PAPER_LIMITS["Paper Limits"]
+        KEYWORDS["Research Keywords"]
+        TIMEZONE["Timezone Settings"]
+    end
+    
+    subgraph "Application Components"
+        MAIN_PY["main.py"]
+        UTILS_PY["utils.py"]
+        WORKFLOW["github_actions.yml"]
+    end
+    
+    HARDCODED --> API_CONFIG
+    HARDCODED --> PAPER_LIMITS
+    HARDCODED --> KEYWORDS
+    ENV_VARS --> TIMEZONE
+    GITHUB_SECRETS --> WORKFLOW
+    
+    API_CONFIG --> UTILS_PY
+    PAPER_LIMITS --> MAIN_PY
+    KEYWORDS --> MAIN_PY
+    TIMEZONE --> MAIN_PY
+    
+    WORKFLOW --> MAIN_PY
+```
+
+**Sources:** [main.py](), [utils.py](), [.github/workflows/]()
+
+### Key Configuration Constants
+
+The system configuration is distributed across the main processing files:
+
+- **Paper Retrieval Limits**: Maximum number of papers per keyword (`max_result`, `issues_result`)
+- **Research Keywords**: Predefined list of research areas (Time Series, Trajectory, Graph Neural Networks)
+- **API Endpoints**: arXiv API base URL and query parameters
+- **Timezone Settings**: Beijing timezone for scheduling alignment
+- **File Paths**: Output file locations for README.md and ISSUE_TEMPLATE.md
+
+**Sources:** [main.py](), [utils.py]()
+
+## Runtime Environment
+
+The system is designed to run in a containerized GitHub Actions environment with minimal setup requirements.
+
+### Environment Requirements
+
+```mermaid
+graph TB
+    subgraph "GitHub Actions Runner"
+        UBUNTU["ubuntu-latest"]
+        PYTHON_SETUP["actions/setup-python@v4"]
+        PIP_INSTALL["pip install -r requirements.txt"]
+    end
+    
+    subgraph "Runtime Components"
+        PYTHON39["Python 3.9"]
+        PIP["pip package manager"]
+        GIT["git client"]
+    end
+    
+    subgraph "Execution Context"
+        REPO_ACCESS["Repository write access"]
+        ISSUE_CREATE["Issue creation permissions"]
+        NETWORK["Internet connectivity"]
+    end
+    
+    UBUNTU --> PYTHON_SETUP
+    PYTHON_SETUP --> PYTHON39
+    PYTHON39 --> PIP
+    PIP --> PIP_INSTALL
+    
+    PIP_INSTALL --> REPO_ACCESS
+    REPO_ACCESS --> ISSUE_CREATE
+    ISSUE_CREATE --> NETWORK
+```
+
+**Sources:** [.github/workflows/](), [requirements.txt:1-3]()
+
+### Execution Environment Setup
+
+The system requires:
+- **Python Version**: 3.9 or higher
+- **Package Manager**: pip for dependency installation
+- **Git Access**: Repository write permissions for file updates
+- **Network Access**: Outbound HTTPS connections to arXiv API
+- **GitHub Permissions**: Issue creation and repository modification rights
+
+**Sources:** [.github/workflows/]()
+
+## Development Setup
+
+For local development and testing, the system can be set up with minimal configuration.
+
+### Local Development Configuration
+
+```mermaid
+flowchart TD
+    subgraph "Development Environment"
+        CLONE["git clone repository"]
+        PYTHON_ENV["Python 3.9+ environment"]
+        INSTALL_DEPS["pip install -r requirements.txt"]
+    end
+    
+    subgraph "Configuration Steps"
+        SET_TIMEZONE["Configure timezone (optional)"]
+        TEST_API["Test arXiv API access"]
+        CHECK_PERMS["Verify file write permissions"]
+    end
+    
+    subgraph "Execution"
+        RUN_MAIN["python main.py"]
+        CHECK_OUTPUT["Verify README.md updates"]
+        CHECK_ISSUES["Verify ISSUE_TEMPLATE.md"]
+    end
+    
+    CLONE --> PYTHON_ENV
+    PYTHON_ENV --> INSTALL_DEPS
+    INSTALL_DEPS --> SET_TIMEZONE
+    SET_TIMEZONE --> TEST_API
+    TEST_API --> CHECK_PERMS
+    CHECK_PERMS --> RUN_MAIN
+    RUN_MAIN --> CHECK_OUTPUT
+    CHECK_OUTPUT --> CHECK_ISSUES
+```
+
+**Sources:** [requirements.txt:1-3](), [main.py](), [utils.py]()
+
+### Development Dependencies
+
+Local development requires only the three packages specified in `requirements.txt`. No additional development-specific dependencies are needed as the system uses only Python standard library features beyond the core requirements.
+
+**Sources:** [requirements.txt:1-3]()
+
+## Version Control Configuration
+
+The repository includes a comprehensive `.gitignore` file to prevent tracking of unnecessary files and maintain a clean repository structure.
+
+### Ignored File Categories
+
+| Category | Purpose | Examples |
+|----------|---------|----------|
+| Python artifacts | Compiled bytecode and cache | `__pycache__/`, `*.pyc`, `*.py[cod]` |
+| Data files | Research data and exports | `*.npz`, `*.npy`, `*.csv`, `*.pkl` |
+| Environment files | Virtual environments and configs | `.venv/`, `.env`, `venv/` |
+| IDE artifacts | Editor-specific files | `.vscode/`, `.spyderproject` |
+| Distribution files | Build and packaging outputs | `build/`, `dist/`, `*.egg-info/` |
+
+**Sources:** [.gitignore:1-174]()
+
+### Repository File Management
+
+The `.gitignore` configuration ensures that only source code, documentation, and configuration files are tracked in version control. This prevents the repository from becoming cluttered with temporary files, compiled artifacts, or environment-specific configurations.
+
+Notable exclusions include:
+- All data file formats commonly used in research (`*.npz`, `*.npy`, `*.csv`, `*.pkl`, `*.h5`, `*.pt`)
+- Python compilation artifacts and virtual environments
+- IDE and editor configuration directories
+- Build and distribution artifacts
+
+**Sources:** [.gitignore:6-16](), [.gitignore:137-144]()

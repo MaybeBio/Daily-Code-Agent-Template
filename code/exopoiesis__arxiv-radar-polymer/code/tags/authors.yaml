@@ -1,0 +1,50 @@
+# Author whitelist for arxiv-radar-polymer.
+#
+# After the regex relevance_filter rejects a paper, daily_arxiv does a
+# second-chance check against this whitelist. Matched papers enter with
+# topic `via:author-whitelist:<note>`.
+#
+# Scope: polymer informatics, polymer ML, soft matter MD, multi-scale
+# polymer modeling, generative polymer design.
+
+authors:
+- name_match:
+  - Rampi Ramprasad
+  note: polymer informatics, Polymer Genome
+- name_match:
+  - Debra Audus
+  note: polymer ML, PoLyInfo
+- name_match:
+  - Chiho Kim
+  note: polymer property prediction
+- name_match:
+  - Tarak Patra
+  note: polymer ML, materials informatics
+- name_match:
+  - L. Catherine Brinson
+  note: polymer composites, ML for materials
+- name_match:
+  - Florian Müller-Plathe
+  note: polymer MD, coarse-graining
+- name_match:
+  - Kurt Kremer
+  note: polymer simulation, soft matter
+- name_match:
+  - de Pablo
+  - Juan de Pablo
+  note: polymer MD, free energy
+- name_match:
+  - Thomas Truskett
+  note: polymer thermodynamics
+- name_match:
+  - Kenneth Schweizer
+  note: polymer dynamics, glass transition
+- name_match:
+  - Michael Cates
+  note: soft matter, active matter
+- name_match:
+  - Masao Doi
+  note: polymer dynamics, hydrodynamics
+- name_match:
+  - Bradley Olsen
+  note: polymer SMILES, BigSMILES

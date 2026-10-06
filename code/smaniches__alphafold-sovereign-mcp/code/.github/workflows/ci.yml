@@ -1,0 +1,392 @@
+name: CI
+
+on:
+  push:
+    branches: [main, "claude/**", "feature/**", "fix/**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Top-level minimum permissions; the codeql job re-declares its own
+# elevated permissions block (security-events: write + actions: read)
+# which takes precedence for that job alone. Closes the OpenSSF
+# Scorecard `Token-Permissions` findings on this workflow.
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+  FORCE_COLOR: "1"
+  UV_CACHE_DIR: /tmp/.uv-cache
+
+jobs:
+  # ── Lint & Format ──────────────────────────────────────────────────────────────────
+  lint:
+    name: Lint (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "latest"
+      - name: Install lint dependencies from lock
+        run: uv sync --extra dev --locked
+      - name: Verify Ruff version
+        run: uv run ruff --version
+      - name: Run ruff check
+        run: uv run ruff check src/ --output-format=github
+      - name: Run ruff format check
+        run: uv run ruff format --check .
+
+  # ── Type checking ───────────────────────────────────────────────────────────────────
+  typecheck:
+    name: Type Check (mypy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "latest"
+      - name: Install deps
+        run: uv sync --extra dev
+      - name: Run mypy
+        run: |
+          uv run mypy \
+            src/alphafold_sovereign/ \
+            --config-file pyproject.toml
+
+  # ── Test matrix ───────────────────────────────────────────────────────────────────────
+  test:
+    name: Tests (Python ${{ matrix.python-version }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+        os: [ubuntu-latest, macos-latest]
+        exclude:
+          # Reduce matrix: skip older Python on macOS
+          - os: macos-latest
+            python-version: "3.10"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "latest"
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: uv sync --python ${{ matrix.python-version }} --extra dev
+      - name: Run unit tests
+        run: |
+          run_tests() {
+            uv run pytest tests/ -m "unit or not integration" \
+              --cov=src/alphafold_sovereign \
+              --cov-report=term-missing \
+              --cov-report=xml:coverage.xml \
+              --cov-fail-under=100 \
+              -v --tb=short
+          }
+          if run_tests; then exit 0; fi
+          # Known intermittent flake on the macOS / Python 3.11 runner only
+          # (see LIMITATIONS.md L5). Retry that one entry once so a benign
+          # timing flake does not red the build; every other entry fails fast.
+          if [ "${{ matrix.os }}" = "macos-latest" ] && [ "${{ matrix.python-version }}" = "3.11" ]; then
+            echo "::warning::macOS/Python 3.11 test run failed; retrying once (known flake, LIMITATIONS.md L5)."
+            run_tests
+          else
+            exit 1
+          fi
+        env:
+          PYTHONPATH: src
+      - name: Upload coverage
+        if: matrix.python-version == '3.12' && matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
+        with:
+          files: coverage.xml
+          flags: unit
+          fail_ci_if_error: false
+
+  # ── Security scanning ───────────────────────────────────────────────────────────────
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "latest"
+      - name: Install security tools
+        run: uv sync --extra security
+      - name: Run bandit
+        id: bandit
+        continue-on-error: true
+        run: |
+          status=0
+          uv run bandit -r src/alphafold_sovereign/clients/ \
+            src/alphafold_sovereign/domain/ \
+            src/alphafold_sovereign/tools/ \
+            src/alphafold_sovereign/storage/ \
+            -c pyproject.toml -f json -o bandit-results.json || status=$?
+          cat bandit-results.json
+          exit "$status"
+      - name: Run pip-audit
+        id: pip_audit
+        continue-on-error: true
+        run: |
+          status=0
+          uv run pip-audit --format json \
+            > pip-audit-results.json || status=$?
+          cat pip-audit-results.json
+          exit "$status"
+      - name: Upload security results
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: security-results
+          if-no-files-found: ignore
+          path: |
+            bandit-results.json
+            pip-audit-results.json
+      - name: Enforce scanner results
+        if: always()
+        run: |
+          if [ "${{ steps.bandit.outcome }}" != "success" ] || \
+             [ "${{ steps.pip_audit.outcome }}" != "success" ]; then
+            echo "::error::Bandit outcome=${{ steps.bandit.outcome }}, pip-audit outcome=${{ steps.pip_audit.outcome }}"
+            exit 1
+          fi
+
+  # ── SBOM generation ───────────────────────────────────────────────────────────────────
+  sbom:
+    name: Generate SBOM
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+        with:
+          format: cyclonedx-json
+          output-file: sbom-cyclonedx.json
+      - uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+        with:
+          format: spdx-json
+          output-file: sbom-spdx.json
+      - name: Upload SBOMs
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: sbom
+          path: |
+            sbom-cyclonedx.json
+            sbom-spdx.json
+
+  # ── CodeQL ────────────────────────────────────────────────────────────────────────────────────
+  # Runs on public repositories (free) and on private repos with GitHub
+  # Advanced Security enabled.  On private repos without GHAS this would
+  # fail with a permissions error, so we skip until the repo is public.
+  codeql:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+    if: github.event.repository.private == false || github.repository_owner == 'topologica-ai'
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: github/codeql-action/init@b96794f015dfd88f77b49b1c93e0fa7110f94c63 # v4
+        with:
+          languages: python
+          queries: security-extended
+          # Scan only the production source tree; the archived monolith
+          # is excluded from coverage, lint, and security review.
+          source-root: src
+      - uses: github/codeql-action/analyze@b96794f015dfd88f77b49b1c93e0fa7110f94c63 # v4
+        with:
+          category: "/language:python"
+
+  # ── MCP protocol validation ─────────────────────────────────────────────────────────────────
+  mcp-validate:
+    name: MCP Schema Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "latest"
+      - name: Install deps
+        run: uv sync --extra dev
+      - name: Validate Pydantic tool input schemas
+        run: |
+          uv run python -c "
+          from alphafold_sovereign.tools.disease import *
+          from alphafold_sovereign.tools.precision_medicine import *
+          from alphafold_sovereign.tools.structure_intelligence import *
+          from alphafold_sovereign.tools.knowledge_graph_tools import *
+          from alphafold_sovereign.storage.knowledge_graph import KnowledgeGraph
+          print('All MCP tool modules import cleanly.')
+          print('Schema validation: PASS')
+          "
+        env:
+          PYTHONPATH: src
+
+  # ── Build check ────────────────────────────────────────────────────────────────────────
+  build:
+    name: Build Distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "latest"
+      - name: Build wheel + sdist
+        run: uv build
+      - name: Verify wheel installs and imports cleanly (no-deps)
+        run: |
+          # Use an isolated venv so we know exactly what's on the path.
+          # `uv pip install` against this venv installs the wheel without
+          # pulling any transitive dependencies, mimicking what an air-gap
+          # / sovereign user would see on first import.
+          uv venv .verify-env
+          uv pip install --python .verify-env/bin/python dist/*.whl --no-deps
+          .verify-env/bin/python -c "import alphafold_sovereign as a; print(f'v{a.__version__} imports OK (no-deps)')"
+      - name: Upload dist
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: dist
+          path: dist/
+
+  # ── Release-path proof (unprivileged) ───────────────────────────────────────────────
+  # Executes the complete deterministic artifact-production contract of
+  # release.yml on GitHub-hosted infrastructure BEFORE merge, using the
+  # candidate code and the exact repository scripts the release build/sbom
+  # jobs run: hash-locked tool closure install + version verification,
+  # no-isolation build with exactly-one-wheel identification, CycloneDX
+  # generated from the exact wheel environment, wheel SHA-256 bound into the
+  # SBOM root component, independent binding verification, and the negative
+  # substitution tests. Deliberately unprivileged — contents: read only; no
+  # id-token, no attestations, no write scopes of any kind. It publishes
+  # nothing, signs nothing, attests nothing, creates no release or tag, and
+  # mutates no external service.
+  release-path-proof:
+    name: Release Path Proof (unprivileged)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          # Exact uv pin for the AF-03 proof path — must match the release.yml
+          # build/sbom jobs and the version recorded in requirements/release-tools.in.
+          version: "0.12.3"
+      - name: Set up Python 3.12 (release-runner interpreter)
+        run: uv python install 3.12
+      - name: Install hash-locked release tooling and verify tool versions
+        run: bash scripts/install_release_tooling.sh --python "$(uv python find 3.12)"
+      - name: Build sdist + wheel (no build isolation, exactly one wheel)
+        run: bash scripts/build_release_dist.sh
+      - name: Generate CycloneDX from the exact wheel environment and bind wheel SHA-256
+        run: bash scripts/generate_release_sbom.sh --python "$(uv python find 3.12)"
+      - name: Independently verify SBOM root vs wheel identity and digest
+        run: .release-tools/bin/python scripts/verify_sbom_binding.py sbom.cyclonedx.json dist/
+      - name: Negative SBOM/wheel substitution tests (must fail closed)
+        run: bash scripts/verify_sbom_negative.sh sbom.cyclonedx.json dist/ --python .release-tools/bin/python
+
+  # ── Version coherence ───────────────────────────────────────────────────────────────────
+  version-coherence:
+    name: Version Coherence
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "latest"
+      - name: Assert all version-bearing files agree with pyproject.toml
+        run: uv run --no-project --python 3.12 python scripts/version_coherence.py
+
+  # ── DCO sign-off ───────────────────────────────────────────────────────────────────────
+  # Enforces the Developer Certificate of Origin that CONTRIBUTING.md asks for:
+  # every human-authored commit in a PR must carry a `Signed-off-by:` trailer
+  # (`git commit -s`). Bot commits (Dependabot, release-please / github-actions)
+  # and merge commits are exempt — those are machine-generated and never signed,
+  # and requiring sign-off on them would block dependency and release automation.
+  # PR-only: there is no commit range to check on a direct push.
+  dco:
+    name: DCO Sign-off
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Verify Signed-off-by on every human commit
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          missing=0
+          for sha in $(git rev-list "$BASE_SHA".."$HEAD_SHA"); do
+            # Skip merge commits (more than one parent).
+            if [ "$(git show -s --format='%P' "$sha" | wc -w)" -gt 1 ]; then
+              continue
+            fi
+            author="$(git show -s --format='%an' "$sha")"
+            # Skip bot authors: their commits are machine-generated and unsigned.
+            case "$author" in
+              *"[bot]") continue ;;
+            esac
+            subject="$(git show -s --format='%s' "$sha")"
+            if ! git show -s --format='%B' "$sha" \
+                | grep -qiE '^Signed-off-by: .+ <.+@.+>'; then
+              echo "::error::Missing Signed-off-by trailer on $sha — $subject (by $author)"
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
+            echo "One or more commits lack a DCO Signed-off-by trailer."
+            echo "Fix with: git commit --amend --no-edit --signoff (or rebase -s for older commits),"
+            echo "then git push --force-with-lease."
+            exit 1
+          fi
+          echo "All human-authored commits are signed off."
+
+  # ── All-green gate ─────────────────────────────────────────────────────────────────────
+  all-checks:
+    name: All Checks Pass
+    needs:
+      [
+        lint,
+        typecheck,
+        test,
+        security,
+        mcp-validate,
+        build,
+        release-path-proof,
+        version-coherence,
+        dco,
+      ]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Check all jobs
+        run: |
+          # `dco` only runs on pull_request, so it is `skipped` on push builds;
+          # treat skipped/success as OK and fail only on an actual failure.
+          if [[ "${{ needs.lint.result }}" != "success" ]] || \
+             [[ "${{ needs.typecheck.result }}" != "success" ]] || \
+             [[ "${{ needs.test.result }}" != "success" ]] || \
+             [[ "${{ needs.security.result }}" != "success" ]] || \
+             [[ "${{ needs.mcp-validate.result }}" != "success" ]] || \
+             [[ "${{ needs.version-coherence.result }}" != "success" ]] || \
+             [[ "${{ needs.build.result }}" != "success" ]] || \
+             [[ "${{ needs.release-path-proof.result }}" != "success" ]] || \
+             [[ "${{ needs.dco.result }}" == "failure" ]]; then
+            echo "One or more required checks failed."
+            exit 1
+          fi
+          echo "All required checks passed."

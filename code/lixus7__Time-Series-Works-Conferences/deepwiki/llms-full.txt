@@ -1,0 +1,2748 @@
+# Page: Overview
+
+# Overview
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+- [docs/README.md](docs/README.md)
+
+</details>
+
+
+
+This document provides a comprehensive introduction to the Time-Series-Works-Conferences repository, a curated knowledge base for time series research papers, methodologies, and resources. The repository serves as a centralized hub for researchers and practitioners interested in time series analysis, with a particular focus on organizing recent research work by task categories and providing access to relevant publications.
+
+## Purpose and Scope
+
+The Time-Series-Works-Conferences repository aims to:
+
+1. Catalog and organize recent time series research papers by task categories
+2. Provide links to code implementations and paper resources
+3. Track relevant conferences and submission deadlines
+4. Create a community resource for time series researchers
+
+This overview introduces the repository's organization, content structure, and navigation. For detailed information about conference resources, see [Conference Resources](#4).
+
+Sources: [README.md:4-13]()
+
+## Repository Structure
+
+The repository is organized into two main components: the core content in the GitHub repository (primarily in README.md) and an accompanying documentation website for improved navigation and readability.
+
+```mermaid
+graph TD
+    subgraph "Repository Structure"
+        README["README.md - Main Index"]
+        DocSite["Documentation Website"]
+        ExternalRes["External Resources"]
+        
+        README --> |"Contains"| TaskCategories["Time Series Task Categories"]
+        README --> |"Links to"| ExternalRes
+        README --> |"Includes"| Terminology["Terminology & Abbreviations"]
+        
+        DocSite --> |"Renders"| ContentPages["Time Series Work by Task"]
+        DocSite --> |"Includes"| ConferencePage["Conferences Info"]
+        DocSite --> |"Provides"| ContactInfo["Contact Information"]
+        
+        ExternalRes --> |"Paper PDFs"| OneDrive["OneDrive Collection"]
+        ExternalRes --> |"Paper PDFs"| GDrive["Google Drive Collection"]
+        ExternalRes --> |"Related repositories"| OtherRepos["Other Time Series Repos"]
+    end
+```
+
+The documentation website provides a more accessible interface to browse the same content organized in the GitHub README, with additional navigation features.
+
+Sources: [README.md:5-20](), [README.md:44-46]()
+
+## Content Organization by Research Task
+
+The repository primarily organizes time series research by task categories, with Multivariable Time Series Forecasting being the most prominent category, followed by other specialized tasks.
+
+```mermaid
+graph TD
+    subgraph "Time Series Research Categories"
+        TS["Time Series Research"] --> TSF["Time Series Forecasting"]
+        TS --> TSI["Time Series Imputation"]
+        TS --> TSAD["Time Series Anomaly Detection"]
+        TS --> DP["Demand Prediction"]
+        TS --> TSG["Time Series Generation"]
+        TS --> TTE["Travel Time Estimation"]
+        TS --> TLP["Traffic Location Prediction"]
+        TS --> EP["Event Prediction"]
+        TS --> SP["Stock Prediction"]
+        TS --> Other["Other Forecasting Tasks"]
+        
+        TSF --> MTSF["Multivariable Time Series Forecasting"]
+        TSF --> MPTSF["Multivariable Probabilistic Time Series Forecasting"]
+    end
+```
+
+Each research paper entry typically includes information about the model, dataset used, paper link, code implementation link (when available), and publication venue.
+
+Sources: [README.md:81-93]()
+
+## Paper Entry Structure
+
+Papers are documented in a tabular format with consistent information to help researchers quickly understand and access relevant work. Each paper entry typically contains:
+
+| Element | Description |
+|---------|-------------|
+| Task | The specific time series task addressed |
+| Data | Datasets used in the paper |
+| Model | The proposed model or methodology name |
+| Paper | Link to the original publication |
+| Code | Implementation links (often GitHub) with popularity metrics |
+| Publication | Conference or journal name and year |
+
+The repository includes hundreds of papers, with new ones being added regularly, particularly after major AI/ML conferences.
+
+Sources: [README.md:96-200]()
+
+## Terminology and Abbreviations
+
+To maintain conciseness, the repository uses abbreviations for common methodologies and techniques. A glossary of these abbreviations is provided:
+
+| Full Name | Abbreviation |
+|-----------|--------------|
+| Adaptive GNN | AGNN |
+| Attention | Attn |
+| AutoRegression | AR |
+| Contrastive Learning | CL |
+| Encoder Decoder | EncDec |
+| Graph Convolutional Network | GCN |
+| Transformer | Trans |
+| Transfer Learning | TransL |
+| Variational Auto-Encoder | VAE |
+
+This standardized terminology helps in understanding model descriptions and methodologies across different papers.
+
+Sources: [README.md:53-79]()
+
+## Repository Navigation and Access
+
+Users can access the repository content through multiple pathways:
+
+```mermaid
+flowchart LR
+    subgraph "User Access Points"
+        User["Researcher/User"]
+        GitHub["GitHub Repository"]
+        DocSite["Documentation Website"]
+        Papers["Research Papers"]
+        ExternalStorage["External Storage (OneDrive/Google Drive)"]
+    end
+    
+    User --> |"Browses"| GitHub
+    User --> |"Views"| DocSite
+    
+    GitHub --> |"Main Index"| README["README.md"]
+    README --> |"Organized by"| Tasks["Task Categories"]
+    Tasks --> |"Contains"| Papers
+    
+    DocSite --> |"Navigates via"| Sidebar["Sidebar Navigation"]
+    Sidebar --> |"Links to"| TSWork["Time Series Work by Task"]
+    Sidebar --> |"Links to"| Conferences["Conference Information"]
+    
+    Papers --> |"Links to"| Implementations["Code Implementations"]
+    Papers --> |"Full text in"| ExternalStorage
+```
+
+All papers, including those not explicitly listed in the GitHub repository, are available through OneDrive and Google Drive links provided in the repository.
+
+Sources: [README.md:40-46]()
+
+## Related Resources
+
+The repository includes links to other valuable time series research repositories:
+
+1. Other time series collections repositories
+2. External code implementations and benchmarks
+3. Conference paper lists and resources
+
+These related resources complement the main repository by providing additional context and materials for time series research.
+
+Sources: [README.md:12-20]()
+
+## Technical Implementation of Documentation Website
+
+The documentation website is built using Docsify.js, which dynamically renders markdown content without requiring a build process.
+
+```mermaid
+graph TD
+    subgraph "Documentation Website Architecture"
+        IndexHTML["index.html"] --> |"Configures"| DocsifyJS["Docsify.js"]
+        DocsifyJS --> |"Renders"| MarkdownFiles["Markdown Content"]
+        
+        MarkdownFiles --> TimeSeriesWork["Recent-Time-Series-Work-Group-by-Task.md"]
+        MarkdownFiles --> ConferencesPage["Conferences.md"]
+        MarkdownFiles --> ContactPage["Contact.md"]
+        
+        IndexHTML --> |"Defines"| SidebarConfig["Sidebar Configuration"]
+        SidebarConfig --> |"Links to"| TimeSeriesWork
+        SidebarConfig --> |"Links to"| ConferencesPage
+    end
+```
+
+This architecture allows for easy maintenance and updating of the documentation while providing a user-friendly interface for browsing the time series research content.
+
+Sources: [README.md:5]()
+
+## Research Evolution Tracking
+
+The repository captures the evolution of time series models over time, from traditional approaches to the latest deep learning and transformer-based methods:
+
+```mermaid
+graph LR
+    subgraph "Time Series Model Evolution"
+        Traditional["Traditional Models"] --> RNN["RNN-based Models"]
+        RNN --> CNN["CNN-based Models"]
+        CNN --> GNN["Graph Neural Networks"]
+        GNN --> Trans["Transformer-based Models"]
+        Trans --> Diff["Diffusion Models"]
+        Trans --> LLM["LLM Integration"]
+        
+        RNN --> |"Examples"| LSTM["LSTM/GRU Models"]
+        Trans --> |"Examples"| Models["Informer, Autoformer, FEDformer, iTransformer"]
+        LLM --> |"Examples"| LLMModels["Time-LLM, TEMPO"]
+    end
+```
+
+By tracking this evolution, the repository provides insight into research trends and progress in the time series field.
+
+Sources: [README.md:97-132]()
+
+## Summary
+
+The Time-Series-Works-Conferences repository serves as a comprehensive resource for time series research, offering:
+
+1. A structured organization of papers by task and methodology
+2. Links to code implementations and paper resources
+3. Conference information relevant to time series research
+4. Terminology standardization for the field
+5. Access to external paper collections
+
+This knowledge base is continuously updated with new research, particularly after major AI/ML conferences, making it a valuable resource for both newcomers and experienced researchers in the time series domain.
+
+---
+
+# Page: Time Series Research Collection
+
+# Time Series Research Collection
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+- [docs/Recent-Time-Series-Work-Group-by-Task.md](docs/Recent-Time-Series-Work-Group-by-Task.md)
+
+</details>
+
+
+
+This document describes the organization and content of the time series research papers that form the core of the Time-Series-Works-Conferences repository. It explains how time series research is categorized by tasks, methodologies, and provides an overview of the main research areas covered in the collection.
+
+For information about conference resources, see [Conference Resources](#4).
+For information about the documentation website structure, see [Documentation Website](#3).
+
+## Purpose and Scope
+
+The Time Series Research Collection serves as a comprehensive, structured repository of cutting-edge research papers in the field of time series analysis and forecasting. It aims to:
+
+1. Provide a central hub for organized time series research papers categorized by task and methodology
+2. Facilitate easy access to relevant papers, code implementations, and datasets
+3. Support researchers and practitioners in staying current with the latest advances in time series analysis
+
+The collection focuses on machine learning approaches to time series problems, with special emphasis on deep learning techniques applied to various domains including traffic prediction, energy forecasting, financial analysis, and more.
+
+Sources: [README.md:33-40]()
+
+## Organization Structure
+
+The research papers in this collection are primarily organized by task type, with secondary organization by methodology. Each paper is presented with standardized metadata including the task type, datasets used, model name, paper reference, code implementation link (when available), and publication venue.
+
+### Research Organization Hierarchy
+
+```mermaid
+flowchart TD
+    TS["Time Series Research Collection"] --> Tasks["Organization by Task"]
+    TS --> Methods["Secondary Organization by Methodology"]
+    
+    Tasks --> MTSF["Multivariable Time Series Forecasting"]
+    Tasks --> PTSF["Probabilistic Time Series Forecasting"]
+    Tasks --> TSI["Time Series Imputation"]
+    Tasks --> TSAD["Time Series Anomaly Detection"]
+    Tasks --> DP["Demand Prediction"]
+    Tasks --> TSG["Time Series Generation"]
+    Tasks --> TTE["Travel Time Estimation"]
+    Tasks --> TLP["Traffic Location Prediction"]
+    Tasks --> EP["Event Prediction"]
+    Tasks --> SP["Stock Prediction"]
+    Tasks --> Other["Other Forecasting"]
+    
+    Methods --> AR["Autoregression (RNN, GRU, LSTM)"]
+    Methods --> Attn["Attention Mechanisms"]
+    Methods --> Trans["Transformer-based"]
+    Methods --> GNN["Graph Neural Networks"]
+    Methods --> TCN["Temporal Convolutional Networks"]
+    Methods --> CDE["Controlled Differential Equations"]
+    Methods --> ODE["Ordinary Differential Equations"]
+    Methods --> GAN["Generative Adversarial Networks"]
+    Methods --> VAE["Variational Auto-Encoders"]
+    
+    class TS,MTSF emphasis;
+    classDef emphasis stroke-width:3px;
+```
+
+Sources: [README.md:80-93](), [README.md:51-79]()
+
+### Paper Information Structure
+
+Each paper in the collection is documented with a consistent set of metadata fields to facilitate easy comparison and reference:
+
+| Field | Description |
+|-------|-------------|
+| Task | The specific time series task (e.g., Multivariable Forecasting, Anomaly Detection) |
+| Data | Datasets used in the paper (e.g., ETT, METR-LA, PeMS-BAY) |
+| Model | The model name or approach proposed in the paper |
+| Paper | Title and link to the paper |
+| Code | Implementation links (with GitHub stars/forks when available) |
+| Publication | Conference/journal name and year |
+
+Sources: [README.md:97-131]()
+
+## Task Categories
+
+The collection is organized into several main task categories, with the largest being Multivariable Time Series Forecasting. Below is an overview of the major categories:
+
+### Multivariable Time Series Forecasting
+
+This is the largest category in the collection, focusing on predicting future values of multiple related time series simultaneously. It encompasses traffic forecasting, energy consumption prediction, weather forecasting, and other multivariate problems.
+
+```mermaid
+graph TD
+    subgraph "Multivariable Time Series Forecasting"
+        MTSF["Multivariable Time Series Forecasting"]
+        
+        MTSF --> Models["Model Types"]
+        Models --> Trans["Transformer Models"]
+        Models --> GNN["Graph Neural Networks"]
+        Models --> RNN["Recurrent Neural Networks"]
+        Models --> Hybrid["Hybrid Models"]
+        
+        MTSF --> DataTypes["Common Datasets"]
+        DataTypes --> Traffic["Traffic Data (METR-LA, PeMS-BAY)"]
+        DataTypes --> Energy["Energy Data (Electricity, ETT)"]
+        DataTypes --> Weather["Weather Data"]
+        DataTypes --> Exchange["Exchange Rate Data"]
+        
+        MTSF --> Apps["Application Domains"]
+        Apps --> TrafficPred["Traffic Prediction"]
+        Apps --> EnergyFor["Energy Forecasting"]
+        Apps --> ClimateFor["Climate/Weather Forecasting"]
+        Apps --> Economic["Economic Indicators"]
+    end
+```
+
+Sources: [README.md:97-176]()
+
+### Other Major Task Categories
+
+The repository includes several other significant task categories:
+
+1. **Probabilistic Time Series Forecasting**: Models that predict probability distributions of future values rather than point estimates.
+
+2. **Time Series Imputation**: Techniques for filling in missing values in time series data.
+
+3. **Time Series Anomaly Detection**: Methods for identifying unusual patterns or outliers in time series.
+
+4. **Specialized Forecasting Tasks**:
+   - Demand Prediction
+   - Travel Time Estimation
+   - Traffic Location Prediction
+   - Event Prediction
+   - Stock Prediction
+
+```mermaid
+graph LR
+    subgraph "Major Task Categories"
+        MTSF["Multivariable Time Series Forecasting"]
+        PTSF["Probabilistic Time Series Forecasting"]
+        TSI["Time Series Imputation"]
+        TSAD["Time Series Anomaly Detection"]
+        DP["Demand Prediction"]
+        Other["Other Specialized Tasks"]
+    end
+    
+    MTSF --"100+ papers"--> Count1["Largest category"]
+    PTSF --"39 papers"--> Count2[""]
+    TSI --"22 papers"--> Count3[""]
+    TSAD --"30 papers"--> Count4[""]
+    DP --"23 papers"--> Count5[""]
+    Other --> TTE["Travel Time Estimation"]
+    Other --> TLP["Traffic Location Prediction"]
+    Other --> EP["Event Prediction"]
+    Other --> SP["Stock Prediction"]
+    
+    class MTSF emphasis;
+    classDef emphasis stroke-width:3px;
+```
+
+Sources: [README.md:83-93](), [README.md:146-190](), [README.md:200-226](), [README.md:234-273](), [README.md:279-305]()
+
+## Paper Storage and Accessibility
+
+All papers mentioned in the repository are available through external storage services for easy access:
+
+```mermaid
+flowchart LR
+    subgraph "Repository"
+        README["README.md"]
+        Index["Paper Index by Task"]
+    end
+    
+    subgraph "External Storage"
+        OD["OneDrive Collection"]
+        GD["Google Drive Collection"]
+    end
+    
+    README --> Index
+    Index --> OD
+    Index --> GD
+    
+    User["Researcher/User"] --> Repository
+    User --> "External Storage"
+```
+
+Sources: [README.md:42-46]()
+
+## Methodology and Terminology
+
+To maintain consistency and reduce repetition, the collection uses standardized abbreviations for common technical terms and methodologies. These abbreviations are used throughout the paper listings.
+
+### Key Abbreviations
+
+| Full Name | Abbreviation |
+|-----------|--------------|
+| Adaptive Graph Neural Network | AGNN |
+| Attention | Attn |
+| AutoRegression (RNN, GRU, LSTM) | AR |
+| Controlled Differential Equations | CDE |
+| Contrastive Learning | CL |
+| Encoder Decoder | EncDec |
+| Ensemble | Ens |
+| Feature Decomposed | FeaD |
+| Federated Learning | FL |
+| Generative Adversarial Network | GAN |
+| Graph Convolutional Network | GCN |
+| Heterogeneous GNN | HGNN |
+| Multiple Graph | MGNN |
+| Memory | Mem |
+| Meta Learning | MetaL |
+| MultiTask | MulT |
+| Ordinary Differential Equations | ODE |
+| Temporal Graph Network | TGN |
+| Transformer | Trans |
+| Transfer Learning | TransL |
+| Variational Auto-Encoder | VAE |
+
+This standardized terminology enables quick understanding of the methodological approaches used in different papers without requiring extensive repetition in the collection.
+
+Sources: [README.md:51-79]()
+
+## Research Evolution Over Time
+
+The collection captures the evolution of time series modeling approaches over time, from traditional RNN-based methods to modern transformer-based and diffusion models. Recent trends include the integration of large language models (LLMs) with time series forecasting.
+
+```mermaid
+graph TD
+    subgraph "Evolution of Time Series Models"
+        TS["Time Series Models"] --> RNN["RNN-based Models (2016-2019)"]
+        TS --> GNN["Graph Neural Networks (2018-present)"]
+        TS --> Trans["Transformer-based Models (2020-present)"]
+        TS --> Diff["Diffusion Models (2021-present)"]
+        TS --> LLM["LLM Integration (2023-present)"]
+        
+        RNN --> LSTM["LSTM/GRU"]
+        RNN --> TCN["TCN (WaveNet)"]
+        
+        GNN --> STGNN["Spatio-Temporal GNN"]
+        
+        Trans --> Informer["Informer (2021)"]
+        Trans --> Autoformer["Autoformer (2021)"]
+        Trans --> FEDformer["FEDformer (2022)"]
+        Trans --> iTransformer["iTransformer (2024)"]
+        
+        LLM --> TimeLLM["Time-LLM (2024)"]
+        LLM --> TEMPO["TEMPO (2024)"]
+        
+        Diff --> TimeGrad["TimeGrad (2021)"]
+        Diff --> CSDI["CSDI (2021)"]
+    end
+```
+
+Sources: [README.md:100-196]()
+
+## Related Resources
+
+The Time Series Research Collection is part of a larger ecosystem of time series resources. Other related repositories that complement this collection include:
+
+1. [xiyuanzh/time-series-papers](https://github.com/xiyuanzh/time-series-papers)
+2. [qingsongedu/awesome-AI-for-time-series-papers](https://github.com/qingsongedu/awesome-AI-for-time-series-papers)
+3. [xuehaouwa/Awesome-Trajectory-Prediction](https://github.com/xuehaouwa/Awesome-Trajectory-Prediction)
+
+All papers are organized by task and methodology, including those not included in this GitHub repository, and are available for everyone to use on OneDrive and Google Drive.
+
+Sources: [README.md:12-20](), [README.md:42-46]()
+
+## Summary
+
+The Time Series Research Collection provides a comprehensive, categorized repository of research papers in time series analysis, with a primary focus on deep learning approaches. It organizes papers by task type, with Multivariable Time Series Forecasting being the largest category. Each paper is presented with standardized metadata, and the collection includes links to code implementations when available. The repository continues to be updated with new papers, particularly in emerging areas such as LLM integration with time series forecasting.
+
+Sources: [README.md:40-49]()
+
+---
+
+# Page: Multivariable Time Series Forecasting
+
+# Multivariable Time Series Forecasting
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+
+</details>
+
+
+
+## Purpose and Scope
+
+This document covers multivariable time series forecasting, which is the largest category of time series research in the repository. It focuses on predicting future values of multiple interrelated variables based on their historical observations. Multivariable (also called multivariate) time series forecasting methods capture both temporal dependencies within each variable and relationships between different variables.
+
+For information about probabilistic forecasting approaches, see [Probabilistic Forecasting and Imputation](#2.2). For domain-specific applications, see [Domain-Specific Applications](#2.3).
+
+Sources: [README.md:97-99]()
+
+## Overview of Time Series Forecasting 
+
+Multivariable time series forecasting involves predicting future values of multiple related variables based on past observations. These techniques capture both:
+1. Temporal dependencies within individual time series
+2. Correlations between different variables
+3. Spatial relationships between data points (for spatiotemporal data)
+
+The repository contains over 100 research papers and implementations for multivariable time series forecasting models, representing the state-of-the-art in this rapidly evolving field.
+
+### Key Forecasting Concepts
+
+```mermaid
+graph LR
+    subgraph "Time Series Forecasting Concepts"
+        Input["Input Sequence"] --> Model["Forecasting Model"]
+        Model --> Output["Predicted Sequence"]
+        
+        subgraph "Key Challenges"
+            C1["Capturing Long-Range Dependencies"]
+            C2["Handling Variable Correlations"]
+            C3["Dealing with Seasonality"]
+            C4["Managing Non-stationarity"]
+            C5["Computational Efficiency"]
+        end
+        
+        subgraph "Common Settings"
+            S1["Lookback Window (L)"]
+            S2["Prediction Horizon (H)"]
+            S3["Number of Variables (N)"]
+        end
+    end
+    
+    class Input,Output,Model rect;
+    class C1,C2,C3,C4,C5 ellipse;
+    class S1,S2,S3 diamond;
+```
+
+Sources: [README.md:81-97](), [README.md:97-403]()
+
+## Model Taxonomy
+
+The repository contains a rich collection of models that can be categorized based on their underlying architectural approaches:
+
+```mermaid
+graph TD
+    subgraph "Multivariable Time Series Forecasting Models"
+        root["Model Types"] --> Trans["Transformer-based Models"]
+        root --> GNN["Graph Neural Networks"]
+        root --> RNN["RNN-based Models"]
+        root --> CNN["CNN-based Models"]
+        root --> Linear["Linear Models"]
+        root --> Hybrid["Hybrid Models"]
+        root --> LLM["LLM-based Models"]
+        root --> Diffusion["Diffusion Models"]
+        
+        Trans --> I["iTransformer"]
+        Trans --> A["Autoformer"]
+        Trans --> F["FEDformer"]
+        Trans --> P["PatchTST"]
+        Trans --> C["Crossformer"]
+        
+        GNN --> STGCN["STGCN"]
+        GNN --> DCRNN["DCRNN"]
+        GNN --> GWN["Graph WaveNet"]
+        GNN --> AGCRN["AGCRN"]
+        
+        RNN --> LSTM["LSTM/GRU"]
+        RNN --> TCN["TCN"]
+        
+        Linear --> DLinear["DLinear"]
+        Linear --> NLinear["NLinear"]
+        
+        Hybrid --> TimesNet["TimesNet"]
+        Hybrid --> MICN["MICN"]
+        
+        LLM --> TimeLLM["Time-LLM"]
+        LLM --> TEMPO["TEMPO"]
+        
+        Diffusion --> TimeGrad["TimeGrad"]
+        Diffusion --> CSDI["CSDI"]
+    end
+```
+
+Sources: [README.md:138-145](), [README.md:226-232](), [README.md:309-324](), [README.md:470-472]()
+
+### Evolution of Model Architectures
+
+The repository shows a clear progression of model architectures over time:
+
+1. **Traditional Models**: Early approaches used statistical methods and basic neural networks
+2. **RNN/LSTM-based Models**: Captured temporal dependencies but struggled with long sequences
+3. **CNN and TCN-based Models**: Better at capturing local temporal patterns
+4. **Graph Neural Networks**: Incorporated spatial dependencies for spatiotemporal data
+5. **Transformer-based Models**: Leveraged attention mechanisms to model long-range dependencies
+6. **Large Language Model Integration**: Recent trend of adapting LLMs for time series forecasting
+7. **Diffusion Models**: Latest approach using generative modeling techniques
+
+Sources: [README.md:137-152](), [README.md:226-233](), [README.md:366-367](), [README.md:470-472]()
+
+## Key Model Architectures
+
+### Transformer-based Models
+
+Transformer-based architectures have become dominant in time series forecasting due to their ability to capture long-range dependencies through attention mechanisms. Notable models include:
+
+1. **iTransformer** (Line 138): Inverted transformer architecture that processes variables as tokens
+2. **Autoformer** (Line 366): Uses decomposition transformers with auto-correlation
+3. **FEDformer** (Line 313): Frequency enhanced decomposed transformer
+4. **PatchTST** (Line 232): Treats time series patches as tokens for long-term forecasting
+5. **Crossformer** (Line 225): Cross-dimension transformer for multivariate forecasting
+
+```mermaid
+graph TD
+    subgraph "Transformer-based Architecture"
+        input["Input Time Series"] --> Embed["Embedding Layer"]
+        Embed --> Attention["Self-Attention Mechanism"]
+        Attention --> FF["Feed Forward Networks"] 
+        FF --> Decode["Decoder Layer"]
+        Decode --> output["Forecasted Values"]
+        
+        subgraph "Model Variations"
+            v1["iTransformer: Inverted architecture"]
+            v2["Autoformer: Decomposition + Auto-correlation"]
+            v3["FEDformer: Frequency Enhancement"]
+            v4["PatchTST: Time series as patches"]
+            v5["Crossformer: Cross-dimensional attention"]
+        end
+    end
+```
+
+Sources: [README.md:138-145](), [README.md:226-232](), [README.md:313-314](), [README.md:366-367]()
+
+### Graph Neural Network Models
+
+Graph-based models are particularly effective for spatiotemporal data, where relationships between variables can be represented as a graph:
+
+1. **STGCN** (Line 471): Spatio-temporal graph convolutional networks
+2. **DCRNN** (Line 472): Diffusion convolutional recurrent neural network
+3. **Graph WaveNet** (Line 461): Combines graph convolution with dilated casual convolution
+4. **AGCRN** (Line 408): Adaptive graph convolutional recurrent network
+
+```mermaid
+graph TD
+    subgraph "Graph Neural Network Architecture"
+        input["Input Time Series"] --> Graph["Graph Construction"]
+        Graph --> GCN["Graph Convolution"]
+        GCN --> Temporal["Temporal Modeling"]
+        Temporal --> output["Forecasted Values"]
+        
+        subgraph "Variations"
+            v1["STGCN: Sequential graph convolutions"]
+            v2["DCRNN: Diffusion process + RNN"]
+            v3["GWN: Graph WaveNet with adaptive adjacency"]
+            v4["AGCRN: Adaptive node embeddings"]
+        end
+    end
+```
+
+Sources: [README.md:408-409](), [README.md:461-462](), [README.md:471-472]()
+
+### LLM-based Models
+
+Recent models leverage large language models for time series forecasting:
+
+1. **Time-LLM** (Line 141): Using LLMs for time series forecasting
+2. **TEMPO** (Line 142): Prompt-based generative pre-trained transformer
+
+```mermaid
+graph TD
+    subgraph "LLM-based Time Series Architecture"
+        input["Input Time Series"] --> Transform["Time Series Transformation"]
+        Transform --> Prompt["Prompt Engineering"]
+        Prompt --> LLM["Large Language Model"]
+        LLM --> Decode["Time Series Decoding"]
+        Decode --> output["Forecasted Values"]
+        
+        subgraph "Key Models"
+            v1["Time-LLM: Reprogramming LLMs"]
+            v2["TEMPO: Prompt-based generative transformer"]
+        end
+    end
+```
+
+Sources: [README.md:141-142]()
+
+## Datasets
+
+The repository uses a variety of datasets for multivariable time series forecasting:
+
+### Common Datasets
+
+| Category | Datasets | Description |
+|----------|----------|-------------|
+| Traffic | METR-LA, PEMS-BAY, PEMS03/04/07/08 | Traffic speed and flow data from different locations |
+| Energy | Electricity, Solar | Electricity consumption and solar power generation |
+| Weather | ETT, Weather | Temperature, wind speed, humidity, etc. |
+| Finance | Exchange | Exchange rate data between different currencies |
+| Health | ILI | Influenza-like illness data |
+| Urban | NYC-Taxi, NYC-Bike, TaxiBJ | Urban mobility data from taxis and bikes |
+
+Many papers use a standard collection of datasets referred to as [TimesNet_data](https://github.com/thuml/Time-Series-Library), which provides a comprehensive benchmark.
+
+```mermaid
+graph TD
+    subgraph "Time Series Datasets Ecosystem"
+        root["Dataset Categories"] --> Traffic["Traffic Data"]
+        root --> Energy["Energy Data"]
+        root --> Weather["Weather Data"]
+        root --> Finance["Financial Data"]
+        root --> Health["Health Data"]
+        root --> Urban["Urban Mobility"]
+        
+        Traffic --> METR["METR-LA"]
+        Traffic --> PEMS["PEMS-BAY"]
+        Traffic --> PEMS3["PEMS03/04/07/08"]
+        
+        Energy --> Elec["Electricity"]
+        Energy --> Solar["Solar Energy"]
+        
+        Weather --> ETT["ETT"]
+        Weather --> W["Weather"]
+        
+        Finance --> Exchange["Exchange Rate"]
+        
+        Health --> ILI["Influenza-like Illness"]
+        
+        Urban --> NYCTaxi["NYC-Taxi"]
+        Urban --> NYCBike["NYC-Bike"]
+        Urban --> TaxiBJ["TaxiBJ"]
+        
+        subgraph "Common Characteristics"
+            c1["Multivariate"]
+            c2["Temporal Dependencies"]
+            c3["Spatial Relationships"]
+            c4["Seasonality"]
+            c5["Non-stationarity"]
+        end
+    end
+```
+
+Sources: [README.md:100-107](), [README.md:137-172]()
+
+## Evaluation Methodology
+
+Models are typically evaluated on multiple datasets using various metrics:
+
+### Metrics
+
+1. **MAE (Mean Absolute Error)**: Average absolute difference between predictions and actuals
+2. **MSE (Mean Squared Error)**: Average squared difference between predictions and actuals
+3. **RMSE (Root Mean Squared Error)**: Square root of MSE
+4. **MAPE (Mean Absolute Percentage Error)**: Percentage version of MAE
+
+### Evaluation Settings
+
+Models are evaluated with different prediction horizons (often denoted as a value following the dataset, e.g., ETTh1_96 for 96-step ahead prediction on the ETTh1 dataset):
+
+1. **Short-term forecasting**: Typically 12/24 steps ahead
+2. **Medium-term forecasting**: Typically 48/96/192 steps ahead
+3. **Long-term forecasting**: Typically 336/720 steps ahead
+
+Sources: [README.md:97-403]()
+
+## Recent Trends and Developments
+
+The repository reveals several emerging trends in multivariable time series forecasting:
+
+1. **Efficient Architectures**: Focus on simpler, more computationally efficient models (e.g., DLinear, FITS)
+2. **Foundation Models**: Development of pre-trained models that can be fine-tuned for specific tasks
+3. **LLM Integration**: Using large language models to enhance time series forecasting
+4. **Diffusion Models**: Application of generative diffusion models for accurate forecasting
+5. **Non-stationarity Handling**: Explicit mechanisms to handle non-stationary data
+6. **Frequency Domain Analysis**: Leveraging frequency domain for more effective modeling
+
+```mermaid
+flowchart TD
+    subgraph "Evolution of Time Series Forecasting Approaches"
+        Statistical["Statistical Models"] --> |1990s-2000s| MLP["MLP & Traditional ML"]
+        MLP --> |2010-2015| RNN["RNN/LSTM Models"]
+        RNN --> |2015-2018| CNN["CNN & TCN Models"]
+        CNN --> |2018-2020| GNN["Graph Neural Networks"]
+        GNN --> |2020-2021| Trans["Transformer Models"]
+        Trans --> |2021-2022| Decomp["Decomposition Models"]
+        Decomp --> |2022-2023| FDM["Frequency Domain Models"]
+        FDM --> |2023-Present| LLMInt["LLM Integration"]
+        LLMInt --> |2023-Present| Foundation["Foundation Models"]
+        Foundation --> |2023-Present| Diffusion["Diffusion Models"]
+    end
+```
+
+Sources: [README.md:100-131](), [README.md:204-210]()
+
+## Implementation and Code Structure
+
+The repository contains implementations for numerous models. While specific implementation details vary, many follow similar patterns:
+
+1. **Data Loading**: Processing time series datasets into appropriate formats
+2. **Model Definition**: Architecture-specific neural network components
+3. **Training Loop**: Optimization process with appropriate loss functions
+4. **Evaluation**: Testing on held-out data with standard metrics
+
+```mermaid
+graph LR
+    subgraph "Typical Implementation Structure"
+        Data["Data Loading & Preprocessing"] --> Model["Model Definition"]
+        Model --> Train["Training Loop"]
+        Train --> Eval["Evaluation"]
+        
+        subgraph "Common Components"
+            c1["Dataset Classes"]
+            c2["Model Architecture"]
+            c3["Loss Functions"]
+            c4["Evaluation Metrics"]
+            c5["Visualization Tools"]
+        end
+    end
+```
+
+Many implementations are in PyTorch, with some in TensorFlow or other frameworks. The repository includes links to official implementations, often with GitHub star counts indicating their popularity.
+
+Sources: [README.md:100-403]()
+
+## Conclusion
+
+Multivariable time series forecasting is a rapidly evolving field with numerous approaches and architectures. The repository provides a comprehensive collection of papers, implementations, and datasets in this domain, with transformer-based architectures, graph neural networks, and recent LLM integrations representing the current state-of-the-art. As newer methods continue to emerge, the repository serves as a valuable resource for tracking developments in this field.
+
+---
+
+# Page: Probabilistic Forecasting and Imputation
+
+# Probabilistic Forecasting and Imputation
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+- [docs/Recent-Time-Series-Work-Group-by-Task.md](docs/Recent-Time-Series-Work-Group-by-Task.md)
+
+</details>
+
+
+
+## Overview
+
+This page documents two critical time series analysis tasks within the Time-Series-Works-Conferences repository: probabilistic forecasting and time series imputation. While the deterministic multivariable time series forecasting covered in [Multivariable Time Series Forecasting](#2.1) produces single-point predictions, probabilistic forecasting provides uncertainty estimates through probability distributions. Time series imputation addresses the challenge of missing values in temporal data. Together, these techniques form essential components of robust time series analysis systems.
+
+Sources: [README.md:83-86](), [README.md:146-147](), [README.md:200-201]()
+
+## Key Concepts
+
+### Probabilistic Forecasting
+
+Probabilistic forecasting extends traditional point forecasting by providing complete probability distributions over possible future values. This approach offers several advantages:
+
+- **Uncertainty quantification**: Explicitly models prediction confidence
+- **Risk assessment**: Enables better decision-making under uncertainty
+- **Extreme event modeling**: Captures rare but significant occurrences
+
+### Time Series Imputation
+
+Time series imputation focuses on filling missing values in temporal data. This is crucial because:
+
+- **Data completeness**: Many analytics methods require complete datasets
+- **Information recovery**: Preserves valuable information that would otherwise be lost
+- **Model robustness**: Prevents models from being biased by missing data patterns
+
+## Relationship Between Components
+
+```mermaid
+flowchart TD
+    subgraph "Time Series Analysis Domain"
+        TSF["Time Series Forecasting"]
+        TSI["Time Series Imputation"]
+        TSAD["Time Series Anomaly Detection"]
+    end
+
+    subgraph "Forecasting Methods"
+        TSF --> DeterministicF["Deterministic Forecasting"]
+        TSF --> ProbabilisticF["Probabilistic Forecasting"]
+        
+        DeterministicF --> PointEstimates["Point Estimates"]
+        ProbabilisticF --> DistributionM["Distribution Modeling"]
+        ProbabilisticF --> QuantileR["Quantile Regression"]
+        ProbabilisticF --> EnsembleM["Ensemble Methods"]
+    end
+
+    subgraph "Imputation Methods"
+        TSI --> StatisticalI["Statistical Methods"]
+        TSI --> MLI["Machine Learning Methods"]
+        TSI --> DLI["Deep Learning Methods"]
+        
+        StatisticalI --> Interpolation["Interpolation"]
+        MLI --> MatrixF["Matrix Factorization"]
+        DLI --> NeuralI["Neural Imputation Models"]
+    end
+
+    subgraph "Combined Approaches"
+        JointModels["Joint Models"]
+        ProbabilisticF --> JointModels
+        TSI --> JointModels
+        JointModels --> CSDI["Conditional Score-based Diffusion Models"]
+    end
+```
+
+Sources: [README.md:81-93](), [README.md:146-196](), [README.md:200-231]()
+
+## Probabilistic Forecasting Methods
+
+The repository catalogs 39 probabilistic forecasting models published between 2018-2022. These approaches can be categorized into several key methodologies:
+
+### Distribution Modeling Approaches
+
+These methods directly model the probability distribution of future values:
+
+- **Normalizing Flows**: Models like EMF (Embedded-model flows) and conditional normalizing flows transform simple distributions into complex ones
+- **Diffusion Models**: TimeGrad and CSDI use diffusion processes to generate realistic future distributions
+- **Parametric Distributions**: Models like β-NLL and NatPN (Natural Posterior Network) parameterize specific distributions
+
+### Quantile Regression Approaches
+
+These methods estimate specific quantiles of the future distribution:
+
+- **ISQF**: Incremental Spline Quantile Function avoids quantile crossing
+- **MQF**: Multivariate Quantile Function forecaster for correlated variables
+- **LSF**: Level-Set based forecasting approach
+
+### Neural Network Architectures
+
+Various neural architectures have been adapted for probabilistic forecasting:
+
+| Architecture | Notable Models | Key Features |
+|--------------|----------------|--------------|
+| RNN-based | CF-RNN, VSMHN | Sequential modeling with uncertainty |
+| Transformer-based | ProTran, HTML | Attention mechanisms for temporal dependencies |
+| Graph-based | GTS, AGCGRU | Spatial-temporal correlations with uncertainty |
+| Diffusion-based | TimeGrad, CSDI | Generative modeling for diverse futures |
+
+Sources: [README.md:146-196](), [README.md:158-159](), [README.md:164-165](), [README.md:178-180]()
+
+## Time Series Imputation Techniques
+
+The repository includes 22 imputation models, which can be categorized into several approaches:
+
+### Deep Learning-Based Imputation
+
+```mermaid
+graph TD
+    TSI["Time Series Imputation"] --> RNN["RNN-based"]
+    TSI --> GNN["GNN-based"]
+    TSI --> Gen["Generative Models"]
+    TSI --> Attn["Attention-based"]
+    
+    RNN --> mTAND["mTAND: Multi-Time Attention Networks"]
+    RNN --> GRUODEBayes["GRU-ODE-Bayes"]
+    
+    GNN --> GRIN["GRIN: Graph Imputation Networks"]
+    GNN --> IGNNK["IGNNK: Inductive GNN for Kriging"]
+    
+    Gen --> TimeGAN["TimeGAN"]
+    Gen --> CSDI["CSDI: Conditional Score-based Diffusion"]
+    Gen --> SSGAN["SSGAN: Semi-supervised GAN"]
+    
+    Attn --> STING["STING: Self-attention for Imputation"]
+    Attn --> HeTVAE["HeTVAE: Heteroscedastic Temporal VAE"]
+```
+
+### Model Categories and Examples
+
+| Category | Notable Models | Key Capabilities |
+|----------|----------------|------------------|
+| RNN-based | GRU-ODE-Bayes, LatenODE | Continuous-time modeling of irregular observations |
+| GNN-based | GRIN, IGNNK | Leverages spatial-temporal correlations for imputation |
+| Generative | CSDI, TimeGAN, E2gan | Creates realistic synthetic values for missing data |
+| Attention-based | mTAND, STING | Focuses on relevant temporal patterns for imputation |
+| VAE-based | HeTVAE | Captures uncertainty in imputation values |
+
+### Popular Datasets
+
+Common datasets for evaluating imputation methods include:
+
+- **Healthcare**: MIMIC-III, PhysioNet, Human Activity
+- **Traffic**: METR-LA, PeMS-BAY, CER-E
+- **Environmental**: Air Quality, Climate, Wind
+- **Synthetic**: Various controlled missing patterns
+
+Sources: [README.md:200-231](), [README.md:204-212](), [README.md:220-224]()
+
+## Joint Probabilistic Forecasting and Imputation
+
+Some approaches address both tasks simultaneously or in an integrated manner:
+
+### CSDI: Conditional Score-based Diffusion Models
+
+CSDI represents a significant advancement in addressing both imputation and probabilistic forecasting through a unified framework:
+
+```mermaid
+flowchart LR
+    subgraph "CSDI Architecture"
+        direction TB
+        Input["Input Time Series\n(with missing values)"] --> Diffusion["Diffusion Process"]
+        Diffusion --> Denoising["Conditional Denoising"]
+        Denoising --> Output["Complete Series with\nUncertainty Estimates"]
+        
+        Condition["Conditioning\nInformation"] --> Denoising
+    end
+    
+    subgraph "Applications"
+        Output --> Imputation["Imputation"]
+        Output --> ProbForecast["Probabilistic Forecasting"]
+    end
+```
+
+CSDI iteratively denoises data while conditioning on observed values, producing both imputed values for missing data and probabilistic forecasts for future time points.
+
+### Other Integrated Approaches
+
+- **BiTGraph**: Biased Temporal Convolution Graph Network handles missing values during forecasting
+- **RadFlow**: Provides both imputation and prediction for network time series
+- **CF-RNN**: Conformal recurrent networks for reliable prediction intervals
+
+Sources: [README.md:158-159](), [README.md:148-151](), [README.md:214-215]()
+
+## Research Trends and Evolution
+
+The field has evolved significantly, with key trends including:
+
+1. **Integration of spatial and temporal information**: Moving from purely temporal models to those that capture spatial dependencies
+2. **Leveraging transformer architectures**: Adapting attention mechanisms for temporal uncertainty
+3. **Diffusion models**: Newest generation of approaches using score-based generative modeling
+4. **Domain adaptation**: Methods that transfer knowledge between different time series domains
+
+```mermaid
+timeline
+    title "Evolution of Probabilistic Forecasting & Imputation Methods"
+    
+    section 2018-2019
+        "Classical Methods": "Matrix Factorization\nInterpolation\nGANs"
+        "Early Deep Learning": "RNN-based models\nVAEs"
+    
+    section 2020
+        "Graph Integration": "GNNs for Spatial-Temporal\nGraph-augmented models"
+        "Attention Mechanisms": "Transformers adapted\nfor time series"
+    
+    section 2021-2022
+        "Diffusion Models": "Score-based modeling\nCSDI, TimeGrad"
+        "Joint Approaches": "Unified forecasting\nand imputation"
+```
+
+Sources: [README.md:178-180](), [README.md:184-190](), [README.md:158-165]()
+
+## Model Performance Considerations
+
+When selecting models for probabilistic forecasting or imputation, consider:
+
+1. **Data characteristics**: Multivariate vs. univariate, regular vs. irregular sampling
+2. **Missing pattern**: Random vs. structured missingness affects imputation approach
+3. **Uncertainty needs**: Whether calibrated probability distributions are required
+4. **Computational constraints**: Some methods (especially diffusion-based) are more computationally intensive
+5. **Domain knowledge**: Some models allow incorporating domain expertise as priors
+
+## Integration with Other Repository Components
+
+### Connection to Multivariable Forecasting
+
+The probabilistic forecasting methods extend the deterministic approaches covered in [Multivariable Time Series Forecasting](#2.1) by adding uncertainty quantification. Many models share similar backbone architectures but output distributions rather than point estimates.
+
+### Application to Domain-Specific Tasks
+
+The techniques documented here are applied to various domains covered in [Domain-Specific Applications](#2.3), including:
+
+- Healthcare: Patient trajectory prediction with uncertainty bounds
+- Finance: Stock movement prediction with confidence intervals
+- Transportation: Traffic flow forecasting with reliability estimates
+- Environmental: Weather forecasting with prediction intervals
+
+Sources: [README.md:83-93](), [README.md:282-306](), [README.md:418-451]()
+
+## Conclusion
+
+Probabilistic forecasting and imputation represent critical extensions to standard time series analysis, allowing for more robust decision-making under uncertainty and handling of incomplete data. The repository documents the rapid evolution of these fields, from traditional statistical approaches to modern deep learning architectures that leverage spatial-temporal patterns and generative modeling capabilities.
+
+As these fields continue to advance, we expect to see further integration between different time series tasks, more efficient uncertainty quantification methods, and improved performance on complex real-world datasets.
+
+---
+
+# Page: Domain-Specific Applications
+
+# Domain-Specific Applications
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+- [docs/Recent-Time-Series-Work-Group-by-Task.md](docs/Recent-Time-Series-Work-Group-by-Task.md)
+
+</details>
+
+
+
+This page documents specialized time series applications in the Time-Series-Works-Conferences repository. While general time series forecasting models (covered in [Multivariable Time Series Forecasting](#2.1) and [Probabilistic Forecasting and Imputation](#2.2)) address a wide range of problems, certain domains require specialized approaches due to their unique characteristics and challenges. This section focuses on domain-specific time series applications including demand prediction, travel time estimation, traffic location prediction, event prediction, stock prediction, and other specialized forecasting areas.
+
+## Overview of Domain-Specific Time Series Applications
+
+The repository categorizes domain-specific applications into several major categories, each with its own unique modeling approaches and datasets:
+
+```mermaid
+graph TD
+    TS["Time Series Domain Applications"] --> DP["Demand Prediction"]
+    TS --> TTE["Travel Time Estimation"]
+    TS --> TLP["Traffic Location Prediction"]
+    TS --> EP["Event Prediction"]
+    TS --> SP["Stock Prediction"]
+    TS --> OSA["Other Specialized Applications"]
+    
+    DP --> TP["Traffic Demand"]
+    DP --> MD["Market Demand"]
+    DP --> HD["Health Demand"]
+    
+    TTE --> RTT["Road Travel Time"]
+    TTE --> PTT["Public Transport Time"]
+    
+    TLP --> HPM["Human Mobility Prediction"]
+    TLP --> VTP["Vehicle Trajectory Prediction"]
+    
+    EP --> CP["Crime Prediction"]
+    EP --> TA["Traffic Accidents"]
+    EP --> DIS["Disease Outbreak"]
+    
+    SP --> SPP["Stock Price Prediction"]
+    SP --> SMP["Stock Movement Prediction"]
+    SP --> STP["Stock Trend Prediction"]
+    
+    OSA --> CY["Crop Yield"]
+    OSA --> WQ["Water Quality"]
+    OSA --> PP["Popularity Prediction"]
+```
+
+Sources: [README.md:278-371]()
+
+## Domain-Specific Models and Their Technical Approaches
+
+Different domain applications leverage various model architectures based on their specific requirements. The following diagram shows the primary technical approaches used across domain applications:
+
+```mermaid
+graph TD
+    M["Technical Approaches"] --> GNN["Graph Neural Networks"]
+    M --> RNN["Recurrent Networks (LSTM/GRU)"]
+    M --> T["Transformer Models"]
+    M --> A["Attention Mechanisms"]
+    M --> H["Hybrid Approaches"]
+    
+    GNN --> TLP["Traffic Location Prediction"]
+    GNN --> DP["Demand Prediction"]
+    
+    RNN --> SP["Stock Prediction"]
+    RNN --> EP["Event Prediction"]
+    
+    T --> TTE["Travel Time Estimation"]
+    T --> SP
+    
+    A --> TLP
+    A --> EP
+    
+    H --> OSA["Other Applications"]
+    H --> DP
+```
+
+Sources: [README.md:278-497](), [docs/Recent-Time-Series-Work-Group-by-Task.md:274-311]()
+
+## Demand Prediction
+
+Demand prediction is a crucial time series forecasting task focusing on predicting future resource needs across various domains including traffic flow, market demands, and health services.
+
+### Key Characteristics
+
+- **Spatial-Temporal Dependency**: Demand patterns often exhibit both spatial (between locations) and temporal (between timeframes) dependencies
+- **Multi-factor Influence**: External factors like weather, events, and holidays significantly impact demand patterns
+- **Data Heterogeneity**: Combines various data sources with different scales and formats
+
+### Notable Approaches and Models
+
+| Model Name | Architecture | Key Features | Primary Datasets |
+|------------|--------------|--------------|-----------------|
+| EAST-Net | Attention-based framework | Event-aware multimodal modeling | JONAS-NYC, COVID datasets |
+| CCRNN | Coupled layer-wise GNN | Transportation demand modeling | NYC Bike, NYC Taxi |
+| Ada-MSTNet | Multi-scale temporal network | Community-aware modeling | Baidu (Beijing, Shanghai) |
+| STMGCN | Spatial-temporal multi-graph CNN | Multi-graph relationship modeling | Beijing, Shanghai data |
+| CoST-Net | Co-prediction framework | Multiple transportation demands | NYC Bike, NYC Taxi |
+
+### Implementation Examples
+
+The repository provides links to various implementations using different frameworks:
+
+- Graph-based implementations in PyTorch: CCRNN, STMGCN, MPGCN 
+- Attention-based implementations: MultiAttConvLSTM, EAST-Net
+- Temporal modeling: Ada-MSTNet, CAS, ST-ED
+
+Sources: [README.md:278-305](), [docs/Recent-Time-Series-Work-Group-by-Task.md:285-290]()
+
+## Travel Time Estimation
+
+Travel time estimation (TTE) focuses on predicting the time required to travel between destinations, a critical component for navigation systems, ride-sharing platforms, and logistics planning.
+
+### Key Characteristics
+
+- **Road Network Constraints**: Models must consider the underlying road network topology
+- **Dynamic Traffic Conditions**: Travel times vary significantly based on real-time traffic conditions
+- **Route-specific Features**: Different route characteristics impact travel times
+- **Temporal Patterns**: Daily and weekly patterns strongly influence travel time prediction
+
+### Technical Approaches
+
+```mermaid
+graph TD
+    TTE["Travel Time Estimation"] --> RTR["Route Representation"]
+    TTE --> TF["Temporal Factors"]
+    TTE --> EF["External Factors"]
+    TTE --> Model["Model Architecture"]
+    
+    RTR --> RP["Road Path Embedding"]
+    RTR --> GE["Graph Embedding"]
+    RTR --> SE["Spatial Encoding"]
+    
+    TF --> HP["Historical Patterns"]
+    TF --> TD["Time-of-Day Features"]
+    TF --> DOW["Day-of-Week Features"]
+    
+    EF --> WC["Weather Conditions"]
+    EF --> EVT["Events/Holidays"]
+    EF --> DRV["Driver Behavior"]
+    
+    Model --> DL["Deep Learning Models"]
+    Model --> HET["Heterogeneous Networks"]
+    Model --> ATN["Attention Networks"]
+```
+
+### Notable Approaches and Models
+
+| Model Name | Key Technical Approach | Distinctive Features | Datasets |
+|------------|--------------|--------------|----------|
+| SSML | Self-supervised meta-learner | Transfer learning across cities | Baidu Maps (Taiyuan, Huizhou, Hefei) |
+| HetETA | Heterogeneous information network | Multi-source fusion | DiDi (Shenyang) |
+| CompactETA | Efficient inference system | Lightweight model for mobile deployment | DiDi (Beijing, Suzhou, Shenyang) |
+| ConSTGAT | Contextual spatial-temporal graph attention | Contextual awareness | Baidu Maps (Multiple cities) |
+| DeepTTE | End-to-end framework | Spatio-temporal feature extraction | Chengdu, Beijing |
+
+Sources: [README.md:316-336](), [docs/Recent-Time-Series-Work-Group-by-Task.md:320-334]()
+
+## Traffic Location Prediction
+
+Traffic location prediction focuses on forecasting the future locations or trajectories of moving entities (people, vehicles) based on historical patterns and contextual information.
+
+### Types of Location Prediction Tasks
+
+1. **Next Location Prediction**: Forecasting the next place a user will visit
+2. **Trajectory Prediction**: Predicting the complete path an entity will follow
+3. **Destination Prediction**: Estimating the final destination of a moving object
+
+### Technical Approaches and Models
+
+```mermaid
+graph TD
+    TLP["Traffic Location Prediction"] --> FE["Feature Extraction"]
+    TLP --> TS["Temporal Sequence Modeling"]
+    TLP --> SM["Spatial Modeling"]
+    TLP --> US["User/Entity Specific Modeling"]
+    
+    FE --> PF["POI Features"]
+    FE --> TF["Temporal Features"]
+    FE --> CF["Contextual Features"]
+    
+    TS --> RNN["RNN/LSTM Models"]
+    TS --> ATT["Attention Mechanisms"]
+    TS --> TGNN["Temporal Graph Networks"]
+    
+    SM --> GM["Geographical Modeling"]
+    SM --> GNN["Graph Neural Networks"]
+    SM --> CM["Convolutional Methods"]
+    
+    US --> PM["Personalization Module"]
+    US --> EM["Embedding Methods"]
+    US --> TL["Transfer Learning"]
+```
+
+### Notable Approaches and Models
+
+| Model | Primary Architecture | Key Innovation | Datasets |
+|-------|---------------------|----------------|----------|
+| GCDAN | Graph convolutional dual-attention | Dual-attention mechanism | Gowalla, Foursquare, WiFi-Trace |
+| MobTCast | Trajectory forecasting | Auxiliary trajectory information | Gowalla, FS-NYC, FS-TKY |
+| Social-BiGAT | Bicycle-GAN + attention | Social dynamics modeling | ETH-UCY datasets |
+| DeepMove | Attentional RNN | Historical and current preferences | Foursquare, Mobile app data |
+| STGAT | Spatial-temporal graph attention | Modeling spatial-temporal interactions | ETH, Hotel, Zara datasets |
+
+Sources: [README.md:347-372](), [docs/Recent-Time-Series-Work-Group-by-Task.md:351-370]()
+
+## Event Prediction
+
+Event prediction focuses on forecasting discrete events such as traffic accidents, crimes, disease outbreaks, and other rare but significant occurrences based on historical patterns and contextual factors.
+
+### Key Characteristics
+
+- **Rare Event Challenge**: Most events of interest are relatively rare, creating class imbalance issues
+- **Spatial-Temporal Dependencies**: Events often cluster in space and time with complex dependencies
+- **Multi-factor Causality**: Multiple factors contribute to event occurrence with complex interactions
+- **Heterogeneous Data Sources**: Requires integration of various data types (text, images, time series)
+
+### Technical Framework
+
+```mermaid
+graph TD
+    EP["Event Prediction"] --> DR["Data Representation"]
+    EP --> FA["Feature Analysis"]
+    EP --> MM["Model Methods"]
+    EP --> EV["Evaluation"]
+    
+    DR --> ST["Spatial-Temporal Encoding"]
+    DR --> HG["Heterogeneous Graphs"]
+    DR --> MT["Multi-modal Data Fusion"]
+    
+    FA --> CF["Contextual Features"]
+    FA --> HF["Historical Patterns"]
+    FA --> EXF["External Factors"]
+    
+    MM --> DP["Deep Learning"]
+    MM --> GN["Graph Networks"]
+    MM --> RL["Reinforcement Learning"]
+    
+    EV --> PM["Precision/Recall"]
+    EV --> EM["Early Warning Metrics"]
+    EV --> LE["Location Error"]
+```
+
+### Notable Approaches and Models
+
+| Model | Primary Focus | Key Technical Approach | Datasets |
+|-------|--------------|------------------------|----------|
+| GSNet | Traffic accident risk | Geographical and semantic correlation | NYC, Chicago |
+| STCGNN | Multi-incident co-prediction | Spatio-temporal-categorical graph networks | NYC/CHI/SF Incidents |
+| RiskOracle | Citywide traffic accidents | Minute-level forecasting framework | Beijing, Suzhou, Shenyang |
+| DynamicGCN | Social events | Dynamic context graphs | Thailand, Egypt, India, Russia |
+| LANTERN | High-dimensional event sequences | Efficient sampling mechanism | MemeTracker, Weibo |
+
+Sources: [README.md:383-406](), [docs/Recent-Time-Series-Work-Group-by-Task.md:387-403]()
+
+## Stock Prediction
+
+Stock prediction represents one of the most extensively studied domain-specific time series applications, focusing on forecasting stock prices, movements, and trends to enable informed investment decisions.
+
+### Key Prediction Tasks
+
+1. **Stock Price Prediction**: Forecasting exact stock price values
+2. **Stock Movement Prediction**: Predicting directional movement (up/down)
+3. **Stock Trend Prediction**: Identifying longer-term price patterns
+4. **Stock Selection**: Selecting stocks with high expected returns
+
+### Technical Approaches
+
+```mermaid
+graph TD
+    SP["Stock Prediction"] --> DT["Data Types"]
+    SP --> FA["Feature Analysis"]
+    SP --> MA["Model Architectures"]
+    
+    DT --> PD["Price Data"]
+    DT --> TD["Technical Indicators"]
+    DT --> FD["Fundamental Data"]
+    DT --> AD["Alternative Data"]
+    
+    FA --> TF["Temporal Features"]
+    FA --> RF["Relational Features"]
+    FA --> SF["Sentiment Features"]
+    FA --> MF["Market Features"]
+    
+    MA --> DL["Deep Learning"]
+    MA --> ATT["Attention Mechanisms"]
+    MA --> GNN["Graph Neural Networks"]
+    MA --> HM["Hybrid Models"]
+```
+
+### Notable Approaches and Models
+
+| Model | Focus | Key Innovation | Datasets |
+|-------|-------|----------------|----------|
+| NumHTML | Financial forecasting | Numeric-oriented hierarchical transformer | Earnings calls |
+| TRA | Stock trading patterns | Temporal routing adaptor | CSI800 |
+| STHAN-SR | Stock selection | Spatiotemporal hypergraph attention | NASDAQ, NYSE, TSE |
+| REST | Stock trend forecasting | Relational event-driven modeling | CSI300, CSI500 |
+| LSTM-RGCN | Overnight movement | Stock relation graph modeling | TPX500, TPX100 |
+
+### Model Categories and Technical Implementation
+
+Stock prediction models in the repository generally fall into three technical categories:
+
+1. **Temporal Models**: Primarily focus on capturing time dependencies (LSTM-RGCN, HMG-TF)
+2. **Graph-based Models**: Model relationships between stocks (STHAN-SR, AD-GAT)
+3. **NLP-augmented Models**: Incorporate textual information (NumHTML, HTML)
+
+Sources: [README.md:418-450](), [docs/Recent-Time-Series-Work-Group-by-Task.md:422-449]()
+
+## Other Specialized Applications
+
+Beyond the major categories above, the repository covers a diverse range of other specialized time series applications spanning domains from healthcare to agriculture.
+
+### Notable Application Areas
+
+| Application Domain | Key Models | Distinctive Approaches | Datasets |
+|--------------------|-----------|-----------------------|----------|
+| Crop Yield Prediction | GNN-RNN | Geospatial-temporal modeling | American Crop data |
+| Epidemic/Disease Prediction | CausalGNN, PopNet | Causal inference, population-level modeling | Global/US disease data |
+| Crime Prediction | ST-SHN | Sequential hypergraph networks | NYC, Chicago |
+| Health Risk Prediction | UNITE, HiTANet | Multi-source data fusion | NASH, AD, COPD, MIMIC-III |
+| Water Quality | PDE-DGN | Differential equation driven networks | Stream water temperature |
+| Lightning Prediction | HSTN, LightNet | Heterogeneous spatiotemporal modeling | Lightning datasets |
+
+### Technical Implementation Pipeline
+
+The implementation of domain-specific time series applications typically follows this pipeline:
+
+```mermaid
+flowchart LR
+    DC["Data Collection"] --> DP["Data Preprocessing"]
+    DP --> FE["Feature Engineering"]
+    FE --> MS["Model Selection"]
+    MS --> TR["Training"]
+    TR --> EV["Evaluation"]
+    EV --> DP["Deployment"]
+    
+    DC --> D1["Domain-Specific Data"]
+    DC --> D2["General Time Series Data"]
+    DC --> D3["External Factors Data"]
+    
+    DP --> P1["Missing Value Handling"]
+    DP --> P2["Normalization"]
+    DP --> P3["Domain-Specific Processing"]
+    
+    FE --> F1["Temporal Features"]
+    FE --> F2["Spatial Features"]
+    FE --> F3["Domain Knowledge Features"]
+    
+    MS --> M1["Transfer Learning"]
+    MS --> M2["Domain-Adapted Models"]
+    MS --> M3["Ensemble Approaches"]
+```
+
+Sources: [README.md:458-496](), [docs/Recent-Time-Series-Work-Group-by-Task.md:462-495]()
+
+## Datasets for Domain-Specific Applications
+
+The repository catalogs numerous datasets across different domains. The following table highlights key datasets for each domain-specific application:
+
+| Domain | Major Datasets | Data Characteristics | Availability |
+|--------|---------------|----------------------|--------------|
+| Demand Prediction | NYC Bike/Taxi, DiDi, PeMS | Spatial-temporal, multiple cities | Many publicly available |
+| Travel Time Estimation | Baidu, DiDi, GTFS, Porto | Road network, temporal, traffic | Some require application |
+| Location Prediction | Gowalla, Foursquare, ETH-UCY | Human mobility, trajectories | Mostly public |
+| Event Prediction | NYC/Chicago Incidents, MemeTracker | Discrete events, contextual | Public |
+| Stock Prediction | CSI300/800, NASDAQ, NYSE | Financial time series, multi-factor | Many commercial |
+| Healthcare | MIMIC-III, NASH, AD | Patient records, temporal, sparse | Often restricted |
+
+Sources: [README.md:278-496](), [docs/Recent-Time-Series-Work-Group-by-Task.md:285-495]()
+
+## Implementation Frameworks and Tools
+
+The repository catalogs implementations across multiple frameworks, with the following distribution:
+
+| Framework | Prevalence | Notable Models | Domain Strength |
+|-----------|------------|----------------|----------------|
+| PyTorch | Most common | iTransformer, GRIN, STGCN | Graph models, transformers |
+| TensorFlow/Keras | Common | DeepMove, STDN, ARNN | RNN-based models |
+| MXNet | Less common | STFGNN, STSGCN | Graph models |
+| Others (R, Python) | Specialized | NGBoost, LightNet | Statistical approaches |
+
+Sources: [README.md:100-272](), [docs/Recent-Time-Series-Work-Group-by-Task.md:285-495]()
+
+## Integration with Other Time Series Tasks
+
+Domain-specific applications often incorporate techniques from more general time series tasks:
+
+1. **Forecasting Techniques**: Domain applications leverage general forecasting architectures but adapt them to domain characteristics
+2. **Imputation Methods**: Many domain datasets contain missing values requiring specialized imputation
+3. **Anomaly Detection**: Some domain applications (like stock prediction) incorporate anomaly detection
+
+For more details on these general techniques, see [Multivariable Time Series Forecasting](#2.1) and [Time Series Imputation](#2.2).
+
+Sources: [README.md:80-225]()
+
+## Summary
+
+Domain-specific time series applications represent specialized adaptations of general time series techniques to address unique challenges in fields ranging from transportation to finance and healthcare. These applications typically integrate domain knowledge with advanced modeling approaches to achieve superior performance on specific tasks.
+
+The repository provides a comprehensive collection of papers, models, and implementations across these domain-specific applications, serving as a valuable resource for researchers and practitioners working in these fields.
+
+---
+
+# Page: Time Series Terminology and Abbreviations
+
+# Time Series Terminology and Abbreviations
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+
+</details>
+
+
+
+## Purpose and Scope
+
+This document provides a comprehensive reference for terminology and abbreviations used throughout the Time-Series-Works-Conferences repository. It serves as a guide to help researchers and practitioners understand the specialized language used in time series analysis papers and methodologies. The focus is on terms related to deep learning and machine learning approaches for time series tasks.
+
+For information on specific time series modeling approaches, see [Multivariable Time Series Forecasting](#2.1) and [Probabilistic Forecasting and Imputation](#2.2).
+
+## Common Abbreviations
+
+This section presents the standard abbreviations used throughout the repository's paper listings and categorizations. These abbreviations help reduce repetition while maintaining clarity in the extensive paper listings.
+
+| Full Name | Abbreviation |
+|:--|:--|
+| Adaptive GNN | AGNN |
+| Attention | Attn |  
+| AutoRegression (RNN, GRU, LSTM) | AR |
+| Controlled Differential Equations | CDE |  
+| Contrastive Learning | CL |
+| Encoder Decoder | EncDec |  
+| Ensemble | Ens |
+| Feature Decomposed | FeaD |
+| Federated Learning | FL |  
+| Generative Adversarial Network | GAN |
+| Graph Convolutional Network | GCN |   
+| Hour, Day, Week, Month, etc. | HA |
+| Heterogeneous GNN | HGNN |
+| Multiple Graph | MGNN |
+| Memory | Mem |   
+| Meta Learning | MetaL |   
+| MultiTask | MulT |     
+| Network Architecture Search | NAS |  
+| Ordinary Differential Equations | ODE |
+| Statistic | Stat |
+| TCN (WaveNet) | TCN |   
+| Temporal Graph Network | TGN |   
+| Transformer | Trans |  
+| Transfer Learning | TransL |    
+| Variational Auto-Encoder | VAE |
+
+Sources: [README.md:53-79](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+## Time Series Modeling Paradigms
+
+This section explains the main modeling paradigms used in time series analysis papers categorized in the repository.
+
+### Temporal Model Architectures
+
+```mermaid
+graph LR
+    subgraph "Time Series Model Architectures"
+        TS["Time Series Models"] --> RNN["Recurrent Neural Networks"]
+        TS --> CNN["Convolutional Neural Networks"]
+        TS --> Trans["Transformer-based Models"]
+        TS --> Diff["Diffusion Models"]
+        TS --> GNN["Graph Neural Networks"]
+        TS --> LLM["Large Language Models"]
+        
+        RNN --> LSTM["LSTM/GRU"]
+        RNN --> TCN["Temporal Conv Networks"]
+        
+        Trans --> Informer["Informer"]
+        Trans --> Autoformer["Autoformer"]
+        Trans --> FEDformer["FEDformer"]
+        Trans --> iTransformer["iTransformer"]
+        
+        LLM --> TimeLLM["Time-LLM"]
+        LLM --> TEMPO["TEMPO"]
+        
+        Diff --> TimeGrad["TimeGrad"]
+        Diff --> CSDI["CSDI"]
+        
+        GNN --> STGNN["Spatial-Temporal GNN"]
+    end
+```
+
+Sources: [README.md:97-187](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+### Forecasting Approaches
+
+```mermaid
+flowchart TD
+    subgraph "Time Series Forecasting Approaches"
+        A["Forecasting Approaches"] --> B["Point Forecasting"]
+        A --> C["Probabilistic Forecasting"]
+        A --> D["Multi-step Forecasting"]
+        
+        B --> B1["Autoregressive"]
+        B --> B2["Direct"]
+        B --> B3["Multi-task"]
+        
+        C --> C1["Distribution-based"]
+        C --> C2["Quantile Regression"]
+        C --> C3["Diffusion Models"]
+        C --> C4["Normalizing Flows"]
+        
+        D --> D1["Recursive"]
+        D --> D2["Direct Multi-step"]
+        D --> D3["Sequence-to-Sequence"]
+    end
+```
+
+Sources: [README.md:81-93](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:478-531](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+## Time Series Tasks
+
+The repository organizes papers by task categories. This section explains the primary tasks in time series analysis covered in the repository.
+
+### Key Time Series Tasks
+
+```mermaid
+graph TD
+    subgraph "Major Time Series Tasks"
+        TSML["Time Series Machine Learning"] --> TSF["Time Series Forecasting"]
+        TSML --> TSI["Time Series Imputation"]
+        TSML --> TSAD["Time Series Anomaly Detection"]
+        TSML --> TSC["Time Series Classification"]
+        TSML --> TSCl["Time Series Clustering"]
+        
+        TSF --> MVTSF["Multivariate TS Forecasting"]
+        TSF --> PTSF["Probabilistic TS Forecasting"]
+        TSF --> DPTS["Demand Prediction TS"]
+        TSF --> TTETS["Travel Time Estimation"]
+        
+        TSI --> MVI["Missing Value Imputation"]
+        TSI --> ITS["Irregular Time Series"]
+        
+        TSAD --> PAD["Point Anomaly Detection"]
+        TSAD --> CSAD["Contextual Sequence Anomaly"]
+    end
+```
+
+Sources: [README.md:82-93](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+## Terminology by Domain
+
+### General Time Series Concepts
+
+| Term | Definition |
+|:--|:--|
+| Multivariate Time Series | Data that tracks multiple variables over time (e.g., traffic data from multiple sensors) |
+| Univariate Time Series | Data that tracks a single variable over time |
+| Stationarity | Property where statistical properties like mean and variance don't change over time |
+| Seasonality | Regular patterns that repeat at fixed intervals |
+| Trend | Long-term progression (increase or decrease) in the data |
+| Autocorrelation | Correlation of a signal with a delayed copy of itself |
+| Long-term Dependencies | Relationships between data points separated by large time intervals |
+| Point Forecasting | Predicting a single future value |
+| Probabilistic Forecasting | Predicting a distribution of possible future values |
+
+Sources: [README.md:81-93](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:478-533](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+### Neural Network Models for Time Series
+
+| Model Type | Description |
+|:--|:--|
+| RNN (Recurrent Neural Network) | Neural networks designed to process sequential data using recurrence |
+| LSTM (Long Short-Term Memory) | Special RNN variant designed to capture long-term dependencies |
+| GRU (Gated Recurrent Unit) | Simplified version of LSTM with fewer parameters |
+| TCN (Temporal Convolutional Network) | Convolutional networks adapted for temporal data processing |
+| Transformer | Architecture using self-attention mechanisms, originally for NLP but adapted for time series |
+| GNN (Graph Neural Network) | Neural networks operating on graph-structured data, useful for spatial-temporal data |
+| CNN (Convolutional Neural Network) | Neural networks using convolutional layers, adapted for time series |
+| VAE (Variational Auto-Encoder) | Generative models using variational inference |
+| GAN (Generative Adversarial Network) | Generative models with generator and discriminator components |
+
+Sources: [README.md:53-79](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:97-187](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+### Time Series Transformer Architectures
+
+```mermaid
+graph TD
+    subgraph "Transformer-based Architectures for Time Series"
+        TST["Time Series Transformers"] --> Inform["Informer"]
+        TST --> Auto["Autoformer"]
+        TST --> FED["FEDformer"]
+        TST --> Pyra["Pyraformer"]
+        TST --> Patch["PatchTST"]
+        TST --> iTrans["iTransformer"]
+        TST --> LogS["LogSparse Transformer"]
+        TST --> Times["TimesNet"]
+        
+        Inform --> Auto
+        Auto --> FED
+        
+        TST --> LL["LLM-based Approaches"]
+        LL --> TimeLLM["Time-LLM"]
+        LL --> TEMPO["TEMPO"]
+        LL --> AutoTime["AutoTimes"]
+    end
+```
+
+Sources: [README.md:138-143](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:204-207](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:366-367](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+## Specialized Terminology
+
+### Probabilistic Forecasting Terms
+
+| Term | Description |
+|:--|:--|
+| Quantile Forecasting | Predicting specific quantiles of the forecast distribution |
+| Diffusion Models | Generative models that gradually add and remove noise |
+| Normalizing Flows | Models that transform simple distributions into complex ones |
+| Conformal Prediction | Method for creating prediction intervals with statistical guarantees |
+| Copula | Statistical method for modeling multivariate dependencies |
+| Score Matching | Technique for training models by matching score functions |
+
+Sources: [README.md:482-488](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:509-521](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+### Imputation and Anomaly Detection Terms
+
+| Term | Description |
+|:--|:--|
+| Missing Value Imputation | Filling in missing values in time series data |
+| Irregularly Sampled Time Series | Time series with non-uniform time intervals between observations |
+| Point Anomaly | Individual data points that deviate significantly from expected patterns |
+| Contextual Anomaly | Data points that are anomalous in a specific context |
+| Collective Anomaly | Collection of related data points that are anomalous as a group |
+| Reconstruction-based Detection | Anomaly detection using reconstruction error from autoencoders |
+| Forecasting-based Detection | Anomaly detection by comparing actual values with forecasts |
+
+Sources: [README.md:558-593](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:599-609](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+## Common Datasets by Task
+
+```mermaid
+graph TD
+    subgraph "Primary Time Series Datasets by Task"
+        Datasets["Time Series Datasets"] --> MTSFD["Multivariate TS Forecasting"]
+        Datasets --> TSID["TS Imputation"]
+        Datasets --> TSADD["TS Anomaly Detection"]
+        
+        MTSFD --> ETT["ETT (Electricity Transformer Temperature)"]
+        MTSFD --> METR["METR-LA (Traffic)"]
+        MTSFD --> PEMS["PEMS-BAY/03/04/07/08 (Traffic)"]
+        MTSFD --> ECL["Electricity"]
+        MTSFD --> Weather["Weather"]
+        MTSFD --> Exchange["Exchange"]
+        
+        TSID --> PhysioNet["PhysioNet"]
+        TSID --> AirQuality["Air Quality"]
+        TSID --> MIMIC["MIMIC-III"]
+        
+        TSADD --> SMD["Server Machine Dataset (SMD)"]
+        TSADD --> SMAP["SMAP"]
+        TSADD --> MSL["Mars Science Laboratory (MSL)"]
+        TSADD --> SWaT["Secure Water Treatment (SWaT)"]
+        TSADD --> PSM["Power System Machine (PSM)"]
+    end
+```
+
+Sources: [README.md:97-187](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:558-593](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:599-609](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+## Advanced Technical Terminology
+
+### Model Components and Techniques
+
+| Term | Description |
+|:--|:--|
+| Attention Mechanism | Technique for weighing different parts of the input data |
+| Self-Attention | Attention mechanism where the input attends to itself |
+| Encoder-Decoder | Architecture with separate components for encoding input and generating output |
+| Autoregressive | Models that use past outputs as inputs for future predictions |
+| Feature Decomposition | Breaking down time series into component parts (trend, seasonality, etc.) |
+| Fourier Transform | Mathematical transform converting time domain to frequency domain |
+| State-Space Models | Models representing systems with internal state variables |
+| Spatio-Temporal | Models capturing both spatial and temporal relationships |
+| Transfer Learning | Using knowledge from one task to improve performance on another |
+| Meta-Learning | Learning how to learn, adapting quickly to new tasks |
+
+Sources: [README.md:53-79](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:178-187](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+## Relationship Between Methodology and Tasks
+
+```mermaid
+graph TD
+    subgraph "Methodology-Task Relationship in Repository"
+        Methods["Methodologies"] --> Tasks["Time Series Tasks"]
+        
+        Methods --> RNN["RNN/LSTM/GRU"]
+        Methods --> Trans["Transformers"]
+        Methods --> GNN["Graph Neural Networks"]
+        Methods --> Diff["Diffusion Models"]
+        Methods --> LLM["LLM-based Models"]
+        
+        Tasks --> TSF["Forecasting"]
+        Tasks --> PTF["Probabilistic Forecasting"]
+        Tasks --> TSI["Imputation"]
+        Tasks --> TSAD["Anomaly Detection"]
+        
+        RNN --> TSF
+        RNN --> TSI
+        
+        Trans --> TSF
+        Trans --> PTF
+        
+        GNN --> TSF
+        GNN --> TSI
+        
+        Diff --> PTF
+        Diff --> TSI
+        
+        LLM --> TSF
+    end
+```
+
+Sources: [README.md:81-93](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:97-187](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md), [README.md:478-533](https://github.com/lixus7/Time-Series-Works-Conferences/blob/main/README.md)
+
+## Conclusion
+
+This terminology guide serves as a reference for understanding the specialized language used in time series research papers collected in the repository. The abbreviations and terms cover the main modeling approaches, tasks, and techniques in time series analysis, with a focus on deep learning methods. For detailed information about specific papers and implementations, refer to the corresponding task sections in the repository.
+
+---
+
+# Page: Documentation Website
+
+# Documentation Website
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [docs/.nojekyll](docs/.nojekyll)
+- [docs/_sidebar.md](docs/_sidebar.md)
+- [docs/index.html](docs/index.html)
+
+</details>
+
+
+
+The Documentation Website serves as the user-friendly interface for accessing the Time-Series-Works-Conferences repository content. This page explains the technical architecture of the documentation site, how it's configured, and how it renders content for users. For information about the actual research content organization, see [Time Series Research Collection](#2).
+
+## Documentation Site Architecture
+
+The documentation website uses Docsify.js, a lightweight documentation site generator that dynamically renders Markdown files into HTML. Unlike traditional static site generators, Docsify doesn't generate static HTML files but instead loads and parses Markdown files on-the-fly in the browser.
+
+```mermaid
+flowchart TB
+    subgraph "Documentation Website Architecture"
+        IndexHTML["index.html (Entry Point)"]
+        DocsifyJS["Docsify.js (Rendering Engine)"]
+        MarkdownFiles["Markdown Content Files"]
+        SidebarFile["_sidebar.md (Navigation)"]
+        NojekyllFile[".nojekyll (GitHub Pages Config)"]
+        
+        IndexHTML -->|"Configures"| DocsifyJS
+        DocsifyJS -->|"Renders"| MarkdownFiles
+        DocsifyJS -->|"Loads"| SidebarFile
+        NojekyllFile -->|"Ensures correct processing on"| GitHubPages["GitHub Pages"]
+    end
+    
+    User["End User"] -->|"Accesses via browser"| GitHubPages
+    GitHubPages -->|"Serves"| IndexHTML
+```
+
+Sources: [docs/index.html:1-32](), [docs/_sidebar.md:1-3](), [docs/.nojekyll:1]()
+
+## Core Configuration
+
+The documentation site is configured in the main `index.html` file, which sets up Docsify and its various plugins. The key configuration parameters define how the site behaves and renders content.
+
+```mermaid
+flowchart LR
+    subgraph "Docsify Configuration"
+        Config["window.$docsify Configuration"]
+        
+        Config -->|"repo"| GitHubRepo["GitHub Repository Link"]
+        Config -->|"search"| SearchConfig["Search Configuration"]
+        Config -->|"loadSidebar"| SidebarConfig["Sidebar Enable"]
+        Config -->|"subMaxLevel"| SubLevelConfig["Sidebar Nesting (2 levels)"]
+        Config -->|"loadNavbar"| NavbarConfig["Navbar Enable"]
+        Config -->|"autoHeader"| HeaderConfig["Auto Header"]
+    end
+    
+    subgraph "Plugins"
+        SearchPlugin["Search Plugin"]
+        ZoomPlugin["Image Zoom Plugin"]
+        CopyCodePlugin["Code Copy Plugin"]
+        DocsifyCore["Docsify Core"]
+    end
+```
+
+Sources: [docs/index.html:13-23](), [docs/index.html:24-31]()
+
+### Configuration Details
+
+The `index.html` file contains the following key configuration settings for the documentation site:
+
+| Configuration Parameter | Value | Purpose |
+|------------------------|-------|---------|
+| `repo` | https://github.com/lixus7/Time-Series-Works-Conferences | Links to the GitHub repository and displays the GitHub corner icon |
+| `search` | 'auto' | Enables automatic global search functionality |
+| `loadSidebar` | true | Loads the sidebar from `_sidebar.md` file |
+| `subMaxLevel` | 2 | Sets maximum nesting level for sidebar navigation |
+| `loadNavbar` | true | Enables navbar loading from `_navbar.md` |
+| `autoHeader` | true | Automatically adds headers to content pages |
+
+Sources: [docs/index.html:14-22]()
+
+### Plugins
+
+The documentation site utilizes several Docsify plugins to enhance functionality:
+
+1. **Search Plugin**: Enables full-text search across all content pages
+2. **Image Zoom Plugin**: Allows users to click and zoom in on images
+3. **Code Copy Plugin**: Adds copy buttons to code blocks for easy copying
+
+Sources: [docs/index.html:24-29]()
+
+## Content Structure and Navigation
+
+The documentation website's navigation is primarily controlled through the `_sidebar.md` file, which defines the main sections of the site. The current structure includes three main sections:
+
+```mermaid
+graph TD
+    subgraph "Content Structure"
+        Root["Documentation Home"]
+        TimeSeriesWork["Recent Time Series Work Group by Task"]
+        Conferences["Conferences"]
+        Contact["Contact"]
+        
+        Root -->|"Navigation Link"| TimeSeriesWork
+        Root -->|"Navigation Link"| Conferences
+        Root -->|"Navigation Link"| Contact
+    end
+```
+
+Sources: [docs/_sidebar.md:1-3]()
+
+Each item in the sidebar links to a corresponding Markdown file in the `docs` directory. For example, the "Recent Time Series Work Group by Task" item links to the `Recent-Time-Series-Work-Group-by-Task.md` file.
+
+## Rendering Process
+
+When a user accesses the documentation website, the following process occurs:
+
+```mermaid
+sequenceDiagram
+    participant User as "User (Browser)"
+    participant GHP as "GitHub Pages"
+    participant Index as "index.html"
+    participant Docsify as "Docsify.js"
+    participant Markdown as "Markdown Files"
+    
+    User->>GHP: Access site URL
+    GHP->>User: Serve index.html
+    User->>Index: Load page
+    Index->>User: Load Docsify framework
+    User->>Docsify: Initialize
+    Docsify->>Markdown: Request _sidebar.md
+    Markdown->>Docsify: Return sidebar content
+    Docsify->>User: Render sidebar
+    User->>Docsify: Click on content link
+    Docsify->>Markdown: Request specific .md file
+    Markdown->>Docsify: Return markdown content
+    Docsify->>User: Parse and render HTML
+```
+
+Sources: [docs/index.html:1-32]()
+
+### Key Features of the Rendering Process
+
+1. **Dynamic Rendering**: Docsify converts Markdown to HTML on-the-fly in the browser
+2. **No Build Step**: Unlike static site generators, Docsify doesn't require a build process
+3. **GitHub Pages Integration**: The `.nojekyll` file ensures GitHub Pages doesn't process the site with Jekyll
+
+Sources: [docs/.nojekyll:1](), [docs/index.html:11-32]()
+
+## How To Navigate the Documentation Site
+
+### Sidebar Navigation
+
+The sidebar provides the main navigation structure for the documentation site. Currently, it contains three main sections:
+
+1. **Recent Time Series Work Group by Task**: Contains the main research paper collection organized by task categories
+2. **Conferences**: Lists relevant conferences and their details
+3. **Contact**: Provides contact information for the repository maintainers
+
+Sources: [docs/_sidebar.md:1-3]()
+
+### Search Functionality
+
+The documentation site includes a full-text search feature that allows users to search across all content pages. The search is configured with the `search: 'auto'` parameter in the Docsify configuration.
+
+Sources: [docs/index.html:17](), [docs/index.html:25]()
+
+## GitHub Pages Configuration
+
+The documentation site is hosted on GitHub Pages and includes a `.nojekyll` file to prevent GitHub's Jekyll processor from processing the site. This is required for Docsify to function correctly on GitHub Pages.
+
+Sources: [docs/.nojekyll:1]()
+
+## Technical Implementation Summary
+
+The documentation website is a lightweight, browser-based rendering system with these key components:
+
+| Component | File | Purpose |
+|-----------|------|---------|
+| Entry Point | `index.html` | Main HTML file that loads Docsify and contains configuration |
+| Navigation | `_sidebar.md` | Defines the sidebar navigation structure |
+| GitHub Pages Config | `.nojekyll` | Prevents Jekyll processing on GitHub Pages |
+| Content | `*.md` files | Markdown files containing the actual documentation content |
+| Rendering Engine | Docsify.js | JavaScript library that converts Markdown to HTML |
+
+Sources: [docs/index.html:1-32](), [docs/_sidebar.md:1-3](), [docs/.nojekyll:1]()
+
+---
+
+# Page: Conference Resources
+
+# Conference Resources
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+- [docs/Conferences.md](docs/Conferences.md)
+
+</details>
+
+
+
+## Purpose and Scope
+
+This page documents the conference resources available in the Time-Series-Works-Conferences repository. It covers how conference information is tracked, organized, and accessed to facilitate time series research. The conference resources provide a comprehensive reference for researchers to stay updated on relevant academic venues, submission deadlines, and accepted papers in the time series domain. For information about external resources like Google Drive and OneDrive paper collections, see [External Resources](#5).
+
+Sources: [README.md:7-10]()
+
+## Conference Tracking System
+
+The repository maintains a structured system for tracking major AI/ML conferences relevant to time series research. This includes historical conference information as well as upcoming events. The tracking system serves several purposes:
+
+1. Providing links to accepted papers from past conferences
+2. Tracking submission deadlines for upcoming conferences
+3. Maintaining a backlog of future conferences to monitor
+4. Offering convenient access to conference websites and paper listings
+
+### Conference Backlog System
+
+The repository maintains a "Backlog" system at the top of the README file to track upcoming conferences that will be added to the resource list once their papers are published.
+
+```
+# Backlog (To do): KDD 2025, ...
+```
+
+This allows researchers to anticipate which conference proceedings will be added to the collection in the future.
+
+Sources: [README.md:3]()
+
+## Conference Information Structure
+
+The conference information is primarily stored in the Conferences.md file, which provides a well-organized table of major AI/ML conferences relevant to time series research.
+
+```mermaid
+graph TD
+    subgraph "Conference Resources Organization"
+        ConferencesMD["Conferences.md"] --> TableOfConferences["Table of Conferences"]
+        ConferencesMD --> UsefulWebsites["Useful Websites"]
+        
+        TableOfConferences --> |Contains| ConferenceEntries["Conference Entries"]
+        
+        ConferenceEntries --> |Has| ConfName["Conference Name"]
+        ConferenceEntries --> |Has| SourceLink["Source Link to Papers"]
+        ConferenceEntries --> |Has| Deadline["Submission Deadline"]
+        ConferenceEntries --> |Has| Notification["Notification Date"]
+        
+        UsefulWebsites --> CCFDeadlines["CCF Conference Deadlines"]
+        UsefulWebsites --> ConferenceEye["Conference Eye (会议之眼)"]
+        UsefulWebsites --> Call4Papers["Call4Papers"]
+        UsefulWebsites --> ConferenceList["Conference List"]
+    end
+    
+    READMEFile["README.md"] --> |References| ConferencesMD
+    READMEFile --> |Contains| ConferenceBacklog["Conference Backlog"]
+    
+    classDef default stroke:#333,stroke-width:1px;
+```
+
+Sources: [docs/Conferences.md:11-21](), [docs/Conferences.md:22-33]()
+
+## Major Tracked Conferences
+
+The repository systematically tracks the following major conferences that frequently publish time series research:
+
+| Conference | Description | Relevance to Time Series |
+|------------|-------------|--------------------------|
+| AAAI | Association for the Advancement of Artificial Intelligence | Publishes broad AI research including time series forecasting |
+| IJCAI | International Joint Conference on Artificial Intelligence | Features various time series applications |
+| KDD | Knowledge Discovery and Data Mining | Strong focus on time series mining and forecasting |
+| WWW | The Web Conference | Web-based time series applications |
+| ICLR | International Conference on Learning Representations | Deep learning approaches for time series |
+| ICML | International Conference on Machine Learning | Core machine learning techniques for time series |
+| NeurIPS | Neural Information Processing Systems | Neural approaches to time series problems |
+| CIKM | Conference on Information and Knowledge Management | Information extraction from time series |
+| WSDM | Web Search and Data Mining | Web-related time series mining |
+
+Each conference section provides links to accepted papers, submission deadlines, and notification dates when available.
+
+Sources: [docs/Conferences.md:34-136]()
+
+## Conference Resource Integration
+
+The conference resources are integrated with the paper collection system to provide a comprehensive research reference. The following diagram illustrates how conference information is connected to the paper listings in the repository:
+
+```mermaid
+flowchart TD
+    subgraph "Conference Information System"
+        ConferencesMD["Conferences.md"] --> ConfTable["Conference Tables"]
+        ConferencesMD --> ExternalLinks["External Conference Links"]
+        ConfTable --> |Lists| PaperSources["Paper Source Links"]
+        ConfTable --> |Provides| DeadlineInfo["Submission Deadlines"]
+    end
+    
+    subgraph "Paper Organization System"
+        README["README.md"] --> TaskCategories["Task Categories"]
+        TaskCategories --> PaperEntries["Paper Entries"]
+        PaperEntries --> |Contains| PaperInfo["Paper Information"]
+        PaperInfo --> |Has| PubVenue["Publication Venue"]
+        PaperInfo --> |Has| Model["Model Name"]
+        PaperInfo --> |Has| Dataset["Dataset"]
+        PaperInfo --> |Has| CodeRepo["Code Repository"]
+    end
+    
+    ConferencesMD -.->|Referenced from| README
+    PubVenue -.->|References| ConfTable
+    PaperSources -.->|Used to update| PaperEntries
+    
+    subgraph "User Interaction"
+        User["Researcher"] --> |Browses| README
+        User --> |Consults| ConferencesMD
+        User --> |Follows| ExternalLinks
+        User --> |Tracks| DeadlineInfo
+    end
+    
+    classDef default stroke:#333,stroke-width:1px;
+```
+
+Sources: [README.md:82-93](), [docs/Conferences.md:22-33]()
+
+## External Conference Resources
+
+The repository provides links to several external websites for tracking conference deadlines and calls for papers:
+
+1. **CCF Conference Deadlines** - A resource from the China Computer Federation for tracking submission deadlines
+2. **Conference Eye (会议之眼)** - A Chinese website for conference tracking
+3. **Call4Papers** - A website aggregating calls for papers
+4. **Conference List** - A listing of upcoming conferences
+
+Additionally, the repository recommends using the following databases for querying conference information:
+- **DBLP** - A comprehensive computer science bibliography database
+- **Aminer** - A free online academic search and mining system (with Chinese interface option)
+
+These external resources complement the internal conference tracking and provide additional ways to discover relevant conferences.
+
+Sources: [docs/Conferences.md:11-21](), [docs/Conferences.md:6-8]()
+
+## Conference Paper Access Flow
+
+The following diagram illustrates how a researcher would typically access conference papers through this resource:
+
+```mermaid
+sequenceDiagram
+    participant User as "Researcher"
+    participant Repo as "GitHub Repository"
+    participant ConfMD as "Conferences.md"
+    participant ExtRes as "External Resources"
+    participant Papers as "Paper Collection"
+    
+    User->>Repo: Access repository
+    User->>ConfMD: View conference listings
+    
+    alt Find papers by conference
+        User->>ConfMD: Select specific conference
+        ConfMD->>ExtRes: Follow link to conference proceedings
+        ExtRes-->>User: Browse conference papers
+    else Find papers by research task
+        User->>Repo: Navigate to time series task category
+        Repo->>Papers: Filter papers by conference venue
+        Papers-->>User: View relevant papers with code & datasets
+    end
+    
+    User->>ExtRes: Track upcoming conference deadlines
+    ExtRes-->>User: Plan submissions based on deadlines
+```
+
+Sources: [README.md:82-93](), [docs/Conferences.md:22-136]()
+
+## Conference Papers in Research Collection
+
+The conference information system directly supports the main paper collection, which organizes time series research by task and methodology. Each paper entry in the collection includes the publication venue, linking back to the relevant conference.
+
+Example paper entry format:
+
+| Task | Data | Model | Paper | Code | Publication |
+|------|------|-------|-------|------|-------------|
+| Multivariable | Dataset Name | Model Name | Paper Title | Repository Link | Conference Year |
+
+This integration allows researchers to:
+1. Find relevant papers from specific conferences
+2. Track which conferences publish the most relevant time series research
+3. Identify trends in time series research across different conferences over time
+
+Sources: [README.md:98-199]()
+
+## Relationship to Other Repository Components
+
+The Conference Resources component is one part of the larger repository ecosystem, as shown in the following diagram:
+
+```mermaid
+graph TD
+    subgraph "Repository Components"
+        README["README.md: Main Index"]
+        TaskCategorization["Time Series Tasks"]
+        ConferenceInfo["Conference Resources"]
+        PaperCollection["Research Papers"]
+        ExternalResources["External Resources"]
+        CodeImplementations["Code Implementations"]
+        
+        README --> TaskCategorization
+        README --> ConferenceInfo
+        README --> ExternalResources
+        
+        TaskCategorization --> PaperCollection
+        ConferenceInfo --> PaperCollection
+        PaperCollection --> CodeImplementations
+        ExternalResources --> |"Full Text PDFs"| PaperCollection
+    end
+    
+    subgraph "Documentation Website"
+        WebsiteIndex["index.html"]
+        Sidebar["_sidebar.md"]
+        ConfPage["Conferences.md"]
+        
+        WebsiteIndex --> Sidebar
+        Sidebar --> ConfPage
+    end
+    
+    ConferenceInfo -.->|"Content reflected in"| ConfPage
+    
+    classDef default stroke:#333,stroke-width:1px;
+```
+
+The Conference Resources component provides the contextual information about where time series research is published, complementing the task-based organization of papers in the main collection.
+
+Sources: [README.md:7-10](), [README.md:82-93]()
+
+## Alternative AI/ML Conference Resources
+
+In addition to the built-in conference tracking, the repository also links to an external GitHub repository specifically focused on conference papers:
+
+```
+[AI ML Summary Github](https://github.com/Lionelsy/Conference-Accepted-Paper-List)
+```
+
+This resource provides an alternative way to browse AI/ML conference papers and may include conferences not directly tracked in the Time-Series-Works-Conferences repository.
+
+Sources: [README.md:10]()
+
+## Maintaining and Updating Conference Information
+
+The conference information is maintained through regular updates to both the README.md and Conferences.md files. As new conferences occur, their proceedings are added to the respective conference sections, and papers relevant to time series research are integrated into the task-based paper collection.
+
+The backlog system at the top of the README.md file ensures that upcoming conferences are tracked and eventually incorporated into the resource collection.
+
+Sources: [README.md:3](), [docs/Conferences.md:22-136]()
+
+---
+
+# Page: External Resources
+
+# External Resources
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+- [docs/README.md](docs/README.md)
+
+</details>
+
+
+
+This page documents the external resources linked from the Time-Series-Works-Conferences repository. These resources include cloud storage platforms hosting comprehensive paper collections, related GitHub repositories focusing on time series research, and other online resources that complement the repository's content. For conference-specific information, see [Conference Resources](#4).
+
+## Paper Collections on Cloud Storage
+
+The Time-Series-Works-Conferences repository links to external cloud storage platforms that host complete collections of time series research papers. These collections include papers that might not be directly listed in the GitHub repository and are organized by both task and methodology categories.
+
+```mermaid
+flowchart TD
+    subgraph "External Storage Platforms"
+        OneDrive["OneDrive Paper Collection"]
+        GoogleDrive["Google Drive Paper Collection (VPN may be required)"]
+    end
+    
+    subgraph "Organization Structure"
+        Papers["Research Papers"] --> |"Organized by"| TaskCat["Task Categories"]
+        Papers --> |"Organized by"| MethodCat["Methodology Categories"]
+        
+        TaskCat --> MTSF["Multivariable Time Series Forecasting"]
+        TaskCat --> ProbF["Probabilistic Forecasting"]
+        TaskCat --> TSI["Time Series Imputation"]
+        TaskCat --> TSAD["Anomaly Detection"]
+        TaskCat --> DP["Demand Prediction"]
+        TaskCat --> OtherTasks["Other Specialized Tasks"]
+        
+        MethodCat --> TransBased["Transformer-based"]
+        MethodCat --> GNNBased["Graph Neural Network-based"]
+        MethodCat --> LLMBased["LLM-based"]
+        MethodCat --> DiffusionBased["Diffusion Model-based"]
+    end
+    
+    Papers --> |"Contains"| FullText["Full Text PDFs"]
+    Papers --> |"Linked to"| CodeImpls["Code Implementations"]
+```
+
+**Diagram: Paper Collections Organization Structure**
+
+The paper collections are accessible through:
+
+- **OneDrive**: [https://1drv.ms/u/s!Au2cJRs-_u93lDbLrSDkDy8htv2V?e=ftuaXd](https://1drv.ms/u/s!Au2cJRs-_u93lDbLrSDkDy8htv2V?e=ftuaXd)
+- **Google Drive**: [https://drive.google.com/drive/folders/17bILWdDxUrufRp3yilYfoU5VKywwS1g6?usp=sharing](https://drive.google.com/drive/folders/17bILWdDxUrufRp3yilYfoU5VKywwS1g6?usp=sharing)
+
+These collections feature:
+
+- Papers organized by research task (forecasting, imputation, anomaly detection, etc.)
+- Papers organized by methodology approach (transformer-based, GNN-based, etc.)
+- Full-text PDFs available for download
+- Comprehensive coverage of papers mentioned in the GitHub repository and additional related work
+
+Sources: [README.md:42-47]()
+
+## Related GitHub Repositories
+
+The repository links to several other high-quality GitHub repositories that also focus on time series research. These repositories offer complementary perspectives, organizations, and collections of time series papers and resources.
+
+```mermaid
+graph LR
+    subgraph "Time Series Research Ecosystem"
+        MainRepo["Time-Series-Works-Conferences"]
+        
+        subgraph "Related GitHub Repositories"
+            XiyuanRepo["xiyuanzh/time-series-papers"]
+            QingsongRepo["qingsongedu/awesome-AI-for-time-series-papers"]
+            TrajectoryRepo["xuehaouwa/Awesome-Trajectory-Prediction"]
+            StarList["Time-series Repo-Star List"]
+        end
+        
+        MainRepo --> |"References"| XiyuanRepo
+        MainRepo --> |"References"| QingsongRepo
+        MainRepo --> |"References"| TrajectoryRepo
+        MainRepo --> |"References"| StarList
+        
+        XiyuanRepo --> |"Focus on"| GeneralTS["General Time Series Papers"]
+        QingsongRepo --> |"Focus on"| AITS["AI for Time Series"]
+        TrajectoryRepo --> |"Focus on"| TrajPrediction["Trajectory Prediction"]
+        StarList --> |"Curated by"| RepoOwner["Repository Owner"]
+    end
+```
+
+**Diagram: Related GitHub Repositories Ecosystem**
+
+The related repositories include:
+
+| Repository | Description | Link |
+|------------|-------------|------|
+| xiyuanzh/time-series-papers | Collection of time series research papers | [GitHub Link](https://github.com/xiyuanzh/time-series-papers) |
+| qingsongedu/awesome-AI-for-time-series-papers | Comprehensive list of AI applications for time series | [GitHub Link](https://github.com/qingsongedu/awesome-AI-for-time-series-papers) |
+| xuehaouwa/Awesome-Trajectory-Prediction | Focused on trajectory prediction papers | [GitHub Link](https://github.com/xuehaouwa/Awesome-Trajectory-Prediction) |
+| Time-series Repo-Star List | Repository owner's curated list of time series repositories | [GitHub Link](https://github.com/stars/lixus7/lists/time-series-list) |
+
+Each of these repositories offers a different organization or focus on time series research, providing complementary resources to the main repository.
+
+Sources: [README.md:12-20]()
+
+## AI/ML Conference Resources
+
+The repository links to external resources for tracking AI/ML conferences relevant to time series research.
+
+```mermaid
+flowchart LR
+    subgraph "Conference Resources"
+        AIMSummary["AI ML Summary GitHub Repository"]
+        ConferencePage["Conferences.md Page"]
+    end
+    
+    subgraph "Information Provided"
+        Deadlines["Conference Submission Deadlines"]
+        AcceptedPapers["Accepted Papers Lists"]
+        VenuesByYear["Conference Venues by Year"]
+    end
+    
+    AIMSummary --> Deadlines
+    AIMSummary --> AcceptedPapers
+    ConferencePage --> VenuesByYear
+    ConferencePage --> Deadlines
+```
+
+**Diagram: Conference Resource Structure**
+
+The main external resource for conference information is:
+
+- **AI ML Summary GitHub**: A repository that tracks conference information including accepted papers. Available at [GitHub Link](https://github.com/Lionelsy/Conference-Accepted-Paper-List)
+
+This complements the repository's internal Conferences page, which provides more structured information about conferences relevant to time series research.
+
+Sources: [README.md:10]()
+
+## Resource Access Integration
+
+The following diagram illustrates how users typically interact with the repository and its external resources:
+
+```mermaid
+sequenceDiagram
+    participant User as "Researcher/User"
+    participant Repo as "Time-Series-Works-Conferences"
+    participant Storage as "Cloud Storage (OneDrive/Google Drive)"
+    participant Other as "Related GitHub Repositories"
+    participant Conf as "Conference Resources"
+    
+    User->>Repo: Access repository
+    User->>Repo: Navigate README.md
+    
+    alt Looking for paper collections
+        Repo->>Storage: Link to OneDrive/Google Drive
+        User->>Storage: Access complete paper collections
+        Storage->>User: Provide organized papers by task/methodology
+    end
+    
+    alt Looking for additional time series resources
+        Repo->>Other: Link to related repositories
+        User->>Other: Access complementary time series resources
+    end
+    
+    alt Looking for conference information
+        Repo->>Conf: Link to conference resources
+        User->>Conf: Access conference dates, deadlines, accepted papers
+    end
+```
+
+**Diagram: User Interaction Flow with External Resources**
+
+This integration enables users to:
+
+1. Browse the repository for a curated index of time series papers
+2. Access full-text PDFs through cloud storage links
+3. Explore complementary resources through related repositories
+4. Stay updated on relevant conferences through linked conference resources
+
+Sources: [README.md:5-47]()
+
+## External Resource Data Organization
+
+The time series papers in the external resources are organized in a consistent structure that mirrors the repository's organization. The main categorization is by task, with each paper entry containing detailed information.
+
+```mermaid
+classDiagram
+    class PaperCollection {
+        +OrganizeByTask()
+        +OrganizeByMethodology()
+    }
+    
+    class PaperEntry {
+        +Task: String
+        +Data: String
+        +Model: String
+        +Paper: Link
+        +Code: Link
+        +Publication: String
+    }
+    
+    class TaskCategories {
+        +MultivariableForecasting
+        +ProbabilisticForecasting
+        +TimeSeriesImputation
+        +AnomalyDetection
+        +DemandPrediction
+        +TimeSeriesGeneration
+        +OtherTasks
+    }
+    
+    PaperCollection "1" -- "many" PaperEntry: contains
+    PaperCollection -- TaskCategories: organizes by
+```
+
+**Diagram: Paper Entry Structure in External Resources**
+
+The typical paper entry structure includes:
+
+1. Task type (e.g., Multivariable Forecasting, Imputation)
+2. Dataset information
+3. Model name and approach
+4. Link to the original paper
+5. Link to code implementation (if available)
+6. Publication venue and date
+
+This consistent organization makes it easy to find relevant papers across both the repository and external resources.
+
+Sources: [README.md:97-198]()
+
+## Using the External Resources
+
+To effectively use the external resources linked from this repository:
+
+1. **For comprehensive paper access:**
+   - Visit the OneDrive or Google Drive links to access full-text PDFs
+   - Papers are organized by task and methodology categories
+
+2. **For exploring complementary time series resources:**
+   - Visit the related GitHub repositories for different organizational approaches
+   - The repository owner's starred list provides additional curated resources
+
+3. **For conference information:**
+   - Check the AI ML Summary GitHub for up-to-date information about conferences
+   - Visit the repository's Conferences page for structured conference information
+
+4. **For finding specific papers:**
+   - Use the repository's task-based tables to find paper details
+   - Follow the cloud storage links to access full papers
+
+These external resources complement the repository's main content, providing comprehensive access to time series research papers and related information.
+
+Sources: [README.md:42-47](), [README.md:12-20](), [README.md:10]()
+
+---
+
+# Page: Contact and Contribution
+
+# Contact and Contribution
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [.gitignore](.gitignore)
+- [docs/Contact.md](docs/Contact.md)
+- [docs/img/WeChat.jpeg](docs/img/WeChat.jpeg)
+
+</details>
+
+
+
+This page provides information on how to contact the repository maintainers and how to contribute to the Time-Series-Works-Conferences repository. It outlines the various methods of communication and explains the procedures for submitting contributions to enhance this curated knowledge base of time series research.
+
+## Contact Information
+
+The primary method to contact the repository maintainers is through WeChat. You can scan the QR code below to connect:
+
+![Contact](./img/WeChat.jpeg)
+
+Feel free to reach out for:
+- Questions about specific papers or models
+- Suggestions for new content categories
+- Requests for additional resources
+- Clarification on research implementations
+- Discussion of time series methodologies
+
+Sources: [docs/Contact.md]()
+
+## Contribution Methods
+
+There are several ways to contribute to this repository:
+
+| Contribution Type | Description | Recommended Format |
+|-------------------|-------------|-------------------|
+| Research Papers | Suggest new papers related to time series tasks | Include title, authors, publication venue, link to paper, and relevant task category |
+| Code Implementations | Share implementations of time series models | Provide GitHub repository link with clear documentation |
+| Conference Information | Update details on upcoming conferences | Include submission deadlines, conference dates, and website links |
+| Dataset Resources | Contribute new or updated datasets | Share dataset link, description, and sample usage |
+| Documentation Improvements | Enhance the existing documentation | Submit specific changes with clear rationale |
+| Bug Reports | Report issues with the repository | Describe the problem with steps to reproduce |
+
+## Contribution Workflow
+
+The diagram below illustrates the typical workflow for contributing to this repository:
+
+```mermaid
+flowchart TD
+    subgraph "Contribution Process"
+        Start["Identify Contribution Opportunity"] --> TypeSelect["Select Contribution Type"]
+        TypeSelect --> Paper["Research Paper"]
+        TypeSelect --> Code["Code Implementation"]
+        TypeSelect --> Conf["Conference Info"]
+        TypeSelect --> Doc["Documentation"]
+        
+        Paper --> FormatPaper["Format according to repository structure"]
+        Code --> FormatCode["Ensure code is well-documented"]
+        Conf --> FormatConf["Verify conference details"]
+        Doc --> FormatDoc["Prepare documentation changes"]
+        
+        FormatPaper --> Contact["Contact Maintainers via WeChat"]
+        FormatCode --> Contact
+        FormatConf --> Contact
+        FormatDoc --> Contact
+        
+        Contact --> Review["Maintainer Review"]
+        Review --> Decision{"Approved?"}
+        
+        Decision -->|"Yes"| Merge["Changes Added to Repository"]
+        Decision -->|"No"| Feedback["Feedback Provided"]
+        Feedback --> Revise["Revise Contribution"]
+        Revise --> Review
+    end
+```
+
+Sources: [docs/Contact.md]()
+
+## Repository Structure and Contribution Areas
+
+This diagram shows how contributions fit into the overall repository structure, highlighting the specific areas where contributions are most valuable:
+
+```mermaid
+graph TD
+    subgraph "Repository Components"
+        README["README.md"] --> TST["Time Series Tasks"]
+        README --> Resources["External Resources"]
+        README --> Glossary["Terminology & Abbreviations"]
+        
+        TST --> MTSF["Multivariable Time Series Forecasting"]
+        TST --> PTF["Probabilistic Time Series Forecasting"]
+        TST --> TSI["Time Series Imputation"]
+        TST --> TSAD["Time Series Anomaly Detection"]
+        TST --> OtherTasks["Other Specialized Tasks"]
+        
+        Resources --> Conferences["Conference Information"]
+        Resources --> Datasets["Dataset Resources"]
+        Resources --> CodeImpl["Code Implementations"]
+        
+        DocsWebsite["Documentation Website"] --> TSWorks["Time Series Work by Task"]
+        DocsWebsite --> ConfPage["Conferences Page"]
+        DocsWebsite --> ContactPage["Contact Page"]
+    end
+    
+    subgraph "Contribution Areas" 
+        ContribPapers["Paper Contributions"] -.->|"Add to"| TST
+        ContribCode["Code Contributions"] -.->|"Enhance"| CodeImpl
+        ContribConf["Conference Updates"] -.->|"Update"| Conferences
+        ContribDocs["Documentation Improvements"] -.->|"Improve"| DocsWebsite
+        ContribTerms["Terminology & Abbreviations"] -.->|"Expand"| Glossary
+    end
+```
+
+Sources: [docs/Contact.md](), Repository structure diagrams from prompt
+
+## Contribution Guidelines
+
+When contributing to this repository, please follow these guidelines:
+
+### For Research Papers
+- Verify that the paper hasn't already been included in the repository
+- Categorize the paper according to its primary time series task (forecasting, imputation, anomaly detection, etc.)
+- Include all relevant details: title, authors, conference/journal, year, links to paper and code (if available)
+- Briefly describe the key contributions and methodology
+
+### For Code Implementations
+- Ensure code is well-documented and includes clear instructions for usage
+- Specify dependencies and requirements
+- Include references to the original research paper (if applicable)
+- Provide examples of input/output formats
+
+### For Conference Information
+- Verify all dates and deadlines
+- Include links to the official conference website
+- Note any special tracks or workshops related to time series analysis
+
+### For Documentation Improvements
+- Be specific about what content needs to be updated
+- Provide suggested text for changes
+- Explain the rationale for the proposed improvements
+
+## Contribution Review Process
+
+All contributions are reviewed by the repository maintainers before inclusion. The review process focuses on:
+
+1. Relevance to time series research
+2. Quality and accuracy of information
+3. Adherence to the repository's structure and formatting
+4. Value added to the existing collection
+
+Feedback will be provided through WeChat, and contributors may be asked to make revisions before their contributions are accepted.
+
+## Submitting Large Contributions
+
+For substantial contributions (multiple papers, extensive code, or new sections), please:
+
+1. Contact the maintainers first to discuss the scope of your contribution
+2. Provide an outline of what you plan to contribute
+3. Agree on a timeline and format for the submission
+
+## Acknowledgment of Contributions
+
+Contributors will be acknowledged in the repository. If you would like to be acknowledged in a specific way, please mention this when submitting your contribution.
+
+---
+
+Thank you for your interest in improving this time series research knowledge base. Your contributions help make this repository a valuable resource for the time series research community.
+
+Sources: Repository structure diagrams from prompt

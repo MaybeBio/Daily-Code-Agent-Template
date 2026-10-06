@@ -1,0 +1,8 @@
+Protein / Gene,Length (aa),Molecular Weight (Da),Isoelectric Point (pI),Basic Residues (%)
+R_varieornatus_Dsup,255,29952.21,4.57,28.24
+H_exemplaris_Dsup_like,236,28037.06,4.5,27.97
+R_varieornatus_CAHS1,231,22394.31,9.76,8.66
+R_varieornatus_MnSOD,233,25115.43,9.64,13.3
+H_sapiens_SOD2,236,26015.2,8.32,10.17
+D_melanogaster_SOD2,229,24840.28,9.62,13.54
+C_elegans_SOD2,232,25044.35,9.64,13.36

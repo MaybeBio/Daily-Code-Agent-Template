@@ -1,0 +1,54 @@
+# ── Local inbox (deposited PDFs, never committed) ──────────────────────────
+inbox/**
+**/inbox/**
+
+# ── Database files ──────────────────────────────────────────────────────────
+storage/*.db
+**/storage/*.db
+
+# ── Large / raw document artefacts ─────────────────────────────────────────
+*_raw.pdf
+*_extracted_fulltext.*
+
+# ── Runtime state & outputs (regenerated each run) ─────────────────────────
+storage/regulatory_state.json
+storage/pending_items.jsonl
+storage/rejected_items_log.jsonl
+storage/filter_preview.jsonl
+storage/dry_run_llm_cache.json
+storage/_pre_reset_backup/
+storage/*.json*
+storage/.quota_guard.lock
+**/storage/regulatory_state.json
+**/storage/pending_items.jsonl
+**/storage/rejected_items_log.jsonl
+**/storage/filter_preview.jsonl
+**/storage/dry_run_llm_cache.json
+**/storage/_pre_reset_backup/
+**/storage/*.json*
+**/storage/.quota_guard.lock
+
+# ── Generated reports ───────────────────────────────────────────────────────
+reports/*.docx
+**/reports/*.docx
+
+# ── Logs & local scratch ────────────────────────────────────────────────────
+*.log
+**/scratch/
+
+# ── Python cache ────────────────────────────────────────────────────────────
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.venv/
+**/.venv/
+
+# ── Environment / secrets ───────────────────────────────────────────────────
+.env
+.env.*
+.env.local
+!.env.example
+**/.env
+**/.env.*
+**/.env.local
+!**/.env.example

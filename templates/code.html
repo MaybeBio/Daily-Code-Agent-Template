@@ -9,7 +9,6 @@
       <div class="meta">
         {% if repo.language %}<span class="lang">{{ repo.language }}</span>{% endif %}
         {% if repo.stars %}<span class="stars">★ {{ repo.stars }}</span>{% endif %}
-        {% if repo.status %}<span class="status">{{ repo.status }}</span>{% endif %}
         · {{ (repo.pushed_at or "")[:10] }}
       </div>
       {% if repo.one_liner %}<p class="one-liner">{{ repo.one_liner }}</p>{% endif %}

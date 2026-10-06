@@ -1,0 +1,48 @@
+---
+layout: page
+title: "generative-model (90d)"
+current_tag: generative-model
+current_window: 90d
+---
+
+<header class="tag-header">
+  <h1>generative-model — 90d</h1>
+  <span class="paper-count">5 papers</span>
+  <nav class="window-nav"><a href="generative-model-7d.html">7d</a> <a href="generative-model-30d.html">30d</a> <strong>90d</strong> <a href="generative-model-360d.html">360d</a> <a href="generative-model-all.html">all</a></nav>
+  <a class="back-link" href="../">← all tags</a>
+</header>
+
+<table class="papers">
+<thead><tr><th>Date</th><th>Title</th><th>Authors</th><th>arXiv</th></tr></thead>
+<tbody>
+<tr class="paper">
+<td>2026-09-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.28244.html">Modularity is Not Enough: Demonstration of a Solderless 400 V DC, 2.5 kW Three-Phase Inverter</a></div><div class="paper-tags"><a href="life-cycle-assessment-90d.html">life-cycle-assessment</a> · <a href="polymer-degradation-90d.html">polymer-degradation</a></div></td>
+<td>Luc Imperiali et al.</td>
+<td><a href="http://arxiv.org/abs/2609.28244">2609.28244</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.26547.html">Topology-Stratified Materials Discovery with A Flow-Based Generative Model</a></div><div class="paper-tags"><a href="additive-manufacturing-90d.html">additive-manufacturing</a></div></td>
+<td>Jingyi Zhou et al.</td>
+<td><a href="http://arxiv.org/abs/2609.26547">2609.26547</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.19117.html">Enhancing EBSD throughput of battery electrode materials using super-resolution generative adversarial networks</a></div><div class="paper-tags"><a href="polymer-morphology-90d.html">polymer-morphology</a></div></td>
+<td>John Mangum et al.</td>
+<td><a href="http://arxiv.org/abs/2608.19117">2608.19117</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.19198.html">ATLAS: A Foundation Neural Sampler for Amorphous Materials</a></div><div class="paper-tags"><a href="glass-transition-90d.html">glass-transition</a> · <a href="gnn-90d.html">gnn</a> · <a href="molecular-dynamics-90d.html">molecular-dynamics</a> · <a href="monte-carlo-90d.html">monte-carlo</a></div></td>
+<td>Mouyang Cheng et al.</td>
+<td><a href="http://arxiv.org/abs/2607.19198">2607.19198</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.12771.html">Learning Mechanistic Reasoning for Chemical Reactions with Large Language Models</a></div><div class="paper-tags"><a href="benchmarking-90d.html">benchmarking</a> · <a href="coarse-grained-90d.html">coarse-grained</a></div></td>
+<td>Xingyu Dang et al.</td>
+<td><a href="http://arxiv.org/abs/2607.12771">2607.12771</a></td>
+</tr>
+</tbody></table>

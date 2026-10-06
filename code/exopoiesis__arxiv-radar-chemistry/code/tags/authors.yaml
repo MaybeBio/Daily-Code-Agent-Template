@@ -1,0 +1,109 @@
+# Author whitelist for arxiv-radar-chemistry.
+#
+# After the regex relevance_filter rejects a paper, daily_arxiv does a
+# second-chance check against this whitelist. Matched papers enter with
+# topic `via:author-whitelist:<note>`.
+#
+# Inclusion criteria: high-signal authors in chemistry-ML, atomistic ML,
+# DFT methodology, AIMD, MLIPs, free-energy methods, and aqueous /
+# molecular chem-physics.
+
+authors:
+- name_match:
+  - Jörg Behler
+  - Joerg Behler
+  note: neural network potentials
+- name_match:
+  - Gábor Csányi
+  - Gabor Csanyi
+  note: GAP, MACE, ACE
+- name_match:
+  - Ilyes Batatia
+  note: MACE author
+- name_match:
+  - Ralf Drautz
+  note: ACE potentials
+- name_match:
+  - von Lilienfeld
+  - Anatole von Lilienfeld
+  note: ML chemistry, QM datasets
+- name_match:
+  - Klaus-Robert Müller
+  note: ML force fields, SchNet
+- name_match:
+  - Kristof Schütt
+  note: SchNet, equivariant ML
+- name_match:
+  - Alexandre Tkatchenko
+  note: vdW, ML force fields
+- name_match:
+  - Shyue Ping Ong
+  note: M3GNet, CHGNet, materials data
+- name_match:
+  - Bingqing Cheng
+  note: MLIPs, water, free energy
+- name_match:
+  - Kieron Burke
+  note: DFT methodology, ML for DFT
+- name_match:
+  - Donald Truhlar
+  note: DFT functionals, transition state
+- name_match:
+  - Weitao Yang
+  note: DFT methodology, dispersion
+- name_match:
+  - Martin Head-Gordon
+  - Teresa Head-Gordon
+  note: DFT, polarizable water
+- name_match:
+  - Filipp Furche
+  note: TDDFT, response theory
+- name_match:
+  - Dominik Marx
+  note: AIMD, proton transfer
+- name_match:
+  - Michele Parrinello
+  note: metadynamics, Car-Parrinello
+- name_match:
+  - Michele Ceriotti
+  note: PIMD, MLIPs, water
+- name_match:
+  - Tom Markland
+  - Thomas Markland
+  note: AIMD, proton transfer
+- name_match:
+  - Mark Tuckerman
+  note: Grotthuss, AIMD
+- name_match:
+  - Gregory Voth
+  note: proton transport, MS-EVB, coarse-graining
+- name_match:
+  - Giulia Galli
+  note: DFT water, defects
+- name_match:
+  - Michiel Sprik
+  note: AIMD electrochemistry, redox levels
+- name_match:
+  - Florian Müller-Plathe
+  note: MD methodology
+- name_match:
+  - Alessandro Laio
+  note: metadynamics co-creator
+- name_match:
+  - Giovanni Bussi
+  note: metadynamics, PLUMED
+- name_match:
+  - Gerhard Hummer
+  note: free energy, biomolecular MD
+- name_match:
+  - Alán Aspuru-Guzik
+  note: ML chemistry, autonomous discovery
+- name_match:
+  - Vijay Pande
+  note: ML chemistry, drug discovery
+- name_match:
+  - Connor Coley
+  note: retrosynthesis, ML chemistry
+- name_match:
+  - Patrick Reiser
+  note: GNN benchmarking, materials ML

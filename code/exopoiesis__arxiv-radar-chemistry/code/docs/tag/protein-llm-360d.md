@@ -1,0 +1,678 @@
+---
+layout: page
+title: "protein-llm (360d)"
+current_tag: protein-llm
+current_window: 360d
+---
+
+<header class="tag-header">
+  <h1>protein-llm — 360d</h1>
+  <span class="paper-count">110 papers</span>
+  <nav class="window-nav"><a href="protein-llm-7d.html">7d</a> <a href="protein-llm-30d.html">30d</a> <a href="protein-llm-90d.html">90d</a> <strong>360d</strong> <a href="protein-llm-all.html">all</a></nav>
+  <a class="back-link" href="../">← all tags</a>
+</header>
+
+<table class="papers">
+<thead><tr><th>Date</th><th>Title</th><th>Authors</th><th>arXiv</th></tr></thead>
+<tbody>
+<tr class="paper">
+<td>2026-10-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.03029.html">SoftGene: Protein Language Model-Enhanced Soft Prompting for Interpretable Gene Set Annotation</a></div></td>
+<td>Drew Ross et al.</td>
+<td><a href="http://arxiv.org/abs/2610.03029">2610.03029</a></td>
+</tr>
+<tr class="paper">
+<td>2026-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.00988.html">Auditable Algebraic Counting Field for Cryptic-Pocket Detection from Apo Structures</a></div></td>
+<td>Shan Yu et al.</td>
+<td><a href="http://arxiv.org/abs/2610.00988">2610.00988</a></td>
+</tr>
+<tr class="paper">
+<td>2026-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.02189.html">Generative modeling of intrinsically disordered protein regions by reinforcing sparse autoencoder features</a></div><div class="paper-tags"><a href="protein-structure-360d.html">protein-structure</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Jason X. Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2610.02189">2610.02189</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.37675.html">LEMON-ZEST: Evolution-Informed Tokenization for Efficient Protein Language Modeling</a></div></td>
+<td>Biswajit Banerjee et al.</td>
+<td><a href="http://arxiv.org/abs/2609.37675">2609.37675</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.28921.html">PFArena: Benchmarking Language Models for Protein Modification</a></div></td>
+<td>Yawen Ouyang et al.</td>
+<td><a href="http://arxiv.org/abs/2609.28921">2609.28921</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.04793.html">ProtLingo: Efficient Protein Language Modeling via Conditional Memory and Expert Routing</a></div></td>
+<td>Mingrui Li et al.</td>
+<td><a href="http://arxiv.org/abs/2609.04793">2609.04793</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.01353.html">SymFold: Synergizing Evolutionary and Structural Priors for Accurate Protein Inverse Folding</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Handong Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2609.01353">2609.01353</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.26586.html">RegimeFormer: A Large Protein Model of Global Perturbation Regimes</a></div></td>
+<td>Siyuan Ma et al.</td>
+<td><a href="http://arxiv.org/abs/2608.26586">2608.26586</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.27711.html">Dark energy: the cost of function in protein evolution</a></div></td>
+<td>Ezequiel A. Galpern et al.</td>
+<td><a href="http://arxiv.org/abs/2608.27711">2608.27711</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.25855.html">Unlocking Multimodal Protein Language Models at Inference Time</a></div></td>
+<td>Yi Zhou et al.</td>
+<td><a href="http://arxiv.org/abs/2608.25855">2608.25855</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.26419.html">Interpreting Latent Protein Language Model Features with Geometric Annotations</a></div><div class="paper-tags"><a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Siddharth Setlur et al.</td>
+<td><a href="http://arxiv.org/abs/2608.26419">2608.26419</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.18597.html">Off-Manifold Collapse in Guided Protein Language Models</a></div></td>
+<td>Shuibai Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2608.18597">2608.18597</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.12090.html">Task- and dataset-specific information in protein language models</a></div></td>
+<td>Roman Joeres et al.</td>
+<td><a href="http://arxiv.org/abs/2608.12090">2608.12090</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.22314.html">Evolution-Aware MSA Reasoning for Subsampling via Factor Graphs</a></div></td>
+<td>Zhangzhi Xiong et al.</td>
+<td><a href="http://arxiv.org/abs/2607.22314">2607.22314</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.22777.html">LC-SEPLM: long-range contact-supervised adaptation for sequence-only protein representation learning</a></div><div class="paper-tags"><a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Chen Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2607.22777">2607.22777</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.20057.html">Antigen-specific Antibody Multi-modal Foundation Model for Functional Antibody Design</a></div></td>
+<td>Xiaoliang Shi et al.</td>
+<td><a href="http://arxiv.org/abs/2607.20057">2607.20057</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.16553.html">Discrete Ricci Curvature on Protein Contact Graphs for Lightweight Fold Classification</a></div></td>
+<td>Jianru Shen</td>
+<td><a href="http://arxiv.org/abs/2607.16553">2607.16553</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.12209.html">Interpretable enzyme function prediction via sparse autoencoder features of ESMC across the microbial protein universe</a></div><div class="paper-tags"><a href="protein-function-360d.html">protein-function</a></div></td>
+<td>Yue Hu et al.</td>
+<td><a href="http://arxiv.org/abs/2606.12209">2606.12209</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.12609.html">Viral Proteins Reveal Geometry of Protein Language Models</a></div></td>
+<td>Arthur Bigot et al.</td>
+<td><a href="http://arxiv.org/abs/2606.12609">2606.12609</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.02386.html">AgentPLM: Agentic Protein Language Models with Reasoning-Augmented Decoding for Protein Sequence Design</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Sahil Rahman et al.</td>
+<td><a href="http://arxiv.org/abs/2606.02386">2606.02386</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.28886.html">Computational Modeling of Antibody-Antigen Complexes: PLM-Based and MSA-Based Approaches</a></div><div class="paper-tags"><a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Xiao Luo</td>
+<td><a href="http://arxiv.org/abs/2605.28886">2605.28886</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.29158.html">PROTOCOL: Late Interaction Retrieval for Protein Homolog Search</a></div><div class="paper-tags"><a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Gabrielle Cohn et al.</td>
+<td><a href="http://arxiv.org/abs/2605.29158">2605.29158</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.21485.html">EvoStruct: Bridging Evolutionary and Structural Priors for Antibody CDR Design via Protein Language Model Adaptation</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="gnn-360d.html">gnn</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Mansoor Ahmed et al.</td>
+<td><a href="http://arxiv.org/abs/2605.21485">2605.21485</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.16581.html">Structure-Aware Masking for Protein Representation Learning</a></div><div class="paper-tags"><a href="protein-function-360d.html">protein-function</a></div></td>
+<td>Thomas Walton et al.</td>
+<td><a href="http://arxiv.org/abs/2605.16581">2605.16581</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.27413.html">Ligand-Conditioned Discrete Diffusion for Protein Sequence-Structure Co-Design</a></div><div class="paper-tags"><a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Chen Wei et al.</td>
+<td><a href="http://arxiv.org/abs/2605.27413">2605.27413</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.14812.html">MetaGEM: Bottom-Up Reconstruction of Genome-Scale Metabolic Networks via Deep Enzyme-Metabolite Anchoring</a></div></td>
+<td>Weiyu Xiao et al.</td>
+<td><a href="http://arxiv.org/abs/2605.14812">2605.14812</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.11764.html">Decomposing the Generalization Gap in PROTAC Activity Prediction: Variance Attribution and the Inter-Laboratory Ceiling</a></div></td>
+<td>Thor Klamt et al.</td>
+<td><a href="http://arxiv.org/abs/2605.11764">2605.11764</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.10189.html">ProteinOPD: Towards Effective and Efficient Preference Alignment for Protein Design</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Yulin Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2605.10189">2605.10189</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.11022.html">SCOPE: Siamese Contrastive Operon Pair Embeddings for Functional Sequence Representation and Classification</a></div><div class="paper-tags"><a href="protein-function-360d.html">protein-function</a></div></td>
+<td>Akarsh Gupta et al.</td>
+<td><a href="http://arxiv.org/abs/2605.11022">2605.11022</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.10985.html">Structural Interpretations of Protein Language Model Representations via Differentiable Graph Partitioning</a></div><div class="paper-tags"><a href="protein-function-360d.html">protein-function</a></div></td>
+<td>Siddhant Dutta et al.</td>
+<td><a href="http://arxiv.org/abs/2605.10985">2605.10985</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.07554.html">ProteinJEPA: Latent prediction complements protein language models</a></div></td>
+<td>Dan Ofer et al.</td>
+<td><a href="http://arxiv.org/abs/2605.07554">2605.07554</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.06644.html">Edge-specific signal propagation on mature chromophore-region 3D mechanism graphs for fluorescent protein quantum-yield prediction</a></div></td>
+<td>Yuchen Xiong et al.</td>
+<td><a href="http://arxiv.org/abs/2605.06644">2605.06644</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.06720.html">Conditional generation of antibody sequences with classifier-guided germline-absorbing discrete diffusion</a></div><div class="paper-tags"><a href="diffusion-model-360d.html">diffusion-model</a> · <a href="monte-carlo-360d.html">monte-carlo</a> · <a href="protein-ligand-360d.html">protein-ligand</a></div></td>
+<td>Justin Sanders et al.</td>
+<td><a href="http://arxiv.org/abs/2605.06720">2605.06720</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.06830.html">ProtSent: Protein Sentence Transformers</a></div><div class="paper-tags"><a href="protein-function-360d.html">protein-function</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Dan Ofer et al.</td>
+<td><a href="http://arxiv.org/abs/2605.06830">2605.06830</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.00948.html">Co-Generative De Novo Functional Protein Design</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Xinrui Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2605.00948">2605.00948</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.12845.html">Multimodal Protein Language Models for Enzyme Kinetic Parameters: From Substrate Recognition to Conformational Adaptation</a></div><div class="paper-tags"><a href="catalysis-360d.html">catalysis</a></div></td>
+<td>Fei Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2603.12845">2603.12845</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.18477.html">Multi-Scale Reversible Chaos Game Representation: A Unified Framework for Sequence Classification</a></div></td>
+<td>Sarwan Ali et al.</td>
+<td><a href="http://arxiv.org/abs/2604.18477">2604.18477</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.16851.html">Applications of deep generative models to DNA reaction kinetics and to cryogenic electron microscopy</a></div><div class="paper-tags"><a href="generative-model-360d.html">generative-model</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Chenwei Zhang</td>
+<td><a href="http://arxiv.org/abs/2604.16851">2604.16851</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.13175.html">Pareto-Optimal Offline Reinforcement Learning via Smooth Tchebysheff Scalarization</a></div><div class="paper-tags"><a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Aadyot Bhatnagar et al.</td>
+<td><a href="http://arxiv.org/abs/2604.13175">2604.13175</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.11852.html">Evaluating the Limitations of Protein Sequence Representations for Parkinson&#x27;s Disease Classification</a></div></td>
+<td>César Jesús Núñez-Prado et al.</td>
+<td><a href="http://arxiv.org/abs/2604.11852">2604.11852</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.12026.html">TriFit: Trimodal Fusion with Protein Dynamics for Mutation Fitness Prediction</a></div></td>
+<td>Seungik Cho</td>
+<td><a href="http://arxiv.org/abs/2604.12026">2604.12026</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.07286.html">Evolutionary Profiles for Protein Fitness Prediction</a></div><div class="paper-tags"><a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Jigang Fan et al.</td>
+<td><a href="http://arxiv.org/abs/2510.07286">2510.07286</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.09369.html">Biologically-Grounded Multi-Encoder Architectures as Developability Oracles for Antibody Design</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="generative-model-360d.html">generative-model</a></div></td>
+<td>Simon J. Crouzet</td>
+<td><a href="http://arxiv.org/abs/2604.09369">2604.09369</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.11703.html">EvoFlows: Evolutionary Edit-Based Flow-Matching for Protein Engineering</a></div><div class="paper-tags"><a href="diffusion-model-360d.html">diffusion-model</a></div></td>
+<td>Nicolas Deutschmann et al.</td>
+<td><a href="http://arxiv.org/abs/2603.11703">2603.11703</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.27526.html">Q-BIOLAT: Binary Latent Protein Fitness Landscapes for QUBO-Based Optimization</a></div></td>
+<td>Truong-Son Hy</td>
+<td><a href="http://arxiv.org/abs/2603.27526">2603.27526</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.26110.html">TurboESM: Ultra-Efficient 3-Bit KV Cache Quantization for Protein Language Models with Orthogonal Rotation and QJL Correction</a></div><div class="paper-tags"><a href="protein-structure-360d.html">protein-structure</a> · <a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Yue Hu et al.</td>
+<td><a href="http://arxiv.org/abs/2603.26110">2603.26110</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.26994.html">ImmSET: Sequence-Based Predictor of TCR-pMHC Specificity at Scale</a></div><div class="paper-tags"><a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Marco Garcia Noceda et al.</td>
+<td><a href="http://arxiv.org/abs/2603.26994">2603.26994</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.05388.html">Knowledge Distillation of a Protein Language Model Yields a Foundational Implicit Solvent Model</a></div><div class="paper-tags"><a href="gnn-360d.html">gnn</a> · <a href="molecular-dynamics-360d.html">molecular-dynamics</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Justin Airas et al.</td>
+<td><a href="http://arxiv.org/abs/2601.05388">2601.05388</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.19473.html">Reinforcement-guided generative protein language models enable de novo design of highly diverse AAV capsids</a></div><div class="paper-tags"><a href="protein-structure-360d.html">protein-structure</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Lucas Ferraz et al.</td>
+<td><a href="http://arxiv.org/abs/2603.19473">2603.19473</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.17247.html">Binary Latent Protein Fitness Landscapes for Quantum Annealing Optimization</a></div></td>
+<td>Truong-Son Hy</td>
+<td><a href="http://arxiv.org/abs/2603.17247">2603.17247</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.23179.html">Induction Meets Biology: Mechanisms of Repeat Detection in Protein Language Models</a></div><div class="paper-tags"><a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Gal Kesten-Pomeranz et al.</td>
+<td><a href="http://arxiv.org/abs/2602.23179">2602.23179</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.00126.html">RadDiff: Retrieval-Augmented Denoising Diffusion for Protein Inverse Folding</a></div><div class="paper-tags"><a href="diffusion-model-360d.html">diffusion-model</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Jin Han et al.</td>
+<td><a href="http://arxiv.org/abs/2512.00126">2512.00126</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.06722.html">ProtAlign: Contrastive learning paradigm for Sequence and structure alignment</a></div></td>
+<td>Aditya Ranganath et al.</td>
+<td><a href="http://arxiv.org/abs/2603.06722">2603.06722</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.04045.html">Inference-Time Toxicity Mitigation in Protein Language Models</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Manuel Fernández Burda et al.</td>
+<td><a href="http://arxiv.org/abs/2603.04045">2603.04045</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.00253.html">CoPeP: Benchmarking Continual Pretraining for Protein Language Models</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Darshan Patil et al.</td>
+<td><a href="http://arxiv.org/abs/2603.00253">2603.00253</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.02052.html">General Protein Pretraining or Domain-Specific Designs? Benchmarking Protein Modeling on Realistic Applications</a></div></td>
+<td>Shuo Yan et al.</td>
+<td><a href="http://arxiv.org/abs/2506.02052">2506.02052</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.01873.html">Bi-TEAM: A Unified Cross-Scale Representation Learning Framework for Chemically Modified Biomolecules</a></div><div class="paper-tags"><a href="chemical-llm-360d.html">chemical-llm</a></div></td>
+<td>Chunbin Gu et al.</td>
+<td><a href="http://arxiv.org/abs/2603.01873">2603.01873</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.01383.html">InfoBridge: Mutual Information estimation via Bridge Matching</a></div></td>
+<td>Sergei Kholkin et al.</td>
+<td><a href="http://arxiv.org/abs/2502.01383">2502.01383</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.00193.html">Multimodal Alignment Improves Generalizability of Genomic Biomarker Prediction in Computational Pathology</a></div></td>
+<td>Ekaterina Redekop et al.</td>
+<td><a href="http://arxiv.org/abs/2603.00193">2603.00193</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.04724.html">Understanding protein function with a multimodal retrieval-augmented foundation model</a></div><div class="paper-tags"><a href="protein-function-360d.html">protein-function</a> · <a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Timothy Fei Truong et al.</td>
+<td><a href="http://arxiv.org/abs/2508.04724">2508.04724</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.21750.html">From Words to Amino Acids: Does the Curse of Depth Persist?</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Aleena Siji et al.</td>
+<td><a href="http://arxiv.org/abs/2602.21750">2602.21750</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.20449.html">Protein Language Models Diverge from Natural Language: Comparative Analysis and Improved Inference</a></div><div class="paper-tags"><a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Anna Hart et al.</td>
+<td><a href="http://arxiv.org/abs/2602.20449">2602.20449</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.18915.html">AAVGen: Precision Engineering of Adeno-associated Viral Capsids for Renal Selective Targeting</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Mohammadreza Ghaffarzadeh-Esfahani et al.</td>
+<td><a href="http://arxiv.org/abs/2602.18915">2602.18915</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.12026.html">Protein Circuit Tracing via Cross-layer Transcoders</a></div><div class="paper-tags"><a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Darin Tsui et al.</td>
+<td><a href="http://arxiv.org/abs/2602.12026">2602.12026</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.11216.html">Protein Language Model Embeddings Improve Generalization of Implicit Transfer Operators</a></div><div class="paper-tags"><a href="molecular-dynamics-360d.html">molecular-dynamics</a></div></td>
+<td>Panagiotis Antoniadis et al.</td>
+<td><a href="http://arxiv.org/abs/2602.11216">2602.11216</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.10163.html">Beyond SMILES: Evaluating Agentic Systems for Drug Discovery</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a> · <a href="retrosynthesis-360d.html">retrosynthesis</a></div></td>
+<td>Edward Wijaya</td>
+<td><a href="http://arxiv.org/abs/2602.10163">2602.10163</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.17680.html">BioBridge: Bridging Proteins and Language for Enhanced Biological Reasoning with LLMs</a></div><div class="paper-tags"><a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Yujia Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2602.17680">2602.17680</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.01845.html">No Generation without Representation: Efficient Causal Protein Language Models Enable Zero-Shot Fitness Estimation</a></div></td>
+<td>Furkan Eris</td>
+<td><a href="http://arxiv.org/abs/2602.01845">2602.01845</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.02425.html">Repurposing Protein Language Models for Latent Flow-Based Fitness Optimization</a></div><div class="paper-tags"><a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Amaru Caceres Arroyo et al.</td>
+<td><a href="http://arxiv.org/abs/2602.02425">2602.02425</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.19149.html">GPCR-Filter: a deep learning framework for efficient and precise GPCR modulator discovery</a></div><div class="paper-tags"><a href="gnn-360d.html">gnn</a> · <a href="protein-ligand-360d.html">protein-ligand</a></div></td>
+<td>Jingjie Ning et al.</td>
+<td><a href="http://arxiv.org/abs/2601.19149">2601.19149</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.00782.html">Controlling Repetition in Protein Language Models</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="protein-structure-360d.html">protein-structure</a> · <a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Jiahao Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2602.00782">2602.00782</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.03370.html">InstructPLM-mu: 1-Hour Fine-Tuning of ESM2 Beats ESM3 in Protein Mutation Predictions</a></div></td>
+<td>Junde Xu et al.</td>
+<td><a href="http://arxiv.org/abs/2510.03370">2510.03370</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.22408.html">Minimal-Action Discrete Schrödinger Bridge Matching for Peptide Sequence Design</a></div><div class="paper-tags"><a href="generative-model-360d.html">generative-model</a></div></td>
+<td>Shrey Goel et al.</td>
+<td><a href="http://arxiv.org/abs/2601.22408">2601.22408</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.17102.html">Domain-Aware Geometric Multimodal Learning for Multi-Domain Protein-Ligand Affinity Prediction</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="protein-ligand-360d.html">protein-ligand</a></div></td>
+<td>Shuo Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2601.17102">2601.17102</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.05309.html">ProtSAE: Disentangling and Interpreting Protein Language Models via Semantically-Guided Sparse Autoencoders</a></div></td>
+<td>Xiangyu Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2509.05309">2509.05309</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.05792.html">Tensor-DTI: Enhancing Biomolecular Interaction Prediction with Contrastive Embedding Learning</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="molecular-representation-360d.html">molecular-representation</a></div></td>
+<td>Manel Gil-Sorribes et al.</td>
+<td><a href="http://arxiv.org/abs/2601.05792">2601.05792</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.10618.html">D-Flow: Multi-modality Flow Matching for D-peptide Design</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Fang Wu et al.</td>
+<td><a href="http://arxiv.org/abs/2411.10618">2411.10618</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.09900.html">Boosting In-Silicon Directed Evolution with Fine-Tuned Protein Language Model and Tree Search</a></div><div class="paper-tags"><a href="monte-carlo-360d.html">monte-carlo</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Yaodong Yang et al.</td>
+<td><a href="http://arxiv.org/abs/2511.09900">2511.09900</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.00647.html">Physio-DPO: Aligning Large Language Models with the Protein Energy Landscape to Eliminate Structural Hallucinations</a></div><div class="paper-tags"><a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>QiWei Meng</td>
+<td><a href="http://arxiv.org/abs/2601.00647">2601.00647</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.23175.html">HELM-BERT: A Transformer for Medium-sized Peptide Property Prediction</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="molecular-llm-360d.html">molecular-llm</a></div></td>
+<td>Seungeon Lee et al.</td>
+<td><a href="http://arxiv.org/abs/2512.23175">2512.23175</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.01433.html">Enhancing TCR-Peptide Interaction Prediction with Pretrained Language Models and Molecular Representations</a></div></td>
+<td>Cong Qi et al.</td>
+<td><a href="http://arxiv.org/abs/2505.01433">2505.01433</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.22007.html">DuaDeep-SeqAffinity: Dual-Stream Deep Learning Framework for Sequence-Only Antigen-Antibody Affinity Prediction</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="protein-ligand-360d.html">protein-ligand</a></div></td>
+<td>Aicha Boutorh et al.</td>
+<td><a href="http://arxiv.org/abs/2512.22007">2512.22007</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.17815.html">Structure-Aware Antibody Design with Affinity-Optimized Inverse Folding</a></div><div class="paper-tags"><a href="free-energy-360d.html">free-energy</a> · <a href="protein-ligand-360d.html">protein-ligand</a></div></td>
+<td>Xinyan Zhao et al.</td>
+<td><a href="http://arxiv.org/abs/2512.17815">2512.17815</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.00774.html">GeoGraph: Geometric and Graph-based Ensemble Descriptors for Intrinsically Disordered Proteins</a></div><div class="paper-tags"><a href="generative-model-360d.html">generative-model</a> · <a href="molecular-dynamics-360d.html">molecular-dynamics</a></div></td>
+<td>Eoin Quinn et al.</td>
+<td><a href="http://arxiv.org/abs/2510.00774">2510.00774</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.16896.html">Structure-Aligned Protein Language Model</a></div><div class="paper-tags"><a href="gnn-360d.html">gnn</a></div></td>
+<td>Can Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2505.16896">2505.16896</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.15133.html">HD-Prot: A Protein Language Model for Joint Sequence-Structure Modeling with Continuous Structure Tokens</a></div><div class="paper-tags"><a href="protein-structure-360d.html">protein-structure</a> · <a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Yi Zhou et al.</td>
+<td><a href="http://arxiv.org/abs/2512.15133">2512.15133</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.08772.html">De novo generation of functional terpene synthases using TpsGPT</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="generative-model-360d.html">generative-model</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Hamsini Ramanathan et al.</td>
+<td><a href="http://arxiv.org/abs/2512.08772">2512.08772</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.09329.html">Self Distillation Fine-Tuning of Protein Language Models Improves Versatility in Protein Design</a></div></td>
+<td>Amin Tavakoli et al.</td>
+<td><a href="http://arxiv.org/abs/2512.09329">2512.09329</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.20589.html">Prot2Token: A Unified Framework for Protein Modeling via Next-Token Prediction</a></div><div class="paper-tags"><a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Mahdi Pourmirzaei et al.</td>
+<td><a href="http://arxiv.org/abs/2505.20589">2505.20589</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2411.11530.html">SeqProFT: Sequence-only Protein Property Prediction with LoRA Finetuning</a></div><div class="paper-tags"><a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Shuo Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2411.11530">2411.11530</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.19532.html">Toward the Explainability of Protein Language Models</a></div><div class="paper-tags"><a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Andrea Hunklinger et al.</td>
+<td><a href="http://arxiv.org/abs/2506.19532">2506.19532</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.07299.html">Life-Code: Central Dogma Modeling with Multi-Omics Sequence Unification</a></div></td>
+<td>Zicheng Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2502.07299">2502.07299</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.00379.html">EnzyCLIP: A Cross-Attention Dual Encoder Framework with Contrastive Learning for Predicting Enzyme Kinetic Constants</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Anas Aziz Khan et al.</td>
+<td><a href="http://arxiv.org/abs/2512.00379">2512.00379</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2412.12979.html">Guiding Generative Protein Language Models with Reinforcement Learning</a></div><div class="paper-tags"><a href="protein-ligand-360d.html">protein-ligand</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Filippo Stocco et al.</td>
+<td><a href="http://arxiv.org/abs/2412.12979">2412.12979</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.22311.html">Swarms of Large Language Model Agents for Protein Sequence Design with Experimental Validation</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="materials-science-360d.html">materials-science</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Fiona Y. Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2511.22311">2511.22311</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.19474.html">g-DPO: Scalable Preference Optimization for Protein Language Models</a></div></td>
+<td>Constance Ferragu et al.</td>
+<td><a href="http://arxiv.org/abs/2510.19474">2510.19474</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.16113.html">ProtT-Affinity: Sequence-Based Protein-Protein Binding Affinity Prediction Using ProtT5 Embeddings</a></div><div class="paper-tags"><a href="protein-ligand-360d.html">protein-ligand</a></div></td>
+<td>Hongfu Lou</td>
+<td><a href="http://arxiv.org/abs/2511.16113">2511.16113</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.13685.html">Protein Secondary Structure Prediction Using 3D Graphs and Relation-Aware Message Passing Transformers</a></div><div class="paper-tags"><a href="gnn-360d.html">gnn</a></div></td>
+<td>Disha Varshney et al.</td>
+<td><a href="http://arxiv.org/abs/2511.13685">2511.13685</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.10244.html">PepTriX: A Framework for Explainable Peptide Analysis through Protein Language Models</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Vincent Schilling et al.</td>
+<td><a href="http://arxiv.org/abs/2511.10244">2511.10244</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.02128.html">DL4Proteins Jupyter Notebooks Teach how to use Artificial Intelligence for Biomolecular Structure Prediction and Design</a></div><div class="paper-tags"><a href="protein-structure-360d.html">protein-structure</a> · <a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Michael Chungyoun et al.</td>
+<td><a href="http://arxiv.org/abs/2511.02128">2511.02128</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.24053.html">Low-N Protein Activity Optimization with FolDE</a></div><div class="paper-tags"><a href="active-learning-360d.html">active-learning</a></div></td>
+<td>Jacob B. Roberts et al.</td>
+<td><a href="http://arxiv.org/abs/2510.24053">2510.24053</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.23786.html">Relaxed Sequence Sampling for Diverse Protein Design</a></div><div class="paper-tags"><a href="monte-carlo-360d.html">monte-carlo</a> · <a href="protein-structure-360d.html">protein-structure</a> · <a href="structure-prediction-360d.html">structure-prediction</a></div></td>
+<td>Joohwan Ko et al.</td>
+<td><a href="http://arxiv.org/abs/2510.23786">2510.23786</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.11194.html">Prot2Text-V2: Protein Function Prediction with Multimodal Contrastive Alignment</a></div><div class="paper-tags"><a href="protein-function-360d.html">protein-function</a></div></td>
+<td>Xiao Fei et al.</td>
+<td><a href="http://arxiv.org/abs/2505.11194">2505.11194</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2405.12961.html">Aligning Transformers with Continuous Feedback via Energy Rank Alignment</a></div><div class="paper-tags"><a href="chemical-space-360d.html">chemical-space</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Shriram Chennakesavalu et al.</td>
+<td><a href="http://arxiv.org/abs/2405.12961">2405.12961</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.08437.html">Customizing Spider Silk: Generative Models with Mechanical Property Conditioning for Protein Engineering</a></div><div class="paper-tags"><a href="generative-model-360d.html">generative-model</a></div></td>
+<td>Neeru Dubey et al.</td>
+<td><a href="http://arxiv.org/abs/2504.08437">2504.08437</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.05101.html">PRING: Rethinking Protein-Protein Interaction Prediction from Pairs to Graphs</a></div><div class="paper-tags"><a href="protein-function-360d.html">protein-function</a></div></td>
+<td>Xinzhe Zheng et al.</td>
+<td><a href="http://arxiv.org/abs/2507.05101">2507.05101</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.15093.html">Steering Generative Models with Experimental Data for Protein Fitness Optimization</a></div><div class="paper-tags"><a href="bayesian-optimization-360d.html">bayesian-optimization</a> · <a href="diffusion-model-360d.html">diffusion-model</a> · <a href="generative-model-360d.html">generative-model</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Jason Yang et al.</td>
+<td><a href="http://arxiv.org/abs/2505.15093">2505.15093</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.14139.html">Inferred global dense residue transition graphs from primary structure sequences enable protein interaction prediction via directed graph convolutional neural networks</a></div><div class="paper-tags"><a href="gnn-360d.html">gnn</a></div></td>
+<td>Islam Akef Ebeid et al.</td>
+<td><a href="http://arxiv.org/abs/2510.14139">2510.14139</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.18966.html">Protein Design with Dynamic Protein Vocabulary</a></div><div class="paper-tags"><a href="generative-model-360d.html">generative-model</a> · <a href="protein-structure-360d.html">protein-structure</a></div></td>
+<td>Nuowei Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2505.18966">2505.18966</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.10655.html">Isotropy and Geometry of Pretrained Protein LMs</a></div></td>
+<td>Sheikh Azizul Hakim et al.</td>
+<td><a href="http://arxiv.org/abs/2510.10655">2510.10655</a></td>
+</tr>
+</tbody></table>

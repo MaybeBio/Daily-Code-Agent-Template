@@ -1,0 +1,466 @@
+{
+  "project_name": "Protein Design Paper Radar",
+  "paper_category_order": [
+    "Structure generation",
+    "Sequence design",
+    "Protein language models",
+    "Binders and therapeutics",
+    "Enzymes and function",
+    "Experimental validation",
+    "General"
+  ],
+  "paper_category_labels": {
+    "Structure generation": "Structure Generation / 结构生成",
+    "Sequence design": "Sequence Design / 序列设计",
+    "Protein language models": "Protein Language Models / 蛋白质语言模型",
+    "Binders and therapeutics": "Binders & Therapeutics / 结合蛋白与治疗",
+    "Enzymes and function": "Enzymes & Function / 酶与功能",
+    "Experimental validation": "Experimental Validation / 实验验证",
+    "General": "General / 综合"
+  },
+  "max_results_per_source": 80,
+  "preprint_max_results": 1000,
+  "google_scholar_enabled": true,
+  "google_scholar_max_pages": 2,
+  "journal_feeds_enabled": true,
+  "publisher_scans_enabled": true,
+  "publisher_scan_max_results": 12000,
+  "publisher_scans": [
+    {
+      "name": "Nature Portfolio",
+      "prefix": "10.1038",
+      "max_results": 5000
+    },
+    {
+      "name": "Science family",
+      "prefix": "10.1126",
+      "max_results": 2000
+    },
+    {
+      "name": "Cell Press / Elsevier",
+      "prefix": "10.1016",
+      "max_results": 12000
+    }
+  ],
+  "journal_scans_enabled": true,
+  "journal_scan_max_results": 500,
+  "journal_scans": [
+    {
+      "name": "Proceedings of the National Academy of Sciences",
+      "issn": "1091-6490"
+    },
+    {
+      "name": "Journal of the American Chemical Society",
+      "issn": "1520-5126"
+    },
+    {
+      "name": "Bioinformatics",
+      "issn": "1367-4811"
+    },
+    {
+      "name": "PLOS Computational Biology",
+      "issn": "1553-7358"
+    },
+    {
+      "name": "Briefings in Bioinformatics",
+      "issn": "1477-4054"
+    },
+    {
+      "name": "NAR Genomics and Bioinformatics",
+      "issn": "2631-9268"
+    },
+    {
+      "name": "Journal of Chemical Information and Modeling",
+      "issn": "1549-960X"
+    },
+    {
+      "name": "Journal of Chemical Theory and Computation",
+      "issn": "1549-9626"
+    },
+    {
+      "name": "Protein Engineering, Design and Selection",
+      "issn": "1741-0134"
+    },
+    {
+      "name": "Protein Science",
+      "issn": "1469-896X"
+    },
+    {
+      "name": "Journal of Molecular Biology",
+      "issn": "1089-8638"
+    },
+    {
+      "name": "ACS Synthetic Biology",
+      "issn": "2161-5063"
+    },
+    {
+      "name": "Biotechnology and Bioengineering",
+      "issn": "1097-0290"
+    },
+    {
+      "name": "Metabolic Engineering",
+      "issn": "1096-7184"
+    },
+    {
+      "name": "ACS Catalysis",
+      "issn": "2155-5435"
+    },
+    {
+      "name": "Molecular Therapy",
+      "issn": "1525-0024"
+    },
+    {
+      "name": "mAbs",
+      "issn": "1942-0870"
+    },
+    {
+      "name": "Antibody Therapeutics",
+      "issn": "2516-422X"
+    },
+    {
+      "name": "Advanced Science",
+      "issn": "2198-3844"
+    }
+  ],
+  "min_score": 6,
+  "report_limit": 25,
+  "require_ai_keyword_in_title": true,
+  "require_domain_keyword_in_title": true,
+  "title_domain_keywords": [
+    "protein",
+    "proteins",
+    "peptide",
+    "peptides",
+    "AMP",
+    "enzyme",
+    "enzymes",
+    "antibody",
+    "antibodies",
+    "binder",
+    "binders",
+    "folding",
+    "biomolecular",
+    "biomolecule",
+    "molecular",
+    "molecule",
+    "molecules",
+    "docking",
+    "ligand",
+    "ligands",
+    "receptor",
+    "receptors",
+    "drug",
+    "drugs",
+    "kinase",
+    "kinases",
+    "miniprotein",
+    "miniproteins",
+    "minibinder",
+    "minibinders",
+    "amino acid",
+    "CAR-T",
+    "CAR T",
+    "chimeric antigen receptor",
+    "GPNMB"
+  ],
+  "ai_required_keywords": [
+    "AI-driven",
+    "AI-enabled",
+    "artificial intelligence",
+    "machine learning",
+    "deep learning",
+    "neural network",
+    "neural networks",
+    "foundation model",
+    "language model",
+    "protein language model",
+    "pre-trained",
+    "pretrained",
+    "transformer",
+    "graph neural network",
+    "diffusion model",
+    "flow matching",
+    "generative model",
+    "equivariant",
+    "inverse folding",
+    "structure prediction",
+    "AlphaFold",
+    "RoseTTAFold",
+    "RFdiffusion",
+    "ESM",
+    "ProGen",
+    "ProteinMPNN",
+    "ColabFold",
+    "in silico",
+    "de novo design",
+    "computational protein design",
+    "computational enzyme design",
+    "computational design",
+    "PLM",
+    "DMS-informed"
+  ],
+  "required_keywords": [
+    "protein",
+    "proteins",
+    "peptide",
+    "peptides",
+    "enzyme",
+    "enzymes",
+    "antibody",
+    "antibodies",
+    "amino acid",
+    "amino acids",
+    "binder",
+    "binders",
+    "folding",
+    "biomolecular",
+    "biomolecule",
+    "CAR-T",
+    "CAR T",
+    "chimeric antigen receptor",
+    "cell therapy",
+    "cancer therapy",
+    "target discovery",
+    "kinase",
+    "kinases",
+    "miniprotein",
+    "miniproteins",
+    "minibinder",
+    "minibinders",
+    "GPNMB"
+  ],
+  "journal_feeds": [
+    {
+      "name": "Cell",
+      "url": "https://www.cell.com/cell/current.rss"
+    },
+    {
+      "name": "Cancer Cell",
+      "url": "https://www.cell.com/cancer-cell/current.rss"
+    },
+    {
+      "name": "Molecular Cell",
+      "url": "https://www.cell.com/molecular-cell/current.rss"
+    },
+    {
+      "name": "Cell Systems",
+      "url": "https://www.cell.com/cell-systems/current.rss"
+    },
+    {
+      "name": "Cell Reports Medicine",
+      "url": "https://www.cell.com/cell-reports-medicine/current.rss"
+    },
+    {
+      "name": "Nature",
+      "url": "https://www.nature.com/nature.rss"
+    },
+    {
+      "name": "Nature Communications",
+      "url": "https://www.nature.com/ncomms.rss"
+    },
+    {
+      "name": "Nature Biotechnology",
+      "url": "https://www.nature.com/nbt.rss"
+    },
+    {
+      "name": "Nature Methods",
+      "url": "https://www.nature.com/nmeth.rss"
+    },
+    {
+      "name": "Science",
+      "url": "https://www.science.org/action/showFeed?type=etoc&feed=rss&jc=science"
+    },
+    {
+      "name": "Science Translational Medicine",
+      "url": "https://www.science.org/action/showFeed?type=etoc&feed=rss&jc=stm"
+    }
+  ],
+  "watchlist_articles": [
+    {
+      "title": "AI-driven discovery of GPNMB CAR-T cells as a multi-cancer therapy",
+      "url": "https://www.cell.com/cell/abstract/S0092-8674(26)00651-3",
+      "source": "Cell",
+      "published": "2026",
+      "source_id": "S0092-8674(26)00651-3",
+      "abstract": "AI-driven discovery of GPNMB CAR-T cells as a multi-cancer therapy."
+    }
+  ],
+  "watchlist_dois": [
+    "10.1126/science.adr3817",
+    "10.64898/2026.07.10.737808",
+    "10.1038/s41467-026-76760-5",
+    "10.64898/2026.09.04.749184"
+  ],
+  "queries": [
+    "\"protein design\" deep learning",
+    "\"protein engineering\" machine learning",
+    "\"de novo protein\" design",
+    "\"inverse folding\" protein",
+    "\"protein language model\"",
+    "\"binder design\" protein",
+    "\"enzyme design\" protein",
+    "\"antibody design\" deep learning",
+    "\"diffusion model\" protein",
+    "\"flow matching\" protein",
+    "\"CAR-T\" \"target discovery\"",
+    "\"cell therapy\" \"AI-driven discovery\"",
+    "\"GPNMB\" \"CAR-T\"",
+    "\"de novo design\" kinase",
+    "\"kinase modulators\" \"de novo design\"",
+    "\"miniprotein\" kinase design",
+    "\"AI-enabled\" minibinders",
+    "\"AI-designed\" minibinders",
+    "\"cancer cell-surface proteins\" minibinders"
+  ],
+  "positive_keywords": {
+    "high": [
+      "protein design",
+      "de novo protein",
+      "inverse folding",
+      "protein engineering",
+      "protein language model",
+      "deep learning",
+      "structure prediction",
+      "diffusion model",
+      "flow matching",
+      "binder design",
+      "enzyme design",
+      "antibody design",
+      "wet-lab",
+      "experimental validation",
+      "directed evolution",
+      "AlphaFold",
+      "RoseTTAFold",
+      "RFdiffusion",
+      "ESM",
+      "ProGen",
+      "ProteinMPNN",
+      "AI-driven",
+      "AI-enabled",
+      "AI-designed",
+      "artificial intelligence",
+      "de novo design"
+    ],
+    "medium": [
+      "generative model",
+      "sequence design",
+      "structure generation",
+      "folding",
+      "motif scaffolding",
+      "multistate design",
+      "affinity maturation",
+      "stability",
+      "fitness landscape",
+      "variant effect",
+      "active learning",
+      "foundation model",
+      "transformer",
+      "graph neural network",
+      "equivariant",
+      "CAR-T",
+      "CAR T",
+      "chimeric antigen receptor",
+      "cell therapy",
+      "target discovery",
+      "GPNMB",
+      "kinase",
+      "miniprotein",
+      "minibinder",
+      "minibinders",
+      "cell-surface"
+    ],
+    "low": [
+      "protein",
+      "peptide",
+      "enzyme",
+      "antibody",
+      "binding",
+      "mutation",
+      "sequence",
+      "structure",
+      "kinase",
+      "miniprotein",
+      "minibinder"
+    ]
+  },
+  "negative_keywords": [
+    "clinical trial",
+    "case report",
+    "review",
+    "prospects",
+    "advances and prospects",
+    "epidemiology",
+    "diagnosis",
+    "survey",
+    "plant disease",
+    "food protein",
+    "nutrition",
+    "allergen",
+    "foam-mat",
+    "foaming agent",
+    "plant-based foaming",
+    "acerola",
+    "text-to-video",
+    "video diffusion",
+    "hand motion",
+    "facial motion",
+    "avatar",
+    "LiDAR",
+    "magnetic field",
+    "MHD equations"
+  ],
+  "topic_profiles": {
+    "Structure generation": [
+      "structure generation",
+      "diffusion",
+      "flow matching",
+      "backbone",
+      "fold"
+    ],
+    "Sequence design": [
+      "sequence design",
+      "inverse folding",
+      "ProteinMPNN",
+      "mutation",
+      "variant"
+    ],
+    "Protein language models": [
+      "protein language model",
+      "foundation model",
+      "transformer",
+      "ESM",
+      "ProGen"
+    ],
+    "Binders and therapeutics": [
+      "binder",
+      "antibody",
+      "affinity",
+      "therapeutic",
+      "peptide",
+      "CAR-T",
+      "CAR T",
+      "cell therapy",
+      "cancer therapy",
+      "GPNMB",
+      "kinase",
+      "miniprotein",
+      "minibinder",
+      "minibinders"
+    ],
+    "Enzymes and function": [
+      "enzyme",
+      "catalytic",
+      "active site",
+      "function",
+      "fitness"
+    ],
+    "Experimental validation": [
+      "wet-lab",
+      "experimental",
+      "assay",
+      "cryo-EM",
+      "crystal structure",
+      "directed evolution"
+    ]
+  }
+}

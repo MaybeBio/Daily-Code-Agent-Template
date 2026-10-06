@@ -32,7 +32,7 @@ def _write_cards(tmp_path, rows):
 def test_build_site_renders(tmp_path):
     _write_cards(tmp_path, [{"full_name": "a/b", "url": "https://github.com/a/b",
                              "language": "Python", "stars": 5,
-                             "pushed_at": "2026-10-01T00:00:00Z", "status": "new",
+                             "pushed_at": "2026-10-01T00:00:00Z",
                              "score": 8, "one_liner": "one",
                              "card": "## 是什么\nhello"}])
     open(str(tmp_path / "data" / "latest_issue.txt"), "w").write("https://github.com/x/y/issues/1")
@@ -51,7 +51,7 @@ def test_build_site_empty_no_crash(tmp_path):
 
 def test_build_site_no_issue_link(tmp_path):
     _write_cards(tmp_path, [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
-                             "pushed_at": "t", "status": "new", "score": 8,
+                             "pushed_at": "t", "score": 8,
                              "one_liner": "x", "card": "## 是什么\nhi"}])
     build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
     idx = open(str(tmp_path / "site" / "index.html"), encoding="utf-8").read()
@@ -59,7 +59,7 @@ def test_build_site_no_issue_link(tmp_path):
 
 def test_build_site_empty_card(tmp_path):
     _write_cards(tmp_path, [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
-                             "pushed_at": "t", "status": "new", "score": 8,
+                             "pushed_at": "t", "score": 8,
                              "one_liner": "x", "card": ""}])
     build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
     detail = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
@@ -69,10 +69,10 @@ def test_build_site_latest_card_wins(tmp_path):
     d = str(tmp_path / "data" / "cards")
     os.makedirs(d, exist_ok=True)
     older = {"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
-             "pushed_at": "t", "status": "new", "score": 7, "one_liner": "old",
+             "pushed_at": "t", "score": 7, "one_liner": "old",
              "card": "## 是什么\nOLD"}
     newer = {"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
-             "pushed_at": "t", "status": "new", "score": 9, "one_liner": "new",
+             "pushed_at": "t", "score": 9, "one_liner": "new",
              "card": "## 是什么\nNEW"}
     with open(os.path.join(d, "2026-09-28.json"), "w", encoding="utf-8") as f:
         json.dump([older], f, ensure_ascii=False)

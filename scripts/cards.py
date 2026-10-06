@@ -7,7 +7,7 @@ from scripts.agent import load_prompts  # noqa: E402
 def card_record(row, card):
     return {"full_name": row["full_name"], "url": row.get("url", ""),
             "language": row.get("language", ""), "stars": row.get("stars", 0),
-            "pushed_at": row.get("pushed_at", ""), "status": row.get("status", ""),
+            "pushed_at": row.get("pushed_at", ""),
             "score": row["score"], "one_liner": row.get("one_liner", ""), "card": card}
 
 def run(cfg, date, client=None, fetch=None, card_fn=None):

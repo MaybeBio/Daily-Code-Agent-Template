@@ -1,0 +1,67 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "python",
+  "include-component-in-tag": false,
+  "include-v-in-tag": true,
+  "packages": {
+    ".": {
+      "package-name": "alphafold-sovereign-mcp",
+      "changelog-path": "CHANGELOG.md",
+      "extra-files": [
+        "CITATION.cff",
+        "src/alphafold_sovereign/__init__.py",
+        {
+          "type": "generic",
+          "path": "smithery.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "uv.lock"
+        },
+        {
+          "type": "json",
+          "path": "server.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "server.json",
+          "jsonpath": "$.packages[0].version"
+        },
+        {
+          "type": "json",
+          "path": ".well-known/mcp.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": ".zenodo.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "generic",
+          "path": "README.md"
+        },
+        {
+          "type": "generic",
+          "path": "STATUS.md"
+        },
+        {
+          "type": "generic",
+          "path": "docs/installation.md"
+        }
+      ]
+    }
+  },
+  "changelog-sections": [
+    { "type": "feat", "section": "Features", "hidden": false },
+    { "type": "fix", "section": "Bug Fixes", "hidden": false },
+    { "type": "perf", "section": "Performance", "hidden": false },
+    { "type": "security", "section": "Security", "hidden": false },
+    { "type": "deps", "section": "Dependencies", "hidden": true },
+    { "type": "docs", "section": "Documentation", "hidden": true },
+    { "type": "ci", "section": "CI/CD", "hidden": true },
+    { "type": "test", "section": "Testing", "hidden": true },
+    { "type": "refactor", "section": "Refactoring", "hidden": true }
+  ]
+}

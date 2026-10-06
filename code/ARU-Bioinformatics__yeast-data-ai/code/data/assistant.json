@@ -1,0 +1,581 @@
+[
+ {
+  "id": "hello",
+  "chapter": "start",
+  "prompt": "What can you help me with?",
+  "keywords": [
+   "help",
+   "what can you"
+  ],
+  "response": "I'm an AI coding assistant built into this notebook. I can:\n\n- **write code** – ask in plain English, e.g. “plot protein length for essential and non-essential genes”;\n- **explain code** – press **Ask AI → Explain this code** on any cell;\n- **help with errors** – press **Ask the AI to explain this error** under an error message;\n- **suggest next steps** in an analysis.\n\nWhat I can't do is take responsibility for the results. AI assistants make confident-sounding mistakes: wrong labels, unsuitable statistics, code that runs but answers a different question, and references that don't exist. In this practical some of my prepared answers contain mistakes like these – spotting them is part of the job.\n\nStart with the **Notebook** tab: run the first cell to load the data."
+ },
+ {
+  "id": "explain:load",
+  "kind": "explain",
+  "chapter": "notebook",
+  "prompt": "Explain the first cell",
+  "response": "This cell loads the data:\n\n- `import pandas as pd` loads **pandas**, the standard Python package for tables. `pd` is the usual short name.\n- `pd.read_csv('data/yeast_genes.csv')` reads the comma-separated file into a **DataFrame** – a table with named columns, one row per gene – and stores it in a variable called `df`.\n- `df.head()` shows the first five rows. Because it is the last line of the cell, the notebook displays its result.\n\nEverything else in the practical builds on `df`, so this cell must be run first (and again after a restart).",
+  "keywords": []
+ },
+ {
+  "id": "pct-essential",
+  "chapter": "notebook",
+  "prompt": "What percentage of the genes are essential?",
+  "alt": [
+   "how many genes are essential",
+   "proportion of essential genes",
+   "fraction essential"
+  ],
+  "keywords": [
+   "percent|%|proportion|fraction|how many",
+   "essential"
+  ],
+  "excludes": "model|found|find|predict|threshold|recall|precision",
+  "response": "The `essential` column holds 1 for essential genes and 0 for the others, so adding it up counts the essential genes, and its mean is the proportion:\n\n```python\nn_genes = len(df)\nn_essential = df['essential'].sum()\nprint(f'{n_essential} of {n_genes} genes are essential ({100 * n_essential / n_genes:.1f}%)')\n```\n\n`len(df)` is the number of rows (genes). The `f'...'` string puts the values into the sentence; `:.1f` rounds to one decimal place."
+ },
+ {
+  "id": "find-gene",
+  "chapter": "notebook",
+  "prompt": "How do I look up one gene, for example ACT1?",
+  "alt": [
+   "look up a gene",
+   "find a gene",
+   "show one gene",
+   "select a row"
+  ],
+  "keywords": [
+   "look up|find|show|select",
+   "gene|act1|row"
+  ],
+  "response": "Filter the rows where the `gene` column equals `'ACT1'`:\n\n```python\ndf[df['gene'] == 'ACT1'].T\n```\n\n- `df['gene'] == 'ACT1'` gives True or False for every row;\n- `df[...]` keeps only the rows that are True;\n- `.T` (transpose) turns the single row into a column, which is easier to read.\n\nACT1 encodes actin, a core part of the cytoskeleton – as you'd expect, it is essential. Try another gene, e.g. `'CDC28'` (the main cell-cycle kinase) or `'GAL4'` (a transcription factor needed only to use galactose)."
+ },
+ {
+  "id": "describe",
+  "chapter": "notebook",
+  "prompt": "Give me a quick summary of all the numeric columns",
+  "alt": [
+   "summary statistics",
+   "describe the data"
+  ],
+  "keywords": [
+   "summary|summarise|summarize|describe|statistics"
+  ],
+  "response": "`describe()` summarises every numeric column; `.T` puts one column per row so it fits on the screen:\n\n```python\ndf.describe().T.round(2)\n```\n\n- **count** is the number of genes with a value – where it is below 5,481, some values are missing (for example `protein_abundance`);\n- **mean** and **50%** (the median) are very different for skewed columns such as `protein_abundance` and `interaction_partners`: a few genes have huge values;\n- **min** and **max** show the range – useful for spotting impossible values."
+ },
+ {
+  "id": "compare-medians",
+  "chapter": "explore",
+  "prompt": "Compare the numeric features of essential and non-essential genes",
+  "alt": [
+   "compare features between essential and non-essential genes",
+   "difference between essential and non essential"
+  ],
+  "keywords": [
+   "compare|difference|differ",
+   "essential",
+   "feature|column|numeric"
+  ],
+  "response": "Group the genes by `essential` and take the **median** of each feature (the median is robust to the very large values some genes have):\n\n```python\nfeatures = ['protein_length', 'gc_content', 'codon_bias', 'protein_abundance',\n            'interaction_partners', 'transmembrane_helices', 'plddt', 'disorder']\nmedians = df.groupby('essential')[features].median().T\nmedians.columns = ['non-essential', 'essential']\ndisplay(medians.round(3))\n\n# yes/no features: the fraction of genes in each group\nyes_no = pd.DataFrame({\n    'has a human homologue': df.groupby('essential')['human_homolog'].mean(),\n    'has a yeast paralogue': df.groupby('essential')['paralog_identity'].apply(lambda s: (s > 0).mean()),\n}).T\nyes_no.columns = ['non-essential', 'essential']\nyes_no.round(3)\n```\n\n`display()` shows a table in the middle of a cell; the last line's table is shown automatically. Look for the biggest differences – and think about *why* an essential gene might differ in that way."
+ },
+ {
+  "id": "box-abundance",
+  "chapter": "explore",
+  "flawed": true,
+  "excludes": "partner|interaction|length|codon|\\bgc\\b|plddt|disorder|paralog|homolog|transmembrane|helices|location",
+  "prompt": "Make a box plot comparing the protein abundance of essential and non-essential genes",
+  "alt": [
+   "box plot of protein abundance",
+   "plot protein abundance by essential"
+  ],
+  "keywords": [
+   "box ?plot|boxplot|plot|graph|chart",
+   "abundance"
+  ],
+  "next": [
+   "box-abundance-log"
+  ],
+  "response": "Here's a box plot of protein abundance for the two groups:\n\n```python\nimport matplotlib.pyplot as plt\n\ndf.boxplot(column='protein_abundance', by='essential', grid=False)\nplt.suptitle('')\nplt.title('Protein abundance of essential and non-essential genes')\nplt.xlabel('Essential (1) or not (0)')\nplt.ylabel('Protein abundance (ppm)')\nplt.show()\n```\n\nEach box shows the middle 50% of the genes and the line inside it is the median. Essential genes clearly have much higher protein abundance than non-essential genes."
+ },
+ {
+  "id": "box-abundance-log",
+  "chapter": "explore",
+  "followOnly": true,
+  "prompt": "The boxes are squashed at the bottom – can you use a log scale?",
+  "alt": [
+   "use a log scale",
+   "log scale",
+   "the plot is squashed"
+  ],
+  "keywords": [
+   "log",
+   "scale|axis|squash"
+  ],
+  "response": "Good catch – protein abundance ranges from about 0.01 to over 20,000 molecules per million, more than six orders of magnitude. On a linear axis a handful of extremely abundant proteins squash everything else into the bottom of the plot, so you couldn't really see the difference I claimed. A logarithmic axis fixes it:\n\n```python\nimport matplotlib.pyplot as plt\n\ngroups = [df.loc[df['essential'] == 0, 'protein_abundance'].dropna(),\n          df.loc[df['essential'] == 1, 'protein_abundance'].dropna()]\nfig, ax = plt.subplots(figsize=(5, 4))\nax.boxplot(groups)\nax.set_xticks([1, 2])\nax.set_xticklabels(['Non-essential', 'Essential'])\nax.set_yscale('log')\nax.set_ylabel('Protein abundance (ppm, log scale)')\nax.set_title('Essential genes make more protein')\nplt.show()\n\ndf.groupby('essential')['protein_abundance'].median()\n```\n\nNow the difference is visible: the median essential protein is about 3½ times as abundant as the median non-essential one (36.8 vs 10.7 ppm) – but the two groups still overlap a lot. I also removed missing values with `dropna()`, because matplotlib's `boxplot` can't handle them."
+ },
+ {
+  "id": "bar-location",
+  "chapter": "explore",
+  "flawed": true,
+  "prompt": "Plot the percentage of essential genes in each cellular location",
+  "alt": [
+   "essential genes by location",
+   "bar chart of location",
+   "which compartment has most essential genes"
+  ],
+  "keywords": [
+   "location|compartment|localisation|localization",
+   "percent|%|fraction|proportion|plot|bar"
+  ],
+  "next": [
+   "bar-location-fix"
+  ],
+  "response": "This works out the percentage of essential genes for each location and draws a bar chart, sorted from highest to lowest:\n\n```python\nimport matplotlib.pyplot as plt\n\npct = df.groupby('location')['essential'].mean() * 100\nprint(pct.round(1))\n\norder = pct.sort_values(ascending=False)\nplt.figure(figsize=(7, 4))\nplt.bar(range(len(order)), order.values, color='#0b6b8a')\nplt.xticks(range(len(order)), pct.index, rotation=40, ha='right')\nplt.ylabel('Essential genes (%)')\nplt.title('Essential genes by cellular location')\nplt.show()\n```\n\nNuclear proteins are the most likely to be essential – many of them work in transcription, RNA processing and ribosome assembly."
+ },
+ {
+  "id": "bar-location-fix",
+  "chapter": "explore",
+  "followOnly": true,
+  "prompt": "The bar labels don't match the numbers – please fix the plot",
+  "alt": [
+   "labels are wrong",
+   "fix the labels",
+   "the bars are labelled wrongly"
+  ],
+  "keywords": [
+   "label",
+   "wrong|match|fix|bug"
+  ],
+  "response": "You're right – sorry. I sorted the *values* but took the *labels* from the unsorted table, so the bars were in size order while the labels were in alphabetical order. Five of the eight labels were wrong, including the tallest bar, which is the nucleus, not the cytoplasm.\n\nTaking the heights and the labels from the same sorted Series fixes it:\n\n```python\nimport matplotlib.pyplot as plt\n\npct = df.groupby('location')['essential'].mean().mul(100).sort_values(ascending=False)\nfig, ax = plt.subplots(figsize=(7, 4))\nax.bar(pct.index, pct.values, color='#0b6b8a')\nfor i, v in enumerate(pct.values):\n    ax.text(i, v + 0.5, f'{v:.0f}%', ha='center', fontsize=8)\nax.set_ylabel('Essential genes (%)')\nax.set_title('Essential genes by cellular location')\nplt.setp(ax.get_xticklabels(), rotation=40, ha='right')\nplt.show()\n```\n\nWriting each value on its bar makes this kind of mistake easy to spot. It's a very common bug in AI-written plotting code: the code runs, the plot looks professional – and it's wrong."
+ },
+ {
+  "id": "plot-feature",
+  "chapter": "explore",
+  "hidden": true,
+  "prompt": "Plot interaction partners for essential and non-essential genes",
+  "alt": [
+   "plot protein length for essential and non-essential genes",
+   "plot codon bias by essential",
+   "box plot of another feature",
+   "plot another feature",
+   "plot gc content essential"
+  ],
+  "keywords": [
+   "plot|box|histogram|chart|graph|visuali[sz]e|distribution",
+   "partner|interaction|length|codon|gc|plddt|disorder|paralog|homolog|transmembrane|helices|feature|column"
+  ],
+  "response": "A box plot per group works for any numeric column. Very skewed columns (such as `interaction_partners` or `protein_abundance`) are easier to read on a log scale; `+ 1` avoids taking the log of 0 for genes with no recorded partners:\n\n```python\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ncol = 'interaction_partners'   # change this to plot another column\nskewed = True                  # True for very skewed columns, False for e.g. gc_content or codon_bias\n\nvalues = np.log10(df[col] + 1) if skewed else df[col]\ngroups = [values[df['essential'] == 0].dropna(), values[df['essential'] == 1].dropna()]\nplt.figure(figsize=(5, 4))\nplt.boxplot(groups)\nplt.xticks([1, 2], ['Non-essential', 'Essential'])\nplt.ylabel(f'log10({col} + 1)' if skewed else col)\nplt.title(f'{col} in essential and non-essential genes')\nplt.show()\n\ndf.groupby('essential')[col].median()\n```\n\nCheck the plot against the medians printed under it, and read the axis label: on a log scale, one step up means ten times more."
+ },
+ {
+  "id": "ttest-abundance",
+  "chapter": "stats",
+  "flawed": true,
+  "excludes": "partner|interaction|length|codon|\\bgc\\b|plddt|disorder|paralog|homolog|transmembrane|helices|location",
+  "prompt": "Is the difference in protein abundance between essential and non-essential genes statistically significant?",
+  "alt": [
+   "is the difference significant",
+   "statistical test protein abundance",
+   "p value abundance"
+  ],
+  "keywords": [
+   "significan|test|p.?value",
+   "abundance"
+  ],
+  "next": [
+   "mwu-abundance"
+  ],
+  "response": "We can test this with a two-sample t-test:\n\n```python\nfrom scipy import stats\n\ness = df.loc[df['essential'] == 1, 'protein_abundance'].dropna()\nnon = df.loc[df['essential'] == 0, 'protein_abundance'].dropna()\nt, p = stats.ttest_ind(ess, non)\nprint(f't = {t:.2f}, p = {p:.2g}')\nprint(f'mean abundance: essential {ess.mean():.0f} ppm, non-essential {non.mean():.0f} ppm')\n```\n\nThe p-value is far below 0.05, so the difference is highly significant: essential genes have much higher protein abundance."
+ },
+ {
+  "id": "mwu-abundance",
+  "chapter": "stats",
+  "followOnly": true,
+  "prompt": "The data are very skewed – is a t-test right? Use a better test and give an effect size",
+  "alt": [
+   "non-parametric test",
+   "mann whitney",
+   "effect size",
+   "is a t-test appropriate"
+  ],
+  "keywords": [
+   "skew|t.?test|non.?parametric|mann|whitney|effect size|rank"
+  ],
+  "response": "Fair point. The t-test compares **means** and assumes roughly normal data. Protein abundance is extremely right-skewed, so a few very abundant proteins dominate the means (268 vs 149 ppm, while the medians are 36.8 vs 10.7). A rank-based test such as the **Mann–Whitney U test** is safer. And with over 5,000 genes almost any difference gives a tiny p-value, so report an **effect size** – how big the difference is:\n\n```python\nfrom scipy import stats\n\ness = df.loc[df['essential'] == 1, 'protein_abundance'].dropna()\nnon = df.loc[df['essential'] == 0, 'protein_abundance'].dropna()\nu, p = stats.mannwhitneyu(ess, non, alternative='two-sided')\neffect = u / (len(ess) * len(non))   # chance that a random essential gene is more abundant\nprint(f'Mann–Whitney U test: p = {p:.2g}')\nprint(f'median abundance: essential {ess.median():.1f} ppm, non-essential {non.median():.1f} ppm')\nprint(f'effect size: {effect:.2f}  (0.5 = no difference, 1 = complete separation)')\n```\n\nThe effect size here is the probability that a randomly chosen essential gene has a higher abundance than a randomly chosen non-essential one: about 0.67. Notice that the p-value from this test is *much* smaller than the t-test's – the t-test was weakened by the skew. (This effect size is the same number as the **ROC AUC** you'll meet in the next chapter.)"
+ },
+ {
+  "id": "test-feature",
+  "chapter": "stats",
+  "hidden": true,
+  "prompt": "Is the difference in interaction partners statistically significant?",
+  "alt": [
+   "test another feature",
+   "is the difference in protein length significant",
+   "mann whitney for another column",
+   "compare codon bias statistically"
+  ],
+  "keywords": [
+   "significan|test|p.?value|differ|statistic",
+   "partner|interaction|length|codon|gc|plddt|disorder|paralog|homolog|transmembrane|helices|feature|column"
+  ],
+  "excludes": "every|\\ball\\b|each|multiple|bonferroni|model",
+  "response": "The Mann–Whitney U test compares the two groups without assuming normally distributed data, so it suits skewed columns. With thousands of genes even small differences are \"significant\", so look at the effect size too:\n\n```python\nfrom scipy import stats\n\ncol = 'interaction_partners'   # change this to test another column\ness = df.loc[df['essential'] == 1, col].dropna()\nnon = df.loc[df['essential'] == 0, col].dropna()\nu, p = stats.mannwhitneyu(ess, non, alternative='two-sided')\nprint(f'{col}: median {ess.median():g} in essential vs {non.median():g} in non-essential genes')\nprint(f'Mann–Whitney U test: p = {p:.2g}')\nprint(f'effect size: {u / (len(ess) * len(non)):.2f}  (0.5 = no difference)')\n```\n\nThe effect size is the chance that a random essential gene has a higher value than a random non-essential one; below 0.5 means essential genes tend to have *lower* values."
+ },
+ {
+  "id": "many-tests",
+  "chapter": "stats",
+  "prompt": "Test every numeric feature and correct for multiple testing",
+  "alt": [
+   "test all features",
+   "multiple testing",
+   "bonferroni"
+  ],
+  "keywords": [
+   "every|all|each|multiple",
+   "test|bonferroni|correct"
+  ],
+  "response": "This runs a Mann–Whitney U test for each feature and adjusts the p-values with the **Bonferroni** correction (multiply by the number of tests, capped at 1):\n\n```python\nfrom scipy import stats\n\nfeatures = ['protein_length', 'gc_content', 'codon_bias', 'protein_abundance', 'interaction_partners',\n            'transmembrane_helices', 'human_homolog', 'paralog_identity', 'plddt', 'disorder']\nrows = []\nfor f in features:\n    ess = df.loc[df['essential'] == 1, f].dropna()\n    non = df.loc[df['essential'] == 0, f].dropna()\n    u, p = stats.mannwhitneyu(ess, non, alternative='two-sided')\n    rows.append({'feature': f, 'effect size': round(u / (len(ess) * len(non)), 3), 'p': p})\n\nres = pd.DataFrame(rows)\nres['p (Bonferroni)'] = (res['p'] * len(res)).clip(upper=1)\nres['p'] = res['p'].map('{:.1e}'.format)\nres['p (Bonferroni)'] = res['p (Bonferroni)'].map('{:.1e}'.format)\nres.sort_values('effect size', ascending=False)\n```\n\nAn effect size above 0.5 means the feature tends to be *higher* in essential genes; below 0.5, *lower*. With ten tests, the chance of at least one false positive at p < 0.05 would be 1 − 0.95¹⁰ ≈ 40% if nothing were real – that is what the correction guards against."
+ },
+ {
+  "id": "first-model",
+  "chapter": "ml",
+  "flawed": true,
+  "prompt": "Train a machine-learning model to predict which genes are essential",
+  "alt": [
+   "train a model",
+   "build a classifier",
+   "predict essential genes",
+   "machine learning model"
+  ],
+  "keywords": [
+   "train|build|fit|machine|model|classifier|predict"
+  ],
+  "next": [
+   "baseline",
+   "importance"
+  ],
+  "response": "Here's a **random forest** classifier – a good all-round model for tables of data. I'll use all the numeric columns as features, fill any missing values with 0, and keep 25% of the genes aside as a test set:\n\n```python\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import accuracy_score, roc_auc_score\n\nX = df.select_dtypes('number').drop(columns=['essential']).fillna(0)\ny = df['essential']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0, stratify=y)\n\nmodel = RandomForestClassifier(n_estimators=200, random_state=0)\nmodel.fit(X_train, y_train)\n\npred = model.predict(X_test)\nprob = model.predict_proba(X_test)[:, 1]\nprint('Features used:', list(X.columns))\nprint(f'Accuracy: {accuracy_score(y_test, pred):.3f}')\nprint(f'ROC AUC:  {roc_auc_score(y_test, prob):.3f}')\n```\n\nThe model is excellent: about 95% accurate, with an AUC close to 1. Protein features predict essentiality extremely well!"
+ },
+ {
+  "id": "baseline",
+  "chapter": "ml",
+  "prompt": "What accuracy would I get by always guessing 'not essential'?",
+  "alt": [
+   "baseline accuracy",
+   "dummy classifier",
+   "always guess not essential",
+   "majority class"
+  ],
+  "keywords": [
+   "baseline|dummy|always|guess|majority"
+  ],
+  "response": "About 81% – because 81% of the genes are not essential. This **baseline** is what any model has to beat:\n\n```python\nfrom sklearn.dummy import DummyClassifier\nfrom sklearn.metrics import accuracy_score, roc_auc_score\n\ndummy = DummyClassifier(strategy='most_frequent').fit(X_train, y_train)\nprint(f'Accuracy of always saying \"not essential\": {accuracy_score(y_test, dummy.predict(X_test)):.3f}')\nprint(f'ROC AUC of the same:                        {roc_auc_score(y_test, dummy.predict_proba(X_test)[:, 1]):.3f}')\n```\n\n(This uses `X_train`, `X_test`, `y_train` and `y_test` from the model cell – run that first.)\n\nWhen one class is much bigger than the other, accuracy flatters a model. The **ROC AUC** is a better summary: it is the chance that a randomly chosen essential gene gets a higher score than a randomly chosen non-essential one – 0.5 for guessing, 1.0 for a perfect ranking."
+ },
+ {
+  "id": "importance",
+  "chapter": "ml",
+  "prompt": "Which features does the model rely on most?",
+  "alt": [
+   "feature importance",
+   "most important features",
+   "what does the model use"
+  ],
+  "keywords": [
+   "importan|rely|depend|\\buse\\b|which feature"
+  ],
+  "excludes": "\\bwhy\\b",
+  "next": [
+   "leak-hint"
+  ],
+  "response": "A random forest records how much each feature helped its decisions (`feature_importances_`):\n\n```python\nimport matplotlib.pyplot as plt\n\nimp = pd.Series(model.feature_importances_, index=X.columns).sort_values()\nimp.plot.barh(figsize=(6, 4), color='#6b3fa0')\nplt.xlabel('Importance (mean decrease in impurity)')\nplt.title('What the random forest relies on')\nplt.show()\n\nimp.sort_values(ascending=False).round(3)\n```\n\n(This uses `model` and `X` from the model cell.)\n\nOne feature, `conditional_mutant_phenotypes`, dominates: the model leans on it more than on everything else put together."
+ },
+ {
+  "id": "leak-hint",
+  "chapter": "ml",
+  "followOnly": true,
+  "prompt": "Why is conditional_mutant_phenotypes so predictive? Is that a problem?",
+  "alt": [
+   "why is that feature so important",
+   "is this data leakage",
+   "too good to be true"
+  ],
+  "keywords": [
+   "conditional|leak|too good|why.*(predictive|important)|problem"
+  ],
+  "response": "That's exactly the right question to ask when a result looks too good. I'll help you work it out rather than just tell you:\n\n1. Open the **Data** tab → **What the columns mean** and read how `conditional_mutant_phenotypes` was measured.\n2. Think about *why* geneticists make **conditional** mutants (such as temperature-sensitive alleles) of a gene, instead of simply deleting it. Which genes need them?\n3. Imagine a gene nobody has studied yet, in a newly sequenced yeast. Would you know this number for it?\n\nIf the value of a feature is only known *because of* the answer you are trying to predict, the model can “cheat” – that's called **data leakage** (or target leakage). Leaky models look brilliant in testing and fail on real new cases. `chromosome` deserves a thought too: is a chromosome number a biological property that should affect essentiality?"
+ },
+ {
+  "id": "retrain",
+  "chapter": "ml",
+  "prompt": "Retrain the model without the leaky feature and compare models fairly with cross-validation",
+  "alt": [
+   "retrain without conditional_mutant_phenotypes",
+   "remove the leaky feature",
+   "cross validation",
+   "honest model"
+  ],
+  "keywords": [
+   "retrain|remove|without|drop|cross.?valid|honest|fair"
+  ],
+  "response": "Good call. This version lists the features explicitly (no `conditional_mutant_phenotypes`, and no `chromosome`, which is a label rather than a biological property), fills missing values with the median *inside* the model pipeline instead of 0, puts the two very skewed features on a log scale, and uses **5-fold cross-validation** so that every gene is used for testing once:\n\n```python\nimport numpy as np\nfrom sklearn.model_selection import cross_val_score, StratifiedKFold\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\n\nfeatures = ['protein_length', 'gc_content', 'codon_bias', 'protein_abundance', 'interaction_partners',\n            'transmembrane_helices', 'human_homolog', 'paralog_identity', 'plddt', 'disorder']\nX = df[features].copy()\nX['protein_abundance'] = np.log10(X['protein_abundance'])            # very skewed: log scale\nX['interaction_partners'] = np.log10(X['interaction_partners'] + 1)\ny = df['essential']\n\ncv = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)\nlogreg = make_pipeline(SimpleImputer(strategy='median'), StandardScaler(), LogisticRegression(max_iter=1000))\nforest = make_pipeline(SimpleImputer(strategy='median'),\n                       RandomForestClassifier(n_estimators=100, min_samples_leaf=5, random_state=0))\n\nfor name, m in [('logistic regression', logreg), ('random forest', forest)]:\n    auc = cross_val_score(m, X, y, cv=cv, scoring='roc_auc')\n    print(f'{name}: ROC AUC {auc.mean():.3f} ± {auc.std():.3f}')\n```\n\n(The random forest takes a little while – it trains five times.) Both models score an AUC of about 0.8: lower, but honest – they use only information we could have for a gene nobody has studied."
+ },
+ {
+  "id": "confusion",
+  "chapter": "ml",
+  "prompt": "How many of the essential genes does the model actually find?",
+  "alt": [
+   "confusion matrix",
+   "recall and precision",
+   "how many essential genes are found",
+   "threshold"
+  ],
+  "keywords": [
+   "confusion|recall|precision|find|threshold|false positive|false negative"
+  ],
+  "response": "Let's get a cross-validated prediction for every gene and count the hits at two probability thresholds:\n\n```python\nfrom sklearn.model_selection import cross_val_predict\nfrom sklearn.metrics import confusion_matrix, precision_score, recall_score\n\nprob = cross_val_predict(logreg, X, y, cv=cv, method='predict_proba')[:, 1]\nfor threshold in [0.5, 0.3]:\n    pred = (prob >= threshold).astype(int)\n    tn, fp, fn, tp = confusion_matrix(y, pred).ravel()\n    print(f'threshold {threshold}: finds {tp} of {tp + fn} essential genes (recall {recall_score(y, pred):.2f}), '\n          f'with {fp} false alarms (precision {precision_score(y, pred):.2f})')\n```\n\n(This uses `logreg`, `X`, `y` and `cv` from the cross-validation cell.)\n\nAt the usual threshold of 0.5 the model finds only about a quarter of the essential genes – they are outnumbered four to one, so the model is cautious about calling any gene essential. Lowering the threshold finds more of them, at the cost of more false alarms. Which threshold is right depends on what the predictions are for."
+ },
+ {
+  "id": "text-model",
+  "chapter": "ml",
+  "flawed": true,
+  "prompt": "Could we use the gene descriptions as features? They contain a lot of information",
+  "alt": [
+   "use the descriptions",
+   "text features",
+   "language model on descriptions",
+   "tf-idf"
+  ],
+  "keywords": [
+   "description|text|words|language|tf.?idf"
+  ],
+  "next": [
+   "text-words"
+  ],
+  "response": "Great idea – text is full of information, and turning words into numbers is how language models start. **TF-IDF** gives each word a weight in each description; a logistic regression then learns which words go with essential genes:\n\n```python\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.model_selection import cross_val_score, StratifiedKFold\n\ntext = df['description'].fillna('')\ntext_model = make_pipeline(TfidfVectorizer(min_df=3, stop_words='english'), LogisticRegression(max_iter=1000))\ncv = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)\nauc = cross_val_score(text_model, text, df['essential'], cv=cv, scoring='roc_auc')\nprint(f'Text model ROC AUC: {auc.mean():.3f}')\n```\n\nThe text model beats all the protein features by a wide margin (AUC above 0.9)! Language really is a powerful source of biological information."
+ },
+ {
+  "id": "text-words",
+  "chapter": "ml",
+  "followOnly": true,
+  "prompt": "Which words does the text model rely on?",
+  "alt": [
+   "top words",
+   "which words predict essential",
+   "text model coefficients"
+  ],
+  "keywords": [
+   "word|coefficient|term"
+  ],
+  "response": "The logistic regression gives each word a weight; the biggest positive weights push a gene towards “essential”:\n\n```python\ntext_model.fit(text, df['essential'])\nvocab = text_model[0].get_feature_names_out()\nweights = pd.Series(text_model[-1].coef_[0], index=vocab).sort_values(ascending=False)\nweights.head(15).round(2)\n```\n\nLook carefully at the top words – and at a few descriptions that contain them:\n\n```python\ndf.loc[df['description'].str.contains('essential', case=False, na=False), ['gene', 'essential', 'description']].head(8)\n```"
+ },
+ {
+  "id": "load-emb",
+  "chapter": "plm",
+  "prompt": "Load the protein language model embeddings and join them to the gene table",
+  "alt": [
+   "load embeddings",
+   "read yeast_esm2",
+   "merge embeddings"
+  ],
+  "keywords": [
+   "embedding|esm|language model",
+   "load|read|join|merge"
+  ],
+  "response": "The embeddings are in a second file, with one row per protein and the ORF name to link them:\n\n```python\nemb = pd.read_csv('data/yeast_esm2.csv')\nemb_cols = [c for c in emb.columns if c.startswith('esm_')]\ndata = df.merge(emb, on='orf')\nprint('embeddings:', emb.shape, '| gene table:', df.shape, '| merged:', data.shape)\ndata[['gene', 'essential'] + emb_cols[:6]].head()\n```\n\nEach protein is now described by 32 numbers, `esm_1` … `esm_32` (a compressed version of the 480 numbers ESM-2 produces per protein). They mean nothing individually – what matters is which proteins have *similar* vectors. Always check the number of rows before and after a merge: genes without a match disappear silently."
+ },
+ {
+  "id": "emb-map",
+  "chapter": "plm",
+  "requires": "embed|esm|language|pca|umap|map",
+  "prompt": "Draw a 2D map of the protein embeddings, coloured by cellular location",
+  "alt": [
+   "plot the embeddings",
+   "pca of embeddings",
+   "map of proteins",
+   "umap"
+  ],
+  "keywords": [
+   "map|plot|pca|2d|visuali[sz]e|scatter|umap",
+   "embedding|esm|protein"
+  ],
+  "response": "PCA squeezes the 32 numbers into the two directions with the most variation, so every protein becomes a dot on a map:\n\n```python\nimport matplotlib.pyplot as plt\nfrom sklearn.decomposition import PCA\n\nxy = PCA(n_components=2).fit_transform(data[emb_cols])\nfig, axes = plt.subplots(1, 2, figsize=(11, 4.6), sharex=True, sharey=True)\n\nfor loc in data['location'].value_counts().index:\n    m = (data['location'] == loc).values\n    axes[0].scatter(xy[m, 0], xy[m, 1], s=4, alpha=0.6, label=loc)\naxes[0].set_title('Coloured by cellular location')\naxes[0].legend(markerscale=3, fontsize=7, loc='best')\n\ness = (data['essential'] == 1).values\naxes[1].scatter(xy[~ess, 0], xy[~ess, 1], s=4, alpha=0.3, color='#b0b8c4', label='not essential')\naxes[1].scatter(xy[ess, 0], xy[ess, 1], s=4, alpha=0.6, color='#c0392b', label='essential')\naxes[1].set_title('Coloured by essentiality')\naxes[1].legend(markerscale=3, fontsize=8)\nfor ax in axes:\n    ax.set_xlabel('PC 1')\naxes[0].set_ylabel('PC 2')\nplt.tight_layout()\nplt.show()\n```\n\nThe language model never saw locations or essentiality – only amino-acid sequences – yet proteins from some compartments gather in particular regions of the map."
+ },
+ {
+  "id": "neighbours",
+  "chapter": "plm",
+  "prompt": "Which proteins are most similar to HXT1 in embedding space?",
+  "alt": [
+   "nearest neighbours",
+   "most similar proteins",
+   "similar to hxt1",
+   "cosine similarity"
+  ],
+  "keywords": [
+   "similar|neighbou?r|closest|nearest"
+  ],
+  "response": "Compare HXT1's embedding with every other protein using **cosine similarity** (1 = pointing in the same direction):\n\n```python\nfrom sklearn.metrics.pairwise import cosine_similarity\n\ndef most_similar(gene, n=10):\n    i = data.index[data['gene'] == gene][0]\n    sims = cosine_similarity(data.loc[[i], emb_cols], data[emb_cols])[0]\n    out = data[['gene', 'essential', 'location', 'description']].copy()\n    out['similarity'] = sims\n    out = out.drop(index=i).sort_values('similarity', ascending=False).head(n)\n    return out.round({'similarity': 3})\n\nmost_similar('HXT1')\n```\n\nHXT1 is a hexose (glucose) transporter. Try other genes too, e.g. `most_similar('CDC28')` (a protein kinase) or `most_similar('RPL3')` (a ribosomal protein)."
+ },
+ {
+  "id": "what-plm",
+  "chapter": "plm",
+  "hidden": true,
+  "prompt": "What is a protein language model?",
+  "alt": [
+   "what is esm-2",
+   "what is an embedding",
+   "what are embeddings",
+   "explain protein language models"
+  ],
+  "keywords": [
+   "what|explain|how does|how do|mean",
+   "language model|esm|embedding"
+  ],
+  "response": "A **protein language model** is a neural network trained on millions of protein sequences, much as a large language model is trained on text. ESM-2 learned by predicting amino acids that had been hidden (masked) in a sequence. To do that well it had to learn which residues tend to occur together – which reflects the protein's structure, function and evolution.\n\nFor each protein the model produces an **embedding**: a list of numbers (480 for the version of ESM-2 used here) that summarises the sequence. Proteins with similar embeddings tend to be related or to do similar jobs, so embeddings can be used as features for machine learning without any experiments on the protein. In this practical the 480 numbers were compressed to 32 (`esm_1` … `esm_32`) with PCA.\n\nThe same idea is behind newer tools: ESMFold predicts a structure from a single sequence, and protein language models are used to predict the effects of mutations and to design new proteins."
+ },
+ {
+  "id": "emb-model",
+  "chapter": "plm",
+  "prompt": "Add the embeddings to the machine-learning model – does it predict better?",
+  "alt": [
+   "use embeddings as features",
+   "combine embeddings and features",
+   "does the language model help"
+  ],
+  "keywords": [
+   "embedding|esm|language",
+   "model|predict|auc|improve|feature"
+  ],
+  "response": "Compare three logistic regressions with the same 5-fold cross-validation: the hand-made features, the embeddings alone, and both together:\n\n```python\nimport numpy as np\nfrom sklearn.model_selection import cross_val_score, StratifiedKFold\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\n\nfeatures = ['protein_length', 'gc_content', 'codon_bias', 'protein_abundance', 'interaction_partners',\n            'transmembrane_helices', 'human_homolog', 'paralog_identity', 'plddt', 'disorder']\nXf = data[features].copy()\nXf['protein_abundance'] = np.log10(Xf['protein_abundance'])\nXf['interaction_partners'] = np.log10(Xf['interaction_partners'] + 1)\ny = data['essential']\ncv = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)\nmodel = make_pipeline(SimpleImputer(strategy='median'), StandardScaler(), LogisticRegression(max_iter=2000))\n\nfor name, Xs in [('hand-made features', Xf),\n                 ('embeddings only', data[emb_cols]),\n                 ('features + embeddings', pd.concat([Xf, data[emb_cols]], axis=1))]:\n    auc = cross_val_score(model, Xs, y, cv=cv, scoring='roc_auc')\n    print(f'{name:22s} ROC AUC {auc.mean():.3f} ± {auc.std():.3f}')\n```\n\nCompare the three numbers – how much does a model that only ever read sequences add to the features biologists chose?"
+ },
+ {
+  "id": "disorder-compare",
+  "chapter": "alphafold",
+  "prompt": "Are essential proteins more or less disordered? Plot the AlphaFold disorder for both groups",
+  "alt": [
+   "compare disorder",
+   "plddt essential",
+   "alphafold confidence by group"
+  ],
+  "keywords": [
+   "disorder|plddt|alphafold|confidence"
+  ],
+  "excludes": "\\bmost\\b|\\btop\\b|highest|what is|what does|mean",
+  "response": "`disorder` is the fraction of each protein that AlphaFold predicts with very low confidence (pLDDT below 50), which usually means the region has no fixed structure:\n\n```python\nimport matplotlib.pyplot as plt\n\nfig, axes = plt.subplots(1, 2, figsize=(10, 3.8))\nfor ess, colour, label in [(0, '#8896a8', 'not essential'), (1, '#c0392b', 'essential')]:\n    sub = df[df['essential'] == ess]\n    axes[0].hist(sub['plddt'].dropna(), bins=40, alpha=0.55, density=True, color=colour, label=label)\n    axes[1].hist(sub['disorder'].dropna(), bins=40, alpha=0.55, density=True, color=colour, label=label)\naxes[0].set_xlabel('Average AlphaFold confidence (pLDDT)')\naxes[1].set_xlabel('Fraction of residues with pLDDT < 50')\nfor ax in axes:\n    ax.set_ylabel('Density')\n    ax.legend()\nplt.tight_layout()\nplt.show()\n\ndf.groupby('essential')[['plddt', 'disorder']].median()\n```\n\n`density=True` scales the two histograms to the same total area, so a group of 1,041 genes can be compared with one of 4,440."
+ },
+ {
+  "id": "what-plddt",
+  "chapter": "alphafold",
+  "hidden": true,
+  "prompt": "What does pLDDT mean?",
+  "alt": [
+   "what is plddt",
+   "what is the alphafold confidence score",
+   "explain plddt",
+   "what is pae"
+  ],
+  "keywords": [
+   "what|explain|mean",
+   "plddt|confidence|pae"
+  ],
+  "response": "**pLDDT** is AlphaFold's confidence score for each residue, from 0 to 100. It estimates how well the predicted structure around that residue would agree with an experimental structure:\n\n- above 90: very high confidence – usually right down to the side chains;\n- 70–90: confident – the backbone is usually right;\n- 50–70: low confidence;\n- below 50: very low – often an intrinsically disordered region, which has no single structure.\n\nIn the gene table, `plddt` is the average over the whole protein and `disorder` is the fraction of residues below 50. A low pLDDT does not always mean a bad prediction: many proteins have flexible regions, or regions that only fold when they bind a partner. How confidently domains are placed relative to each other is shown by a second score, the **PAE** (predicted aligned error) plot – see the *AlphaFold confidence* panel in the 3D viewer."
+ },
+ {
+  "id": "most-disordered",
+  "chapter": "alphafold",
+  "prompt": "Which essential proteins are the most disordered?",
+  "alt": [
+   "most disordered essential proteins",
+   "most disordered essential genes"
+  ],
+  "keywords": [
+   "most|top|highest",
+   "disorder"
+  ],
+  "response": "Sort the essential genes by their disorder fraction:\n\n```python\ncols = ['gene', 'uniprot', 'protein_length', 'plddt', 'disorder', 'description']\ndf[df['essential'] == 1].sort_values('disorder', ascending=False)[cols].head(10)\n```\n\nSeveral of these are **FG-nucleoporins** (NUP1, NSP1, NUP116): proteins of the nuclear pore whose long disordered regions, full of phenylalanine–glycine repeats, form the selective barrier between nucleus and cytoplasm. Their disorder is how they work – not a failure of AlphaFold. Take the UniProt accession to the 3D viewer to see one."
+ },
+ {
+  "id": "false-positives",
+  "chapter": "errors",
+  "prompt": "Which non-essential genes does the model most confidently call essential?",
+  "alt": [
+   "false positives",
+   "wrongly predicted essential",
+   "mistakes of the model"
+  ],
+  "keywords": [
+   "false positive|wrong|mistake|confident|non.?essential.*essential"
+  ],
+  "response": "First get a cross-validated probability for every gene (each gene is scored by a model that did not see it during training), then list the non-essential genes with the highest scores:\n\n```python\nimport numpy as np\nfrom sklearn.model_selection import cross_val_predict, StratifiedKFold\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\n\nfeatures = ['protein_length', 'gc_content', 'codon_bias', 'protein_abundance', 'interaction_partners',\n            'transmembrane_helices', 'human_homolog', 'paralog_identity', 'plddt', 'disorder']\nX = df[features].copy()\nX['protein_abundance'] = np.log10(X['protein_abundance'])\nX['interaction_partners'] = np.log10(X['interaction_partners'] + 1)\nlogreg = make_pipeline(SimpleImputer(strategy='median'), StandardScaler(), LogisticRegression(max_iter=1000))\ncv = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)\ndf['p_essential'] = cross_val_predict(logreg, X, df['essential'], cv=cv, method='predict_proba')[:, 1]\n\ncols = ['gene', 'p_essential', 'interaction_partners', 'paralog_identity', 'description']\ndf[df['essential'] == 0].sort_values('p_essential', ascending=False)[cols].head(15).round(2)\n```\n\nRead the columns and the descriptions: what do many of these genes have in common?"
+ },
+ {
+  "id": "false-negatives",
+  "chapter": "errors",
+  "prompt": "Which essential genes does the model miss?",
+  "alt": [
+   "false negatives",
+   "essential genes predicted non-essential",
+   "missed essential genes"
+  ],
+  "keywords": [
+   "false negative|miss|essential genes.*(non|not)|lowest"
+  ],
+  "response": "These are the essential genes with the *lowest* predicted probability (run the false-positives cell first, which adds the `p_essential` column):\n\n```python\ncols = ['gene', 'p_essential', 'protein_length', 'location', 'description']\nmissed = df[df['essential'] == 1].sort_values('p_essential')[cols].head(15)\ndisplay(missed.round(2))\n\n# the full descriptions of three of them\nfor g in ['UTR5', 'TRE2', 'HIP1']:\n    print(g + ':', df.loc[df['gene'] == g, 'description'].iloc[0])\n    print()\n```\n\nRead the descriptions closely – for some of these genes, the description itself explains why they were recorded as essential."
+ },
+ {
+  "id": "paralog-bins",
+  "chapter": "errors",
+  "prompt": "Are genes with a close paralogue less likely to be essential?",
+  "alt": [
+   "paralog",
+   "duplicate genes",
+   "gene duplication essential",
+   "paralogue identity"
+  ],
+  "keywords": [
+   "paralog|duplicat"
+  ],
+  "response": "Group the genes by how similar their closest paralogue is, and compare the percentage of essential genes:\n\n```python\nimport matplotlib.pyplot as plt\n\nbins = pd.cut(df['paralog_identity'], [-1, 0, 40, 60, 80, 100],\n              labels=['no paralogue', 'up to 40%', '40–60%', '60–80%', 'over 80%'])\nsummary = df.groupby(bins, observed=True)['essential'].agg(['mean', 'size'])\nsummary['percent essential'] = (100 * summary['mean']).round(1)\ndisplay(summary[['size', 'percent essential']])\n\nsummary['percent essential'].plot.bar(color='#0b6b8a', rot=0, figsize=(6, 3.5))\nplt.xlabel('Identity to the closest yeast paralogue')\nplt.ylabel('Essential genes (%)')\nplt.title('Duplicated genes are rarely essential')\nplt.show()\n```\n\nGenes with a close paralogue are far less likely to be essential: if one copy is deleted, the other can often do its job."
+ },
+ {
+  "id": "citation",
+  "chapter": "errors",
+  "flawed": true,
+  "prompt": "Which paper showed that duplicate genes protect yeast against gene deletions?",
+  "alt": [
+   "reference for duplicate genes",
+   "citation paralog",
+   "who showed duplicates buffer",
+   "paper on duplicate genes"
+  ],
+  "keywords": [
+   "paper|reference|citation|cite|who showed|study"
+  ],
+  "response": "The classic study is:\n\n**Gu Z, Steinmetz LM, Gu X, Scharfe C, Davis RW & Li W-H (2003) Role of duplicate genes in genetic robustness against null mutations. *Science* 421:63–66.**\n\nUsing the yeast deletion collection, they showed that deleting a gene that has a duplicate in the genome is much less likely to be lethal – or even to slow growth – than deleting a single-copy gene, and that the protection is stronger the more similar the two copies are. Many of yeast's duplicates come from a **whole-genome duplication** about 100 million years ago."
+ },
+ {
+  "id": "coursework-ai",
+  "chapter": "aiwell",
+  "prompt": "Can I use you to write my coursework?",
+  "alt": [
+   "write my assignment",
+   "use ai for coursework",
+   "is it allowed to use ai"
+  ],
+  "keywords": [
+   "coursework|assignment|essay|report|allowed|cheat"
+  ],
+  "response": "Check your module's rules first – universities and modules differ on how AI tools may be used in assessed work, and on how to declare it. Whatever the rules:\n\n- **You are responsible** for everything you submit, including any mistakes I make.\n- Use me to **learn and to check** – to explain code or an error, to suggest an approach, to review your writing for clarity – rather than to produce the work for you.\n- **Never paste confidential or patient data** into an AI tool (for example patient exome data). Describe the problem instead, or use made-up example data.\n- **Verify** every fact and reference I give you in the original source.\n- Keep a record of what you asked and what you used, so you can declare it honestly."
+ },
+ {
+  "id": "patient-data",
+  "chapter": "aiwell",
+  "prompt": "Can I paste patient data into an AI assistant to analyse it?",
+  "alt": [
+   "patient data",
+   "confidential data",
+   "upload data to ai"
+  ],
+  "keywords": [
+   "patient|confidential|personal|sensitive|privacy"
+  ],
+  "response": "No – not into a public AI service. What you type into an online AI tool is sent to, and may be stored by, the company that runs it. Patient data (including genome sequences and anything that could identify a person) must stay within the systems your institution has approved, under the rules of consent and data protection (in the UK, UK GDPR).\n\nSafe ways to get AI help: describe the *structure* of your data (column names and types), use made-up example data, or share only your code and the error message. In this notebook, a live AI model sees your code and, when you ask about a cell, the start of its output or error message – never the data files themselves."
+ }
+]

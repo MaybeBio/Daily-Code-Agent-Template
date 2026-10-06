@@ -1,0 +1,122 @@
+site:
+  title: "My arXiv Daily"
+  description: "Daily arXiv papers for dexterous manipulation, robot learning, and embodied AI."
+  max_results_per_topic: 100
+  keep_days: 90
+  max_keywords: 6
+
+output:
+  data: "data/papers.json"
+  readme: "README.md"
+  docs_index: "docs/index.md"
+
+metadata:
+  # arXiv API does not expose corresponding authors or affiliations.
+  # These fields are kept explicit so the table does not pretend to know them.
+  show_corresponding_author: true
+  show_first_affiliation: false
+  unknown_value: "TBD"
+
+code_search:
+  enabled: true
+  max_papers_per_run: 30
+  github_max_queries_per_run: 20
+
+keyword_extraction:
+  max_keywords: 6
+  vocabulary:
+    - "dexterous hand"
+    - "dexterous manipulation"
+    - "in-hand manipulation"
+    - "robot manipulation"
+    - "contact-rich manipulation"
+    - "bimanual manipulation"
+    - "whole-body manipulation"
+    - "mobile manipulation"
+    - "grasping"
+    - "grasp synthesis"
+    - "reinforcement learning"
+    - "offline reinforcement learning"
+    - "model-based reinforcement learning"
+    - "imitation learning"
+    - "behavior cloning"
+    - "learning from demonstration"
+    - "diffusion policy"
+    - "sim-to-real"
+    - "tactile sensing"
+    - "visuo-tactile"
+    - "haptic feedback"
+    - "force feedback"
+    - "teleoperation"
+    - "vision-language-action"
+    - "VLA"
+    - "world model"
+    - "embodied agent"
+    - "foundation model"
+    - "humanoid"
+    - "LEAP hand"
+    - "policy learning"
+    - "trajectory optimization"
+    - "motion planning"
+    - "dataset"
+    - "benchmark"
+
+topics:
+  - name: "Dexterous Hand"
+    query: >
+      (
+        all:"dexterous hand" OR all:"dexterous manipulation" OR all:"robot hand"
+        OR all:"multi-finger" OR all:"multifinger" OR all:"in-hand manipulation"
+        OR all:"hand-object" OR all:"grasp synthesis"
+      )
+
+  - name: "Manipulation"
+    query: >
+      (
+        all:"robot manipulation" OR all:"robotic manipulation" OR all:"contact-rich manipulation"
+        OR all:"mobile manipulation" OR all:"bimanual manipulation" OR all:"whole-body manipulation"
+        OR all:"object manipulation" OR all:"grasping"
+      )
+
+  - name: "Reinforcement Learning"
+    query: >
+      (
+        all:"reinforcement learning" OR all:"robot reinforcement learning"
+        OR all:"offline reinforcement learning" OR all:"model-based reinforcement learning"
+        OR all:"sim-to-real" OR all:"policy optimization"
+      )
+      AND
+      (
+        all:robot OR all:manipulation OR all:control OR all:dexterous
+      )
+
+  - name: "Imitation Learning"
+    query: >
+      (
+        all:"imitation learning" OR all:"behavior cloning" OR all:"behaviour cloning"
+        OR all:"learning from demonstration" OR all:"inverse reinforcement learning"
+        OR all:"diffusion policy" OR all:"action chunking"
+      )
+      AND
+      (
+        all:robot OR all:manipulation OR all:dexterous OR all:embodied
+      )
+
+  - name: "Tactile / Visuo-Tactile"
+    query: >
+      (
+        all:tactile OR all:"visuo-tactile" OR all:"vision tactile"
+        OR all:"force feedback" OR all:haptic OR all:"contact sensing"
+      )
+      AND
+      (
+        all:robot OR all:hand OR all:manipulation OR all:grasp
+      )
+
+  - name: "Embodied Foundation Models"
+    query: >
+      (
+        all:"vision-language-action" OR all:"vision language action"
+        OR all:"VLA" OR all:"embodied agent" OR all:"world model"
+        OR all:"robot foundation model" OR all:"generalist robot"
+      )

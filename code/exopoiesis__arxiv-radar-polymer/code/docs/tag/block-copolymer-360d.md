@@ -1,0 +1,66 @@
+---
+layout: page
+title: "block-copolymer (360d)"
+current_tag: block-copolymer
+current_window: 360d
+---
+
+<header class="tag-header">
+  <h1>block-copolymer — 360d</h1>
+  <span class="paper-count">8 papers</span>
+  <nav class="window-nav"><a href="block-copolymer-7d.html">7d</a> <a href="block-copolymer-30d.html">30d</a> <a href="block-copolymer-90d.html">90d</a> <strong>360d</strong> <a href="block-copolymer-all.html">all</a></nav>
+  <a class="back-link" href="../">← all tags</a>
+</header>
+
+<table class="papers">
+<thead><tr><th>Date</th><th>Title</th><th>Authors</th><th>arXiv</th></tr></thead>
+<tbody>
+<tr class="paper">
+<td>2026-09-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.23611.html">Uni-Macro-FRPN: Full-Resolution and Cross-Scale Learning for Polymers</a></div><div class="paper-tags"><a href="benchmarking-360d.html">benchmarking</a> · <a href="bigsmiles-360d.html">bigsmiles</a> · <a href="polymer-informatics-360d.html">polymer-informatics</a></div></td>
+<td>Jintao Wu et al.</td>
+<td><a href="http://arxiv.org/abs/2609.23611">2609.23611</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.16156.html">Phase Behavior of Unilamellar Hybrid Lipid-Diblock Copolymer Membranes</a></div><div class="paper-tags"><a href="coarse-grained-360d.html">coarse-grained</a> · <a href="membranes-360d.html">membranes</a> · <a href="molecular-dynamics-360d.html">molecular-dynamics</a> · <a href="polymer-morphology-360d.html">polymer-morphology</a></div></td>
+<td>James F. Tallman et al.</td>
+<td><a href="http://arxiv.org/abs/2606.16156">2606.16156</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.15580.html">End-Functionalized Ions Promote Stability of Highly Frustrated Phases in Diblock Copolymers</a></div></td>
+<td>Chao Duan et al.</td>
+<td><a href="http://arxiv.org/abs/2606.15580">2606.15580</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.07652.html">Polyethylene-based thermo-mechanically recyclable stretchable yarns for circular sustainable textiles</a></div><div class="paper-tags"><a href="crystallinity-360d.html">crystallinity</a> · <a href="mechanical-properties-360d.html">mechanical-properties</a> · <a href="phase-separation-360d.html">phase-separation</a></div></td>
+<td>SeongHyeon Kim et al.</td>
+<td><a href="http://arxiv.org/abs/2606.07652">2606.07652</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.14353.html">Chiroptical Ternary Entropy Harvesting from Self-Assembled Block Copolymer Nanopatterns</a></div></td>
+<td>Wookjin Jung et al.</td>
+<td><a href="http://arxiv.org/abs/2605.14353">2605.14353</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.16267.html">Improved Desalination by Polymer Grafting</a></div><div class="paper-tags"><a href="monte-carlo-360d.html">monte-carlo</a></div></td>
+<td>Mamta Yadav et al.</td>
+<td><a href="http://arxiv.org/abs/2604.16267">2604.16267</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.14770.html">Thermal conductivity tuning of scalable nanopatterned silicon membranes measured with a three-probe method</a></div><div class="paper-tags"><a href="membranes-360d.html">membranes</a> · <a href="thermal-conductivity-360d.html">thermal-conductivity</a></div></td>
+<td>Jose M. Sojo-Gordillo et al.</td>
+<td><a href="http://arxiv.org/abs/2604.14770">2604.14770</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.17857.html">Structural Relaxation and Anisotropic Elasticity of Ordered Block Copolymer Melts</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a> · <a href="polymer-morphology-360d.html">polymer-morphology</a></div></td>
+<td>Krista G. Schoonover et al.</td>
+<td><a href="http://arxiv.org/abs/2511.17857">2511.17857</a></td>
+</tr>
+</tbody></table>

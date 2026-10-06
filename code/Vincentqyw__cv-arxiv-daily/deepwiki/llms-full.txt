@@ -1,0 +1,5089 @@
+# Page: Overview
+
+# Overview
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+- [docs/README.md](docs/README.md)
+- [docs/_config.yml](docs/_config.yml)
+- [docs/index.md](docs/index.md)
+
+</details>
+
+
+
+The CV-ArXiv-Daily system is an automated tool for collecting, processing, and publishing computer vision research papers from arXiv. It provides regularly updated lists of papers filtered by research areas and makes them available in multiple formats for easy consumption.
+
+For detailed information about system implementation, see [System Architecture](#2). For usage instructions and customization guidance, see [Usage Guide](#5).
+
+Sources: [README.md:1-14](), [docs/README.md:1-46]()
+
+## Purpose and Key Features
+
+CV-ArXiv-Daily helps computer vision researchers and practitioners stay current with the latest research by:
+
+1. Automatically fetching papers from arXiv based on configurable keywords
+2. Finding associated code repositories from GitHub and Papers with Code
+3. Organizing papers by research categories (SLAM, SFM, Visual Localization, etc.)
+4. Publishing results in multiple formats (GitHub README, Jekyll website, WeChat)
+5. Running on a scheduled basis via GitHub Actions automation
+
+The system requires minimal maintenance once configured and can be easily customized to focus on specific research areas.
+
+Sources: [README.md:1-14](), [docs/README.md:9-18]()
+
+## System Architecture Overview
+
+The CV-ArXiv-Daily system operates through a core processing script that interacts with external APIs to collect papers and processes them into multiple output formats.
+
+```mermaid
+graph TD
+    A["GitHub Actions"] -->|"Scheduled Triggers"| B["daily_arxiv.py"]
+    
+    B -->|"Fetch Papers"| C["arXiv API"]
+    B -->|"Search Code"| D["GitHub Search API"]
+    B -->|"Search Code"| E["Papers with Code API"]
+    
+    B -->|"Generate Output"| F["Output Files"]
+    
+    subgraph "Output Formats"
+        F -->|"JSON Storage"| G1["cv-arxiv-daily.json"]
+        F -->|"Web Format"| G2["cv-arxiv-daily-web.json"]
+        F -->|"WeChat Format"| G3["cv-arxiv-daily-wechat.json"]
+        F -->|"GitHub README"| G4["README.md"]
+        F -->|"Jekyll Website"| G5["docs/index.md"]
+        F -->|"WeChat Content"| G6["docs/wechat.md"]
+    end
+    
+    K["config.yaml"] -->|"Configure"| B
+```
+
+Sources: [docs/README.md:9-18](), [docs/_config.yml:1-22]()
+
+## Data Flow Process
+
+The system follows a well-defined data flow process from paper collection to final presentation:
+
+```mermaid
+flowchart LR
+    A["config.yaml"] -->|"Keywords & Filters"| B["daily_arxiv.py"]
+    
+    B -->|"fetchPapers()"| C["arXiv API"]
+    C -->|"Raw Papers"| D["filter_keywords()"]
+    D -->|"Filtered Papers"| E["find_code_links()"]
+    
+    E -->|"update_json_files()"| F["JSON Data Files"]
+    F -->|"update_markdown_files()"| G["Markdown Presentation"]
+    
+    H["GitHub Actions"] -->|"Trigger Every 5 Days"| B
+```
+
+Sources: [docs/README.md:10-20]()
+
+## Core Components
+
+The system consists of these primary components:
+
+1. **Core Processing Script (`daily_arxiv.py`)**: Performs paper collection, filtering, code repository search, and output generation
+2. **Configuration File (`config.yaml`)**: Defines keywords, research categories, and output settings
+3. **GitHub Actions Workflows**: Automated execution on schedule
+4. **Output Formats**: Various presentation formats for different platforms
+
+Sources: [docs/README.md:16-17]()
+
+## Research Categories
+
+The system focuses on these computer vision research areas:
+
+```mermaid
+mindmap
+  root(("Computer Vision"))
+    SLAM
+      "Visual SLAM"
+      "Lidar SLAM"
+      "Multi-Sensor Fusion"
+    SFM
+      "Structure from Motion"
+    "Visual Localization"
+      "Camera Relocalization"
+      "Visual Place Recognition"
+    "Keypoint Detection"
+      "Feature Detection"
+      "Feature Descriptors"
+    "Image Matching"
+      "Feature Matching"
+      "Line Segment Detection"
+    NeRF
+      "Neural Radiance Fields"
+      "Novel View Synthesis"
+```
+
+Sources: [README.md:4-14]()
+
+## GitHub Actions Automation
+
+The system relies on GitHub Actions for automated execution:
+
+| Workflow | File | Schedule | Purpose |
+|----------|------|----------|---------|
+| Daily Update | `cv-arxiv-daily.yml` | Every 5 days | Update paper list from arXiv |
+| Link Update | `update_paper_links.yml` | Weekly | Check and update code repository links |
+
+The workflow automatically triggers the main script, which performs all processing steps and commits the updated files back to the repository.
+
+Sources: [docs/README.md:26-37]()
+
+## Output Formats
+
+CV-ArXiv-Daily produces several output formats to make the collected papers accessible in different contexts:
+
+1. **GitHub README** (`README.md`): Primary display on the repository's main page, showing papers in tabular format
+2. **Jekyll Website** (`docs/index.md`): Web interface for browsing papers through GitHub Pages
+3. **WeChat Content** (`docs/wechat.md`): Format optimized for sharing on WeChat
+4. **JSON Data Files**: Structured data storage for programmatic use:
+   - `cv-arxiv-daily.json`: Primary data storage
+   - `cv-arxiv-daily-web.json`: Data formatted for web interface
+   - `cv-arxiv-daily-wechat.json`: Data formatted for WeChat
+
+Sources: [README.md:1-14](), [docs/index.md:1-10]()
+
+## Current Status and Future Development
+
+The CV-ArXiv-Daily system is actively maintained and has a development roadmap for future enhancements:
+
+- ✅ Configuration file system
+- ✅ Code repository link updates
+- ⬜ Subscription and alert system
+- ⬜ Additional arXiv filters
+- ⬜ Paper archiving
+- ⬜ Language translation via LLMs
+- ⬜ Paper commenting system
+
+Sources: [docs/README.md:48-59]()
+
+## Summary
+
+CV-ArXiv-Daily provides an efficient, automated solution for staying current with computer vision research. It handles the complete pipeline from paper collection to presentation, with customizable filters and multiple output formats. The system runs autonomously through GitHub Actions and can be easily forked and configured for personal use.
+
+Sources: [README.md:1-14](), [docs/README.md:1-59]()
+
+---
+
+# Page: System Architecture
+
+# System Architecture
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [.github/workflows/cv-arxiv-daily.yml](.github/workflows/cv-arxiv-daily.yml)
+- [.github/workflows/update_paper_links.yml](.github/workflows/update_paper_links.yml)
+- [config.yaml](config.yaml)
+- [daily_arxiv.py](daily_arxiv.py)
+- [requirements.txt](requirements.txt)
+
+</details>
+
+
+
+This document provides a comprehensive overview of the CV-ArXiv-Daily system architecture, detailing how the various components work together to automatically collect, process, and publish computer vision research papers from arXiv. It explains the high-level design, core components, automation workflows, and data flows within the system.
+
+For details about specific components, please refer to the Core Processing Engine [Core Processing Engine](#2.1), Configuration System [Configuration System](#2.2), or Output Formats [Output Formats](#3).
+
+## System Overview
+
+The CV-ArXiv-Daily system employs an automation-first approach, using GitHub Actions to periodically execute a Python-based processing engine that collects papers from arXiv, searches for related code repositories, and publishes the results in multiple formats.
+
+### High-Level Architecture Diagram
+
+```mermaid
+graph TD
+    subgraph "Automation Layer"
+        GHA_Daily["GitHub Actions<br>(cv-arxiv-daily.yml)"]
+        GHA_Update["GitHub Actions<br>(update_paper_links.yml)"]
+    end
+    
+    subgraph "Core Processing Engine"
+        Daily_Arxiv["daily_arxiv.py"]
+        Config["config.yaml"]
+    end
+    
+    subgraph "External APIs"
+        ArXiv["arXiv API"]
+        GitHub["GitHub Search API"]
+        PWC["Papers with Code API"]
+    end
+    
+    subgraph "Output Formats"
+        README["README.md"]
+        Jekyll["docs/index.md"]
+        WeChat["docs/wechat.md"]
+        JSON["JSON Data Files"]
+    end
+    
+    GHA_Daily -->|"Triggers every 5 days"| Daily_Arxiv
+    GHA_Update -->|"Triggers weekly"| Daily_Arxiv
+    Config -->|"Configures behavior"| Daily_Arxiv
+    
+    Daily_Arxiv -->|"Fetches papers"| ArXiv
+    Daily_Arxiv -->|"Searches for code"| GitHub
+    Daily_Arxiv -->|"Searches for code"| PWC
+    
+    Daily_Arxiv -->|"Updates"| README
+    Daily_Arxiv -->|"Updates"| Jekyll
+    Daily_Arxiv -->|"Updates"| WeChat
+    Daily_Arxiv -->|"Stores data in"| JSON
+```
+
+Sources: [daily_arxiv.py](), [.github/workflows/cv-arxiv-daily.yml](), [.github/workflows/update_paper_links.yml](), [config.yaml]()
+
+## Core Components
+
+The system consists of several key components that work together:
+
+### 1. Core Processing Script (daily_arxiv.py)
+
+The `daily_arxiv.py` script is the central component that performs all primary functions:
+
+- Fetches papers from arXiv based on configured keywords
+- Searches for associated code repositories via Papers with Code API and GitHub Search API
+- Processes and formats paper data for different output formats
+- Updates various output files with new or updated paper information
+
+Key functions within this script include:
+
+| Function | Purpose |
+|----------|---------|
+| `load_config` | Loads and processes configuration from YAML file |
+| `get_daily_papers` | Fetches papers from arXiv based on queries |
+| `get_code_link` | Searches for associated code repositories |
+| `update_paper_links` | Updates links for existing papers |
+| `update_json_file` | Updates JSON data files with new paper info |
+| `json_to_md` | Converts JSON data to Markdown format |
+| `demo` | Main execution function that orchestrates the process |
+
+Sources: [daily_arxiv.py:1-444]()
+
+### 2. Configuration System (config.yaml)
+
+The configuration file controls the system's behavior, including:
+
+- Search keywords and filters for different research areas
+- Maximum number of results to fetch
+- Output file paths for different formats
+- Toggle flags for different output formats (README, GitPage, WeChat)
+
+```yaml
+# Example configuration (simplified)
+keywords:
+    "SLAM": 
+        filters: ["SLAM", "Visual Odometry"]
+    "SFM":
+        filters: ["SFM", "Structure from Motion"]
+```
+
+Sources: [config.yaml:1-40]()
+
+### 3. Automation Workflows
+
+Two GitHub Actions workflows automate the system:
+
+1. **cv-arxiv-daily.yml**: Runs every 5 days to fetch new papers
+   - Schedules execution with `cron: "0 0 */5 * *"`
+   - Sets up Python environment and dependencies
+   - Executes `daily_arxiv.py` in normal mode
+   - Commits and pushes changes to the repository
+
+2. **update_paper_links.yml**: Runs weekly to update code links for existing papers
+   - Schedules execution with `cron: "0 8 * * 1"` (Mondays at 8:00)
+   - Executes `daily_arxiv.py` with the `--update_paper_links` flag
+   - Updates existing paper records with newly found code repositories
+
+Sources: [.github/workflows/cv-arxiv-daily.yml:1-60](), [.github/workflows/update_paper_links.yml:1-59]()
+
+## Data Flow Pipeline
+
+The following diagram illustrates how data flows through the system:
+
+```mermaid
+flowchart LR
+    subgraph "Input"
+        ArXiv["arXiv API"] 
+        Config["config.yaml"]
+    end
+    
+    subgraph "Processing (daily_arxiv.py)"
+        GetPapers["get_daily_papers()"]
+        FindCode["get_code_link()"]
+        FormatData["json_to_md()"]
+    end
+    
+    subgraph "Storage"
+        JsonReadme["cv-arxiv-daily.json"]
+        JsonWeb["cv-arxiv-daily-web.json"]
+        JsonWechat["cv-arxiv-daily-wechat.json"]
+    end
+    
+    subgraph "Output"
+        Readme["README.md"]
+        Jekyll["docs/index.md"]
+        Wechat["docs/wechat.md"]
+    end
+    
+    ArXiv -->|"Paper metadata"| GetPapers
+    Config -->|"Keywords & filters"| GetPapers
+    
+    GetPapers -->|"Paper data"| FindCode
+    FindCode -->|"Enriched data"| FormatData
+    
+    FormatData -->|"Store data"| JsonReadme
+    FormatData -->|"Store data"| JsonWeb
+    FormatData -->|"Store data"| JsonWechat
+    
+    JsonReadme -->|"Data source"| Readme
+    JsonWeb -->|"Data source"| Jekyll
+    JsonWechat -->|"Data source"| Wechat
+```
+
+Sources: [daily_arxiv.py:87-161](), [daily_arxiv.py:243-368](), [daily_arxiv.py:370-433]()
+
+### Processing Steps in Detail
+
+1. **Paper Collection**:
+   - The system queries the arXiv API with configured keywords
+   - Papers are filtered by submission date and relevance to the query
+   - Basic metadata is extracted (title, authors, abstract, etc.)
+
+2. **Code Repository Search**:
+   - For each paper, the system queries the Papers with Code API
+   - If no repository is found, it can optionally search GitHub
+   - Repository URLs are added to the paper metadata
+
+3. **Data Storage**:
+   - The collected data is stored in JSON format
+   - Separate JSON files are maintained for each output format
+
+4. **Output Generation**:
+   - JSON data is converted to Markdown format
+   - Different templates are applied for different platforms
+   - Files are updated in the repository
+
+Sources: [daily_arxiv.py:87-161](), [daily_arxiv.py:217-242](), [daily_arxiv.py:243-368]()
+
+## Architecture Design Patterns
+
+The CV-ArXiv-Daily system implements several architecture patterns:
+
+### 1. Pipeline Processing
+
+The system follows a clear pipeline pattern where data flows through sequential processing stages:
+- Collection (from arXiv)
+- Enrichment (with code repositories)
+- Storage (in JSON)
+- Transformation (to Markdown)
+- Publication (to various formats)
+
+This approach allows for clean separation of concerns and makes the system more maintainable.
+
+### 2. Configuration-Driven Behavior
+
+The system's behavior is driven by external configuration rather than hardcoded values:
+- Research keywords and filters are defined in `config.yaml`
+- Output formats can be toggled on/off
+- File paths are configurable
+
+This approach makes the system highly customizable without requiring code changes.
+
+### 3. Multiple Output Formats
+
+The system supports multiple output formats from a single data source:
+- GitHub README (primary display)
+- Jekyll-powered website
+- WeChat-formatted content
+- JSON data files (for programmatic access)
+
+This pattern allows the same content to be repurposed for different platforms and audiences.
+
+Sources: [daily_arxiv.py:370-433](), [config.yaml:1-40]()
+
+## Component Relationship Sequence
+
+The following sequence diagram shows the timing and interaction between components during a typical execution cycle:
+
+```mermaid
+sequenceDiagram
+    participant GitHub as "GitHub Actions"
+    participant Script as "daily_arxiv.py"
+    participant Config as "config.yaml"
+    participant ArXiv as "arXiv API"
+    participant PWC as "Papers with Code API"
+    participant JSON as "JSON Files"
+    participant MD as "Markdown Files"
+    
+    GitHub->>Script: Execute script
+    Script->>Config: load_config()
+    Config-->>Script: Configuration parameters
+    
+    Script->>ArXiv: get_daily_papers()
+    ArXiv-->>Script: Paper metadata
+    
+    loop For each paper
+        Script->>PWC: Query for code
+        PWC-->>Script: Code repository URL
+    end
+    
+    Script->>JSON: update_json_file()
+    Script->>JSON: Store paper data
+    
+    Script->>JSON: json_to_md()
+    Script->>MD: Generate formatted output
+    
+    GitHub->>GitHub: Commit and push changes
+```
+
+Sources: [daily_arxiv.py:19-48](), [daily_arxiv.py:87-161](), [daily_arxiv.py:217-242](), [daily_arxiv.py:243-368](), [daily_arxiv.py:370-433]()
+
+## System Integration Points
+
+The system integrates with several external services:
+
+### 1. External APIs
+
+- **arXiv API**: Source of research paper metadata
+  - Used via the `arxiv` Python package
+  - Queried in `get_daily_papers` function
+
+- **Papers with Code API**: Source of code repository links
+  - Base URL: `https://arxiv.paperswithcode.com/api/v0/papers/`
+  - Used to find official implementations of papers
+
+- **GitHub Search API**: Fallback source of code repository links
+  - Used to search for repositories by paper title or ID
+  - Implemented in the `get_code_link` function
+
+### 2. Output Destinations
+
+- **GitHub Repository**: Updated README file with latest papers
+- **GitHub Pages**: Jekyll-powered website showing papers in a web-friendly format
+- **WeChat**: Specially formatted content for sharing on WeChat
+
+Sources: [daily_arxiv.py:15-17](), [daily_arxiv.py:66-85](), [daily_arxiv.py:87-161]()
+
+## Conclusion
+
+The CV-ArXiv-Daily system architecture follows a clean, modular design that separates concerns and allows for extensive configuration. The automation-first approach with GitHub Actions ensures that the paper collection stays up-to-date with minimal manual intervention. The multi-format output strategy makes the collected papers accessible to different audiences through different platforms.
+
+For more detailed information about specific components, please refer to:
+- Core Processing Engine [Core Processing Engine](#2.1)
+- Configuration System [Configuration System](#2.2)
+- Automation Workflows [Automation Workflows](#2.3)
+- Data Flow [Data Flow](#2.4)
+- Output Formats [Output Formats](#3)
+
+---
+
+# Page: Core Processing Engine
+
+# Core Processing Engine
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [daily_arxiv.py](daily_arxiv.py)
+
+</details>
+
+
+
+The Core Processing Engine is the central component of CV-ArXiv-Daily that handles fetching, processing, and publishing computer vision papers from arXiv. Implemented primarily in the `daily_arxiv.py` script, this engine orchestrates the entire paper collection pipeline from retrieving papers from arXiv to generating formatted outputs for various platforms. For information about how this engine is configured, see [Configuration System](#2.2).
+
+## 1. Architecture Overview
+
+The Core Processing Engine follows a modular architecture with distinct processing stages that transform raw arXiv data into organized, formatted paper collections.
+
+```mermaid
+flowchart TD
+    A["Configuration Loading<br>(load_config)"] --> B["Paper Collection<br>(get_daily_papers)"]
+    B --> C["Repository Discovery<br>(Papers w/ Code API + GitHub API)"]
+    C --> D["Data Processing<br>(sort_papers)"]
+    D --> E["Storage Layer<br>(update_json_file)"]
+    E --> F["Output Generation<br>(json_to_md)"]
+    
+    subgraph "External APIs"
+        G["arXiv API"]
+        H["Papers with Code API"]
+        I["GitHub API"]
+    end
+    
+    B --> G
+    C --> H
+    C --> I
+```
+
+Sources: [daily_arxiv.py:19-48](), [daily_arxiv.py:87-161](), [daily_arxiv.py:163-216](), [daily_arxiv.py:217-241](), [daily_arxiv.py:243-368]()
+
+## 2. Main Processing Pipeline
+
+The engine's workflow is orchestrated by the `demo()` function, which serves as the controller for the entire paper collection process:
+
+```mermaid
+sequenceDiagram
+    participant C as "Config System"
+    participant E as "demo() Controller"
+    participant A as "arXiv Collector"
+    participant R as "Repo Discovery"
+    participant S as "Storage System"
+    participant F as "Formatter"
+    
+    E->>C: load_config(config_path)
+    C-->>E: config dictionary
+    
+    loop For each keyword topic
+        E->>A: get_daily_papers(topic, keyword, max_results)
+        A->>R: Find associated code repositories
+        A-->>E: Return processed paper data
+    end
+    
+    alt Update paper links mode
+        E->>S: update_paper_links(json_file)
+    else Normal operation
+        E->>S: update_json_file(json_file, data_collector)
+    end
+    
+    E->>F: json_to_md(json_file, md_file, options)
+    
+    Note over E: Repeat for each output format<br>(README, GitPage, WeChat)
+```
+
+Sources: [daily_arxiv.py:370-433](), [daily_arxiv.py:434-443]()
+
+## 3. Key Components and Functions
+
+### 3.1 Configuration Management
+
+The `load_config()` function parses the YAML configuration file and prepares filter expressions for arXiv queries:
+
+```
+load_config(config_file) → configuration dictionary
+└── pretty_filters() → formats keyword filters for arXiv query
+```
+
+The configuration controls the engine's behavior, including which keywords to search for, how many results to fetch, and which output formats to generate.
+
+Sources: [daily_arxiv.py:19-48]()
+
+### 3.2 Paper Collection
+
+The `get_daily_papers()` function is responsible for fetching papers from arXiv based on configured queries:
+
+```
+get_daily_papers(topic, query, max_results) → (data, data_web)
+└── arxiv.Search() → queries arXiv API
+    └── process each paper's metadata
+        └── attempt to find code repository
+```
+
+This function returns two dictionaries:
+1. `data`: Paper information formatted for standard display
+2. `data_web`: Paper information formatted for web display
+
+Sources: [daily_arxiv.py:87-161]()
+
+### 3.3 Repository Discovery
+
+The engine attempts to find associated code repositories for each paper through multiple methods:
+
+```
+Code Repository Discovery
+├── Primary: paperswithcode.com API
+└── Fallback: GitHub Search API (currently commented out)
+```
+
+The engine uses the Papers with Code API as the primary source for finding official implementations, with a fallback to GitHub search when necessary (though this is currently disabled in the code).
+
+Sources: [daily_arxiv.py:66-85](), [daily_arxiv.py:126-137]()
+
+### 3.4 Data Storage
+
+The engine uses JSON files as an intermediate storage format:
+
+```
+update_json_file(filename, data_dict) → updates JSON with new paper data
+└── merges new papers with existing data
+```
+
+This function handles the persistence layer, ensuring that new papers are added to the existing collection without duplication.
+
+Sources: [daily_arxiv.py:217-241]()
+
+### 3.5 Output Generation
+
+The `json_to_md()` function converts the JSON data into formatted Markdown:
+
+```
+json_to_md(filename, md_filename, options) → generates Markdown file
+├── Adds headers, table of contents
+├── Formats paper entries in tables or lists
+└── Sorts papers by date
+```
+
+The function generates different formats based on the target platform (GitHub README, Jekyll website, WeChat).
+
+Sources: [daily_arxiv.py:243-368]()
+
+## 4. Data Models and Structures
+
+The Core Processing Engine uses several key data structures:
+
+| Data Structure | Purpose | Format |
+|----------------|---------|--------|
+| `config` | Stores configuration parameters | Dictionary from YAML |
+| `data_collector` | Collects paper data for standard display | List of dictionaries |
+| `data_collector_web` | Collects paper data for web display | List of dictionaries |
+| `json_data` | Persistent storage of paper information | Nested dictionary |
+
+The JSON data structure follows this pattern:
+
+```
+{
+  "topic1": {
+    "paper_id1": "formatted_paper_entry1",
+    "paper_id2": "formatted_paper_entry2",
+    ...
+  },
+  "topic2": {
+    ...
+  }
+}
+```
+
+Sources: [daily_arxiv.py:372-379](), [daily_arxiv.py:217-241]()
+
+## 5. External API Integration
+
+The Core Processing Engine interacts with several external APIs:
+
+```mermaid
+graph LR
+    subgraph "Core Processing Engine"
+        A["get_daily_papers()"]
+        B["get_code_link()"]
+        C["update_paper_links()"]
+    end
+    
+    subgraph "External Services"
+        D["arXiv API<br>(arxiv.org)"]
+        E["Papers with Code API<br>(arxiv.paperswithcode.com)"]
+        F["GitHub Search API<br>(api.github.com/search/repositories)"]
+    end
+    
+    A -->|"queries via arxiv.Search()"| D
+    B -->|"searches repositories"| F
+    C -->|"fetches code links"| E
+```
+
+Sources: [daily_arxiv.py:15-17](), [daily_arxiv.py:96-100](), [daily_arxiv.py:74-84](), [daily_arxiv.py:127-128]()
+
+## 6. Output Formats
+
+The Core Processing Engine generates three primary output formats:
+
+| Output Format | Target File | Purpose |
+|---------------|-------------|---------|
+| GitHub README | `README.md` | Primary display on GitHub repository |
+| Jekyll Website | `docs/index.md` | Web interface for browsing papers |
+| WeChat Format | `docs/wechat.md` | Content formatted for sharing on WeChat |
+
+Each format has specific formatting requirements handled by the `json_to_md()` function with different parameters.
+
+Sources: [daily_arxiv.py:395-432]()
+
+## 7. Execution Flow
+
+When executed, the Core Processing Engine follows this sequence:
+
+```mermaid
+flowchart TD
+    A["Parse command-line arguments"] --> B["Load configuration from YAML"]
+    B --> C{"update_paper_links mode?"}
+    
+    C -->|"No"| D["Fetch papers for each keyword topic"]
+    D --> F["Store data in JSON files"]
+    
+    C -->|"Yes"| E["Update existing paper links"]
+    E --> G
+    F --> G["Generate Markdown files"]
+    
+    G -->|"README.md"| H["GitHub README"]
+    G -->|"docs/index.md"| I["Jekyll Website"]
+    G -->|"docs/wechat.md"| J["WeChat Content"]
+```
+
+The engine can run in two modes:
+1. Normal mode: Fetch new papers and update the collection
+2. Update mode: Update code repository links for existing papers
+
+Sources: [daily_arxiv.py:434-443](), [daily_arxiv.py:370-433]()
+
+## 8. Error Handling and Logging
+
+The Core Processing Engine implements logging and error handling:
+
+```
+Exception Handling and Logging
+├── Basic logging setup with timestamps
+└── Try-except blocks around API calls
+    └── Logging of errors with paper IDs
+```
+
+This ensures that the process can continue even if individual paper processing fails, and provides diagnostics for troubleshooting.
+
+Sources: [daily_arxiv.py:11-13](), [daily_arxiv.py:156-157](), [daily_arxiv.py:211-212]()
+
+## 9. Integration with GitHub Actions
+
+The Core Processing Engine is designed to be run by GitHub Actions, which provides the automation layer for the system. The engine is invoked with specific command-line arguments that control its behavior:
+
+```
+python daily_arxiv.py [--config_path CONFIG_PATH] [--update_paper_links]
+```
+
+This enables the system to run on a scheduled basis or in response to manual triggers.
+
+Sources: [daily_arxiv.py:434-443]()
+
+---
+
+# Page: Configuration System
+
+# Configuration System
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [config.yaml](config.yaml)
+- [requirements.txt](requirements.txt)
+
+</details>
+
+
+
+This document details the configuration system of the CV-ArXiv-Daily repository, which controls all aspects of the paper collection, processing, and publishing pipeline. The configuration system is implemented through a single YAML file that provides a centralized way to customize the behavior of the entire application without modifying code. For information about how the configuration is used in the core processing engine, see [Core Processing Engine](#2.1).
+
+## Overview
+
+The configuration system is primarily based on the `config.yaml` file at the root of the repository. This file contains settings that control:
+
+1. API endpoints and repository information
+2. Display and formatting preferences
+3. Output publishing targets
+4. File paths for data storage
+5. Research keywords and filters
+
+```mermaid
+flowchart TD
+    subgraph "Configuration System"
+        A["config.yaml"]
+    end
+    
+    subgraph "Core Processing"
+        B["daily_arxiv.py"]
+    end
+    
+    subgraph "Output Control"
+        C1["README.md"]
+        C2["docs/index.md<br>(Jekyll)"]
+        C3["docs/wechat.md"]
+        D1["JSON Storage"]
+    end
+    
+    subgraph "Data Sources"
+        E1["arXiv API"]
+        E2["Papers with Code API"]
+    end
+    
+    A -->|"API Settings"| E1
+    A -->|"API Settings"| E2
+    A -->|"Keywords & Filters"| B
+    A -->|"Output Flags"| B
+    A -->|"File Paths"| B
+    B -->|"Controlled by<br>publish_readme"| C1
+    B -->|"Controlled by<br>publish_gitpage"| C2
+    B -->|"Controlled by<br>publish_wechat"| C3
+    B -->|"JSON Path Settings"| D1
+```
+
+**Diagram: Configuration System Relationships**
+
+Sources: [config.yaml:1-40]()
+
+## Configuration File Structure
+
+The `config.yaml` file is organized into four logical sections:
+
+```mermaid
+classDiagram
+    class "config.yaml" {
+        +System Settings
+        +Publishing Flags
+        +File Paths
+        +Research Keywords
+    }
+    
+    class "System Settings" {
+        +base_url: string
+        +user_name: string
+        +repo_name: string
+        +show_authors: boolean
+        +show_links: boolean
+        +show_badge: boolean
+        +max_results: integer
+    }
+    
+    class "Publishing Flags" {
+        +publish_readme: boolean
+        +publish_gitpage: boolean
+        +publish_wechat: boolean
+    }
+    
+    class "File Paths" {
+        +json_readme_path: string
+        +json_gitpage_path: string
+        +json_wechat_path: string
+        +md_readme_path: string
+        +md_gitpage_path: string
+        +md_wechat_path: string
+    }
+    
+    class "Research Keywords" {
+        +keywords: map
+        +SLAM: filters[]
+        +SFM: filters[]
+        +Visual Localization: filters[]
+        +Keypoint Detection: filters[]
+        +Image Matching: filters[]
+        +NeRF: filters[]
+    }
+    
+    "config.yaml" --> "System Settings"
+    "config.yaml" --> "Publishing Flags"
+    "config.yaml" --> "File Paths"
+    "config.yaml" --> "Research Keywords"
+```
+
+**Diagram: Configuration File Structure**
+
+Sources: [config.yaml:1-40]()
+
+## Configuration Options
+
+### System Settings
+
+These settings control the basic operation of the paper collection system.
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `base_url` | String | Base URL for the Papers With Code API |
+| `user_name` | String | GitHub username for repository identification |
+| `repo_name` | String | Repository name for generating links |
+| `show_authors` | Boolean | Whether to display paper authors in output |
+| `show_links` | Boolean | Whether to display paper links in output |
+| `show_badge` | Boolean | Whether to display badges in output |
+| `max_results` | Integer | Maximum number of papers to include per category |
+
+Sources: [config.yaml:2-8]()
+
+### Publishing Flags
+
+These flags control which output formats are generated when the script runs.
+
+| Flag | Type | Description |
+|------|------|-------------|
+| `publish_readme` | Boolean | Whether to update the README.md file |
+| `publish_gitpage` | Boolean | Whether to update the Jekyll website content |
+| `publish_wechat` | Boolean | Whether to generate WeChat-formatted content |
+
+Sources: [config.yaml:10-12]()
+
+### File Paths
+
+These settings specify the locations for JSON data storage and Markdown output files.
+
+| Path | Type | Description |
+|------|------|-------------|
+| `json_readme_path` | String | Path to JSON file for README data |
+| `json_gitpage_path` | String | Path to JSON file for GitHub Pages data |
+| `json_wechat_path` | String | Path to JSON file for WeChat data |
+| `md_readme_path` | String | Path to the README.md file |
+| `md_gitpage_path` | String | Path to the Jekyll index.md file |
+| `md_wechat_path` | String | Path to the WeChat markdown file |
+
+Sources: [config.yaml:15-21]()
+
+### Research Keywords
+
+This section defines the computer vision research areas and specific keywords to search for within each area.
+
+```mermaid
+flowchart TD
+    A["keywords"] --> B["SLAM"]
+    A --> C["SFM"]
+    A --> D["Visual Localization"]
+    A --> E["Keypoint Detection"]
+    A --> F["Image Matching"]
+    A --> G["NeRF"]
+    
+    B --> B1["filters: ['SLAM', 'Visual Odometry']"]
+    C --> C1["filters: ['SFM', 'Structure from Motion']"]
+    D --> D1["filters: ['Visual Localization', 'Camera Localization', etc.]"]
+    E --> E1["filters: ['Keypoint Detection', 'Feature Descriptor']"]
+    F --> F1["filters: ['Image Matching', 'Keypoint Matching', etc.]"]
+    G --> G1["filters: ['NeRF']"]
+```
+
+**Diagram: Keyword Configuration Structure**
+
+Sources: [config.yaml:24-39]()
+
+Each research area is configured with a list of filter terms:
+
+| Research Area | Filter Terms |
+|---------------|--------------|
+| SLAM | "SLAM", "Visual Odometry" |
+| SFM | "SFM", "Structure from Motion" |
+| Visual Localization | "Visual Localization", "Camera Localization", "Camera Re-localisation", "Loop Closure Detection", "visual place recognition", "image retrieval" |
+| Keypoint Detection | "Keypoint Detection", "Feature Descriptor" |
+| Image Matching | "Image Matching", "Keypoint Matching", "Line Segment Detection", "Local Feature Matching" |
+| NeRF | "NeRF" |
+
+Sources: [config.yaml:24-39]()
+
+## Configuration Flow and Impact
+
+The following diagram illustrates how configuration options affect the paper collection and publication process:
+
+```mermaid
+flowchart TD
+    A["config.yaml"] --> B["daily_arxiv.py"]
+    
+    subgraph "Paper Collection Phase"
+        B --> C["Fetch Papers from arXiv"]
+        C --> D["Filter by Keywords"]
+        D --> E["Process Metadata"]
+    end
+    
+    subgraph "Output Generation Phase"
+        E --> F["Generate JSON Data"]
+        F --> G["Create Markdown Content"]
+    end
+    
+    A -->|"keywords & filters"| D
+    A -->|"max_results"| E
+    A -->|"json_*_path"| F
+    A -->|"publish_* flags"| G
+    A -->|"md_*_path"| G
+    A -->|"show_* settings"| G
+```
+
+**Diagram: Configuration Impact on System Flow**
+
+Sources: [config.yaml:1-40]()
+
+## Using the Configuration System
+
+### Customizing Research Keywords
+
+To focus on different research areas or adjust the search terms, modify the `keywords` section of the configuration file. For example, to add a new research area:
+
+```yaml
+keywords:
+    "Existing Area": 
+        filters: ["Term1", "Term2"]
+    "New Research Area":
+        filters: ["Search Term 1", "Search Term 2", "Search Term 3"]
+```
+
+### Controlling Output Formats
+
+To enable or disable specific output formats, adjust the publishing flags:
+
+```yaml
+publish_readme: True   # Generate GitHub README
+publish_gitpage: True  # Generate Jekyll website content
+publish_wechat: False  # Skip WeChat content generation
+```
+
+### Adjusting Display Settings
+
+To control how papers are displayed in the outputs:
+
+```yaml
+show_authors: True  # Include author names
+show_links: True    # Include links to papers and code
+show_badge: True    # Include badges
+max_results: 10     # Show up to 10 papers per category
+```
+
+## Dependencies and Interactions
+
+The configuration system relies on the following dependencies:
+
+- PyYAML: Used to parse the YAML configuration file
+- Core Processing Engine: Consumes configuration settings to control paper collection and processing
+
+Sources: [requirements.txt:1-3]()
+
+```mermaid
+flowchart LR
+    A["config.yaml"] -->|"read by"| B["PyYAML"]
+    B -->|"parsed configuration"| C["daily_arxiv.py"]
+    C -->|"controlled outputs"| D["Multiple Output Formats"]
+    
+    subgraph "Output Formats"
+        D1["README.md"]
+        D2["docs/index.md"]
+        D3["docs/wechat.md"]
+        D4["JSON Files"]
+    end
+    
+    D --> D1
+    D --> D2
+    D --> D3
+    D --> D4
+```
+
+**Diagram: Configuration System Dependencies**
+
+Sources: [config.yaml:1-40](), [requirements.txt:1-3]()
+
+## Summary
+
+The configuration system in CV-ArXiv-Daily provides a flexible, centralized way to control all aspects of the paper collection and publication process. By modifying a single YAML file, users can:
+
+1. Focus on different computer vision research areas
+2. Control which output formats are generated
+3. Customize display settings and limits
+4. Specify file paths for data storage and output
+
+This design allows for easy customization without requiring code changes, making the system adaptable to different use cases and preferences.
+
+---
+
+# Page: Automation Workflows
+
+# Automation Workflows
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [.github/workflows/cv-arxiv-daily.yml](.github/workflows/cv-arxiv-daily.yml)
+- [.github/workflows/update_paper_links.yml](.github/workflows/update_paper_links.yml)
+
+</details>
+
+
+
+This document describes the GitHub Actions workflows that automate the CV-ArXiv-Daily system's paper collection, processing, and publishing pipeline. These workflows enable periodic execution without manual intervention, ensuring the repository stays up-to-date with the latest computer vision research papers.
+
+For information about the core processing engine that these workflows trigger, see [Core Processing Engine](#2.1). For details about how data flows through the system after being triggered, see [Data Flow](#2.4).
+
+## Workflow Overview
+
+The CV-ArXiv-Daily system implements two distinct automated workflows:
+
+1. **Regular Paper Collection** - Runs every 5 days to fetch new papers from arXiv
+2. **Paper Link Maintenance** - Runs weekly to update and verify existing paper links
+
+These complementary workflows handle both the collection of new research and the maintenance of existing content, ensuring the system remains current and all references remain valid.
+
+```mermaid
+graph TD
+    subgraph "GitHub Actions Workflows"
+        A["cv-arxiv-daily.yml<br>(Every 5 days)"]
+        B["update_paper_links.yml<br>(Weekly on Monday)"]
+    end
+    
+    subgraph "Core Processing"
+        C["daily_arxiv.py"]
+    end
+    
+    subgraph "Output Files"
+        D["README.md"]
+        E["docs/index.md"]
+        F["docs/wechat.md"]
+        G["JSON Files"]
+    end
+    
+    A -->|"Execute without flags"| C
+    B -->|"Execute with --update_paper_links"| C
+    
+    C --> D
+    C --> E
+    C --> F
+    C --> G
+```
+
+Sources: [.github/workflows/cv-arxiv-daily.yml](), [.github/workflows/update_paper_links.yml]()
+
+## Primary Paper Collection Workflow
+
+The main workflow (`cv-arxiv-daily.yml`) executes every 5 days to collect and process new papers from arXiv based on the configured research areas.
+
+### Trigger Configuration
+
+The primary collection workflow uses the following trigger configuration:
+
+```yaml
+name: Run Arxiv Papers Daily
+
+on:
+  workflow_dispatch:  # Manual trigger option
+  schedule:
+    - cron: "0 0 */5 * *"  # Every 5 days at midnight UTC
+```
+
+Sources: [.github/workflows/cv-arxiv-daily.yml:3-10]()
+
+### Execution Sequence
+
+```mermaid
+sequenceDiagram
+    participant "GitHub Actions" as GA
+    participant "Repository" as Repo
+    participant "daily_arxiv.py" as Script
+    participant "External APIs" as API
+    participant "Output Files" as Out
+    
+    Note over GA: Triggered every 5 days
+    GA->>Repo: Checkout repository
+    GA->>GA: Setup Python 3.10
+    GA->>GA: Install dependencies (arxiv, requests, pyyaml)
+    GA->>Script: Execute daily_arxiv.py
+    
+    Script->>API: Query arXiv API for new papers
+    API-->>Script: Return matching paper metadata
+    Script->>API: Search for code repositories
+    API-->>Script: Return repository links
+    
+    Script->>Out: Update README.md
+    Script->>Out: Update docs/index.md (Jekyll site)
+    Script->>Out: Update docs/wechat.md
+    Script->>Out: Update JSON data files
+    
+    GA->>Repo: Commit and push changes
+```
+
+Sources: [.github/workflows/cv-arxiv-daily.yml:32-59]()
+
+### Implementation Details
+
+The workflow follows these steps:
+
+1. **Environment Setup**: Runs on Ubuntu with Python 3.10
+2. **Dependency Installation**: Installs the required Python packages 
+3. **Script Execution**: Runs `daily_arxiv.py` without parameters
+4. **Automated Commit**: Commits and pushes changes to six specific files with a standard commit message
+
+Key configuration details:
+- **Dependencies**: arxiv, requests, pyyaml
+- **Commit Files**: README.md, JSON files, and markdown output files
+- **Commit Author**: Configured with repository owner information
+
+Sources: [.github/workflows/cv-arxiv-daily.yml:28-59]()
+
+## Paper Link Update Workflow
+
+The secondary workflow (`update_paper_links.yml`) runs weekly to verify and update links for existing papers, ensuring all references remain current and functional.
+
+### Trigger Configuration
+
+The link update workflow uses the following trigger configuration:
+
+```yaml
+name: Run Update Paper Links Weekly
+
+on:
+  workflow_dispatch:  # Manual trigger option
+  schedule:
+    - cron: "0 8 * * 1"  # Every Monday at 08:00 UTC
+```
+
+Sources: [.github/workflows/update_paper_links.yml:3-10]()
+
+### Execution Sequence
+
+```mermaid
+sequenceDiagram
+    participant "GitHub Actions" as GA
+    participant "Repository" as Repo
+    participant "daily_arxiv.py" as Script
+    participant "External APIs" as API
+    participant "Output Files" as Out
+    
+    Note over GA: Triggered weekly (Monday)
+    GA->>Repo: Checkout repository
+    GA->>GA: Setup Python 3.10
+    GA->>GA: Install dependencies (arxiv, requests, pyyaml)
+    GA->>Script: Execute daily_arxiv.py --update_paper_links
+    
+    Script->>Repo: Load existing paper data
+    Script->>API: Verify and update paper links
+    API-->>Script: Return updated link information
+    
+    Script->>Out: Update README.md
+    Script->>Out: Update docs/index.md (Jekyll site)
+    Script->>Out: Update docs/wechat.md
+    Script->>Out: Update JSON data files
+    
+    GA->>Repo: Commit and push changes
+```
+
+Sources: [.github/workflows/update_paper_links.yml:32-59]()
+
+### Implementation Details
+
+The link update workflow is nearly identical to the primary collection workflow, with one critical difference:
+
+- It passes the `--update_paper_links` flag to `daily_arxiv.py`
+- This flag causes the script to focus on updating existing links rather than collecting new papers
+
+Otherwise, it follows the same environment setup, dependency installation, and commit process as the primary workflow.
+
+Sources: [.github/workflows/update_paper_links.yml:47-49]()
+
+## Workflow Schedule Coordination
+
+The two workflows operate on different but complementary schedules:
+
+```mermaid
+gantt
+    title "Workflow Execution Timeline"
+    dateFormat  YYYY-MM-DD
+    axisFormat %m-%d
+    
+    section "Paper Collection"
+    "5-day cycle"       :a1, 2023-10-01, 5d
+    "5-day cycle"       :a2, after a1, 5d
+    "5-day cycle"       :a3, after a2, 5d
+    
+    section "Link Updates"
+    "Weekly (Monday)"    :b1, 2023-10-02, 1d
+    "Weekly (Monday)"    :b2, 2023-10-09, 1d
+    "Weekly (Monday)"    :b3, 2023-10-16, 1d
+```
+
+This scheduling approach ensures:
+- Regular collection of new papers (every 5 days)
+- Weekly maintenance of paper links (every Monday)
+- These processes occasionally coincide but generally run at different times
+
+Sources: [.github/workflows/cv-arxiv-daily.yml:10](), [.github/workflows/update_paper_links.yml:10]()
+
+## Integration with System Architecture
+
+The automation workflows represent the top-level control mechanism for the CV-ArXiv-Daily system. They integrate with other system components as shown below:
+
+```mermaid
+flowchart TD
+    subgraph "Automation Layer"
+        A["cv-arxiv-daily.yml<br>(5-day cycle)"]
+        B["update_paper_links.yml<br>(Weekly cycle)"]
+    end
+    
+    subgraph "Configuration"
+        D["config.yaml"]
+    end
+    
+    subgraph "Core Processing"
+        C["daily_arxiv.py"]
+    end
+    
+    subgraph "External Services"
+        E["arXiv API"]
+        F["GitHub Search API"]
+        G["Papers with Code API"]
+    end
+    
+    subgraph "Storage"
+        H1["cv-arxiv-daily.json"]
+        H2["cv-arxiv-daily-web.json"]
+        H3["cv-arxiv-daily-wechat.json"]
+    end
+    
+    subgraph "Presentation"
+        I["README.md"]
+        J["docs/index.md"]
+        K["docs/wechat.md"]
+    end
+    
+    A -->|"Triggers"| C
+    B -->|"Triggers with flag"| C
+    D -->|"Configures"| C
+    
+    C -->|"Fetches data"| E
+    C -->|"Searches repositories"| F
+    C -->|"Searches code"| G
+    
+    C -->|"Outputs"| H1
+    C -->|"Outputs"| H2
+    C -->|"Outputs"| H3
+    C -->|"Generates"| I
+    C -->|"Generates"| J
+    C -->|"Generates"| K
+```
+
+Sources: [.github/workflows/cv-arxiv-daily.yml](), [.github/workflows/update_paper_links.yml]()
+
+## Automated Commit Process
+
+Both workflows use the same automated commit process to publish changes:
+
+```mermaid
+sequenceDiagram
+    participant "GitHub Actions" as GA
+    participant "Repository" as Repo
+    
+    GA->>Repo: Use github-actions-x/commit@v2.9
+    Note right of GA: Configure commit parameters
+    GA->>Repo: Set commit message
+    Note right of GA: "Github Action Automatic Update CV Arxiv Papers"
+    GA->>Repo: Specify files to commit
+    Note right of GA: README.md and all docs/ output files
+    GA->>Repo: Set author information
+    GA->>Repo: Push changes to repository
+```
+
+The commit process is configured to:
+1. Use a specific commit message
+2. Update only the necessary output files
+3. Use consistent author information
+4. Apply a rebase to ensure clean history
+
+Sources: [.github/workflows/cv-arxiv-daily.yml:51-59](), [.github/workflows/update_paper_links.yml:51-59]()
+
+## Customization Options
+
+The automation workflows can be customized in several ways:
+
+| Customization | Method | File Location |
+|---------------|--------|---------------|
+| Change collection frequency | Modify cron expression | [cv-arxiv-daily.yml:10]() |
+| Change link update frequency | Modify cron expression | [update_paper_links.yml:10]() |
+| Add workflow environment variables | Add to env section | Both workflow files |
+| Modify commit message | Edit commit-message parameter | Both workflow files |
+| Change Python version | Update python-version parameter | Both workflow files |
+
+For modifying what papers are collected and how they're processed, see [Configuration System](#2.2).
+
+Sources: [.github/workflows/cv-arxiv-daily.yml](), [.github/workflows/update_paper_links.yml]()
+
+---
+
+# Page: Data Flow
+
+# Data Flow
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [daily_arxiv.py](daily_arxiv.py)
+- [docs/cv-arxiv-daily-web.json](docs/cv-arxiv-daily-web.json)
+- [docs/cv-arxiv-daily-wechat.json](docs/cv-arxiv-daily-wechat.json)
+- [docs/cv-arxiv-daily.json](docs/cv-arxiv-daily.json)
+
+</details>
+
+
+
+This document describes the flow of data within the CV-ArXiv-Daily system, from input sources through processing stages to final output formats. It explains how computer vision research papers are collected from arXiv, processed, enriched with code repository information, and published in various formats for different platforms.
+
+## 1. Data Sources and Inputs
+
+The CV-ArXiv-Daily system collects data from several external APIs and configuration files:
+
+```mermaid
+flowchart LR
+    subgraph "Configuration"
+        A["config.yaml"]
+    end
+    
+    subgraph "External APIs"
+        B["arXiv API"]
+        C["Papers with Code API"]
+        D["GitHub API"]
+    end
+    
+    A -->|"Keywords & Settings"| E["daily_arxiv.py"]
+    B -->|"Paper Metadata"| E
+    C -->|"Official Repository Links"| E
+    D -->|"Additional Repository Links"| E
+    
+    E -->|"Processes Data"| F["Output Formats"]
+```
+
+### 1.1 Configuration
+
+The system behavior is defined by the `config.yaml` file, which specifies:
+- Keywords for searching papers by research area
+- Maximum results to fetch
+- Output formats to generate
+
+The configuration is loaded using the `load_config()` function, which parses the YAML file and prepares the keyword filters for arXiv queries.
+
+Sources: [daily_arxiv.py:19-48]()
+
+### 1.2 arXiv API
+
+The primary source of paper information is the arXiv API, accessed through the `arxiv` Python package. The system queries arXiv using search terms defined in the configuration file to retrieve recent computer vision papers.
+
+```mermaid
+flowchart LR
+    A["get_daily_papers()"] -->|"arxiv.Search(query, max_results)"| B["arXiv API"]
+    B -->|"Returns paper metadata"| C["Paper Processing"]
+    C -->|"Extracts"| D["Title, authors, abstract, ID, publish date, etc."]
+```
+
+Sources: [daily_arxiv.py:87-116]()
+
+### 1.3 Code Repository APIs
+
+For each paper fetched from arXiv, the system attempts to find associated code repositories:
+
+```mermaid
+flowchart TB
+    A["Paper ID (e.g., 2110.01289)"] --> B["Papers with Code API"]
+    B -->|"requests.get(base_url + paper_id)"| C{"Official repo found?"}
+    C -->|"Yes"| D["Use official repository URL"]
+    C -->|"No"| E["GitHub API (optional fallback)"]
+    E -->|"get_code_link(paper_title)"| F{"GitHub repo found?"}
+    F -->|"Yes"| G["Use GitHub repository URL"]
+    F -->|"No"| H["Set repository link to null"]
+```
+
+The system first checks the Papers with Code API for an official repository. If none is found, it can optionally query the GitHub API using the paper title as a search term.
+
+Sources: [daily_arxiv.py:65-85](), [daily_arxiv.py:126-144]()
+
+## 2. Data Processing Pipeline
+
+The data processing pipeline transforms raw paper information into structured data for publication:
+
+```mermaid
+flowchart TB
+    A["demo() function"] -->|"Orchestrates process"| B["load_config()"]
+    B -->|"Returns parsed config"| C["get_daily_papers()"]
+    
+    C -->|"For each keyword"| D["Query arXiv API"]
+    D -->|"For each paper"| E["Extract metadata"]
+    E --> F["Search for code repository"]
+    F --> G["Format paper entry"]
+    
+    G -->|"JSON & markdown formats"| H["Data collection arrays"]
+    H -->|"data_collector"| I["update_json_file()"]
+    H -->|"data_collector_web"| J["update_json_file()"]
+    
+    I -->|"Updates"| K["cv-arxiv-daily.json"]
+    I -->|"Updates"| L["cv-arxiv-daily-web.json"]
+    J -->|"Updates"| M["cv-arxiv-daily-wechat.json"]
+    
+    K --> N["json_to_md()"]
+    L --> N
+    M --> N
+    
+    N -->|"Generates"| O["README.md"]
+    N -->|"Generates"| P["docs/index.md"]
+    N -->|"Generates"| Q["docs/wechat.md"]
+```
+
+The main data processing occurs in the `get_daily_papers()` function, which:
+1. Creates an `arxiv.Search` instance with the configured query and parameters
+2. Iterates through the results, extracting metadata for each paper
+3. Searches for associated code repositories
+4. Formats the paper information for both JSON storage and markdown display
+
+Sources: [daily_arxiv.py:87-161]()
+
+### 2.1 Paper Data Extraction
+
+For each paper retrieved from arXiv, the system extracts the following metadata:
+- Paper ID (e.g., "2110.07546")
+- Title
+- Authors (full list and first author)
+- Publication and update dates
+- Abstract
+- arXiv URL
+- Code repository URL (if available)
+
+This metadata is structured into formatted strings for each output format.
+
+Sources: [daily_arxiv.py:102-115]()
+
+## 3. Data Storage and Persistence
+
+The CV-ArXiv-Daily system uses JSON files as an intermediate data storage mechanism:
+
+```mermaid
+flowchart TB
+    A["Data collector arrays"] -->|"update_json_file()"| B["Read existing JSON file"]
+    B --> C["Merge new data with existing data"]
+    C --> D["Write updated JSON to file"]
+    
+    subgraph "JSON Storage Files"
+        E["cv-arxiv-daily.json<br>(for README)"]
+        F["cv-arxiv-daily-web.json<br>(for Jekyll website)"]
+        G["cv-arxiv-daily-wechat.json<br>(for WeChat)"]
+    end
+    
+    D -->|"Stores formatted data in"| E
+    D -->|"Stores formatted data in"| F
+    D -->|"Stores formatted data in"| G
+```
+
+Each JSON file uses paper IDs (e.g., "2110.07546") as keys, with formatted strings as values. This allows for:
+- Incremental updates without duplicating entries
+- Platform-specific formatting
+- Persistence between runs
+
+Sources: [daily_arxiv.py:217-241]()
+
+### 3.1 Data Update Mechanism
+
+The system includes a mechanism to update repository links for existing papers:
+
+```mermaid
+flowchart TB
+    A["update_paper_links()"] -->|"Reads"| B["Existing JSON file"]
+    B --> C["Parse each paper entry"]
+    C --> D{"Has valid code link?"}
+    D -->|"No"| E["Query Papers with Code API"]
+    D -->|"Yes"| F["Keep existing link"]
+    E --> G{"New link found?"}
+    G -->|"Yes"| H["Update paper entry"]
+    G -->|"No"| I["Keep as null"]
+    H --> J["Write updated JSON"]
+    F --> J
+    I --> J
+```
+
+This allows the system to retroactively add code repository links as they become available, without refetching the papers from arXiv.
+
+Sources: [daily_arxiv.py:163-215]()
+
+## 4. Output Generation
+
+The CV-ArXiv-Daily system generates three different output formats from the stored JSON data:
+
+```mermaid
+flowchart TB
+    A["json_to_md() function"] -->|"Reads"| B["JSON data files"]
+    B --> C["Process JSON data"]
+    C --> D["Format by platform"]
+    
+    D -->|"GitHub format"| E["README.md"]
+    D -->|"Web format"| F["docs/index.md"]
+    D -->|"Mobile/Social format"| G["docs/wechat.md"]
+    
+    H["pretty_math()"] -->|"Formats LaTeX"| D
+```
+
+The `json_to_md()` function converts JSON data to markdown, with specific formatting for each platform:
+
+Sources: [daily_arxiv.py:243-368]()
+
+### 4.1 Output Format Comparison
+
+| Output Format | File | Purpose | Format Features |
+|---------------|------|---------|----------------|
+| GitHub README | README.md | Repository documentation | Full table with badges, TOC |
+| Jekyll Website | docs/index.md | Web interface | Web-optimized table format |
+| WeChat Content | docs/wechat.md | Mobile/social sharing | Simple list format |
+
+Each format is optimized for its specific platform, ensuring the information is presented in the most suitable way for each context.
+
+### 4.2 Custom Formatting
+
+The system includes specialized formatting functions:
+- `pretty_math()` - Properly formats LaTeX mathematics in paper titles
+- `get_authors()` - Formats author lists with options for full list or first author only
+- `sort_papers()` - Sorts papers by date for chronological display
+
+These ensure consistent, readable output across all platforms.
+
+Sources: [daily_arxiv.py:50-63](), [daily_arxiv.py:255-267]()
+
+## 5. Complete Data Flow Diagram
+
+The following diagram illustrates the complete data flow through the CV-ArXiv-Daily system:
+
+```mermaid
+flowchart TD
+    A["config.yaml"] -->|"load_config()"| B["Configuration Data"]
+    
+    subgraph "Input Sources"
+        C["arXiv API"]
+        D["Papers with Code API"]
+        E["GitHub API"]
+    end
+    
+    B -->|"Keywords & Filters"| F["get_daily_papers()"]
+    C -->|"Paper Metadata"| F
+    F -->|"Paper IDs"| G["Code Repository Search"]
+    D -->|"Official Repos"| G
+    E -->|"Additional Repos"| G
+    
+    F --> H["Formatted Paper Data"]
+    G --> H
+    
+    H -->|"data_collector arrays"| I["update_json_file()"]
+    I -->|"Updates"| J["JSON Storage Files"]
+    
+    subgraph "JSON Files"
+        J1["cv-arxiv-daily.json"]
+        J2["cv-arxiv-daily-web.json"]
+        J3["cv-arxiv-daily-wechat.json"]
+    end
+    J --> J1
+    J --> J2
+    J --> J3
+    
+    K["update_paper_links()"] --> J
+    
+    J1 -->|"json_to_md()"| L["README.md"]
+    J2 -->|"json_to_md()"| M["docs/index.md"]
+    J3 -->|"json_to_md()"| N["docs/wechat.md"]
+    
+    subgraph "Final Outputs"
+        L
+        M
+        N
+    end
+```
+
+This diagram shows how data flows from input sources through processing functions to storage and finally to the various output formats.
+
+Sources: [daily_arxiv.py:370-443]()
+
+## 6. Implementation Detail: Paper Collection
+
+The `get_daily_papers()` function is the core of the data collection process:
+
+```mermaid
+sequenceDiagram
+    participant main as "demo() function"
+    participant gdp as "get_daily_papers()"
+    participant arxiv as "arxiv.Search"
+    participant pwc as "Papers with Code API"
+    participant gh as "GitHub API"
+    
+    main->>gdp: Call with topic, query, max_results
+    gdp->>arxiv: Create search with query parameters
+    arxiv-->>gdp: Return search results iterator
+    
+    loop For each result
+        gdp->>gdp: Extract paper metadata
+        gdp->>pwc: Query for official code
+        pwc-->>gdp: Return official repository (if any)
+        
+        alt No official repository and fallback enabled
+            gdp->>gh: Search for repository
+            gh-->>gdp: Return best match repository (if any)
+        end
+        
+        gdp->>gdp: Format paper data for storage
+    end
+    
+    gdp-->>main: Return structured paper data
+```
+
+The function processes each paper and produces two formats for each:
+1. Table row format for GitHub and web display: `|date|title|authors|paper_link|code_link|`
+2. List format for WeChat: `- date, title, authors, paper_link, code_link`
+
+These different formats are collected in separate data structures (`content` and `content_to_web`) to be stored in different JSON files.
+
+Sources: [daily_arxiv.py:87-161]()
+
+## 7. JSON Data Structure
+
+The JSON files serve as an intermediate representation between the raw data from arXiv and the formatted markdown outputs:
+
+```json
+{
+  "SLAM": {
+    "2110.07546": "|**2021-10-14**|**Active SLAM over Continuous Trajectory and Control: A Covariance-Feedback Approach**|Shumon Koga et.al.|[2110.07546](http://arxiv.org/abs/2110.07546)|null|\n",
+    "2110.06541": "|**2021-10-13**|**Collaborative Radio SLAM for Multiple Robots based on WiFi Fingerprint Similarity**|Ran Liu et.al.|[2110.06541](http://arxiv.org/abs/2110.06541)|null|\n"
+  },
+  "Visual Localization": {
+    "2201.03212": "|**2022-01-10**|**Why-So-Deep: Towards Boosting Previously Trained Models for Visual Place Recognition**|M. Usman Maqbool Bhutta et.al.|[2201.03212](http://arxiv.org/abs/2201.03212)|**[link](https://github.com/UsmanMaqbool/why-so-deep)**|\n"
+  }
+}
+```
+
+Each JSON file contains a dictionary where:
+- Top-level keys are research topics ("SLAM", "Visual Localization", etc.)
+- Second-level keys are arXiv paper IDs
+- Values are formatted strings ready for insertion into markdown files
+
+This structure allows for:
+1. Easy updating of existing entries
+2. Organization by research topic
+3. Quick conversion to markdown
+
+Sources: [docs/cv-arxiv-daily.json](), [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily-wechat.json]()
+
+## 8. Conclusion
+
+The data flow in the CV-ArXiv-Daily system can be summarized as:
+
+1. **Input Collection**: Fetch papers from arXiv based on configured keywords
+2. **Data Enrichment**: Search for associated code repositories
+3. **Structured Storage**: Store formatted data in JSON files
+4. **Markdown Generation**: Convert JSON data to markdown for different platforms
+
+This pipeline efficiently transforms raw research paper data into well-structured, platform-specific formats, making the latest computer vision research accessible across different platforms.
+
+---
+
+# Page: Output Formats
+
+# Output Formats
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+- [docs/_config.yml](docs/_config.yml)
+- [docs/cv-arxiv-daily.json](docs/cv-arxiv-daily.json)
+- [docs/index.md](docs/index.md)
+- [docs/wechat.md](docs/wechat.md)
+
+</details>
+
+
+
+This page documents the different output formats generated by the CV-ArXiv-Daily system. The system processes computer vision research papers from arXiv and produces multiple output formats to make the information accessible across different platforms. For information about how the system collects and processes papers, see [Core Processing Engine](#2.1).
+
+## Overview of Output Formats
+
+CV-ArXiv-Daily generates four main types of outputs:
+
+1. **GitHub README** - A markdown file displayed on the repository's main page
+2. **Jekyll Website** - A web interface built with Jekyll using the files in the `docs/` directory
+3. **WeChat Content** - A mobile-friendly format for sharing on platforms like WeChat
+4. **JSON Data Files** - Structured data storage that powers the other formats
+
+Each format is tailored to specific use cases and platforms, offering different viewing experiences for the same underlying paper data.
+
+```mermaid
+flowchart TD
+    A["daily_arxiv.py"] --> |"Generates"| B["Output Formats"]
+    
+    B --> C["GitHub README<br>(README.md)"]
+    B --> D["Jekyll Website<br>(docs/index.md)"]
+    B --> E["WeChat Content<br>(docs/wechat.md)"]
+    B --> F["JSON Data Files<br>(cv-arxiv-daily*.json)"]
+    
+    G["config.yaml"] --> |"Configures"| A
+    
+    C --> |"Viewed on"| H["GitHub Repository"]
+    D --> |"Viewed as"| I["Web Interface"]
+    E --> |"Shared on"| J["Mobile/Social Platforms"]
+    F --> |"Powers"| C
+    F --> |"Powers"| D
+    F --> |"Powers"| E
+```
+
+Sources: [README.md:1-14](). [docs/index.md:1-10](). [docs/wechat.md:1-19](). [docs/cv-arxiv-daily.json:1-5]().
+
+## Data Flow Process
+
+The following diagram illustrates how data flows from arXiv to the various output formats:
+
+```mermaid
+flowchart LR
+    A["arXiv API"] --> |"Raw Paper Data"| B["daily_arxiv.py"]
+    B --> |"Process & Filter"| C["Paper Processing"]
+    C --> |"Format Data"| D["Output Generation"]
+    
+    D --> |"Write"| E1["README.md"]
+    D --> |"Write"| E2["docs/index.md"]
+    D --> |"Write"| E3["docs/wechat.md"]
+    D --> |"Store"| F1["cv-arxiv-daily.json"]
+    D --> |"Store"| F2["cv-arxiv-daily-web.json"]
+    D --> |"Store"| F3["cv-arxiv-daily-wechat.json"]
+    
+    G["GitHub/Papers with Code APIs"] --> |"Code Repository Links"| C
+```
+
+Sources: [README.md:16-40](). [docs/index.md:11-30](). [docs/cv-arxiv-daily.json:1-10]().
+
+## GitHub README Format
+
+The GitHub README is the primary display format for the repository, showing computer vision papers organized by research categories. It's designed to be read directly on GitHub's interface.
+
+### Structure and Format
+
+The README is a markdown file with the following key elements:
+
+1. **Header** - Update timestamp and usage instructions
+2. **Table of Contents** - Collapsible section linking to research categories
+3. **Category Sections** - Papers organized by topics (SLAM, SFM, etc.)
+4. **Paper Listings** - Tabular format with metadata for each paper
+
+Example paper listing format:
+
+| Publish Date | Title | Authors | PDF | Code |
+|-------------|-------|---------|-----|------|
+| **YYYY-MM-DD** | **Paper Title** | Author Names | [arXiv ID](link) | **[link](repository-url)** |
+
+Sources: [README.md:1-40](). [README.md:16-95]().
+
+## Jekyll Website Format
+
+The Jekyll website provides a web interface for browsing the papers, using the same underlying data as the GitHub README but formatted for web display.
+
+### Configuration and Structure
+
+The Jekyll site is configured in `_config.yml` and uses the GitHub Pages infrastructure. The main content is in `docs/index.md`, which has a similar structure to the README:
+
+1. **Front Matter** - Jekyll configuration (layout, etc.)
+2. **Update Timestamp** - When the content was last updated
+3. **Research Categories** - Papers organized by topic
+4. **Paper Tables** - Same tabular format as README
+
+```mermaid
+flowchart TD
+    A["docs/index.md"] --> B["Jekyll Processing"]
+    C["docs/_config.yml"] --> B
+    B --> D["Generated Website"]
+    
+    subgraph "Jekyll Configuration"
+        C
+        E["theme: minima"]
+        F["plugins: <br> - jekyll-remote-theme<br> - jekyll-feed<br> - jekyll-seo-tag"]
+    end
+```
+
+Sources: [docs/index.md:1-10](). [docs/_config.yml:1-22]().
+
+## WeChat Content Format
+
+The WeChat format is optimized for mobile viewing and sharing on platforms like WeChat. It has a more compact structure suitable for social media sharing.
+
+### Structure and Format
+
+The WeChat content is stored in `docs/wechat.md` and features:
+
+1. **Repository Stats** - Badges showing contributors, forks, stars, etc.
+2. **Update Timestamp** - Last update date
+3. **Table of Contents** - Collapsible section linking to categories
+4. **Paper Listings** - Simplified format optimized for mobile viewing
+
+Example paper format (note the simpler format compared to tables in README):
+```
+- YYYY-MM-DD, **Paper Title**, Author Names, Paper: [link], Code: **[link]**
+```
+
+Sources: [docs/wechat.md:1-30](). [docs/wechat.md:20-120]().
+
+## JSON Data Storage
+
+The JSON files serve as an intermediate data storage format, powering the other output formats. They store structured data about papers that can be easily processed by scripts.
+
+### JSON File Structure
+
+There are several JSON files used by the system:
+
+1. **cv-arxiv-daily.json** - Primary data storage for all papers
+2. **cv-arxiv-daily-web.json** - Data formatted for the web interface
+3. **cv-arxiv-daily-wechat.json** - Data formatted for WeChat/mobile
+
+The JSON structure organizes papers by research category and stores metadata for each paper:
+
+```mermaid
+erDiagram
+    JSON-FILE ||--o{ CATEGORY : contains
+    CATEGORY ||--o{ PAPER : contains
+    PAPER {
+        string arxiv_id
+        string publish_date
+        string title
+        string authors
+        string pdf_link
+        string code_link
+    }
+```
+
+Sample JSON structure:
+```
+{
+  "CATEGORY_NAME": {
+    "PAPER_ID_1": "|**DATE**|**TITLE**|AUTHORS|[PDF_LINK](URL)|CODE_LINK|",
+    "PAPER_ID_2": "|**DATE**|**TITLE**|AUTHORS|[PDF_LINK](URL)|CODE_LINK|",
+    ...
+  },
+  ...
+}
+```
+
+Sources: [docs/cv-arxiv-daily.json:1-10]().
+
+## Output Format Comparison
+
+The following table compares the key characteristics of each output format:
+
+| Format | File | Primary Audience | Structure | Update Method |
+|--------|------|------------------|-----------|---------------|
+| GitHub README | README.md | GitHub users | Markdown tables by category | Direct write by script |
+| Jekyll Website | docs/index.md | Web visitors | Front-matter + markdown tables | Direct write by script |
+| WeChat Content | docs/wechat.md | Mobile/social users | Compact list format | Direct write by script |
+| JSON Data | cv-arxiv-daily*.json | System/scripts | Structured data by category | Direct write by script |
+
+Sources: [README.md:1-14](). [docs/index.md:1-10](). [docs/wechat.md:1-19](). [docs/cv-arxiv-daily.json:1-5]().
+
+## Format Generation Process
+
+The system follows this general process to generate the various output formats:
+
+```mermaid
+sequenceDiagram
+    participant Script as "daily_arxiv.py"
+    participant ArXiv as "arXiv API"
+    participant Code as "GitHub/Papers with Code API"
+    participant JSON as "JSON Files"
+    participant Outputs as "Markdown Outputs"
+    
+    Script->>ArXiv: Fetch papers
+    ArXiv-->>Script: Paper metadata
+    Script->>Code: Search for code repositories
+    Code-->>Script: Repository URLs
+    
+    Script->>Script: Process and filter papers
+    Script->>JSON: Store structured data
+    JSON-->>Script: Read data for formatting
+    
+    Script->>Outputs: Generate README.md
+    Script->>Outputs: Generate docs/index.md
+    Script->>Outputs: Generate docs/wechat.md
+    
+    Note over Script,Outputs: GitHub Actions commits and pushes changes
+```
+
+Sources: [README.md:1-14](). [docs/index.md:1-10](). [docs/wechat.md:1-19]().
+
+## Related Pages
+
+- For details on how papers are collected and processed, see [Core Processing Engine](#2.1)
+- For information on configuring the system, see [Configuration System](#2.2)
+- For details on automation workflows, see [Automation Workflows](#2.3)
+- For specific output format documentation, see:
+  - [GitHub README Integration](#3.1)
+  - [Jekyll Website](#3.2)
+  - [WeChat Integration](#3.3)
+  - [JSON Data Structures](#3.4)
+
+---
+
+# Page: GitHub README Integration
+
+# GitHub README Integration
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+- [daily_arxiv.py](daily_arxiv.py)
+- [docs/cv-arxiv-daily.json](docs/cv-arxiv-daily.json)
+
+</details>
+
+
+
+This document details how the cv-arxiv-daily system updates the repository's main README.md file with the latest computer vision papers from arXiv. The GitHub README integration is specifically responsible for transforming paper data into a well-structured Markdown document that displays papers organized by research topics.
+
+## Process Overview
+
+The GitHub README Integration follows this high-level workflow:
+
+1. Configuration data is loaded from `config.yaml` containing search parameters and output settings
+2. Papers are fetched from arXiv based on configured keywords
+3. Associated code repositories are identified for each paper 
+4. Paper information is stored in a JSON intermediate file
+5. JSON data is converted to Markdown format
+6. README.md file is updated with the formatted content
+
+```mermaid
+graph TD
+    A["config.yaml"] -->|"load_config()"| B["Configuration Dict"]
+    B -->|"get_daily_papers()"| C["Paper Metadata"]
+    C -->|"get_code_link()"| D["Papers with Code Links"]
+    D -->|"update_json_file()"| E["JSON Data Store<br>(cv-arxiv-daily.json)"]
+    E -->|"json_to_md()"| F["README.md"]
+```
+
+Sources: [daily_arxiv.py:19-48](), [daily_arxiv.py:87-161](), [daily_arxiv.py:66-85](), [daily_arxiv.py:217-241](), [daily_arxiv.py:243-368]()
+
+## Operation Modes
+
+The GitHub README integration can operate in two distinct modes:
+
+1. **Normal Mode**: Fetches new papers from arXiv and updates the README
+2. **Update Links Mode**: Only updates code repository links for papers already in the JSON file
+
+The mode is controlled by the `--update_paper_links` command line argument, which is processed in the main function and passed to the `demo()` function:
+
+```bash
+# Normal mode
+python daily_arxiv.py --config_path config.yaml
+
+# Update links mode
+python daily_arxiv.py --config_path config.yaml --update_paper_links
+```
+
+Sources: [daily_arxiv.py:434-443](), [daily_arxiv.py:370-433]()
+
+## Core Components
+
+### 1. Configuration Loading
+
+The `load_config()` function loads and processes the configuration from the YAML file:
+
+```mermaid
+graph TD
+    A["config.yaml"] -->|"Read file"| B["yaml.load()"]
+    B -->|"Parse YAML"| C["Raw config dict"]
+    C -->|"pretty_filters()"| D["Processed config with search queries"]
+    D --> E["Return configuration dict"]
+```
+
+The configuration contains:
+- Topics and search keywords with filters
+- Maximum number of results per topic
+- Output file paths for different formats
+- Formatting options (badges, table of contents, etc.)
+
+Sources: [daily_arxiv.py:19-48]()
+
+### 2. Paper Retrieval
+
+The `get_daily_papers()` function retrieves papers from arXiv and checks for associated code repositories:
+
+```mermaid
+sequenceDiagram
+    participant Script as "daily_arxiv.py"
+    participant ArXiv as "arXiv API"
+    participant PwC as "Papers with Code API"
+    
+    Script->>ArXiv: "Search for papers (topic, query, max_results)"
+    ArXiv-->>Script: "Return paper metadata"
+    
+    loop "For each paper"
+        Script->>PwC: "Check for code repository (paper_id)"
+        PwC-->>Script: "Return repository URL or null"
+        Script->>Script: "Format paper as Markdown table row"
+    end
+    
+    Script->>Script: "Return formatted paper data"
+```
+
+For each paper, the function:
+1. Extracts metadata (title, authors, publication date, URL)
+2. Queries the Papers with Code API to find associated code repositories
+3. Formats the paper information as a Markdown table row
+4. Organizes papers by topic in a dictionary structure
+
+Sources: [daily_arxiv.py:87-161]()
+
+### 3. JSON Data Management
+
+Papers are stored in JSON files as an intermediate format before generating Markdown. The system maintains separate JSON files for different output formats:
+
+- `cv-arxiv-daily.json`: For the GitHub README
+- `cv-arxiv-daily-web.json`: For the Jekyll website
+- `cv-arxiv-daily-wechat.json`: For WeChat content
+
+The JSON structure is organized by topics and paper IDs:
+
+```json
+{
+  "SLAM": {
+    "2110.07546": "|**2021-10-14**|**Active SLAM...**|Author et.al.|[2110.07546](http://arxiv.org/abs/2110.07546)|null|",
+    "2110.06541": "|**2021-10-13**|**Collaborative Radio SLAM...**|Author et.al.|[2110.06541](http://arxiv.org/abs/2110.06541)|null|"
+  },
+  "SFM": {
+    "2110.09412": "|**2021-10-18**|**Structure from Motion...**|Author et.al.|[2110.09412](http://arxiv.org/abs/2110.09412)|**[link](https://github.com/user/repo)**|"
+  }
+}
+```
+
+Each value is a pre-formatted Markdown table row.
+
+Sources: [daily_arxiv.py:217-241]()
+
+### 4. Link Update Mechanism
+
+The `update_paper_links()` function refreshes code repository links for existing papers without fetching new ones:
+
+```mermaid
+graph TD
+    A["Load JSON file"] --> B["Parse paper entries"]
+    B --> C["For each paper without code"]
+    C --> D["Query Papers with Code API"]
+    D --> E["Update entry if repository found"]
+    E --> F["Save updated JSON file"]
+```
+
+This function is useful when code repositories are published after the paper was initially added to the system.
+
+Sources: [daily_arxiv.py:163-215]()
+
+### 5. Markdown Generation
+
+The `json_to_md()` function converts the JSON data to a full Markdown document:
+
+```mermaid
+graph TD
+    A["json_to_md()"] --> B["Read JSON file"]
+    B --> C["Write header with date"]
+    C --> D["Generate table of contents"]
+    D --> E["For each topic"]
+    E --> F["Write topic heading"]
+    F --> G["Write table header"]
+    G --> H["Sort papers by date"]
+    H --> I["Write paper rows"]
+    I --> J["Add back-to-top link"]
+    J --> K["Optionally add badges"]
+```
+
+The function has several parameters to control the output format:
+- `to_web`: Format for web display (changes table format)
+- `use_title`: Whether to include title heading
+- `use_tc`: Whether to include table of contents
+- `show_badge`: Whether to show GitHub badges
+- `use_b2t`: Whether to include back-to-top links
+
+Sources: [daily_arxiv.py:243-368]()
+
+## README Structure and Format
+
+The generated README.md follows this structure:
+
+```mermaid
+graph TD
+    A["README.md"] --> B["Date Header<br>## Updated on YYYY.MM.DD"]
+    A --> C["Usage Instructions<br>> Usage instructions: [here](./docs/README.md#usage)"]
+    A --> D["Table of Contents<br>(collapsible)"]
+    
+    D --> E["Topic Sections"]
+    
+    E --> F1["## SLAM"]
+    E --> F2["## SFM"]
+    E --> F3["## Visual Localization"]
+    E --> F4["## Keypoint Detection"]
+    E --> F5["## Image Matching"]
+    E --> F6["## NeRF"]
+    
+    F1 --> G1["Paper Table<br>|Date|Title|Authors|PDF|Code|"]
+    F2 --> G2["Paper Table<br>|Date|Title|Authors|PDF|Code|"]
+    F3 --> G3["Paper Table<br>|Date|Title|Authors|PDF|Code|"]
+    F4 --> G4["Paper Table<br>|Date|Title|Authors|PDF|Code|"]
+    F5 --> G5["Paper Table<br>|Date|Title|Authors|PDF|Code|"]
+    F6 --> G6["Paper Table<br>|Date|Title|Authors|PDF|Code|"]
+```
+
+The README contains:
+1. An update date header showing when the content was last refreshed
+2. A link to usage instructions
+3. A collapsible table of contents with links to each section
+4. Sections for each research topic with tables listing papers
+5. For each paper: publication date, title, authors, arXiv link, and code repository link (if available)
+
+Sources: [README.md:1-350]()
+
+## Integration with Main Workflow
+
+The GitHub README integration is executed as part of the `demo()` function, which orchestrates the entire process:
+
+```mermaid
+graph TD
+    A["main()"] --> B["load_config()"]
+    B --> C["demo()"]
+    
+    C -->|"update_paper_links = False"| D["Fetch papers from arXiv"]
+    D --> E["Collect paper data"]
+    
+    C -->|"publish_readme = True"| F["README Workflow"]
+    F -->|"update_paper_links = True"| G1["update_paper_links()"]
+    F -->|"update_paper_links = False"| G2["update_json_file()"]
+    G1 --> H["json_to_md()"]
+    G2 --> H
+    H --> I["Write to README.md"]
+    
+    C -->|"publish_gitpage = True"| J["GitPage Workflow"]
+    C -->|"publish_wechat = True"| K["WeChat Workflow"]
+```
+
+The `demo()` function processes the configuration and command line arguments to determine:
+1. Whether to fetch new papers or only update links
+2. Which output formats to generate (README, GitPage, WeChat)
+3. How to format each output
+
+Sources: [daily_arxiv.py:370-433]()
+
+## Example README Output
+
+The generated README.md contains formatted paper information in tables:
+
+| Publish Date | Title | Authors | PDF | Code |
+|---|---|---|---|---|
+| **2023-01-09** | **Active SLAM: A Review** | Julio A. Placed et.al. | [2301.03267](http://arxiv.org/abs/2301.03267) | **[link](https://github.com/julioplaced/active-slam-survey)** |
+| **2023-01-08** | **Real-time Motion Planning for Autonomous Driving** | Wei Zhan et.al. | [2301.03134](http://arxiv.org/abs/2301.03134) | null |
+
+The papers are sorted by date (newest first) and organized by research topic.
+
+Sources: [README.md:16-350]()
+
+## Relationship to Other Components
+
+The GitHub README integration is one of three output formats generated by the system:
+
+1. **GitHub README** (covered in this document): Main repository README.md file
+2. **Jekyll Website** (see [Jekyll Website Integration](#3.2)): Formatted for web display in docs/index.md
+3. **WeChat Integration** (see [WeChat Integration](#3.3)): Formatted for Chinese social media in docs/wechat.md
+
+All three formats use the same paper data but with different formatting to suit each platform.
+
+Sources: [daily_arxiv.py:370-433]()
+
+---
+
+# Page: Jekyll Website
+
+# Jekyll Website
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [docs/_config.yml](docs/_config.yml)
+- [docs/cv-arxiv-daily-web.json](docs/cv-arxiv-daily-web.json)
+- [docs/index.md](docs/index.md)
+
+</details>
+
+
+
+This document describes the Jekyll-powered website component of the CV-ArXiv-Daily system, which provides a web interface for browsing collected computer vision research papers. For information about the overall system architecture, see [System Architecture](#2), and for other output formats like GitHub README or WeChat content, see [Output Formats](#3).
+
+## Purpose and Overview
+
+The Jekyll website transforms markdown content in `docs/index.md` into a browsable static website hosted via GitHub Pages. It serves as the primary web interface for users to explore the latest computer vision papers collected by the system, organized by research categories.
+
+```mermaid
+flowchart TB
+    config_yml["_config.yml\n(Site Configuration)"]
+    index_md["docs/index.md\n(Main Content)"]
+    wechat_md["docs/wechat.md\n(WeChat Content)"]
+    json_data["cv-arxiv-daily-web.json\n(Paper Data)"]
+    gh_pages["GitHub Pages\n(Static Site Host)"]
+    jekyll_engine["Jekyll Engine\n(Markdown -> HTML Converter)"]
+    daily_script["daily_arxiv.py\n(Core Processing Script)"]
+    web_browsers["Web Browsers"]
+    
+    daily_script -->|"Updates"| index_md
+    daily_script -->|"Generates"| json_data
+    json_data -->|"Data Source for"| index_md
+    config_yml -->|"Theme: minima\nPlugins: jekyll-remote-theme"| jekyll_engine
+    index_md -->|"Paper Listings by Category"| jekyll_engine
+    wechat_md -->|"Alternative Format"| jekyll_engine
+    jekyll_engine -->|"Generate Static HTML"| gh_pages
+    gh_pages -->|"Publish at username.github.io/cv-arxiv-daily"| web_browsers
+```
+
+Sources: [docs/index.md:1-381](), [docs/_config.yml:1-22]()
+
+## Jekyll Configuration
+
+The CV-ArXiv-Daily website is configured through the `_config.yml` file located in the `docs` directory. This file contains settings that control the site's appearance and behavior when processed by Jekyll.
+
+| Configuration | Value | Description |
+|---------------|-------|-------------|
+| `title` | CV Arxiv Daily | The title displayed in the browser and site header |
+| `description` | Automatically Update CV Papers Daily... | Brief site description |
+| `remote_theme` | jekyll/minima@v2.5.1 | Specifies the Jekyll theme |
+| `skin` | dark | Sets the color scheme |
+| `plugins` | jekyll-remote-theme, jekyll-feed, jekyll-seo-tag | Enables additional Jekyll functionality |
+
+The site uses the popular 'minima' theme with a dark skin variant and includes social links to the project owner's profiles.
+
+Sources: [docs/_config.yml:1-22]()
+
+## Content Structure
+
+### Main Page Structure
+
+The main content of the website is contained in `docs/index.md`, which serves as the homepage. The file begins with YAML front matter that specifies the Jekyll layout:
+
+```yaml
+---
+layout: default
+---
+```
+
+Following this front matter, the content is organized as follows:
+
+1. **Update Timestamp**: Shows when the content was last refreshed
+2. **Usage Instructions**: Link to setup and customization documentation
+3. **Research Categories**: Section headers (## SLAM, ## SFM, etc.)
+4. **Paper Tables**: For each category, a table of papers with metadata
+
+Sources: [docs/index.md:1-5]()
+
+### Paper Entry Format
+
+Each paper is presented in a table row with the following columns:
+
+| Column | Description |
+|--------|-------------|
+| Publish Date | Date the paper was published on arXiv |
+| Title | Paper title, formatted in bold |
+| Authors | List of author names |
+| PDF | Link to the paper's PDF on arXiv |
+| Code | Link to the paper's code repository (if available) |
+
+Example paper entry from the SLAM section:
+
+```markdown
+|**2025-04-16**|**An Online Adaptation Method for Robust Depth Estimation and Visual Odometry in the Open World**|Xingwu Ji et.al.|[2504.11698](http://arxiv.org/abs/2504.11698)|**[link](https://github.com/jixingwu/sol-slam)**|
+```
+
+Sources: [docs/index.md:10-13]()
+
+## Content Generation Process
+
+The Jekyll website's content is automatically generated through a pipeline that collects, processes, and publishes paper data:
+
+```mermaid
+flowchart TD
+    github_actions["GitHub Actions"]
+    daily_arxiv["daily_arxiv.py"]
+    json_file["cv-arxiv-daily-web.json"]
+    index_md["docs/index.md"]
+    config_yml["_config.yml"]
+    jekyll_engine["Jekyll Engine"]
+    website["Public Website"]
+    users["Users"]
+
+    github_actions -->|"1. Execute every 5 days"| daily_arxiv
+    daily_arxiv -->|"2. Store paper data"| json_file
+    daily_arxiv -->|"3. Update with paper listings"| index_md
+    index_md -->|"4. References"| config_yml
+    github_actions -->|"5. Trigger build"| jekyll_engine
+    config_yml -->|"6. Configure"| jekyll_engine
+    index_md -->|"7. Process content"| jekyll_engine
+    jekyll_engine -->|"8. Generate site"| website
+    website -->|"9. Serve to"| users
+```
+
+The process consists of these key steps:
+
+1. **Scheduled Execution**: GitHub Actions triggers the `daily_arxiv.py` script every 5 days
+2. **Data Collection**: The script queries the arXiv API for papers matching configured keywords
+3. **Data Processing**: Papers are filtered, categorized, and enriched with repository links
+4. **JSON Storage**: Processed data is stored in `cv-arxiv-daily-web.json`
+5. **Markdown Generation**: The script updates `docs/index.md` with formatted paper listings
+6. **Jekyll Build**: GitHub Pages runs Jekyll to transform the markdown into HTML
+7. **Website Publication**: The resulting static site is served via GitHub Pages
+
+This automated process ensures the website stays current with minimal manual intervention.
+
+Sources: [docs/index.md:1-381](), [docs/cv-arxiv-daily-web.json:1]()
+
+## Research Categories
+
+The website organizes papers into distinct research categories based on the configuration in `config.yaml`. The main categories include:
+
+| Category | Description |
+|----------|-------------|
+| SLAM | Simultaneous Localization and Mapping |
+| Visual Localization | Camera relocalization and place recognition |
+| SFM | Structure from Motion techniques |
+| Keypoint Detection | Feature detection and descriptors |
+| Image Matching | Feature and line segment matching |
+| NeRF | Neural Radiance Fields and novel view synthesis |
+
+Each category has its own section in the `docs/index.md` file with a dedicated table of papers related to that research area.
+
+Sources: [docs/index.md:8-380]()
+
+## Integration with CV-ArXiv-Daily System
+
+The Jekyll website is one component in the larger CV-ArXiv-Daily ecosystem, serving as the web-based presentation layer for the collected research papers:
+
+```mermaid
+flowchart TD
+    subgraph core_system["Core Processing System"]
+        config["config.yaml\n(System Configuration)"]
+        daily_arxiv["daily_arxiv.py\n(Core Processing Script)"]
+        json_storage["JSON Storage\n(cv-arxiv-daily-web.json)"]
+    end
+    
+    subgraph output_formats["Output Formats"]
+        readme["README.md\n(GitHub Repo Homepage)"]
+        jekyll_site["Jekyll Website\n(docs/index.md)"]
+        wechat_doc["WeChat Format\n(docs/wechat.md)"]
+    end
+    
+    arxiv_api["arXiv API"]
+    github_api["GitHub Search API"]
+    papers_with_code_api["Papers with Code API"]
+    jekyll_engine["Jekyll Engine"]
+    published_site["Public Website\n(GitHub Pages)"]
+    
+    arxiv_api -->|"Fetch Papers"| daily_arxiv
+    github_api -->|"Find Code Repos"| daily_arxiv
+    papers_with_code_api -->|"Get Code Links"| daily_arxiv
+    
+    config -->|"Configure Keywords\nand Categories"| daily_arxiv
+    daily_arxiv -->|"Store Processed Data"| json_storage
+    json_storage -->|"Data Source"| jekyll_site
+    daily_arxiv -->|"Update Content"| jekyll_site
+    daily_arxiv -->|"Update Content"| readme
+    daily_arxiv -->|"Update Content"| wechat_doc
+    
+    jekyll_site -->|"Transformed by"| jekyll_engine
+    jekyll_engine -->|"Generates"| published_site
+```
+
+The Jekyll website works alongside other output formats:
+
+- **GitHub README** (covered in [GitHub README Integration](#3.1)): Shows paper listings directly on the repository page
+- **WeChat Integration** (covered in [WeChat Integration](#3.3)): Formatted content for sharing on WeChat
+- **JSON Data** (covered in [JSON Data Structures](#3.4)): Structured data for programmatic access
+
+Together, these components form a comprehensive system for collecting, processing, and publishing computer vision research papers across multiple platforms.
+
+Sources: [docs/index.md:1-381](), [docs/_config.yml:1-22](), [docs/cv-arxiv-daily-web.json:1]()
+
+## Website Customization
+
+Users who fork the CV-ArXiv-Daily repository can customize the Jekyll website by modifying the following:
+
+1. **Site Configuration**: Edit `_config.yml` to change the title, description, theme, etc.
+2. **Paper Categories**: Modify `config.yaml` to adjust which research areas are included
+3. **Search Keywords**: Update `config.yaml` to refine which papers are collected
+4. **Layout and Appearance**: The site uses the 'minima' theme, which can be customized further
+
+The Jekyll website provides a flexible framework that can be adapted to focus on different research areas or presentation styles while maintaining the automated collection and publication process.
+
+Sources: [docs/_config.yml:1-22]()
+
+---
+
+# Page: WeChat Integration
+
+# WeChat Integration
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [docs/cv-arxiv-daily-wechat.json](docs/cv-arxiv-daily-wechat.json)
+- [docs/wechat.md](docs/wechat.md)
+
+</details>
+
+
+
+## Overview
+
+The WeChat Integration module provides functionality for formatting and sharing Computer Vision research papers in a style optimized for WeChat, a popular messaging and social media platform. This integration is one of the multiple output formats generated by the CV-ArXiv-Daily system, focused specifically on making research papers accessible in a mobile-friendly format.
+
+For information about the overall system architecture, see [System Architecture](#2), and for other output formats, see [Output Formats](#3).
+
+Sources: [docs/wechat.md:1-5]()
+
+## WeChat Output Format
+
+The WeChat integration generates a specially formatted markdown document located at `docs/wechat.md` that contains the latest computer vision papers organized by research categories. This file is designed to be easily shared on WeChat platforms and includes mobile-optimized formatting.
+
+```mermaid
+flowchart LR
+    A["daily_arxiv.py"] -->|"Processes papers"| B["cv-arxiv-daily-wechat.json"]
+    B -->|"Formats for WeChat"| C["docs/wechat.md"]
+    
+    subgraph "WeChat Document Structure"
+        D["Repository Badges"]
+        E["Last Updated Date"]
+        F["Table of Contents"]
+        G["Research Categories"]
+        H["Paper Entries"]
+    end
+    
+    C --> D
+    C --> E
+    C --> F
+    C --> G
+    G --> H
+```
+
+Sources: [docs/wechat.md:1-20]()
+
+## Data Flow for WeChat Integration
+
+The WeChat integration is part of the larger data pipeline in the CV-ArXiv-Daily system. Here's how data flows specifically for the WeChat output:
+
+```mermaid
+sequenceDiagram
+    participant GH as "GitHub Actions"
+    participant Script as "daily_arxiv.py"
+    participant ArXiv as "arXiv API"
+    participant GHCode as "GitHub API"
+    participant JSON as "cv-arxiv-daily-wechat.json"
+    participant WeChatMD as "docs/wechat.md"
+    
+    Note over GH: Scheduled Execution
+    GH->>Script: Trigger execution
+    Script->>ArXiv: Fetch CV papers
+    ArXiv-->>Script: Return papers
+    
+    loop For each paper
+        Script->>GHCode: Search for code repository
+        GHCode-->>Script: Return repository URL (if any)
+    end
+    
+    Script->>JSON: Store processed data
+    Script->>WeChatMD: Update WeChat markdown
+    Note over WeChatMD: Format optimized for mobile
+```
+
+The system first collects papers from arXiv, processes them according to configured keywords, looks for associated code repositories, and then formats the data specifically for WeChat in both a JSON file and a markdown document.
+
+Sources: [docs/wechat.md:1-294]()
+
+## Document Structure
+
+The WeChat markdown document follows a specific structure optimized for readability on mobile devices:
+
+### 1. Document Header
+
+The document begins with repository badges showing contributors, forks, stars, and issues, followed by a last updated date.
+
+```
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
+> Updated on 2022.12.02
+```
+
+### 2. Table of Contents
+
+A collapsible table of contents provides easy navigation to different research categories:
+
+```
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href=#SLAM>SLAM</a></li>
+    <li><a href=#SFM>SFM</a></li>
+    <li><a href=#Visual-Localization>Visual Localization</a></li>
+    <li><a href=#Keypoint-Detection>Keypoint Detection</a></li>
+    <li><a href=#Image-Matching>Image Matching</a></li>
+    <li><a href=#NeRF>NeRF</a></li>
+  </ol>
+</details>
+```
+
+### 3. Research Categories
+
+The document organizes papers into distinct research categories, with each category containing a chronologically sorted list of papers.
+
+### 4. Paper Entry Format
+
+Each paper is presented in a consistent format:
+
+```
+- {DATE}, **{TITLE}**, {AUTHORS}, Paper: [{PAPER_URL}]({PAPER_URL}), Code: **[{CODE_URL}]({CODE_URL})**
+```
+
+The code repository link is only included if available and is emphasized with bold formatting.
+
+Sources: [docs/wechat.md:1-294]()
+
+## Technical Implementation
+
+The WeChat integration is implemented as part of the core processing engine of the CV-ArXiv-Daily system.
+
+```mermaid
+graph TD
+    subgraph "Core Processing"
+        A["daily_arxiv.py"]
+        B["config.yaml"]
+    end
+    
+    subgraph "Data Storage"
+        C["cv-arxiv-daily-wechat.json"]
+    end
+    
+    subgraph "Output Generation"
+        D["docs/wechat.md"]
+    end
+    
+    A -->|"Processes papers"| C
+    B -->|"Configures keywords\nand categories"| A
+    C -->|"Data source for"| D
+    
+    E["Github Actions\ncv-arxiv-daily.yml"] -->|"Triggers"| A
+```
+
+The system generates the WeChat output through the following components:
+
+1. **Configuration**: The `config.yaml` file defines which papers to include based on keywords and research categories
+
+2. **Data Processing**: The `daily_arxiv.py` script processes the papers and stores the WeChat-specific data in `cv-arxiv-daily-wechat.json`
+
+3. **Output Generation**: The script then uses this JSON data to generate the `docs/wechat.md` file with WeChat-optimized formatting
+
+Sources: [docs/wechat.md:1-294]()
+
+## Comparison with Other Output Formats
+
+The WeChat integration differs from other output formats in several ways:
+
+| Feature | WeChat Integration | GitHub README | Jekyll Website |
+|---------|-------------------|---------------|----------------|
+| Target Platform | Mobile (WeChat) | GitHub repository | Web browser |
+| File Location | docs/wechat.md | README.md | docs/index.md |
+| JSON Source | cv-arxiv-daily-wechat.json | cv-arxiv-daily.json | cv-arxiv-daily-web.json |
+| Formatting | Mobile-optimized markdown | Standard GitHub markdown | Jekyll-compatible markdown |
+| Navigation | Simple ToC with category links | More detailed navigation | Web navigation elements |
+| Use Case | Sharing on social media/mobile | Repository documentation | Browsing on website |
+
+The WeChat format is specifically designed to be shareable and readable on mobile devices, particularly within the WeChat ecosystem which is widely used for academic and professional communication in certain regions.
+
+Sources: [docs/wechat.md:1-294]()
+
+## Customization
+
+Users can customize the WeChat integration in several ways:
+
+1. **Keywords and Categories**: By modifying `config.yaml`, users can change which research areas and keywords are included in the WeChat output
+
+2. **Output Format**: The formatting of the WeChat markdown file can be customized by modifying the template used in the core processing script
+
+3. **Update Frequency**: The frequency at which the WeChat document is updated can be controlled by modifying the GitHub Actions workflow schedule
+
+For more information on customization options, see [Setup and Configuration](#5.1) and [Customizing Research Keywords](#5.2).
+
+Sources: [docs/wechat.md:1-20]()
+
+## Usage Scenarios
+
+The WeChat integration is particularly useful for:
+
+1. **Sharing Research Updates**: Researchers can easily share the latest papers in their field on WeChat groups or moments
+
+2. **Mobile Reading**: The format is optimized for reading on mobile devices, making it convenient for on-the-go browsing of research papers
+
+3. **Chinese Academic Community**: Given WeChat's prevalence in China, this integration helps bridge international research with the Chinese academic community
+
+4. **Research Groups**: Research groups can use this format to share relevant papers internally through WeChat channels
+
+The mobile-friendly format makes it easier to access cutting-edge research in computer vision fields like SLAM, SFM, Visual Localization, and NeRF through the WeChat platform.
+
+Sources: [docs/wechat.md:1-294]()
+
+---
+
+# Page: JSON Data Structures
+
+# JSON Data Structures
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [docs/cv-arxiv-daily-web.json](docs/cv-arxiv-daily-web.json)
+- [docs/cv-arxiv-daily-wechat.json](docs/cv-arxiv-daily-wechat.json)
+- [docs/cv-arxiv-daily.json](docs/cv-arxiv-daily.json)
+
+</details>
+
+
+
+## Purpose and Scope
+
+This document provides detailed information about the JSON data structures used in the CV-ArXiv-Daily system for storing and transmitting paper data. These JSON files serve as intermediaries between the data collection process and the various output formats, providing a persistent and structured representation of the collected computer vision research papers.
+
+For information about how this data is displayed in various formats, see [Output Formats](#3), and for details on the data collection process, see [Core Processing Engine](#2.1).
+
+## Overview of JSON Files
+
+The CV-ArXiv-Daily system uses three primary JSON files to store paper data in different formats optimized for specific publishing targets:
+
+| JSON File | Purpose | Target |
+|-----------|---------|--------|
+| cv-arxiv-daily.json | Main repository data store | GitHub README |
+| cv-arxiv-daily-web.json | Optimized for web display | Jekyll website |
+| cv-arxiv-daily-wechat.json | Formatted for mobile sharing | WeChat content |
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+## JSON File Relationships
+
+The following diagram illustrates how the JSON files fit into the overall data flow of the system:
+
+```mermaid
+flowchart TD
+    A["daily_arxiv.py"] -->|"Generates"| B["JSON Data Files"]
+    B -->|"Powers"| C["Output Formats"]
+    
+    subgraph "JSON Data Files"
+        B1["cv-arxiv-daily.json"]
+        B2["cv-arxiv-daily-web.json"]
+        B3["cv-arxiv-daily-wechat.json"]
+    end
+    
+    subgraph "Output Formats"
+        C1["README.md\n(GitHub)"]
+        C2["docs/index.md\n(Jekyll Website)"]
+        C3["docs/wechat.md\n(WeChat Content)"]
+    end
+    
+    B1 -->|"Used by"| C1
+    B2 -->|"Used by"| C2
+    B3 -->|"Used by"| C3
+    
+    D["ArXiv API"] -->|"Paper Data"| A
+    E["GitHub Search API"] -->|"Code Links"| A
+    F["Papers with Code API"] -->|"Code Links"| A
+    G["config.yaml"] -->|"Category Configuration"| A
+```
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+## JSON Structure
+
+The JSON files follow a hierarchical structure organized by research categories. Each file contains papers categorized by research area, with unique arXiv IDs as keys for individual paper entries.
+
+```mermaid
+classDiagram
+    class "JSON Root Object" {
+        +ResearchCategory categories
+    }
+    
+    class "ResearchCategory" {
+        +PaperEntry papers
+    }
+    
+    class "PaperEntry" {
+        +String arXivID
+        +String formattedMarkdown
+    }
+    
+    "JSON Root Object" --> "ResearchCategory" : contains
+    "ResearchCategory" --> "PaperEntry" : contains
+    
+    note for "JSON Root Object" "Example: {\"SLAM\": {...}, \"NeRF\": {...}}"
+    note for "ResearchCategory" "Example: \"SLAM\": {\"2110.07546\": \"...\", \"2110.06541\": \"...\"}"
+    note for "PaperEntry" "Example: \"2110.07546\": \"|**2021-10-14**|**Title**|Authors|[link](url)|[code](url)|\""
+```
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+## Detailed JSON Schema
+
+The actual content structure of the JSON files is as follows:
+
+```mermaid
+flowchart TD
+    A["JSON Root Object"] -->|"Contains categories"| B["Research Category (e.g., 'SLAM')"]
+    B -->|"Contains papers"| C["Paper Dictionary"]
+    C -->|"ArXiv ID keys"| D["Paper Entry (String)"]
+    
+    subgraph "Paper Entry Format (Markdown)"
+        E["Date"] --- F["Title"] --- G["Authors"] --- H["ArXiv Link"] --- I["Code Link (optional)"]
+    end
+    
+    D -->|"Contains"| E
+```
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+## Example JSON Structure
+
+Here's a simplified representation of the JSON structure:
+
+```
+{
+  "SLAM": {
+    "2110.07546": "|**2021-10-14**|**Active SLAM over Continuous Trajectory...**|Shumon Koga et.al.|[2110.07546](http://arxiv.org/abs/2110.07546)|null|",
+    "2110.06541": "|**2021-10-13**|**Collaborative Radio SLAM for Multiple Robots...**|Ran Liu et.al.|[2110.06541](http://arxiv.org/abs/2110.06541)|null|",
+    ...
+  },
+  "NeRF": {
+    "2203.xxxxx": "|**2022-03-xx**|**Paper Title**|Authors|[ID](link)|[code](code-link)|",
+    ...
+  },
+  ...
+}
+```
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+## Paper Entry Format
+
+Each paper entry in the JSON is stored as a string formatted as a Markdown table row. The format is:
+
+```
+|**YYYY-MM-DD**|**Paper Title**|Author Names|[arXiv ID](arXiv URL)|[link](code repository URL or null)|
+```
+
+This pre-formatted string allows for easy insertion into the Markdown outputs (README.md, index.md, wechat.md) without needing additional processing.
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+## Differences Between JSON Files
+
+While the three JSON files share the same basic structure, they contain slight differences optimized for their target platforms:
+
+1. **cv-arxiv-daily.json**: The primary data store with complete paper information for the GitHub README.
+
+2. **cv-arxiv-daily-web.json**: Optimized for the Jekyll website, may contain additional formatting or metadata suitable for web display.
+
+3. **cv-arxiv-daily-wechat.json**: Formatted specifically for WeChat sharing, potentially with shorter entries or modified content to suit mobile display and Chinese platform requirements.
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+## JSON File Generation Process
+
+The JSON files are generated by the core processing script `daily_arxiv.py` as part of the paper collection and processing pipeline:
+
+```mermaid
+sequenceDiagram
+    participant DA as "daily_arxiv.py"
+    participant AX as "ArXiv API"
+    participant GH as "GitHub API"
+    participant PWC as "Papers with Code API"
+    participant CFG as "config.yaml"
+    participant JSON as "JSON Files"
+    
+    DA ->> CFG: Read research categories & keywords
+    DA ->> AX: Query papers by keywords
+    AX -->> DA: Return paper metadata
+    
+    loop For each paper
+        DA ->> GH: Search for code repository
+        GH -->> DA: Return repository URL (if found)
+        DA ->> PWC: Search for code repository
+        PWC -->> DA: Return repository URL (if found)
+        DA ->> DA: Format paper entry as Markdown string
+    end
+    
+    DA ->> DA: Organize papers by category
+    DA ->> JSON: Write to cv-arxiv-daily.json
+    DA ->> JSON: Write to cv-arxiv-daily-web.json
+    DA ->> JSON: Write to cv-arxiv-daily-wechat.json
+```
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+## Using the JSON Data
+
+The JSON files serve multiple purposes within the system:
+
+1. **Data Persistence**: They store collected paper data between runs, allowing for incremental updates.
+
+2. **Data Separation**: They decouple the data collection process from the publishing process, making the system more maintainable.
+
+3. **Multi-format Publishing**: They provide a source of truth for generating various output formats.
+
+To access and manipulate the JSON data programmatically:
+
+```python
+import json
+
+# Load JSON data
+with open('docs/cv-arxiv-daily.json', 'r') as f:
+    data = json.load(f)
+
+# Access papers in a specific category
+slam_papers = data.get('SLAM', {})
+
+# Iterate through papers
+for arxiv_id, paper_info in slam_papers.items():
+    print(f"Paper ID: {arxiv_id}")
+    print(f"Paper Info: {paper_info}")
+```
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+## Considerations for JSON Modifications
+
+When working with or modifying the JSON files:
+
+1. **Maintain Structure**: Preserve the hierarchical organization by research categories and arXiv IDs.
+
+2. **String Format**: Paper entries are stored as pre-formatted Markdown strings - changes must maintain this format for compatibility with output generators.
+
+3. **Unique IDs**: ArXiv IDs serve as unique identifiers - avoid duplicates within a category.
+
+4. **Manual Edits**: While possible to edit JSON files directly, it's recommended to use the system's update mechanisms to ensure consistency across all outputs.
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+## Integration with Output Generators
+
+The JSON files are read by various components of the system to generate the different output formats:
+
+```mermaid
+flowchart TD
+    subgraph "JSON Files"
+        J1["cv-arxiv-daily.json"]
+        J2["cv-arxiv-daily-web.json"]
+        J3["cv-arxiv-daily-wechat.json"]
+    end
+    
+    subgraph "daily_arxiv.py Generator Functions"
+        G1["generate_github_readme()"]
+        G2["generate_web_content()"]
+        G3["generate_wechat_content()"]
+    end
+    
+    subgraph "Output Files"
+        O1["README.md"]
+        O2["docs/index.md"]
+        O3["docs/wechat.md"]
+    end
+    
+    J1 -->|"Read"| G1
+    J2 -->|"Read"| G2
+    J3 -->|"Read"| G3
+    
+    G1 -->|"Write"| O1
+    G2 -->|"Write"| O2
+    G3 -->|"Write"| O3
+```
+
+The generator functions read the appropriate JSON file, extract and organize the papers by category, and format them into the target output format.
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+## Conclusion
+
+The JSON data structures serve as a critical intermediate data storage mechanism in the CV-ArXiv-Daily system, bridging the gap between data collection and presentation. By maintaining a structured and consistent format, they enable the system to efficiently generate multiple output formats while providing a persistent record of collected paper information.
+
+Sources: [docs/cv-arxiv-daily-web.json](), [docs/cv-arxiv-daily.json]()
+
+---
+
+# Page: Research Categories
+
+# Research Categories
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [config.yaml](config.yaml)
+- [docs/_config.yml](docs/_config.yml)
+- [docs/index.md](docs/index.md)
+- [docs/wechat.md](docs/wechat.md)
+- [requirements.txt](requirements.txt)
+
+</details>
+
+
+
+This page documents the primary computer vision research categories that the CV-ArXiv-Daily system tracks and organizes. These categories form the backbone of the paper collection and filtering system, determining which papers from arXiv are displayed in the daily updates. For information about the overall system architecture, see [System Architecture](#2).
+
+## Category Configuration and Implementation
+
+The CV-ArXiv-Daily system is configured to automatically track papers from specific research areas through a filter-based mechanism defined in the configuration file. Each research category is associated with specific keyword filters that identify relevant papers from the arXiv feed.
+
+```mermaid
+flowchart LR
+    subgraph "Configuration Layer"
+        config["config.yaml
+        keywords section"]
+    end
+    
+    subgraph "Processing Layer"
+        daily["daily_arxiv.py"]
+    end
+    
+    subgraph "External APIs"
+        arxiv["arXiv API"]
+    end
+    
+    subgraph "Output Formats"
+        readme["README.md"]
+        jekyll["docs/index.md"]
+        wechat["docs/wechat.md"]
+    end
+    
+    config -->|"Provides category
+    filter keywords"| daily
+    daily -->|"Queries with
+    category filters"| arxiv
+    arxiv -->|"Returns papers
+    matching filters"| daily
+    daily -->|"Organizes by
+    category"| readme
+    daily -->|"Organizes by
+    category"| jekyll
+    daily -->|"Organizes by
+    category"| wechat
+```
+
+Sources: [config.yaml:23-39](), [docs/index.md:8-57]()
+
+## Current Research Categories
+
+The system currently tracks six primary research areas in computer vision, defined in the configuration file:
+
+```mermaid
+mindmap
+  root(("cv-arxiv-daily
+  Research Categories"))
+    SLAM["SLAM"]
+      slam_filters["Filters: 'SLAM', 'Visual Odometry'"]
+    SFM["SFM"]
+      sfm_filters["Filters: 'SFM', 'Structure from Motion'"]
+    VisLoc["Visual Localization"]
+      visloc_filters["Filters: 'Visual Localization', 
+      'Camera Localization', 
+      'Loop Closure Detection',
+      'Visual Place Recognition',
+      'Image Retrieval'"]
+    KeypointDet["Keypoint Detection"]
+      keypoint_filters["Filters: 'Keypoint Detection', 
+      'Feature Descriptor'"]
+    ImgMatch["Image Matching"]
+      imgmatch_filters["Filters: 'Image Matching', 
+      'Keypoint Matching',
+      'Line Segment Detection', 
+      'Local Feature Matching'"]
+    NeRF["NeRF"]
+      nerf_filters["Filters: 'NeRF'"]
+```
+
+Sources: [config.yaml:23-39]()
+
+### Category Details and Research Focus
+
+Below is a detailed description of each research category along with its filter keywords and research focus:
+
+| Category | Filter Keywords | Research Focus | Applications |
+|----------|----------------|----------------|-------------|
+| **SLAM** | SLAM, Visual Odometry | Simultaneous Localization and Mapping techniques | Robotics, Autonomous Vehicles, AR/VR |
+| **SFM** | SFM, Structure from Motion | 3D reconstruction from 2D image sequences | 3D Modeling, Cultural Heritage, Drone Mapping |
+| **Visual Localization** | Visual Localization, Camera Localization, Camera Re-localisation, Loop Closure Detection, Visual Place Recognition, Image Retrieval | Determining the position and orientation of a camera | Navigation Systems, AR/VR, Robotics |
+| **Keypoint Detection** | Keypoint Detection, Feature Descriptor | Identifying distinctive points in images | Object Recognition, Image Matching |
+| **Image Matching** | Image Matching, Keypoint Matching, Line Segment Detection, Local Feature Matching | Finding correspondences between different images | Panorama Stitching, Visual Odometry |
+| **NeRF** | NeRF | Neural Radiance Fields for novel view synthesis | 3D Scene Reconstruction, Novel View Generation |
+
+Sources: [config.yaml:23-39](), [docs/index.md:8-210](), [docs/wechat.md:20-127]()
+
+## Category Implementation Details
+
+### Configuration Structure
+
+The research categories are defined in the `config.yaml` file as shown below:
+
+```yaml
+keywords:
+    "SLAM": 
+        filters: ["SLAM", "Visual Odometry"]
+    "SFM":
+        filters: ["SFM", "Structure from Motion"]
+    "Visual Localization":
+        filters: ["Visual Localization","Camera Localization",
+                  "Camera Re-localisation","Loop Closure Detection",
+                  "visual place recognition","image retrieval"]
+    "Keypoint Detection":
+        filters: ["Keypoint Detection", "Feature Descriptor"]
+    "Image Matching":
+        filters: ["Image Matching", "Keypoint Matching", 
+                  "Line Segment Detection", "Local Feature Matching"]
+    "NeRF":
+        filters: ["NeRF"]
+```
+
+Sources: [config.yaml:23-39]()
+
+### Paper Categorization Process
+
+The `daily_arxiv.py` script uses the configured categories and their associated filters to query the arXiv API. Papers are then organized by category in the output files:
+
+```mermaid
+sequenceDiagram
+    participant config as config.yaml
+    participant daily as daily_arxiv.py
+    participant arxiv as ArXiv API
+    participant output as Output Files
+    
+    daily->>config: Load research categories and filters
+    
+    loop For each category
+        daily->>arxiv: Query papers with category filters
+        arxiv-->>daily: Return matching papers
+        daily->>daily: Process metadata (title, authors, links)
+        daily->>daily: Search for code repositories
+    end
+    
+    daily->>output: Generate category sections in README.md
+    daily->>output: Generate category sections in docs/index.md
+    daily->>output: Generate category sections in docs/wechat.md
+```
+
+Sources: [docs/index.md:8-210](), [docs/wechat.md:10-18]()
+
+## Output Format Examples
+
+Each research category appears as a section in the output formats with papers listed chronologically. Below is an example of how SLAM papers are displayed in the output:
+
+### README and Jekyll Website Format
+
+```
+## SLAM
+
+| Publish Date | Title | Authors | PDF | Code |
+|:---------|:-----------------------|:---------|:------|:------|
+|**2025-04-16**|**An Online Adaptation Method for Robust Depth Estimation and Visual Odometry in the Open World**|Xingwu Ji et.al.|[2504.11698](http://arxiv.org/abs/2504.11698)|**[link](https://github.com/jixingwu/sol-slam)**|
+|**2025-04-18**|**Doppler-SLAM: Doppler-Aided Radar-Inertial and LiDAR-Inertial Simultaneous Localization and Mapping**|Dong Wang et.al.|[2504.11634](http://arxiv.org/abs/2504.11634)|**[link](https://github.com/wayne-dwa/doppler-slam)**|
+```
+
+### WeChat Format
+
+```
+## SLAM
+
+- 2022-11-30, **MVRackLay: Monocular Multi-View Layout Estimation for Warehouse Racks and Shelves**, Pranjali Pathre et.al., Paper: [http://arxiv.org/abs/2211.16882v1](http://arxiv.org/abs/2211.16882v1)
+- 2022-11-29, **PatchMatch-Stereo-Panorama, a fast dense reconstruction from 360° video images**, Hartmut Surmann et.al., Paper: [http://arxiv.org/abs/2211.16266v1](http://arxiv.org/abs/2211.16266v1), Code: **[https://github.com/roblabwh/patchmatch](https://github.com/roblabwh/patchmatch)**
+```
+
+Sources: [docs/index.md:8-47](), [docs/wechat.md:20-27]()
+
+## Extending Research Categories
+
+The system can be extended to include additional research categories by modifying the `config.yaml` file. To add a new category:
+
+1. Open the `config.yaml` file
+2. Add a new entry to the `keywords` section
+3. Define the category name and its associated filter keywords
+
+Example for adding a "3D Reconstruction" category:
+
+```yaml
+keywords:
+    # Existing categories...
+    "3D Reconstruction":
+        filters: ["3D Reconstruction", "Point Cloud", "Mesh Generation"]
+```
+
+After updating the configuration, the system will automatically include the new category when it next runs, fetching relevant papers that match the specified filter keywords.
+
+Sources: [config.yaml:23-39]()
+
+## Research Category Relationships
+
+The research categories tracked by CV-ArXiv-Daily have significant overlap and relationships. The diagram below illustrates these connections:
+
+```mermaid
+graph TD
+    SLAM["SLAM
+    Simultaneous Localization
+    and Mapping"]
+    SFM["SFM
+    Structure from Motion"]
+    VL["Visual Localization"]
+    KD["Keypoint Detection"]
+    IM["Image Matching"]
+    NF["NeRF
+    Neural Radiance Fields"]
+    
+    SLAM -->|uses| KD
+    SLAM -->|uses| IM
+    SLAM -->|requires| VL
+    SLAM -->|can incorporate| NF
+    
+    SFM -->|uses| KD
+    SFM -->|uses| IM
+    SFM -->|related to| SLAM
+    
+    VL -->|uses| KD
+    VL -->|uses| IM
+    
+    KD -->|enables| IM
+    
+    NF -->|can enhance| SLAM
+    NF -->|can incorporate| SFM
+```
+
+Sources: [docs/index.md:8-210](), [docs/wechat.md:10-18]()
+
+## Summary
+
+The Research Categories configuration is a central component of the CV-ArXiv-Daily system, allowing it to systematically track and organize the latest research in key computer vision areas. By modifying the category filters in the `config.yaml` file, users can tailor the system to focus on specific research interests or expand to cover additional domains within computer vision.
+
+---
+
+# Page: SLAM Research
+
+# SLAM Research
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [docs/_config.yml](docs/_config.yml)
+- [docs/index.md](docs/index.md)
+- [docs/wechat.md](docs/wechat.md)
+
+</details>
+
+
+
+## Purpose and Scope
+
+This document provides a detailed overview of how the cv-arxiv-daily system collects, processes, and presents research papers related to Simultaneous Localization and Mapping (SLAM). SLAM is a critical computer vision research area that enables systems to build maps of unknown environments while simultaneously tracking their location within those maps. This page explains how SLAM research is categorized within the system, how papers are collected, and how they are presented across different output formats.
+
+For information about related computer vision topics like Structure from Motion (SfM), please see [Other Computer Vision Topics](#4.2).
+
+## Overview of SLAM in CV-ArXiv-Daily
+
+The cv-arxiv-daily system identifies and categorizes SLAM research papers as part of its daily collection of computer vision papers from arXiv. SLAM represents one of the major research categories monitored by the system, alongside other areas like SFM, Visual Localization, Keypoint Detection, Image Matching, and NeRF.
+
+### SLAM in the System Architecture
+
+```mermaid
+flowchart TD
+    subgraph "Paper Collection"
+        A["arXiv API"] -->|"Raw Papers"| B["Paper Filtering"]
+        B -->|"SLAM Keywords"| C["SLAM Papers"]
+    end
+    
+    subgraph "Processing"
+        C -->|"Extract Metadata"| D["SLAM Paper Processing"]
+        E["GitHub API"] -->|"Code Repository Search"| D
+        F["Papers with Code API"] -->|"Code Links"| D
+        D -->|"Processed SLAM Papers"| G["Output Generation"]
+    end
+    
+    subgraph "Publication"
+        G -->|"Format for GitHub"| H["README.md"]
+        G -->|"Format for Web"| I["docs/index.md"]
+        G -->|"Format for Mobile"| J["docs/wechat.md"]
+        G -->|"Data Storage"| K["JSON Files"]
+    end
+```
+
+Sources: [daily_arxiv.py](), [docs/index.md:8-374]()
+
+## SLAM Research Categories
+
+The system collects SLAM papers across various sub-domains, reflecting the diversity of current research in this field. Based on the papers collected, the following categories represent the major research directions in SLAM.
+
+```mermaid
+mindmap
+    root(("SLAM Research"))
+        Visual SLAM
+            Monocular["Monocular SLAM"]
+            Stereo["Stereo SLAM"]
+            RGB-D["RGB-D SLAM"]
+        LiDAR SLAM
+            3D-Lidar["3D LiDAR SLAM"]
+            2D-Lidar["2D LiDAR SLAM"]
+        Multi-Sensor
+            VI-SLAM["Visual-Inertial SLAM"]
+            LI-SLAM["LiDAR-Inertial SLAM"]
+            VL-SLAM["Visual-LiDAR Fusion"]
+        Loop-Closure["Loop Closure Detection"]
+            PR["Place Recognition"]
+            GO["Global Optimization"]
+        Dynamic["Dynamic Environment SLAM"]
+            MOT["Moving Object Tracking"]
+            DS["Dynamic Scene Handling"]
+        Semantic["Semantic SLAM"]
+            Object["Object-aware SLAM"]
+            Scene["Scene Understanding"]
+        GS-SLAM["Gaussian Splatting SLAM"]
+            NT["Neural Tracking"]
+            NM["Neural Mapping"]
+```
+
+Sources: [docs/index.md:8-374](), [docs/wechat.md:20-294]()
+
+## SLAM Paper Collection Process
+
+The cv-arxiv-daily system uses a set of predefined keywords to identify and filter SLAM-related papers from arXiv. This automated process runs on a scheduled basis via GitHub Actions.
+
+### Keyword Filtering
+
+Papers are identified as SLAM research if their titles, abstracts, or categories match specific SLAM-related keywords. Common keywords include:
+
+- "SLAM"
+- "Simultaneous Localization and Mapping"
+- "Visual Odometry"
+- "Loop Closure"
+- "Mapping and Localization"
+
+### Paper Processing Pipeline
+
+```mermaid
+sequenceDiagram
+    participant ArXiv as "arXiv API"
+    participant Filter as "CV Paper Filter"
+    participant SLAMSort as "SLAM Categorizer"
+    participant CodeSearch as "Code Repository Search"
+    participant Publisher as "Output Generator"
+    
+    ArXiv->>Filter: Fetch new CV papers
+    Filter->>SLAMSort: Extract SLAM papers
+    SLAMSort->>SLAMSort: Categorize by SLAM subfield
+    SLAMSort->>CodeSearch: Search for code repositories
+    CodeSearch->>SLAMSort: Return code links
+    SLAMSort->>Publisher: Send processed paper data
+    Publisher->>Publisher: Generate README, website, and WeChat content
+```
+
+Sources: [daily_arxiv.py]()
+
+## SLAM Paper Presentation
+
+SLAM papers are presented in three main formats within the cv-arxiv-daily system:
+
+### 1. GitHub README
+
+SLAM papers are listed in a table format in the main README.md file of the repository, providing a quick overview of recent SLAM research.
+
+### 2. Jekyll Website
+
+The Jekyll-powered website (docs/index.md) displays SLAM papers in a more detailed format, with the following structure:
+
+| Field | Description |
+|-------|-------------|
+| Publish Date | Date the paper was published on arXiv |
+| Title | Full title of the SLAM paper |
+| Authors | List of paper authors |
+| PDF | Link to the paper PDF on arXiv |
+| Code | Link to associated code repository (if available) |
+
+Example from the website:
+
+```
+## SLAM
+
+| Publish Date | Title | Authors | PDF | Code |
+|:---------|:-----------------------|:---------|:------|:------|
+|**2025-04-16**|**An Online Adaptation Method for Robust Depth Estimation and Visual Odometry in the Open World**|Xingwu Ji et.al.|[2504.11698](http://arxiv.org/abs/2504.11698)|**[link](https://github.com/jixingwu/sol-slam)**|
+|**2025-04-18**|**Doppler-SLAM: Doppler-Aided Radar-Inertial and LiDAR-Inertial Simultaneous Localization and Mapping**|Dong Wang et.al.|[2504.11634](http://arxiv.org/abs/2504.11634)|**[link](https://github.com/wayne-dwa/doppler-slam)**|
+```
+
+### 3. WeChat Format
+
+The system also generates WeChat-optimized content (docs/wechat.md) for sharing SLAM papers on mobile platforms and social media.
+
+```mermaid
+graph TD
+    A["SLAM Paper Data<br>in JSON Format"] -->|"Format for GitHub"| B["README.md<br>Simple Table Format"]
+    A -->|"Format for Web"| C["docs/index.md<br>Jekyll Website Format"]
+    A -->|"Format for Mobile"| D["docs/wechat.md<br>WeChat-Optimized Format"]
+    
+    subgraph "Output Formats"
+        B
+        C
+        D
+    end
+```
+
+Sources: [docs/index.md:8-374](), [docs/wechat.md:20-294]()
+
+## Recent Trends in SLAM Research
+
+Based on the papers collected by the system, several trends in SLAM research can be identified:
+
+### Current Research Focus Areas
+
+1. **Neural SLAM and Gaussian Splatting SLAM**: Integration of neural networks and Gaussian splatting techniques for more accurate and dense mapping
+   - Examples: "VINGS-Mono: Visual-Inertial Gaussian Splatting Monocular SLAM", "MonoGS++: Fast and Accurate Monocular RGB Gaussian SLAM"
+
+2. **Dynamic Environment Handling**: Techniques for SLAM in environments with moving objects
+   - Examples: "GARAD-SLAM: 3D GAussian splatting for Real-time Anti Dynamic SLAM", "DGS-SLAM: Gaussian Splatting SLAM in Dynamic Environment"
+
+3. **Multi-Sensor Fusion**: Combining data from different sensors for more robust SLAM
+   - Examples: "LiV-GS: LiDAR-Vision Integration for 3D Gaussian Splatting SLAM in Outdoor Environments", "FAST-LIVO2: Fast, Direct LiDAR-Inertial-Visual Odometry"
+
+4. **Semantic Integration**: Incorporating semantic understanding into SLAM systems
+   - Examples: "OpenGS-SLAM: Open-Set Dense Semantic SLAM with 3D Gaussian Splatting for Object-Level Scene Understanding", "Hi-SLAM: Scaling-up Semantics in SLAM with a Hierarchically Categorical Gaussian Splatting"
+
+```mermaid
+graph LR
+    subgraph "Evolution of SLAM Research"
+        A["Traditional<br>Geometric SLAM"] --> B["Visual-Inertial<br>SLAM"]
+        B --> C["Semantic<br>SLAM"]
+        C --> D["Neural/Gaussian<br>Splatting SLAM"]
+        A --> E["LiDAR<br>SLAM"]
+        E --> F["Multi-Sensor<br>Fusion"]
+        F --> D
+    end
+```
+
+Sources: [docs/index.md:8-50]()
+
+## Integration with Other System Components
+
+SLAM research is one of several research categories within the cv-arxiv-daily system. It interacts with other components as follows:
+
+### Relationship to Other Research Categories
+
+SLAM has close connections to other computer vision topics monitored by the system:
+
+1. **Structure from Motion (SfM)**: Many techniques overlap between SLAM and SfM, particularly in the areas of feature matching and pose estimation.
+
+2. **Visual Localization**: Visual place recognition and camera relocalization are important components of SLAM systems, especially for loop closure.
+
+3. **Keypoint Detection**: Feature extraction and matching are fundamental to many SLAM approaches.
+
+4. **NeRF (Neural Radiance Fields)**: Recent research explores the integration of NeRF with SLAM for dense scene reconstruction.
+
+```mermaid
+graph TD
+    subgraph "CV-ArXiv-Daily Research Categories"
+        A["SLAM Research<br>Simultaneous Localization<br>and Mapping"] --- B["SfM Research<br>Structure from Motion"]
+        A --- C["Visual Localization<br>Research"]
+        A --- D["Keypoint Detection<br>Research"]
+        A --- E["NeRF Research<br>Neural Radiance Fields"]
+        A --- F["Image Matching<br>Research"]
+    end
+```
+
+Sources: [docs/index.md:8-10](), [docs/wechat.md:10-16]()
+
+## Conclusion
+
+SLAM research represents a significant portion of the papers collected by the cv-arxiv-daily system. Through automated filtering and processing, the system provides up-to-date information on SLAM advances across multiple output formats. The collected papers reflect the diverse and evolving nature of SLAM research, from traditional geometric approaches to emerging neural-based and Gaussian splatting techniques.
+
+The system's ability to identify and categorize SLAM papers, along with linking to their associated code repositories, makes it a valuable resource for researchers and practitioners in the field of visual SLAM and robotics.
+
+---
+
+# Page: Other Computer Vision Topics
+
+# Other Computer Vision Topics
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [config.yaml](config.yaml)
+- [docs/wechat.md](docs/wechat.md)
+- [requirements.txt](requirements.txt)
+
+</details>
+
+
+
+This page documents the computer vision research areas tracked by the cv-arxiv-daily system beyond SLAM (which is covered in [SLAM Research](#4.1)). These include Structure from Motion (SFM), Visual Localization, Keypoint Detection, Image Matching, and Neural Radiance Fields (NeRF). We explain how each topic is configured and processed within the system architecture.
+
+## Computer Vision Topics Overview
+
+The cv-arxiv-daily system is configured to track several important computer vision research areas through keyword-based filtering of arXiv papers. While SLAM is a major focus, the system also monitors papers in several other significant computer vision domains.
+
+```mermaid
+flowchart TD
+    root["Computer Vision Topics"]
+    root --> slam["SLAM (Covered in 4.1)"]
+    root --> sfm["Structure from Motion (SFM)"]
+    root --> vl["Visual Localization"]
+    root --> kd["Keypoint Detection"]
+    root --> im["Image Matching"]
+    root --> nerf["Neural Radiance Fields (NeRF)"]
+    
+    sfm --> sfm1["Multi-view Reconstruction"]
+    sfm --> sfm2["Camera Pose Estimation"]
+    sfm --> sfm3["3D Scene Reconstruction"]
+    
+    vl --> vl1["Camera Relocalization"]
+    vl --> vl2["Visual Place Recognition"]
+    vl --> vl3["Image Retrieval"]
+    
+    kd --> kd1["Feature Detection"]
+    kd --> kd2["Feature Descriptors"]
+    
+    im --> im1["Feature Matching"]
+    im --> im2["Line Segment Detection"]
+    
+    nerf --> nerf1["Neural Radiance Fields"]
+    nerf --> nerf2["Novel View Synthesis"]
+```
+
+Sources: [config.yaml:24-39](), [docs/wechat.md:10-16]()
+
+## Topic Configuration in the System
+
+Each computer vision topic is configured in the system's `config.yaml` file with specific keyword filters that determine which papers will be collected from arXiv.
+
+```mermaid
+graph TD
+    subgraph "Configuration System"
+        config["config.yaml"]
+        keywords["Keywords Section"]
+    end
+    
+    subgraph "Topic Filters"
+        sfm_filters["SFM Filters:
+        - SFM
+        - Structure from Motion"]
+        
+        vl_filters["Visual Localization Filters:
+        - Visual Localization
+        - Camera Localization
+        - Camera Re-localisation
+        - Loop Closure Detection
+        - Visual Place Recognition
+        - Image Retrieval"]
+        
+        kd_filters["Keypoint Detection Filters:
+        - Keypoint Detection
+        - Feature Descriptor"]
+        
+        im_filters["Image Matching Filters:
+        - Image Matching
+        - Keypoint Matching
+        - Line Segment Detection
+        - Local Feature Matching"]
+        
+        nerf_filters["NeRF Filters:
+        - NeRF"]
+    end
+    
+    config --> keywords
+    keywords --> sfm_filters
+    keywords --> vl_filters
+    keywords --> kd_filters
+    keywords --> im_filters
+    keywords --> nerf_filters
+```
+
+Sources: [config.yaml:24-39]()
+
+## Structure from Motion (SFM)
+
+Structure from Motion (SFM) is a technique for estimating three-dimensional structures from two-dimensional image sequences. It simultaneously recovers camera motion and 3D scene structure from a sequence of images.
+
+### Key Aspects of SFM Research
+
+| Aspect | Description |
+|--------|-------------|
+| Multi-view Reconstruction | Reconstructing 3D scenes from multiple camera viewpoints |
+| Camera Pose Estimation | Determining camera positions and orientations in 3D space |
+| Feature Matching | Identifying corresponding points between images |
+| Bundle Adjustment | Refining camera and structure parameters jointly |
+| Dense Reconstruction | Creating detailed 3D models from sparse point clouds |
+
+### SFM in the System Architecture
+
+SFM papers are identified using the filters "SFM" and "Structure from Motion" as configured in the `config.yaml` file. The system collects papers matching these keywords and organizes them in the various output formats (GitHub README, Jekyll website, and WeChat content).
+
+Sources: [config.yaml:27-28](), [docs/wechat.md:297-335]()
+
+## Visual Localization
+
+Visual Localization refers to the problem of determining the position and orientation of a camera within a known environment using visual information. It's a fundamental capability for many applications including augmented reality, autonomous navigation, and robotics.
+
+### Visual Localization Components
+
+```mermaid
+flowchart LR
+    vl["Visual Localization"]
+    vl --> cam_reloc["Camera Relocalization"]
+    vl --> vpr["Visual Place Recognition"]
+    vl --> im_ret["Image Retrieval"]
+    vl --> lcd["Loop Closure Detection"]
+    
+    subgraph "Techniques"
+        cam_reloc --- pose["6-DOF Pose Estimation"]
+        vpr --- global_desc["Global Image Descriptors"]
+        vpr --- local_desc["Local Feature Aggregation"]
+        im_ret --- index["Efficient Indexing Methods"]
+        lcd --- similarity["Similarity Measurement"]
+    end
+```
+
+Sources: [config.yaml:29-32](), [docs/wechat.md:12]()
+
+### Visual Localization Research Focus
+
+| Component | Research Areas |
+|-----------|---------------|
+| Camera Relocalization | Absolute pose regression, scene coordinate regression, feature-based localization |
+| Visual Place Recognition | Learning-based descriptors, sequence-based matching, invariant representations |
+| Image Retrieval | Efficient search algorithms, embedding spaces, hierarchical methods |
+| Loop Closure Detection | Real-time recognition, invariance to viewpoint and appearance changes |
+
+Sources: [config.yaml:29-32](), [docs/wechat.md:12]()
+
+## Keypoint Detection
+
+Keypoint detection focuses on identifying distinctive points in images that are invariant to changes in scale, rotation, and illumination. These keypoints serve as the foundation for many computer vision tasks, including image matching, object recognition, and tracking.
+
+### Keypoint Detection Process
+
+```mermaid
+flowchart TB
+    subgraph "Keypoint Detection Pipeline"
+        direction LR
+        img["Input Image"] --> detector["Feature Detector"]
+        detector --> keypoints["Keypoints"]
+        keypoints --> descriptor["Feature Descriptor"]
+        descriptor --> features["Feature Vectors"]
+    end
+    
+    subgraph "Common Algorithms"
+        direction LR
+        trad["Traditional Methods:
+        - SIFT
+        - SURF
+        - ORB
+        - AKAZE"]
+        
+        learn["Learning-Based Methods:
+        - SuperPoint
+        - D2-Net
+        - R2D2
+        - LIFT"]
+    end
+    
+    detector -.-> trad
+    detector -.-> learn
+    descriptor -.-> trad
+    descriptor -.-> learn
+```
+
+Sources: [config.yaml:33-34](), [docs/wechat.md:14]()
+
+## Image Matching
+
+Image matching is the process of finding corresponding points or regions between different images of the same scene. It's a crucial component in many computer vision applications including panorama stitching, 3D reconstruction, and object tracking.
+
+### Image Matching Techniques
+
+| Technique | Description |
+|-----------|-------------|
+| Feature-based Matching | Uses keypoints and descriptors to find correspondences between images |
+| Direct Methods | Works directly with pixel intensities without extracting features |
+| Line Segment Detection | Identifies and matches linear structures in images |
+| Semantic Matching | Incorporates semantic understanding for more robust matching |
+| Deep Learning Approaches | Uses neural networks to learn correspondences end-to-end |
+
+### Image Matching in the System
+
+The system tracks research in image matching using filters including "Image Matching," "Keypoint Matching," "Line Segment Detection," and "Local Feature Matching" as defined in the configuration file.
+
+Sources: [config.yaml:35-37](), [docs/wechat.md:15]()
+
+## Neural Radiance Fields (NeRF)
+
+Neural Radiance Fields (NeRF) is a relatively recent but rapidly evolving technique for view synthesis and scene representation. NeRF represents a scene as a continuous volumetric function using a neural network that maps from spatial coordinates to color and density values.
+
+### NeRF Architecture and Components
+
+```mermaid
+flowchart LR
+    subgraph "NeRF Pipeline"
+        direction TB
+        input["Input Images + Camera Poses"] --> network["MLP Network"]
+        network --> rendering["Volume Rendering"]
+        rendering --> output["Novel View Images"]
+    end
+    
+    subgraph "NeRF Research Areas"
+        direction TB
+        rep["Scene Representation"] 
+        dynamic["Dynamic Scenes"]
+        fast["Acceleration Methods"]
+        gen["Generalization"]
+        app["Applications"]
+    end
+    
+    network -.-> rep
+    rendering -.-> fast
+    output -.-> app
+    input -.-> dynamic
+    network -.-> gen
+```
+
+Sources: [config.yaml:38-39](), [docs/wechat.md:16]()
+
+### NeRF Research Directions
+
+| Research Direction | Description |
+|--------------------|-------------|
+| Efficiency Improvements | Faster training and rendering through various acceleration techniques |
+| Dynamic Scene Modeling | Extending NeRF to handle non-static scenes and objects |
+| Generalization | Enabling NeRF to work on new scenes without per-scene optimization |
+| Compositional Approaches | Representing scenes as compositions of separate NeRF models |
+| Integration with Other Methods | Combining NeRF with SLAM, SFM, and other vision techniques |
+
+Sources: [config.yaml:38-39](), [docs/wechat.md:16]()
+
+## Data Flow for Other CV Topics
+
+This diagram illustrates how papers related to these computer vision topics flow through the cv-arxiv-daily system.
+
+```mermaid
+flowchart TD
+    arxiv["arXiv API"] --> |"Raw Papers"| filter["Topic Filter"]
+    
+    config["config.yaml Keywords"] --> |"Configure Filters"| filter
+    
+    filter --> |"SFM Papers"| sfm["SFM Category"]
+    filter --> |"Visual Localization Papers"| vl["Visual Localization Category"]
+    filter --> |"Keypoint Detection Papers"| kd["Keypoint Detection Category"]
+    filter --> |"Image Matching Papers"| im["Image Matching Category"]
+    filter --> |"NeRF Papers"| nerf["NeRF Category"]
+    
+    sfm --> outputs["Output Generation"]
+    vl --> outputs
+    kd --> outputs
+    im --> outputs
+    nerf --> outputs
+    
+    outputs --> readme["README.md"]
+    outputs --> website["docs/index.md"]
+    outputs --> wechat["docs/wechat.md"]
+    outputs --> json["JSON Data Files"]
+```
+
+Sources: [config.yaml:14-21](), [config.yaml:24-39]()
+
+## Topic Relationships and Research Intersections
+
+The computer vision topics tracked by the system are not isolated but highly interconnected. This diagram shows the key relationships and dependencies between them.
+
+```mermaid
+graph TD
+    sfm["Structure from Motion (SFM)"] --- kd["Keypoint Detection"]
+    sfm --- im["Image Matching"]
+    sfm --- vl["Visual Localization"]
+    
+    kd --- im
+    im --- vl
+    
+    nerf["Neural Radiance Fields (NeRF)"] --- sfm
+    nerf --- vl
+    
+    slam["SLAM (See Section 4.1)"] --- sfm
+    slam --- kd
+    slam --- im
+    slam --- vl
+    slam --- nerf
+    
+    subgraph "Key Intersections"
+        int1["SFM + NeRF:
+        Neural Scene Representations"]
+        
+        int2["SLAM + NeRF:
+        Neural Dense Mapping"]
+        
+        int3["Keypoint Detection + Image Matching:
+        Robust Feature Correspondence"]
+        
+        int4["Visual Localization + SFM:
+        Large-scale 3D Mapping"]
+    end
+```
+
+Sources: [docs/wechat.md:10-16](), [config.yaml:24-39]()
+
+## Conclusion
+
+The cv-arxiv-daily system provides comprehensive coverage of important computer vision topics beyond SLAM. By tracking papers in Structure from Motion, Visual Localization, Keypoint Detection, Image Matching, and NeRF, the system offers researchers and practitioners a valuable resource for staying updated on the latest developments in these interconnected fields. The modular configuration system allows for easy adjustment of the filters used for each topic, ensuring that the most relevant papers are captured and organized in the various output formats.
+
+---
+
+# Page: Usage Guide
+
+# Usage Guide
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [README.md](README.md)
+- [config.yaml](config.yaml)
+- [docs/README.md](docs/README.md)
+- [requirements.txt](requirements.txt)
+
+</details>
+
+
+
+This document provides comprehensive instructions for using, customizing, and extending the CV-ArXiv-Daily system. This guide covers the setup process, configuration options, and typical workflows for managing your own automated computer vision paper collection. For information on the system architecture, see [System Architecture](#2).
+
+## 1. System Overview
+
+CV-ArXiv-Daily is a tool that automatically collects, processes, and publishes computer vision research papers from arXiv based on user-defined keywords. It runs on GitHub Actions and generates outputs in multiple formats:
+
+1. GitHub README.md - For repository viewers
+2. Jekyll website - Through GitHub Pages
+3. WeChat content - For sharing on social platforms
+
+The system features automatic code repository detection for papers and customizable filtering by research area.
+
+```mermaid
+flowchart TD
+    config["config.yaml"]
+    daily["daily_arxiv.py"]
+    actions[".github/workflows"]
+    
+    actions -->|"Triggers on schedule"| daily
+    config -->|"Provides settings"| daily
+    daily -->|"Processes papers"| outputs
+    
+    subgraph outputs ["Output Formats"]
+        readme["README.md"]
+        jekyll["docs/index.md"]
+        wechat["docs/wechat.md"]
+        json["JSON Files"]
+    end
+```
+
+Sources: [docs/README.md:10-18](), [config.yaml:1-13]()
+
+## 2. Setup Process
+
+Setting up your own instance of CV-ArXiv-Daily requires a few simple steps.
+
+### 2.1 Fork and Configure the Repository
+
+1. Fork the [original repository](https://github.com/Vincentqyw/cv-arxiv-daily)
+2. Update GitHub configuration files:
+   - Edit `GITHUB_USER_NAME` and `GITHUB_USER_EMAIL` in the GitHub Actions workflow files
+   - Change `user_name` in `config.yaml` to your GitHub username
+
+```mermaid
+flowchart LR
+    A["Fork Repository"] --> B["Edit Workflow Files"] 
+    B --> C["Update config.yaml"]
+    C --> D["Enable GitHub Actions"]
+    D --> E["Run Initial Workflow"]
+    E --> F["Setup GitHub Pages (Optional)"]
+```
+
+Sources: [docs/README.md:19-38]()
+
+### 2.2 Configure GitHub Actions
+
+1. In your forked repository, go to **Settings** → **Actions** → **Workflow permissions**
+2. Select **Read and write permissions** and save
+3. Navigate to the **Actions** tab
+4. Click **"I understand my workflows, go ahead and enable them"**
+5. Enable both workflow files:
+   - **Run Arxiv Papers Daily**
+   - **Run Update Paper Links Weekly**
+6. Run both workflows manually to initialize your paper collection
+
+Sources: [docs/README.md:29-37]()
+
+### 2.3 Setup GitHub Pages (Optional)
+
+For a web interface to your paper collection:
+
+1. Go to **Settings** → **Pages**
+2. For **Source**, select **Deploy from a branch**
+3. Select **main** branch and **/docs** folder
+4. Click **Save**
+5. Your site will be available at `https://[your-username].github.io/cv-arxiv-daily`
+
+Sources: [docs/README.md:38-41]()
+
+## 3. Configuration Options
+
+The system behavior is controlled through the `config.yaml` file, which allows you to customize various aspects of the paper collection process.
+
+### 3.1 Basic Settings
+
+| Setting | Description | Default |
+|---------|-------------|---------|
+| `base_url` | API endpoint for ArXiv papers with code | "https://arxiv.paperswithcode.com/api/v0/papers/" |
+| `user_name` | Your GitHub username | "Vincentqyw" |
+| `repo_name` | Repository name | "cv-arxiv-daily" |
+| `show_authors` | Display paper authors | True |
+| `show_links` | Display paper links | True |
+| `show_badge` | Display badges | True |
+| `max_results` | Maximum papers per keyword | 10 |
+
+Sources: [config.yaml:1-8]()
+
+### 3.2 Output Configuration
+
+| Setting | Description | Default |
+|---------|-------------|---------|
+| `publish_readme` | Generate GitHub README | True |
+| `publish_gitpage` | Generate Jekyll website | True |
+| `publish_wechat` | Generate WeChat content | False |
+
+Sources: [config.yaml:10-12]()
+
+### 3.3 File Paths
+
+The system uses several file paths for storing and displaying data:
+
+| File Type | GitHub README | Jekyll Website | WeChat Content |
+|-----------|---------------|----------------|----------------|
+| JSON Data | `./docs/cv-arxiv-daily.json` | `./docs/cv-arxiv-daily-web.json` | `./docs/cv-arxiv-daily-wechat.json` |
+| Markdown | `README.md` | `./docs/index.md` | `./docs/wechat.md` |
+
+Sources: [config.yaml:14-21]()
+
+### 3.4 Keywords and Filters
+
+The most important configuration section is `keywords`, which defines what papers to collect and how to categorize them:
+
+```yaml
+keywords:
+    "SLAM": 
+        filters: ["SLAM", "Visual Odometry"]
+    "SFM":
+        filters: ["SFM", "Structure from Motion"]
+    "Visual Localization":
+        filters: ["Visual Localization","Camera Localization",
+                  "Camera Re-localisation","Loop Closure Detection",
+                  "visual place recognition","image retrieval"]
+    # More categories...
+```
+
+Each category (e.g., "SLAM") becomes a section in the output, and the `filters` array specifies keywords to search for when collecting papers.
+
+Sources: [config.yaml:23-39]()
+
+## 4. Data Processing Workflow
+
+The `daily_arxiv.py` script is the core component that processes papers according to your configuration.
+
+```mermaid
+flowchart TD
+    start["GitHub Actions Trigger"] --> daily["daily_arxiv.py"]
+    daily --> readConfig["Load config.yaml"]
+    readConfig --> fetchPapers["Fetch papers from arXiv"]
+    fetchPapers --> filterLoop["For each keyword category"]
+    
+    subgraph processing ["Paper Processing Loop"]
+        filterLoop --> applyFilters["Filter papers by keywords"]
+        applyFilters --> paperLoop["For each matching paper"]
+        paperLoop --> extractMeta["Extract metadata"]
+        extractMeta --> findCode["Search for code repository"]
+        findCode --> githubSearch["Query GitHub API"]
+        findCode --> pwcSearch["Query Papers with Code API"]
+        githubSearch --> formatData["Format paper data"]
+        pwcSearch --> formatData
+    end
+    
+    formatData --> generateJSON["Generate JSON files"]
+    formatData --> generateMD["Generate Markdown files"]
+    generateJSON --> outputFiles["Store in docs/"]
+    generateMD --> updateFiles["Update output files"]
+    
+    subgraph outputs ["Output Destinations"]
+        updateFiles --> readme["README.md"]
+        updateFiles --> jekyll["docs/index.md"]
+        updateFiles --> wechat["docs/wechat.md"]
+    end
+```
+
+Sources: [docs/README.md:16-17](), [config.yaml:1-39]()
+
+## 5. Customizing Paper Collection
+
+### 5.1 Modifying Research Keywords
+
+To customize the papers collected, edit the `keywords` section in `config.yaml`:
+
+1. Add new research areas by adding new top-level keys
+2. Add or modify filters under each research area
+3. Commit and push your changes
+4. Manually run the GitHub Actions workflow to update your collection
+
+Example: Adding a new research area for "3D Reconstruction":
+
+```yaml
+keywords:
+    # Existing categories...
+    "3D Reconstruction":
+        filters: ["3D Reconstruction", "Multi-View Stereo", "Photogrammetry"]
+```
+
+Sources: [config.yaml:23-39](), [docs/README.md:42-44]()
+
+### 5.2 Adjusting Output Settings
+
+To modify how papers are displayed and where:
+
+1. Change `max_results` to control how many papers are shown per category
+2. Toggle `publish_readme`, `publish_gitpage`, and `publish_wechat` to enable/disable different output formats
+3. Modify the display options with `show_authors`, `show_links`, and `show_badge`
+
+Sources: [config.yaml:5-12]()
+
+### 5.3 Customizing Update Frequency
+
+The system is configured to run every 5 days by default. To modify this:
+
+1. Edit the GitHub Actions workflow file at `.github/workflows/cv-arxiv-daily.yml`
+2. Modify the `schedule` section with a different cron expression
+3. Commit and push your changes
+
+Sources: [docs/README.md:29-30]()
+
+## 6. Running and Maintaining the System
+
+### 6.1 Manual Updates
+
+To manually trigger paper collection:
+
+1. Go to the **Actions** tab in your repository
+2. Select the **Run Arxiv Papers Daily** workflow
+3. Click **Run workflow** and select your branch (usually main)
+4. Wait for the workflow to complete (typically 1-2 minutes)
+
+Sources: [docs/README.md:32-37]()
+
+### 6.2 Troubleshooting Common Issues
+
+| Issue | Solution |
+|-------|----------|
+| Workflow not running | Ensure GitHub Actions is enabled and has proper permissions |
+| No papers collected | Check your keywords and filters, ensure they match current arXiv terminology |
+| Missing code links | The system tries to find code repositories automatically but may not find all of them |
+| GitHub Pages not working | Verify your GitHub Pages settings in the repository settings |
+
+Sources: [docs/README.md:29-37]()
+
+### 6.3 Extending the System
+
+For advanced users, the system can be extended by:
+
+1. Modifying `daily_arxiv.py` to add new functionality
+2. Creating custom post-processing scripts that work with the JSON output files
+3. Integrating with other systems or databases
+4. Adding support for additional paper sources
+
+```mermaid
+graph TD
+    subgraph "System Components"
+        dailyArxiv["daily_arxiv.py"] 
+        config["config.yaml"]
+        githubActions[".github/workflows/"]
+    end
+    
+    subgraph "Extension Points"
+        EP1["Add New Data Sources"]
+        EP2["Custom Output Formats"]
+        EP3["Post-Processing Scripts"]
+        EP4["Integration with Other Systems"]
+    end
+    
+    dailyArxiv --> EP1
+    dailyArxiv --> EP2
+    githubActions --> EP3
+    config --> EP1
+    config --> EP2
+    EP2 --> EP4
+    EP3 --> EP4
+```
+
+Sources: [docs/README.md:48-59]()
+
+## 7. Advanced Usage
+
+### 7.1 Working with JSON Data
+
+The system stores all paper data in JSON files, which can be used for custom processing:
+
+- `./docs/cv-arxiv-daily.json` - Data for the GitHub README
+- `./docs/cv-arxiv-daily-web.json` - Data for the Jekyll website
+- `./docs/cv-arxiv-daily-wechat.json` - Data for WeChat content
+
+These files can be processed by custom scripts to generate additional visualizations, analyses, or integrations.
+
+Sources: [config.yaml:14-16]()
+
+### 7.2 Multi-Platform Publishing
+
+By default, the system publishes to GitHub README and a Jekyll website. To enable WeChat publishing:
+
+1. Set `publish_wechat: True` in `config.yaml`
+2. Run the workflow to generate WeChat content
+3. Access the formatted content in `docs/wechat.md`
+
+Sources: [config.yaml:10-12](), [config.yaml:17-21]()
+
+## Summary
+
+The CV-ArXiv-Daily system provides an efficient way to automatically collect and publish computer vision research papers based on your interests. By following this guide, you can:
+
+1. Set up your own instance of the system
+2. Configure it to collect papers on specific research topics
+3. Customize the output formats and display options
+4. Extend the system with custom functionality
+
+The automated workflow ensures your paper collection stays up-to-date with minimal maintenance, while the flexible configuration allows you to tailor it to your specific needs.
+
+Sources: [docs/README.md:1-60](), [config.yaml:1-40]()
+
+---
+
+# Page: Setup and Configuration
+
+# Setup and Configuration
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [.github/workflows/cv-arxiv-daily.yml](.github/workflows/cv-arxiv-daily.yml)
+- [README.md](README.md)
+- [docs/README.md](docs/README.md)
+
+</details>
+
+
+
+This document provides step-by-step instructions for setting up your own instance of the CV-ArXiv-Daily system. You'll learn how to install, configure, and run the automated pipeline that collects computer vision papers from arXiv based on your research interests. For information about customizing specific research keywords, see [Customizing Research Keywords](#5.2).
+
+## System Requirements
+
+Before getting started, ensure your environment meets these requirements:
+
+- GitHub account with repository creation permissions
+- Basic understanding of GitHub Actions
+- Internet access for GitHub Actions to fetch papers from arXiv API
+
+No local setup is required as the system runs entirely on GitHub's infrastructure.
+
+Sources: [.github/workflows/cv-arxiv-daily.yml:28-39]()
+
+## Installation Process
+
+Setting up CV-ArXiv-Daily involves forking the repository and configuring GitHub Actions. The following diagram illustrates the installation flow:
+
+```mermaid
+flowchart TD
+    A["Fork Repository"] --> B["Edit Configuration Files"]
+    B --> C["Enable GitHub Actions Permissions"]
+    C --> D["Enable and Run Workflows"]
+    D --> E["Configure GitHub Pages (Optional)"]
+    
+    subgraph "Configuration Files"
+        F["config.yaml"] 
+        G["cv-arxiv-daily.yml"]
+        H["update_paper_links.yml"]
+    end
+    
+    B --> F
+    B --> G
+    B --> H
+```
+
+### Step 1: Fork the Repository
+
+1. Navigate to the [CV-ArXiv-Daily repository](https://github.com/Vincentqyw/cv-arxiv-daily)
+2. Click the "Fork" button in the top-right corner
+3. Wait for GitHub to create a copy in your account
+
+Sources: [docs/README.md:24]()
+
+### Step 2: Edit Configuration Files
+
+You need to modify several configuration files to personalize your instance:
+
+1. Update GitHub Actions workflow files:
+   - Edit `.github/workflows/cv-arxiv-daily.yml`:
+     - Change `GITHUB_USER_NAME` and `GITHUB_USER_EMAIL` to your information
+   - Edit `.github/workflows/update_paper_links.yml` (if present):
+     - Change `GITHUB_USER_NAME` and `GITHUB_USER_EMAIL` to your information
+
+2. Edit `config.yaml`:
+   - Change `user_name` to your GitHub username
+
+3. Commit and push your changes to your repository
+
+Sources: [docs/README.md:25-28](), [.github/workflows/cv-arxiv-daily.yml:16-20]()
+
+### Step 3: Configure GitHub Actions Permissions
+
+1. Go to your repository's "Settings" tab
+2. Navigate to "Actions" > "Workflow permissions"
+3. Select "Read and write permissions"
+4. Click "Save"
+
+Sources: [docs/README.md:30-31]()
+
+### Step 4: Enable and Run Workflows
+
+1. Navigate to the "Actions" tab in your repository
+2. Click "I understand my workflows, go ahead and enable them"
+3. From the workflow list, select "Run Arxiv Papers Daily"
+4. Click "Enable workflow" 
+5. Click "Run workflow" and wait until the job completes (typically takes about 1 minute)
+6. Repeat the same process for the "Run Update Paper Links Weekly" workflow if available
+
+Sources: [docs/README.md:32-37]()
+
+### Step 5: Configure GitHub Pages (Optional)
+
+To enable the web interface for your paper collection:
+
+1. Go to your repository's "Settings" tab
+2. Navigate to "Pages"
+3. Under "Build and deployment," select "Deploy from a branch"
+4. Select "main" as your branch and "/docs" as the folder
+5. Click "Save"
+6. Once deployment is complete, your site will be available at `https://[your-github-username].github.io/cv-arxiv-daily`
+
+Sources: [docs/README.md:38-41]()
+
+## Configuration Options
+
+The core configuration of the CV-ArXiv-Daily system is managed through the `config.yaml` file. This section details the available configuration options.
+
+```mermaid
+graph TD
+    A["config.yaml"] --> B["User Configuration"]
+    A --> C["Paper Categories"]
+    A --> D["Output Settings"]
+    A --> E["Web Interface Settings"]
+    
+    subgraph "User Configuration"
+        B1["user_name"]
+        B2["repo_name"]
+    end
+    
+    subgraph "Paper Categories"
+        C1["keywords"]
+        C2["categories"]
+        C3["filters"]
+    end
+    
+    subgraph "Output Settings"
+        D1["max_results"]
+        D2["time_delta_days"]
+        D3["show_abs"]
+    end
+    
+    subgraph "Web Interface"
+        E1["web_enable"]
+        E2["wechat_enable"]
+    end
+    
+    B --> B1
+    B --> B2
+    C --> C1
+    C --> C2
+    C --> C3
+    D --> D1
+    D --> D2
+    D --> D3
+    E --> E1
+    E --> E2
+```
+
+### Main Configuration Parameters
+
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| `user_name` | Your GitHub username | `"Vincentqyw"` |
+| `repo_name` | Repository name | `"cv-arxiv-daily"` |
+| `max_results` | Maximum number of papers to fetch per category | `30` |
+| `time_delta_days` | Number of days to look back for papers | `5` |
+| `show_abs` | Whether to display paper abstracts | `false` |
+| `web_enable` | Enable web interface output | `true` |
+| `wechat_enable` | Enable WeChat format output | `true` |
+
+### Research Categories and Keywords
+
+The `keywords` section defines what papers to fetch, organized by research area:
+
+```yaml
+keywords:
+  SLAM:
+    - SLAM
+    - Visual Localization
+    - Visual Odometry
+  SFM:
+    - SFM
+    - Structure from Motion
+  # Additional categories...
+```
+
+Each category can have multiple keywords, and papers matching any of these keywords will be included in the corresponding section.
+
+Sources: [docs/README.md:42-44]()
+
+## GitHub Actions Automation
+
+The CV-ArXiv-Daily system uses GitHub Actions to automate the paper collection process. The following diagram illustrates the workflow:
+
+```mermaid
+sequenceDiagram
+    participant GH as "GitHub Actions"
+    participant SH as "daily_arxiv.py Script"
+    participant AX as "arXiv API"
+    participant GS as "GitHub Search API"
+    participant PW as "Papers with Code API"
+    participant RP as "Repository Files"
+    
+    Note over GH: Triggered every 5 days
+    GH->>SH: Execute script
+    SH->>AX: Request papers by keywords
+    AX-->>SH: Return paper metadata
+    
+    loop For each paper
+        SH->>GS: Search for code repo
+        GS-->>SH: Return GitHub repos (if found)
+        SH->>PW: Search for code implementations
+        PW-->>SH: Return code links (if found)
+    end
+    
+    SH->>RP: Update README.md
+    SH->>RP: Update docs/index.md
+    SH->>RP: Update docs/wechat.md
+    SH->>RP: Update JSON data files
+    
+    GH->>RP: Commit and push changes
+```
+
+### Automation Schedule
+
+The system is configured to run automatically every 5 days. This schedule is defined in the GitHub Actions workflow file:
+
+```yaml
+schedule:
+  - cron: "0 0 */5 * *"
+```
+
+You can modify this schedule by editing the cron expression in the workflow file.
+
+Sources: [.github/workflows/cv-arxiv-daily.yml:7-10]()
+
+### Workflow Steps
+
+The GitHub Actions workflow performs the following steps:
+
+1. Check out the repository
+2. Set up Python environment (Python 3.10)
+3. Install dependencies:
+   - arxiv
+   - requests
+   - pyyaml
+4. Run the `daily_arxiv.py` script
+5. Commit and push changes to:
+   - README.md
+   - docs/cv-arxiv-daily.json
+   - docs/cv-arxiv-daily-web.json
+   - docs/index.md
+   - docs/cv-arxiv-daily-wechat.json
+   - docs/wechat.md
+
+Sources: [.github/workflows/cv-arxiv-daily.yml:32-59]()
+
+## Manual Execution
+
+In addition to the automated schedule, you can manually trigger the workflow:
+
+1. Navigate to the "Actions" tab in your repository
+2. Select the "Run Arxiv Papers Daily" workflow
+3. Click "Run workflow"
+4. Click the "Run workflow" button in the dialog
+
+This is useful when you've made configuration changes and want to see the results immediately.
+
+Sources: [.github/workflows/cv-arxiv-daily.yml:6-8]()
+
+## Output Formats
+
+The CV-ArXiv-Daily system generates multiple output formats:
+
+1. **GitHub README** - The primary display of papers in your repository's README file
+2. **Jekyll Website** - A web interface accessible via GitHub Pages
+3. **WeChat Format** - A format optimized for sharing on WeChat
+4. **JSON Data Files** - Raw data files for programmatic access
+
+The output generation process is illustrated in the following diagram:
+
+```mermaid
+graph TD
+    A["daily_arxiv.py"] --> B["Data Processing"]
+    B --> C["Output Generation"]
+    
+    C --> D["README.md"]
+    C --> E["docs/index.md"]
+    C --> F["docs/wechat.md"]
+    C --> G["JSON Files"]
+    
+    subgraph "JSON Data Storage"
+        G1["cv-arxiv-daily.json"]
+        G2["cv-arxiv-daily-web.json"]
+        G3["cv-arxiv-daily-wechat.json"]
+    end
+    
+    G --> G1
+    G --> G2
+    G --> G3
+```
+
+You can enable or disable specific output formats by modifying the `web_enable` and `wechat_enable` parameters in `config.yaml`.
+
+Sources: [.github/workflows/cv-arxiv-daily.yml:56]()
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Workflow Failures**
+   - Check if your repository has the correct permissions set
+   - Verify that you've updated all configuration files with your information
+
+2. **No Papers Being Collected**
+   - Ensure your keywords are relevant and match papers on arXiv
+   - Check the arXiv categories in your configuration
+
+3. **GitHub Pages Not Showing**
+   - Verify that GitHub Pages is configured correctly in your repository settings
+   - Check if the workflow has successfully updated the files in the docs folder
+
+### Getting Help
+
+If you encounter issues not covered here, you can:
+- Check the GitHub Actions logs for error messages
+- Open an issue in the original CV-ArXiv-Daily repository
+- Review the source code of `daily_arxiv.py` to better understand how the system works
+
+## Next Steps
+
+After completing the basic setup, you might want to:
+- [Customize the research keywords](#5.2) to focus on your specific interests
+- [Extend the system](#5.3) with new output formats or additional functionality
+- Set up notifications for new papers using GitHub's notification settings
+
+Sources: [docs/README.md:48-59]()
+
+---
+
+# Page: Customizing Research Keywords
+
+# Customizing Research Keywords
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [config.yaml](config.yaml)
+- [docs/README.md](docs/README.md)
+- [requirements.txt](requirements.txt)
+
+</details>
+
+
+
+This document provides detailed instructions on how to customize the research keywords in the CV-ArXiv-Daily system to focus on different computer vision research areas. By modifying the keywords configuration, you can tailor the system to collect and organize papers that match your specific research interests.
+
+For information about the overall system setup, see [Setup and Configuration](#5.1). For guidance on extending the system with new features, see [Extending the System](#5.3).
+
+## Keyword Configuration Structure
+
+The CV-ArXiv-Daily system uses the `keywords` section in the `config.yaml` file to define which research areas to track and what specific terms to search for. This configuration directly controls which papers are fetched from arXiv and how they are categorized in the output formats.
+
+```mermaid
+graph TD
+    A["config.yaml"] --> B["keywords section"]
+    B --> C1["Research Area: 'SLAM'"]
+    B --> C2["Research Area: 'SFM'"]
+    B --> C3["Research Area: 'Visual Localization'"]
+    B --> C4["Research Area: 'NeRF'"]
+    
+    C1 --> D1["filters array"]
+    C2 --> D2["filters array"]
+    C3 --> D3["filters array"]
+    C4 --> D4["filters array"]
+    
+    D1 --> E1["'SLAM'"]
+    D1 --> E2["'Visual Odometry'"]
+    
+    D3 --> F1["'Visual Localization'"]
+    D3 --> F2["'Camera Localization'"] 
+    D3 --> F3["'Loop Closure Detection'"]
+    D3 --> F4["'image retrieval'"]
+```
+
+Sources: [config.yaml:23-39]()
+
+Each research area in the configuration consists of:
+- A **key** (e.g., "SLAM", "NeRF") that defines the category name
+- A **filters** array containing specific search terms related to that research area
+
+The current configuration includes the following research areas and filter terms:
+
+| Research Area | Filter Terms |
+|--------------|-------------|
+| SLAM | "SLAM", "Visual Odometry" |
+| SFM | "SFM", "Structure from Motion" |
+| Visual Localization | "Visual Localization", "Camera Localization", "Camera Re-localisation", "Loop Closure Detection", "visual place recognition", "image retrieval" |
+| Keypoint Detection | "Keypoint Detection", "Feature Descriptor" |
+| Image Matching | "Image Matching", "Keypoint Matching", "Line Segment Detection", "Local Feature Matching" |
+| NeRF | "NeRF" |
+
+Sources: [config.yaml:23-39]()
+
+## How Keywords Affect Paper Collection
+
+When the system runs, it uses the configured keywords to search for papers on arXiv. This diagram illustrates how the keyword system processes papers:
+
+```mermaid
+flowchart LR
+    A["arXiv API"] --> B["daily_arxiv.py"]
+    C["config.yaml:keywords"] --> |"Configure search"| B
+    
+    subgraph "Paper Processing Pipeline"
+        B --> D["For each paper, check if title/abstract<br>contains any filter term"]
+        D --> E["Categorize paper under<br>corresponding research area"]
+    end
+    
+    E --> F1["README.md"]
+    E --> F2["docs/index.md"]
+    E --> F3["docs/wechat.md"]
+    E --> F4["JSON files"]
+```
+
+Sources: [config.yaml:23-39](), [docs/README.md:42-44]()
+
+## Adding New Research Keywords
+
+To customize the research areas and keywords, follow these steps:
+
+1. Open the `config.yaml` file in your repository
+2. Locate the `keywords` section toward the bottom of the file
+3. Add, modify, or remove research areas as needed
+
+### Example: Adding a New Research Area
+
+To add a new research area, add a new key-value pair to the `keywords` section. For example, to add a research area for "Object Detection":
+
+```yaml
+keywords:
+    # Existing research areas...
+    "Object Detection":
+        filters: ["Object Detection", "YOLO", "R-CNN", "SSD", "Object Recognition"]
+```
+
+### Example: Modifying Existing Filters
+
+To expand an existing research area, you can add more filter terms. For example, to expand the "NeRF" category:
+
+```yaml
+"NeRF":
+    filters: ["NeRF", "Neural Radiance Fields", "Novel View Synthesis", 
+              "Implicit Neural Representation", "Neural Rendering"]
+```
+
+Sources: [config.yaml:23-39]()
+
+## Best Practices for Keyword Selection
+
+For effective keyword customization, consider these best practices:
+
+1. **Be specific**: Choose terms that precisely target your research interests
+2. **Include variations**: Add common variations of terms (e.g., both "SFM" and "Structure from Motion")
+3. **Avoid ambiguity**: Be cautious with terms that might have multiple meanings across different contexts
+4. **Balance breadth and precision**: Too many broad terms might fetch irrelevant papers, while overly specific terms might miss relevant papers
+
+## Applying and Testing Changes
+
+After modifying the keywords section, you need to:
+
+1. Commit and push your changes to your repository
+2. Trigger the GitHub Actions workflow to apply the changes:
+   - Go to the "Actions" tab in your repository
+   - Select "Run Arxiv Papers Daily" 
+   - Click "Run workflow"
+   - Wait for the workflow to complete
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Repo as "GitHub Repository"
+    participant GA as "GitHub Actions"
+    participant Script as "daily_arxiv.py"
+    participant arXiv as "arXiv API"
+    
+    User->>Repo: Edit config.yaml:keywords
+    User->>Repo: Commit and push changes
+    User->>GA: Manually trigger workflow
+    GA->>Script: Execute script
+    Script->>Script: Read updated config.yaml
+    Script->>arXiv: Fetch papers using new keywords
+    arXiv->>Script: Return matching papers
+    Script->>Repo: Update README.md and other outputs
+```
+
+Sources: [docs/README.md:42-44]()
+
+## Troubleshooting
+
+If you encounter issues with your keyword customization:
+
+- **Too many papers**: Your filters might be too broad. Try using more specific terms.
+- **Too few papers**: Your filters might be too restrictive. Add more variations or related terms.
+- **Irrelevant papers**: Check for ambiguity in your filter terms and refine them.
+- **No updates after changes**: Ensure you've committed the changes and triggered the GitHub Actions workflow manually.
+
+## Summary
+
+Customizing research keywords in the CV-ArXiv-Daily system allows you to tailor the paper collection to your specific research interests. By modifying the `keywords` section in the `config.yaml` file, you can control which papers are fetched and how they are categorized across all output formats.
+
+Remember to trigger a workflow update after modifying the keywords to see the changes take effect in your repository.
+
+Sources: [config.yaml:23-39](), [docs/README.md:42-44]()
+
+---
+
+# Page: Extending the System
+
+# Extending the System
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [config.yaml](config.yaml)
+- [daily_arxiv.py](daily_arxiv.py)
+- [requirements.txt](requirements.txt)
+
+</details>
+
+
+
+This document provides guidelines for extending the CV-ArXiv-Daily system with new functionality. It focuses on the most common extension points and implementation approaches. For basic setup information, see [Setup and Configuration](#5.1). For modifying research keywords, see [Customizing Research Keywords](#5.2).
+
+## Extension Architecture Overview
+
+The CV-ArXiv-Daily system is designed with modularity in mind, allowing for several extension points. Understanding the system architecture is essential before implementing extensions.
+
+```mermaid
+flowchart TD
+    subgraph "Core Components"
+        A["daily_arxiv.py"] -- "reads" --> B["config.yaml"]
+        A -- "fetches papers" --> C["arXiv API"]
+        A -- "searches for code" --> D["PapersWithCode API"]
+        A -- "searches for code" --> E["GitHub API"]
+        A -- "updates" --> F["JSON Files"]
+        F -- "converts to" --> G["Output Formats"]
+    end
+    
+    subgraph "Extension Points"
+        EP1["1. New Output Formats"]
+        EP2["2. Enhanced Search Mechanisms"]
+        EP3["3. Additional Data Sources"]
+        EP4["4. Processing Enhancements"]
+    end
+    
+    A --- EP1
+    A --- EP2
+    A --- EP3
+    A --- EP4
+```
+
+Sources: [daily_arxiv.py:1-444](), [config.yaml:1-40]()
+
+## Adding New Output Formats
+
+The system currently outputs to three formats: GitHub README, Jekyll website, and WeChat content. Each has dedicated configuration settings, storage files, and output formats.
+
+### Output Format Implementation Map
+
+```mermaid
+flowchart TD
+    subgraph "Configuration"
+        C1["publish_readme: True"]
+        C2["publish_gitpage: True"]
+        C3["publish_wechat: False"]
+        C4["publish_yourformat: True"]
+    end
+    
+    subgraph "JSON Storage"
+        J1["cv-arxiv-daily.json"]
+        J2["cv-arxiv-daily-web.json"]
+        J3["cv-arxiv-daily-wechat.json"]
+        J4["cv-arxiv-daily-yourformat.json"]
+    end
+    
+    subgraph "Markdown Output"
+        M1["README.md"]
+        M2["docs/index.md"]
+        M3["docs/wechat.md"]
+        M4["docs/yourformat.md"]
+    end
+    
+    subgraph "Core Functions"
+        F1["update_json_file()"]
+        F2["json_to_md()"]
+        F3["json_to_yourformat()"]
+    end
+    
+    C1 --> J1
+    C2 --> J2
+    C3 --> J3
+    C4 --> J4
+    
+    J1 --> F1
+    J2 --> F1
+    J3 --> F1
+    J4 --> F1
+    
+    F1 --> F2
+    F2 --> M1
+    F2 --> M2
+    F2 --> M3
+    F1 --> F3
+    F3 --> M4
+```
+
+Sources: [daily_arxiv.py:217-241](), [daily_arxiv.py:243-368](), [config.yaml:10-21]()
+
+### Implementation Steps
+
+1. **Add configuration options** in `config.yaml`:
+
+   ```yaml
+   # Enable your new output format
+   publish_yourformat: True
+   
+   # Define file paths
+   json_yourformat_path: './docs/cv-arxiv-daily-yourformat.json'
+   md_yourformat_path: './docs/yourformat.md'
+   ```
+
+2. **Update the `demo` function** in `daily_arxiv.py` to handle your new format:
+
+   You'll need to add a new condition block similar to the existing ones for README, GitPage, and WeChat, which:
+   - Reads configuration paths
+   - Updates the JSON file
+   - Converts JSON to your output format
+
+3. **Create your conversion function** (if needed):
+
+   If `json_to_md` doesn't meet your requirements, create a custom conversion function that reads from your JSON file and produces your desired output format.
+
+Sources: [daily_arxiv.py:370-433](), [config.yaml:10-21]()
+
+### Example: Adding CSV Output
+
+To add a CSV output format, you would:
+
+1. Add to `config.yaml`:
+   ```yaml
+   publish_csv: True
+   json_csv_path: './docs/cv-arxiv-daily.json'  # Reuse existing JSON
+   csv_output_path: './docs/papers.csv'
+   ```
+
+2. Create a CSV conversion function in `daily_arxiv.py`:
+   ```python
+   def json_to_csv(json_file, csv_file, task=''):
+       # Load JSON data and convert to CSV format
+       # Write to csv_file
+       logging.info(f"{task} finished")
+   ```
+
+3. Add to the `demo` function:
+   ```python
+   if publish_csv:
+       json_file = config['json_csv_path']
+       csv_file = config['csv_output_path']
+       # Call your conversion function
+       json_to_csv(json_file, csv_file, task='Update CSV')
+   ```
+
+## Enhancing Search Mechanisms
+
+The system currently finds code repositories using the Papers with Code API and has a partially implemented GitHub search. You can enhance repository discovery.
+
+### Current Search Architecture
+
+```mermaid
+sequenceDiagram
+    participant DP as "get_daily_papers()"
+    participant PWC as "PapersWithCode API"
+    participant GH as "get_code_link()"
+    
+    DP->>PWC: Request repository for paper ID
+    PWC-->>DP: Return official repository (if exists)
+    
+    Note over DP,GH: GitHub fallback search is currently commented out
+    
+    alt Commented Code (Lines 133-136)
+        DP->>GH: Search GitHub by paper title
+        GH-->>DP: Return top repository
+        
+        alt Still No Repository
+            DP->>GH: Search GitHub by paper ID
+            GH-->>DP: Return top repository
+        end
+    end
+```
+
+Sources: [daily_arxiv.py:66-85](), [daily_arxiv.py:87-161]()
+
+### Implementation Steps
+
+1. **Enable the commented-out GitHub search fallback**:
+
+   Uncomment and enhance lines 133-136 in `daily_arxiv.py`:
+   ```python
+   else:
+       repo_url = get_code_link(paper_title)
+       if repo_url is None:
+           repo_url = get_code_link(paper_key)
+   ```
+
+2. **Enhance the GitHub search function**:
+
+   Improve the `get_code_link` function to use better search parameters or query construction:
+   ```python
+   def get_code_link(qword:str) -> str:
+       # Enhance search query
+       query = f"{qword} language:python language:c++"
+       # Rest of function
+   ```
+
+3. **Add additional search sources**:
+
+   Create functions to search other code repositories like GitLab, Bitbucket, or specialized repositories.
+
+Sources: [daily_arxiv.py:66-85](), [daily_arxiv.py:126-137]()
+
+## Adding New Data Sources
+
+Currently, the system only fetches papers from arXiv. You can extend it to pull from other academic sources.
+
+### Data Collection Architecture
+
+```mermaid
+flowchart TD
+    subgraph "Current Architecture"
+        D["demo() function"] --> G["get_daily_papers()"]
+        G --> A["arxiv.Search()"]
+        A --> P["Process Paper Metadata"]
+        P --> O["Output Generation"]
+    end
+    
+    subgraph "Extended Architecture"
+        D --> N["get_papers_from_newSource()"]
+        N --> S["New Source API"]
+        S --> P
+    end
+```
+
+Sources: [daily_arxiv.py:87-161](), [daily_arxiv.py:370-433]()
+
+### Implementation Steps
+
+1. **Create a new paper collection function**:
+
+   Create a function similar to `get_daily_papers` that:
+   - Connects to your new data source
+   - Fetches papers based on search criteria
+   - Formats the paper data to match the expected structure
+   - Returns a dictionary in the same format as `get_daily_papers`
+
+2. **Update the `demo` function**:
+
+   Add code to call your new function:
+   ```python
+   # Add to demo function
+   data_from_new_source = []
+   for topic, keyword in keywords.items():
+       data, data_web = get_papers_from_new_source(
+           topic, keyword, max_results=max_results
+       )
+       data_collector.append(data)
+       data_collector_web.append(data_web)
+   ```
+
+3. **Add configuration options**:
+
+   Add parameters to `config.yaml` to control your new data source:
+   ```yaml
+   new_source_enabled: True
+   new_source_max_results: 5
+   ```
+
+Sources: [daily_arxiv.py:87-161](), [daily_arxiv.py:370-433]()
+
+## Processing Enhancements
+
+You can add new processing steps to analyze or enhance the paper data before it's stored and output.
+
+### Processing Pipeline
+
+```mermaid
+flowchart TD
+    subgraph "Current Processing"
+        A["Paper Metadata"] --> B["Extract Basic Info<br>(Title, Authors, etc.)"]
+        B --> C["Search for Code Repository"]
+        C --> D["Format for Storage"]
+        D --> E["JSON Storage"]
+    end
+    
+    subgraph "Enhanced Processing"
+        B --> F["Your Custom Processing"]
+        F --> D
+    end
+```
+
+Sources: [daily_arxiv.py:87-161]()
+
+### Implementation Options
+
+1. **Enhance `get_daily_papers`**:
+
+   Add your custom processing directly within the existing function where papers are processed.
+
+2. **Create processing middleware**:
+
+   Create a separate function that processes the paper data before it's stored:
+   ```python
+   def enhance_paper_data(paper_data):
+       # Add your custom processing
+       return enhanced_data
+   ```
+
+3. **Post-process stored data**:
+
+   Create a function that reads from JSON storage, enhances the data, and writes it back:
+   ```python
+   def post_process_papers(json_file):
+       # Read, enhance, and write back
+   ```
+
+### Example Enhancements
+
+- **Paper Categorization**: Classify papers into sub-categories based on content
+- **Citation Tracking**: Add citation counts from Google Scholar or Semantic Scholar
+- **Related Papers**: Find and link related papers
+- **Content Summarization**: Generate abstracts or key points using NLP
+
+Sources: [daily_arxiv.py:87-161](), [daily_arxiv.py:217-241]()
+
+## Advanced Output Customization
+
+The `json_to_md` function contains multiple parameters for customizing output. You can extend these for more flexibility.
+
+### Current Customization Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `to_web` | Boolean | Format for web display |
+| `use_title` | Boolean | Include title in output |
+| `use_tc` | Boolean | Include table of contents |
+| `show_badge` | Boolean | Show GitHub badges |
+| `use_b2t` | Boolean | Include back-to-top links |
+
+### Implementation Options
+
+1. **Add new parameters** to `json_to_md`:
+
+   Extend the function with additional parameters for your custom formatting needs.
+
+2. **Create output filters**:
+
+   Implement functions that post-process the generated Markdown:
+   ```python
+   def apply_output_filter(markdown_content):
+       # Transform content
+       return filtered_content
+   ```
+
+3. **Implement custom templates**:
+
+   Create a template system for more flexible output formatting:
+   ```python
+   def render_template(template_file, data):
+       # Load template and render with data
+       return rendered_content
+   ```
+
+Sources: [daily_arxiv.py:243-368]()
+
+## Integration with External Systems
+
+You can extend the system to integrate with external platforms like social media, notification systems, or analytics tools.
+
+### Implementation Approaches
+
+1. **Add webhook support**:
+
+   Implement functions to call external APIs when new papers are found:
+   ```python
+   def send_webhook(paper_data, webhook_url):
+       # Format and send data
+   ```
+
+2. **Create notification functions**:
+
+   Send emails or push notifications with new papers:
+   ```python
+   def send_email_notification(recipients, paper_data):
+       # Send email
+   ```
+
+3. **Generate specialized exports**:
+
+   Create functions to export data in formats required by external tools.
+
+## Final Considerations
+
+When extending the CV-ArXiv-Daily system, keep these best practices in mind:
+
+1. **Maintain modularity**: Create clearly separated functions for new functionality
+2. **Use configuration**: Make extensions configurable through `config.yaml`
+3. **Error handling**: Implement proper error handling to ensure the core system continues working
+4. **Documentation**: Document your extensions for other users
+5. **Testing**: Test your extensions thoroughly to ensure compatibility
+
+By following the guidelines in this document, you can extend the CV-ArXiv-Daily system to better suit your needs while maintaining compatibility with the core functionality.
+
+Sources: [daily_arxiv.py:1-444](), [config.yaml:1-40]()

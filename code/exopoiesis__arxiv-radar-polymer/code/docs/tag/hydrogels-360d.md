@@ -1,0 +1,546 @@
+---
+layout: page
+title: "hydrogels (360d)"
+current_tag: hydrogels
+current_window: 360d
+---
+
+<header class="tag-header">
+  <h1>hydrogels — 360d</h1>
+  <span class="paper-count">88 papers</span>
+  <nav class="window-nav"><a href="hydrogels-7d.html">7d</a> <a href="hydrogels-30d.html">30d</a> <a href="hydrogels-90d.html">90d</a> <strong>360d</strong> <a href="hydrogels-all.html">all</a></nav>
+  <a class="back-link" href="../">← all tags</a>
+</header>
+
+<table class="papers">
+<thead><tr><th>Date</th><th>Title</th><th>Authors</th><th>arXiv</th></tr></thead>
+<tbody>
+<tr class="paper">
+<td>2026-09-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.29904.html">Extracting hydrogel properties by watching hydrogel particles moving through solid ice</a></div></td>
+<td>Yanxia Feng et al.</td>
+<td><a href="http://arxiv.org/abs/2609.29904">2609.29904</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.26681.html">Mesoscale heterogeneity in protein hydrogels induced by dynamic unfolding and post-gelation rearrangements</a></div><div class="paper-tags"><a href="coarse-grained-360d.html">coarse-grained</a></div></td>
+<td>Victoria Byelova et al.</td>
+<td><a href="http://arxiv.org/abs/2609.26681">2609.26681</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.26943.html">Viscous Dissipation Governs Bubble Morphology and Failure in Soft Matter</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a> · <a href="polymer-morphology-360d.html">polymer-morphology</a> · <a href="soft-matter-360d.html">soft-matter</a></div></td>
+<td>Sushma SP et al.</td>
+<td><a href="http://arxiv.org/abs/2609.26943">2609.26943</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.21501.html">Optimal control for duty-cycle-limited interferometry with single-NV centers</a></div></td>
+<td>Ugur Tamer et al.</td>
+<td><a href="http://arxiv.org/abs/2609.21501">2609.21501</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.18364.html">A Scaling Framework for Mechanical Memristance: Dimensionless Metrics and Material Design Maps</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Abdulla Alhembar et al.</td>
+<td><a href="http://arxiv.org/abs/2609.18364">2609.18364</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.16186.html">Occupancy Network-Guided Autonomous Robotic Partial Nephrectomy</a></div></td>
+<td>Ethan Kilmer et al.</td>
+<td><a href="http://arxiv.org/abs/2609.16186">2609.16186</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.12130.html">Colloidal shadows reveal hidden solute transport</a></div></td>
+<td>Haoyu Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2609.12130">2609.12130</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.04568.html">A discrete crack-tip theory for nonlinear lattice networks</a></div></td>
+<td>Jiabin Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2609.04568">2609.04568</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.21698.html">Non-uniform swelling of polyelectrolyte hydrogels: effects of charge regulation</a></div></td>
+<td>Du Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2608.21698">2608.21698</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.19724.html">Cooperative effects of membrane confinement and gelation on PEG crystallization pathway</a></div></td>
+<td>Masaki Yoshida et al.</td>
+<td><a href="http://arxiv.org/abs/2608.19724">2608.19724</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.19810.html">A Central Disulfide Junction Drives Transient Network Formation in Elastin-Like Polypeptides, Enabling Low-Concentration Hydrogels</a></div><div class="paper-tags"><a href="rheology-360d.html">rheology</a> · <a href="saxs-360d.html">saxs</a> · <a href="tem-360d.html">tem</a></div></td>
+<td>Tingting Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2608.19810">2608.19810</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.17581.html">Modelling flow-driven pore closure of weakening poroelastic media</a></div></td>
+<td>Matthew V. Ghosh et al.</td>
+<td><a href="http://arxiv.org/abs/2608.17581">2608.17581</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.13051.html">A Two-Component Poro-viscoelastic System for Fibre-Reinforced Hydrogels: Analysis and Homogenization</a></div><div class="paper-tags"><a href="composites-360d.html">composites</a> · <a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Michael Eden et al.</td>
+<td><a href="http://arxiv.org/abs/2608.13051">2608.13051</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.11117.html">T1, T2, and complex permittivities of hydrogels, paramagnetic salt solutions, and oils at 0.35, 1.5, and 3 Tesla</a></div></td>
+<td>H Michael Gach et al.</td>
+<td><a href="http://arxiv.org/abs/2608.11117">2608.11117</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.07638.html">A transient nonlinear finite element framework and implementation of coupled electro-chemo-mechanics of polyelectrolyte hydrogels</a></div><div class="paper-tags"><a href="flory-huggins-360d.html">flory-huggins</a></div></td>
+<td>Bibekananda Datta et al.</td>
+<td><a href="http://arxiv.org/abs/2608.07638">2608.07638</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.05347.html">Overcoming Scattering in High-Cell-Density Tomographic Volumetric Bioprinting Using Computational Light Optimization</a></div><div class="paper-tags"><a href="additive-manufacturing-360d.html">additive-manufacturing</a></div></td>
+<td>Qianyi Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2608.05347">2608.05347</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.22167.html">Mechanical mapping of thin elastic films and living cells with spherical tip atomic force microscopy probes at large indentations</a></div></td>
+<td>Gabriel Gomila et al.</td>
+<td><a href="http://arxiv.org/abs/2607.22167">2607.22167</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.20770.html">Digitally Programmable Photochromic Hydrogel Contact Lenses as Light-Adaptive Artificial Irises</a></div></td>
+<td>Asad Nauman et al.</td>
+<td><a href="http://arxiv.org/abs/2607.20770">2607.20770</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.05633.html">Drug release dynamics from a three-layer composite contact lens in the vial, eye wear with blinking, and blister pack settings</a></div><div class="paper-tags"><a href="composites-360d.html">composites</a></div></td>
+<td>Daniel M. Anderson et al.</td>
+<td><a href="http://arxiv.org/abs/2607.05633">2607.05633</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.01031.html">Diffusiophoretic transport of colloids and emulsions in complex environments</a></div></td>
+<td>Amir A. Pahlavan</td>
+<td><a href="http://arxiv.org/abs/2607.01031">2607.01031</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.29599.html">Manganese-Functionalized GelMA Hydrogels for MRI-Guided Immunotheranostics in Precision Oncology</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Motahareh Nazari et al.</td>
+<td><a href="http://arxiv.org/abs/2606.29599">2606.29599</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.28003.html">Porosity Effects on Cyclic Gas Invasion and Trapping in Deformable Porous Media</a></div></td>
+<td>Haiyi Zhong et al.</td>
+<td><a href="http://arxiv.org/abs/2606.28003">2606.28003</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.22114.html">An elastic model of confined hydrogel particles with competing entropic and energetic networks</a></div></td>
+<td>A. Huerta et al.</td>
+<td><a href="http://arxiv.org/abs/2606.22114">2606.22114</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.13584.html">Limits of constant-parameter constitutive models for hydrogels under inertial cavitation</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Tianyi Chu et al.</td>
+<td><a href="http://arxiv.org/abs/2606.13584">2606.13584</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.12308.html">Laser-Liquid Interaction in Laser-Induced Forward Transfer (LIFT) Printing: A Multiscale Perspective on Bubble Dynamics and Material Ejection</a></div><div class="paper-tags"><a href="benchmarking-360d.html">benchmarking</a> · <a href="rheology-360d.html">rheology</a></div></td>
+<td>Shuqi Zhou et al.</td>
+<td><a href="http://arxiv.org/abs/2606.12308">2606.12308</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.07384.html">Hydrogel mechanics below swelling equilibrium</a></div></td>
+<td>A. Chao Correas et al.</td>
+<td><a href="http://arxiv.org/abs/2606.07384">2606.07384</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.28382.html">A nonlinear beam model for photoresponsive thermoelastic solids driven by localised heating</a></div></td>
+<td>William T. Simpkins et al.</td>
+<td><a href="http://arxiv.org/abs/2605.28382">2605.28382</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.19888.html">GELATO: Multi-Material Topology Optimization of Programmable Gel-Elastomer Structures</a></div><div class="paper-tags"><a href="benchmarking-360d.html">benchmarking</a> · <a href="composites-360d.html">composites</a></div></td>
+<td>Aaditya Chandrasekhar et al.</td>
+<td><a href="http://arxiv.org/abs/2605.19888">2605.19888</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.13927.html">Kin-ematic Exclusion in Active Matter: Modelling Mutual Inhibition in \textit{Pseudomonas aeruginosa} Sibling Colonies</a></div></td>
+<td>Dario Buonomo et al.</td>
+<td><a href="http://arxiv.org/abs/2605.13927">2605.13927</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.11719.html">Nanostructure of PEGDA-PEG hydrogel membranes and how it controls their permeability</a></div></td>
+<td>Sixtine de Chateauneuf-Randon et al.</td>
+<td><a href="http://arxiv.org/abs/2605.11719">2605.11719</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.03728.html">Linear and Non-Linear Rheology of Single and Double Cross-Linked Biopolymer Networks under Viscous Shear Flow</a></div><div class="paper-tags"><a href="polymer-morphology-360d.html">polymer-morphology</a></div></td>
+<td>Nasrollah Hajaliakbari et al.</td>
+<td><a href="http://arxiv.org/abs/2605.03728">2605.03728</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.27726.html">Universal Nano-Bead Emitter Inks for Programmable Nanometric Fluorescent Architectures</a></div><div class="paper-tags"><a href="polymer-morphology-360d.html">polymer-morphology</a></div></td>
+<td>Ilya Olevsko et al.</td>
+<td><a href="http://arxiv.org/abs/2604.27726">2604.27726</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.26464.html">Linear poroelastic response of thin permeable gel films</a></div><div class="paper-tags"><a href="membranes-360d.html">membranes</a></div></td>
+<td>Caroline Kopecz-Muller et al.</td>
+<td><a href="http://arxiv.org/abs/2604.26464">2604.26464</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.27240.html">Confinement-Connectivity Coupling Enables High-Efficiency Piezoionic Transduction</a></div></td>
+<td>Tofayel Ahammad Ovee et al.</td>
+<td><a href="http://arxiv.org/abs/2604.27240">2604.27240</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.23945.html">An in situ self-adaptive hydrogel coating enables seamless neural interfaces via okra mucilage polysaccharide and α-helical peptide amphiphiles co-assembly</a></div><div class="paper-tags"><a href="phase-separation-360d.html">phase-separation</a></div></td>
+<td>Tenglong Luo et al.</td>
+<td><a href="http://arxiv.org/abs/2604.23945">2604.23945</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.16811.html">Impact dynamics of flexible hydrogels on solid substrates of different wettabilities</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a> · <a href="polymer-morphology-360d.html">polymer-morphology</a></div></td>
+<td>Akash Chowdhury et al.</td>
+<td><a href="http://arxiv.org/abs/2604.16811">2604.16811</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.08331.html">Ultra-slow capillary rise on hydrogel surfaces</a></div></td>
+<td>Anagha Datar et al.</td>
+<td><a href="http://arxiv.org/abs/2509.08331">2509.08331</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.00137.html">Microfluidic Fabrication and Analysis of Biocompatible, Monodisperse DNA-Hydrogels with Tunable Swelling and Dissolution Kinetics</a></div></td>
+<td>Corinna Torabi et al.</td>
+<td><a href="http://arxiv.org/abs/2602.00137">2602.00137</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.02801.html">Flow-induced bending response rheometer to measure viscoelastic bending of microrods</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Barrett T Smith et al.</td>
+<td><a href="http://arxiv.org/abs/2602.02801">2602.02801</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.10798.html">A Control-Referenced Tri-Channel OECT Receiver for Hybrid Molecular Communication Toward Brain Organoid Interfaces</a></div><div class="paper-tags"><a href="benchmarking-360d.html">benchmarking</a> · <a href="monte-carlo-360d.html">monte-carlo</a> · <a href="oect-360d.html">oect</a></div></td>
+<td>Hongbin Ni et al.</td>
+<td><a href="http://arxiv.org/abs/2604.10798">2604.10798</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.09486.html">A three-dimensional morphoelastic model for self-oscillations in polyelectrolyte hydrogel filaments</a></div></td>
+<td>Ariel Surya Boiardi et al.</td>
+<td><a href="http://arxiv.org/abs/2604.09486">2604.09486</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.06313.html">Too Big, Too Small, Too $O_2$: The Pandoro Effect from Oxygen Gradients in Tomographic Volumetric Additive Manufacturing</a></div><div class="paper-tags"><a href="additive-manufacturing-360d.html">additive-manufacturing</a> · <a href="polymerization-360d.html">polymerization</a></div></td>
+<td>Riccardo Rizzo et al.</td>
+<td><a href="http://arxiv.org/abs/2604.06313">2604.06313</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.03411.html">A Differentiable Framework for Gradient Enhanced Damage with Physics-Augmented Neural Networks in JAX-FEM</a></div><div class="paper-tags"><a href="polymer-degradation-360d.html">polymer-degradation</a></div></td>
+<td>Mark Wilkinson et al.</td>
+<td><a href="http://arxiv.org/abs/2604.03411">2604.03411</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.20057.html">Multiscale theory, modelling, and simulation of hemicellulose and lignin in solution</a></div><div class="paper-tags"><a href="multiscale-modeling-360d.html">multiscale-modeling</a></div></td>
+<td>A. Kovalenko</td>
+<td><a href="http://arxiv.org/abs/2603.20057">2603.20057</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.23881.html">Rethinking failure in polymer networks: a probabilistic view on progressive damage</a></div><div class="paper-tags"><a href="coarse-grained-360d.html">coarse-grained</a></div></td>
+<td>Noy Cohen et al.</td>
+<td><a href="http://arxiv.org/abs/2603.23881">2603.23881</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.17180.html">Mesoscopic Modeling of Dynamic Tetra-PEG Hydrogel Networks</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a> · <a href="monte-carlo-360d.html">monte-carlo</a> · <a href="rheology-360d.html">rheology</a></div></td>
+<td>Pietro Miotti et al.</td>
+<td><a href="http://arxiv.org/abs/2603.17180">2603.17180</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.20119.html">Mechanical response of a simple DNA nanostar hydrogel: symptoms of disorder and glassy emergence of solidity</a></div><div class="paper-tags"><a href="glass-transition-360d.html">glass-transition</a> · <a href="rheology-360d.html">rheology</a></div></td>
+<td>Hajar Ajiyel et al.</td>
+<td><a href="http://arxiv.org/abs/2603.20119">2603.20119</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.15673.html">Production of Low-Density Aerogel Nuclear Fuels for Use in Fission Fragment Rockets and Novel Reactor Design</a></div></td>
+<td>Noah D&#x27;Amico et al.</td>
+<td><a href="http://arxiv.org/abs/2603.15673">2603.15673</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.02698.html">Adaptive hydrogels with spatiotemporal stiffening using pH-modulating enzymes</a></div></td>
+<td>Natascha Gray et al.</td>
+<td><a href="http://arxiv.org/abs/2512.02698">2512.02698</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.09911.html">Synthetic design of force-responsive hydrogels with ring-forming catch bonds</a></div><div class="paper-tags"><a href="coarse-grained-360d.html">coarse-grained</a> · <a href="molecular-dynamics-360d.html">molecular-dynamics</a></div></td>
+<td>Wout Laeremans et al.</td>
+<td><a href="http://arxiv.org/abs/2603.09911">2603.09911</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.11065.html">Micropatterning photopolymerizable hydrogels for diffusion studies using pillar arrays or photomasks</a></div><div class="paper-tags"><a href="polymerization-360d.html">polymerization</a></div></td>
+<td>Sevgi Onal et al.</td>
+<td><a href="http://arxiv.org/abs/2603.11065">2603.11065</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.01512.html">A hyperelastic theory for nonlinear hydrogel diffusiophoresis</a></div></td>
+<td>Chinmay Katke et al.</td>
+<td><a href="http://arxiv.org/abs/2603.01512">2603.01512</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.01377.html">From Sustainable Materials to User-Centered Sustainability: Material Experience in Art Healing</a></div></td>
+<td>Yuxin Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2603.01377">2603.01377</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-25</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.21457.html">Measuring elastic properties of granular hydrogels: Effects of capillary interaction and ionic conditions</a></div></td>
+<td>Jiayin Zhao et al.</td>
+<td><a href="http://arxiv.org/abs/2602.21457">2602.21457</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.04982.html">Geometry of the vapor layer under a Leidenfrost hydrogel sphere</a></div></td>
+<td>Vicente L. Diaz-Melian et al.</td>
+<td><a href="http://arxiv.org/abs/2507.04982">2507.04982</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.12538.html">Starch granules are instructive scaffolds for synergistic reinforcement and dissipation in hydrogel composites</a></div><div class="paper-tags"><a href="composites-360d.html">composites</a> · <a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Shirlaine Juliano et al.</td>
+<td><a href="http://arxiv.org/abs/2602.12538">2602.12538</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.13432.html">Eco-Friendly Supercapacitor Architecture Based on Cotton Textile Waste and Biopolymer-Based Electrodes</a></div></td>
+<td>Luis Torres Quispe et al.</td>
+<td><a href="http://arxiv.org/abs/2602.13432">2602.13432</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.08217.html">Constitutive flow law for hydrogel granular rafts near the brittle-ductile transition</a></div><div class="paper-tags"><a href="rheology-360d.html">rheology</a></div></td>
+<td>Yuto Sasaki et al.</td>
+<td><a href="http://arxiv.org/abs/2602.08217">2602.08217</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.08150.html">Brillouin Spectroscopy Reveals Mechanical Properties Beyond Hydration</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a> · <a href="rheology-360d.html">rheology</a></div></td>
+<td>Zhe Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2602.08150">2602.08150</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-29</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.07003.html">Time-Resolved Multi-Spectral X-ray Computed Tomography of Cryoprotectant Diffusion Into Biomimetic Material</a></div></td>
+<td>Alaa M. Ali et al.</td>
+<td><a href="http://arxiv.org/abs/2602.07003">2602.07003</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.15587.html">Swelling-Induced Stress-Assisted Transfer of Nanodiamond Arrays with a PVA Carrier Tape for Conformal Bio-Integrated Sensing and Labelling</a></div><div class="paper-tags"><a href="composites-360d.html">composites</a></div></td>
+<td>Luyao Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2601.15587">2601.15587</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.14934.html">Designing DNA nanostar hydrogels with programmable degradation and antibody release</a></div><div class="paper-tags"><a href="polymer-degradation-360d.html">polymer-degradation</a> · <a href="rheology-360d.html">rheology</a></div></td>
+<td>Giorgia Palombo et al.</td>
+<td><a href="http://arxiv.org/abs/2601.14934">2601.14934</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.13862.html">Unraveling the Mechanisms of Ultrasound-Induced Mechanical Degradation of Microgels: Effects of Mechanoresponsive Crosslinks, Softness, and Core-Shell Architecture</a></div><div class="paper-tags"><a href="polymer-degradation-360d.html">polymer-degradation</a> · <a href="saxs-360d.html">saxs</a></div></td>
+<td>Alexander V. Petrunin et al.</td>
+<td><a href="http://arxiv.org/abs/2601.13862">2601.13862</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.11264.html">Inertial Self-Caging: Dynamics of Macroscopic Swimmers at Moderate Reynolds Number Sustaining Chemical Wake Resonance</a></div></td>
+<td>Alessandro Foradori et al.</td>
+<td><a href="http://arxiv.org/abs/2601.11264">2601.11264</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.03964.html">Rigid spheres moving through soft solids</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a> · <a href="rheology-360d.html">rheology</a></div></td>
+<td>Tom Mullin et al.</td>
+<td><a href="http://arxiv.org/abs/2507.03964">2507.03964</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.04113.html">Microbubble surface instabilities in a strain stiffening viscoelastic material</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Sawyer Remillard et al.</td>
+<td><a href="http://arxiv.org/abs/2601.04113">2601.04113</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.00073.html">Non-Contact and Non-Destructive Detection of Structural Defects in Bioprinted Constructs Using Video-Based Vibration Analysis</a></div><div class="paper-tags"><a href="additive-manufacturing-360d.html">additive-manufacturing</a> · <a href="extrusion-360d.html">extrusion</a></div></td>
+<td>Md Anisur Rahman et al.</td>
+<td><a href="http://arxiv.org/abs/2601.00073">2601.00073</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-30</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.18002.html">Deformation and organization of droplet-encapsulated soft beads</a></div><div class="paper-tags"><a href="rheology-360d.html">rheology</a></div></td>
+<td>Shunsuke Saita et al.</td>
+<td><a href="http://arxiv.org/abs/2511.18002">2511.18002</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.02219.html">Dual Cross-Linked Hydrogels: Linear Rheology and Fractional Calculus Modeling</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Agniva Dutta et al.</td>
+<td><a href="http://arxiv.org/abs/2509.02219">2509.02219</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.19464.html">Phase coexistence in thermo-responsive PNIPAM hydrogels triggered by mechanical forces</a></div></td>
+<td>Noy Cohen</td>
+<td><a href="http://arxiv.org/abs/2512.19464">2512.19464</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.19748.html">On the chemo-thermo-mechanics of constrained reactive mixtures of solids</a></div></td>
+<td>Alberto Salvadori et al.</td>
+<td><a href="http://arxiv.org/abs/2512.19748">2512.19748</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.13220.html">Experimental design of a millifluidic flow-focusing method for biomimetic nanocellulose and hemicellulose-based biopolymer fibres</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Moisy Amélie et al.</td>
+<td><a href="http://arxiv.org/abs/2512.13220">2512.13220</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.12614.html">A constitutive framework for tension-compression failure asymmetry in soft materials</a></div></td>
+<td>Yogesh C. Chandrashekar et al.</td>
+<td><a href="http://arxiv.org/abs/2512.12614">2512.12614</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.11244.html">Model Reduction of Multicellular Communication Systems via Singular Perturbation: Sender Receiver Systems</a></div></td>
+<td>Taishi Kotsuka et al.</td>
+<td><a href="http://arxiv.org/abs/2512.11244">2512.11244</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.09326.html">Translating Chirality into Multidirectional Motion through Broadband Chiroptical MXenes</a></div></td>
+<td>Wookjin Jung et al.</td>
+<td><a href="http://arxiv.org/abs/2512.09326">2512.09326</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.06685.html">Surface energy-driven crumpling transition in a thin sheet under compression</a></div></td>
+<td>Aashna Chawla et al.</td>
+<td><a href="http://arxiv.org/abs/2512.06685">2512.06685</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2502.01355.html">Origin of slow earthquake statistics in low-friction soft granular shear</a></div></td>
+<td>Yuto Sasaki et al.</td>
+<td><a href="http://arxiv.org/abs/2502.01355">2502.01355</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.16862.html">Subtleties of UV-crosslinking in microfluidic particle fabrication: UV dosage and intensity matter</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Sabrina Marnoto et al.</td>
+<td><a href="http://arxiv.org/abs/2508.16862">2508.16862</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.19089.html">Self-organized homogenization of flow networks</a></div></td>
+<td>Julien Bouvard et al.</td>
+<td><a href="http://arxiv.org/abs/2410.19089">2410.19089</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.19198.html">Three-Dimensional Anatomical Data Generation Based on Artificial Neural Networks</a></div><div class="paper-tags"><a href="generative-model-360d.html">generative-model</a></div></td>
+<td>Ann-Sophia Müller et al.</td>
+<td><a href="http://arxiv.org/abs/2511.19198">2511.19198</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.16794.html">Hierarchical Bayesian constitutive model selection for high-strain-rate soft material characterization</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Victor Sanchez et al.</td>
+<td><a href="http://arxiv.org/abs/2511.16794">2511.16794</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.11858.html">Mechanosensitive polymer matrices of biologically-relevant compliance based on upconverting nanoparticles</a></div><div class="paper-tags"><a href="composites-360d.html">composites</a> · <a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Cindy H. Shi et al.</td>
+<td><a href="http://arxiv.org/abs/2511.11858">2511.11858</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.09520.html">Photo-Switchable Cross-Linking in Polymer Gels: Effects on Surface Creasing and Network Relaxation during Swelling</a></div></td>
+<td>Alyssa VanZanten et al.</td>
+<td><a href="http://arxiv.org/abs/2511.09520">2511.09520</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.08490.html">A Supervised Autonomous Resection and Retraction Framework for Transurethral Enucleation of the Prostatic Median Lobe</a></div></td>
+<td>Mariana Smith et al.</td>
+<td><a href="http://arxiv.org/abs/2511.08490">2511.08490</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.08918.html">When and How Ultrasound Enhances Nanoparticle Diffusion in Hydrogels: A Stick-and-Release Mechanism</a></div><div class="paper-tags"><a href="coarse-grained-360d.html">coarse-grained</a></div></td>
+<td>Pablo M. Blanco et al.</td>
+<td><a href="http://arxiv.org/abs/2508.08918">2508.08918</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.16586.html">Reciprocal swimming in viscoelastic granular hydrogels</a></div></td>
+<td>Hongyi Xiao et al.</td>
+<td><a href="http://arxiv.org/abs/2510.16586">2510.16586</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.13490.html">Molecularly imprinted nanopores for multiplexed sensing, release, and in-edge computing</a></div></td>
+<td>Ali Douaki et al.</td>
+<td><a href="http://arxiv.org/abs/2510.13490">2510.13490</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.10686.html">A Bioinspired Aquatic Machine Mimicking Water Caltrop</a></div><div class="paper-tags"><a href="mechanical-properties-360d.html">mechanical-properties</a></div></td>
+<td>Yuanquan Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2510.10686">2510.10686</a></td>
+</tr>
+</tbody></table>

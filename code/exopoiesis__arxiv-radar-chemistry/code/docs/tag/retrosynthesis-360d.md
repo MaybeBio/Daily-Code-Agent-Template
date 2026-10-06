@@ -1,0 +1,540 @@
+---
+layout: page
+title: "retrosynthesis (360d)"
+current_tag: retrosynthesis
+current_window: 360d
+---
+
+<header class="tag-header">
+  <h1>retrosynthesis — 360d</h1>
+  <span class="paper-count">87 papers</span>
+  <nav class="window-nav"><a href="retrosynthesis-7d.html">7d</a> <a href="retrosynthesis-30d.html">30d</a> <a href="retrosynthesis-90d.html">90d</a> <strong>360d</strong> <a href="retrosynthesis-all.html">all</a></nav>
+  <a class="back-link" href="../">← all tags</a>
+</header>
+
+<table class="papers">
+<thead><tr><th>Date</th><th>Title</th><th>Authors</th><th>arXiv</th></tr></thead>
+<tbody>
+<tr class="paper">
+<td>2026-09-28</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.35571.html">Representation Alignment as a Bottleneck in LLM-Based Retrosynthesis Planning</a></div></td>
+<td>Hyunwoo Yoo et al.</td>
+<td><a href="http://arxiv.org/abs/2609.35571">2609.35571</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.33603.html">ViCoR: Reliable Molecular Structure Extraction via Spatially Aligned Verification and Executable Revision</a></div></td>
+<td>Yujian Yuan et al.</td>
+<td><a href="http://arxiv.org/abs/2609.33603">2609.33603</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.15096.html">OpenAI4S: Code as Action, Science as Sessions</a></div><div class="paper-tags"><a href="catalysis-360d.html">catalysis</a> · <a href="molecular-dynamics-360d.html">molecular-dynamics</a></div></td>
+<td>Gongbo Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2609.15096">2609.15096</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.08503.html">TSBench: A physics-grounded benchmark for evaluating LLM understanding of chemical reaction mechanisms</a></div><div class="paper-tags"><a href="string-method-360d.html">string-method</a></div></td>
+<td>Xiaohu Xu et al.</td>
+<td><a href="http://arxiv.org/abs/2609.08503">2609.08503</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.02268.html">Retrosynthesis of Synthetic Media for Explainable AI Provenance Forensics</a></div><div class="paper-tags"><a href="generative-model-360d.html">generative-model</a></div></td>
+<td>Yijie Lin et al.</td>
+<td><a href="http://arxiv.org/abs/2609.02268">2609.02268</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.01816.html">Video2Reaction: Training Foundation Video Models to Predict Audience Reaction</a></div></td>
+<td>Sidong Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2609.01816">2609.01816</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.27429.html">Mechanistic Reaction Prediction via Discrete Flow Matching on Graph-Structured Electron Occupation</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Nguyen Xuan-Vu et al.</td>
+<td><a href="http://arxiv.org/abs/2608.27429">2608.27429</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.25392.html">Interpretable physics-informed retrieval-augmented generation language model for end-to-end inorganic crystal synthesis planning</a></div><div class="paper-tags"><a href="materials-discovery-360d.html">materials-discovery</a></div></td>
+<td>Wei-Jian Jiang et al.</td>
+<td><a href="http://arxiv.org/abs/2608.25392">2608.25392</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.03525.html">MinerU.Chem: A High-Precision System for Optical Chemical Structure and Reaction Recognition</a></div><div class="paper-tags"><a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Haote Yang et al.</td>
+<td><a href="http://arxiv.org/abs/2608.03525">2608.03525</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.18940.html">Training Chemical Plausibility-Aware Large Language Models for Single-Step Retrosynthesis</a></div></td>
+<td>Bogdan Zagribelnyy et al.</td>
+<td><a href="http://arxiv.org/abs/2608.18940">2608.18940</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.16111.html">RetroMPA: A Molecular Property-Aware Auxiliary Framework for Enhancing Retrosynthesis Prediction</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Mianzhi Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2608.16111">2608.16111</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-26</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.23634.html">Variational-Ising-Attention (VIA):TailoredAttentionMattersfor Science</a></div></td>
+<td>Rui Wang</td>
+<td><a href="http://arxiv.org/abs/2607.23634">2607.23634</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.20589.html">Evaluating the Effectiveness of Persona Simulation in Opinion Prediction with GPT-4.1</a></div></td>
+<td>Sarah Y. Li et al.</td>
+<td><a href="http://arxiv.org/abs/2607.20589">2607.20589</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.14512.html">RetroAgent: Harnessing LLMs to Search Over Structured Memory for Agentic Retrosynthesis Planning</a></div></td>
+<td>Yanqiao Zhu et al.</td>
+<td><a href="http://arxiv.org/abs/2607.14512">2607.14512</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.12771.html">Learning Mechanistic Reasoning for Chemical Reactions with Large Language Models</a></div><div class="paper-tags"><a href="chemical-llm-360d.html">chemical-llm</a> · <a href="generative-model-360d.html">generative-model</a></div></td>
+<td>Xingyu Dang et al.</td>
+<td><a href="http://arxiv.org/abs/2607.12771">2607.12771</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.08403.html">Game Theory Driven Multi-Agent Framework Mitigates Language Model Hallucination</a></div></td>
+<td>Runzhe Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2607.08403">2607.08403</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.06875.html">Video2Reaction: Mapping Video to Audience Reaction Distribution in the Wild</a></div></td>
+<td>Trang Nguyen et al.</td>
+<td><a href="http://arxiv.org/abs/2607.06875">2607.06875</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.07708.html">Accurate, Interdisciplinary and Transparent Structure-property Understanding with Deep Native Structural Reasoning</a></div><div class="paper-tags"><a href="materials-science-360d.html">materials-science</a></div></td>
+<td>Chen Tang et al.</td>
+<td><a href="http://arxiv.org/abs/2607.07708">2607.07708</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.04688.html">URSA: Chemistry-Aware Benchmark for Utilitarian Retrosynthesis Assessment</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Bogdan Zagribelnyy et al.</td>
+<td><a href="http://arxiv.org/abs/2607.04688">2607.04688</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.01061.html">Agentic generation of verifiable rules for deterministic, self-expanding reaction classification</a></div><div class="paper-tags"><a href="generative-model-360d.html">generative-model</a></div></td>
+<td>Daniel Armstrong et al.</td>
+<td><a href="http://arxiv.org/abs/2607.01061">2607.01061</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.24184.html">Project Ariadne: Prompt-Conditioned Route Generation for Synthesis Planning</a></div></td>
+<td>Anton Morgunov et al.</td>
+<td><a href="http://arxiv.org/abs/2606.24184">2606.24184</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.23745.html">JEDEL: Zero-Shot DNA-Encoded Library Design for Early-Stage Drug Discovery</a></div><div class="paper-tags"><a href="protein-ligand-360d.html">protein-ligand</a></div></td>
+<td>Zygimantas Jocys et al.</td>
+<td><a href="http://arxiv.org/abs/2606.23745">2606.23745</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.12113.html">Augmenting Molecular Language Models with Local $n$-gram Memory</a></div><div class="paper-tags"><a href="molecular-llm-360d.html">molecular-llm</a></div></td>
+<td>Xinni Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2606.12113">2606.12113</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.07181.html">RETROSPECT: RETROsynthesis via Sequential Prediction, and Chemically Transformed-ranking</a></div><div class="paper-tags"><a href="dft-360d.html">dft</a></div></td>
+<td>Raja Sekhar Pappala et al.</td>
+<td><a href="http://arxiv.org/abs/2606.07181">2606.07181</a></td>
+</tr>
+<tr class="paper">
+<td>2026-06-02</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2606.03660.html">From Answers to States: Verifiable Process-Level Evaluation of Chemical Reasoning in Large Language Models</a></div><div class="paper-tags"><a href="molecular-generation-360d.html">molecular-generation</a></div></td>
+<td>Hongyu Guo et al.</td>
+<td><a href="http://arxiv.org/abs/2606.03660">2606.03660</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-23</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.24428.html">Representation-Guided Discrete Molecular Graph Retrosynthesis</a></div><div class="paper-tags"><a href="molecular-representation-360d.html">molecular-representation</a></div></td>
+<td>Jiahai Huang et al.</td>
+<td><a href="http://arxiv.org/abs/2605.24428">2605.24428</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.22287.html">SciCore-Mol: Augmenting Large Language Models with Pluggable Molecular Cognition Modules</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="molecular-generation-360d.html">molecular-generation</a></div></td>
+<td>Yuxuan Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2605.22287">2605.22287</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.21420.html">HiRes: Inspectable Precedent Memory for Reaction Condition Recommendation</a></div><div class="paper-tags"><a href="catalysis-360d.html">catalysis</a></div></td>
+<td>Shreyas Vinaya Sathyanarayana et al.</td>
+<td><a href="http://arxiv.org/abs/2605.21420">2605.21420</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.13101.html">Margin-calibrated Classifier Guidance for Property-driven Synthesis Planning</a></div></td>
+<td>Najwa Laabid et al.</td>
+<td><a href="http://arxiv.org/abs/2605.13101">2605.13101</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.12736.html">ConRetroBert: EMA Stabilized Dual Encoders for Template-Based Single-Step Retrosynthesis</a></div></td>
+<td>Mohammad Jahid Ibna Basher et al.</td>
+<td><a href="http://arxiv.org/abs/2605.12736">2605.12736</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.07521.html">From Feasible to Practical: Pareto-Optimal Synthesis Planning</a></div></td>
+<td>Friedrich Hastedt et al.</td>
+<td><a href="http://arxiv.org/abs/2605.07521">2605.07521</a></td>
+</tr>
+<tr class="paper">
+<td>2026-05-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2605.01822.html">Molecular Representations for Large Language Models</a></div><div class="paper-tags"><a href="molecular-representation-360d.html">molecular-representation</a></div></td>
+<td>Nicholas T. Runcie et al.</td>
+<td><a href="http://arxiv.org/abs/2605.01822">2605.01822</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.21569.html">ChemAmp: Amplified Chemistry Tools via Composable Agents</a></div><div class="paper-tags"><a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Zhucong Li et al.</td>
+<td><a href="http://arxiv.org/abs/2505.21569">2505.21569</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.05722.html">Teaching Language Models Mechanistic Explainability Through MechSMILES</a></div><div class="paper-tags"><a href="catalysis-360d.html">catalysis</a></div></td>
+<td>Théo A. Neukomm et al.</td>
+<td><a href="http://arxiv.org/abs/2512.05722">2512.05722</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.16671.html">Deep learning directed synthesis of fluid ferroelectric materials</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="gnn-360d.html">gnn</a></div></td>
+<td>Charles Parton-Barr et al.</td>
+<td><a href="http://arxiv.org/abs/2512.16671">2512.16671</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.13471.html">Computational framework for multistep metabolic pathway design</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Peter Zhiping Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2604.13471">2604.13471</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.11540.html">A collaborative agent with two lightweight synergistic models for autonomous crystal materials research</a></div><div class="paper-tags"><a href="catalysis-360d.html">catalysis</a> · <a href="materials-science-360d.html">materials-science</a> · <a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Tongyu Shi et al.</td>
+<td><a href="http://arxiv.org/abs/2604.11540">2604.11540</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.06603.html">Scientific Knowledge-driven Decoding Constraints Improving the Reliability of LLMs</a></div></td>
+<td>Maotian Ma et al.</td>
+<td><a href="http://arxiv.org/abs/2604.06603">2604.06603</a></td>
+</tr>
+<tr class="paper">
+<td>2026-04-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2604.05075.html">MMORF: A Multi-agent Framework for Designing Multi-objective Retrosynthesis Planning Systems</a></div></td>
+<td>Frazier N. Baker et al.</td>
+<td><a href="http://arxiv.org/abs/2604.05075">2604.05075</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-31</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.29723.html">Reinforced Reasoning for End-to-End Retrosynthetic Planning</a></div><div class="paper-tags"><a href="molecular-representation-360d.html">molecular-representation</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Chenyang Zuo et al.</td>
+<td><a href="http://arxiv.org/abs/2603.29723">2603.29723</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-16</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2506.04439.html">RETRO SYNFLOW: Discrete Flow Matching for Accurate and Diverse Single-Step Retrosynthesis</a></div><div class="paper-tags"><a href="monte-carlo-360d.html">monte-carlo</a></div></td>
+<td>Robin Yadav et al.</td>
+<td><a href="http://arxiv.org/abs/2506.04439">2506.04439</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.15686.html">Life cycle assessment for all organic chemicals</a></div></td>
+<td>Shaohan Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2603.15686">2603.15686</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.12666.html">RetroReasoner: A Reasoning LLM for Strategic Retrosynthesis Prediction</a></div><div class="paper-tags"><a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Hanbum Ko et al.</td>
+<td><a href="http://arxiv.org/abs/2603.12666">2603.12666</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.03517.html">MMAI Gym for Science: Training Liquid Foundation Models for Drug Discovery</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="molecular-generation-360d.html">molecular-generation</a> · <a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Maksim Kuznetsov et al.</td>
+<td><a href="http://arxiv.org/abs/2603.03517">2603.03517</a></td>
+</tr>
+<tr class="paper">
+<td>2026-03-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.07543.html">MSP-LLM: A Unified Large Language Model Framework for Complete Material Synthesis Planning</a></div><div class="paper-tags"><a href="materials-discovery-360d.html">materials-discovery</a></div></td>
+<td>Heewoong Noh et al.</td>
+<td><a href="http://arxiv.org/abs/2602.07543">2602.07543</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.13136.html">Order Matters in Retrosynthesis: Structure-aware Generation via Reaction-Center-Guided Discrete Flow Matching</a></div></td>
+<td>Chenguang Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2602.13136">2602.13136</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.13419.html">Protect$^*$: Steerable Retrosynthesis through Neuro-Symbolic State Encoding</a></div></td>
+<td>Shreyas Vinaya Sathyanarayana et al.</td>
+<td><a href="http://arxiv.org/abs/2602.13419">2602.13419</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.10404.html">Modular Multi-Task Learning for Chemical Reaction Prediction</a></div></td>
+<td>Jiayun Pang et al.</td>
+<td><a href="http://arxiv.org/abs/2602.10404">2602.10404</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-11</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.10476.html">Driving Reaction Trajectories via Latent Flow Matching</a></div></td>
+<td>Yili Shen et al.</td>
+<td><a href="http://arxiv.org/abs/2602.10476">2602.10476</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.10163.html">Beyond SMILES: Evaluating Agentic Systems for Drug Discovery</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="protein-llm-360d.html">protein-llm</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Edward Wijaya</td>
+<td><a href="http://arxiv.org/abs/2602.10163">2602.10163</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2603.02215.html">RxnNano:Training Compact LLMs for Chemical Reaction and Retrosynthesis Prediction via Hierarchical Curriculum Learning</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Ran Li et al.</td>
+<td><a href="http://arxiv.org/abs/2603.02215">2603.02215</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.05793.html">Generalized Path Reweighting and History-Dependent Free Energies</a></div><div class="paper-tags"><a href="enhanced-sampling-360d.html">enhanced-sampling</a> · <a href="free-energy-360d.html">free-energy</a> · <a href="molecular-dynamics-360d.html">molecular-dynamics</a> · <a href="replica-exchange-360d.html">replica-exchange</a></div></td>
+<td>Titus S. van Erp et al.</td>
+<td><a href="http://arxiv.org/abs/2602.05793">2602.05793</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2602.03554.html">When Single Answer Is Not Enough: Rethinking Single-Step Retrosynthesis Benchmarks for LLMs</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Bogdan Zagribelnyy et al.</td>
+<td><a href="http://arxiv.org/abs/2602.03554">2602.03554</a></td>
+</tr>
+<tr class="paper">
+<td>2026-02-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.06356.html">Reaction Prediction via Interaction Modeling of Symmetric Difference Shingle Sets</a></div></td>
+<td>Runhan Shi et al.</td>
+<td><a href="http://arxiv.org/abs/2511.06356">2511.06356</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.15743.html">Materealize: a multi-agent deliberation system for end-to-end material design and synthesis</a></div><div class="paper-tags"><a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Seongmin Kim et al.</td>
+<td><a href="http://arxiv.org/abs/2601.15743">2601.15743</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.16038.html">Grounding Large Language Models in Reaction Knowledge Graphs for Synthesis Retrieval</a></div></td>
+<td>Olga Bunkova et al.</td>
+<td><a href="http://arxiv.org/abs/2601.16038">2601.16038</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.06093.html">Language-Native Materials Processing Design by Lightly Structured Text Database and Reasoning Large Language Model</a></div></td>
+<td>Yuze Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2509.06093">2509.06093</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.15279.html">MolecularIQ: Characterizing Chemical Reasoning Capabilities Through Symbolic Verification on Molecular Graphs</a></div></td>
+<td>Christoph Bartmann et al.</td>
+<td><a href="http://arxiv.org/abs/2601.15279">2601.15279</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2505.21318.html">Beyond Chemical QA: Evaluating LLM&#x27;s Chemical Reasoning with Modular Chemical Operations</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="molecular-generation-360d.html">molecular-generation</a> · <a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Hao Li et al.</td>
+<td><a href="http://arxiv.org/abs/2505.21318">2505.21318</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.03689.html">A Pre-trained Reaction Embedding Descriptor Capturing Bond Transformation Patterns</a></div></td>
+<td>Weiqi Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2601.03689">2601.03689</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.15409.html">FragmentRetro: A Quadratic Retrosynthetic Method Based on Fragmentation Algorithms</a></div></td>
+<td>Yu Shee et al.</td>
+<td><a href="http://arxiv.org/abs/2509.15409">2509.15409</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-06</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.02915.html">ChemBART: A Pre-trained BART Model Assisting Organic Chemistry Analysis</a></div><div class="paper-tags"><a href="monte-carlo-360d.html">monte-carlo</a> · <a href="property-prediction-360d.html">property-prediction</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Kenan Li et al.</td>
+<td><a href="http://arxiv.org/abs/2601.02915">2601.02915</a></td>
+</tr>
+<tr class="paper">
+<td>2026-01-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2601.01943.html">SynRXN: An Open Benchmark and Curated Dataset for Computational Reaction Modeling</a></div><div class="paper-tags"><a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Tieu-Long Phan et al.</td>
+<td><a href="http://arxiv.org/abs/2601.01943">2601.01943</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.19530.html">Learning Continuous Solvent Effects from Transient Flow Data: A Graph Neural Network Benchmark on Catechol Rearrangement</a></div></td>
+<td>Hongsheng Xing et al.</td>
+<td><a href="http://arxiv.org/abs/2512.19530">2512.19530</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2406.04628.html">Projecting Molecules into Synthesizable Chemical Spaces</a></div><div class="paper-tags"><a href="chemical-space-360d.html">chemical-space</a> · <a href="drug-discovery-360d.html">drug-discovery</a> · <a href="generative-model-360d.html">generative-model</a></div></td>
+<td>Shitong Luo et al.</td>
+<td><a href="http://arxiv.org/abs/2406.04628">2406.04628</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.16424.html">Synthelite: Chemist-aligned and feasibility-aware synthesis planning with LLMs</a></div></td>
+<td>Nguyen Xuan-Vu et al.</td>
+<td><a href="http://arxiv.org/abs/2512.16424">2512.16424</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2504.02191.html">A User-Tunable Machine Learning Framework for Step-Wise Synthesis Planning</a></div></td>
+<td>Shivesh Prakash et al.</td>
+<td><a href="http://arxiv.org/abs/2504.02191">2504.02191</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.10770.html">Template-Free Retrosynthesis with Graph-Prior Augmented Transformers</a></div></td>
+<td>Youjun Zhao</td>
+<td><a href="http://arxiv.org/abs/2512.10770">2512.10770</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.13668.html">A Scientific Reasoning Model for Organic Synthesis Procedure Generation</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Guoqing Liu et al.</td>
+<td><a href="http://arxiv.org/abs/2512.13668">2512.13668</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-13</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.12139.html">Layered Monoidal Theories</a></div></td>
+<td>Leo Lobski</td>
+<td><a href="http://arxiv.org/abs/2512.12139">2512.12139</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.10645.html">Trustworthy Retrosynthesis: Eliminating Hallucinations with a Diverse Ensemble of Reaction Scorers</a></div><div class="paper-tags"><a href="generative-model-360d.html">generative-model</a></div></td>
+<td>Michal Sadowski et al.</td>
+<td><a href="http://arxiv.org/abs/2510.10645">2510.10645</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2511.06449.html">FLEX: Continuous Agent Evolution via Forward Learning from Experience</a></div></td>
+<td>Zhicheng Cai et al.</td>
+<td><a href="http://arxiv.org/abs/2511.06449">2511.06449</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.07079.html">Procrustean Bed for AI-Driven Retrosynthesis: A Unified Framework for Reproducible Evaluation</a></div></td>
+<td>Anton Morgunov et al.</td>
+<td><a href="http://arxiv.org/abs/2512.07079">2512.07079</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2508.10967.html">Retro-Expert: Collaborative Reasoning for Interpretable Retrosynthesis</a></div><div class="paper-tags"><a href="reinforcement-learning-360d.html">reinforcement-learning</a></div></td>
+<td>Xinyi Li et al.</td>
+<td><a href="http://arxiv.org/abs/2508.10967">2508.10967</a></td>
+</tr>
+<tr class="paper">
+<td>2025-12-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2512.01507.html">SynthStrategy: Extracting and Formalizing Latent Strategic Insights from LLMs in Organic Chemistry</a></div></td>
+<td>Daniel Armstrong et al.</td>
+<td><a href="http://arxiv.org/abs/2512.01507">2512.01507</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2405.16123.html">Gradient Propagation in Retrosynthetic Space: An Efficient Framework for Synthesis Plan Generation</a></div><div class="paper-tags"><a href="chemical-space-360d.html">chemical-space</a></div></td>
+<td>Chengyang Tian et al.</td>
+<td><a href="http://arxiv.org/abs/2405.16123">2405.16123</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2507.02752.html">SynTwins: A Retrosynthesis-Guided Framework for Synthesizable Molecular Analog Generation</a></div><div class="paper-tags"><a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Shuan Chen et al.</td>
+<td><a href="http://arxiv.org/abs/2507.02752">2507.02752</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.10504.html">Retrosynthesis Planning via Worst-path Policy Optimisation in Tree-structured MDPs</a></div></td>
+<td>Mianchu Wang et al.</td>
+<td><a href="http://arxiv.org/abs/2509.10504">2509.10504</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2503.12602.html">SynLlama: Generating Synthesizable Molecules and Their Analogs with Large Language Models</a></div><div class="paper-tags"><a href="chemical-space-360d.html">chemical-space</a></div></td>
+<td>Kunyang Sun et al.</td>
+<td><a href="http://arxiv.org/abs/2503.12602">2503.12602</a></td>
+</tr>
+<tr class="paper">
+<td>2025-11-05</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.21422.html">ChemFM as a Scaling Law Guided Foundation Model Pre-trained on Informative Chemicals</a></div><div class="paper-tags"><a href="molecular-generation-360d.html">molecular-generation</a> · <a href="molecular-representation-360d.html">molecular-representation</a> · <a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Feiyang Cai et al.</td>
+<td><a href="http://arxiv.org/abs/2410.21422">2410.21422</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2509.01042.html">MatPROV: A Provenance Graph Dataset of Material Synthesis Extracted from Scientific Literature</a></div><div class="paper-tags"><a href="materials-discovery-360d.html">materials-discovery</a> · <a href="materials-science-360d.html">materials-science</a></div></td>
+<td>Hirofumi Tsuruta et al.</td>
+<td><a href="http://arxiv.org/abs/2509.01042">2509.01042</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.16588.html">Copy-Augmented Representation for Structure Invariant Template-Free Retrosynthesis</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="molecular-generation-360d.html">molecular-generation</a> · <a href="molecular-representation-360d.html">molecular-representation</a></div></td>
+<td>Jiaxi Zhuang et al.</td>
+<td><a href="http://arxiv.org/abs/2510.16588">2510.16588</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.16590.html">Atom-anchored LLMs speak Chemistry: A Retrosynthesis Demonstration</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a></div></td>
+<td>Alan Kai Hassen et al.</td>
+<td><a href="http://arxiv.org/abs/2510.16590">2510.16590</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2501.12434.html">Retro3D: A 3D-aware Template-free Method for Enhancing Retrosynthesis via Molecular Conformer Information</a></div></td>
+<td>Jiaxi Zhuang et al.</td>
+<td><a href="http://arxiv.org/abs/2501.12434">2501.12434</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.12245.html">MoRA: On-the-fly Molecule-aware Low-Rank Adaptation Framework for LLM-based Multi-Modal Molecular Assistant</a></div><div class="paper-tags"><a href="drug-discovery-360d.html">drug-discovery</a> · <a href="property-prediction-360d.html">property-prediction</a></div></td>
+<td>Tao Yin et al.</td>
+<td><a href="http://arxiv.org/abs/2510.12245">2510.12245</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-12</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2410.21341.html">Retrieval-Retro: Retrieval-based Inorganic Retrosynthesis with Expert Knowledge</a></div><div class="paper-tags"><a href="materials-discovery-360d.html">materials-discovery</a></div></td>
+<td>Heewoong Noh et al.</td>
+<td><a href="http://arxiv.org/abs/2410.21341">2410.21341</a></td>
+</tr>
+<tr class="paper">
+<td>2025-10-10</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2510.09226.html">Prime Implicant Explanations for Reaction Feasibility Prediction</a></div></td>
+<td>Klaus Weinbauer et al.</td>
+<td><a href="http://arxiv.org/abs/2510.09226">2510.09226</a></td>
+</tr>
+</tbody></table>

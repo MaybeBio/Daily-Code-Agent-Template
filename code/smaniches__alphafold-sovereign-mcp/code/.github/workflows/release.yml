@@ -1,0 +1,358 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+      - "v*.*.*-*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to release (e.g. v1.1.0-rc1)"
+        required: true
+        type: string
+      dry_run:
+        description: "Resolve, build, and verify only — skip every privileged or externally mutating job (provenance, signing, GitHub release, PyPI, MCP Registry)"
+        required: false
+        type: boolean
+        default: false
+
+permissions: {}
+
+jobs:
+  # Resolve the release tag once, before any build or privileged publication.
+  # Every source-reading job consumes the resulting immutable commit SHA, and
+  # every privileged job consumes the single canonical dry_run output below.
+  resolve_release:
+    name: Resolve release identity
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      tag: ${{ steps.resolve.outputs.tag }}
+      sha: ${{ steps.resolve.outputs.sha }}
+      dry_run: ${{ steps.dry_run.outputs.dry_run }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      # Canonical dry_run. On tag pushes the `inputs` context does not exist,
+      # so INPUT_DRY_RUN renders empty and the script resolves false — an
+      # ordinary tag release always publishes. Only an explicit
+      # workflow_dispatch dry_run=true resolves true. The event-name switch
+      # lives in scripts/resolve_dry_run.sh, never in ad-hoc YAML string
+      # comparisons, and fails closed on any state outside its truth table.
+      - name: Resolve canonical dry_run
+        id: dry_run
+        env:
+          INPUT_DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          dry_run="$(bash scripts/resolve_dry_run.sh "$GITHUB_EVENT_NAME" "$INPUT_DRY_RUN")"
+          echo "dry_run=$dry_run" >> "$GITHUB_OUTPUT"
+          echo "canonical dry_run: $dry_run (event: $GITHUB_EVENT_NAME)"
+      - name: Resolve tag to immutable commit
+        id: resolve
+        shell: bash
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          git fetch --force --tags origin
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            tag="$INPUT_TAG"
+          else
+            tag="$GITHUB_REF_NAME"
+          fi
+          tag="${tag#refs/tags/}"
+          sha="$(bash scripts/resolve_release_tag.sh "$tag")"
+          bash scripts/verify_release_context.sh "$tag" "$sha"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "release identity: refs/tags/$tag -> $sha"
+
+  # Build wheel + sdist from the exact commit resolved above.
+  build:
+    name: Build distribution
+    needs: resolve_release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      hashes: ${{ steps.hash.outputs.hashes }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.resolve_release.outputs.sha }}
+      - name: Verify build checkout identity
+        env:
+          EXPECTED_SHA: ${{ needs.resolve_release.outputs.sha }}
+        run: |
+          set -euo pipefail
+          actual_sha="$(git rev-parse HEAD)"
+          if [[ "$actual_sha" != "$EXPECTED_SHA" ]]; then
+            echo "::error::build checkout drift: expected $EXPECTED_SHA, got $actual_sha"
+            exit 1
+          fi
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          # Exact uv pin for the AF-03 release path — the version the
+          # GitHub-runner Release Path Proof executed with. Keep in lockstep
+          # with ci.yml release-path-proof and requirements/release-tools.in.
+          version: "0.12.3"
+      - name: Set up Python 3.12 (release-runner interpreter)
+        run: uv python install 3.12
+      # The exact hash-locked release-tool closure (requirements/release-tools.txt,
+      # resolved against Python 3.12) supplies the PEP 517 frontend and the
+      # hatchling backend; the build runs with isolation disabled so the backend
+      # version is the verified pin, not a float resolved at build time.
+      - name: Install hash-locked release tooling and verify tool versions
+        run: bash scripts/install_release_tooling.sh --python "$(uv python find 3.12)"
+      - name: Build sdist + wheel (no build isolation, exactly one wheel)
+        run: bash scripts/build_release_dist.sh
+      - name: Show artefacts
+        run: ls -la dist/
+      - name: Generate SHA-256 hashes
+        id: hash
+        run: |
+          set -euo pipefail
+          cd dist
+          # base64 of "<sha256>  <filename>" lines, per slsa-framework convention.
+          # Hash first, encode second: a sha256sum failure must fail this step
+          # rather than attest a silently partial subject list.
+          subjects="$(sha256sum *.tar.gz *.whl)"
+          echo "hashes=$(printf '%s\n' "$subjects" | base64 -w0)" >> "$GITHUB_OUTPUT"
+      - name: Upload artefacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+
+  # SLSA L3 build provenance (in-toto attestation).
+  # Externally mutating: signs via keyless OIDC and records to the public
+  # Rekor transparency log, so it is gated on the canonical dry_run output.
+  # The `== 'false'` form fails closed — a missing or malformed output skips
+  # the job rather than running it.
+  provenance:
+    needs: [resolve_release, build]
+    if: needs.resolve_release.outputs.dry_run == 'false'
+    permissions:
+      actions: read
+      id-token: write
+      contents: write
+    # IMPORTANT: the SLSA generic generator reusable workflow MUST be referenced by a
+    # semantic-version TAG. It self-verifies its own ref as refs/tags/vX.Y.Z
+    # and fails ("Invalid ref ... Expected ref of the form refs/tags/vX.Y.Z")
+    # if pinned by commit SHA. Do NOT let an OpenSSF Scorecard "pin actions by
+    # hash" pass rewrite this to a SHA. Tag v2.1.0 == commit
+    # f7dd8c54c2067bafc12ca7a55595d5ee9b75204a.
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.1.0
+    with:
+      base64-subjects: "${{ needs.build.outputs.hashes }}"
+      provenance-name: "alphafold-sovereign-mcp.intoto.jsonl"
+      upload-assets: false
+
+  # SBOM (CycloneDX + SPDX). The CycloneDX document is generated from the
+  # exact built wheel installed into a dedicated Python 3.12 environment by
+  # the hash-locked cyclonedx-py, the wheel's SHA-256 is bound into the SBOM
+  # root component, and the binding is independently verified plus proven to
+  # fail closed under artifact substitution — the same scripts the
+  # unprivileged PR proof job (ci.yml release-path-proof) executes pre-merge.
+  sbom:
+    needs: [resolve_release, build]
+    name: Generate SBOM (CycloneDX + SPDX)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.resolve_release.outputs.sha }}
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: dist
+          path: dist/
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          # Exact uv pin for the AF-03 release path — the version the
+          # GitHub-runner Release Path Proof executed with. Keep in lockstep
+          # with ci.yml release-path-proof and requirements/release-tools.in.
+          version: "0.12.3"
+      - name: Set up Python 3.12 (release-runner interpreter)
+        run: uv python install 3.12
+      - name: Install hash-locked release tooling and verify tool versions
+        run: bash scripts/install_release_tooling.sh --python "$(uv python find 3.12)"
+      - name: Generate CycloneDX from the exact wheel environment and bind wheel SHA-256
+        run: bash scripts/generate_release_sbom.sh --python "$(uv python find 3.12)"
+      - name: Independently verify SBOM root vs wheel identity and digest
+        run: .release-tools/bin/python scripts/verify_sbom_binding.py sbom.cyclonedx.json dist/
+      - name: Negative SBOM/wheel substitution tests (must fail closed)
+        run: bash scripts/verify_sbom_negative.sh sbom.cyclonedx.json dist/ --python .release-tools/bin/python
+      - name: Generate SPDX JSON
+        uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+        with:
+          path: dist/
+          format: spdx-json
+          output-file: sbom.spdx.json
+      - name: Upload SBOMs
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: sboms
+          path: |
+            sbom.cyclonedx.json
+            sbom.spdx.json
+          retention-days: 7
+
+  # Publish to PyPI via Trusted Publishing (OIDC).
+  # Externally mutating: uploads immutable artifacts to the public index.
+  # Gated on canonical dry_run (fail-closed `== 'false'` form).
+  publish-pypi:
+    needs: [resolve_release, build, provenance, sbom]
+    if: needs.resolve_release.outputs.dry_run == 'false'
+    name: Publish to PyPI (Trusted Publisher)
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/alphafold-sovereign-mcp/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: dist
+          path: dist/
+      - name: Publish wheel + sdist to PyPI
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # release/v1
+        with:
+          packages-dir: dist/
+          skip-existing: true
+
+  # Sign artefacts and SBOMs with keyless Sigstore and publish the GitHub Release.
+  # Externally mutating: cosign records to the public Rekor transparency log
+  # and the job creates/updates a GitHub Release. Gated on canonical dry_run
+  # (fail-closed `== 'false'` form).
+  publish-github:
+    needs: [resolve_release, build, provenance, sbom, publish-pypi]
+    if: needs.resolve_release.outputs.dry_run == 'false'
+    name: Sign and publish GitHub Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.resolve_release.outputs.sha }}
+      - name: Verify release checkout identity
+        env:
+          EXPECTED_SHA: ${{ needs.resolve_release.outputs.sha }}
+        run: |
+          set -euo pipefail
+          actual_sha="$(git rev-parse HEAD)"
+          if [[ "$actual_sha" != "$EXPECTED_SHA" ]]; then
+            echo "::error::release checkout drift: expected $EXPECTED_SHA, got $actual_sha"
+            exit 1
+          fi
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: dist
+          path: dist/
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: sboms
+          path: sboms/
+      - name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+      - name: Sign distributions and SBOMs with cosign (keyless OIDC)
+        run: |
+          set -euo pipefail
+          for f in dist/*.tar.gz dist/*.whl sboms/sbom.cyclonedx.json sboms/sbom.spdx.json; do
+            cosign sign-blob --yes "$f" --bundle "${f}.sigstore"
+          done
+      - name: Create or upload to GitHub release (idempotent)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.resolve_release.outputs.tag }}
+        run: |
+          set -euo pipefail
+          ASSETS=( dist/*.tar.gz dist/*.whl dist/*.sigstore sboms/sbom.cyclonedx.json sboms/sbom.spdx.json sboms/*.sigstore )
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; uploading assets with --clobber."
+            gh release upload "$TAG" "${ASSETS[@]}" --clobber
+          else
+            echo "Creating release $TAG."
+            PRERELEASE=""
+            if [[ "$TAG" == *-* ]]; then PRERELEASE="--prerelease"; fi
+            gh release create "$TAG" \
+              --verify-tag \
+              --title "AlphaFold Sovereign MCP $TAG" \
+              --notes-file CHANGELOG.md \
+              $PRERELEASE \
+              "${ASSETS[@]}"
+          fi
+
+  # Publish server.json to the official MCP Registry after PyPI is available.
+  # Externally mutating: writes to the public MCP Registry. Gated on
+  # canonical dry_run (fail-closed `== 'false'` form).
+  publish-mcp-registry:
+    name: Publish to MCP Registry
+    needs: [resolve_release, publish-pypi]
+    if: needs.resolve_release.outputs.dry_run == 'false'
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.resolve_release.outputs.sha }}
+      - name: Verify registry checkout identity
+        env:
+          EXPECTED_SHA: ${{ needs.resolve_release.outputs.sha }}
+        run: |
+          set -euo pipefail
+          actual_sha="$(git rev-parse HEAD)"
+          if [[ "$actual_sha" != "$EXPECTED_SHA" ]]; then
+            echo "::error::registry checkout drift: expected $EXPECTED_SHA, got $actual_sha"
+            exit 1
+          fi
+      - name: Install authenticated mcp-publisher
+        run: bash scripts/install_mcp_publisher.sh
+      - name: Authenticate to MCP Registry (GitHub OIDC)
+        run: ./mcp-publisher login github-oidc
+      - name: Publish server.json to MCP Registry
+        run: ./mcp-publisher publish
+
+  # Dispatch the post-publish read-back verifier with the released tag once
+  # PyPI and the GitHub Release both exist. verify-published-release.yml has
+  # no `release:` trigger of its own, and a GITHUB_TOKEN-authored release or
+  # tag never fans out to other workflows, so this explicit dispatch is the
+  # only in-pipeline path that starts it (its scheduled run covers a publish
+  # that never started). Externally mutating (starts another workflow run) and
+  # meaningless on a dry run, which publishes nothing to verify: gated on
+  # canonical dry_run (fail-closed `== 'false'` form). The dispatched file is
+  # the one at the released tag, so re-running this workflow for a tag whose
+  # verifier predates the `tag` input fails here with "Unexpected inputs";
+  # verify such a tag by dispatching verify-published-release.yml from main.
+  dispatch-verify:
+    name: Dispatch published-release verification
+    needs: [resolve_release, publish-pypi, publish-github]
+    if: needs.resolve_release.outputs.dry_run == 'false'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write        # gh workflow run (workflow_dispatch)
+    steps:
+      - name: Dispatch verify-published-release.yml
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # The single resolved tag from resolve_release: verify-published-
+          # release.yml runs at that ref and is told which release to read.
+          VERIFY_TAG: ${{ needs.resolve_release.outputs.tag }}
+        run: |
+          set -euo pipefail
+          gh workflow run verify-published-release.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref "$VERIFY_TAG" \
+            --field tag="$VERIFY_TAG"

@@ -1,0 +1,108 @@
+{
+  "_comment": [
+    "Placeholder list of regulatory guidance index pages for BioLitAgent.",
+    "Each source is polled each run; changes trigger LLM extraction and a",
+    "pending_items.jsonl record.",
+    "",
+    "Fields:",
+    "  id             – stable unique key used in regulatory_state.json",
+    "  agency         – FDA | EMA | ICH (written into output records)",
+    "  name           – human-readable label",
+    "  url            – index page to monitor",
+    "  requires_js    – true if the page is a JS SPA (needs Playwright full render)",
+    "  wait_selector  – CSS selector to wait for before scraping (null = DOMContentLoaded)",
+    "  delay_seconds  – polite inter-request pause",
+    "  enabled        – set false to skip without deleting the entry",
+    "  notes          – free-text context for maintainers"
+  ],
+  "sources": [
+    {
+      "id": "fda-cber-recently-issued",
+      "agency": "FDA",
+      "name": "FDA CBER — Recently Issued Guidance Documents",
+      "url": "https://www.fda.gov/vaccines-blood-biologics/biologics-guidances/recently-issued-guidance-documents",
+      "requires_js": false,
+      "wait_selector": "table, .lcds-table, ul.guidance-list",
+      "delay_seconds": 5,
+      "enabled": true,
+      "notes": "Short-lived 'recently issued' listing — ideal for change detection. Complement with the full biologics-guidances index for historical coverage."
+    },
+    {
+      "id": "fda-cber-biologics-guidances",
+      "agency": "FDA",
+      "name": "FDA CBER — Biologics Guidances (full index)",
+      "url": "https://www.fda.gov/vaccines-blood-biologics/biologics-guidances",
+      "requires_js": false,
+      "wait_selector": "table, .lcds-table",
+      "delay_seconds": 5,
+      "enabled": false,
+      "notes": "DISABLED — this URL returned HTTP 404 when last verified (2026-09-25). The FDA appears to have reorganised the CBER guidance index. The 'fda-cber-recently-issued' source above points to a confirmed working sub-page. Re-enable this entry only after verifying the correct replacement URL at https://www.fda.gov/vaccines-blood-biologics/biologics-guidances or equivalent."
+    },
+    {
+      "id": "fda-search-guidance-documents",
+      "agency": "FDA",
+      "name": "FDA — Search FDA Guidance Documents (all centres)",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents",
+      "requires_js": false,
+      "wait_selector": "#DataTables_Table_0, table.lcds-table",
+      "delay_seconds": 5,
+      "enabled": false,
+      "notes": "Disabled by default — this page is very large and JS-heavy. Enable only if centre-specific pages miss documents. Consider filtering by product type query parameter."
+    },
+    {
+      "id": "ema-scientific-guidelines",
+      "agency": "EMA",
+      "name": "EMA — Scientific Guidelines (human medicines)",
+      "url": "https://www.ema.europa.eu/en/human-regulatory-overview/research-development/scientific-guidelines",
+      "requires_js": false,
+      "wait_selector": "#main-content",
+      "delay_seconds": 6,
+      "enabled": true,
+      "notes": "Drupal 11 server-rendered index page. Contains category links leading to topic sub-pages (e.g., Biological guidelines). Biological guideline documents are not embedded directly on this page."
+    },
+    {
+      "id": "ema-biologicals-guidelines",
+      "agency": "EMA",
+      "name": "EMA — Scientific Guidelines: Biologicals",
+      "url": "https://www.ema.europa.eu/en/human-regulatory-overview/research-and-development/scientific-guidelines/biological-guidelines",
+      "requires_js": false,
+      "wait_selector": "#main-content",
+      "delay_seconds": 6,
+      "enabled": false,
+      "notes": "DISABLED — Verified candidate URL resolves with HTTP 200 (updated from legacy /research-development/ path to /research-and-development/scientific-guidelines/biological-guidelines). Biological guidance documents live on this dedicated sub-page rather than being merged inline into ema-scientific-guidelines. Kept disabled to maintain active source count at 4; enable when dedicated biological monitoring is required."
+    },
+    {
+      "id": "ich-quality-guidelines",
+      "agency": "ICH",
+      "name": "ICH — Quality Guidelines (Q series)",
+      "url": "https://www.ich.org/page/quality-guidelines",
+      "requires_js": true,
+      "wait_selector": "table, .guidelines-table, app-root .content",
+      "delay_seconds": 8,
+      "enabled": true,
+      "notes": "Angular SPA — requires full JS rendering via Playwright. Q series covers pharmaceutical quality (Q6B for biotech, Q11 for drug substance development, etc.)."
+    },
+    {
+      "id": "ich-safety-guidelines",
+      "agency": "ICH",
+      "name": "ICH — Safety Guidelines (S series)",
+      "url": "https://www.ich.org/page/safety-guidelines",
+      "requires_js": true,
+      "wait_selector": "table, .guidelines-table, app-root .content",
+      "delay_seconds": 8,
+      "enabled": true,
+      "notes": "Angular SPA. S series covers preclinical / non-clinical safety testing for biologics."
+    },
+    {
+      "id": "ich-efficacy-guidelines",
+      "agency": "ICH",
+      "name": "ICH — Efficacy Guidelines (E series)",
+      "url": "https://www.ich.org/page/efficacy-guidelines",
+      "requires_js": true,
+      "wait_selector": "table, .guidelines-table, app-root .content",
+      "delay_seconds": 8,
+      "enabled": false,
+      "notes": "Disabled by default — less directly relevant to process/manufacturing focus. Enable for clinical development monitoring."
+    }
+  ]
+}

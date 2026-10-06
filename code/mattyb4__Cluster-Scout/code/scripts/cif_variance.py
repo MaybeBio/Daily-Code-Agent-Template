@@ -1,0 +1,642 @@
+"""Analyze structural variance across multiple AlphaFold CIF predictions.
+
+Compares multiple CIF files for the same protein (e.g., different AlphaFold
+seeds or model versions) by aligning structures and computing per-residue
+positional variance and pLDDT comparison.
+
+Place CIF files in data/cif_comparison/ and run:
+    uv run scripts/cif_variance.py
+    uv run scripts/cif_variance.py --input-dir data/cif_comparison --top 20
+
+Output (in Output/cif_variance/):
+    - variance_plot.png: per-residue variance and pLDDT with PTM/mutation markers
+    - variance_data.tsv: per-residue stats with PTM/mutation annotations
+    - pairwise_rmsd.tsv: RMSD matrix between all structure pairs
+"""
+from __future__ import annotations
+
+import argparse
+import itertools
+import json
+import re
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Callable
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import requests
+from Bio.PDB import MMCIFParser, Superimposer
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from pipeline_utils import (  # noqa: E402
+    AA3TO1,
+    extract_uniprot_from_cif,
+    hotspots_tsv_path,
+    project_root,
+)
+
+PROJECT_ROOT = project_root(__file__)
+DEFAULT_INPUT_DIR = PROJECT_ROOT / "data" / "cif_comparison"
+DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "Output" / "cif_variance"
+# PTM/mutation cross-referencing always needs the ptm-proximity file
+# specifically (its ptms_on_protein column) -- this tool has no --mode of
+# its own to select between the two.
+PTM_TSV = hotspots_tsv_path(PROJECT_ROOT, "ptm-proximity")
+
+_parser = MMCIFParser(QUIET=True)
+
+
+@dataclass
+class VarianceResult:
+    """Everything needed to build the variance figure, without recomputing anything."""
+    rmsd_df: pd.DataFrame
+    data_df: pd.DataFrame
+    shared_positions: list[int]
+    per_residue_variance: np.ndarray
+    plddt_mean: np.ndarray
+    plddt_std: np.ndarray
+    ptm_in_range: list[int]
+    mut_in_range: list[int]
+    uniprot: str
+    cif_files: list[Path]
+    report_range: tuple[int, int] | None = None
+
+
+def load_ca_data(cif_path: Path) -> tuple[list[int], np.ndarray, np.ndarray, list[str]]:
+    """Extract CA atom positions, coordinates, pLDDT scores, and residue names from a CIF.
+
+    Returns (positions, coords, plddts, residue_names) where coords is (N, 3).
+    """
+    structure = _parser.get_structure(cif_path.stem, str(cif_path))
+    chain = list(structure[0].get_chains())[0]
+
+    positions, coords, plddts, res_names = [], [], [], []
+    for residue in chain.get_residues():
+        if residue.get_id()[0] != " ":
+            continue
+        if "CA" not in residue:
+            continue
+        ca = residue["CA"]
+        positions.append(residue.get_id()[1])
+        coords.append(ca.get_vector().get_array())
+        plddts.append(ca.get_bfactor())
+        res_names.append(AA3TO1.get(residue.get_resname(), "X"))
+
+    return positions, np.array(coords), np.array(plddts), res_names
+
+
+def align_to_reference(ref_coords: np.ndarray, mobile_coords: np.ndarray,
+                       ref_positions: list[int], mobile_positions: list[int]
+                       ) -> tuple[np.ndarray, float]:
+    """Align mobile_coords onto ref_coords using shared positions. Returns (aligned_coords, rmsd)."""
+    shared = set(ref_positions) & set(mobile_positions)
+    if len(shared) < 3:
+        return mobile_coords, float("inf")
+
+    ref_idx = [ref_positions.index(p) for p in sorted(shared)]
+    mob_idx = [mobile_positions.index(p) for p in sorted(shared)]
+
+    from Bio.PDB.Atom import Atom
+
+    ref_atoms = []
+    mob_atoms = []
+    for ri, mi in zip(ref_idx, mob_idx):
+        ra = Atom("CA", ref_coords[ri], 0, 0, " ", "CA", 0)
+        ma = Atom("CA", mobile_coords[mi], 0, 0, " ", "CA", 0)
+        ref_atoms.append(ra)
+        mob_atoms.append(ma)
+
+    sup = Superimposer()
+    sup.set_atoms(ref_atoms, mob_atoms)
+
+    # Apply rotation/translation to ALL mobile coordinates
+    all_mob_atoms = []
+    for i in range(len(mobile_coords)):
+        a = Atom("CA", mobile_coords[i], 0, 0, " ", "CA", 0)
+        all_mob_atoms.append(a)
+    sup.apply(all_mob_atoms)
+
+    aligned = np.array([a.get_vector().get_array() for a in all_mob_atoms])
+    return aligned, sup.rms
+
+
+def iterative_average_alignment(
+    all_coords: list[np.ndarray],
+    all_positions: list[list[int]],
+    align_positions: set[int] | None = None,
+    max_iterations: int = 10,
+    convergence: float = 1e-4,
+    log_cb: Callable[[str], None] = print,
+) -> list[np.ndarray]:
+    """Align all structures to an iteratively refined average reference.
+
+    If *align_positions* is given, only those residues are used to compute
+    the superposition — but the resulting rotation/translation is applied
+    to ALL coordinates, so variance can be reported on a wider range.
+    """
+    all_shared = sorted(set.intersection(*(set(p) for p in all_positions)))
+    shared = [p for p in all_shared if p in align_positions] if align_positions else all_shared
+    n_structs = len(all_coords)
+
+    # Index maps for extracting shared positions from each structure
+    idx_maps = [{p: j for j, p in enumerate(positions)} for positions in all_positions]
+
+    def extract_shared(coords, idx_map):
+        return np.array([coords[idx_map[p]] for p in shared])
+
+    # Initial alignment: everything to structure 0
+    aligned = [c.copy() for c in all_coords]
+    for i in range(1, n_structs):
+        aligned[i], _ = align_to_reference(aligned[0], aligned[i],
+                                           all_positions[0], all_positions[i])
+
+    for iteration in range(max_iterations):
+        # Compute average of shared positions
+        shared_stack = np.array([extract_shared(aligned[i], idx_maps[i]) for i in range(n_structs)])
+        avg_coords = shared_stack.mean(axis=0)
+
+        # Re-align each structure to the average
+        new_aligned = []
+        for i in range(n_structs):
+            shared_mobile = extract_shared(aligned[i], idx_maps[i])
+
+            from Bio.PDB.Atom import Atom
+            ref_atoms = [Atom("CA", avg_coords[j], 0, 0, " ", "CA", 0) for j in range(len(shared))]
+            mob_atoms = [Atom("CA", shared_mobile[j], 0, 0, " ", "CA", 0) for j in range(len(shared))]
+
+            sup = Superimposer()
+            sup.set_atoms(ref_atoms, mob_atoms)
+
+            all_mob = [Atom("CA", aligned[i][j], 0, 0, " ", "CA", 0) for j in range(len(aligned[i]))]
+            sup.apply(all_mob)
+            new_aligned.append(np.array([a.get_vector().get_array() for a in all_mob]))
+
+        # Check convergence: has the average moved?
+        new_shared = np.array([extract_shared(new_aligned[i], idx_maps[i]) for i in range(n_structs)])
+        new_avg = new_shared.mean(axis=0)
+        shift = np.sqrt(((new_avg - avg_coords) ** 2).sum(axis=1).mean())
+
+        aligned = new_aligned
+        if shift < convergence:
+            log_cb(f"  Converged after {iteration + 1} iteration(s) (shift={shift:.6f} A)")
+            break
+    else:
+        log_cb(f"  Reached max iterations ({max_iterations}), shift={shift:.6f} A")
+
+    return aligned
+
+
+def compute_pairwise_rmsd(all_coords: list[np.ndarray], all_positions: list[list[int]],
+                          names: list[str]) -> pd.DataFrame:
+    """Compute RMSD between every pair of structures after alignment."""
+    n = len(all_coords)
+    rmsd_matrix = np.zeros((n, n))
+
+    for i, j in itertools.combinations(range(n), 2):
+        _, rmsd = align_to_reference(all_coords[i], all_coords[j],
+                                     all_positions[i], all_positions[j])
+        rmsd_matrix[i, j] = rmsd
+        rmsd_matrix[j, i] = rmsd
+
+    return pd.DataFrame(rmsd_matrix, index=names, columns=names).round(3)
+
+
+def load_ptm_and_mutation_positions(uniprot: str) -> tuple[set[int], set[int]]:
+    """Load PTM site positions and mutation positions from the pipeline's intermediate TSV."""
+    ptm_positions: set[int] = set()
+    mutation_positions: set[int] = set()
+
+    if not PTM_TSV.exists():
+        return ptm_positions, mutation_positions
+
+    df = pd.read_csv(PTM_TSV, sep="\t", dtype=str, keep_default_na=False)
+    rows = df[df["uniprot_id"] == uniprot]
+    if rows.empty:
+        return ptm_positions, mutation_positions
+
+    row = rows.iloc[0]
+
+    for token in str(row.get("ptms_on_protein", "")).split(";"):
+        m = re.search(r"([A-Z])(\d+)", token.strip())
+        if m:
+            ptm_positions.add(int(m.group(2)))
+
+    for token in str(row.get("mutations_on_protein", "")).split(";"):
+        m = re.search(r"([A-Z])(\d+)([A-Z*])", token.strip())
+        if m:
+            mutation_positions.add(int(m.group(2)))
+
+    return ptm_positions, mutation_positions
+
+
+def resolve_uniprot(cif_files: list[Path], uniprot: str | None = None,
+                     gene: str | None = None) -> str | None:
+    """Resolve a UniProt ID: explicit arg > CIF metadata > gene lookup against
+    the pipeline's intermediate TSV. Returns None if none of those resolve.
+    """
+    resolved = uniprot or ""
+    if not resolved and cif_files:
+        resolved = extract_uniprot_from_cif(cif_files[0]) or ""
+
+    if not resolved and gene and PTM_TSV.exists():
+        df_lookup = pd.read_csv(PTM_TSV, sep="\t", dtype=str, keep_default_na=False)
+        gene_rows = df_lookup[df_lookup["gene"].str.upper() == gene.upper()]
+        if not gene_rows.empty:
+            resolved = gene_rows.iloc[0]["uniprot_id"]
+
+    return resolved or None
+
+
+def fetch_uniprot_sequence(accession: str) -> str | None:
+    """Fetch a UniProt entry's canonical sequence as a plain string via the REST API."""
+    resp = requests.get(f"https://rest.uniprot.org/uniprotkb/{accession}.fasta", timeout=15)
+    if resp.status_code != 200:
+        return None
+    lines = resp.text.strip().split("\n")
+    return "".join(lines[1:])
+
+
+DEFAULT_SEEDS = list(range(1, 11))
+
+
+def build_alphafold_seed_json(sequence: str, base_name: str, seeds: list[int] = DEFAULT_SEEDS) -> list[dict]:
+    """Build an AlphaFold Server (alphafoldserver.com) batch-upload JSON: one
+    SEPARATE job per entry in *seeds*, each requesting a single prediction of
+    *sequence* with its own seed -- uploading it produces one job (and one
+    CIF) per seed, ready to drop straight into this tool's input folder for a
+    same-protein variance comparison.
+    """
+    return [
+        {
+            "name": f"{base_name}_seed{seed}",
+            "modelSeeds": [seed],
+            "sequences": [
+                {"proteinChain": {"sequence": sequence, "count": 1}},
+            ],
+        }
+        for seed in seeds
+    ]
+
+
+def generate_alphafold_seed_json(
+    input_dir: Path,
+    output_dir: Path = DEFAULT_OUTPUT_DIR,
+    uniprot: str | None = None,
+    gene: str | None = None,
+    seeds: list[int] = DEFAULT_SEEDS,
+    log_cb: Callable[[str], None] = print,
+) -> Path:
+    """Resolve a UniProt ID (same rules as run_variance_analysis), fetch its
+    canonical sequence from UniProt, and write an AlphaFold Server batch JSON
+    of one job per seed.
+
+    Raises ValueError if no UniProt ID can be resolved, its sequence can't be
+    fetched, or *seeds* is empty.
+    """
+    if not seeds:
+        raise ValueError("seeds must contain at least one entry.")
+
+    input_dir = Path(input_dir)
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    cif_files = sorted(input_dir.glob("*.cif")) if input_dir.is_dir() else []
+    resolved_uniprot = resolve_uniprot(cif_files, uniprot, gene)
+    if not resolved_uniprot:
+        raise ValueError(
+            "Could not resolve a UniProt ID -- provide a UniProt override, a gene "
+            "override matching the pipeline's data, or point the input folder at a "
+            "CIF file with embedded UniProt metadata."
+        )
+    log_cb(f"UniProt ID: {resolved_uniprot}")
+
+    log_cb("Fetching canonical sequence from UniProt...")
+    sequence = fetch_uniprot_sequence(resolved_uniprot)
+    if not sequence:
+        raise ValueError(f"Could not fetch a sequence for UniProt ID {resolved_uniprot}.")
+    log_cb(f"Sequence: {len(sequence)} residues")
+
+    base_name = re.sub(r"[^\w-]+", "_", gene or resolved_uniprot).strip("_")
+    payload = build_alphafold_seed_json(sequence, base_name, seeds)
+
+    out_path = output_dir / f"{base_name}_seeds{seeds[0]}-{seeds[-1]}.json"
+    out_path.write_text(json.dumps(payload, indent=2))
+    log_cb(f"Wrote {len(payload)} AlphaFold Server jobs to {out_path}")
+    return out_path
+
+
+def run_variance_analysis(
+    input_dir: Path,
+    output_dir: Path = DEFAULT_OUTPUT_DIR,
+    top: int = 10,
+    range_: tuple[int, int] | None = None,
+    align_range: tuple[int, int] | None = None,
+    uniprot: str | None = None,
+    gene: str | None = None,
+    log_cb: Callable[[str], None] = print,
+) -> VarianceResult:
+    """Run the CIF structural variance analysis and return everything needed to plot it.
+
+    Raises ValueError if fewer than 2 CIF files are found in input_dir.
+    """
+    input_dir = Path(input_dir)
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    cif_files = sorted(input_dir.glob("*.cif"))
+    if len(cif_files) < 2:
+        raise ValueError(f"Need at least 2 CIF files in {input_dir}, found {len(cif_files)}")
+
+    log_cb(f"Found {len(cif_files)} CIF files in {input_dir}")
+
+    resolved_uniprot = resolve_uniprot(cif_files, uniprot, gene) or ""
+    if resolved_uniprot:
+        log_cb(f"UniProt ID: {resolved_uniprot}")
+    else:
+        log_cb("Warning: no UniProt ID — PTM/mutation cross-referencing will be skipped.")
+        log_cb("  Use --uniprot or --gene to provide it.")
+
+    # Load all structures
+    all_positions, all_coords, all_plddts, all_names = [], [], [], []
+    file_names = []
+    for cif in cif_files:
+        log_cb(f"  Loading {cif.name}...")
+        positions, coords, plddts, res_names = load_ca_data(cif)
+        all_positions.append(positions)
+        all_coords.append(coords)
+        all_plddts.append(plddts)
+        all_names.append(res_names)
+        file_names.append(cif.stem)
+
+    # Determine alignment range (stable core) vs reporting range
+    resolved_align_range = align_range or range_
+    report_range = range_
+
+    if resolved_align_range:
+        a_start, a_end = resolved_align_range
+        align_set = {p for pos_list in all_positions for p in pos_list
+                     if a_start <= p <= a_end}
+        log_cb(f"\nAlignment range: residues {a_start}-{a_end}")
+    else:
+        align_set = None
+        log_cb("\nAlignment range: all residues")
+
+    # Iterative alignment using only the alignment residues
+    log_cb("Aligning all structures to iterative average reference...")
+    aligned_coords = iterative_average_alignment(all_coords, all_positions,
+                                                  align_positions=align_set, log_cb=log_cb)
+
+    # Apply reporting range filter AFTER alignment
+    rng_start = rng_end = None
+    if report_range:
+        rng_start, rng_end = report_range
+        log_cb(f"Reporting range: residues {rng_start}-{rng_end}")
+        for i in range(len(all_positions)):
+            mask = [(rng_start <= p <= rng_end) for p in all_positions[i]]
+            all_positions[i] = [p for p, keep in zip(all_positions[i], mask) if keep]
+            aligned_coords[i] = aligned_coords[i][mask]
+            all_plddts[i] = all_plddts[i][mask]
+            all_names[i] = [n for n, keep in zip(all_names[i], mask) if keep]
+
+    # Compute pairwise RMSD (on aligned + filtered coordinates)
+    log_cb("\nComputing pairwise RMSD matrix...")
+    rmsd_df = compute_pairwise_rmsd(aligned_coords, all_positions, file_names)
+    rmsd_path = output_dir / "pairwise_rmsd.tsv"
+    rmsd_df.to_csv(rmsd_path, sep="\t")
+    log_cb(f"  Saved to {rmsd_path}")
+    log_cb(rmsd_df.to_string())
+
+    # Compute per-residue variance and pLDDT stats
+    shared_positions = sorted(set.intersection(*(set(p) for p in all_positions)))
+    log_cb(f"\n{len(shared_positions)} shared residue positions"
+           + (f" in reporting range {rng_start}-{rng_end}" if report_range else ""))
+
+    # Build aligned coordinate arrays for shared positions
+    coord_stack = []
+    plddt_stack = []
+
+    for i in range(len(aligned_coords)):
+        idx_map = {p: j for j, p in enumerate(all_positions[i])}
+        c = np.array([aligned_coords[i][idx_map[p]] for p in shared_positions])
+        l = np.array([all_plddts[i][idx_map[p]] for p in shared_positions])
+        coord_stack.append(c)
+        plddt_stack.append(l)
+
+    # Residue names from reference
+    first_idx_map = {p: j for j, p in enumerate(all_positions[0])}
+    res_name_list = [all_names[0][first_idx_map[p]] for p in shared_positions]
+
+    coord_stack = np.array(coord_stack)   # (n_structures, n_residues, 3)
+    plddt_stack = np.array(plddt_stack)   # (n_structures, n_residues)
+
+    # Per-residue positional variance = mean squared deviation of each residue's position
+    mean_coords = coord_stack.mean(axis=0)  # (n_residues, 3)
+    deviations = coord_stack - mean_coords  # (n_structures, n_residues, 3)
+    per_residue_variance = (deviations ** 2).sum(axis=2).mean(axis=0)  # (n_residues,)
+
+    # pLDDT stats
+    plddt_mean = plddt_stack.mean(axis=0)
+    plddt_std = plddt_stack.std(axis=0)
+
+    # Cross-reference PTMs and mutations
+    ptm_positions, mutation_positions = load_ptm_and_mutation_positions(resolved_uniprot)
+    if ptm_positions:
+        log_cb(f"Found {len(ptm_positions)} PTM sites and {len(mutation_positions)} mutation sites")
+    else:
+        log_cb("No PTM/mutation data found (run pipeline step 1 first for cross-referencing)")
+
+    shared_set = set(shared_positions)
+    ptm_in_range = [p for p in ptm_positions if p in shared_set]
+    mut_in_range = [p for p in mutation_positions if p in shared_set]
+    log_cb(f"  {len(ptm_in_range)} PTM sites and {len(mut_in_range)} mutation sites in plotted range")
+
+    # Build per-residue data table
+    rows = []
+    for idx, pos in enumerate(shared_positions):
+        rows.append({
+            "position": pos,
+            "residue": res_name_list[idx],
+            "positional_variance": round(float(per_residue_variance[idx]), 4),
+            "plddt_mean": round(float(plddt_mean[idx]), 2),
+            "plddt_std": round(float(plddt_std[idx]), 2),
+            "is_ptm_site": "Yes" if pos in ptm_positions else "",
+            "is_mutation_site": "Yes" if pos in mutation_positions else "",
+        })
+    data_df = pd.DataFrame(rows)
+
+    # Save data
+    data_path = output_dir / "variance_data.tsv"
+    data_df.to_csv(data_path, sep="\t", index=False)
+    log_cb(f"\nPer-residue data saved to {data_path}")
+
+    # Summary stats
+    avg_variance = per_residue_variance.mean()
+    log_cb(f"\nProtein-wide average positional variance: {avg_variance:.4f} A^2")
+
+    top_n = min(top, len(data_df))
+    top_var = data_df.nlargest(top_n, "positional_variance")
+    log_cb(f"\nTop {top_n} most variable residues:")
+    log_cb(top_var.to_string(index=False))
+
+    return VarianceResult(
+        rmsd_df=rmsd_df,
+        data_df=data_df,
+        shared_positions=shared_positions,
+        per_residue_variance=per_residue_variance,
+        plddt_mean=plddt_mean,
+        plddt_std=plddt_std,
+        ptm_in_range=ptm_in_range,
+        mut_in_range=mut_in_range,
+        uniprot=resolved_uniprot,
+        cif_files=cif_files,
+        report_range=report_range,
+    )
+
+
+def build_variance_figure(result: VarianceResult, fig=None):
+    """Build the variance plot from a VarianceResult. Uses an injected Figure if given
+    (for GUI embedding), otherwise creates one via plt.subplots (for standalone use).
+    """
+    if fig is None:
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 8))
+    else:
+        ax1, ax2 = fig.subplots(2, 1)
+
+    shared_positions = result.shared_positions
+    positions_arr = np.array(shared_positions)
+    per_residue_variance = result.per_residue_variance
+    plddt_mean = result.plddt_mean
+    plddt_std = result.plddt_std
+    ptm_in_range = result.ptm_in_range
+    mut_in_range = result.mut_in_range
+
+    # Top panel: positional variance
+    ax1.plot(positions_arr, per_residue_variance, linewidth=0.8, color="#3a86ff", alpha=0.8)
+    ax1.fill_between(positions_arr, per_residue_variance, alpha=0.2, color="#3a86ff")
+
+    for pos in ptm_in_range:
+        ax1.axvline(x=pos, color="#2ecc71", alpha=0.3, linewidth=0.8)
+    for pos in mut_in_range:
+        ax1.axvline(x=pos, color="#e74c3c", alpha=0.3, linewidth=0.8)
+
+    if ptm_in_range or mut_in_range:
+        ax1.plot([], [], color="#2ecc71", linewidth=2, label=f"PTM site ({len(ptm_in_range)})")
+        ax1.plot([], [], color="#e74c3c", linewidth=2, label=f"Mutation site ({len(mut_in_range)})")
+
+    ax1.set_xlabel("Residue Position", fontsize=12)
+    ax1.set_ylabel("Positional Variance (A^2)", fontsize=12)
+    ax1.set_xlim(min(shared_positions) - 1, max(shared_positions) + 1)
+    ax1.set_title(f"Per-Residue Structural Variance ({len(result.cif_files)} structures"
+                  + (f", {result.uniprot})" if result.uniprot else ")"), fontsize=14)
+    ax1.legend(loc="upper right", fontsize=10)
+    ax1.grid(True, alpha=0.3)
+
+    # Bottom panel: pLDDT mean ± std
+    ax2.plot(positions_arr, plddt_mean, linewidth=1, color="#f39c12")
+    ax2.fill_between(positions_arr, plddt_mean - plddt_std, plddt_mean + plddt_std,
+                     alpha=0.25, color="#f39c12")
+
+    for pos in ptm_in_range:
+        ax2.axvline(x=pos, color="#2ecc71", alpha=0.3, linewidth=0.8)
+    for pos in mut_in_range:
+        ax2.axvline(x=pos, color="#e74c3c", alpha=0.3, linewidth=0.8)
+
+    ax2.set_xlabel("Residue Position", fontsize=12)
+    ax2.set_ylabel("pLDDT (mean +/- std)", fontsize=12)
+    ax2.set_xlim(min(shared_positions) - 1, max(shared_positions) + 1)
+    ax2.set_title("AlphaFold Confidence (pLDDT)", fontsize=14)
+    ax2.set_ylim(0, 100)
+    ax2.grid(True, alpha=0.3)
+
+    fig.tight_layout()
+    return fig
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Analyze structural variance across multiple AlphaFold CIF predictions."
+    )
+    parser.add_argument(
+        "--input-dir", default=str(DEFAULT_INPUT_DIR),
+        help=f"Directory containing CIF files to compare (default: {DEFAULT_INPUT_DIR.name})",
+    )
+    parser.add_argument(
+        "--output-dir", default=str(DEFAULT_OUTPUT_DIR),
+        help=f"Output directory (default: {DEFAULT_OUTPUT_DIR.name})",
+    )
+    parser.add_argument(
+        "--top", type=int, default=10,
+        help="Number of top variable residues to report (default: 10)",
+    )
+    parser.add_argument(
+        "--range", nargs=2, type=int, default=None, metavar=("START", "END"),
+        help="Restrict reported output to residue positions START-END (e.g. --range 0 630)",
+    )
+    parser.add_argument(
+        "--align-range", nargs=2, type=int, default=None, metavar=("START", "END"),
+        help="Use only these residues for structural alignment (e.g. --align-range 0 630). "
+             "Defaults to --range if not specified. Useful for excluding disordered regions "
+             "from alignment while still reporting their variance.",
+    )
+    parser.add_argument(
+        "--uniprot", default=None,
+        help="UniProt accession for PTM/mutation cross-referencing (auto-detected from CIF if possible)",
+    )
+    parser.add_argument(
+        "--gene", default=None,
+        help="Gene symbol — used to look up UniProt ID from the pipeline's intermediate data",
+    )
+    parser.add_argument(
+        "--generate-seed-json", action="store_true",
+        help="Instead of running variance analysis, resolve the protein (same "
+             "--uniprot/--gene/--input-dir rules) and write an AlphaFold Server "
+             "batch JSON of separate jobs, one per seed (seeds 1-N, see "
+             "--num-seeds), for later variance comparison once the resulting "
+             "CIFs are downloaded.",
+    )
+    parser.add_argument(
+        "--num-seeds", type=int, default=len(DEFAULT_SEEDS),
+        help=f"Number of separate AlphaFold Server jobs to request with "
+             f"--generate-seed-json, one per seed 1-N (default: {len(DEFAULT_SEEDS)}).",
+    )
+    args = parser.parse_args()
+
+    if args.generate_seed_json:
+        if args.num_seeds < 1:
+            sys.exit("Error: --num-seeds must be at least 1.")
+        try:
+            path = generate_alphafold_seed_json(
+                input_dir=Path(args.input_dir), output_dir=Path(args.output_dir),
+                uniprot=args.uniprot, gene=args.gene,
+                seeds=list(range(1, args.num_seeds + 1)),
+            )
+        except ValueError as exc:
+            sys.exit(f"Error: {exc}")
+        print(f"Wrote {path}")
+        return
+
+    try:
+        result = run_variance_analysis(
+            input_dir=Path(args.input_dir),
+            output_dir=Path(args.output_dir),
+            top=args.top,
+            range_=tuple(args.range) if args.range else None,
+            align_range=tuple(args.align_range) if args.align_range else None,
+            uniprot=args.uniprot,
+            gene=args.gene,
+        )
+    except ValueError as exc:
+        sys.exit(f"Error: {exc}")
+
+    fig = build_variance_figure(result)
+    plot_path = Path(args.output_dir) / "variance_plot.png"
+    fig.savefig(plot_path, dpi=150)
+    print(f"Plot saved to {plot_path}")
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()

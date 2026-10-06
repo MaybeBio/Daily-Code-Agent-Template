@@ -1,0 +1,97 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Mypy
+.mypy_cache/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local structure cache (large files - don't commit)
+*.pdb
+structures/
+cache/
+alphafold_cache/
+
+# Development artifacts (local archive)
+_dev_archive/
+*_backup.py
+*.bak
+
+# Temporary commit files
+commit_msg.txt
+*.bat
+
+# Ad-hoc test scripts (use tests/ folder instead)
+test_*.py
+!tests/test_*.py
+!tests/**/test_*.py
+check_*.py
+merge_*.py
+insert_*.py
+*_additions.py
+
+# uv: ephemeral verify env created by CI build job
+.verify-env/
+coverage.xml
+
+# Release-path ephemeral environments and artefacts
+# (created by scripts/install_release_tooling.sh and
+#  scripts/generate_release_sbom.sh in CI and local validation)
+.release-tools/
+.sbom-env/
+sbom.cyclonedx.json
+sbom.spdx.json
+
+# mkdocs build output (deployed to gh-pages via CI)
+site/
+# mkdocs-material social-cards plugin cache (fonts + generated cards)
+.cache/
+
+# benchmark results (one subdir per pinned prompts.jsonl SHA)
+benchmarks/results/*/
+!benchmarks/results/.gitkeep

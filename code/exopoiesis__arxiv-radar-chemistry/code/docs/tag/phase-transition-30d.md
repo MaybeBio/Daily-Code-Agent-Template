@@ -1,0 +1,78 @@
+---
+layout: page
+title: "phase-transition (30d)"
+current_tag: phase-transition
+current_window: 30d
+---
+
+<header class="tag-header">
+  <h1>phase-transition — 30d</h1>
+  <span class="paper-count">10 papers</span>
+  <nav class="window-nav"><a href="phase-transition-7d.html">7d</a> <strong>30d</strong> <a href="phase-transition-90d.html">90d</a> <a href="phase-transition-360d.html">360d</a> <a href="phase-transition-all.html">all</a></nav>
+  <a class="back-link" href="../">← all tags</a>
+</header>
+
+<table class="papers">
+<thead><tr><th>Date</th><th>Title</th><th>Authors</th><th>arXiv</th></tr></thead>
+<tbody>
+<tr class="paper">
+<td>2026-09-27</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.33116.html">Unveiling Lattice Dynamics and a Hidden Structural Transition in the 2D Ferromagnet AgVP$_2$Se$_6$ via Raman Spectroscopy</a></div><div class="paper-tags"><a href="dft-30d.html">dft</a> · <a href="magnetic-properties-30d.html">magnetic-properties</a> · <a href="vdw-correction-30d.html">vdw-correction</a></div></td>
+<td>Thi Hai Yen Pham et al.</td>
+<td><a href="http://arxiv.org/abs/2609.33116">2609.33116</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.29400.html">Thermal quasi-Devil&#x27;s staircase in an anisotropic triangular-lattice Rydberg array</a></div><div class="paper-tags"><a href="monte-carlo-30d.html">monte-carlo</a></div></td>
+<td>Jinghao Cao et al.</td>
+<td><a href="http://arxiv.org/abs/2609.29400">2609.29400</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-21</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.24843.html">Electronic Reconstruction Towards Topological Superconductivity in FeTe</a></div><div class="paper-tags"><a href="band-gap-30d.html">band-gap</a> · <a href="dft-30d.html">dft</a> · <a href="electronic-structure-30d.html">electronic-structure</a></div></td>
+<td>Hongtao Rong et al.</td>
+<td><a href="http://arxiv.org/abs/2609.24843">2609.24843</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-20</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.23621.html">On the statistical theory of strong electrolytes and high-temperature plasmas: New applications of the work by Yukhnovskii and Kelbg II</a></div><div class="paper-tags"><a href="battery-materials-30d.html">battery-materials</a> · <a href="quantum-chemistry-30d.html">quantum-chemistry</a></div></td>
+<td>W. Ebeling et al.</td>
+<td><a href="http://arxiv.org/abs/2609.23621">2609.23621</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.19646.html">Sensitivity of Nucleation Thermodynamics and Kinetics to the Treatment of Long-Range Interactions</a></div><div class="paper-tags"><a href="molecular-dynamics-30d.html">molecular-dynamics</a></div></td>
+<td>Fernanda Sulantay Vargas et al.</td>
+<td><a href="http://arxiv.org/abs/2609.19646">2609.19646</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.20376.html">Pressure-induced electronic and structural evolution of EuIrGe3</a></div><div class="paper-tags"><a href="crystal-structure-30d.html">crystal-structure</a> · <a href="dft-30d.html">dft</a></div></td>
+<td>N. S. Dhami et al.</td>
+<td><a href="http://arxiv.org/abs/2609.20376">2609.20376</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.17270.html">Higher order anharmonicity and polymorphism in the lattice thermal conductivity of transition metal dichalcogenides</a></div><div class="paper-tags"><a href="ab-initio-30d.html">ab-initio</a> · <a href="thermal-properties-30d.html">thermal-properties</a> · <a href="tmd-30d.html">tmd</a></div></td>
+<td>Marta Loletti et al.</td>
+<td><a href="http://arxiv.org/abs/2609.17270">2609.17270</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.09956.html">Strong Impact of Halide Ordering on Structural Phase Transitions in Mixed Perovskites</a></div><div class="paper-tags"><a href="dft-30d.html">dft</a> · <a href="mlip-30d.html">mlip</a> · <a href="molecular-dynamics-30d.html">molecular-dynamics</a> · <a href="monte-carlo-30d.html">monte-carlo</a> · <a href="thermal-properties-30d.html">thermal-properties</a></div></td>
+<td>Felix Uddén et al.</td>
+<td><a href="http://arxiv.org/abs/2609.09956">2609.09956</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.08535.html">Memory Control of Ice Growth During Non-Equilibrium Freezing of Water</a></div><div class="paper-tags"><a href="molecular-dynamics-30d.html">molecular-dynamics</a></div></td>
+<td>Abhigyan Hazarika et al.</td>
+<td><a href="http://arxiv.org/abs/2609.08535">2609.08535</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-08</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.09469.html">High-pressure elastic properties of GeO2 polymorphs up to 120 GPa</a></div><div class="paper-tags"><a href="dft-30d.html">dft</a></div></td>
+<td>Gulshan Kumar et al.</td>
+<td><a href="http://arxiv.org/abs/2609.09469">2609.09469</a></td>
+</tr>
+</tbody></table>

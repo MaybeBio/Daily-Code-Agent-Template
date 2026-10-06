@@ -1,0 +1,232 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jax-md"
+version = "0.2.29"
+description = "Differentiable, Hardware Accelerated, Molecular Dynamics"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE", "LICENSE_SHORT"]
+authors = [
+    {name = "Google", email = "jax-md-dev@google.com"}
+]
+maintainers = [
+    {name = "Google", email = "jax-md-dev@google.com"}
+]
+keywords = [
+    "molecular-dynamics",
+    "jax",
+    "differentiable",
+    "simulation",
+    "physics",
+]
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Software Development",
+    "Topic :: Scientific/Engineering",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+]
+dependencies = [
+    "absl-py",
+    "numpy",
+    # Exclude 0.10.2: https://github.com/jax-ml/jax/issues/39103
+    # JAX 0.11 removes experimental.hijax APIs still used by JAX MD and Flax.
+    "jax>=0.5.0,<0.11,!=0.10.2",
+    "jaxlib>=0.5.0,<0.11,!=0.10.2",
+    "flax",
+    "jraph",
+    "einops",
+    "ml_collections",
+    "e3nn-jax",
+    "equinox",
+    "optax",
+    "frozendict",
+    "pymatgen>=2021.3.4",
+    "typing-extensions>=4.10",  # dataclass_transform, TypeIs
+]
+
+[project.optional-dependencies]
+amber = [
+    "openmm<=8.5.0",
+    "openmmforcefields",
+    "parmed",
+]
+[dependency-groups]
+docs = [
+    "sphinx>=7.2.0",
+    "sphinx-rtd-theme",
+    "sphinx-book-theme",
+    "sphinx-remove-toctrees",
+    "nbsphinx",
+    "sphinx-autodoc-typehints>=1.24.0",
+    "sphinx-copybutton>=0.5.0",
+    "jupytext",
+    "ipykernel",
+    "matplotlib",
+    "seaborn",
+    "ase",
+    "ase-db-backends",
+    "symd",
+    "importlib-resources",
+    "networkx",
+    "tqdm",
+]
+testing = [
+    "pytest",
+    "ase",
+    "netCDF4",
+]
+mace = [
+    "mace_jax @ git+https://github.com/ACEsuit/mace-jax@fe19806 ; python_version >= '3.11'",
+]
+uma = [
+    "torch>=2.0.0",           # Loading PyTorch UMA checkpoints
+    "huggingface_hub",        # Downloading pretrained models
+]
+lint = [
+    "ruff==0.15.7",
+    "ty==0.0.46",
+]
+dev = [
+    {include-group = "lint"},
+    {include-group = "testing"},
+    "pre-commit",
+    "torch>=2.0.0",
+    "e3nn",                   # Exact grid matrix computation
+    "huggingface_hub",
+    "fairchem-core",          # PyTorch reference for comparison tests
+    "setuptools<81",          # pkg_resources (needed by torchtnt)
+]
+
+[project.urls]
+Homepage = "https://github.com/google/jax-md"
+Documentation = "https://arxiv.org/abs/1912.04232"
+Repository = "https://github.com/google/jax-md"
+"Bug Tracker" = "https://github.com/google/jax-md/issues"
+Download = "https://pypi.org/project/jax-md/"
+
+[tool.hatch.build.targets.wheel]
+packages = ["jax_md"]
+exclude = [
+    "jax_md/_nn/uma/Jd.pt",
+    "jax_md/_nn/uma/checkpoints/*.json",
+    "jax_md/_nn/**/*.eqx",
+]
+
+[tool.hatch.build.targets.wheel.shared-data]
+"examples/models/*.pickle" = "examples/models"
+"examples/models/*.png" = "examples/models"
+
+[tool.hatch.build.targets.wheel.force-include]
+"jax_md/_nn/uma/Jd.pt" = "jax_md/_nn/uma/Jd.pt"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "jax_md/_nn/uma/Jd.pt",
+    "jax_md/_nn/uma/checkpoints/*.json",
+    "jax_md/_nn/**/*.eqx",
+]
+
+[tool.hatch.build.targets.sdist.force-include]
+"jax_md/_nn/uma/Jd.pt" = "jax_md/_nn/uma/Jd.pt"
+"jax_md/_nn/uma/checkpoints" = "jax_md/_nn/uma/checkpoints"
+
+[tool.coverage.run]
+source = ["jax_md"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "@abc.abstractmethod",
+    "raise NotImplementedError",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.uv]
+constraint-dependencies = ["pymatgen-core!=2026.7.24"]
+conflicts = [
+    [
+        { group = "dev" },
+        { group = "mace" },
+    ],
+]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.ruff]
+line-length = 80
+target-version = "py310"
+exclude = [
+    "notebooks",
+    "examples",
+    "docs",
+]
+indent-width = 2
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "single"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E402",   # imports not at top of file (jax.config before imports)
+    "E501",   # line too long (handled by formatter)
+    "E731",   # lambda assignment (core jax-md idiom)
+    "E741",   # ambiguous names (l, I are physics symbols here)
+    "F401",   # unused imports (needs __init__ re-export strategy)
+    "F403",   # star imports
+    "F405",   # names used from star imports
+    "F841",   # unused locals (often intentional unpacking)
+    "I001",   # import sorting (one big --fix away)
+    "UP006",  # PEP 585 builtin generics
+    "UP007",  # PEP 604 unions
+    "UP015",  # redundant open() modes
+    "UP032",  # f-string conversions
+    "UP034",  # extraneous parentheses
+    "UP035",  # deprecated typing imports
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["jax_md"]
+
+[tool.ty]
+src = { include = ["jax_md","tests"] }
+
+[tool.ty.environment]
+python-version = "3.10"
+
+[tool.ty.analysis]
+allowed-unresolved-imports = [
+    "mace_jax.**", "torch.**", "fairchem.**", "e3nn.**",
+    "huggingface_hub.**", "openmm.**", "openmmforcefields.**",
+    "parmed.**", "netCDF4.**", "google.colab.**", "IPython.**",
+]
+
+[tool.ty.rules]
+unresolved-attribute = "ignore"
+unused-ignore-comment = "error"

@@ -3,7 +3,7 @@ from datetime import date as _date, timedelta
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts import common  # noqa: E402
 
-COLS = ["repo", "url", "language", "stars", "last_commit", "status", "score", "one_liner"]
+COLS = ["repo", "url", "language", "stars", "last_commit", "score", "one_liner"]
 
 def write_csv(scored, path):
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -12,34 +12,28 @@ def write_csv(scored, path):
         w.writerow(COLS)
         for r in scored:
             w.writerow([r["full_name"], r["url"], r["language"], r["stars"],
-                        r.get("pushed_at", ""), r["status"], r["score"], r["one_liner"]])
+                        r.get("pushed_at", ""), r["score"], r["one_liner"]])
 
 def _row(r):
-    return "| [{0}]({1}) | {2} | {3} | {4} | {5} | {6} | {7} |".format(
+    return "| [{0}]({1}) | {2} | {3} | {4} | {5} | {6} |".format(
         r["full_name"], r["url"], r["language"], r["stars"], r.get("pushed_at", ""),
-        r["status"], r["score"] if r["score"] is not None else "-", r["one_liner"])
+        r["score"] if r["score"] is not None else "-", r["one_liner"])
 
 def _section(heading, rows):
     if not rows:
         return []
     out = [f"## {heading}（{len(rows)}）", "",
-           "| repo | language | stars | last_commit | status | score | one_liner |",
-           "|---|---|---|---|---|---|---|"]
+           "| repo | language | stars | last_commit | score | one_liner |",
+           "|---|---|---|---|---|---|"]
     out += [_row(r) for r in rows]
     out.append("")
     return out
 
 def build_weekly_issue(scored, cfg, start, end):
-    by = {"new": [], "updated": []}
-    for r in scored:
-        by.setdefault(r["status"], []).append(r)
-    for rows in by.values():
-        rows.sort(key=lambda r: (r["score"] is not None, r["score"] or 0), reverse=True)
-    n_new, n_upd = len(by.get("new", [])), len(by.get("updated", []))
-    title = f"\U0001F50D 每周仓库发现 {end} · {n_new} 新增 / {n_upd} 更新"
+    rows = sorted(scored, key=lambda r: (r["score"] is not None, r["score"] or 0), reverse=True)
+    title = f"\U0001F50D 每周仓库发现 {end} · {len(rows)} 个"
     body = [f"# {title}", "", f"- 窗口:{start} → {end}", f"- 课题:{cfg.get('topic','')}", ""]
-    body += _section("新增", by.get("new", []))
-    body += _section("更新", by.get("updated", []))
+    body += _section("候选仓库", rows)
     return title, "\n".join(body) + "\n"
 
 def main():

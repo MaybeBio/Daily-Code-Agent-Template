@@ -15,7 +15,9 @@ def _log_path(date: str, sub: str) -> str:
 def _clean_log(text: str) -> str:
     keep = [ln for ln in text.splitlines()
             if ln.strip() and not ln.startswith(_PREAMBLE)]
-    return "\n".join(keep)
+    # 行尾双空格 = Markdown 硬换行:GitHub 自带该行为,但本地预览器等不认单换行,
+    # 加双空格保证任何渲染器都逐行显示(不会挤成一段)。
+    return "  \n".join(keep)
 
 def _to_web(url: str) -> str:
     url = (url or "").strip()
@@ -105,7 +107,8 @@ def build_daily_issue(repo_table: list[dict], raw_lines: int, cfg: dict, date: s
     sections = []
     for name, _sub in SECTIONS:
         cleaned = _clean_log(logs.get(name, ""))
-        sections += [f"## {name} 原始动态", cleaned or "(无事件)", ""]
+        if cleaned:                          # 空清单整段省略(与 AI4Bio 一致)
+            sections += [f"## {name} 原始动态", cleaned, ""]
     text = "\n".join(prefix + sections) + "\n"
     if len(text) > _MAX_BODY and repo_url:
         text = "\n".join(prefix + _log_links(date, repo_url)) + "\n"

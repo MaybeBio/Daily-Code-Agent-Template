@@ -1,0 +1,50 @@
+base_url: "https://arxiv.paperswithcode.com/api/v0/papers/"
+user_name: "YuzeHao2023"
+repo_name: "daily-arxiv-ai4geo"
+show_authors: True
+show_links: True
+show_badge: True
+max_results: 10
+
+publish_readme: True
+publish_gitpage: True
+publish_wechat: False
+
+# file paths
+json_readme_path: './docs/ai4geo-arxiv-daily.json'
+json_gitpage_path: './docs/ai4geo-arxiv-daily-web.json'
+json_wechat_path: './docs/ai4geo-arxiv-daily-wechat.json'
+
+md_readme_path: 'README.md'
+md_gitpage_path: './docs/index.md'
+md_wechat_path: './docs/wechat.md'
+
+# keywords to search
+keywords:
+    "Seismology & Earthquake AI":
+        filters: ["Seismology", "Earthquake Detection", "Phase Picking", "Seismic Signal Denoising", "Aftershock Forecasting", "Earthquake Localization", "Seismic Event Classification", "Ground Motion Prediction", "Magnitude Prediction", "Seismic Deep Learning"]
+
+    "Geophysical Imaging & Inversion":
+        filters: ["Geophysical Inversion", "Seismic Imaging", "Full Waveform Inversion", "FWI", "Velocity Model Building", "Tomography", "Gravity/Magnetic Inversion", "Electromagnetic Survey", "Physics-Informed Neural Networks", "PINNs"]
+
+    "Remote Sensing & Geological Mapping":
+        filters: ["Remote Sensing", "Earth Observation", "Satellite Imagery", "InSAR", "Ground Deformation", "Change Detection", "Land Cover Classification", "Hyperspectral Imaging", "LiDAR", "UAV Photogrammetry", "Geological Mapping"]
+
+    "Mineral & Energy Resource Exploration":
+        filters: ["Mineral Prospectivity Mapping", "MPM", "Ore Deposit Prediction", "Hydrocarbon Exploration", "Reservoir Characterization", "Well Log Interpretation", "Borehole Logging", "Drill Core Analysis", "Resource Estimation", "Geothermal Energy"]
+
+    "Sedimentology, Stratigraphy & Basin Analysis":
+        filters: ["Sedimentary Facies", "Facies Classification", "Stratigraphic Correlation", "Sequence Stratigraphy", "Depositional Environment", "Basin Modeling", "Digital Rock Physics", "Pore-network Modeling", "Carbonate Systems"]
+
+    "Geohazard Assessment & Prediction":
+        filters: ["Geohazard", "Landslide Susceptibility", "Debris Flow Warning", "Volcanic Activity Monitoring", "Ground Subsidence", "Hazard Mapping", "Risk Assessment", "Early Warning System", "Flood Prediction", "Rockfall Risk"]
+
+    "Hydrogeology & Environmental Geoscience":
+        filters: ["Hydrogeology", "Groundwater Modeling", "Groundwater Level Prediction", "Aquifer Characterization", "Groundwater Contamination", "Porous Media Flow", "Environmental Geoscience", "Spring Discharge Prediction", "Karst Systems"]
+
+    "Petrology & Structural Geology":
+        filters: ["Rock Type Classification", "Mineral Identification", "Petrographic Image Analysis", "Soil Property Prediction", "Fault Detection", "Fracture Characterization", "Structural Modeling", "Rock Strength Prediction", "Tectonics"]
+
+    "Geoscience Foundation Models & Knowledge Graphs":
+        filters: ["Geoscience Foundation Models", "GeoAI", "Geological Knowledge Graphs", "GeoNLP", "Geological Representation Learning", "Cross-Modal Learning", "Self-Supervised Learning", "Physics-Guided Machine Learning", "Geological Ontology"]
+

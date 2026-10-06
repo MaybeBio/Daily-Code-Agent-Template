@@ -1,0 +1,108 @@
+---
+layout: page
+title: "chemical-space (90d)"
+current_tag: chemical-space
+current_window: 90d
+---
+
+<header class="tag-header">
+  <h1>chemical-space — 90d</h1>
+  <span class="paper-count">15 papers</span>
+  <nav class="window-nav"><a href="chemical-space-7d.html">7d</a> <a href="chemical-space-30d.html">30d</a> <strong>90d</strong> <a href="chemical-space-360d.html">360d</a> <a href="chemical-space-all.html">all</a></nav>
+  <a class="back-link" href="../">← all tags</a>
+</header>
+
+<table class="papers">
+<thead><tr><th>Date</th><th>Title</th><th>Authors</th><th>arXiv</th></tr></thead>
+<tbody>
+<tr class="paper">
+<td>2026-10-01</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2610.01714.html">Complex magnetic phase diagrams in Tb$_2$IrAl$_4$Ge$_2$ and Er$_2$IrAl$_4$Ge$_2$</a></div></td>
+<td>Karolina Gornicka et al.</td>
+<td><a href="http://arxiv.org/abs/2610.01714">2610.01714</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-24</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.29105.html">A System-Independent Metadynamics Strategy for Reactive Training Data: Application to Gas-Phase Organic Reactions</a></div><div class="paper-tags"><a href="dft-90d.html">dft</a> · <a href="metadynamics-90d.html">metadynamics</a> · <a href="mlip-90d.html">mlip</a></div></td>
+<td>Wanrun Jiang et al.</td>
+<td><a href="http://arxiv.org/abs/2609.29105">2609.29105</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-15</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.16527.html">QALPA: Property-guided diffusion modeling for efficient exploration of chemical spaces of flexible molecules</a></div><div class="paper-tags"><a href="active-learning-90d.html">active-learning</a> · <a href="diffusion-model-90d.html">diffusion-model</a> · <a href="generative-model-90d.html">generative-model</a> · <a href="molecular-generation-90d.html">molecular-generation</a></div></td>
+<td>Michael Hanna et al.</td>
+<td><a href="http://arxiv.org/abs/2609.16527">2609.16527</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.15136.html">Navigating Sparse Singlet Fission Chemical Space: An Intelligent Generative-Predictive Paradigm</a></div><div class="paper-tags"><a href="dft-90d.html">dft</a> · <a href="drug-discovery-90d.html">drug-discovery</a> · <a href="excited-states-90d.html">excited-states</a></div></td>
+<td>Longfei Lv et al.</td>
+<td><a href="http://arxiv.org/abs/2609.15136">2609.15136</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.16356.html">Exploring Optimal Parameters for Ligand-Based Virtual Screening in Early Drug Discovery</a></div><div class="paper-tags"><a href="drug-discovery-90d.html">drug-discovery</a></div></td>
+<td>Temitope Sobodu et al.</td>
+<td><a href="http://arxiv.org/abs/2609.16356">2609.16356</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-09</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.10099.html">A Systematic Evaluation of Molecule Generation Models for De Novo Drug Design: From Benchmarks to Practical Insights</a></div><div class="paper-tags"><a href="diffusion-model-90d.html">diffusion-model</a> · <a href="drug-discovery-90d.html">drug-discovery</a> · <a href="molecular-representation-90d.html">molecular-representation</a></div></td>
+<td>Xinrui Xu et al.</td>
+<td><a href="http://arxiv.org/abs/2609.10099">2609.10099</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-04</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.04735.html">Training Large Language Models for Small-Molecule Design with Synthetic Task Scaling</a></div><div class="paper-tags"><a href="drug-discovery-90d.html">drug-discovery</a> · <a href="reinforcement-learning-90d.html">reinforcement-learning</a></div></td>
+<td>Frank Hu et al.</td>
+<td><a href="http://arxiv.org/abs/2609.04735">2609.04735</a></td>
+</tr>
+<tr class="paper">
+<td>2026-09-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2609.04432.html">Recovering molecules from coarse-grained beads: free-energy-conditioned generative backmapping across chemical space</a></div><div class="paper-tags"><a href="diffusion-model-90d.html">diffusion-model</a> · <a href="free-energy-90d.html">free-energy</a> · <a href="mlip-90d.html">mlip</a></div></td>
+<td>Luis Itza Vazquez-Salazar et al.</td>
+<td><a href="http://arxiv.org/abs/2609.04432">2609.04432</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-19</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.19121.html">PGFS++: Molecular Property Improvement under Synthesis and Diversity Constraints</a></div><div class="paper-tags"><a href="drug-discovery-90d.html">drug-discovery</a> · <a href="protein-ligand-90d.html">protein-ligand</a> · <a href="reinforcement-learning-90d.html">reinforcement-learning</a></div></td>
+<td>Boqiao Zhang et al.</td>
+<td><a href="http://arxiv.org/abs/2608.19121">2608.19121</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-18</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.18221.html">Automated Assignment and Prediction of Molecules in Astronomical Line Surveys Using Machine-Learning-Based Chemical Embeddings</a></div><div class="paper-tags"><a href="molecular-representation-90d.html">molecular-representation</a></div></td>
+<td>Zachary T. P. Fried et al.</td>
+<td><a href="http://arxiv.org/abs/2608.18221">2608.18221</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-17</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.16644.html">Data-driven discovery and rapid, direct synthesis of MXenes</a></div><div class="paper-tags"><a href="2d-materials-90d.html">2d-materials</a> · <a href="materials-discovery-90d.html">materials-discovery</a></div></td>
+<td>Ali Saffar Shamshirgar et al.</td>
+<td><a href="http://arxiv.org/abs/2608.16644">2608.16644</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-07</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.06956.html">How Molecular Generative Models Organize Molecular Identity</a></div><div class="paper-tags"><a href="generative-model-90d.html">generative-model</a></div></td>
+<td>Raul Ortega-Ochoa et al.</td>
+<td><a href="http://arxiv.org/abs/2608.06956">2608.06956</a></td>
+</tr>
+<tr class="paper">
+<td>2026-08-03</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2608.02688.html">Learning Molecular Representations from Cellular Phenotypes with Structure Preservation</a></div><div class="paper-tags"><a href="drug-discovery-90d.html">drug-discovery</a> · <a href="molecular-representation-90d.html">molecular-representation</a> · <a href="property-prediction-90d.html">property-prediction</a></div></td>
+<td>Xuan Lin et al.</td>
+<td><a href="http://arxiv.org/abs/2608.02688">2608.02688</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-22</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.20194.html">OLEDLM: A Unified Language Model for OLED Molecular Design</a></div><div class="paper-tags"><a href="dft-90d.html">dft</a> · <a href="molecular-generation-90d.html">molecular-generation</a> · <a href="reinforcement-learning-90d.html">reinforcement-learning</a></div></td>
+<td>Fukang Wen et al.</td>
+<td><a href="http://arxiv.org/abs/2607.20194">2607.20194</a></td>
+</tr>
+<tr class="paper">
+<td>2026-07-14</td>
+<td><div class="paper-title"><a class="abstract-popup paper-title-link" href="../abstracts/2607.12488.html">Sample Efficient Generative Optimization for Molecular Design</a></div><div class="paper-tags"><a href="bayesian-optimization-90d.html">bayesian-optimization</a> · <a href="catalysis-90d.html">catalysis</a> · <a href="drug-discovery-90d.html">drug-discovery</a> · <a href="generative-model-90d.html">generative-model</a> · <a href="molecular-generation-90d.html">molecular-generation</a></div></td>
+<td>Sarina Kopf et al.</td>
+<td><a href="http://arxiv.org/abs/2607.12488">2607.12488</a></td>
+</tr>
+</tbody></table>

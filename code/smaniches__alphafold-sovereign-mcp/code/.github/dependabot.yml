@@ -1,0 +1,73 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# Dependabot configuration.
+#
+# Two ecosystems are watched:
+#   - The `uv` ecosystem updates both pyproject.toml and uv.lock natively,
+#     keeping the manifest and the lockfile in sync in a single PR. Covers
+#     the runtime dependencies plus the dev / docs / security / tda extras.
+#   - GitHub Actions used by .github/workflows/*. Action SHAs are pinned via
+#     major-version tags; Dependabot raises a PR when a new tag is published.
+#
+# Schedule: weekly on Mondays at 09:00 UTC.
+#
+# Grouping: minor + patch updates are batched so the solo maintainer sees
+# at most three routine PRs a week (runtime / dev-tooling / actions) instead
+# of one per dependency. MAJOR bumps are deliberately left OUT of every group
+# so they each arrive as their own PR and stand out for manual review.
+#
+# Merge policy: every Dependabot PR requires explicit maintainer review and a
+# manual merge after the required checks pass. No workflow arms auto-merge.
+# Grouping limits review noise; it does not weaken the human approval boundary.
+
+version: 2
+
+updates:
+  - package-ecosystem: uv
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: UTC
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - python
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      # Runtime dependencies that ship to users. Batched for minor + patch;
+      # majors fall out of the group into their own PR for manual review.
+      production-minor-patch:
+        dependency-type: production
+        update-types:
+          - minor
+          - patch
+      # Dev / docs / security / tda tooling. Never ships to users.
+      development-minor-patch:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: UTC
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: chore(ci)
+    groups:
+      # CI actions only run in the build; batched for minor + patch, majors
+      # break out into their own PR for manual review.
+      actions-minor-patch:
+        update-types:
+          - minor
+          - patch

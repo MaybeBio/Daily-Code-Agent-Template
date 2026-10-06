@@ -27,16 +27,36 @@ daily:
 search:
   config: queries/search_repos.yaml
   # GitHub 仓库搜索:多查询并集(逐条查询后按 full_name 去重)。换课题时改这里。
-  # ⚠️ 不要用单条 `A OR B OR C in:字段`(in: 只作用于最后一个词,噪声爆炸),
-  #    也不要用裸 3 字母缩写(IDR/IDP/LLPS 会被 gh 子串命中,如意大利语 "Idrogeologica")。
-  #    每条查询都用「引号短语 + in:name,description,topics」,独立且简单,跨库稳定。
+  # ⚠️ 为什么拆成多条、而不是一条 `A OR B OR C ... in:字段`:
+  #    GitHub 硬限制「每条查询最多 5 个 AND/OR/NOT 运算符」,超过直接报
+  #    "More than five AND / OR / NOT operators were used"。备选短语一多(本项目 8~9 个),
+  #    单条 OR 会被拒绝,只能拆成多条(每条 ≤6 项)各自查询、按 full_name 取并集。
+  #    (AI4Bio 那条 OR 是 5 个词=4 个 OR,恰好卡在上限内;再加一项就会挂。)
+  #    `in:` 是字段限定、OR 是词间逻辑,两者可共存;`in:` 作用于整条查询(与位置无关)。
+  # ⚠️ 每条查询都用「引号短语 + in:name,description,readme,topics」:
+  #    裸词是 AND(单词都出现)而非固定词组,召回翻倍但多是噪声;
+  #    裸 3 字母缩写(IDR/IDP/LLPS)会被子串命中(如 Idris2/iDRAC/"Idrogeologica"),
+  #    且加引号也挡不住子串,故一律避开裸缩写;
+  #    含 readme:召回更高(实测 8 条短语并集 18→192 个候选),契合"宽召回 → 打分过滤";
+  #    代价是每周多 ~174 个候选进 LLM 打分,且多是"README 里顺带提一句"的蹭词噪声
+  #    (awesome 清单、黑洞/天体生物、CVE 复现等)。带 --updated 时间窗后 readme 不会超限
+  #    (单短语约几十~百余条)。想省 LLM 成本时,把 search.queries 里的 readme, 去掉即可。
   queries:
-    - '"intrinsically disordered" in:name,description,topics'
-    - '"disordered protein" in:name,description,topics'
-    - '"disordered proteins" in:name,description,topics'
-    - '"disordered region" in:name,description,topics'
-    - '"disordered regions" in:name,description,topics'
-    - '"biomolecular condensate" in:name,description,topics'
-    - '"biomolecular condensates" in:name,description,topics'
-    - '"phase separation" in:name,description,topics'
-    - 'topic:intrinsically-disordered-protein'
+    - '"intrinsically disordered" in:name,description,readme,topics'
+    - '"disordered protein" in:name,description,readme,topics'
+    - '"disordered proteins" in:name,description,readme,topics'
+    - '"disordered region" in:name,description,readme,topics'
+    - '"disordered regions" in:name,description,readme,topics'
+    - '"biomolecular condensate" in:name,description,readme,topics'
+    - '"biomolecular condensates" in:name,description,readme,topics'
+    - '"phase separation" in:name,description,readme,topics'
+    # topic: 是「仓库标签」精确匹配(非子串),是补充召回最稳的一路。但只能用全称 topic ——
+    # 缩写 topic 被别的含义占满(topic:idp=Identity Provider、topic:idr=印尼盾/Image Data
+    # Resource、topic:idps=入侵检测系统),加进来全是噪声。(具体命中数见 2026-10-06 探测。)
+    - 'topic:intrinsically-disordered-proteins'   # 18
+    - 'topic:intrinsically-disordered-regions'    # 4
+    - 'topic:disordered-proteins'                 # 6
+    - 'topic:protein-disorder'                    # 10
+    - 'topic:biomolecular-condensates'            # 7
+    - 'topic:llps'                                # 8
+    - 'topic:phase-separation'                    # 19(含少量软物质物理,由打分阶段过滤)

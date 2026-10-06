@@ -22,16 +22,6 @@ def data_dir(*parts: str) -> str:
     os.makedirs(d, exist_ok=True)
     return os.path.join(d, parts[-1])
 
-def read_registry() -> dict:
-    path = data_dir("registry.json")
-    if not os.path.exists(path):
-        return {"topic": "", "repos": {}}
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-def write_registry(reg: dict) -> None:
-    dump_json(data_dir("registry.json"), reg)
-
 def load_json(path: str):
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
