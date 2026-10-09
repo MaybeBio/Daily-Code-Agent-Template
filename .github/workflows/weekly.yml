@@ -23,6 +23,7 @@ jobs:
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           LLM_MODEL: ${{ vars.LLM_MODEL }}
+          ZREAD_TOKEN: ${{ secrets.ZREAD_TOKEN }}
       - name: open issue
         run: |
           : > data/latest_issue.txt

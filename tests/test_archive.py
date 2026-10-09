@@ -1,4 +1,4 @@
-import os
+import os, subprocess
 from scripts import archive
 
 def test_threshold_filters_and_sorts():
@@ -38,17 +38,18 @@ def test_run_isolates_clone_failure(monkeypatch, tmp_path):
     archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
                              [{"full_name": "a/b", "score": 8, "one_liner": "x"}])
     out = archive.run({"llm": {"min_score": 5}}, "2026-10-05",
-                      clone=lambda fn, d: False, wiki=lambda s, fn, d: True)
+                      clone=lambda fn, d: False, wiki=lambda s, fn, d: "ok")
     assert out[0]["clone_ok"] is False
-    assert out[0]["wikis"]["deepwiki"] is True   # wiki 仍继续
+    assert out[0]["wikis"]["deepwiki"] == "ok"   # wiki 仍继续
 
 def test_run_isolates_wiki_failure(monkeypatch, tmp_path):
     monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
     archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
                              [{"full_name": "a/b", "score": 8, "one_liner": "x"}])
     out = archive.run({"llm": {"min_score": 5}}, "2026-10-05",
-                      clone=lambda fn, d: True, wiki=lambda s, fn, d: s != "zread")
-    assert out[0]["wikis"] == {"deepwiki": True, "codewiki": True, "zread": False}
+                      clone=lambda fn, d: True,
+                      wiki=lambda s, fn, d: "ok" if s != "zread" else "failed")
+    assert out[0]["wikis"] == {"deepwiki": "ok", "codewiki": "ok", "zread": "failed"}
 
 def test_run_overwrites_existing_dir(monkeypatch, tmp_path):
     monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
@@ -114,7 +115,7 @@ def test_wiki_dest_uses_google_code_wiki_for_codewiki(monkeypatch, tmp_path):
     assert dests["zread"].endswith("zread")
     assert dests["codewiki"].endswith("google_code_wiki")
 
-def test_clone_repo_retries_then_gives_up(monkeypatch, capsys):
+def test_clone_repo_falls_back_to_git_then_gives_up(monkeypatch, capsys):
     calls = []
     def boom(cmd, **kw):
         calls.append(cmd)
@@ -122,8 +123,30 @@ def test_clone_repo_retries_then_gives_up(monkeypatch, capsys):
     monkeypatch.setattr(archive.subprocess, "run", boom)
     monkeypatch.setattr(archive.time, "sleep", lambda s: None)
     assert archive.clone_repo("a/b", "/d") is False
-    assert len(calls) == 3                              # 有界重试
+    assert len(calls) == 6                              # degit 3 次 + git 回退 3 次
+    assert calls[0][0] == "degit" and calls[3][0] == "git"
     assert "[clone failed]" in capsys.readouterr().err  # 不再静默
+
+def test_clone_repo_falls_back_to_git_on_degit_failure(monkeypatch):
+    calls = []
+    def fail_degit(cmd, **kw):
+        calls.append(cmd)
+        if cmd[0] == "degit":
+            raise RuntimeError("degit tarball 404")
+    monkeypatch.setattr(archive.subprocess, "run", fail_degit)
+    monkeypatch.setattr(archive.time, "sleep", lambda s: None)
+    assert archive.clone_repo("a/b", "/d") is True
+    assert calls[-1][:3] == ["git", "clone", "--depth"]
+
+def test_clone_repo_permanent_errors_break_early(monkeypatch):
+    calls = []
+    def boom(cmd, **kw):
+        calls.append(cmd)
+        raise subprocess.CalledProcessError(1, cmd, stderr="404 Not Found")
+    monkeypatch.setattr(archive.subprocess, "run", boom)
+    monkeypatch.setattr(archive.time, "sleep", lambda s: None)
+    assert archive.clone_repo("a/b", "/d") is False
+    assert len(calls) == 2                              # degit 1 + git 1,永久失败不再重试
 
 def test_clone_repo_retries_then_succeeds(monkeypatch):
     n = {"i": 0}
@@ -151,6 +174,44 @@ def test_run_isolates_raising_archive(monkeypatch, tmp_path):
     def raise_clone(fn, dest):
         raise RuntimeError("boom")
     out = archive.run({"llm": {"min_score": 5}}, "2026-10-05", clone=raise_clone,
-                      wiki=lambda s, fn, d: True)
+                      wiki=lambda s, fn, d: "ok")
     assert out[0]["clone_ok"] is False
-    assert out[0]["wikis"] == {"deepwiki": False, "codewiki": False, "zread": False}
+    assert out[0]["wikis"] == {"deepwiki": "failed", "codewiki": "failed", "zread": "failed"}
+
+def test_export_wiki_returns_ok(monkeypatch):
+    monkeypatch.setattr(archive.subprocess, "run", lambda cmd, **kw: None)
+    assert archive.export_wiki("deepwiki", "a/b", "/d") == "ok"
+
+def test_export_wiki_not_indexed(monkeypatch):
+    def boom(cmd, **kw):
+        raise subprocess.CalledProcessError(1, cmd, stderr="404 not indexed")
+    monkeypatch.setattr(archive.subprocess, "run", boom)
+    monkeypatch.setattr(archive.time, "sleep", lambda s: None)
+    assert archive.export_wiki("deepwiki", "a/b", "/d") == "not_indexed"
+
+def test_export_wiki_transient_failed(monkeypatch):
+    def boom(cmd, **kw):
+        raise RuntimeError("net")
+    monkeypatch.setattr(archive.subprocess, "run", boom)
+    monkeypatch.setattr(archive.time, "sleep", lambda s: None)
+    assert archive.export_wiki("deepwiki", "a/b", "/d") == "failed"
+
+def test_export_wiki_zread_submits_when_not_indexed(monkeypatch):
+    def fake(cmd, **kw):
+        if "cp" in cmd:
+            raise subprocess.CalledProcessError(1, cmd, stderr="404 not indexed")
+        return None  # submit 成功
+    monkeypatch.setattr(archive.subprocess, "run", fake)
+    monkeypatch.setattr(archive.time, "sleep", lambda s: None)
+    monkeypatch.setenv("ZREAD_TOKEN", "tok")
+    assert archive.export_wiki("zread", "a/b", "/d") == "submitted"
+
+def test_export_wiki_zread_submit_skipped_without_token(monkeypatch):
+    def fake(cmd, **kw):
+        if "cp" in cmd:
+            raise subprocess.CalledProcessError(1, cmd, stderr="404 not indexed")
+        raise AssertionError("submit 不该被调用")
+    monkeypatch.setattr(archive.subprocess, "run", fake)
+    monkeypatch.setattr(archive.time, "sleep", lambda s: None)
+    monkeypatch.delenv("ZREAD_TOKEN", raising=False)
+    assert archive.export_wiki("zread", "a/b", "/d") == "not_indexed"
