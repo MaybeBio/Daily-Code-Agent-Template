@@ -1,4 +1,5 @@
 import argparse, json, os, shutil
+import datetime as dt
 from urllib.parse import urlparse
 import markdown as md
 import yaml
@@ -14,6 +15,14 @@ def load_config(path):
     if not isinstance(cfg, dict):
         raise ValueError("config must be a YAML mapping")
     return cfg
+
+def window_range(end_date, window_days):
+    """由本周运行日期与 window_days 反推搜索窗口 [start, end]。"""
+    try:
+        d = dt.date.fromisoformat((end_date or "")[:10])
+    except ValueError:
+        return "", ""
+    return (d - dt.timedelta(days=window_days - 1)).isoformat(), d.isoformat()
 
 def site_base_path(site_base_url):
     url = (site_base_url or "").strip()
@@ -89,6 +98,7 @@ def build_site(out_dir, config=None):
     latest_date = records[0]["date"] if records else ""
     this_week = [r for r in records if r["date"] == latest_date] if records else []
     issue_url = load_issue_url(out_dir)
+    window_start, window_end = window_range(latest_date, int(cfg.get("window_days", 7)))
 
     latest_by_repo = {}
     for r in records:
@@ -102,7 +112,8 @@ def build_site(out_dir, config=None):
 
     with open(os.path.join(site_dir, "index.html"), "w", encoding="utf-8") as f:
         f.write(env.get_template("index.html").render(
-            window=latest_date, repos=this_week, issue_url=issue_url, total=len(records)))
+            window_start=window_start, window_end=window_end,
+            repos=this_week, issue_url=issue_url, total=len(records)))
 
     by_date = {}
     for r in records:

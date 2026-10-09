@@ -10,9 +10,37 @@ def card_record(row, card):
             "pushed_at": row.get("pushed_at", ""),
             "score": row["score"], "one_liner": row.get("one_liner", ""), "card": card}
 
-def run(cfg, date, client=None, fetch=None, fetch_tree=None, card_fn=None):
+# README 全文喂给 card,但超大 README(awesome-list 类可上万行)设一个宽松上限,防止撑爆上下文/成本。
+_README_CAP = 30000
+
+def _card_context(row, fetch, fetch_tree, fetch_deps):
+    try:
+        readme = fetch(row["full_name"]) or ""
+    except Exception:
+        readme = ""
+    readme = readme.strip()
+    if len(readme) > _README_CAP:
+        readme = readme[:_README_CAP] + "\n...(README 过长,已截断)"
+    try:
+        tree = fetch_tree(row["full_name"]) or ""
+    except Exception:
+        tree = ""
+    deps = fetch_deps(row["full_name"]) if tree else ""
+    parts = []
+    if readme:
+        parts.append(f"README:\n{readme}")
+    elif (row.get("description") or "").strip():
+        parts.append(f"描述:{row['description'].strip()}")
+    if tree:
+        parts.append(f"目录树:\n{tree}")
+    if deps:
+        parts.append(f"依赖/构建文件:\n{deps}")
+    return "\n\n".join(parts)
+
+def run(cfg, date, client=None, fetch=None, fetch_tree=None, fetch_deps=None, card_fn=None):
     fetch = fetch or gh.fetch_readme
     fetch_tree = fetch_tree or gh.fetch_tree
+    fetch_deps = fetch_deps or gh.fetch_dep_files
     client = client if client is not None else agent.make_client()
     card_fn = card_fn or agent.build_code_card
     prompts = load_prompts(os.path.join(common.ROOT, "prompts.yaml"))
@@ -23,8 +51,8 @@ def run(cfg, date, client=None, fetch=None, fetch_tree=None, card_fn=None):
     keepers = archive.threshold(scored, min_score)
     def work(row):
         try:
-            text = common.repo_text(row, fetch, fetch_tree)  # 与 score 同源:README→描述+树→空
-            if not text:
+            text = _card_context(row, fetch, fetch_tree, fetch_deps)
+            if not text.strip():
                 return card_record(row, "")
             res = card_fn(client, model, prompts, common.topic_brief(cfg), text)
             card = res.get("card", "")

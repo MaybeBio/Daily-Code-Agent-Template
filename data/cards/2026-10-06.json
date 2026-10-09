@@ -1,0 +1,392 @@
+[
+  {
+    "full_name": "KULL-Centre/CALVADOS",
+    "url": "https://github.com/KULL-Centre/CALVADOS",
+    "language": "Python",
+    "stars": 99,
+    "pushed_at": "2026-09-28T20:55:29Z",
+    "score": 10,
+    "one_liner": "CALVADOS 是面向 IDP 的粗粒化隐式溶剂模拟工具，用于预测无序蛋白的液-液相分离行为，与课题高度相关且为可用的代码工具。",
+    "card": "## 是什么\n\nCALVADOS 是一个基于 OpenMM 框架的粗粒化隐式溶剂模拟软件包，专门用于生物分子的模拟，尤其针对固有无序蛋白（IDP）及其相分离行为。它由 KULL-Centre 开发，提供了从单链性质优化到液-液相分离（LLPS）行为预测的完整工具链。\n\n## 亮点\n\n- **粗粒化模型**：采用隐式溶剂粗粒化表示，计算效率高，适合长时程模拟。\n- **相分离预测**：通过优化单链性质，准确预测 IDP 的液-液相分离行为（PNAS 2021）。\n- **多域蛋白支持**：扩展模型支持无序和多域蛋白（Protein Science 2024）。\n- **交互范围调优**：通过调整相互作用范围改进相行为预测（Open Research Europe 2022）。\n- **易用性**：提供 Colab 笔记本（IDRLab.ipynb）和视频教程，方便快速上手。\n- **开源与可复现**：代码托管于 GitHub，并提供 Zenodo 存档和 DOI。\n\n## 为何对本课题有用\n\n本课题聚焦 IDR/IDP 的相分离与凝聚体建模，CALVADOS 正是为此设计的工具：\n- 它直接模拟 IDP 的相分离行为，提供从序列到相图的预测能力。\n- 粗粒化模型适合生成构象系综，分析单链性质与多链凝聚。\n- 支持自定义残基类型和相互作用参数，便于研究特定 IDR 序列。\n- 与 OpenMM 集成，可扩展至更复杂的模拟场景。\n\n## 怎么用\n\n1. **安装**：创建 conda 环境（Python 3.13），安装 OpenMM（GPU 需 cudatoolkit）和依赖，然后通过 pip 安装 CALVADOS。\n2. **快速开始**：使用提供的 Colab 笔记本（IDRLab.ipynb）进行交互式演示。\n3. **运行示例**：参考 `examples` 文件夹中的示例，涵盖单链模拟和相分离计算。\n4. **测试**：运行 `python -m pytest` 验证安装，测试包括势能计算和 RNA 模型键序检查。\n5. **文档**：阅读 arXiv 论文（2504.10408）了解软件架构和示例。"
+  },
+  {
+    "full_name": "idptools/starling",
+    "url": "https://github.com/idptools/starling",
+    "language": "Jupyter Notebook",
+    "stars": 78,
+    "pushed_at": "2026-10-05T20:10:56Z",
+    "score": 10,
+    "one_liner": "STARLING 是一个从序列预测无序蛋白构象系综的扩散模型工具，直接面向 IDR 构象系综生成，与课题高度相关且为可用的代码工具。",
+    "card": "## 是什么\n\nSTARLING 是一个基于序列预测无序蛋白构象系综的工具。它采用潜空间概率去噪扩散模型（latent-space probabilistic denoising diffusion model），为固有无序区域（IDR）生成粗粒化（coarse-grained）的构象系综。由 Holehouse 实验室开发，发表于 *Nature*（2026）。\n\n## 亮点\n\n- **扩散模型**：利用生成式扩散模型，从序列直接预测无序蛋白的构象系综。\n- **高效生成**：在 GPU 和 Apple Silicon 上速度极快，CPU 上也可在数分钟内完成。\n- **完整工具链**：提供命令行工具 `starling` 生成系综，并附带多种文件转换工具（`starling2pdb`、`starling2xtc`、`starling2numpy` 等）。\n- **系综搜索**：内置 FAISS 相似性搜索（`starling-search`），基于系综感知的序列嵌入，可查找具有相似系综性质的序列。\n- **多格式输入**：支持原始序列、FASTA、TSV、`.seq.in` 文件。\n- **可调参数**：支持设置构象数量、离子强度（20/150/300 mM）、DDIM 去噪步数等。\n- **错误处理**：可自动移除物理上不可能的构象并重新生成。\n- **Colab 演示**：提供 Google Colab notebook 便于快速上手。\n\n## 为何对本课题有用\n\n本课题关注 IDR/无序蛋白的构象系综生成与分析。STARLING 正是从序列直接预测无序蛋白构象系综的工具，直接覆盖了“无序蛋白构象系综的生成与分析”这一方向。其输出为粗粒化系综（距离图 + 3D 结构），可用于后续分析（如半径回旋、端到端距离等），且提供系综搜索功能，有助于在序列空间中探索具有相似系综性质的 IDR。\n\n## 怎么用\n\n**安装**（推荐 conda 环境）：\n```bash\nconda create -n starling python=3.11 -y\nconda activate starling\npip install idptools-starling\n```\n\n**生成系综**（命令行）：\n```bash\nstarling <氨基酸序列> -c 400 --outname my_idr -r\n```\n示例（α-突触核蛋白）：\n```bash\nstarling MDVFMKGLSKAKEGVVAAAEKTKQGVAEAAGKTKEGVLYVGSKTKEGVVHGVATVAEKTKEQVTNVGGAVVTGVTAVAQKTVEGAGSIAAATGFVKKDQLGKNEEGAPQEGILEDMPVDPDNEAYEMPSEEGYQDYEPEA --outname synuclein -r\n```\n生成文件：`synuclein.starling`（系综归档）、`synuclein_STARLING.pdb`（拓扑）、`synuclein_STARLING.xtc`（轨迹）。\n\n**常用选项**：\n- `-c`：构象数量（默认 400）\n- `--steps`：DDIM 去噪步数（默认 30）\n- `-d`：设备（`cpu`、`cuda:0`、`mps` 等）\n- `--ionic_strength`：离子强度（20/150/300 mM）\n- `--remove-errors`：移除并替换物理上不可能的构象\n\n**文件转换**：\n- `starling2pdb`：转换为多模型 PDB\n- `starling2xtc`：转换为 PDB + XTC 轨迹\n- `starling2numpy`：导出距离图为 NumPy 数组\n- `starling2info`：查看系综元数据（Rg、端到端距离等）\n\n**序列搜索**：\n```bash\nstarling-search query --seq <序列> --k 20\n```\n可指定 `--index`（默认自动下载预构建索引）、`--sequence-identity-max`、`--length-min` 等过滤条件。\n\n更多细节见 [ReadTheDocs](https://idptools-starling.readthedocs.io) 和 [Colab notebook](https://colab.research.google.com/github/idptools/idpcolab/blob/main/STARLING/STARLING_demo.ipynb)。"
+  },
+  {
+    "full_name": "ZhangGroup-MITChemistry/OpenABC",
+    "url": "https://github.com/ZhangGroup-MITChemistry/OpenABC",
+    "language": "Jupyter Notebook",
+    "stars": 45,
+    "pushed_at": "2026-09-29T19:30:18Z",
+    "score": 10,
+    "one_liner": "OpenABC 是面向生物分子凝聚体粗粒化模拟的 GPU 加速工具包，支持 HPS、MOFF、Mpipi 等无序蛋白相分离力场，与本课题高度相关且为可直接使用的代码工具。",
+    "card": "## 是什么\n\nOpenABC 是一个基于 OpenMM 的 GPU 加速粗粒化分子动力学模拟工具包，专门用于生物分子凝聚体（biomolecular condensates）的模拟。它实现了多种流行的粗粒化力场，包括 HPS（hydropathy scale）模型、MOFF Cα 模型、Mpipi 力场、MRG-CG DNA 模型、SMOG 和 3SPN2 等，覆盖了蛋白质和 DNA 的相分离模拟。用户只需几行 Python 代码即可从单个蛋白质或 DNA 的初始构象出发，搭建凝聚体模拟系统。\n\n## 亮点\n\n- **多力场支持**：内置 HPS（KR/Urry scale）、MOFF、Mpipi、MRG-CG DNA、SMOG、3SPN2 等，适用于不同序列和体系。\n- **简化模拟设置**：通过 `insert_molecules` 工具自动生成多拷贝凝聚体初始构象，无需手动搭建复杂盒子。\n- **GPU 加速**：基于 OpenMM，支持高效模拟，并兼容 advanced sampling 技术（如副本交换）。\n- **粗粒化到全原子转换**：提供工具将粗粒化构象转换为全原子结构，便于后续全原子模拟。\n- **教程与文档**：提供 Jupyter notebook 教程和在线手册，便于上手。\n- **可扩展性**：模块化设计，用户可添加新力场（需编写 parser、model 和势函数项）。\n\n## 为何对本课题有用\n\n本课题聚焦于 IDR/IDP 的相分离与凝聚体模拟。OpenABC 直接针对生物分子凝聚体，其 HPS 和 MOFF 等力场专为无序蛋白的相分离行为设计，能够模拟序列依赖的相分离（如 KR scale 和 Urry scale）。它支持多拷贝蛋白质凝聚体的构建，适合研究 IDR 介导的相分离机制。此外，Mpipi 力场基于物理驱动，对相分离的定量预测精度高，可用于 IDR 序列的相分离倾向分析。工具还支持蛋白质-DNA 混合凝聚体（MOFF+MRG），扩展了 IDR 与核酸互作的研究范围。\n\n## 怎么用\n\n安装：`pip install openabc`（需先安装 OpenMM，推荐 conda 安装）。\n\n基本流程（以 MOFF 模型为例）：\n1. 用 `MOFFParser.from_atomistic_pdb` 解析蛋白质结构（需提供全原子 PDB 和 Cα PDB）。\n2. 用 `insert_molecules` 生成 N 个蛋白质的初始凝聚体构象（指定盒子大小）。\n3. 创建 `MOFFMRGModel` 对象，逐个添加蛋白质分子，然后 `create_system` 和 `add_all_default_forces` 构建 OpenMM 系统。\n4. 运行模拟（可结合 OpenMM 的采样方法）。\n\n详细教程见仓库 `tutorials` 目录，在线手册见 <https://zhanggroup-mitchemistry.github.io/OpenABC/>。"
+  },
+  {
+    "full_name": "idptools/goose",
+    "url": "https://github.com/idptools/goose",
+    "language": "Python",
+    "stars": 28,
+    "pushed_at": "2026-09-02T18:41:57Z",
+    "score": 10,
+    "one_liner": "GOOSE 是专门用于生成和设计无序蛋白(IDR)序列及其变体的 Python 工具包,支持指定物理化学性质、序列优化和互作设计,与课题高度相关且为可用的代码工具。",
+    "card": "## 是什么\n\nGOOSE (Generate disOrdered prOtiens Specifying propErties) 是一个 Python 包，专门用于生成固有无序区（IDR）或 IDR 变体。它由 idptools 组织开发，当前版本为 V0.2.5（2026 年 7 月更新）。GOOSE 的核心目标是让研究者能够方便地、可控地生成具有指定物理化学性质的合成 IDR 序列，以及设计用于验证特定假设的序列变体。\n\n## 亮点\n\n- **多参数可控生成**：可同时指定序列长度、平均疏水性、带电残基比例（FCR）、每残基净电荷（NCPR）、Kappa（相反电荷分布度量）等物理参数，也可指定氨基酸组成比例。\n- **序列优化器（SequenceOptimizer）**：支持针对多种预定义性质进行序列优化，并允许用户自定义优化函数，实现个性化序列设计。\n- **16 种序列变体生成**：提供多种 IDR 变体生成方式，用于测试不同假设。\n- **交互设计**：支持设计具有特定同型或异型相互作用的序列（基于 epsilon 性质），以及匹配线性性质谱（如 NCPR 谱）或相互作用矩阵。\n- **易用性**：提供两个 Colab Notebook 示例，以及多个 Jupyter demo，方便快速上手。\n- **依赖生态**：与 SPARROW（序列分析）、metapredict 等工具协同，形成 IDR 研究工具链。\n\n## 为何对本课题有用\n\n本课题聚焦 IDR/IDP 及其相分离与生物分子凝聚体方向。GOOSE 直接面向 IDR 序列的生成与设计，是这一领域的核心工具之一：\n\n- **序列生成**：可生成具有指定物理化学性质的合成 IDR，用于构象系综模拟、相分离实验或计算建模的输入序列。\n- **变体设计**：通过生成 IDR 变体，可系统研究序列特征（如电荷分布、疏水性）对相分离行为的影响，助力理解 LLPS 的序列决定因素。\n- **优化设计**：序列优化器可用于设计具有特定相互作用倾向的 IDR，为凝聚体建模提供定制序列。\n- **与工具链集成**：与 SPARROW 等分析工具配合，可完成从序列生成到性质预测的完整流程，支持 IDR 介导结合/互作建模。\n\n## 怎么用\n\n**安装**（需 Python 3.9–3.13，且需 C/C++ 编译环境）：\n\n```bash\npip install git+https://github.com/idptools/goose.git\n```\n\n或克隆后本地安装：\n\n```bash\ngit clone https://github.com/idptools/goose.git\ncd goose\npip install .\n```\n\n**使用方式**：\n- 从 Python 中调用 GOOSE 的 API 进行序列生成、变体生成和序列优化。\n- 参考 `/demos` 目录下的 Jupyter Notebook 示例，包括：\n  - `sequence_and_variant_generation.ipynb`：序列和变体生成基础。\n  - `sequence_optimization.ipynb`：基本优化用法。\n  - `custom_optimizer_properties.ipynb`：自定义优化性质。\n  - `generate_sequences_by_interaction.ipynb`：设计相互作用序列。\n  - `epsilon_matrix_variants.ipynb`：基于相互作用矩阵的设计。\n- 也可直接使用两个 Colab Notebook 在线体验。\n\n**文档**：完整文档见 [https://goose.readthedocs.io/en/latest/index.html](https://goose.readthedocs.io/en/latest/index.html)。\n\n**引用**：若使用 GOOSE，请引用其论文（见 README 中的 Nature 链接）。"
+  },
+  {
+    "full_name": "rotskoff-group/idiom",
+    "url": "https://github.com/rotskoff-group/idiom",
+    "language": "Python",
+    "stars": 19,
+    "pushed_at": "2026-10-02T17:11:37Z",
+    "score": 10,
+    "one_liner": "IDiom 是专为固有无序蛋白区域(IDR)训练的自回归蛋白质语言模型,支持 IDR 生成、嵌入提取、微调与可解释性分析,与课题高度相关且为可直接使用的工具。",
+    "card": "## 是什么\n\nIDiom 是一个专门针对固有无序蛋白区域（IDRs）的蛋白质语言模型，基于从 AlphaFold 数据库整理的 54M 个 IDR 数据集 IDiom-DB 训练而成。该模型采用自回归架构，提供 20M、85M 和 300M 三种参数规模。仓库支持 IDR 的生成（无提示或基于侧翼序列条件生成）、嵌入提取、通过监督微调和强化学习进行后训练，以及基于稀疏自编码器（IDiomSAE）的模型可解释性与特征引导。\n\n## 亮点\n\n- **IDR 专用生成**：支持无提示的从头生成，以及基于 N 端和 C 端侧翼蛋白上下文的条件生成，使用 fill-in-the-middle（FIM）格式。\n- **嵌入提取**：可从指定层提取 IDR 的序列级或残基级嵌入，支持 mean、none 和 last 三种池化方式。\n- **后训练能力**：支持监督微调和带自定义奖励的强化学习，便于针对特定任务优化。\n- **可解释性工具**：提供 IDiomSAE 稀疏自编码器，用于分析模型内部特征，并可通过强化学习引导生成。\n- **多规模模型**：提供 20M、85M 和 300M 参数版本，适应不同计算需求。\n\n## 为何对本课题有用\n\n本课题关注 IDR/IDP 的识别、构象系综、相分离建模以及无序蛋白语言模型。IDiom 正是一个面向 IDR 的蛋白质语言模型，可直接用于：\n\n- **IDR 序列生成**：生成新的无序区序列，可用于设计实验或作为模拟输入。\n- **IDR 嵌入提取**：为下游任务（如 IDR 功能预测、互作建模）提供序列表示。\n- **条件生成**：在已知侧翼序列的情况下生成 IDR，有助于研究 IDR 与有序区域的关系。\n- **模型微调与解释**：支持针对特定 IDR 相关任务进行后训练，并通过 SAE 理解模型学到的特征，有助于揭示 IDR 序列-功能关系。\n\n## 怎么用\n\n1. **安装**：\n   ```bash\n   pip install git+https://github.com/rotskoff-group/idiom.git@v1.0.0\n   ```\n\n2. **生成无提示 IDR**：\n   ```python\n   from idiom import IDiom\n   model = IDiom.from_pretrained(\"jxliu2/idiom-300M\")\n   sequences = model.generate_unprompted(n=10)\n   ```\n\n3. **生成条件 IDR**（以 NPM1 为例）：\n   ```python\n   seq = \"MEDSMDMDMSPLRPQNYLFGCELKADKDYHFKVDNDENEHQLSLRTVSLGAGAKDELHIV...\"\n   regen_idrs = model.generate_prompted(seq, idr_start=118, idr_end=259, n=10)\n   ```\n\n4. **提取嵌入**：\n   ```python\n   values, index = model.embed(idr_sequences, layers=[18], pool=\"mean\")[18]\n   ```\n   或从 FASTA 文件提取：\n   ```bash\n   idiom_extract --model jxliu2/idiom-300M --fasta input.fasta --layers 18 --pool mean --out embeddings\n   ```\n\n5. **使用 IDiomSAE**：可加载稀疏自编码器分析模型内部特征，并用于强化学习引导生成（详见 cookbook 示例）。\n\n更多详细工作流和示例见仓库的 `cookbook/` 目录。"
+  },
+  {
+    "full_name": "holehouse-lab/soursop",
+    "url": "https://github.com/holehouse-lab/soursop",
+    "language": "Jupyter Notebook",
+    "stars": 12,
+    "pushed_at": "2026-10-01T15:57:55Z",
+    "score": 10,
+    "one_liner": "SOURSOP 是专为无序蛋白/IDR 构象系综分析设计的 Python 工具包，提供尺度、接触、NMR 可观测量和系综重加权等丰富功能，与课题高度相关且为可直接使用的代码工具。",
+    "card": "## 是什么\n\nSOURSOP 是一个专门用于分析**固有无序蛋白（IDP）和未折叠蛋白模拟轨迹**的 Python 包。它基于 MDTraj 处理轨迹 I/O 和原子表示，并在此基础上添加了面向无序蛋白构象系综的聚合物物理感知分析层。该包由 Pappu 实验室和 Holehouse 实验室联合开发，当前版本为 2.0.x 系列。\n\n## 亮点\n\n- **全局尺寸与形状**：计算回转半径、流体力学半径、末端距、非球形度、圆柱度、伸长率及完整回转张量。\n- **聚合物标度**：内部标度曲线、表观标度指数 ν（带 bootstrap 置信区间）和局部标度异质性。\n- **距离与接触**：残基间/原子间距离图、聚合物标度距离图、接触图、天然接触分数 Q。\n- **二级结构**：逐帧 DSSP 分配和 BBSEG 主链扭转角分类。\n- **溶剂可及性**：残基级、区域级和位点级 SASA，并支持单珠粗粒化模型（使用力场自身的珠大小，如 Mpipi、HPS、KH）。\n- **NMR 可观测量**：随机线圈化学位移、³J(HN,Hα) 标量耦合、NOE 距离、顺磁弛豫增强（PRE），默认使用粗粒化自旋标记云模型，适用于全原子和粗粒化轨迹。\n- **系综重加权**：统一的逐帧权重系统，支持贝叶斯最大熵（BME/iBME/BMECustom）和凸优化（COPER/iCOPER）方法，用于根据实验数据重加权系综。\n- **HDX 保护因子**：Best–Vendruscolo ln(P) 预测。\n- **采样诊断**：通过 PENGUIN 进行无序蛋白系综收敛性评估。\n- **多分辨率**：自动检测全原子和单珠粗粒化轨迹。\n\n## 为何对本课题有用\n\n本课题聚焦于 IDR/IDP 的构象系综生成与分析，以及相分离/凝聚体建模。SOURSOP 正是为无序蛋白模拟轨迹的构象分析而设计，提供了从全局尺寸、聚合物标度、距离/接触图到 NMR 可观测量的全套分析工具。其系综重加权功能（BME/COPER）可直接用于将模拟系综与实验数据（如 SAXS、NMR）结合，从而获得更可靠的构象系综。此外，对粗粒化模型（如 Mpipi、HPS）的 SASA 支持，使其适用于相分离相关的粗粒化模拟分析。因此，SOURSOP 是 IDR/IDP 构象系综分析的核心工具，与本课题高度相关。\n\n## 怎么用\n\n**安装**：\n```bash\npip install soursop\n# 或\nuv pip install soursop\n```\n\n**快速上手**：\n```python\nimport numpy as np\nfrom soursop.sstrajectory import SSTrajectory\n\n# 读取轨迹（轨迹文件 + 拓扑文件）\ntraj = SSTrajectory('traj.xtc', 'start.pdb')\n\n# 提取第一条蛋白链（SSProtein 对象）\nprotein = traj.proteinTrajectoryList[0]\n\n# 系综平均回转半径和末端距\nrg  = np.mean(protein.get_radius_of_gyration())\nree = np.mean(protein.get_end_to_end_distance())\n\n# 系综平均残基间距离图\ndmap = protein.get_distance_map()\n\nprint(f\"Rg  = {rg:.2f} Å\")\nprint(f\"Ree = {ree:.2f} Å\")\n```\n\n**文档**：完整文档、教程、示例和 API 参考见 [soursop.readthedocs.io](https://soursop.readthedocs.io/)。\n\n**引用**：Lalmansingh et al., *J. Chem. Theory Comput.* 2023, 19, 5609–5620. DOI: 10.1021/acs.jctc.3c00190。"
+  },
+  {
+    "full_name": "kaizhangnju/desolvation-CG-model",
+    "url": "https://github.com/kaizhangnju/desolvation-CG-model",
+    "language": "Jupyter Notebook",
+    "stars": 1,
+    "pushed_at": "2026-10-02T19:07:33Z",
+    "score": 10,
+    "one_liner": "该仓库提供去溶剂化参数化粗粒化模型模拟IDP单链与相分离的完整代码、脚本与绘图工具，直接面向无序蛋白相分离建模，高度契合课题。",
+    "card": "## 是什么\n\n该仓库是论文《Role of desolvation on biomolecular liquid-liquid phase separation》(Zhang K, Peng Z, Li W, Wang W, eLife 2026)的代码组件,提供**去溶剂化参数化的粗粒化模型**用于模拟固有无序蛋白(IDPs)的相分离行为。仓库包含单链模拟和 slab 模拟的脚本、分析工具、绘图脚本,以及 HPS 和 CALVADOS 模型的残基参数文件,可复现论文中的全部图表。\n\n## 亮点\n\n- **去溶剂化参数化模型**:在 HPS 和 CALVADOS 模型基础上引入去溶剂化势垒(α_b)和水介导势阱(α_w),通过调整这些参数模拟不同强度的去溶剂化效应。\n- **完整工作流**:从单链模拟(研究温度依赖的链压缩)到 slab 模拟(研究相分离行为),再到绘图脚本,覆盖了从模拟到出版级图表的全流程。\n- **多模型支持**:提供 HPS、HPS+desolvation、CALVADOS、CALVADOS2+desolvation 四种模型脚本,便于对比。\n- **可复现性**:所有脚本和参数文件均公开,可直接运行复现论文结果。\n\n## 为何对本课题有用\n\n本课题聚焦 IDR/IDP 的相分离与凝聚体建模,该仓库正是针对 IDP 相分离的粗粒化模拟工具,直接契合课题方向。其去溶剂化参数化模型为研究 IDP 相分离的驱动力提供了新视角,可用于:1) 模拟不同 IDP 序列的温度依赖构象变化;2) 预测相分离温度与凝聚体形成条件;3) 通过调整去溶剂化参数,探索疏水效应在相分离中的作用。此外,仓库提供的 HPS/CALVADOS 参数文件和序列文件可直接用于其他 IDP 模拟。\n\n## 怎么用\n\n1. **环境准备**:需要兼容的 legacy HOOD-blue 2.x 环境,并安装 `azplugins` 插件,以及 NumPy、pandas、MDTraj、GSD 等 Python 包。\n2. **单链模拟**:在 `script/` 目录下运行,例如:\n   ```bash\n   python 1chain_HPSdes.py --name FUS --replica 10 --alpha_b 0.33 --alpha_w 0.06 --alpha_e 1.0\n   ```\n   参数 `--name` 指定蛋白序列文件,`--replica` 设置重复次数,`--alpha_b`、`--alpha_w`、`--alpha_e` 控制去溶剂化参数。\n3. **Slab 模拟**:类似地运行 `slab_*des.py` 脚本,需指定 `--temp` 温度,例如:\n   ```bash\n   python slab_CALVADOSdes.py --name FUS --temp 300 --alpha_b 0.30 --alpha_w 0.03 --eps_scale 1.31\n   ```\n4. **自定义序列**:按照 `data/` 中的格式生成自己的 `.dat` 文件,即可模拟其他 IDP。\n5. **绘图**:使用 `plot/` 目录下的脚本复现论文图表,注意可能需要调整输出路径。\n\n注意:slab 模拟的默认生产步数为 1e8,运行时间较长,不适合快速测试。"
+  },
+  {
+    "full_name": "rauscher-lab/zephyr",
+    "url": "https://github.com/rauscher-lab/zephyr",
+    "language": "Python",
+    "stars": 0,
+    "pushed_at": "2026-10-05T12:45:17Z",
+    "score": 10,
+    "one_liner": "Zephyr 是一个面向无序蛋白构象采样的生成扩散模型代码库，直接针对 IDP 构象系综生成，与课题高度相关且为可用工具。",
+    "card": "## 是什么\n\nZephyr 是一个基于生成扩散模型的代码库,专门用于对无序蛋白(disordered proteins)的构象进行采样。它利用分子动力学(MD)轨迹数据训练两个图神经网络(GNN):一个用于采样粗粒化蛋白结构(每个残基由主链 Cα 珠和侧链珠表示),另一个用于在给定粗粒化结构下采样重原子位置。该模型针对单一蛋白序列的 MD 轨迹进行训练,能够生成无序蛋白的结构系综。\n\n## 亮点\n\n- **双阶段生成模型**:粗粒化结构采样 + 精细原子位置采样,兼顾效率与精度。\n- **基于 MD 数据训练**:直接学习分子动力学轨迹中的构象分布,而非依赖实验结构。\n- **灵活的配置系统**:通过 Python 配置文件定义训练和采样参数,支持命令行覆盖。\n- **数据集与权重托管**:MD、处理后的数据集及模型权重均存储在 Zenodo 上,便于复现。\n- **内置分析与绘图模块**:提供 `analysis` 和 `figures` 目录,用于比较数据集属性并重现论文图表。\n- **开源许可**:MIT 许可证,便于二次开发。\n\n## 为何对本课题有用\n\n本课题聚焦于无序蛋白(IDR/IDP)的构象系综生成与分析。Zephyr 正是针对无序蛋白构象采样的生成模型,直接契合课题中“无序蛋白构象系综的生成与分析”这一方向。它能够从 MD 轨迹学习并生成无序蛋白的结构系综,为研究 IDR 的构象多样性、相分离倾向等提供计算工具。此外,其双阶段生成策略和扩散模型方法也为无序蛋白建模提供了新的技术路径。\n\n## 怎么用\n\n1. **安装**:支持 pip(`pip install -r requirements.txt`)或 conda(`conda env create -f requirements.yml`),若需 GPU 训练则重装 PyTorch。\n2. **配置**:修改 `config.py` 或创建 `configs/config_defaults.py` 覆盖默认值;仓库提供四个示例配置(`config_CS1.py`、`config_CS1_NoCP.py`、`config_HA1.py`、`config_HA1_NoCP.py`)。\n3. **数据**:从 Zenodo 下载 MD、处理后的数据集,或使用 `data.download` 自动下载;通过 `load_dataset(name)` 加载。\n4. **训练**:运行 `python train.py --configs my_config.py`,可覆盖参数(如 `--batch_size 32`)或指定数据集(`--dataset nup98_12 --dataset_split_set_ID 1`)。\n5. **采样**:使用 `python -m models.generate --ID_coarse C1 --ID_fine H1 --dataset nup98_12 --configs_coarse config_CS1.py --configs_fine config_HA1.py` 生成结构,结果存入 `gen_datasets_dir`。\n6. **分析**:参考 `analysis/analysis_tutorial.py` 比较数据集属性,使用 `figures` 模块重现论文图表。"
+  },
+  {
+    "full_name": "KULL-Centre/_2024_Cao_CALVADOSCOM",
+    "url": "https://github.com/KULL-Centre/_2024_Cao_CALVADOSCOM",
+    "language": "Jupyter Notebook",
+    "stars": 21,
+    "pushed_at": "2025-04-07T09:25:21Z",
+    "score": 9,
+    "one_liner": "CALVADOS 3 是面向无序蛋白和多结构域蛋白的粗粒化模拟与参数优化代码仓库，直接用于 IDP 构象系综生成与相分离相关模拟，与课题高度相关且为可运行工具。",
+    "card": "## 是什么\n\nCALVADOS 3 是一个用于无序蛋白（IDP）和多结构域蛋白（MDP）粗粒度模拟的代码与参数仓库，源自论文 *A coarse-grained model for disordered and multi-domain proteins*。它提供 CALVADOS 1/2/3 的参数文件、模拟脚本、初始构象和实验数据，支持单链与多链模拟，并附带 Colab 演示。\n\n## 亮点\n\n- **CALVADOS 3 模型**：提供最新参数（`residues_pub.csv`），并区分旧版 CALVADOS 3beta（`residues_pub_beta.csv`）。\n- **多域支持**：可处理多结构域蛋白，通过 `domains.yaml` 定义域边界，每个域独立约束。\n- **集成优化**：包含 PRE NMR 数据（`expPREs/`）用于参数优化，并集成 `pulchra` 和 `deerpredict` 工具。\n- **易用性**：提供 `simple_singlechain.py` 简化单链模拟，并有 Colab 在线演示。\n- **数据丰富**：附带模拟轨迹（Zenodo 仓库）和论文图表数据（`data/`、`paper_multidomainCALVADOS/`）。\n\n## 为何对本课题有用\n\n本课题聚焦 IDR/IDP 的相分离与凝聚体建模，CALVADOS 3 正是针对无序蛋白的粗粒度力场，可直接用于模拟 IDP 的构象系综，为研究相分离的分子机制提供基础。其多域支持也适用于含 IDR 的多域蛋白，且参数优化流程有助于提高模拟准确性。\n\n## 怎么用\n\n1. **安装**：克隆仓库，用 `conda env create -f environment.yaml` 创建环境（`CALVADOS3`），可选安装 `pulchra` 用于优化。\n2. **单链模拟**：\n   - 对于 IDP，直接运行 `src/simple_singlechain.py`；\n   - 对于多域蛋白，需准备 PDB 文件（`resSeq` 从 1 开始），在 `domains.yaml` 定义域边界，并在 `rawdata.py` 添加序列和实验数据（如 Rg），然后运行 `python3 submit_ray.py`。\n3. **多链模拟**：先完成单链模拟，选取最紧凑构象作为初始结构，添加实验数据到 `csat_calvados2_test.csv`（IDP）或 `csat_MDPs_test.csv`（MDP），运行 `python3 submit_slab.py`。\n4. **优化**：参考 `src/submit_ray.py` 中的说明，可复现论文中的参数优化结果。"
+  },
+  {
+    "full_name": "idptools/afrc",
+    "url": "https://github.com/idptools/afrc",
+    "language": "Python",
+    "stars": 3,
+    "pushed_at": "2026-09-30T18:35:04Z",
+    "score": 9,
+    "one_liner": "AFRC 是一个面向无序蛋白的序列特异性参考模型工具，提供构象系综生成与尺寸分布计算，与课题高度相关且为可用的代码工具。",
+    "card": "## 是什么\n\n`afrc` 是一个 Python 包，实现了 **Analytical Flory Random Coil (AFRC)** 模型——一种解析的、序列特异性的聚合物模型，用于描述未折叠蛋白和固有无序蛋白（IDP）在理想链（theta 溶剂）条件下的构象统计。给定氨基酸序列，它可立即返回多种系综平均量（如均方回转半径、末端距、流体力学半径）及完整分布，并支持生成显式 3D 构象系综（每个残基一个珠子），输出为 PDB/XTC 文件。AFRC 被定位为**参考（零）模型**，而非真实尺寸预测器，用于量化序列编码的链-链和链-溶剂相互作用对无序蛋白构象的影响。\n\n## 亮点\n\n- **解析、序列特异**：基于闭合形式公式，无有限尺寸效应，计算瞬时完成。\n- **丰富输出**：除平均尺寸外，还提供末端距/回转半径分布、残基间距离分布、距离图、接触图、顺磁弛豫增强（PRE）谱等。\n- **显式 3D 系综生成**：可生成单珠/残基的构象系综，并自动校验系综统计量是否与模型一致。\n- **多模型集成**：内置多种经典聚合物模型（自由连接链、自由旋转链、蠕虫链、自避行走等），统一接口便于比较。\n- **易用性**：仅依赖 NumPy/SciPy，支持 Python 3.10+，提供命令行工具和 Google Colab 示例。\n\n## 为何对本课题有用\n\n本课题聚焦 IDR/IDP 的构象系综生成与分析。AFRC 正是为无序蛋白设计的**参考模型**，其核心价值在于：\n- 作为**零模型**，实验或模拟结果与 AFRC 的偏差可直接反映序列编码的相互作用（如相分离相关的链-链吸引），为研究 LLPS 的驱动力提供基线。\n- 提供**序列特异性的构象统计**，可用于比较不同 IDR 序列的尺寸和形状，辅助理解序列-构象关系。\n- 生成的**显式 3D 系综**可直接用于下游分析（如对接、粗粒化模拟的初始构象），且与多种经典聚合物模型对比，便于评估链的刚性、排除体积等效应。\n\n## 怎么用\n\n**安装**：\n```bash\npip install afrc\n# 如需生成 XTC 轨迹：\npip install \"afrc[ensemble]\"\n```\n\n**Python 快速上手**：\n```python\nfrom afrc import AnalyticalFRC\n\nP = AnalyticalFRC('MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDI')\nmean_rg = P.get_mean_radius_of_gyration()\nmean_e2e = P.get_mean_end_to_end_distance()\nmean_rh = P.get_mean_hydrodynamic_radius()\n\n# 获取分布\nrg_r, rg_p = P.get_radius_of_gyration_distribution()\nre_r, re_p = P.get_end_to_end_distribution()\n\n# 残基间距离分布（索引从0开始）\nd_r, d_p = P.get_interresidue_distance_distribution(4, 20)\n\n# 全链距离图和接触图（阈值15 Å）\ndistance_map = P.get_distance_map()\ncontact_map = P.get_contact_map(15.0)\n\n# 生成5000个构象，输出 ens.pdb 和 ens.xtc\nxyz = P.save_ensemble('ens', n=5000, seed=1)\n```\n\n**命令行生成系综**：\n```bash\nafrc-ensemble -s MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDI -n 5000 -o p53\nafrc-ensemble -s MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDI -m wlc --lp 4 -o p53_wlc\n```\n\n**其他模型**：通过 `from afrc.polymer_models.fjc import FreelyJointedChain` 等导入，接口与 AFRC 一致，可直接替换比较。完整文档见 [afrc.readthedocs.io](https://afrc.readthedocs.io/)。"
+  },
+  {
+    "full_name": "gitesei/MEM-CALVADOS",
+    "url": "https://github.com/gitesei/MEM-CALVADOS",
+    "language": "Python",
+    "stars": 2,
+    "pushed_at": "2026-10-04T16:29:35Z",
+    "score": 9,
+    "one_liner": "MEM-CALVADOS 是面向膜界面柔性蛋白的粗粒化模型工具，基于 CALVADOS 框架，与无序蛋白相分离建模高度相关，提供可运行的代码与示例。",
+    "card": "## 是什么\n\nMEM-CALVADOS 是一个基于 Python 的粗粒化分子动力学模拟工具包，专门用于模拟固有无序蛋白（IDP）和固有无序区（IDR）的构象与相分离行为。它基于 CALVADOS 模型，通过序列特异性参数化，能够生成 IDR 的构象系综，并模拟多链体系中的液-液相分离（LLPS）现象。仓库包含完整的模拟流程（构建、运行、分析）以及多个示例，覆盖单链 IDR、双链 IDR、IDR 与 RNA、膜蛋白等场景。\n\n## 亮点\n\n- **序列特异性粗粒化模型**：基于 CALVADOS 力场，针对 IDR 序列进行参数化，可捕捉序列对构象和相行为的影响。\n- **丰富的示例场景**：提供单 IDR、双 IDR、IDR 与 RNA、IDR 与膜蛋白、IDR 在 slab 或圆柱几何中的模拟示例，覆盖多种生物分子凝聚体相关体系。\n- **内置分析工具**：包含 `analysis.py` 等模块，支持对模拟结果进行后处理，如计算密度分布、径向分布函数等。\n- **模块化设计**：代码结构清晰，分为构建（build）、模拟（sim）、相互作用（interactions）、序列（sequence）等模块，便于扩展和定制。\n- **文档与教程**：提供 Sphinx 文档和示例教程，帮助用户快速上手。\n\n## 为何对本课题有用\n\n本课题聚焦 IDR/IDP 的相分离与生物分子凝聚体研究，而 MEM-CALVADOS 正是为此类研究设计的工具。它能够：\n- **生成 IDR 构象系综**：通过粗粒化模拟，获得无序蛋白的构象集合，用于分析其结构特征。\n- **模拟相分离过程**：支持多链体系模拟，可直接观察 IDR 的液-液相分离行为，计算相图或凝聚体性质。\n- **研究 IDR 介导的互作**：示例中包含 IDR 与 RNA、膜蛋白的模拟，可用于探索 IDR 在凝聚体中的结合机制。\n- **提供可复现的流程**：示例脚本和测试代码便于研究者快速开展模拟实验，并在此基础上进行扩展。\n\n## 怎么用\n\n1. **安装**：通过 `setup.py` 安装包，依赖项包括 Python 环境及分子动力学模拟软件（如 GROMACS，需自行配置）。\n2. **准备体系**：参考 `examples/` 下的示例，如 `single_IDR` 或 `two_IDR`，使用 `prepare.py` 脚本生成模拟输入文件（如拓扑、坐标）。\n3. **运行模拟**：使用生成的输入文件在 GROMACS 中运行粗粒化分子动力学模拟。\n4. **分析结果**：利用 `calvados/analysis.py` 或示例中的 Jupyter notebook（如 `slab_IDR/example_slab_analysis.ipynb`）进行后处理，计算凝聚体密度、界面性质等。\n5. **定制化**：修改 `cfg.py` 或自定义相互作用参数，以适应特定 IDR 序列或实验条件。\n\n详细教程和 API 文档见 `docs/` 目录。"
+  },
+  {
+    "full_name": "moses-lab/faidr-fit",
+    "url": "https://github.com/moses-lab/faidr-fit",
+    "language": "JavaScript",
+    "stars": 2,
+    "pushed_at": "2026-09-29T13:35:29Z",
+    "score": 9,
+    "one_liner": "FAIDR-Fit 是一个面向人类蛋白质组中固有无序区(IDR)探索的 Web 工具,直接服务于 IDR 识别与功能图谱研究,与课题高度相关。",
+    "card": "## 是什么\nFAIDR-Fit 是一个面向人类蛋白质组中固有无序区（IDR）的交互式 Web 工具，由 Moses Lab 开发。它基于 Pritišanac 等人（2026）在 PNAS 上发表的“人类固有无序蛋白质组的功能图谱”论文实现，旨在让研究者能够便捷地探索和可视化人类蛋白质组中的 IDR 及其功能注释。\n\n## 亮点\n- **Web 工具**：无需本地安装，直接通过浏览器访问在线平台（https://moses-lab.github.io/faidr-fit/）即可使用。\n- **基于权威论文**：实现了 Pritišanac 等人（2026）提出的功能图谱方法，该论文发表于 PNAS，具有较高的学术可信度。\n- **人类蛋白质组覆盖**：专门针对人类蛋白质组中的 IDR 进行探索，提供功能层面的映射。\n- **引用规范**：提供 CITATION.cff 文件，方便用户正确引用工具和原始论文。\n\n## 为何对本课题有用\n本课题聚焦于 IDR/IDP 的识别、预测与功能分析。FAIDR-Fit 直接面向人类蛋白质组中的 IDR，提供了功能图谱的交互式探索能力，能够帮助研究者快速获取特定蛋白或区域的无序性及功能注释信息。它可作为 IDR 功能注释的参考工具，辅助验证预测结果或生成假设，尤其适用于人类蛋白质组层面的研究。\n\n## 怎么用\n- **在线使用**：直接访问 https://moses-lab.github.io/faidr-fit/ ，在网页界面中输入或选择目标蛋白，即可查看其 IDR 分布及功能图谱。\n- **引用方式**：若在研究中使用了该工具，请同时引用工具本身（Koenig & Moses, 2026）和原始论文（Pritišanac et al., 2026），具体格式可参考仓库中的 CITATION.cff 文件。\n- **本地部署**：如需本地运行或二次开发，可克隆 GitHub 仓库（https://github.com/moses-lab/faidr-fit）并按照项目说明进行部署。"
+  },
+  {
+    "full_name": "tjaglal11/Bayesian-Analysis-of-SAXS-Data",
+    "url": "https://github.com/tjaglal11/Bayesian-Analysis-of-SAXS-Data",
+    "language": "Python",
+    "stars": 1,
+    "pushed_at": "2026-10-01T15:33:52Z",
+    "score": 9,
+    "one_liner": "该仓库提供基于贝叶斯推断的SAXS数据重加权工具，专门用于固有无序蛋白构象系综的优化与分析，与课题高度相关且为可运行代码。",
+    "card": "## 是什么\n\n该仓库提供了一套基于贝叶斯推断的 SAXS（小角 X 射线散射）数据分析工具，专门用于对固有无序蛋白（IDP）的构象系综进行精化（ensemble refinement）。其核心方法是通过贝叶斯重加权（Bayesian reweighting）协议，根据实验 SAXS 数据对计算生成的 IDP 构象进行重新加权，从而得到与实验更吻合的系综描述。仓库包含主框架 `BME.py`、工具函数 `BME_tools.py`、运行脚本 `iBME_script.py` 以及分析代码（如 `curve_compare.py`），并依赖 Pepsi-SAXS 计算理论散射曲线。\n\n## 亮点\n\n- **贝叶斯推断重加权**：利用贝叶斯框架将实验 SAXS 数据与计算构象结合，对每个构象赋予权重，从而精化 IDP 系综。\n- **面向 IDP 动态系综**：专门针对 IDP 的构象异质性设计，弥补计算静态表示与实验系综平均信息之间的鸿沟。\n- **模块化代码结构**：提供主框架、工具函数、脚本和分析代码，便于用户修改和扩展。\n- **明确的目录组织**：README 给出了推荐的目录树，方便用户按默认路径运行整个流程。\n\n## 为何对本课题有用\n\n本课题关注 IDR/IDP 的构象系综生成与分析。该仓库直接针对 IDP 的系综精化，利用实验 SAXS 数据对计算生成的构象进行贝叶斯重加权，是 IDP 构象系综分析的重要工具。它可以帮助研究者将分子模拟或采样得到的 IDP 构象与实验数据结合，获得更可靠的系综描述，从而深入理解 IDP 的结构动态。这与课题中“无序蛋白构象系综的生成与分析”方向高度契合。\n\n## 怎么用\n\n根据 README，使用该代码需要遵循推荐的目录结构。主要步骤包括：\n\n1. **准备目录结构**：按照 README 中的 `my-project/` 树创建 `analysis/`、`grid_sims/`、`iBME_res/` 等文件夹。\n2. **运行 iBME 模拟**：使用 `iBME_script.py` 和 `BME.py` 进行网格模拟（grid sims），输出到 `grid_sims/` 下的对应子目录。\n3. **执行重加权**：运行 iBME 重加权流程，结果输出到 `iBME_res/` 下的对应子目录，包含 `GRID_sum.txt` 等拟合参数汇总。\n4. **分析结果**：使用 `analysis/` 中的 `curve_compare.py` 等脚本比较实验与计算 SAXS 曲线，评估精化效果。\n5. **依赖**：需要 Pepsi-SAXS 可执行文件，并建议使用虚拟环境（`iBME_env/`）管理 Python 依赖。\n\n用户可根据自身数据修改目录路径和参数，但默认代码按上述结构运行。"
+  },
+  {
+    "full_name": "lslumass/HyresBuilder",
+    "url": "https://github.com/lslumass/HyresBuilder",
+    "language": "Python",
+    "stars": 1,
+    "pushed_at": "2026-10-02T02:52:12Z",
+    "score": 9,
+    "one_liner": "HyresBuilder 是用于 HyRes/iCon 粗粒化模拟的建模与运行工具，直接支持 IDP/相分离凝聚体（如 LAF1-RGG、TDP43）的模拟，与课题高度相关且为可用的代码工具。",
+    "card": "## 是什么\n\nHyresBuilder 是 ChenLab 开发的一个用于准备和运行 HyRes 与 iCon 粗粒化模拟的工具。它主要面向蛋白质和 RNA 的粗粒化建模，能够从序列构建 HyRes 肽链结构、从序列构建 iConNA RNA 模型，或将全原子结构转换为 HyRes/iConNA 模型，并设置相应的力场。该工具基于 OpenMM 运行模拟，支持多种模拟环境（如 NPT、NVT、非周期性体系）。\n\n## 亮点\n\n- **多尺度建模**：支持从序列直接构建粗粒化结构，也支持从全原子结构转换，灵活性高。\n- **自动生成 PSF**：转换结构时自动生成 PSF 文件，简化了模拟准备流程。\n- **支持相分离模拟**：提供了 slab 模拟示例，可用于凝聚体（condensate）的模拟，并支持通过 packmol 准备多链体系。\n- **高性能**：在 GPU 上实现了较快的模拟速度，例如 29K 珠子的 LLPS 体系可达 1.5 μs/day，105K 珠子体系可达 550 ns/day。\n- **易用性**：提供命令行工具和 Python API，并有 Colab 快速入门示例。\n\n## 为何对本课题有用\n\n本课题关注 IDR/无序蛋白的相分离与生物分子凝聚体。HyresBuilder 专门用于 HyRes 和 iCon 粗粒化模拟，其中 HyRes 力场是常用于 IDP/IDR 相分离模拟的粗粒化模型（相关论文发表于 PCCP、JCIM、JACS、PNAS）。该工具能够高效构建多链体系并运行大规模凝聚体模拟，其 benchmark 中包含了 LAF1-RGG、GY23 等已知相分离体系的模拟，表明其直接适用于 IDR 介导的相分离研究。因此，该仓库是进行 IDP 相分离计算模拟的重要工具。\n\n## 怎么用\n\n1. **安装**：通过 `git clone` 克隆仓库，进入目录后执行 `pip install .`。依赖包括 OpenMM、psfgen-python、numpy、numba、MDAnalysis。\n2. **构建结构**：\n   - 从序列构建 HyRes 肽链：使用命令行 `pepbuilder name sequence` 或 Python 模块 `PeptideBuilder.build_peptide`。\n   - 从序列构建 iConRNA：使用 `rnabuilder` 或 `RNABuilder.build`。\n   - 从全原子结构转换：使用 `convert2cg` 或 `Convert2CG.at2cg`，转换后自动生成 PSF。\n3. **生成 PSF**：若未自动生成，可使用 `genpsf` 命令或 `GenPsf.genpsf` 脚本。\n4. **运行模拟**：使用 `run_latest.py` 脚本，可指定 PDB、PSF、温度、盒子大小、盐浓度、Mg2+ 浓度和系综（NPT/NVT/非周期性）。例如：\n   - 单链非周期性模拟：`python run_latest.py -c conf.pdb -p conf.psf -o test -t 298 -e non -s 150`\n   - 凝聚体 slab 模拟：`python run_latest.py -c conf.pdb -p conf.psf -o test -t 298 -e NVT -b 15 15 50 -s 150`\n5. **参考文档**：详细文档见 [HyresBuilder docs](https://hyresbuilder.readthedocs.io)，并提供了 Colab 快速入门示例。"
+  },
+  {
+    "full_name": "ezippo/hoomd3_phosphorylation",
+    "url": "https://github.com/ezippo/hoomd3_phosphorylation",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "pushed_at": "2026-10-05T09:16:43Z",
+    "score": 9,
+    "one_liner": "该仓库提供基于HPS/CALVADOS粗粒化模型的MD模拟框架，专门用于无序蛋白磷酸化及其凝聚体的分子模拟，与课题高度相关且为可运行代码工具。",
+    "card": "## 是什么\n\n`hoomd3_phosphorylation` 是一个用于**无序蛋白及其凝聚体酶促磷酸化分子模拟**的代码框架，基于 HOOMD-blue 粗粒化分子动力学（MD）模拟，并集成蒙特卡洛（MC）反应步骤。该仓库是论文 *Molecular simulations of enzymatic phosphorylation of disordered proteins and their condensates* (Nat. Commun. 2025) 的官方代码与数据仓库。\n\n核心组件 `hps_phosphorylation` 支持使用 HPS 或 CALVADOS 粗粒化模型，模拟多结构域蛋白（含无序区）的磷酸化过程，包括磷酸化反应、底物-酶结合、以及凝聚体形成等。\n\n## 亮点\n\n- **磷酸化反应模拟**：在 MD 模拟中引入磷酸化反应蒙特卡洛步骤，可模拟丝氨酸（SER）到磷酸丝氨酸（SEP）的转化，并支持与化学库的交换（NESS 模式）。\n- **多模型支持**：支持 HPS 模型（含 cation-pi 增强）和 CALVADOS 1/2/3 模型，适应不同精度需求。\n- **灵活的系统定义**：通过系统文件可定义多种分子种类、刚性体（折叠域）、活性位点、磷酸化位点，支持多链、多组分体系。\n- **凝聚体模拟能力**：可模拟多链无序蛋白的相分离/凝聚体形成，并支持检测分子间相互作用（`--inter_detect`）。\n- **完整配套**：包含论文中使用的分析 Jupyter notebook 和输入参数模板，便于复现。\n\n## 为何对本课题有用\n\n本课题聚焦 IDR/无序蛋白的相分离与凝聚体模拟。该仓库直接针对**无序蛋白的磷酸化修饰及其对凝聚体行为的影响**，是 IDR 介导的翻译后修饰与相分离交叉研究的重要工具。它提供了：\n\n- 基于 HPS/CALVADOS 的粗粒化模型，适用于 IDR 构象系综和凝聚体模拟；\n- 磷酸化反应模块，可研究磷酸化如何调控 IDR 的相分离行为；\n- 多组分系统定义，支持模拟酶、底物、凝聚体共存体系；\n- 与论文配套的示例和脚本，便于快速上手和扩展。\n\n## 怎么用\n\n1. **安装依赖**：需要 numpy、MDAnalysis、scikit-learn、HOOMD-blue (v3.8.1)、gsd (v2.8.1) 以及自定义的 `ashbaugh_plugin`（需从源码构建 HOOMD）。\n2. **获取代码**：下载 `src/hps_phosphorylation` 文件夹，将其路径加入 `PYTHONPATH`，或通过 PyPI-test 安装 `hps-phosphorylation`。\n3. **准备输入**：参考 `input_stats/` 中的模板，创建输入文件（模拟参数、日志设置）和系统文件（分子种类、刚性体、活性位点、磷酸化位点）。\n4. **运行模拟**：使用 `main.py` 脚本，通过命令行参数指定模式：\n   - `-c` 创建初始构型（立方盒）；\n   - `-m HPS` 或 `-m CALVADOS` 运行模拟；\n   - `-i` 指定输入文件；\n   - 可选 `-r` 缩放刚性体相互作用，`-cp` 启用 cation-pi 增强，`-n` 使用弹性网络固定折叠域，`--mode` 选择 relax/ness/nophospho 模式。\n5. **分析结果**：使用 `paper/` 中的 Jupyter notebook 进行轨迹分析和绘图。\n\n详细示例见 `example/` 文件夹。"
+  },
+  {
+    "full_name": "suhaanthayyil/idrfeat",
+    "url": "https://github.com/suhaanthayyil/idrfeat",
+    "language": "Python",
+    "stars": 0,
+    "pushed_at": "2026-09-30T00:28:40Z",
+    "score": 9,
+    "one_liner": "idrfeat 是一个面向 IDR 的注释与特征提取工具，计算组成、电荷、低复杂度、相分离信号等特征，直接服务于 IDR 功能与变异研究，与课题高度相关且为可用的代码工具。",
+    "card": "## 是什么\n\n`idrfeat` 是一个用于注释蛋白质中固有无序区（IDR）并计算每个 IDR 片段丰富特征向量的 Python 库。它是为研究错义变异是否扰乱 IDR 功能而构建的特征提取层，标签来自逐残基蛋白质适应度筛选。该库计算的特征涵盖氨基酸组成、电荷及其分布模式、疏水性、k-mer 含量、低复杂度、无序性和折叠结合倾向、短线性基序（SLiM）、翻译后修饰（PTM）位点以及相分离信号。\n\n## 亮点\n\n- **全面的特征集**：覆盖序列组成、电荷模式、疏水性、k-mer、低复杂度、无序预测、折叠结合倾向、SLiM、PTM 位点和相分离信号，为 IDR 分析提供一站式特征提取。\n- **稳健的降级设计**：序列特征无需下载即可计算；无序预测器、注释数据库和保守性轨道为可选，缺失时以缺失值或零计数填充并记录标志，不会导致运行失败。\n- **灵活的预测器支持**：主要使用 metapredict 作为无序预测器，未安装时使用内置启发式方法作为临时替代，并在输出中记录使用的后端。\n- **数据库集成**：支持 ELM 基序、dbPTM 位点、PhaSePro 和 DrLLPS 相分离数据库，通过命令行参数传入即可启用相应特征。\n- **文档完善**：提供 `docs/features.md` 详细解释每个特征的定义、来源和意义，以及 `docs/project.md` 描述项目计划。\n\n## 为何对本课题有用\n\n本课题聚焦 IDR/IDP 及其相分离与生物分子凝聚体方向，`idrfeat` 正是为 IDR 分析设计的特征提取工具，直接契合课题需求。它提供的特征包括相分离信号（PhaSePro、DrLLPS 数据库）、无序预测（metapredict）、折叠结合倾向（AIUPred）等，这些正是研究 IDR 介导的相分离和凝聚体形成所需的关键信息。此外，该库的模块化设计允许用户灵活组合不同特征，便于在 IDR 预测、构象系综分析或互作建模等下游任务中使用。\n\n## 怎么用\n\n1. **安装**：项目面向 Python 3.11，推荐使用 uv 管理环境。核心库安装：`uv pip install -e \".[dev]\"`；可选安装预测器（metapredict、localCIDER）、结合预测（AIUPred）和保守性工具（pyBigWig）。\n2. **快速开始**：运行 `idrfeat features --fasta src/idrfeat/data/example.fasta --out features.parquet` 处理内置示例，输出每个 IDR 片段一行特征的 parquet 和 CSV 文件。将 `--fasta` 指向自己的蛋白质 FASTA 文件即可处理真实数据。\n3. **启用数据库特征**：先运行 `python scripts/fetch_databases.py --out data/raw` 下载数据库，然后在命令行中传入对应文件，例如 `--elm`、`--dbptm`、`--phasepro`、`--drllps`。\n4. **开发与测试**：使用 `uv run pytest` 运行测试，`uv run ruff check .` 和 `uv run black --check .` 进行代码检查。\n5. **文档参考**：查阅 `docs/features.md` 了解每个特征的含义，`docs/project.md` 查看项目计划。"
+  },
+  {
+    "full_name": "sherry6247/HyperIDR",
+    "url": "https://github.com/sherry6247/HyperIDR",
+    "language": "Python",
+    "stars": 0,
+    "pushed_at": "2026-09-29T15:58:44Z",
+    "score": 9,
+    "one_liner": "HyperIDR 是一个面向固有无序区识别的多尺度语义超网络模型代码仓库，提供训练、预测流程与数据集，与课题高度相关且为可用的工具。",
+    "card": "## 是什么\n\nHyperIDR 是一个用于**固有无序区（IDR）识别**的深度学习工具仓库，其核心方法为“多尺度语义超网络”（multi-scale semantic hypernetwork）。该仓库提供了完整的训练与预测代码，以及经过冗余去除处理的训练数据集，旨在从蛋白质序列中逐残基预测无序区域。\n\n## 亮点\n\n- **多尺度语义超网络**：采用超网络架构，融合多尺度语义信息，用于 IDR 识别。\n- **严格的数据集处理**：训练集通过 BlastClust 去除与多个独立测试集的冗余（序列一致性 >25%），确保评估的公平性。\n- **多个基准测试集**：支持 MXD494、SL329、DISORDER723、CASP、CAID3 Disorder-PDB 和 CAID3 Disorder-NOX 六个独立测试集。\n- **易用的环境配置**：提供 `environment.yml`，可通过 conda 快速搭建运行环境。\n- **清晰的代码结构**：训练与预测入口分离（`main.py` 与 `predict_main.py`），模块化设计便于扩展。\n\n## 为何对本课题有用\n\n本课题聚焦于 IDR/IDP 的识别与预测，HyperIDR 正是针对 IDR 识别的专用工具，直接契合课题方向。其提供的训练数据、模型实现和预测流程，可作为 IDR 预测的基准方法或对比工具，也可用于进一步开发或集成到无序蛋白相关研究中。\n\n## 怎么用\n\n1. **环境搭建**：\n   ```bash\n   conda env create -f environment.yml\n   ```\n\n2. **训练模型**：\n   ```bash\n   python main.py\n   ```\n\n3. **测试与预测**：\n   ```bash\n   python predict_main.py\n   ```\n\n4. **数据集**：训练集位于 `./datasets/`，测试集需从官方服务器下载（http://bliulab.net/HyperIDR/）。\n\n5. **项目结构**：\n   - `main.py`：训练流程\n   - `predict_main.py`：测试与推理流程\n   - `src/`：模型实现、训练器、评估与指标\n   - `utils/`：参数配置、数据处理与特征编码器\n   - `datasets/`：训练数据集\n   - `environment.yml`：Conda 环境配置"
+  },
+  {
+    "full_name": "emalacs/idp-pharmacophore-tools",
+    "url": "https://github.com/emalacs/idp-pharmacophore-tools",
+    "language": "Python",
+    "stars": 0,
+    "pushed_at": "2026-09-29T12:57:55Z",
+    "score": 9,
+    "one_liner": "面向IDP的MD轨迹药效团提取工具，直接针对无序蛋白构象系综分析，与课题高度相关且为可安装代码包。",
+    "card": "## 是什么\n\n`idp-pharmacophore-tools` 是一个面向固有无序蛋白（IDP）的 Python 工具包，用于从分子动力学（MD）模拟轨迹中提取药效团（pharmacophore）模型。它分析小分子配体与 IDP 构象系综之间的化学相互作用模式（芳香、疏水、氢键供体/受体、电荷），计算接触/占据概率，并生成可在 PyMOL 和 Plotly 中可视化的药效团模型。该工具包是论文 *\"Dynamic Pharmacophore Mapping for Intrinsically Disordered Drug Targets\"* 的配套可安装流水线。\n\n## 亮点\n\n- **面向 IDP 的药效团定义**：专门针对无序蛋白的构象多样性，从 MD 轨迹中提取动态的化学相互作用模式。\n- **完整的分析流水线**：包括配体对齐、芳香接触计算、接触概率计算、负空间（negative space）分析、药效团定义等步骤。\n- **多种可视化支持**：输出 PyMOL 脚本和 Plotly 交互式图表，便于直观检查药效团模型。\n- **易用性**：提供 Python 库接口和命令行工具（CLI），支持 GPU 加速（可选）、块误差估计（可选）和图聚类后端（可选）。\n- **依赖管理**：核心依赖包括 RDKit、MDTraj 和 deeptime，可通过 pip 或 conda 安装。\n\n## 为何对本课题有用\n\n本课题关注 IDR/IDP 的构象系综分析与相互作用建模。该仓库直接针对 IDP 的 MD 模拟轨迹，提取配体与无序蛋白之间的动态药效团，这属于 IDR 介导的结合/互作建模范畴。它提供了一种从系综层面理解 IDP 与小分子相互作用的方法，可用于药物靶点研究，与课题中“IDR 介导的结合/互作建模”方向高度契合。\n\n## 怎么用\n\n**安装**：\n```bash\npip install idp-pharmacophore-tools\n```\n可选 extras：`[gpu]`、`[stats]`、`[clustering]`、`[all]`。\n\n**作为库使用**：\n```python\nfrom idp_pharmacophore_tools import PharmacophoreTrajectory\n\nsim = PharmacophoreTrajectory(\"system.gro\", \"traj.xtc\")\nsim.load(stride=1)\nsim.ligand_align()  # 默认在整个配体上对齐\nsim.compute_aromatic_contacts()\nsim.compute_contact_probability()\nsim.compute_negative_space()\nsim.define_pharmacophore()\nsim.write_pymol_script(\"./output\")\n```\n\n**命令行使用**：\n```bash\nidp-pharmacophore \\\n    --topology path/to/system.gro \\\n    --trajectory path/to/traj.xtc \\\n    [--ligand-resname LIG] \\\n    [--align-selection \"resname LIG and name C1\"] \\\n    [--contact-threshold 0.3] \\\n    [--output-dir ./output] \\\n    [--stride 1] \\\n    [--offset 0]\n```\n`--ligand-resname` 若未提供则从拓扑自动检测；`--align-selection` 为 MDTraj 选择字符串，用于指定对齐参考原子，省略时默认在整个配体上对齐。"
+  },
+  {
+    "full_name": "ywitzky/HPSAnalysis.jl",
+    "url": "https://github.com/ywitzky/HPSAnalysis.jl",
+    "language": "Julia",
+    "stars": 0,
+    "pushed_at": "2026-09-29T12:43:49Z",
+    "score": 9,
+    "one_liner": "HPSAnalysis 是面向 IDP 粗粒化分子动力学模拟与构象分析（如回转半径计算）的 Julia 工具集，直接服务于无序蛋白构象系综研究。",
+    "card": "## 是什么\n\nHPSAnalysis 是一个面向粗粒化（coarse-grained）分子动力学（MD）模拟的脚本集合，主要基于 HOOMD 模拟软件，用于构建和分析蛋白质的 united-residue 模型。它特别针对固有无序蛋白（IDP）的构象研究，提供了从初始构象生成、模拟输入设置到轨迹后处理（如计算回转半径 RG 及其自相关）的完整流程。\n\n## 亮点\n\n- **粗粒化建模**：采用 united-residue 模型，适合模拟 IDP 的大尺度构象行为。\n- **集成 HOOMD**：利用 HOOMD 软件进行高效 MD 模拟，支持多种模拟类型（如 slab 几何）。\n- **自动化流程**：提供 `CreateStartConfiguration` 和 `Setup.writeStartConfiguration` 等函数，简化模拟准备。\n- **后处理分析**：内置 `computeCOM!` 和 `computeRGSeries!` 等函数，直接计算质心和回转半径时间序列，便于分析构象系综。\n- **可复现性**：支持 `Regenerate` 参数控制初始构象的重新生成，并附带 CI 和 codecov 徽章，保证代码质量。\n\n## 为何对本课题有用\n\n本课题关注 IDR/IDP 的构象系综生成与分析。HPSAnalysis 正是为此设计的：它通过粗粒化模型模拟 IDP 的构象，并提供 RG 等关键指标的计算，直接支持无序蛋白构象系综的生成与分析。其基于 HOOMD 的实现适合大规模模拟，且代码结构清晰，便于扩展。虽然 README 未明确提及相分离，但 IDP 的构象分析是理解 LLPS 的基础，因此该工具可作为相分离建模的前置步骤。\n\n## 怎么用\n\n1. **安装**：确保 Julia 环境，并添加 HPSAnalysis 包（通过 GitHub 仓库）。\n2. **生成初始构象**：调用 `HPS.CreateStartConfiguration`，指定模拟名称、路径、盒子尺寸、蛋白质序列等，生成起始坐标。\n3. **写入模拟输入**：使用 `HPS.Setup.writeStartConfiguration` 设置模拟参数（如温度、pH、模拟类型如 `Calvados2`），并输出 HOOMD 输入文件。\n4. **运行模拟**：在外部使用 `./src/Setup/Submit_HOOMD.py` 提交 HOOMD 模拟。\n5. **分析轨迹**：加载模拟数据（`HPS.initData`），设置平衡时间，然后调用 `HPS.computeCOM!` 和 `HPS.computeRGSeries!` 计算质心和 RG 序列，用于构象分析。\n6. **引用**：若使用，请引用 README 中列出的论文（Witzky et al., 2025）。"
+  },
+  {
+    "full_name": "emalacs/Scalone_IDP_Pharmacophore_Mapping_2026",
+    "url": "https://github.com/emalacs/Scalone_IDP_Pharmacophore_Mapping_2026",
+    "language": "Python",
+    "stars": 0,
+    "pushed_at": "2026-09-29T11:09:35Z",
+    "score": 9,
+    "one_liner": "面向IDP药物靶标的动态药效团映射工具，从MD轨迹提取IDP-配体互作模式并生成体积药效团图谱，含交互式查看器与可运行pipeline，与课题高度相关。",
+    "card": "## 是什么\n\n该仓库是论文 *\"Dynamic Pharmacophore Mapping for Intrinsically Disordered Drug Targets\"* 的代码与补充数据。它提供了一套从固有无序蛋白（IDP）的分子动力学（MD）模拟轨迹中动态定义药效团（pharmacophore）的流程：提取小分子配体与 IDP 系综之间的化学相互作用模式（芳香、疏水、氢键供体/受体、带电），计算轨迹中每个体素的接触/占据概率，并生成体素化的药效团密度图。仓库还包含一个基于 React + Mol* 的交互式浏览器查看器，用于直接对照配体结构探索药效团密度图。\n\n## 亮点\n\n- **面向 IDP 的动态药效团映射**：专门针对固有无序蛋白靶标，从 MD 轨迹中提取配体-蛋白相互作用的动态化学模式，而非静态结构。\n- **体素化密度图**：输出每个特征类型（芳香、疏水、氢键供体/受体、正/负电荷）的接触概率图（.mrc 格式），并提供多种稀疏化变体（top-N%）。\n- **交互式可视化**：提供浏览器端查看器（React + Mol*），无需本地安装即可探索药效团密度图与配体结构。\n- **可复现流程**：提供本地 Jupyter notebook 和 Google Colab 版本，支持用户在自己的 MD 轨迹上运行完整流程。\n- **轨迹子集划分**：包含 PCA 与图聚类方法，将轨迹划分为构象子集，分别生成药效团图。\n\n## 为何对本课题有用\n\n本课题关注 IDR/IDP 及其相分离与凝聚体方向的研究代码与工具。该仓库直接针对 IDP 靶标的药物设计，提供了从 MD 模拟中提取动态药效团的方法，属于 IDP 构象系综分析与功能建模的范畴。虽然它不直接涉及相分离或凝聚体，但 IDP 的构象系综分析是理解 IDR 介导相互作用的基础，且该仓库的流程可推广到 IDR 介导的结合/互作建模，对课题有参考价值。\n\n## 怎么用\n\n- **查看结果**：直接访问在线查看器（https://emalacs.github.io/Scalone_IDP_Pharmacophore_Mapping_2026/）或浏览仓库 `output/` 目录下的密度图（.mrc.gz）和配体结构（.pdb）。\n- **本地运行流程**：\n  1. 安装依赖包 `idp-pharmacophore-tools`。\n  2. 使用 `notebooks/01_split_trajectory_pca_graph.ipynb` 将轨迹按 PCA 和图聚类划分为构象子集。\n  3. 使用 `notebooks/02_pharmacophore_from_subset.ipynb` 对每个子集计算药效团图，并生成 PyMOL 脚本查看。\n- **在 Google Colab 中运行**：无需本地安装，使用仓库提供的 Colab 版本 notebook（带上传组件）。\n- **本地运行查看器**：\n  ```\n  cd web\n  npm install\n  npm run dev\n  ```\n- **注意**：仓库目前仅包含 3 个轨迹子集的药效团图，其余子集和原始 MD 轨迹（将存放于 Zenodo）待补充。"
+  },
+  {
+    "full_name": "gzerze/ddft_for_biomolecular_condensates",
+    "url": "https://github.com/gzerze/ddft_for_biomolecular_condensates",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "pushed_at": "2026-09-30T15:14:40Z",
+    "score": 9,
+    "one_liner": "该仓库提供基于序列依赖RPA+FH自由能的DDFT框架，用于生物分子凝聚体的非平衡演化模拟，直接面向相分离建模，是高度相关的可运行研究代码。",
+    "card": "## 是什么\n\n这是一个基于绝热动力学密度泛函理论（DDFT）框架的研究代码仓库，用于模拟生物分子凝聚体（biomolecular condensates）的非平衡演化过程。代码将序列依赖的随机相近似/Flory–Huggins（RPA+FH）体相自由能与平方梯度界面项结合，利用有限体积求解器 FiPy 演化蛋白质密度场。当前版本主要支持二维、单蛋白体系的液滴弛豫、界面演化和聚并模拟，属于研究型代码而非通用 DDFT 包。\n\n## 亮点\n\n- **序列依赖的体相自由能**：通过 RPA+FH 方法将蛋白质序列信息（氨基酸序列）直接纳入化学势计算，可反映序列组成对相行为的影响。\n- **界面动力学**：引入平方梯度项（κ）描述界面能，支持液滴形貌演化与聚并过程模拟。\n- **自适应时间步与多种边界条件**：支持零通量和 Robin 型边界，便于不同物理场景设置。\n- **断点续算**：通过 `state.pickle` 检查点文件，可从中断处继续计算，适合长时间模拟。\n- **HPC 支持**：提供 SLURM 脚本示例，便于在集群上运行。\n- **可视化与后处理**：输出密度场、化学势场图像，并提供脚本将 PNG 序列转换为 GIF/MP4 动画。\n- **代码溯源清晰**：RPA 相关例程改编自 Protein_RPA（Lin & Chan 等），电影生成流程改编自 Henninger 等的工作，均保留 MIT 许可。\n\n## 为何对本课题有用\n\n本课题关注 IDR/无序蛋白及其相分离与凝聚体建模。该仓库直接针对生物分子凝聚体的非平衡动力学模拟，其核心模型（RPA+FH）正是为序列依赖的相分离行为设计，尤其适用于 IDR 驱动的液-液相分离（LLPS）研究。通过输入 IDR 的氨基酸序列，可以计算其相图、液滴弛豫和聚并行为，从而连接序列与凝聚体性质。此外，代码基于 FiPy 的有限体积方法，便于扩展至更复杂的多组分或多场耦合场景，为 IDR 介导的凝聚体动力学研究提供了可复现的起点。\n\n## 怎么用\n\n1. **环境安装**：需要 Python 3.10+，以及 NumPy、SciPy、Matplotlib、FiPy、PETSc/petsc4py、mpi4py、MoviePy 1.x。可用 Conda 创建环境：\n   ```bash\n   conda create -n ddft -c conda-forge python=3.10 numpy scipy matplotlib fipy petsc4py mpi4py \"moviepy<2\"\n   conda activate ddft\n   ```\n   生成动画还需 FFmpeg 和 gifsicle。\n\n2. **快速运行**：从仓库根目录执行：\n   ```bash\n   mkdir -p Results/example/states\n   python scripts/DDFT/RPA_ddft.py --i scripts/DDFT/input_params.txt --o Results/example/ --s Results/example/\n   ```\n   注意输出和状态路径末尾需带 `/`。\n\n3. **输入参数**：通过逗号分隔的文本文件（如 `input_params.txt`）设置网格、时间步、序列名、盐浓度、温度倒数、χ 参数、κ 等。示例为二维、零盐、双液滴初始条件。\n\n4. **添加新蛋白**：在 `scripts/DDFT/Protein_RPA/seq_list.py` 的 `polymers` 类中定义氨基酸序列，并在输入文件中指定 `seq_name1`。\n\n5. **输出与后处理**：运行后生成密度场 PNG、化学势场 PNG 和检查点文件。使用 `scripts/DDFT/movie.py` 可将 PNG 序列转换为 GIF/MP4。\n\n6. **HPC 运行**：参考 `scripts/bash/` 中的 SLURM 脚本，但需根据本地集群修改模块名、路径和资源设置。\n\n注意：当前版本仅支持单蛋白（`no_comps=1`），两组分例程尚未完全集成；不包含流体动力学相互作用和粘性耗散。将约化时间映射到物理时间需自行选择扩散系数/迁移率。"
+  },
+  {
+    "full_name": "BanerjeeLab-repertoire/pycat-napari",
+    "url": "https://github.com/BanerjeeLab-repertoire/pycat-napari",
+    "language": "Python",
+    "stars": 1,
+    "pushed_at": "2026-10-02T21:11:08Z",
+    "score": 8,
+    "one_liner": "PyCAT 是一个基于 napari 的生物分子凝聚体荧光图像分析工具箱，专注于凝聚体检测、定量与表征，与相分离/凝聚体课题高度相关且为可用的代码工具。",
+    "card": "## 是什么\n\nPyCAT-Napari（Python Condensate Analysis Toolbox）是一个基于 napari 的开源应用，专门用于分析生物图像中的生物分子凝聚体（biomolecular condensates）。它提供了一套全面的荧光图像分析工具，重点聚焦于凝聚体的检测、测量和表征。PyCAT 旨在提供低代码/无代码的解决方案，让不同编程水平的研究者都能使用。\n\n## 亮点\n\n- **全面的图像处理与分割**：包含常用的图像处理和分析功能，以及专门针对凝聚体分割和对象过滤的算法，特别针对细胞内（in-cellulo）具有挑战性的生物数据集进行了优化。\n- **伪 3D 滤波**：支持沿 XY、XZ 和 YZ（或时间序列的 XY/XT/YT）平面应用相同的 2D 核并取平均，利用相邻 Z 切片或过采样帧之间的真实相关性。\n- **可选的 GPU 加速**：通过 CuPy 支持 GPU 加速的滚动球背景去除和形态学操作。\n- **定量区域分析**：提供直观的图层和 ROI 掩膜设计，支持面积、强度、形状、纹理等广泛的 ROI 特征分析。\n- **高级共定位分析**：包括基于对象（Jaccard、Dice、Mander's 系数）和基于像素（Pearson's R、Spearman's R、Li's ICQ）的指标，以及改进的 Costes 分析。\n- **凝聚体生物物理**：支持均方位移（MSD）和异常扩散拟合（D, α）、饱和浓度（C_sat）估计、融合弛豫动力学（τ = ηR/γ）和粗化机制判别（Ostwald 熟化 vs 聚并）、Kaplan-Meier 生存分析。\n- **轨迹追踪**：提供贪心最近邻和贝叶斯（匈牙利/LAP）轨迹连接，支持速度辅助预测和间隙闭合，以及合并/分裂事件检测。\n- **集成分析流程**：包括细胞内凝聚体分析、体外凝聚体分析、时间序列分析、Z-stack 3D 分析、共定位分析和通用 ROI 分析流程，以及专门针对 β-淀粉样纤维的纤维分析流程。\n- **批量处理**：支持记录-回放批量系统，GUI 操作自动记录为可复用的 JSON 配置，并支持无头模式跨文件夹回放。\n\n## 为何对本课题有用\n\n本课题聚焦于固有无序区/无序蛋白（IDR/IDP）及其相分离与生物分子凝聚体（LLPS/condensates）。PyCAT-Napari 正是为分析生物分子凝聚体而设计的工具，它提供了从图像分割、定量测量到生物物理参数提取（如扩散系数、饱和浓度、融合动力学）的完整流程。虽然它不直接预测 IDR 或模拟相分离，但它是研究凝聚体实验数据（如荧光显微镜图像）的关键工具，能够帮助研究者量化凝聚体的性质和行为，从而与 IDR/IDP 的序列特征和相分离机制相关联。因此，它属于本课题中“相分离/凝聚体的建模与模拟”相关的实验数据分析工具。\n\n## 怎么用\n\n1. **安装**：需要 Python 3.12，推荐使用 Miniforge 创建环境，然后通过 `pip install pycat-napari` 安装。\n2. **启动**：在终端运行 `run-pycat` 启动 PyCAT 图形界面。\n3. **使用**：加载生物图像（支持 Zeiss CZI、OME-TIFF、Micro-Manager 等格式），利用内置的分割算法识别凝聚体，然后进行定量分析（如大小、强度、形状、共定位等）。\n4. **高级功能**：可选用 GPU 加速（需安装 CUDA 版 PyTorch），集成 TrackMate 进行轨迹追踪，使用批量处理功能对多个文件进行自动化分析。\n5. **文档与支持**：项目提供详细的文档和 Notebook 示例，遇到问题可查看 GitHub 仓库的 Issues 或讨论区。"
+  },
+  {
+    "full_name": "SIGNALLING-PAPER/SIGNALLING-PAPER",
+    "url": "https://github.com/SIGNALLING-PAPER/SIGNALLING-PAPER",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "pushed_at": "2026-09-29T07:20:42Z",
+    "score": 8,
+    "one_liner": "该仓库提供粗粒化Langevin动力学模拟与LAMMPS输入文件，研究细胞内支架蛋白的相分离（LLPS）对受体聚集的影响，直接面向相分离/凝聚体建模，属于本课题核心方向。",
+    "card": "## 是什么\n\n该仓库是论文《Phase Separation of Intracellular Proteins Influences Extracellular Signaling at the Synapse》的配套代码与数据，来自印度理工学院印多尔分校化学工程系。它提供了用于研究细胞内支架蛋白相分离如何影响突触处受体聚集的粗粒化Langevin动力学模拟、LAMMPS输入文件及分析代码。仓库包含两个自洽的模拟体系：\n- **case1_single_polymer_single_receptor**：单一支架聚合物（Kremer-Grest珠簧链，N=25）与单一受体种类，对比聚合物是否发生相分离（WCA排斥 vs. LJ吸引）对受体聚集的影响。\n- **case2_two_polymer_two_receptor**：两种支架聚合物（P1、P2）与两种受体（R1、R2），通过调节聚合物间相互作用强度，研究不同凝聚体拓扑（分离、接触、共相分离）对受体聚集的调控。\n\n每个体系均包含初始构型构建、生产模拟（LAMMPS）和聚类分析脚本，并附有详细的README说明。\n\n## 亮点\n\n- **聚焦LLPS与受体聚集的耦合**：模型将体相中可相分离的支架聚合物与膜上受体通过跨壁吸引相互作用耦合，直接模拟相分离如何影响膜受体聚集，这是突触信号传导的关键机制。\n- **系统化参数扫描**：Case 1 在受体数量R=0~300范围内比较相分离/非相分离条件；Case 2 在R1=R2=50~204范围内扫描聚合物间相互作用强度，覆盖多种凝聚体拓扑。\n- **完整可复现流程**：所有LAMMPS输入文件、初始构型构建脚本（Jupyter notebook + LAMMPS输入）、分析脚本（聚类统计、RDF、最大簇分数等）均版本控制，原始轨迹因体积过大未纳入，但可通过运行脚本重新生成。\n- **清晰的结果导向**：分析脚本直接输出与论文图3、图5对应的汇总图，便于验证结论（如相分离降低受体聚集临界浓度约70%，共相分离抑制受体聚集）。\n\n## 为何对本课题有用\n\n本课题关注IDR/无序蛋白相分离与生物分子凝聚体建模。该仓库提供了一个**最小化粗粒化模型**的完整实现，展示了如何用Langevin动力学模拟支架蛋白的LLPS，并定量分析相分离对下游信号（受体聚集）的影响。虽然模型中的支架蛋白未明确标注为IDR，但其相分离行为与IDR介导的LLPS机制一致，可作为IDR相分离建模的参考模板。具体价值包括：\n- **方法学参考**：提供了Kremer-Grest链、LJ/WCA势、FENE键、Langevin动力学等标准粗粒化模拟参数设置，可直接借鉴到IDR相分离模拟中。\n- **分析流程借鉴**：聚类分析、最大簇分数、RDF等脚本可复用于IDR凝聚体的大小分布、结构表征。\n- **多组分相分离建模**：Case 2 展示了如何模拟两种聚合物竞争性相分离及其对结合配体的影响，对研究多IDR体系或IDR与客户蛋白互作有直接参考价值。\n- **可扩展性**：代码结构清晰，易于修改聚合物序列、相互作用参数或受体数量，适合作为IDR相分离模拟的起点。\n\n## 怎么用\n\n1. **环境准备**：需要本地安装LAMMPS（论文使用23 Jun 2022版本），并确保Python环境支持Jupyter notebook及常用科学计算库（如numpy、matplotlib）。\n2. **运行模拟**：进入具体体系目录，例如：\n   ```bash\n   cd case1_single_polymer_single_receptor/simulations/WCA_no_phase_separation/N_100\n   lmp -in lammps_sim.in\n   ```\n   运行后会在该目录生成轨迹文件（lammps.data、traj.lammpstrj等）。\n3. **分析数据**：使用`analysis/`下的脚本计算聚类统计。例如，`cluster_lammps.py`可计算连通簇；`fraction_vs_N.py`可汇总不同受体数量下的最大簇分数。每个case的README.md提供了具体命令用法。\n4. **复现论文图**：运行`analysis/`中的汇总脚本（如`collect_cluster_plots.py`）可生成与论文图3、图5类似的图表，结果输出至`analysis/results/`。\n5. **自定义修改**：可修改LAMMPS输入文件中的相互作用参数（如LJ深度ε、截断距离）或受体数量，探索不同相分离条件对聚集的影响。注意原始轨迹未版本控制，需自行运行生成。"
+  },
+  {
+    "full_name": "flyark/AFM-LIS",
+    "url": "https://github.com/flyark/AFM-LIS",
+    "language": "Jupyter Notebook",
+    "stars": 90,
+    "pushed_at": "2026-10-05T15:57:17Z",
+    "score": 7,
+    "one_liner": "该仓库提供从结构预测输出中计算局部互作分数(LIS/iLIS)的工具,专门用于识别涉及SLiMs或IDR的瞬时/柔性蛋白互作,与IDR介导的结合建模高度相关,但主要面向PPI发现而非IDR本身。",
+    "card": "## 是什么\n\nAFM-LIS 是一个从结构预测输出中计算 **Local Interaction Score (LIS)** 的工具仓库，用于增强蛋白质-蛋白质相互作用 (PPI) 的发现。它专门针对全局置信度指标（如 ipTM）容易漏掉的**瞬时和柔性相互作用**（例如涉及 SLiMs 或 IDR 的相互作用）而设计。仓库支持 AlphaFold3、ColabFold/AlphaFold-Multimer、Boltz、Chai-1、OpenFold3 等主流结构预测平台。\n\n仓库提供两种经过验证的方法：\n- **iLIS (integrated Local Interaction Score)**：推荐使用的新指标，将界面置信度与直接物理接触过滤结合为一个单一稳健分数。\n- **LIS + LIA (Local Interaction Score + Area)**：原始的双指标系统，同时评估相互作用的分数 (LIS) 和面积 (LIA)。\n\n## 亮点\n\n- **针对柔性相互作用优化**：明确解决非相互作用的无序区域“稀释”全局分数（如 ipTM）的问题，聚焦于高置信度的局部界面。\n- **iLIS 单一指标**：通过几何平均 `iLIS = sqrt(LIS * cLIS)` 整合直接接触过滤，有效消除“高置信但无物理接触”的假阳性。\n- **提供验证阈值**：给出 iLIS ≥ 0.223 的高置信相互作用建议阈值，以及 LIS+LIA 框架的阈值，便于直接使用。\n- **多平台自动检测**：自动识别 AlphaFold3、ColabFold、Boltz、Chai-1、OpenFold3 等输出格式，并支持通过 manifest 文件自定义。\n- **丰富的可视化工具**：提供命令行工具 `lis.py` 进行批量分析，`lis_to_cxc.py` 生成 ChimeraX 脚本，以及无需安装的网页工具 LIVIA 进行交互式可视化。\n- **输出信息丰富**：CSV 输出包含 iLIS、LIS、cLIS、LIA、cLIA、ipTM、pLDDT 等多项指标，以及局部相互作用残基 (LIR) 的详细位置。\n\n## 为何对本课题有用\n\n本课题关注 IDR/无序蛋白及其相分离与凝聚体。AFM-LIS 的核心设计目标正是识别**涉及 IDR 的柔性、瞬时相互作用**，这些相互作用通常被传统全局指标（如 ipTM）忽略。因此，该工具可以直接用于：\n- **IDR 介导的结合/互作建模**：从结构预测输出中提取 IDR 参与的局部相互作用信号，帮助识别 SLiMs 或 IDR 介导的弱结合事件。\n- **无序蛋白构象系综分析**：通过 PAE 和 pLDDT 等指标，聚焦于低置信度（柔性）区域的局部相互作用，为理解无序区的动态结合提供量化依据。\n- **相分离相关研究**：虽然不直接模拟相分离，但 IDR 介导的多价相互作用是凝聚体形成的关键驱动因素，AFM-LIS 可用于筛选和验证参与此类相互作用的蛋白对。\n\n## 怎么用\n\n**1. 安装与依赖**：需要 Python ≥ 3.8、NumPy、SciPy。\n\n**2. 命令行批量分析 (`lis.py`)**：\n```bash\n# 基本用法，自动检测平台，处理所有模型\npython lis.py /path/to/prediction_folder/\n\n# 处理 zip 文件\npython lis.py alphafold3_output.zip\n\n# 并行处理 (4 CPUs)\npython lis.py /path/to/predictions/ -w 4\n\n# 自定义输出位置\npython lis.py /path/to/predictions/ -d /path/to/output/\n```\n\n**3. 自定义输入格式**：对于自动检测无法识别的布局，可在预测文件夹中放置 `lis.json` manifest 文件，指定结构、PAE 和分数文件的 glob 模式。\n\n**4. 可视化**：\n- 使用网页工具 [LIVIA](https://flyark.github.io/LIVIA/) 进行拖拽式可视化，无需安装。\n- 使用 `lis_to_cxc.py` 从 CSV 批量生成 ChimeraX 脚本：\n```bash\npython lis.py prediction.zip -o results_lis_analysis.csv\npython lis_to_cxc.py --csv results_lis_analysis.csv --pdb-root . --out cxc/\n```\n\n**5. 结果解读**：参考 CSV 输出中的 iLIS、LIS、cLIA 等列，并使用建议阈值 (iLIS ≥ 0.223) 判断高置信相互作用。"
+  },
+  {
+    "full_name": "BoHuangLab/CELL-FM",
+    "url": "https://github.com/BoHuangLab/CELL-FM",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "pushed_at": "2026-10-01T21:35:06Z",
+    "score": 7,
+    "one_liner": "CELL-FM 是一个从蛋白序列生成荧光显微图像的生成模型，其 CondenSeq 应用直接面向无序肽的相分离凝聚体滴定分析，属于本课题相关工具，但核心对象是通用蛋白定位成像而非专门针对 IDR/相分离建模。",
+    "card": "## 是什么\n\nCELL-FM 是一个虚拟显微镜（virtual microscopy）模型，由 Bo Huang 实验室开发。它从蛋白质的氨基酸序列和细胞环境出发，生成该蛋白质在细胞中可能呈现的荧光图像；反过来，从图像也能生成与之兼容的序列。该模型基于论文 *Virtual experiments bridge sequence and microscopy with generative models*（bioRxiv, 2026）。\n\n## 亮点\n\n- **生成式虚拟实验**：不把实验压缩成任务标签，而是直接学习生成实验读数（细胞中蛋白质的图像），下游分析（如核质比、凝聚体分类、图像嵌入）直接在生成图像上进行，无需为每个任务重新训练。\n- **统一编码器 + 多模态生成**：图像（蛋白质通道 + 细胞环境通道）经 VAE 编码为 patch tokens，序列用 ESM-C 600M 蛋白语言模型嵌入，一个 transformer 联合处理图像和序列 tokens，融合成共享表示。\n- **三个输出头**：图像生成（MMDiT，流匹配）、序列生成（离散扩散，顺序无关自回归）、图像重建（掩码自编码器，辅助）。\n- **两阶段训练**：阶段一掩码一半图像 patch 学习鲁棒共享表示；阶段二关闭掩码，微调两个生成损失。\n- **表达水平条件化**：对于 CondenSeq 数据，表达水平作为额外连续条件 token，使同一序列可在任意浓度下成像，支持 *in silico* 滴定。\n- **训练数据丰富**：使用 Human Protein Atlas（12,894 蛋白，1.1M 单细胞图像）、OpenCell（1,311 蛋白，~96,000 图像）、CondenSeq（14,598 个 66 aa 无序肽，~8M 图像）。\n- **提供 Colab 应用笔记本**：包括凝聚体滴定、NLS 筛选、定位信号生成、OpenCell 虚拟染色。\n\n## 为何对本课题有用\n\n本课题关注固有无序区/无序蛋白（IDR/IDP）及其相分离与生物分子凝聚体。CELL-FM 直接与 IDR 相关：其训练数据包含 CondenSeq 数据集，该数据集专门针对 66 个氨基酸的无序肽段在 U2OS 细胞核中的凝聚体形成进行成像，覆盖不同表达水平。模型能够从序列生成荧光图像，并可通过凝聚体分类器量化凝聚倾向（AUC）和再入溶解（AAC），这为 IDR 介导的相分离研究提供了一种虚拟实验工具。此外，模型支持从图像到序列的生成，可用于设计具有特定定位信号（如 NLS/NES）的肽段，可能对理解 IDR 的定位和互作有帮助。因此，该仓库属于 IDR/相分离方向的研究工具。\n\n## 怎么用\n\n- **环境**：每个应用是一个 Colab 笔记本，位于 `notebooks/` 目录。选择 GPU 运行时（Colab T4 即可），笔记本会自动安装依赖并下载权重。\n- **凝聚体滴定**：打开 `notebooks/condensate_titration.ipynb`，输入一个 66 aa 无序肽序列，模型沿表达水平梯度生成图像，ViT 分类器判断凝聚/弥散，输出滴定曲线，并计算 AUC（凝聚倾向）和 AAC（高浓度再入溶解）。\n- **NLS 筛选**：`notebooks/nls_screening.ipynb` 沿蛋白序列滑动窗口，对每个片段虚拟染色，计算核质比以定位核定位信号。\n- **定位信号生成**：`notebooks/pls_generation.ipynb` 从图像到序列，给定细胞中蛋白位于核或质，模型设计 NLS 或 NES 肽，并与人类蛋白质组比较残基组成。\n- **OpenCell 虚拟染色**：`notebooks/opencell_vs.ipynb` 将任意 OpenCell 蛋白序列绘制到同一细胞核上，用 ViT 嵌入生成细胞以映射蛋白定位。\n- **代码结构**：`cell_fm/` 包含模型、数据集、训练流程和任务；`scripts/` 提供训练和评估启动脚本；`notebooks/` 为应用笔记本。\n- **权重**：从 Hugging Face 下载（BoHuangLab/CELL-FM）。\n- **引用**：使用请引用论文（见 README 中的 BibTeX）。\n- **许可证**：MIT。"
+  },
+  {
+    "full_name": "zhuojin05/running-af2",
+    "url": "https://github.com/zhuojin05/running-af2",
+    "language": "Python",
+    "stars": 0,
+    "pushed_at": "2026-10-01T07:57:25Z",
+    "score": 7,
+    "one_liner": "该仓库是面向Munc13-1蛋白及其活性区凝聚体的AlphaFold2多聚体结构预测流水线，虽以结构预测为主而非直接建模相分离，但针对含IDR的蛋白复合物进行构象预测，与课题部分相关且提供可运行代码。",
+    "card": "## 是什么\n\n这是一个基于 Modal 无服务器平台的 AlphaFold2-Multimer 结构预测流水线仓库，专门用于建模 Munc13-1 蛋白复合物及活性区凝聚体（active zone condensates）。仓库将全长 Munc13-1（含大量无序区）拆分为三个可计算的构建体（Construct A/B/C），分别对应三聚体核心、最小三聚体以及 C2A–RIM1α 异二聚体，并利用 colabfold_batch 进行原子级结构预测。\n\n## 亮点\n\n- **针对无序区优化**：全长 Munc13-1 含高度灵活的无序连接区（残基 151–528），导致严重聚集并超出 GPU 显存限制；仓库通过拆分构建体规避该问题。\n- **大规模多聚体支持**：支持 3,435 残基的三聚体（Construct A）和 1,707 残基的三聚体（Construct B），在 80 GB A100 上快速折叠（Construct B 约 5 分钟）。\n- **显存管理策略**：通过 `TF_FORCE_UNIFIED_MEMORY=0` 和 `XLA_PYTHON_CLIENT_MEM_FRACTION=0.90` 预分配约 73.5 GB 物理显存，避免统一内存分页和沙箱死锁。\n- **持久化模型权重**：使用 Modal Volume 缓存 AlphaFold2 权重（约 5 GB），消除冷启动下载延迟。\n- **自动化质量检查**：内置 `analyze_results.py` 计算 PAE 热图、链边界，并验证关键接触界面（如静电补丁、MUN 核心、C2A–RIM1α 结合界面）。\n- **可视化支持**：提供 PyMOL 渲染脚本，生成高分辨率 3D 图和交互式会话文件。\n\n## 为何对本课题有用\n\n本课题关注 IDR/无序蛋白及其相分离与凝聚体。该仓库直接涉及 Munc13-1 的活性区凝聚体（active zone condensates），并明确处理了无序区（IDR）带来的计算挑战。具体价值包括：\n\n- **IDR 处理策略**：展示了如何通过构建体拆分来规避长无序区导致的聚集和显存问题，为 IDR 相关结构预测提供实用方案。\n- **凝聚体相关建模**：Construct C 模拟 Munc13-1 C2A 与 RIM1α 锌指结构域的异二聚体，该界面与突触活性区凝聚体的支架转换相关，直接关联相分离介导的互作建模。\n- **多聚体预测**：支持同源三聚体（A/B）和异二聚体（C），适用于 IDR 介导的多价互作和凝聚体形成研究。\n- **工具链完整**：从输入 FASTA 到输出 PDB、PAE 热图和质量检查，提供端到端流程，可复用于其他 IDR 相关复合物预测。\n\n## 怎么用\n\n1. **安装依赖**：使用 `uv` 管理项目，运行 `curl -LsSf https://astral.sh/uv/install.sh | sh` 安装 uv，然后 `uv sync` 创建虚拟环境并同步依赖。\n2. **验证目标**：本地干跑检查多聚体 FASTA 语法：`uv run python run_prediction.py --all --dry-run`。\n3. **预缓存权重**：执行 `uv run python run_prediction.py --download-weights` 提前下载并提交 AlphaFold2 权重到 Modal Volume。\n4. **运行预测**：\n   - 单构建体：`uv run python run_prediction.py --target construct_b`（或 `construct_a`、`construct_c`）\n   - 全部构建体：`uv run python run_prediction.py --all`\n5. **质量检查**：对已有预测运行 `uv run python analyze_results.py outputs/construct_b targets/construct_b.fasta`，生成 PAE 热图并验证接触界面。\n6. **可视化**：运行 `uv run visualize_construct_b.py` 生成 PyMOL 渲染和会话文件。\n\n输出文件位于 `outputs/<target_name>/`，包含 PDB 结构、JSON 评分（pLDDT、PAE、pTM、ipTM）和注释 PAE 热图。"
+  },
+  {
+    "full_name": "Ruqing1963/kakutani-statistical-pharmacology-X",
+    "url": "https://github.com/Ruqing1963/kakutani-statistical-pharmacology-X",
+    "language": "Python",
+    "stars": 0,
+    "pushed_at": "2026-10-01T02:10:32Z",
+    "score": 7,
+    "one_liner": "该仓库提供针对Tau和Aβ等IDP淀粉样成核相变的统计药理学建模代码，直接面向IDR/相变主题，但形态偏理论论文配套代码，非通用工具。",
+    "card": "## 是什么\n\n本仓库是论文《Statistical Pharmacology via Kakutani Dichotomy X》的配套代码与数据，聚焦于**固有无序蛋白（IDP）的淀粉样成核相变**。具体研究对象包括 Tau 蛋白的 PHF6*/PHF6 片段（VQIINK/VQIVYK）和 Aβ42 单体，并提出了“动力学系综稳定剂设计法则”。仓库基于 Paper I 的 α_c = 1/2 临界性定理，将 IDP 单体构象系综建模为 {coil, β} 上的乘积测度，通过尾部指数 α 区分健康可溶系综与致病预成核系综，并据此设计稳定剂以阻止成核相变。\n\n## 亮点\n\n- **理论驱动**：将 Kakutani 二分法应用于 IDP 成核，提出 α_c = 1/2 临界指数，区分系综等价（α > 1/2）与互异（α ≤ 1/2）两种相态。\n- **数值稳定性**：提供无消减误差的 h(ε) 精确恒等式，避免教科书公式在 ε 极小时因消减导致的灾难性误差（ε=10⁻⁶ 时精度提升 3.6×10⁶ 倍）。\n- **可复现实验**：Experiment 10 通过全部 11 项验收标准，配套脚本通过 16 项检查，单元测试全部通过（17 项模型测试 + 12 项继承测试）。\n- **完整论文配套**：包含 18 页 LaTeX 论文（零错误、零警告），所有表格数据由代码生成，确保结果可追溯。\n- **诚实建模**：明确承认模型局限（如接触模式独立性假设、热斑参数为选择而非测量），并展示有限 N 下的 crossover 行为，避免过度宣称。\n\n## 为何对本课题有用\n\n本仓库直接面向 IDR/IDP 的相分离与凝聚体研究，尤其聚焦于**淀粉样成核相变**这一凝聚体形成的关键过程。它提供了：\n- **IDP 构象系综的建模方法**：将单体系综表示为接触模式上的乘积测度，为无序蛋白的系综分析提供新视角。\n- **相变临界性的理论工具**：α_c = 1/2 定理可用于判断 IDP 系综是否发生相分离，对理解 LLPS 的驱动机制有参考价值。\n- **稳定剂设计法则**：通过调节尾部指数 α 来抑制成核，为 IDR 介导的聚集调控提供计算框架。\n- **数值方法**：稳定的 h(ε) 计算形式可复用于其他 IDP 系综分析，避免精度损失。\n\n## 怎么用\n\n```bash\n# 安装依赖\npip install -r requirements.txt\n\n# 运行单元测试\npython tests/test_exp10.py && python tests/test_kakutani_pharma.py && python tests/test_calibration.py\n\n# 运行主实验（约 5 秒，输出 OVERALL ACCEPTANCE: PASS）\npython code/exp10_ad_tau_abeta_idp_stabilizer.py\n\n# 生成论文表格数据（输出 ALL CHECKS PASS）\npython code/paper10_compute_tables.py\n\n# 编译论文（需运行三次 pdflatex）\ncd paper && pdflatex paper10_ad_tau_abeta_idp_stabilizer.tex\n```\n\n核心代码位于 `code/exp10_lib.py`，包含系综构建、热斑定义、指数计算、估计器与动力学模块。数据文件在 `data/` 目录（如 `exp10_scaling.csv`、`exp10_states.csv`），结果在 `results/` 目录。论文全文及图表在 `paper/` 和 `figures/` 目录。"
+  },
+  {
+    "full_name": "harshavcsn/Lipidation_Classifier_Predictor",
+    "url": "https://github.com/harshavcsn/Lipidation_Classifier_Predictor",
+    "language": "Python",
+    "stars": 0,
+    "pushed_at": "2026-09-30T16:24:14Z",
+    "score": 7,
+    "one_liner": "该仓库预测三肽形成纤维/液滴/亚稳态组装，直接面向生物分子凝聚体（液滴）分类，但对象为脂化三肽而非IDR/无序蛋白，方法可迁移但相关性有限。",
+    "card": "## 是什么\n\nLipidation Classifier Predictor 是一个用于预测三肽（tripeptide）组装行为的机器学习工具。它根据三肽序列预测其会形成 **fiber（纤维）**、**droplet（液滴）** 还是 **MetaStable (MS，亚稳态)** 组装体。每个残基用 AAindex 属性描述，并通过 PCA 降维，然后由三个模型（SVM、弹性网络逻辑回归、随机森林）投票决定最终类别。\n\n## 亮点\n\n- **三肽组装预测**：专门针对三肽序列，预测其形成纤维、液滴或亚稳态组装体的倾向。\n- **多模型集成**：使用 SVM、弹性网络逻辑回归和随机森林三种模型进行投票，并提供共识一致性（consensus_agreement）作为置信度指标。\n- **易用性**：提供命令行、Python API、Jupyter Notebook 和 Google Colab 多种使用方式，无需安装即可在 Colab 中运行。\n- **可训练性**：支持用户用自己的数据训练新模型，并提供了完整的训练流水线（特征构建、超参数搜索、评估、最终训练）。\n- **特征工程**：基于 AAindex 属性进行 PCA 压缩，并提供了特征重要性分析和消融实验脚本。\n\n## 为何对本课题有用\n\n本课题关注 IDR/无序蛋白及其相分离与生物分子凝聚体。该仓库直接预测三肽形成 **droplet（液滴）** 的能力，而 droplet 是生物分子凝聚体（condensates）的一种常见形态，与液-液相分离（LLPS）密切相关。虽然该工具聚焦于三肽而非完整的 IDR，但它提供了一种快速、可扩展的序列-组装表型预测方法，可用于筛选或设计具有凝聚体形成倾向的短肽或 IDR 片段。此外，其训练流水线和特征工程方法（AAindex + PCA）可被借鉴用于构建更复杂的 IDR 相分离预测模型。\n\n## 怎么用\n\n1. **安装**：\n   ```bash\n   git clone https://github.com/harshavcsn/Lipidation_Classifier_Predictor.git\n   cd Lipidation_Classifier_Predictor\n   pip install -r requirements.txt   # 仅预测\n   pip install -r requirements-train.txt  # 训练模型时额外需要\n   ```\n\n2. **预测**：\n   - 命令行：`python predict.py GAAC GKLV GGWV`\n   - 输入文件：`python predict.py --input new_predict.csv --output predictions.csv`\n   - Python API：\n     ```python\n     from predict import predict\n     predict([\"GAAC\", \"GKLV\"])\n     ```\n   - 或直接使用 Google Colab 链接运行。\n\n3. **训练自定义模型**：\n   - 准备 CSV 文件（无表头，两列：`sequence,label`）。\n   - 运行 `LIPML_DATA=my_data.csv LIPML_OUT=results_my_run LIPML_MAX_COMBOS=20 ./run_all.sh 8`。\n   - 用新模型预测：`python predict.py GAAC --models-dir results_my_run/final --pca-table results_my_run/features/pca_table.csv`。\n\n4. **输出解释**：输出包含每个模型的预测和共识预测，`consensus_agreement` 显示模型一致数，`2/3` 视为低置信度。"
+  },
+  {
+    "full_name": "wkf-phy/interface-mediated-secondary-phase-separation",
+    "url": "https://github.com/wkf-phy/interface-mediated-secondary-phase-separation",
+    "language": "MATLAB",
+    "stars": 0,
+    "pushed_at": "2026-10-01T22:53:35Z",
+    "score": 7,
+    "one_liner": "该仓库提供相分离相场模型（Cahn-Hilliard）的MATLAB代码与数据，直接面向相分离/凝聚体建模，但未明确针对IDR/无序蛋白，对象部分相关。",
+    "card": "## 是什么\n\n该仓库是论文 *Interface-mediated secondary phase separation* 的官方代码与数据仓库，使用 MATLAB 实现。它基于三元相场模型（scaffold、client、溶剂）研究界面介导的次级相分离现象，包含平衡态计算、Cahn–Hilliard 动力学模拟、相边界分析以及论文中所有数值结果的绘图脚本。\n\n## 亮点\n\n- **完整复现**：按论文图表组织代码，每个图对应独立文件夹，包含脚本、预计算数据（.mat）和必要的辅助函数。\n- **多种数值方法**：实现了 Cahn–Hilliard 动力学模拟、径向对称边界值问题（BVP）求解、连续性计算（用于确定失稳边界和临界剖面）、界面富集与液滴形貌分析。\n- **数据齐全**：所有数值数据和代码均包含在仓库中，可直接生成论文中的结果。\n\n## 为何对本课题有用\n\n本课题关注 IDR/无序蛋白的相分离与生物分子凝聚体建模。该仓库提供了一个基于相场理论的**多组分相分离模拟框架**，其中 scaffold 和 client 的相互作用可类比于 IDR 介导的蛋白-蛋白互作。其 Cahn–Hilliard 动力学和界面分析工具可直接用于研究凝聚体形成、界面富集和次级相分离等过程，为 IDR 相分离的连续介质建模提供参考实现。\n\n## 怎么用\n\n1. **环境要求**：需要 MATLAB，部分脚本依赖 Image Processing Toolbox，BVP 计算使用内置的 `bvp4c` 求解器。\n2. **运行方式**：进入对应图表的文件夹，直接运行其中的 `.m` 脚本即可生成该图；若需重新生成预计算数据，可运行相应的数值脚本。\n3. **扩展应用**：可修改三元相场模型中的参数（如相互作用强度、浓度）来模拟不同 IDR 体系，或借鉴其 BVP 和连续性计算方法分析凝聚体稳定性。"
+  },
+  {
+    "full_name": "microsoft/bioemu",
+    "url": "https://github.com/microsoft/bioemu",
+    "language": "Python",
+    "stars": 886,
+    "pushed_at": "2026-10-01T14:32:31Z",
+    "score": 6,
+    "one_liner": "BioEmu 是一个用生成式深度学习从序列采样蛋白质平衡构象系综的工具，虽非专门针对 IDR/相分离，但其构象采样能力对无序蛋白构象系综研究有直接可迁移价值。",
+    "card": "## 是什么\n\nBioEmu (Biomolecular Emulator) 是一个基于深度学习的生成模型，给定蛋白质氨基酸序列，直接采样近似平衡态下的蛋白质单体结构系综。它由微软研究院开发，相关论文发表于 *Science*，并提供推理代码与预训练模型权重。\n\n## 亮点\n\n- **平衡态系综采样**：直接生成蛋白质的构象系综，而非单一结构，可反映蛋白质的固有动态与无序性。\n- **物理约束引导**：内置 steering 系统（SMC 与 FKC 两种算法），可在扩散去噪过程中施加势能函数，避免链断裂与空间位阻，提升结构物理合理性。\n- **高效推理**：在 A100 GPU 上，100 个残基的蛋白采集 1000 个样本约需 4 分钟，支持大规模采样。\n- **侧链重建与 MD 弛豫**：提供与 HPacker 的接口，可重建侧链并进行短时间分子动力学平衡，便于后续分析。\n- **多版本模型**：提供 v1.0、v1.1、v1.2 三个检查点，分别对应论文预印本、正式发表版及扩展训练版。\n\n## 为何对本课题有用\n\n本课题关注 IDR/IDP 的构象系综与相分离行为。BioEmu 直接生成蛋白质的平衡态构象系综，特别适合研究无序区域——其 README 明确指出，无序区域容易产生空间位阻，而 steering 机制可有效过滤非物理结构，从而获得更可靠的无序构象样本。这些样本可用于分析 IDR 的构象偏好、计算自由能景观，或作为相分离粗粒化模拟的输入。此外，其侧链重建与 MD 弛豫功能可进一步细化无序构象，为 IDR 介导的相互作用建模提供结构基础。\n\n## 怎么用\n\n1. **安装**：`pip install bioemu`（Linux，Python 3.10+），如需 CUDA 支持则 `pip install bioemu[cuda]`。首次使用会自动下载 AlphaFold2 权重（约 3.5 GB）。\n2. **基础采样**：\n   ```bash\n   python -m bioemu.sample --sequence GYDPETGTWG --num_samples 10 --output_dir ~/test-chignolin\n   ```\n   也可传入 FASTA 文件路径。默认会过滤非物理结构，若需保留全部样本可加 `--filter_samples=False`。\n3. **物理引导采样**：通过 YAML 配置文件启用 steering，例如：\n   ```bash\n   python -m bioemu.sample --sequence GYDPETGTWG --num_samples 100 --output_dir ~/steered-samples --denoiser_config src/bioemu/config/steering/physical_steering.yaml\n   ```\n   可调整 `num_particles`、`ess_threshold` 等参数，或自定义势能组合。\n4. **侧链重建与 MD 弛豫**：安装可选依赖 `pip install bioemu[md]`，然后运行：\n   ```bash\n   python -m bioemu.sidechain_relax --pdb-path path/to/topology.pdb --xtc-path path/to/samples.xtc\n   ```\n   默认进行侧链重建与局部能量最小化，可加 `--no-md-equil` 跳过 MD，或 `--md-protocol nvt_equil` 进行 0.1 ns NVT 平衡。\n5. **模型选择**：通过 `--model_name` 指定检查点，如 `--model_name=\"bioemu-v1.1\"`。\n\n注意：当前仅支持单体采样，多聚体需使用 linker 技巧，但效果有限。"
+  },
+  {
+    "full_name": "JuliaMolSim/Molly.jl",
+    "url": "https://github.com/JuliaMolSim/Molly.jl",
+    "language": "Julia",
+    "stars": 496,
+    "pushed_at": "2026-10-05T16:06:07Z",
+    "score": 6,
+    "one_liner": "Molly.jl 是一个通用的分子动力学模拟包，虽非专门面向 IDR/相分离，但其可微模拟能力已被用于开发无序蛋白力场，方法可迁移至本课题。",
+    "card": "## 是什么\n\nMolly.jl 是一个纯 Julia 实现的分子动力学（MD）模拟软件包，用于模拟从惰性气体到生物大分子等物理系统的分子运动与相互作用。它提供了丰富的力场、积分器、恒温器、恒压器、能量最小化、副本交换、蒙特卡洛模拟等功能，并支持 GPU 加速和可微分的分子动力学模拟。\n\n## 亮点\n\n- **纯 Julia 实现**：完全基于 Julia 语言，易于扩展和集成。\n- **功能全面**：支持多种非键相互作用（Lennard-Jones、静电、软球势等）、键合相互作用（谐振子、Morse 键、键角、二面角等）、隐式溶剂 GBSA 方法、PME 静电求和、SHAKE/RATTLE 约束等。\n- **可微分模拟**：这是该包独有的特性，也是当前开发的重点，可用于力场参数优化。\n- **高性能**：支持自动多线程和 GPU 加速（通过 KernelAbstractions.jl），在 CUDA 设备上性能较好。\n- **互操作性**：可读取 OpenMM 力场文件，支持 Chemfiles.jl 的坐标和轨迹格式，兼容 AtomsBase.jl 和 AtomsCalculators.jl，并可调用 Python ASE 计算器。\n- **易用性**：提供简洁的 API，支持单位（Unitful.jl），并内置 RDF 分析等功能。\n\n## 为何对本课题有用\n\n本课题关注 IDR/IDP 的构象系综生成与分析。Molly.jl 作为通用 MD 模拟工具，可用于生成无序蛋白的构象系综，其可微分模拟特性尤其适合开发针对无序蛋白的力场（README 引用的论文即为此方向）。虽然 README 未直接提及 IDR/相分离，但其 MD 能力是研究 IDP 构象和相分离行为的基础工具。\n\n## 怎么用\n\n1. **安装**：需要 Julia v1.10 或更高版本。在 Julia REPL 中按 `]` 进入包模式，运行 `add Molly`。如需 GPU 支持，额外安装相应后端（如 `add CUDA`）。\n2. **基本模拟**：定义原子、边界、温度、力场和积分器，创建 `System` 对象，调用 `simulate!` 进行模拟。README 提供了 Lennard-Jones 流体和蛋白质 GPU 模拟的示例代码。\n3. **文档与支持**：详细用法见[官方文档](https://juliamolsim.github.io/Molly.jl/stable/documentation)。可通过 JuliaMolSim Zulip、Julia Slack 或 Julia Discourse 讨论使用和开发。\n4. **引用**：若使用该包，请引用 Greener JG 的论文（Chemical Science, 2024）。"
+  },
+  {
+    "full_name": "Laura-Filkova/CB2330-KICKASS-PROJECT",
+    "url": "https://github.com/Laura-Filkova/CB2330-KICKASS-PROJECT",
+    "language": "Jupyter Notebook",
+    "stars": 1,
+    "pushed_at": "2026-10-05T23:14:08Z",
+    "score": 6,
+    "one_liner": "课程项目用简单统计模型拟合FINCHES预测的IDR磷酸化前后互作参数变化，对象相关但形态为教学项目，方法简单可迁移。",
+    "card": "## 是什么\n\nCB2330-KICKASS-PROJECT 是 CB2330 课程（2026 年秋）的项目仓库，由 Laura Filkova、Lisa Verena Neuschitzer 和 Juan Andres Toro Delgado 完成。它针对 Ginell et al. (2025) 在 *Science* 上发表的论文（*Sequence-based prediction of intermolecular interactions driven by disordered regions*）中的 FINCHES 预测结果，对 19,702 个人类无序区（IDR）的磷酸化前后自相互作用参数 ε 的变化（Δε）进行统计建模。核心假设是：每个磷酸化位点独立地对 ε 产生一个随机增量（服从均值为 μ、标准差为 s 的正态分布），且这些增量线性叠加，因此对于含 n 个磷酸化位点的 IDR，Δε 服从 Normal(nμ, ns²)。\n\n## 亮点\n\n- 基于最大似然估计（网格搜索）拟合论文的 Table S3A，得到 μ = 0.927 ε 单位/磷酸化位点，s = 1.34，μ 的不确定度约 ±0.005（通过似然区间、曲率和 bootstrap 验证）。\n- 模拟数据能复现真实数据中 Δε 随 n 的线性上升和方差增大的趋势，且用模拟数据重新拟合能恢复生成参数。\n- 模型预测：磷酸化位点越多的 IDR，磷酸化后变得更“粘”（sticky）的概率越低，且数据支持这一趋势。\n- 明确指出了模型的局限：真实数据的方差增长快于模型假设，说明同一 IDR 内的磷酸化位点可能并非独立；且使用第二个力场（Table S3B）时 μ 约小 4 倍，表明 μ 依赖于 FINCHES 的运行方式。\n\n## 为何对本课题有用\n\n本课题关注 IDR/无序蛋白及其相分离与凝聚体，而该仓库直接针对 IDR 的序列-功能关系，特别是磷酸化修饰如何影响 IDR 的自相互作用强度（ε），这是驱动相分离的关键物理参数之一。它提供了一个简洁的统计模型，将 IDR 的序列特征（磷酸化位点数量）与凝聚体形成的倾向性联系起来，可作为理解 IDR 介导互作和相分离调控的参考工具。此外，它展示了如何从大规模预测数据中提取可解释的生物学规律，并暴露了现有预测工具（FINCHES）的依赖性和不确定性，对评估和开发新的 IDR 预测方法具有方法论价值。\n\n## 怎么用\n\n- 运行环境：Google Colab。\n- 步骤：\n  1. 上传 `project.ipynb` 到 Colab。\n  2. 在 Files 面板中创建名为 `data` 的文件夹。\n  3. 将包含论文 Table S3A（或 S3B）的 Excel 文件上传到 `data` 文件夹中。\n  4. 运行 notebook，即可复现参数拟合、模拟和趋势分析。\n- 注意：仓库未提供数据文件，需自行从论文补充材料获取。"
+  },
+  {
+    "full_name": "riddhikad9b-ux/Comparative_Genomics_Stress_Resilient_Animals",
+    "url": "https://github.com/riddhikad9b-ux/Comparative_Genomics_Stress_Resilient_Animals",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "pushed_at": "2026-10-04T10:37:28Z",
+    "score": 6,
+    "one_liner": "该仓库是缓步动物应激蛋白的比较基因组学与结构生物物理分析流程，虽涉及IDP的AlphaFold无序区分析，但对象是特定物种蛋白而非通用IDR/相分离工具，方法可部分迁移。",
+    "card": "## 是什么\n\n这是一个针对缓步动物（水熊虫）胁迫蛋白的**比较基因组学与结构生物物理学计算流程**。仓库包含自动化 Python 脚本，用于构建多序列 FASTA 数据集、计算序列同一性矩阵与系统发育树、量化生物物理性质（分子量、等电点、碱性残基富集）、分析 AlphaFold 3D 结构（pLDDT 置信度与内在无序性），并将静电滑动窗口碱性残基密度映射到 PDB B-factor 列中。\n\n## 亮点\n\n- **内在无序性分析**：利用 AlphaFold pLDDT 谱图识别 Dsup 蛋白为内在无序蛋白（IDP），平均置信度 52.30，超过 54% 残基为无序状态。\n- **静电屏蔽机制**：发现 Dsup 富含碱性残基（Lys+Arg >34%），等电点约 10.45，形成正电云屏蔽 DNA 免受辐射损伤。\n- **序列保守性对比**：管家抗氧化酶 MnSOD 高度保守（>82% 同一性），而缓步动物抗逆因子（Dsup、CAHS1）快速分化（<23% 同一性）。\n- **可视化输出**：生成序列同一性热图、系统发育树、碱性残基富集图、pLDDT 谱图、滑动窗口密度曲线，以及将静电分数映射到 PDB B-factor 的定制结构文件。\n\n## 为何对本课题有用\n\n本仓库直接涉及**固有无序蛋白（IDP）的识别与预测**，通过 AlphaFold pLDDT 谱图量化无序残基比例，并进一步将无序性与蛋白功能（DNA 结合、辐射防护）关联。其方法可迁移至其他 IDP 研究，例如：\n- 利用 pLDDT 谱图识别候选 IDP 或 IDR。\n- 将静电性质与无序性结合分析，理解 IDP 介导的相互作用。\n- 提供从序列到结构、再到功能注释的完整计算流程，适合作为 IDP 分析工具链的参考。\n\n## 怎么用\n\n1. 克隆仓库并安装依赖：`pip install biopython pandas numpy matplotlib seaborn requests`。\n2. 在 Google Colab 或本地 Python 环境运行脚本，自动执行以下步骤：\n   - 构建多 FASTA 数据集（包含 Dsup、CAHS1、MnSOD 等序列）。\n   - 计算序列同一性矩阵与邻接法系统发育树。\n   - 使用 Biopython 计算分子量、等电点、碱性残基百分比。\n   - 解析 AlphaFold PDB 文件，提取 pLDDT 分数并绘制无序谱图。\n   - 计算滑动窗口碱性残基密度，并写入 PDB B-factor 列。\n3. 查看输出文件：`sequence_identity_matrix.csv`、`biophysical_properties.csv`、`conservation_heatmap.png`、`phylogenetic_tree.png`、`dsup_plddt_profile.png`、`dsup_sliding_window_basic_density.png`、`dsup_electrostatic_mapped.pdb` 等。"
+  },
+  {
+    "full_name": "strawvivishortcake/IDR_Literature_Pipeline",
+    "url": "https://github.com/strawvivishortcake/IDR_Literature_Pipeline",
+    "language": "Python",
+    "stars": 0,
+    "pushed_at": "2026-09-29T18:51:32Z",
+    "score": 6,
+    "one_liner": "该仓库是面向IDR的文献收集与文本提取流水线，对象高度相关但形态为数据处理工具而非预测/建模代码，价值中等。",
+    "card": "## 是什么\n\nIDR Literature Pipeline 是一个面向**固有无序区（IDR）**研究的文献数据采集与清洗流水线。它针对 DisProt 数据库中所有人类蛋白，自动从 PubMed 检索提及 IDR 的论文，并通过 NCBI BioC API 和 PDF 回退抓取获取全文，最终生成结构化的文献数据集。\n\n## 亮点\n\n- **全自动流水线**：从 DisProt 蛋白列表到最终文献 CSV，共 6 个步骤，支持断点续跑。\n- **双检索轨道**：`IDR_general` 和 `IDR_interaction`（后者额外包含结合、Kd、相分离、凝聚体等术语），覆盖 IDR 功能与互作研究。\n- **智能去重与清洗**：按 PMID 去重，区分有/无 PMCID 的论文，并标记短基因符号（≤3字符）可能导致的假阳性。\n- **多级全文获取**：优先 BioC API，失败后生成 PMC PDF 链接并缓慢下载，用 PyMuPDF 提取缺失章节，且不覆盖已有文本。\n- **可配置性强**：可调整检索时间范围、每蛋白最大 PMID 数、是否使用蛋白全名、是否排除综述等。\n- **测试完善**：包含 11 个单元测试和模拟运行演示，便于验证和二次开发。\n\n## 为何对本课题有用\n\n本课题关注 IDR/无序蛋白及其相分离与凝聚体方向的研究代码与工具。该仓库直接服务于 IDR 文献的**系统化收集与整理**，其 `IDR_interaction` 轨道明确包含“相分离/凝聚体”术语，可帮助研究者快速获取与 IDR 介导的互作、相分离相关的论文全文。作为数据基础设施，它能为后续的 IDR 预测、构象分析或语言模型训练提供高质量的文献语料，是 IDR 研究生态中重要的上游工具。\n\n## 怎么用\n\n1. **环境准备**：Python 3.10+，安装依赖，设置 NCBI 邮箱（必需）和 API Key（可选，提升请求速率）。\n2. **按序运行脚本**：\n   ```bash\n   python 00_fetch_disprot_proteins.py\n   python 01_fetch_idr_pubmed.py        # 耗时最长，可中断续跑\n   python 02_clean_and_deduplicate.py\n   python 03_api_text_extractor.py\n   python 04_generate_fallback_urls.py\n   python 05_pdf_fallback_scraper.py\n   ```\n3. **调整配置**：在 `01_fetch_idr_pubmed.py` 中修改 `TRACKS`、`INTERACTION_TERMS`、`DATE_MIN/MAX`、`MAX_PMIDS_PER_SEARCH` 等参数。\n4. **解读输出**：主要结果在 `IDR_DisProt_Papers.csv`，其中 `Only_Ambiguous_Symbols` 列标记了可能由短基因符号引起的假阳性，需人工抽查。\n5. **运行测试**：`pytest -v` 或 `python tests/demo_mock_run.py` 验证流程。"
+  },
+  {
+    "full_name": "vivarium-collective/viva-readdy",
+    "url": "https://github.com/vivarium-collective/viva-readdy",
+    "language": "Python",
+    "stars": 0,
+    "pushed_at": "2026-10-05T15:13:38Z",
+    "score": 6,
+    "one_liner": "这是一个基于ReaDDy的粒子反应扩散模拟器封装，支持相分离等生物物理模拟，但并非专门面向IDR/无序蛋白，方法可迁移至本课题。",
+    "card": "## 是什么\n\npbg-readdy 是 ReaDDy 的 Process-bigraph 封装。ReaDDy 是一个基于粒子的反应-扩散模拟器，采用布朗动力学引擎。该仓库将 ReaDDy 封装为 process-bigraph 的 Process，使其能够与 vivarium 框架中的其他生物模型组合。它提供了交互式演示报告，包含肌动蛋白丝踏车、Lotka-Volterra 捕食者-猎物、生长聚合物和相分离等模拟。\n\n## 亮点\n\n- **相分离模拟**：演示报告中明确包含相分离模拟，支持多种粒子间势能（如 Lennard-Jones、弱相互作用、屏蔽静电），可用于模拟液-液相分离。\n- **丰富的势能类型**：支持谐波排斥、Lennard-Jones、弱相互作用、屏蔽静电等，可灵活配置粒子间相互作用。\n- **反应机制**：支持融合、裂变、衰变、转化等反应描述符，以及酶促反应，可模拟聚合、解聚等动态过程。\n- **拓扑特性**：利用 ReaDDy 的拓扑功能，可模拟肌动蛋白丝踏车、活聚合物平衡等复杂结构。\n- **交互式可视化**：提供 3D 粒子查看器、Plotly 图表和 bigraph 架构图，便于直观分析模拟结果。\n- **可组合性**：通过 bridge pattern 设计，支持在 Composite 中与其他过程组合，便于构建多尺度模型。\n\n## 为何对本课题有用\n\n本课题关注 IDR/无序蛋白及其相分离与生物分子凝聚体。pbg-readdy 提供了基于粒子的反应-扩散模拟能力，特别适合模拟相分离过程。其支持的弱相互作用、Lennard-Jones 等势能可用于模拟 IDR 介导的凝聚体形成。虽然仓库未直接提及 IDR/IDP，但其相分离模拟能力与课题方向高度相关，可用于构建 IDR 驱动的相分离模型。此外，其拓扑功能可模拟纤维化等过程，与 IDR 聚集相关。\n\n## 怎么用\n\n1. **安装**：创建虚拟环境，执行 `pip install -e .` 安装仓库，并安装 ReaDDy（`pip install readdy`）。\n2. **快速开始**：使用 `make_readdy_document` 创建模拟文档，配置盒子大小、物种、反应和势能，然后通过 `Composite` 运行模拟。\n3. **配置相分离模拟**：设置物种的扩散常数，添加弱相互作用或 Lennard-Jones 势能，并指定初始粒子位置，即可模拟相分离。\n4. **获取结果**：通过 `ReaDDyProcess` 的输出端口获取粒子计数、位置、能量等数据，或使用 `get_trajectory_data()` 和 `get_position_snapshots()` 获取完整时间序列。\n5. **运行演示**：执行 `PYTHONPATH=. python demo/demo_report.py` 生成交互式报告，查看相分离等模拟示例。"
+  },
+  {
+    "full_name": "AspirinCode/awesome-AI4MolConformation-MD",
+    "url": "https://github.com/AspirinCode/awesome-AI4MolConformation-MD",
+    "language": "",
+    "stars": 307,
+    "pushed_at": "2026-10-03T11:11:14Z",
+    "score": 5,
+    "one_liner": "这是一个AI4分子构象与分子动力学的论文与工具列表仓库，涵盖蛋白构象系综与无序蛋白构象系综相关文献，但形态为资源清单而非代码工具，且对象不专门针对IDR/相分离。",
+    "card": "## 是什么\n\n**awesome-AI4MolConformation-MD** 是一个聚焦于“分子构象”与“分子动力学”的精选资源列表（awesome list），收录了利用生成式人工智能（generative AI）和深度学习（deep learning）研究小分子、RNA、多肽、蛋白质、酶、抗体以及蛋白质-蛋白质相互作用（PPIs）的构象与分子动力学（含力场）的相关论文、数据集和工具。\n\n该仓库以分类目录（Menu）形式组织内容，涵盖 Reviews、Datasets and Package、Molecular dynamics、Molecular Force Fields、Neural Network Potentials、MD Engines-Frameworks、AI4MD、CGMD、Visualization 等多个子主题，并持续更新中。\n\n## 亮点\n\n- **覆盖面广**：从量子化学、从头算（Ab Initio）到粗粒化（CGMD），从传统力场到神经网络势（Neural Network Potentials），几乎囊括了 AI 驱动的分子构象与动力学研究的全部关键方向。\n- **分类清晰**：通过两级菜单（按方法、按分子类型）组织条目，便于快速定位特定主题（如蛋白质构象动力学、配体-蛋白质相互作用等）。\n- **时效性强**：收录了 2024–2026 年的最新综述和方法论文，反映了该领域的前沿进展。\n- **资源丰富**：不仅列出论文，还提供数据集（如 DynaRepo、OMol25）和工具链接，方便直接使用。\n\n## 为何对本课题有用\n\n本课题聚焦于固有无序区/无序蛋白（IDR/IDP）及其相分离与生物分子凝聚体（LLPS/condensates）的研究代码与工具。虽然该仓库并非专门针对 IDR/IDP，但其中多个子主题与课题高度相关：\n\n- **无序蛋白构象系综**：仓库收录了多篇关于“无序蛋白构象系综确定”的综述（如 *Toward a unified framework for determining conformational ensembles of disordered proteins*）和“机器学习生成动态蛋白构象系综”的论文（如 *Machine Learning Generation of Dynamic Protein Conformational Ensembles*），这些直接对应课题中“无序蛋白构象系综的生成与分析”方向。\n- **IDR 预测与建模**：仓库中的“蛋白质构象动力学”和“AI4MD”部分可能包含针对 IDR 的预测或建模工具，可作为查找相关代码的入口。\n- **相分离与凝聚体**：虽然仓库未明确列出 LLPS 相关条目，但相分离通常涉及多价相互作用和构象变化，仓库中关于 PPIs 和构象采样的资源可能间接支持相关建模。\n\n因此，该仓库可作为本课题的“导航图”，帮助快速发现与 IDR/IDP 构象研究相关的论文、数据集和工具，但需注意其内容并非专门针对无序蛋白，需进一步筛选。\n\n## 怎么用\n\n1. **浏览目录**：根据课题需求，优先查看“Protein conformational dynamics”、“Peptide conformational dynamics”和“PPI conformational dynamics”等子菜单，寻找与 IDR/IDP 相关的条目。\n2. **检索关键词**：在仓库中搜索“disordered”、“intrinsically”、“ensemble”等关键词，定位直接相关的论文或工具。\n3. **追踪引用**：对于感兴趣的论文（如无序蛋白构象系综的综述），可进一步阅读其引用的方法学论文，找到具体的代码实现。\n4. **利用数据集**：仓库列出的数据集（如 DynaRepo）可能包含无序蛋白的构象数据，可用于测试或训练模型。\n5. **关注更新**：仓库持续更新，建议定期查看新增条目，以获取最新的 IDR/IDP 相关资源。"
+  },
+  {
+    "full_name": "CobanAkdemirlab/NMDescapediseasegene_paper",
+    "url": "https://github.com/CobanAkdemirlab/NMDescapediseasegene_paper",
+    "language": "R",
+    "stars": 1,
+    "pushed_at": "2026-10-05T16:49:24Z",
+    "score": 5,
+    "one_liner": "该仓库是NMD逃逸注释与特征提取流程，虽包含IDR特征提取和MetaPredict无序预测，但核心对象是PTC变体与NMD，而非IDR/相分离本身，方法可部分迁移。",
+    "card": "## 是什么\n\nNMDesc 是一个用于注释和分析 ClinVar 中提前终止密码子（PTC）变体的 R 语言流水线，重点根据经典外显子连接复合体（EJC）规则判断变体是否逃逸无义介导的 mRNA 降解（NMD）。该仓库同时从多个基因组和结构数据库中提取基因、变体和蛋白质水平的特征，包括固有无序区（IDR）等蛋白质特征。\n\n## 亮点\n\n- **NMD 逃逸判定**：基于 EJC 规则实现经典 NMD 逃逸的自动判定。\n- **多层次特征提取**：自动提取基因水平（pLI、LOEUF、富集分析、tau 等）、变体水平（PPI 注释、PTC 在 CDS 中的位置、到 CDS 末端的距离）和蛋白质水平（IDR、Pfam、AlphaFold2）特征。\n- **FASTA 和 VCF 生成**：从 key(loc:ref:alt) 生成 FASTA 和 VCF 文件，便于下游分析。\n- **模块化设计**：脚本模块化，便于扩展和灵活使用。\n- **完整流水线**：提供 `run_analysis.R` 驱动七个步骤，支持 `--dry-run` 预检，并包含路径解析、数据索引和缓存机制。\n\n## 为何对本课题有用\n\n本课题关注 IDR/IDP 及其相分离相关的研究代码与工具。NMDesc 仓库虽然主要聚焦于 NMD 逃逸注释，但其蛋白质水平特征提取明确包含 **IDR（固有无序区）** 分析，并利用 **AlphaFold2** 结构模型提取 pLDDT、二级结构、SASA 等特征，这些都与 IDR 的结构和功能研究密切相关。此外，仓库中的 FASTA 生成功能可直接用于 IDR 预测工具的输入，而 IDR 与相分离的关联（如 IDR 介导的相互作用）也使得该仓库的 IDR 相关分析模块对课题具有参考价值。\n\n## 怎么用\n\n1. **安装 R (≥ 4.2)**：从 <https://www.r-project.org/> 下载安装。\n2. **安装 R 包**：运行 `install.packages(c(\"tidyverse\", \"data.table\", \"biomaRt\", \"stringr\", \"jsonlite\", \"readr\", \"ggplot2\", \"scales\", \"ggpubr\"))`。\n3. **可选外部工具**：VEP（变体功能注释）、AlphaFold2 模型（蛋白质结构特征提取）、MetaPredict（固有无序预测）。\n4. **快速开始**：\n   - 预检：`Rscript run_analysis.R --dry-run`\n   - 运行全部步骤：`Rscript run_analysis.R`\n   - 运行部分步骤：`Rscript run_analysis.R 6 7`（例如只运行第 6、7 步）\n5. **路径配置**：通过 `gene level_v5/lib/paths.R` 解析路径，可用环境变量 `NMDESC_DATA` 和 `NMDESC_OUT` 覆盖默认数据根目录和输出目录。\n6. **下游分析**：利用生成的 FASTA 进行 IDR 分析或 AlphaFold2 结构特征提取；利用 VCF 进行 VEP 功能注释。"
+  },
+  {
+    "full_name": "BioKT/Skills-BIOKT",
+    "url": "https://github.com/BioKT/Skills-BIOKT",
+    "language": "Python",
+    "stars": 1,
+    "pushed_at": "2026-10-05T14:31:49Z",
+    "score": 5,
+    "one_liner": "该仓库是计算生物化学的 Claude Code 技能集,涵盖 GROMACS/PLUMED 模拟与增强采样,虽涉及无序蛋白但非专门面向 IDR/相分离的工具,方法可迁移。",
+    "card": "## 是什么\n\nSkills-BIOKT 是 BioKT 实验室（西班牙巴斯克大学/多诺斯蒂亚国际物理中心）维护的一套 Claude Code 技能集合，用于分子模拟与计算生物化学。仓库以 GROMACS、AMBER、PLUMED 等工具链为核心，提供从体系准备、增强采样到自由能分析的标准化工作流。\n\n## 亮点\n\n- **面向计算生物化学的实用技能**：覆盖 GROMACS 安装与模拟准备、小分子参数化、DFT 轨道分析、PLUMED 增强采样（伞形采样、元动力学、副本交换）等。\n- **与 Claude Code 深度集成**：通过 `/skill-name` 直接调用，简化复杂模拟流程的搭建与执行。\n- **实验室背景契合**：BioKT 实验室明确研究固有无序蛋白（IDP）及偶联折叠-结合，技能设计服务于此类体系。\n- **增强采样方法丰富**：提供多种 PLUMED 方案（AWH、H-REMD、伞形采样、元动力学、副本交换），适合处理无序蛋白的构象采样难题。\n\n## 为何对本课题有用\n\n本课题聚焦 IDR/IDP 的识别、构象系综生成与相分离建模。Skills-BIOKT 虽非专门针对 IDP 的预测或相分离模拟工具，但其提供的 GROMACS/PLUMED 技能可直接用于：\n\n- **IDP 构象系综的分子动力学模拟**：`gmx-prep` 可完成无序蛋白的体系准备与平衡，`plumed-metad` 和 `plumed-remd` 可增强采样，探索 IDP 的广阔构象空间。\n- **IDR 介导结合的自由能计算**：`plumed-us` 支持伞形采样，可计算 IDR 与配体结合的自由能谱。\n- **相分离模拟的辅助**：虽然仓库未直接提供相分离模拟脚本，但 GROMACS 模拟准备和增强采样技能可支撑液-液相分离（LLPS）的粗粒化或全原子模拟。\n\n## 怎么用\n\n1. **安装**：克隆仓库并运行 `install.sh`，将技能符号链接到 `~/.claude/skills/`。\n2. **调用**：在 Claude Code 会话中直接输入 `/gmx-prep`、`/plumed-metad` 等命令，按提示完成模拟设置。\n3. **示例流程**：\n   - 对 IDP 进行 MD 模拟：使用 `/gmx-prep` 选择力场、溶剂化、平衡与生产。\n   - 增强采样：使用 `/plumed-metad` 设置 well-tempered metadynamics，或 `/plumed-remd` 进行副本交换。\n   - 自由能分析：使用 `/plumed-us` 进行伞形采样与 WHAM 分析。\n4. **更新**：`git pull && bash install.sh` 即可同步最新技能。"
+  },
+  {
+    "full_name": "sircalch/alphacert",
+    "url": "https://github.com/sircalch/alphacert",
+    "language": "Python",
+    "stars": 0,
+    "pushed_at": "2026-09-30T23:40:03Z",
+    "score": 5,
+    "one_liner": "AlphaCert 是 AlphaFold 预测结构的质控工具，虽涉及 IDR 的 pLDDT 分类，但主要面向通用蛋白结构验证，非 IDR/相分离专项工具，方法可部分迁移。",
+    "card": "## 是什么\n\nAlphaCert 是一个面向 AlphaFold2/3、ColabFold、ESMFold 等预测蛋白质结构的自动化质量控制与认证工具包。它通过单条命令对预测模型进行多维度结构审计，包括残基 pLDDT 置信度分类、2D PAE 矩阵域分解、立体化学几何检查，以及下游应用（如分子对接、分子动力学）的就绪性认证。\n\n## 亮点\n\n- **pLDDT 置信度分带**：将残基分为四个标准 AlphaFold 置信度带，其中 pLDDT < 50 的残基被明确标记为固有无序区（IDR）。\n- **PAE 域分解**：采用 Croll 的贪心模块化方法（与 ChimeraX 和 AlphaFold DB 一致）识别刚性结构域，并排除平均 pLDDT < 70 的无序簇。\n- **多聚体界面评估**：以 ipTM 为主要标准（>0.8 可信，0.6–0.8 灰色区，<0.6 可能失败），无 ipTM 时使用对称化链间 PAE。\n- **立体化学检查**：包括重原子冲突分数、Ramachandran 二面角分布（Favored ≥ 88%，Outliers < 3%）、非脯氨酸顺式肽键识别。\n- **应用就绪性认证**：提供 `DOCKING_READY`（活性位点 pLDDT ≥ 80）、`MD_READY`（无序末端环不破坏模拟稳定性）、`INTERFACE_VALID`（区分真实蛋白-蛋白界面与伪影）等认证。\n- **出版级输出**：生成交互式 HTML 报告、矢量图（SVG/PDF/PNG）、LaTeX 表格、Methods 草稿和 BibTeX 引用。\n\n## 为何对本课题有用\n\n本课题聚焦于 IDR/IDP 及其相分离与凝聚体研究。AlphaCert 直接提供了 IDR 的识别功能（通过 pLDDT < 50 分带），并能在 PAE 域分解中排除无序簇，这对于区分有序结构域与无序区域至关重要。此外，其 `MD_READY` 认证专门检查无序末端环对模拟稳定性的影响，这与 IDR 构象系综的分子动力学模拟直接相关。虽然 AlphaCert 不直接建模相分离或凝聚体，但它为预测结构中的 IDR 区域提供了质量评估和认证，可作为 IDR 相关研究的前置工具。\n\n## 怎么用\n\n**安装**（PyPI 发布待定，从 GitHub 安装）：\n```bash\npip install \"git+https://github.com/sircalch/alphacert@v1.0.0\"\n```\n\n**CLI 快速开始**：\n- 运行演示：`alphacert demo -o my_protein_audit/`\n- 评估预测结构：`alphacert assess -i predicted_structure.pdb --pae predicted_pae.json -o struct_report/`\n- 认证结合口袋：`alphacert assess -i model.pdb --pocket \"45,46,47,78,120,121\" -o docking_check/`\n\n**Python API 示例**：\n```python\nfrom alphacert import assess_alphafold_quality\nfrom alphacert.parsers import parse_protein_structure, parse_pae_matrix\nfrom alphacert.reporters import generate_alphacert_figures, generate_alphacert_manuscript_assets, generate_alphacert_html_report\n\nstruct = parse_protein_structure(\"alphafold_model.pdb\")\npae = parse_pae_matrix(\"alphafold_pae.json\")\nreport = assess_alphafold_quality(\n    metadata={\"name\": \"Target Kinase\", \"engine\": \"AlphaFold2\"},\n    plddt_values=struct[\"per_residue_plddt\"],\n    pae_matrix=pae[\"pae_matrix\"],\n    coordinates=struct[\"coordinates\"],\n    atom_elements=struct[\"atom_elements\"],\n    backbone_atoms=struct[\"backbone_atoms\"],\n    binding_site_indices=[45, 46, 47, 78, 120]\n)\nprint(f\"Overall Certification: {report.overall_status}\")\nprint(f\"Mean pLDDT: {report.plddt_result.mean_plddt:.1f}\")\nprint(f\"Docking Readiness: {report.docking_readiness['status']}\")\n\ngenerate_alphacert_figures(report, \"output_dir/\")\ngenerate_alphacert_manuscript_assets(report, \"output_dir/\")\ngenerate_alphacert_html_report(report, \"output_dir/report.html\")\n```"
+  }
+]

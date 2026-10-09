@@ -43,3 +43,28 @@ def test_fetch_tree_caps_and_marks_truncation(monkeypatch):
     monkeypatch.setattr(gh, "run", lambda cmd, **kw: raw)
     lines = gh.fetch_tree("a/b", limit=200).splitlines()
     assert len(lines) == 201 and lines[-1] == "..."
+
+def test_fetch_dep_files_reads_common_manifests(monkeypatch):
+    def fake_run(cmd, **kw):
+        endpoint = cmd[2] if len(cmd) > 2 else ""
+        if "git/trees" in endpoint:
+            return json.dumps({"tree": [
+                {"type": "blob", "path": "requirements.txt"},
+                {"type": "blob", "path": "pyproject.toml"},
+                {"type": "blob", "path": "README.md"},
+            ]})
+        if "requirements.txt" in endpoint:
+            return "numpy\npandas\n"
+        if "pyproject.toml" in endpoint:
+            return "[project]\nname = x"
+        raise RuntimeError("unexpected")
+    monkeypatch.setattr(gh, "run", fake_run)
+    out = gh.fetch_dep_files("a/b")
+    assert "### requirements.txt" in out and "numpy" in out
+    assert "### pyproject.toml" in out and "name = x" in out
+    assert "README.md" not in out          # 非依赖文件不抓
+
+def test_fetch_dep_files_none_found(monkeypatch):
+    monkeypatch.setattr(gh, "run",
+                        lambda cmd, **kw: json.dumps({"tree": [{"type": "blob", "path": "src/a.py"}]}))
+    assert gh.fetch_dep_files("a/b") == ""

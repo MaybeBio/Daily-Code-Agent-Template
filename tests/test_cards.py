@@ -28,11 +28,11 @@ def test_run_cards_only_keepers(monkeypatch, tmp_path):
     cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"), scored)
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     out = cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
-                    client=object(), fetch=lambda fn: "README",
+                    client=object(), fetch=lambda fn: "README", fetch_tree=lambda fn: "",
                     card_fn=lambda c, m, p, topic, readme: {"card": "card:" + readme})
     assert [r["full_name"] for r in out] == ["hi/a"]
     saved = cards.common.load_json(str(tmp_path / "data" / "cards" / "2026-10-05.json"))
-    assert saved[0]["card"] == "card:README"
+    assert saved[0]["card"].startswith("card:README")
     assert set(saved[0]) == {"full_name", "url", "language", "stars", "pushed_at",
                              "score", "one_liner", "card"}
 
@@ -81,7 +81,8 @@ def test_run_falls_back_to_tree(monkeypatch, tmp_path):
         raise RuntimeError("404")
     cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
               client=object(), fetch=boom,
-              fetch_tree=lambda fn: "scripts/calvados_functions.py", card_fn=capture)
+              fetch_tree=lambda fn: "scripts/calvados_functions.py",
+              fetch_deps=lambda fn: "", card_fn=capture)
     assert "calvados_functions.py" in seen["text"]         # 无描述也能靠目录树出卡片
 
 def test_run_no_text_skips_llm(monkeypatch, tmp_path):
@@ -109,7 +110,7 @@ def test_run_defaults_min_score_when_absent(monkeypatch, tmp_path):
                              "score": 6, "one_liner": "y"}])
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     out = cards.run({"topic": "t"}, "2026-10-05",
-                    client=object(), fetch=lambda fn: "r",
+                    client=object(), fetch=lambda fn: "r", fetch_tree=lambda fn: "",
                     card_fn=lambda c, m, p, t, r: {"card": "x"})
     assert [r["full_name"] for r in out] == ["c/d"]
 
@@ -133,8 +134,27 @@ def test_run_passes_topic_brief_not_slug(monkeypatch, tmp_path):
         seen["topic"] = topic
         return {"card": "x"}
     cards.run({"topic": "slug-x", "topic_desc": "A real description", "llm": {"min_score": 5}},
-              "2026-10-05", client=object(), fetch=lambda fn: "r", card_fn=capture)
+              "2026-10-05", client=object(), fetch=lambda fn: "r", fetch_tree=lambda fn: "",
+              card_fn=capture)
     assert seen["topic"] == "A real description"
+
+def test_run_feeds_readme_tree_and_deps(monkeypatch, tmp_path):
+    monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
+    cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
+                           [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                             "score": 8, "one_liner": "x"}])
+    monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
+    seen = {}
+    def capture(c, m, p, t, text):
+        seen["text"] = text
+        return {"card": "C"}
+    cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
+              client=object(), fetch=lambda fn: "READMEME",
+              fetch_tree=lambda fn: "src/a.py",
+              fetch_deps=lambda fn: "### requirements.txt\nnumpy",
+              card_fn=capture)
+    t = seen["text"]
+    assert "READMEME" in t and "src/a.py" in t and "requirements.txt" in t
 
 def test_build_code_card_parses_json():
     client = _fake_client('{"card": "## 是什么\\nhello"}')

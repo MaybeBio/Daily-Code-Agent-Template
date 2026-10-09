@@ -23,6 +23,10 @@ def test_site_base_path_and_base_prefix():
     assert build_site.site_base_path("") == ""
     assert build_site.site_base_path("https://example.com/repos/foo") == "/repos/foo"
 
+def test_window_range():
+    assert build_site.window_range("2026-10-06", 7) == ("2026-09-30", "2026-10-06")
+    assert build_site.window_range("bad", 7) == ("", "")
+
 def _write_cards(tmp_path, rows):
     d = str(tmp_path / "data" / "cards")
     os.makedirs(d, exist_ok=True)
