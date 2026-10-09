@@ -34,7 +34,7 @@ def score_repo(client, model, prompts, topic_desc, readme) -> dict:
 def build_code_card(client, model, prompts, topic_desc, readme) -> dict:
     p = prompts["code_card"]
     msgs = [{"role": "system", "content": p["system"]},
-            {"role": "user", "content": p["user"].format(topic=topic_desc, readme=readme[:12000])}]
+            {"role": "user", "content": p["user"].format(topic=topic_desc, readme=readme)}]
     last = None
     for attempt in range(4):
         try:

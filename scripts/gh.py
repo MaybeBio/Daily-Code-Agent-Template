@@ -65,6 +65,37 @@ def fetch_tree(full_name: str, limit: int = 200) -> str:
         paths = paths[:limit] + ["..."]
     return "\n".join(paths)
 
+# 常见依赖/构建清单文件名,喂给 card 的「依赖」「复现成本」小节。
+_DEP_FILES = frozenset({
+    "requirements.txt", "pyproject.toml", "setup.py", "setup.cfg",
+    "environment.yml", "environment.yaml", "Pipfile", "tox.ini",
+    "package.json", "go.mod", "Cargo.toml", "pom.xml", "build.gradle",
+    "build.gradle.kts", "Dockerfile", "Makefile", "CMakeLists.txt",
+})
+
+def fetch_dep_files(full_name: str, limit: int = 3000) -> str:
+    """抓常见依赖/构建清单文件内容。独立查整棵树:这些文件扩展名(.toml/.txt/.cfg)多不在
+    _CODE_EXT 白名单里,复用 fetch_tree 的结果会把它们过滤掉。"""
+    out = run(["gh", "api", f"repos/{full_name}/git/trees/HEAD?recursive=1"])
+    tree = json.loads(out).get("tree", [])
+    found = sorted({e["path"] for e in tree
+                    if e.get("type") == "blob"
+                    and e["path"].rsplit("/", 1)[-1] in _DEP_FILES})
+    blocks = []
+    for path in found:
+        try:
+            content = run(["gh", "api", f"repos/{full_name}/contents/{path}",
+                           "-H", "Accept: application/vnd.github.raw"])
+        except Exception:
+            continue
+        content = (content or "").strip()
+        if not content:
+            continue
+        if len(content) > limit:
+            content = content[:limit] + "\n...(截断)"
+        blocks.append(f"### {path}\n{content}")
+    return "\n\n".join(blocks)
+
 def safe_repo_meta(full_name: str) -> dict:
     try:
         return repo_meta(full_name)
