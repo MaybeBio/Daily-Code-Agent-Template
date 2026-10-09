@@ -10,8 +10,9 @@ def card_record(row, card):
             "pushed_at": row.get("pushed_at", ""),
             "score": row["score"], "one_liner": row.get("one_liner", ""), "card": card}
 
-def run(cfg, date, client=None, fetch=None, card_fn=None):
+def run(cfg, date, client=None, fetch=None, fetch_tree=None, card_fn=None):
     fetch = fetch or gh.fetch_readme
+    fetch_tree = fetch_tree or gh.fetch_tree
     client = client if client is not None else agent.make_client()
     card_fn = card_fn or agent.build_code_card
     prompts = load_prompts(os.path.join(common.ROOT, "prompts.yaml"))
@@ -22,8 +23,10 @@ def run(cfg, date, client=None, fetch=None, card_fn=None):
     keepers = archive.threshold(scored, min_score)
     def work(row):
         try:
-            readme = fetch(row["full_name"])
-            res = card_fn(client, model, prompts, common.topic_brief(cfg), readme)
+            text = common.repo_text(row, fetch, fetch_tree)  # 与 score 同源:README→描述+树→空
+            if not text:
+                return card_record(row, "")
+            res = card_fn(client, model, prompts, common.topic_brief(cfg), text)
             card = res.get("card", "")
         except Exception as e:
             print(f"[card failed] {row['full_name']}: {e}", file=sys.stderr)
