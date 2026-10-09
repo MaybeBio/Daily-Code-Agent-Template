@@ -45,9 +45,60 @@ def test_run_card_failure_is_isolated(monkeypatch, tmp_path):
     def boom(fn):
         raise RuntimeError("fetch failed")
     out = cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
-                    client=object(), fetch=boom,
+                    client=object(), fetch=boom, fetch_tree=boom,
                     card_fn=lambda c, m, p, t, r: {"card": "x"})
     assert out[0]["card"] == ""
+
+def test_run_falls_back_to_description(monkeypatch, tmp_path):
+    monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
+    cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
+                           [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                             "description": "IDP phase separation tool",
+                             "score": 8, "one_liner": "x"}])
+    monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
+    seen = {}
+    def capture(c, m, p, t, text):
+        seen["text"] = text
+        return {"card": "C"}
+    def boom(fn):
+        raise RuntimeError("404")
+    out = cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
+                    client=object(), fetch=boom, fetch_tree=lambda fn: "", card_fn=capture)
+    assert "IDP phase separation tool" in seen["text"]     # README 缺失用 description 兜底
+    assert out[0]["card"] == "C"
+
+def test_run_falls_back_to_tree(monkeypatch, tmp_path):
+    monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
+    cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
+                           [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                             "score": 8, "one_liner": "x"}])
+    monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
+    seen = {}
+    def capture(c, m, p, t, text):
+        seen["text"] = text
+        return {"card": "C"}
+    def boom(fn):
+        raise RuntimeError("404")
+    cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
+              client=object(), fetch=boom,
+              fetch_tree=lambda fn: "scripts/calvados_functions.py", card_fn=capture)
+    assert "calvados_functions.py" in seen["text"]         # 无描述也能靠目录树出卡片
+
+def test_run_no_text_skips_llm(monkeypatch, tmp_path):
+    monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
+    cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
+                           [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                             "score": 8, "one_liner": "x"}])
+    monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
+    called = {"n": 0}
+    def should_not_run(c, m, p, t, text):
+        called["n"] += 1
+        return {"card": "x"}
+    def boom(fn):
+        raise RuntimeError("404")
+    out = cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
+                    client=object(), fetch=boom, fetch_tree=boom, card_fn=should_not_run)
+    assert out[0]["card"] == "" and called["n"] == 0       # 无内容不花 LLM 调用
 
 def test_run_defaults_min_score_when_absent(monkeypatch, tmp_path):
     monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))

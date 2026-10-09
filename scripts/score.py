@@ -4,31 +4,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts import common, agent, gh  # noqa: E402
 from scripts.agent import load_prompts  # noqa: E402
 
-def _fallback_text(row, tree):
-    desc = (row.get("description") or "").strip()
-    if not desc and not tree:
-        return ""
-    parts = [f"仓库:{row['full_name']}"]
-    if row.get("language"):
-        parts.append(f"语言:{row['language']}")
-    if desc:
-        parts.append(f"描述:{desc}")
-    if tree:
-        parts.append(f"目录树:\n{tree}")
-    return "\n".join(parts)
-
 def _score_one(row, cfg, client, prompts, model, fetch, fetch_tree):
-    try:
-        readme = fetch(row["full_name"])
-    except Exception:
-        readme = ""
-    text = (readme or "").strip()
-    if not text:
-        try:
-            tree = fetch_tree(row["full_name"])
-        except Exception:
-            tree = ""
-        text = _fallback_text(row, tree)
+    text = common.repo_text(row, fetch, fetch_tree)
     if not text:
         return {"score": 0, "one_liner": "无 README/描述/目录树,跳过"}
     return agent.score_repo(client, model, prompts, common.topic_brief(cfg), text)
