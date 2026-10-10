@@ -24,6 +24,15 @@ def window_range(end_date, window_days):
         return "", ""
     return (d - dt.timedelta(days=window_days - 1)).isoformat(), d.isoformat()
 
+def natural_week(iso):
+    """由 ISO 日期反推自然周(周一~周日),归档粒度同 paper 模板。"""
+    try:
+        d = dt.date.fromisoformat((iso or "")[:10])
+    except ValueError:
+        return "", ""
+    monday = d - dt.timedelta(days=d.weekday())
+    return monday.isoformat(), (monday + dt.timedelta(days=6)).isoformat()
+
 def site_base_path(site_base_url):
     url = (site_base_url or "").strip()
     if not url:
@@ -95,10 +104,38 @@ def build_site(out_dir, config=None):
     assets_dir = os.path.join(site_dir, "assets")
     os.makedirs(assets_dir, exist_ok=True)
 
-    latest_date = records[0]["date"] if records else ""
-    this_week = [r for r in records if r["date"] == latest_date] if records else []
+    # 每个仓库归自然周(pushed_at 优先,缺则退运行日期);同周内同一 full_name 去重保留最新
+    for r in records:
+        w_start, w_end = natural_week(r.get("pushed_at") or r.get("date"))
+        r["window_start"] = w_start
+        r["window_end"] = w_end
+
+    batches = {}
+    for r in records:
+        batches.setdefault(r["window_end"] or "unknown", []).append(r)
+    for key in batches:
+        latest = {}
+        for r in batches[key]:
+            fn = r["full_name"]
+            if fn not in latest or (r.get("pushed_at") or "") > (latest[fn].get("pushed_at") or ""):
+                latest[fn] = r
+        batches[key] = sorted(latest.values(),
+                              key=lambda r: r.get("score") if r.get("score") is not None else -1,
+                              reverse=True)
+
+    years = {}
+    for key in sorted(batches, reverse=True):
+        if key == "unknown":
+            continue
+        repos = batches[key]
+        years.setdefault(key[:4], []).append(
+            {"start": repos[0]["window_start"] if repos else "", "end": key, "repos": repos})
+
+    latest_key = max((k for k in batches if k != "unknown"), default="unknown")
+    this_week = batches.get(latest_key, [])
+    window_start = this_week[0]["window_start"] if this_week else ""
+    window_end = latest_key if latest_key != "unknown" else ""
     issue_url = load_issue_url(out_dir)
-    window_start, window_end = window_range(latest_date, int(cfg.get("window_days", 7)))
 
     latest_by_repo = {}
     for r in records:
@@ -110,17 +147,24 @@ def build_site(out_dir, config=None):
         with open(os.path.join(page_dir, "index.html"), "w", encoding="utf-8") as f:
             f.write(page)
 
+    for key, repos in batches.items():
+        if key == "unknown":
+            continue
+        page = env.get_template("week.html").render(
+            window_start=repos[0]["window_start"] if repos else "",
+            window_end=key, repos=repos)
+        week_dir = os.path.join(site_dir, "weeks", key)
+        os.makedirs(week_dir, exist_ok=True)
+        with open(os.path.join(week_dir, "index.html"), "w", encoding="utf-8") as f:
+            f.write(page)
+
     with open(os.path.join(site_dir, "index.html"), "w", encoding="utf-8") as f:
         f.write(env.get_template("index.html").render(
             window_start=window_start, window_end=window_end,
-            repos=this_week, issue_url=issue_url, total=len(records)))
+            repos=this_week, issue_url=issue_url, total=len(latest_by_repo)))
 
-    by_date = {}
-    for r in records:
-        by_date.setdefault(r["date"], []).append(r)
-    weeks = [{"date": d, "repos": by_date[d]} for d in sorted(by_date, reverse=True)]
     with open(os.path.join(site_dir, "archive.html"), "w", encoding="utf-8") as f:
-        f.write(env.get_template("archive.html").render(weeks=weeks, total=len(records)))
+        f.write(env.get_template("archive.html").render(years=years, total=len(latest_by_repo)))
 
     shutil.copy(os.path.join(TEMPLATES, "assets", "style.css"),
                 os.path.join(assets_dir, "style.css"))

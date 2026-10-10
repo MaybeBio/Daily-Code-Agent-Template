@@ -27,6 +27,13 @@ def test_window_range():
     assert build_site.window_range("2026-10-06", 7) == ("2026-09-30", "2026-10-06")
     assert build_site.window_range("bad", 7) == ("", "")
 
+def test_natural_week():
+    assert build_site.natural_week("2026-10-01") == ("2026-09-28", "2026-10-04")
+    assert build_site.natural_week("2026-10-05") == ("2026-10-05", "2026-10-11")
+    assert build_site.natural_week("2026-10-01T00:00:00Z") == ("2026-09-28", "2026-10-04")
+    assert build_site.natural_week("bad") == ("", "")
+    assert build_site.natural_week("") == ("", "")
+
 def _write_cards(tmp_path, rows):
     d = str(tmp_path / "data" / "cards")
     os.makedirs(d, exist_ok=True)
@@ -44,7 +51,9 @@ def test_build_site_renders(tmp_path):
     idx = open(str(tmp_path / "site" / "index.html"), encoding="utf-8").read()
     assert "当周 Issue" in idx and "https://github.com/x/y/issues/1" in idx
     arch = open(str(tmp_path / "site" / "archive.html"), encoding="utf-8").read()
-    assert "a/b" in arch
+    assert "2026-09-28" in arch and "2026-10-04" in arch          # 自然周归档链接
+    week = open(str(tmp_path / "site" / "weeks" / "2026-10-04" / "index.html"), encoding="utf-8").read()
+    assert "a/b" in week
     detail = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
     assert "https://deepwiki.com/a/b" in detail and "hello" in detail
 
@@ -68,6 +77,25 @@ def test_build_site_empty_card(tmp_path):
     build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
     detail = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
     assert "Code Card" not in detail
+
+def test_build_site_weeks_dedup_within_week_keep_across(tmp_path):
+    d = str(tmp_path / "data" / "cards")
+    os.makedirs(d, exist_ok=True)
+    def rec(pushed, score):
+        return {"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                "pushed_at": pushed, "score": score, "one_liner": "x", "card": ""}
+    # 周A(09-28~10-04) 一条;周B(10-05~10-11) 两条(同周去重保留 pushed_at 最新)
+    with open(os.path.join(d, "2026-10-03.json"), "w", encoding="utf-8") as f:
+        json.dump([rec("2026-10-01T00:00:00Z", 7)], f, ensure_ascii=False)
+    with open(os.path.join(d, "2026-10-08.json"), "w", encoding="utf-8") as f:
+        json.dump([rec("2026-10-05T00:00:00Z", 9)], f, ensure_ascii=False)
+    with open(os.path.join(d, "2026-10-09.json"), "w", encoding="utf-8") as f:
+        json.dump([rec("2026-10-06T00:00:00Z", 8)], f, ensure_ascii=False)
+    build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
+    week_a = open(str(tmp_path / "site" / "weeks" / "2026-10-04" / "index.html"), encoding="utf-8").read()
+    week_b = open(str(tmp_path / "site" / "weeks" / "2026-10-11" / "index.html"), encoding="utf-8").read()
+    assert "a/b" in week_a and "a/b" in week_b           # 跨自然周都保留
+    assert week_b.count('class="repo-card"') == 1        # 同自然周内去重,只剩一条
 
 def test_build_site_latest_card_wins(tmp_path):
     d = str(tmp_path / "data" / "cards")

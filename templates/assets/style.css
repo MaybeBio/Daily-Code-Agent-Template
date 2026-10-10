@@ -40,8 +40,14 @@ h1 { font-size:24px; margin:0 0 4px; }
 .score-low { background:var(--low); }
 .score-none { background:var(--none); }
 
-.archive-week-block { margin-bottom:8px; }
-.archive-week-block > summary { cursor:pointer; font-size:16px; font-weight:700; padding:10px 0; border-bottom:1px solid var(--border); }
+.archive-year { margin-bottom:8px; }
+.archive-year > summary { cursor:pointer; font-size:18px; font-weight:700; padding:10px 0; border-bottom:1px solid var(--border); }
+.year-weeks { padding:8px 0; }
+.archive-week { display:flex; align-items:center; gap:10px; padding:8px 12px; margin:4px 0; background:var(--card); border:1px solid var(--border); border-radius:8px; color:var(--fg); text-decoration:none; font-size:14px; }
+.archive-week:hover { border-color:var(--accent); }
+.archive-week .win { font-weight:600; }
+.archive-week .count { color:var(--muted); margin-left:auto; }
+.archive-week .arrow { color:var(--accent); }
 
 .repo { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:24px; }
 .repo-head { display:flex; gap:16px; margin-bottom:24px; }
