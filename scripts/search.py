@@ -19,8 +19,12 @@ def _queries(search_cfg: dict, qcfg_path: str) -> list[str]:
         return [q["query"]]
     raise ValueError(f"no queries in config search.queries or {qcfg_path}")
 
+def _since_date(since: str) -> str:
+    return (since or "").lstrip("<>=")
+
 def run(cfg: dict, date: str, since: str) -> list[dict]:
     qcfg = os.path.join(common.ROOT, cfg["search"]["config"])
+    since_date = _since_date(since)
     merged: dict[str, dict] = {}
     for query in _queries(cfg["search"], qcfg):
         try:
@@ -30,8 +34,14 @@ def run(cfg: dict, date: str, since: str) -> list[dict]:
             continue
         for d in results:
             n = _norm(d)
-            if n["full_name"]:
-                merged[n["full_name"]] = n
+            if not n["full_name"]:
+                continue
+            # gh search 只能按 updated_at 预过滤(--updated 与 in: 可共存),会漏进「被 star/watch
+            # 顶掉 updated_at、但代码早已不 push」的旧仓库;这里再按 pushed_at(真·最后一次 push)
+            # 客户端过滤,只留窗口内真推过代码的仓库。pushed: 限定符不能和 in: 共存(会被忽略)。
+            if since_date and (n["pushed_at"] or "")[:10] < since_date:
+                continue
+            merged[n["full_name"]] = n
     rows = list(merged.values())
     common.dump_json(common.data_dir("search", f"{date}.json"), rows)
     return rows

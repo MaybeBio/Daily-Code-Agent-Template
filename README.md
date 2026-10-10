@@ -39,6 +39,22 @@ bash scripts/run_weekly.sh
 python scripts/build_site.py --out-dir . --config config.yaml
 ```
 
+## 搜索时间窗:`pushed_at` 而非 `updated_at` / Search window: pushed_at, not updated_at
+
+「本周推荐」以 `pushed_at`(最后一次真·代码 push)为准,而非 `updated_at` —— 后者会被 star / watch / fork 等非代码事件顶掉:一个代码一年没动的仓库,被人 star 一下,`updated_at` 就变成今天,而 `pushed_at` 仍停在去年。
+
+两个约束:
+- `gh search repos` **没有 `--pushed` flag**,只能按 `--updated` 过滤/排序;
+- `pushed:` 查询限定符虽存在于 GitHub 搜索语法,但与 `in:name,description,readme,topics` 组合时会被**静默忽略**(本项目每条查询都带 `in:`),所以不能把过滤直接换成 `pushed:`。
+
+因此采用「`--updated` 粗筛 + 客户端精确过滤」:
+1. 搜索用 `--updated ">=N天前"` 圈定候选集 —— push 必然更新 `updated_at`,故 `updated_at` 窗口是 `pushed_at` 窗口的**超集**,不会漏掉真 push 的仓库;
+2. `scripts/search.py` 逐条读取结果里自带的 `pushedAt` 字段,丢弃 `pushed_at` 早于窗口的仓库。
+
+这样进入打分/归档的仓库 `pushed_at` 都在窗口内,`build_site.py` 按 `pushed_at` 归自然周不会再出现跨年归档。
+
+The weekly list keys off `pushed_at` (last real code push), not `updated_at`, which GitHub bumps on star/watch/fork even when no code changed. Since `gh search repos` has no `--pushed` flag and the `pushed:` qualifier is silently ignored when combined with `in:`, the search keeps `--updated` as a coarse superset filter while `scripts/search.py` drops repos whose `pushed_at` predates the window client-side.
+
 ## 测试 / Tests
 
 ```bash

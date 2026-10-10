@@ -33,6 +33,23 @@ def test_run_falls_back_to_single_query_in_yaml(monkeypatch, tmp_path):
     rows = search.run({"search": {"config": cfgpath}}, "2026-10-04", ">=2026-09-27")
     assert rows[0]["full_name"] == "a/b" and rows[0]["stars"] == 1
 
+def test_run_filters_out_stale_pushed(monkeypatch, tmp_path):
+    monkeypatch.setattr(search.common, "ROOT", str(tmp_path))
+    cfgpath = _qcfg(tmp_path)
+    def fake_search(cfg_path, updated, fields, query=None):
+        return [
+            {"fullName": "a/b", "url": "u", "language": "Py", "stargazersCount": 7,
+             "description": "d", "pushedAt": "2026-10-03T00:00:00Z"},   # 窗口内 → 保留
+            {"fullName": "old/x", "url": "u2", "language": "Py", "stargazersCount": 9,
+             "description": "", "pushedAt": "2025-04-07T00:00:00Z"},     # 旧(被 star 顶 updated) → 丢弃
+            {"fullName": "empty/y", "url": "u3", "language": "Py", "stargazersCount": 1,
+             "description": "", "pushedAt": ""},                          # 无 pushed_at → 丢弃
+        ]
+    monkeypatch.setattr(search.gh, "search_repos", fake_search)
+    cfg = {"search": {"config": cfgpath, "queries": ["A in:name"]}}
+    rows = search.run(cfg, "2026-10-04", ">=2026-09-27")
+    assert [r["full_name"] for r in rows] == ["a/b"]
+
 def test_run_skips_failed_query(monkeypatch, tmp_path):
     monkeypatch.setattr(search.common, "ROOT", str(tmp_path))
     cfgpath = _qcfg(tmp_path)
