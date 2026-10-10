@@ -4,11 +4,14 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts import common, agent, gh, archive  # noqa: E402
 from scripts.agent import load_prompts  # noqa: E402
 
-def card_record(row, card):
-    return {"full_name": row["full_name"], "url": row.get("url", ""),
+def card_record(row, card, readme=""):
+    rec = {"full_name": row["full_name"], "url": row.get("url", ""),
             "language": row.get("language", ""), "stars": row.get("stars", 0),
             "pushed_at": row.get("pushed_at", ""),
             "score": row["score"], "one_liner": row.get("one_liner", ""), "card": card}
+    if readme:
+        rec["readme"] = readme
+    return rec
 
 # README 全文喂给 card,但超大 README(awesome-list 类可上万行)设一个宽松上限,防止撑爆上下文/成本。
 _README_CAP = 40000
@@ -18,7 +21,8 @@ def _card_context(row, fetch, fetch_tree, fetch_deps):
         readme = fetch(row["full_name"]) or ""
     except Exception:
         readme = ""
-    readme = readme.strip()
+    full_readme = readme.strip()
+    readme = full_readme
     if len(readme) > _README_CAP:
         readme = readme[:_README_CAP] + "\n...(README 过长,已截断)"
     try:
@@ -38,7 +42,7 @@ def _card_context(row, fetch, fetch_tree, fetch_deps):
         parts.append(f"目录树:\n{tree}")
     if deps:
         parts.append(f"依赖/构建文件:\n{deps}")
-    return "\n\n".join(parts)
+    return "\n\n".join(parts), full_readme
 
 def run(cfg, date, client=None, fetch=None, fetch_tree=None, fetch_deps=None, card_fn=None):
     fetch = fetch or gh.fetch_readme
@@ -53,16 +57,17 @@ def run(cfg, date, client=None, fetch=None, fetch_tree=None, fetch_deps=None, ca
     scored = common.load_json(scored_path) if os.path.exists(scored_path) else []
     keepers = archive.threshold(scored, min_score)
     def work(row):
+        readme = ""
         try:
-            text = _card_context(row, fetch, fetch_tree, fetch_deps)
+            text, readme = _card_context(row, fetch, fetch_tree, fetch_deps)
             if not text.strip():
-                return card_record(row, "")
+                return card_record(row, "", readme=readme)
             res = card_fn(client, model, prompts, common.topic_brief(cfg), text)
             card = res.get("card", "")
         except Exception as e:
             print(f"[card failed] {row['full_name']}: {e}", file=sys.stderr)
             card = ""
-        return card_record(row, card)
+        return card_record(row, card, readme=readme)
     with ThreadPoolExecutor(max_workers=int(cfg.get("llm", {}).get("concurrency", 8))) as ex:
         out = list(ex.map(work, keepers))
     common.dump_json(common.data_dir("cards", f"{date}.json"), out)

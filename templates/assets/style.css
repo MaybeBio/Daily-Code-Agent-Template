@@ -56,6 +56,8 @@ h1 { font-size:24px; margin:0 0 4px; }
 .one-liner { color:#3b505b; font-size:14px; margin:8px 0 0; }
 .repo-links { margin-top:10px; }
 .repo-links a { display:inline-block; margin-right:10px; color:var(--accent); text-decoration:none; font-size:14px; font-weight:600; }
+.repo details { margin-top:24px; border-top:1px solid var(--border); padding-top:16px; }
+.repo details > summary { cursor:pointer; font-size:18px; font-weight:700; color:var(--accent); }
 .md table { border-collapse:collapse; width:100%; margin:12px 0; font-size:14px; }
 .md th, .md td { border:1px solid var(--border); padding:8px; text-align:left; vertical-align:top; }
 .md th { background:#f3f4f6; }
@@ -68,3 +70,20 @@ h1 { font-size:24px; margin:0 0 4px; }
   .layout { flex-direction: column; }
   .sidebar { flex: none; }
 }
+
+.search-page { max-width: 860px; }
+.search-more { display: block; margin: 16px auto; padding: 10px 24px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; color: var(--accent); cursor: pointer; font-size: 14px; }
+.search-form { margin: 16px 0 8px; }
+.search-input-row { display: flex; gap: 8px; }
+.search-deep-toggle { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; color: var(--muted); cursor: pointer; }
+#search-query { flex: 1; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; }
+.search-submit { padding: 10px 20px; background: var(--accent); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; }
+.search-status { color: var(--muted); font-size: 13px; min-height: 20px; margin: 8px 0; }
+.search-result { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; }
+.search-result h2 { font-size: 16px; margin: 4px 0; }
+.search-result h2 a { color: var(--fg); text-decoration: none; }
+.search-result h2 a:hover { color: var(--accent); }
+.search-result mark { background: #fff3cd; color: inherit; }
+.search-result-meta { font-size: 12px; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; }
+.search-result-snippet { color: #3b505b; font-size: 13px; margin: 0; }
+.search-empty { color: var(--muted); font-size: 14px; }

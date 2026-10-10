@@ -33,8 +33,9 @@ def test_run_cards_only_keepers(monkeypatch, tmp_path):
     assert [r["full_name"] for r in out] == ["hi/a"]
     saved = cards.common.load_json(str(tmp_path / "data" / "cards" / "2026-10-05.json"))
     assert saved[0]["card"].startswith("card:README")
+    assert saved[0]["readme"] == "README"
     assert set(saved[0]) == {"full_name", "url", "language", "stars", "pushed_at",
-                             "score", "one_liner", "card"}
+                             "score", "one_liner", "card", "readme"}
 
 def test_run_card_failure_is_isolated(monkeypatch, tmp_path):
     monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
@@ -155,6 +156,23 @@ def test_run_feeds_readme_tree_and_deps(monkeypatch, tmp_path):
               card_fn=capture)
     t = seen["text"]
     assert "READMEME" in t and "src/a.py" in t and "requirements.txt" in t
+
+def test_run_stores_full_readme_not_capped(monkeypatch, tmp_path):
+    monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
+    cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
+                           [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                             "score": 8, "one_liner": "x"}])
+    monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
+    big = "x" * (cards._README_CAP + 500)
+    seen = {}
+    def capture(c, m, p, t, text):
+        seen["text"] = text
+        return {"card": "C"}
+    out = cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
+                    client=object(), fetch=lambda fn: big,
+                    fetch_tree=lambda fn: "", card_fn=capture)
+    assert out[0]["readme"] == big                       # 存盘 = 全文
+    assert "已截断" in seen["text"]                       # prompt 仍按上限截断
 
 def test_build_code_card_parses_json():
     client = _fake_client('{"card": "## 是什么\\nhello"}')

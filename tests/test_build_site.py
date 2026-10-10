@@ -113,3 +113,74 @@ def test_build_site_latest_card_wins(tmp_path):
     build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
     detail = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
     assert "NEW" in detail and "OLD" not in detail
+
+def test_plain_text_strips_markdown():
+    assert build_site._plain_text("**bold** and [link](http://x)") == "bold and link"
+
+def test_build_search_documents_includes_readme(tmp_path):
+    _write_cards(tmp_path, [{"full_name": "a/b", "url": "u", "language": "Python", "stars": 5,
+                             "pushed_at": "2026-10-01T00:00:00Z", "score": 8,
+                             "one_liner": "one", "card": "## 是什么\nhello",
+                             "readme": "## Usage\nlatent-space denoising diffusion"}])
+    records = build_site.load_cards(str(tmp_path))
+    head, deep = build_site._build_search_documents(records)
+    assert "latent-space denoising diffusion" in deep[0]["deep"]
+
+def test_build_search_documents_includes_full_readme(tmp_path):
+    _write_cards(tmp_path, [{"full_name": "a/b", "url": "u", "language": "Python", "stars": 5,
+                             "pushed_at": "2026-10-01T00:00:00Z", "score": 8,
+                             "one_liner": "one", "card": "## 是什么\nhello",
+                             "readme": "head " + "x" * 50000 + " TAIL"}])
+    records = build_site.load_cards(str(tmp_path))
+    head, deep = build_site._build_search_documents(records)
+    assert "TAIL" in deep[0]["deep"]              # 全文进索引,不截断
+    assert len(deep[0]["deep"]) > 50000
+
+def test_build_site_readme_section(tmp_path):
+    _write_cards(tmp_path, [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                             "pushed_at": "t", "score": 8, "one_liner": "x",
+                             "card": "## 是什么\nhi", "readme": "## Install\npip install x"}])
+    build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
+    detail = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
+    assert "README 原文" in detail and "pip install x" in detail
+
+def test_build_site_no_readme_section(tmp_path):
+    _write_cards(tmp_path, [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                             "pushed_at": "t", "score": 8, "one_liner": "x",
+                             "card": "## 是什么\nhi"}])
+    build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
+    detail = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
+    assert "README 原文" not in detail
+
+def test_build_search_documents(tmp_path):
+    _write_cards(tmp_path, [{"full_name": "a/b", "url": "u", "language": "Python", "stars": 5,
+                             "pushed_at": "2026-10-01T00:00:00Z", "score": 8,
+                             "one_liner": "one", "card": "## 是什么\nhello"}])
+    records = build_site.load_cards(str(tmp_path))
+    head, deep = build_site._build_search_documents(records)
+    assert len(head) == 1 and len(deep) == 1
+    d = head[0]
+    assert d["id"] == "a/b" and d["title"] == "a/b"
+    assert d["url"] == "/repos/a__b/"
+    assert "Python" in d["meta"] and "★ 5" in d["meta"]
+    assert d["summary"] == "one"
+    assert d["date"] == "2026-10-01"
+    assert deep[0]["id"] == "a/b"
+    assert "hello" in deep[0]["deep"]
+
+def test_build_site_writes_search_files(tmp_path):
+    _write_cards(tmp_path, [{"full_name": "a/b", "url": "u", "language": "Python", "stars": 5,
+                             "pushed_at": "2026-10-01T00:00:00Z", "score": 8,
+                             "one_liner": "one", "card": "## 是什么\nhello"}])
+    build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
+    site = str(tmp_path / "site")
+    assert os.path.isfile(os.path.join(site, "search.html"))
+    with open(os.path.join(site, "data", "search.json"), encoding="utf-8") as f:
+        head = json.load(f)
+    assert head["version"] == 1 and len(head["documents"]) == 1
+    with open(os.path.join(site, "data", "search-deep.json"), encoding="utf-8") as f:
+        deep = json.load(f)
+    assert deep["version"] == 1 and len(deep["documents"]) == 1
+    assert os.path.isfile(os.path.join(site, "assets", "search.js"))
+    html = open(os.path.join(site, "search.html"), encoding="utf-8").read()
+    assert "data-search-root" in html

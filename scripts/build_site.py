@@ -1,5 +1,6 @@
-import argparse, json, os, shutil
+import argparse, json, os, re, shutil
 import datetime as dt
+from html import unescape
 from urllib.parse import urlparse
 import markdown as md
 import yaml
@@ -87,6 +88,35 @@ def load_issue_url(out_dir):
 def _md_to_html(text):
     return md.markdown(text or "", extensions=["tables", "fenced_code", "sane_lists"])
 
+_TAG_RE = re.compile(r"<[^>]+>")
+
+def _plain_text(md_text):
+    rendered = _md_to_html(md_text)
+    text = _TAG_RE.sub(" ", rendered).replace("\n", " ")
+    return re.sub(r"\s+", " ", unescape(text)).strip()
+
+def _build_search_documents(records, base_path=""):
+    """拆成两个索引:head(常驻,仓库名/语言/一句话/描述等轻量字段) + deep(懒加载,Code Card + README 全文)。"""
+    head, deep = [], []
+    for r in records:
+        doc_id = r["full_name"]
+        head.append({
+            "id": doc_id,
+            "title": r["full_name"],
+            "subtitle": "",
+            "url": f"{base_path}/repos/{repo_dir_name(r['full_name'])}/",
+            "meta": [r.get("language") or "",
+                     f"★ {r.get('stars')}" if r.get("stars") else "",
+                     (r.get("pushed_at") or "")[:10]],
+            "tags": [],
+            "summary": r.get("one_liner") or "",
+            "abstract": r.get("description") or "",
+            "date": (r.get("pushed_at") or r.get("date") or "")[:10],
+        })
+        deep.append({"id": doc_id,
+                     "deep": _plain_text((r.get("card") or "") + "\n" + (r.get("readme") or ""))})
+    return head, deep
+
 def build_site(out_dir, config=None):
     cfg = config or {}
     base_path = site_base_path(cfg.get("site_base_url") or "")
@@ -95,13 +125,16 @@ def build_site(out_dir, config=None):
     env = Environment(loader=FileSystemLoader(TEMPLATES), autoescape=select_autoescape(["html"]))
     env.globals["BASE"] = base_path
     env.globals["SITE_TITLE"] = site_title
+    env.globals["SEARCH_PLACEHOLDER"] = (cfg.get("search_placeholder") or "").strip()
     env.globals["score_tier"] = score_tier
     env.globals["wiki_url"] = wiki_url
     env.globals["repo_dir_name"] = repo_dir_name
     env.globals["WIKI_SOURCES"] = WIKI_SOURCES
 
     site_dir = os.path.join(out_dir, "site")
+    data_dir = os.path.join(site_dir, "data")
     assets_dir = os.path.join(site_dir, "assets")
+    os.makedirs(data_dir, exist_ok=True)
     os.makedirs(assets_dir, exist_ok=True)
 
     # 每个仓库归自然周(pushed_at 优先,缺则退运行日期);同周内同一 full_name 去重保留最新
@@ -141,7 +174,9 @@ def build_site(out_dir, config=None):
     for r in records:
         latest_by_repo.setdefault(r["full_name"], r)
     for r in latest_by_repo.values():
-        page = env.get_template("code.html").render(repo=r, card_html=_md_to_html(r.get("card", "")))
+        page = env.get_template("code.html").render(
+            repo=r, card_html=_md_to_html(r.get("card", "")),
+            readme_html=_md_to_html(r.get("readme") or ""))
         page_dir = os.path.join(site_dir, "repos", repo_dir_name(r["full_name"]))
         os.makedirs(page_dir, exist_ok=True)
         with open(os.path.join(page_dir, "index.html"), "w", encoding="utf-8") as f:
@@ -161,13 +196,23 @@ def build_site(out_dir, config=None):
     with open(os.path.join(site_dir, "index.html"), "w", encoding="utf-8") as f:
         f.write(env.get_template("index.html").render(
             window_start=window_start, window_end=window_end,
-            repos=this_week, issue_url=issue_url, total=len(latest_by_repo)))
+            repos=this_week, issue_url=issue_url))
 
     with open(os.path.join(site_dir, "archive.html"), "w", encoding="utf-8") as f:
         f.write(env.get_template("archive.html").render(years=years, total=len(latest_by_repo)))
 
+    with open(os.path.join(site_dir, "search.html"), "w", encoding="utf-8") as f:
+        f.write(env.get_template("search.html").render())
+    head_docs, deep_docs = _build_search_documents(list(latest_by_repo.values()), base_path)
+    with open(os.path.join(data_dir, "search.json"), "w", encoding="utf-8") as f:
+        json.dump({"version": 1, "documents": head_docs}, f, ensure_ascii=False, indent=2)
+    with open(os.path.join(data_dir, "search-deep.json"), "w", encoding="utf-8") as f:
+        json.dump({"version": 1, "documents": deep_docs}, f, ensure_ascii=False, indent=2)
+
     shutil.copy(os.path.join(TEMPLATES, "assets", "style.css"),
                 os.path.join(assets_dir, "style.css"))
+    shutil.copy(os.path.join(TEMPLATES, "assets", "search.js"),
+                os.path.join(assets_dir, "search.js"))
 
 def main():
     parser = argparse.ArgumentParser(description="Build the static site from data/.")

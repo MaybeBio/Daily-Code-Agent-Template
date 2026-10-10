@@ -55,6 +55,22 @@ python scripts/build_site.py --out-dir . --config config.yaml
 
 The weekly list keys off `pushed_at` (last real code push), not `updated_at`, which GitHub bumps on star/watch/fork even when no code changed. Since `gh search repos` has no `--pushed` flag and the `pushed:` qualifier is silently ignored when combined with `in:`, the search keeps `--updated` as a coarse superset filter while `scripts/search.py` drops repos whose `pushed_at` predates the window client-side.
 
+## README 在各环节的截断 / Where the README gets truncated
+
+同一个仓库的 README 在流水线不同环节喂的是不同长度:喂给 LLM 的截断(超长 README 既撑爆上下文又稀释注意力),给人搜/给人看的保留全文(便于溯源命中词的上下文)。
+
+| 环节 | 喂什么 | 截断点 |
+|---|---|---|
+| 打分 score | README 前 **10,000** 字符 | `scripts/agent.py` `score_repo` 的 `readme[:10000]` |
+| card 解析 | README 前 **40,000** 字符 + 目录树 + 依赖清单 | `scripts/cards.py` `_README_CAP = 40000` |
+| 存盘 | **全文** | `card_record` 的 `readme` 字段 |
+| 搜索 deep 索引 | **全文** | `scripts/build_site.py` `_build_search_documents` |
+| 详情页 | **全文**(折叠「README 原文」) | `templates/code.html` |
+
+前两档是「喂给 LLM」的,后三档是「展示/搜索/溯源」的,两套截断互不影响。
+
+The README is truncated differently per stage: scoring feeds only the first 10,000 chars (`scripts/agent.py`), card generation the first 40,000 (`scripts/cards.py`), while storage, the deep search index, and the detail page all keep the full text — truncated only for the LLM, full for display and search.
+
 ## 测试 / Tests
 
 ```bash

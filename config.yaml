@@ -10,7 +10,7 @@ topic_desc: >
   也不属于本课题。
 window_days: 7
 site_base_url: ""
-search_placeholder: ""
+search_placeholder: 如 相分离、intrinsically disordered、Python
 llm:
   concurrency: 8
   min_score: 5
