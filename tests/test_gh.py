@@ -1,4 +1,5 @@
-import json, subprocess
+import json, subprocess, types
+import pytest
 from scripts import gh
 
 def test_search_repos_parses_json(monkeypatch):
@@ -68,3 +69,26 @@ def test_fetch_dep_files_none_found(monkeypatch):
     monkeypatch.setattr(gh, "run",
                         lambda cmd, **kw: json.dumps({"tree": [{"type": "blob", "path": "src/a.py"}]}))
     assert gh.fetch_dep_files("a/b") == ""
+
+def test_run_retries_transient_then_succeeds(monkeypatch):
+    calls = {"n": 0}
+    def fake_run(cmd, **kw):
+        calls["n"] += 1
+        if calls["n"] < 3:
+            raise subprocess.CalledProcessError(1, cmd, output="", stderr="net/http: TLS handshake timeout")
+        return types.SimpleNamespace(stdout="ok")
+    monkeypatch.setattr(gh.subprocess, "run", fake_run)
+    monkeypatch.setattr(gh.time, "sleep", lambda s: None)
+    assert gh.run(["gh", "api", "x"]) == "ok"
+    assert calls["n"] == 3
+
+def test_run_gives_up_immediately_on_permanent(monkeypatch):
+    calls = {"n": 0}
+    def fake_run(cmd, **kw):
+        calls["n"] += 1
+        raise subprocess.CalledProcessError(1, cmd, output="", stderr="gh: Not Found (HTTP 404)")
+    monkeypatch.setattr(gh.subprocess, "run", fake_run)
+    monkeypatch.setattr(gh.time, "sleep", lambda s: None)
+    with pytest.raises(subprocess.CalledProcessError):
+        gh.run(["gh", "api", "x"])
+    assert calls["n"] == 1

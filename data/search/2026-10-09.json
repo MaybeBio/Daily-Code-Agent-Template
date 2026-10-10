@@ -1,0 +1,66 @@
+[
+  {
+    "full_name": "leuschjanphilipp/FrustrAI-Seq",
+    "url": "https://github.com/leuschjanphilipp/FrustrAI-Seq",
+    "language": "Python",
+    "stars": 9,
+    "description": "FrustrAI-Seq repo. A deep-learning tool to infer local energetic frustration on a residue level",
+    "pushed_at": "2026-10-09T11:35:09Z"
+  },
+  {
+    "full_name": "Bibhuprasadbehera/protvista-disordered-proteins",
+    "url": "https://github.com/Bibhuprasadbehera/protvista-disordered-proteins",
+    "language": "HTML",
+    "stars": 0,
+    "description": "A ProtVista viewer for intrinsically disordered proteins (IDPs) and dynamic hubs. Highlights DisProt experimental disorder regions and MoRFs for p53 (P04637) aligned with AlphaFold2 pLDDT scores.",
+    "pushed_at": "2026-10-09T11:28:14Z"
+  },
+  {
+    "full_name": "idptools/starling",
+    "url": "https://github.com/idptools/starling",
+    "language": "Jupyter Notebook",
+    "stars": 79,
+    "description": "STARLING - conSTruction of intrinsicAlly disoRdered proteins ensembles efficientLy vIa multi-dimeNsional Generative models",
+    "pushed_at": "2026-10-08T16:54:01Z"
+  },
+  {
+    "full_name": "AspirinCode/awesome-AI4MolConformation-MD",
+    "url": "https://github.com/AspirinCode/awesome-AI4MolConformation-MD",
+    "language": "",
+    "stars": 308,
+    "description": "List of molecules (small molecules, RNA, peptide, protein, enzymes, antibody,  and PPIs)  conformations and molecular dynamics (force fields) using generative artificial intelligence and deep learning",
+    "pushed_at": "2026-10-08T12:00:43Z"
+  },
+  {
+    "full_name": "shakespearemorton/IDRTools",
+    "url": "https://github.com/shakespearemorton/IDRTools",
+    "language": "Python",
+    "stars": 1,
+    "description": "",
+    "pushed_at": "2026-10-08T11:28:09Z"
+  },
+  {
+    "full_name": "CobanAkdemirlab/NMDescapediseasegene_paper",
+    "url": "https://github.com/CobanAkdemirlab/NMDescapediseasegene_paper",
+    "language": "R",
+    "stars": 1,
+    "description": "",
+    "pushed_at": "2026-10-07T21:06:22Z"
+  },
+  {
+    "full_name": "emalacs/Scalone_IDP_Pharmacophore_Mapping_2026",
+    "url": "https://github.com/emalacs/Scalone_IDP_Pharmacophore_Mapping_2026",
+    "language": "Python",
+    "stars": 0,
+    "description": "",
+    "pushed_at": "2026-10-07T13:16:53Z"
+  },
+  {
+    "full_name": "ezippo/hoomd3_phosphorylation",
+    "url": "https://github.com/ezippo/hoomd3_phosphorylation",
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "description": "MD simulation with phosporylation step",
+    "pushed_at": "2026-10-05T09:16:43Z"
+  }
+]
