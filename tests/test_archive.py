@@ -123,8 +123,8 @@ def test_clone_repo_falls_back_to_git_then_gives_up(monkeypatch, capsys):
     monkeypatch.setattr(archive.subprocess, "run", boom)
     monkeypatch.setattr(archive.time, "sleep", lambda s: None)
     assert archive.clone_repo("a/b", "/d") is False
-    assert len(calls) == 6                              # degit 3 次 + git 回退 3 次
-    assert calls[0][0] == "degit" and calls[3][0] == "git"
+    assert len(calls) == 10                             # degit 5 次 + git 回退 5 次
+    assert calls[0][0] == "degit" and calls[5][0] == "git"
     assert "[clone failed]" in capsys.readouterr().err  # 不再静默
 
 def test_clone_repo_falls_back_to_git_on_degit_failure(monkeypatch):

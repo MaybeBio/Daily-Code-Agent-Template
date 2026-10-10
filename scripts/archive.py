@@ -37,7 +37,7 @@ def _is_not_indexed(err):
 def _is_permanent(err):
     return any(m in _error_text(err) for m in _PERMANENT_MARKERS)
 
-def _run_retry(cmd, tag, attempts=3):
+def _run_retry(cmd, tag, attempts=5):
     last = None
     for i in range(attempts):
         try:
@@ -48,7 +48,7 @@ def _run_retry(cmd, tag, attempts=3):
             if _is_permanent(e):      # 404/无此仓库/认证错 → 别再白试
                 break
             if i < attempts - 1:
-                time.sleep(2 ** i + random.random())
+                time.sleep(2 ** (i + 2) + random.random())
     print(f"[{tag} failed] {' '.join(cmd)}: {last}", file=sys.stderr)
     return False, last
 

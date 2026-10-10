@@ -1,0 +1,68 @@
+[
+  {
+    "full_name": "idptools/starling",
+    "score": 10,
+    "one_liner": "STARLING 是一个基于扩散模型从序列预测固有无序蛋白构象系综的代码工具，直接命中 IDP 构象系综预测课题，且提供完整 CLI、文档与 Colab 示例，高度相关且形态为可用工具。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": "failed",
+      "codewiki": "failed",
+      "zread": "failed"
+    }
+  },
+  {
+    "full_name": "shakespearemorton/IDRTools",
+    "score": 10,
+    "one_liner": "该仓库提供IDP序列的GIN聚类分配和基于CALVADOS 2模拟的相分离倾向预测工具，直接面向IDR/相分离课题，是高度相关的可运行代码。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": "failed",
+      "codewiki": "failed",
+      "zread": "failed"
+    }
+  },
+  {
+    "full_name": "emalacs/Scalone_IDP_Pharmacophore_Mapping_2026",
+    "score": 9,
+    "one_liner": "该仓库提供面向IDP药物靶标的动态药效团映射工具，包含MD轨迹分析、药效团密度图生成及交互式可视化，与课题高度相关且为可用的代码/工具。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": "failed",
+      "codewiki": "failed",
+      "zread": "failed"
+    }
+  },
+  {
+    "full_name": "ezippo/hoomd3_phosphorylation",
+    "score": 9,
+    "one_liner": "该仓库提供粗粒化分子动力学模拟框架,专门模拟无序蛋白的酶促磷酸化及其凝聚体相分离,与课题高度相关且为可运行代码工具。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": "failed",
+      "codewiki": "failed",
+      "zread": "failed"
+    }
+  },
+  {
+    "full_name": "AspirinCode/awesome-AI4MolConformation-MD",
+    "score": 6,
+    "one_liner": "这是一个AI4分子构象与分子动力学的论文/工具列表仓库，涵盖蛋白质构象系综与无序蛋白相关综述，但形态为资源清单而非代码工具，与IDR/相分离课题部分相关。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": "failed",
+      "codewiki": "failed",
+      "zread": "failed"
+    }
+  },
+  {
+    "full_name": "leuschjanphilipp/FrustrAI-Seq",
+    "score": 6,
+    "one_liner": "FrustrAI-Seq 是一个用蛋白语言模型从序列预测局部能量挫折的深度学习工具，虽非直接针对 IDR/相分离，但其方法可迁移到无序蛋白区域分析，且明确提及可覆盖 IDR。",
+    "clone_ok": true,
+    "wikis": {
+      "deepwiki": "failed",
+      "codewiki": "failed",
+      "zread": "failed"
+    }
+  }
+]

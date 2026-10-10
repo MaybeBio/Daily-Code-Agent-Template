@@ -32,3 +32,16 @@ def test_run_falls_back_to_single_query_in_yaml(monkeypatch, tmp_path):
                                           "pushedAt": "2026-10-03T00:00:00Z"}])
     rows = search.run({"search": {"config": cfgpath}}, "2026-10-04", ">=2026-09-27")
     assert rows[0]["full_name"] == "a/b" and rows[0]["stars"] == 1
+
+def test_run_skips_failed_query(monkeypatch, tmp_path):
+    monkeypatch.setattr(search.common, "ROOT", str(tmp_path))
+    cfgpath = _qcfg(tmp_path)
+    def fake_search(cfg_path, updated, fields, query=None):
+        if query == "bad in:name":
+            raise ValueError("unknown flag")
+        return [{"fullName": "a/b", "url": "u", "language": "Python",
+                 "stargazersCount": 7, "description": "d", "pushedAt": "2026-10-03T00:00:00Z"}]
+    monkeypatch.setattr(search.gh, "search_repos", fake_search)
+    cfg = {"search": {"config": cfgpath, "queries": ["bad in:name", "good in:name"]}}
+    rows = search.run(cfg, "2026-10-04", ">=2026-09-27")
+    assert [r["full_name"] for r in rows] == ["a/b"]   # 坏 query 跳过,好 query 仍出结果

@@ -23,7 +23,12 @@ def run(cfg: dict, date: str, since: str) -> list[dict]:
     qcfg = os.path.join(common.ROOT, cfg["search"]["config"])
     merged: dict[str, dict] = {}
     for query in _queries(cfg["search"], qcfg):
-        for d in gh.search_repos(qcfg, since, FIELDS, query=query):
+        try:
+            results = gh.search_repos(qcfg, since, FIELDS, query=query)
+        except Exception as e:
+            print(f"[search failed] {query}: {e}", file=sys.stderr)
+            continue
+        for d in results:
             n = _norm(d)
             if n["full_name"]:
                 merged[n["full_name"]] = n

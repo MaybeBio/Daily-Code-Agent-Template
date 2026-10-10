@@ -1,4 +1,4 @@
-import ast, json, os, subprocess
+import ast, json, os, random, subprocess, time
 
 _CODE_EXT = frozenset({
     ".py", ".pyx", ".pxd", ".pyi", ".pyw",
@@ -21,15 +21,37 @@ _CODE_EXT = frozenset({
     ".cmake", ".mk", ".meson",
     ".sql", ".psql",
     ".graphql", ".gql",
-    ".md", ".mdx", ".rst", ".markdown",
+    ".md", ".mdx", ".markdown",
     ".tex", ".sty", ".cls", ".bib",
 })
+
+# 永久性失败:重试也救不回(404/空仓库/认证错),与瞬时网络故障(TLS 超时/连接重置/5xx)区分。
+_PERMANENT_MARKERS = (
+    "404", "not found", "no such", "is empty", "empty repository",
+    "bad credentials", "authentication failed", "requires authentication",
+    "not authenticated", "unknown flag", "no such option",
+)
+
+def _error_text(err):
+    if isinstance(err, subprocess.CalledProcessError):
+        return f"{err.stderr or ''} {err.stdout or ''}".lower()
+    return str(err).lower()
+
+def _is_permanent(err):
+    return any(m in _error_text(err) for m in _PERMANENT_MARKERS)
 
 def run(cmd: list[str], **kw) -> str:
     kw.setdefault("capture_output", True)
     kw.setdefault("text", True)
     kw.setdefault("check", True)
-    return subprocess.run(cmd, **kw).stdout
+    attempts = kw.pop("attempts", 5)
+    for i in range(attempts):
+        try:
+            return subprocess.run(cmd, **kw).stdout
+        except Exception as e:
+            if _is_permanent(e) or i == attempts - 1:
+                raise
+            time.sleep(2 ** (i + 2) + random.random())
 
 def search_repos(config_path: str, updated: str, fields: list[str],
                  query: str | None = None) -> list[dict]:

@@ -11,7 +11,7 @@ def card_record(row, card):
             "score": row["score"], "one_liner": row.get("one_liner", ""), "card": card}
 
 # README 全文喂给 card,但超大 README(awesome-list 类可上万行)设一个宽松上限,防止撑爆上下文/成本。
-_README_CAP = 30000
+_README_CAP = 40000
 
 def _card_context(row, fetch, fetch_tree, fetch_deps):
     try:
@@ -25,7 +25,10 @@ def _card_context(row, fetch, fetch_tree, fetch_deps):
         tree = fetch_tree(row["full_name"]) or ""
     except Exception:
         tree = ""
-    deps = fetch_deps(row["full_name"]) if tree else ""
+    try:
+        deps = fetch_deps(row["full_name"]) if tree else ""
+    except Exception:
+        deps = ""
     parts = []
     if readme:
         parts.append(f"README:\n{readme}")
