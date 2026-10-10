@@ -24,5 +24,13 @@
     <div class="md">{{ card_html | safe }}</div>
   </section>
   {% endif %}
+  {% if readme_html %}
+  <section>
+    <details>
+      <summary>README 原文</summary>
+      <div class="md">{{ readme_html | safe }}</div>
+    </details>
+  </section>
+  {% endif %}
 </article>
 {% endblock %}
