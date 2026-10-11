@@ -15,7 +15,7 @@
   </aside>
   <div class="content">
     <div class="repo-list">
-      {% for r in repos %}{% set card_index = loop.index %}{% include "_code_card.html" %}{% endfor %}
+      {% for r in repos %}{% set card_index = loop.index %}{% set card_link = 'repos/' ~ repo_dir_name(r.full_name) ~ '/' %}{% include "_code_card.html" %}{% endfor %}
     </div>
   </div>
 </div>

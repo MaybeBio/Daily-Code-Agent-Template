@@ -97,6 +97,26 @@ def test_build_site_weeks_dedup_within_week_keep_across(tmp_path):
     assert "a/b" in week_a and "a/b" in week_b           # 跨自然周都保留
     assert week_b.count('class="repo-card"') == 1        # 同自然周内去重,只剩一条
 
+def test_build_site_week_detail_preserves_old_card(tmp_path):
+    d = str(tmp_path / "data" / "cards")
+    os.makedirs(d, exist_ok=True)
+    def rec(pushed, one, card):
+        return {"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                "pushed_at": pushed, "score": 8, "one_liner": one, "card": card}
+    with open(os.path.join(d, "2026-09-30.json"), "w", encoding="utf-8") as f:
+        json.dump([rec("2026-10-01T00:00:00Z", "old", "## 是什么\nOLD")], f, ensure_ascii=False)
+    with open(os.path.join(d, "2026-10-06.json"), "w", encoding="utf-8") as f:
+        json.dump([rec("2026-10-06T00:00:00Z", "new", "## 是什么\nNEW")], f, ensure_ascii=False)
+    build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
+    week_a = open(str(tmp_path / "site" / "weeks" / "2026-10-04" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
+    week_b = open(str(tmp_path / "site" / "weeks" / "2026-10-11" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
+    latest = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
+    assert "OLD" in week_a and "NEW" not in week_a          # 旧 card 沉淀在当周详情页
+    assert "NEW" in week_b and "OLD" not in week_b          # 新周是新的 card
+    assert "NEW" in latest and "OLD" not in latest          # 本周/详情页永远是最新
+    week_a_index = open(str(tmp_path / "site" / "weeks" / "2026-10-04" / "index.html"), encoding="utf-8").read()
+    assert "weeks/2026-10-04/repos/a__b/" in week_a_index   # 周列表链接到当周详情,而非最新
+
 def test_build_site_latest_card_wins(tmp_path):
     d = str(tmp_path / "data" / "cards")
     os.makedirs(d, exist_ok=True)

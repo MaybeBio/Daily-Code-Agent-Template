@@ -130,6 +130,7 @@ def build_site(out_dir, config=None):
     env.globals["wiki_url"] = wiki_url
     env.globals["repo_dir_name"] = repo_dir_name
     env.globals["WIKI_SOURCES"] = WIKI_SOURCES
+    env.filters["md"] = _md_to_html
 
     site_dir = os.path.join(out_dir, "site")
     data_dir = os.path.join(site_dir, "data")
@@ -174,9 +175,7 @@ def build_site(out_dir, config=None):
     for r in records:
         latest_by_repo.setdefault(r["full_name"], r)
     for r in latest_by_repo.values():
-        page = env.get_template("code.html").render(
-            repo=r, card_html=_md_to_html(r.get("card", "")),
-            readme_html=_md_to_html(r.get("readme") or ""))
+        page = env.get_template("code.html").render(repo=r)
         page_dir = os.path.join(site_dir, "repos", repo_dir_name(r["full_name"]))
         os.makedirs(page_dir, exist_ok=True)
         with open(os.path.join(page_dir, "index.html"), "w", encoding="utf-8") as f:
@@ -185,6 +184,12 @@ def build_site(out_dir, config=None):
     for key, repos in batches.items():
         if key == "unknown":
             continue
+        for r in repos:
+            page = env.get_template("code.html").render(repo=r)
+            page_dir = os.path.join(site_dir, "weeks", key, "repos", repo_dir_name(r["full_name"]))
+            os.makedirs(page_dir, exist_ok=True)
+            with open(os.path.join(page_dir, "index.html"), "w", encoding="utf-8") as f:
+                f.write(page)
         page = env.get_template("week.html").render(
             window_start=repos[0]["window_start"] if repos else "",
             window_end=key, repos=repos)
