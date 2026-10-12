@@ -204,3 +204,74 @@ def test_build_site_writes_search_files(tmp_path):
     assert os.path.isfile(os.path.join(site, "assets", "search.js"))
     html = open(os.path.join(site, "search.html"), encoding="utf-8").read()
     assert "data-search-root" in html
+
+def _write_wiki(tmp_path, full_name, source, date):
+    d = str(tmp_path / "code" / build_site.repo_dir_name(full_name) / "wikis" / date / source)
+    os.makedirs(d, exist_ok=True)
+    open(os.path.join(d, "llms.txt"), "w", encoding="utf-8").write(f"# {source} {date}")
+
+def test_wiki_dates_upto(tmp_path):
+    _write_wiki(tmp_path, "a/b", "deepwiki", "2026-10-05")
+    _write_wiki(tmp_path, "a/b", "deepwiki", "2026-10-12")
+    _write_wiki(tmp_path, "a/b", "zread", "2026-10-05")
+    assert build_site.wiki_dates_upto(str(tmp_path), "a/b", "") == {
+        "deepwiki": "2026-10-12", "zread": "2026-10-05"}
+    # 以 upto_date 为上界:冻结在 10-05,看不到 10-12 的快照
+    assert build_site.wiki_dates_upto(str(tmp_path), "a/b", "2026-10-05") == {
+        "deepwiki": "2026-10-05", "zread": "2026-10-05"}
+
+def test_wiki_dates_upto_missing(tmp_path):
+    assert build_site.wiki_dates_upto(str(tmp_path), "a/b", "") == {}
+
+def test_wiki_snapshot_url():
+    assert build_site.wiki_snapshot_url(
+        "deepwiki", "a/b", "2026-10-12", "MaybeBio/Daily-Code-Agent-Template", "main") == \
+        "https://github.com/MaybeBio/Daily-Code-Agent-Template/blob/main/code/a__b/wikis/2026-10-12/deepwiki/llms.txt"
+    assert build_site.wiki_snapshot_url("deepwiki", "a/b", "2026-10-12", "") == ""
+
+def test_build_site_wiki_snapshot_link(tmp_path):
+    _write_cards(tmp_path, [{"full_name": "a/b", "url": "https://github.com/a/b",
+                             "language": "Python", "stars": 5,
+                             "pushed_at": "2026-10-01T00:00:00Z",
+                             "score": 8, "one_liner": "one",
+                             "card": "## 是什么\nhello"}])
+    _write_wiki(tmp_path, "a/b", "deepwiki", "2026-10-05")
+    build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": "",
+                                          "github_repo": "MaybeBio/Daily-Code-Agent-Template",
+                                          "github_branch": "main"})
+    detail = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
+    assert "MaybeBio/Daily-Code-Agent-Template/blob/main/code/a__b/wikis/2026-10-05/deepwiki/llms.txt" in detail
+    assert "deepwiki 快照" in detail
+
+def test_build_site_no_wiki_snapshot_link_without_github_repo(tmp_path):
+    _write_cards(tmp_path, [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                             "pushed_at": "t", "score": 8, "one_liner": "x", "card": "## 是什么\nhi"}])
+    _write_wiki(tmp_path, "a/b", "deepwiki", "2026-10-05")
+    build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": ""})
+    detail = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
+    assert "快照" not in detail
+
+def test_build_site_week_detail_links_frozen_wiki(tmp_path):
+    d = str(tmp_path / "data" / "cards")
+    os.makedirs(d, exist_ok=True)
+    def rec(pushed):
+        return {"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
+                "pushed_at": pushed, "score": 8, "one_liner": "x", "card": ""}
+    with open(os.path.join(d, "2026-09-30.json"), "w", encoding="utf-8") as f:
+        json.dump([rec("2026-10-01T00:00:00Z")], f, ensure_ascii=False)
+    with open(os.path.join(d, "2026-10-06.json"), "w", encoding="utf-8") as f:
+        json.dump([rec("2026-10-06T00:00:00Z")], f, ensure_ascii=False)
+    _write_wiki(tmp_path, "a/b", "deepwiki", "2026-09-30")
+    _write_wiki(tmp_path, "a/b", "deepwiki", "2026-10-06")
+    build_site.build_site(str(tmp_path), {"title": "T", "site_base_url": "",
+                                          "github_repo": "MaybeBio/Daily-Code-Agent-Template",
+                                          "github_branch": "main"})
+    week_a = open(str(tmp_path / "site" / "weeks" / "2026-10-04" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
+    week_b = open(str(tmp_path / "site" / "weeks" / "2026-10-11" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
+    latest = open(str(tmp_path / "site" / "repos" / "a__b" / "index.html"), encoding="utf-8").read()
+    # 周归档页链到「当周冻结」的快照,而非最新那份
+    assert "wikis/2026-09-30/deepwiki/llms.txt" in week_a
+    assert "wikis/2026-10-06/deepwiki/llms.txt" not in week_a
+    assert "wikis/2026-10-06/deepwiki/llms.txt" in week_b
+    assert "wikis/2026-09-30/deepwiki/llms.txt" not in week_b
+    assert "wikis/2026-10-06/deepwiki/llms.txt" in latest

@@ -1,5 +1,10 @@
-import os, subprocess
+import datetime as dt, os, subprocess
 from scripts import archive
+
+class _FakeR:
+    def __init__(self, code, out):
+        self.returncode = code
+        self.stdout = out
 
 def test_threshold_filters_and_sorts():
     scored = [
@@ -111,9 +116,118 @@ def test_wiki_dest_uses_google_code_wiki_for_codewiki(monkeypatch, tmp_path):
         dests[src] = dest
         return True
     archive.run({"llm": {"min_score": 5}}, "2026-10-05", clone=fake_clone, wiki=fake_wiki)
-    assert dests["deepwiki"].endswith("deepwiki")
-    assert dests["zread"].endswith("zread")
-    assert dests["codewiki"].endswith("google_code_wiki")
+    assert dests["deepwiki"].endswith(os.path.join("wikis", "2026-10-05", "deepwiki"))
+    assert dests["zread"].endswith(os.path.join("wikis", "2026-10-05", "zread"))
+    assert dests["codewiki"].endswith(os.path.join("wikis", "2026-10-05", "google_code_wiki"))
+
+def test_archive_one_reuses_stale_wiki(monkeypatch, tmp_path):
+    monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
+    base = archive.repo_dir("a/b")
+    prev = os.path.join(base, "wikis", "2026-09-28", "deepwiki")
+    os.makedirs(prev, exist_ok=True)
+    open(os.path.join(prev, "llms.txt"), "w").write("old")
+    calls = []
+    out = archive.archive_one(
+        {"full_name": "a/b", "score": 8, "one_liner": "x"},
+        clone=lambda fn, d: True,
+        wiki=lambda s, fn, d: calls.append(s) or "ok",
+        date="2026-10-05",
+        stat_date=lambda s, fn: dt.date(2026, 9, 1),   # 过期 → 复用旧快照
+        in_week=lambda d: False)
+    assert out["wikis"]["deepwiki"] == "reused"
+    assert "deepwiki" not in calls
+    assert sorted(calls) == ["codewiki", "zread"]
+    assert open(os.path.join(prev, "llms.txt")).read() == "old"
+    assert not os.path.isdir(os.path.join(base, "wikis", "2026-10-05", "deepwiki"))
+
+def test_archive_one_refreshes_fresh_wiki(monkeypatch, tmp_path):
+    monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
+    base = archive.repo_dir("a/b")
+    prev = os.path.join(base, "wikis", "2026-09-28", "deepwiki")
+    os.makedirs(prev, exist_ok=True)
+    open(os.path.join(prev, "llms.txt"), "w").write("old")
+    calls = []
+    out = archive.archive_one(
+        {"full_name": "a/b", "score": 8, "one_liner": "x"},
+        clone=lambda fn, d: True,
+        wiki=lambda s, fn, d: calls.append(s) or "ok",
+        date="2026-10-05",
+        stat_date=lambda s, fn: dt.date(2026, 10, 6),   # 本周 → 重拉新快照
+        in_week=lambda d: True)
+    assert out["wikis"]["deepwiki"] == "ok"
+    assert "deepwiki" in calls
+    assert open(os.path.join(prev, "llms.txt")).read() == "old"   # 旧快照仍保留
+
+def test_archive_one_reuses_when_stat_fails_but_dir_exists(monkeypatch, tmp_path):
+    monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
+    base = archive.repo_dir("a/b")
+    os.makedirs(os.path.join(base, "wikis", "2026-09-28", "zread"), exist_ok=True)
+    calls = []
+    out = archive.archive_one(
+        {"full_name": "a/b", "score": 8, "one_liner": "x"},
+        clone=lambda fn, d: True,
+        wiki=lambda s, fn, d: calls.append(s) or "ok",
+        date="2026-10-05",
+        stat_date=lambda s, fn: None,              # stat 失败 → 保守复用旧快照
+        in_week=lambda d: False)
+    assert out["wikis"]["zread"] == "reused"
+    assert "zread" not in calls
+
+def test_archive_one_cp_when_no_old_dir(monkeypatch, tmp_path):
+    monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
+    calls = []
+    out = archive.archive_one(
+        {"full_name": "a/b", "score": 8, "one_liner": "x"},
+        clone=lambda fn, d: True,
+        wiki=lambda s, fn, d: calls.append(s) or "ok",
+        date="2026-10-05",
+        stat_date=lambda s, fn: dt.date(2026, 9, 1),   # 过期但无旧快照 → 仍要拉
+        in_week=lambda d: False)
+    assert out["wikis"]["deepwiki"] == "ok"
+    assert sorted(calls) == ["codewiki", "deepwiki", "zread"]
+
+def test_run_appends_snapshot_never_deletes_old(monkeypatch, tmp_path):
+    monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
+    for date in ("2026-10-05", "2026-10-12"):
+        archive.common.dump_json(str(tmp_path / "data" / "scored" / f"{date}.json"),
+                                 [{"full_name": "a/b", "score": 8, "one_liner": "x"}])
+    def fake_clone(fn, dest):
+        os.makedirs(dest, exist_ok=True)
+        return True
+    def fake_wiki(src, fn, dest):
+        os.makedirs(dest, exist_ok=True)
+        open(os.path.join(dest, "page.md"), "w").write(src)
+        return True
+    archive.run({"llm": {"min_score": 5}}, "2026-10-05", clone=fake_clone, wiki=fake_wiki)
+    archive.run({"llm": {"min_score": 5}}, "2026-10-12", clone=fake_clone, wiki=fake_wiki)
+    base = archive.repo_dir("a/b")
+    assert os.path.isfile(os.path.join(base, "wikis", "2026-10-05", "deepwiki", "page.md"))
+    assert os.path.isfile(os.path.join(base, "wikis", "2026-10-12", "deepwiki", "page.md"))
+
+def test_in_week():
+    assert archive._in_week(dt.date(2026, 10, 5), "2026-10-08") is True   # 本周一
+    assert archive._in_week(dt.date(2026, 10, 11), "2026-10-08") is True  # 本周日
+    assert archive._in_week(dt.date(2026, 10, 4), "2026-10-08") is False  # 上周日
+    assert archive._in_week(None, "2026-10-08") is False
+    assert archive._in_week(dt.date(2026, 10, 5), "bad") is False
+
+def test_stat_date_deepwiki(monkeypatch):
+    monkeypatch.setattr(archive.subprocess, "run",
+                        lambda cmd, **kw: _FakeR(0, '{"command":"stat","repo":"a/b","data":{"last_modified":"2026-10-01T00:00:00Z"}}'))
+    assert archive._stat_date("deepwiki", "a/b") == dt.date(2026, 10, 1)
+
+def test_stat_date_zread_epoch(monkeypatch):
+    monkeypatch.setattr(archive.subprocess, "run",
+                        lambda cmd, **kw: _FakeR(0, '{"repo":"a/b","command":"stat","data":{"updated_at": 1760000000}}'))
+    assert archive._stat_date("zread", "a/b") == dt.datetime.fromtimestamp(1760000000, tz=dt.timezone.utc).date()
+
+def test_stat_date_codewiki_resolves_sha(monkeypatch):
+    def fake(cmd, **kw):
+        if cmd[0] == "repowiki-cli":
+            return _FakeR(0, '{"repo":"a/b","command":"stat","commit":"abc123"}')
+        return _FakeR(0, "2026-10-02T03:04:05Z")
+    monkeypatch.setattr(archive.subprocess, "run", fake)
+    assert archive._stat_date("codewiki", "a/b") == dt.date(2026, 10, 2)
 
 def test_clone_repo_falls_back_to_git_then_gives_up(monkeypatch, capsys):
     calls = []

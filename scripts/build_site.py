@@ -63,6 +63,30 @@ def wiki_url(source, full_name):
 def repo_dir_name(full_name):
     return full_name.replace("/", "__")
 
+def wiki_dates_upto(out_dir, full_name, upto_date):
+    """各 wiki 源在 upto_date(含)之前最近一次快照日期(code/{repo}/wikis/{date}/{source}/llms.txt)。
+
+    以卡片自身的运行日期(upto_date=record["date"])为上限,确保周归档页链到「当周冻结」的快照,
+    而不是最新的那份。
+    """
+    wikis_root = os.path.join(out_dir, "code", repo_dir_name(full_name), "wikis")
+    result = {}
+    if not os.path.isdir(wikis_root):
+        return result
+    for source in WIKI_SOURCES:
+        dates = [d for d in os.listdir(wikis_root)
+                 if (not upto_date or d <= upto_date)
+                 and os.path.isfile(os.path.join(wikis_root, d, source, "llms.txt"))]
+        if dates:
+            result[source] = max(dates)
+    return result
+
+def wiki_snapshot_url(source, full_name, date, github_repo="", github_branch="main"):
+    if not github_repo or not date:
+        return ""
+    return (f"https://github.com/{github_repo}/blob/{github_branch}/"
+            f"code/{repo_dir_name(full_name)}/wikis/{date}/{source}/llms.txt")
+
 def load_cards(out_dir):
     cards_root = os.path.join(out_dir, "data", "cards")
     if not os.path.isdir(cards_root):
@@ -130,6 +154,10 @@ def build_site(out_dir, config=None):
     env.globals["wiki_url"] = wiki_url
     env.globals["repo_dir_name"] = repo_dir_name
     env.globals["WIKI_SOURCES"] = WIKI_SOURCES
+    github_repo = (cfg.get("github_repo") or "").strip()
+    github_branch = (cfg.get("github_branch") or "main").strip()
+    env.globals["wiki_snapshot_url"] = (
+        lambda s, fn, d: wiki_snapshot_url(s, fn, d, github_repo, github_branch))
     env.filters["md"] = _md_to_html
 
     site_dir = os.path.join(out_dir, "site")
@@ -143,6 +171,7 @@ def build_site(out_dir, config=None):
         w_start, w_end = natural_week(r.get("pushed_at") or r.get("date"))
         r["window_start"] = w_start
         r["window_end"] = w_end
+        r["wiki_dates"] = wiki_dates_upto(out_dir, r["full_name"], r.get("date") or "")
 
     batches = {}
     for r in records:

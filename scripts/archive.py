@@ -1,4 +1,4 @@
-import argparse, os, random, shutil, subprocess, sys, time
+import argparse, datetime as dt, json, os, random, shutil, subprocess, sys, time
 from concurrent.futures import ThreadPoolExecutor
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts import common  # noqa: E402
@@ -25,6 +25,18 @@ def repo_dir(full_name):
 
 def _wiki_dir(source):
     return "google_code_wiki" if source == "codewiki" else source
+
+def _wiki_dest(base, source, date):
+    # wiki 只增不删:按抓取日期落快照,过去周次的快照永不被覆盖。
+    return os.path.join(base, "wikis", date, _wiki_dir(source))
+
+def _has_snapshot(base, source):
+    wikis_root = os.path.join(base, "wikis")
+    if not os.path.isdir(wikis_root):
+        return False
+    target = _wiki_dir(source)
+    return any(os.path.isdir(os.path.join(wikis_root, d, target))
+               for d in os.listdir(wikis_root))
 
 def _error_text(err):
     if isinstance(err, subprocess.CalledProcessError):
@@ -76,26 +88,104 @@ def export_wiki(source, full_name, dest):
             return "submitted"
     return "not_indexed" if _is_not_indexed(err) else "failed"
 
-def archive_one(row, clone, wiki):
+def _run_json(cmd):
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if r.returncode != 0:
+        raise RuntimeError(f"cmd failed ({r.returncode}): {' '.join(cmd)}")
+    return json.loads(r.stdout)
+
+def _run_text(cmd):
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if r.returncode != 0:
+        raise RuntimeError(f"cmd failed ({r.returncode}): {' '.join(cmd)}")
+    return r.stdout.strip()
+
+def _parse_iso(v):
+    if not isinstance(v, str):
+        return None
+    try:
+        return dt.date.fromisoformat(v.strip()[:10])
+    except ValueError:
+        return None
+
+def _parse_epoch(v):
+    try:
+        return dt.datetime.fromtimestamp(int(v), tz=dt.timezone.utc).date()
+    except (TypeError, ValueError, OSError):
+        return None
+
+def _stat_date(source, full_name):
+    """返回该 wiki 源的「内容截止日期」,拿不到返回 None。
+
+    deepwiki 用 last_modified、zread 用 updated_at(epoch 秒)、codewiki 只有
+    commit sha,需经 gh api 反查该 commit 的提交日期。
+    """
+    try:
+        j = _run_json(["repowiki-cli", source, "stat", full_name, "--json"])
+    except Exception:
+        return None
+    if not isinstance(j, dict):
+        return None
+    data = j.get("data") if isinstance(j.get("data"), dict) else {}
+    if source == "deepwiki":
+        return _parse_iso(data.get("last_modified"))
+    if source == "zread":
+        return _parse_epoch(data.get("updated_at"))
+    if source == "codewiki":
+        sha = (j.get("commit") or "").strip()
+        if not sha:
+            return None
+        owner, _, name = full_name.partition("/")
+        try:
+            out = _run_text(["gh", "api", f"repos/{owner}/{name}/commits/{sha}",
+                             "--jq", ".commit.committer.date"])
+        except Exception:
+            return None
+        return _parse_iso(out)
+    return None
+
+def _in_week(d, run_date):
+    """d 是否落在 run_date 所在的自然周(周一~周日)内。"""
+    if d is None:
+        return False
+    try:
+        r = dt.date.fromisoformat((run_date or "")[:10])
+    except ValueError:
+        return False
+    monday = r - dt.timedelta(days=r.weekday())
+    return monday <= d <= monday + dt.timedelta(days=6)
+
+def archive_one(row, clone, wiki, date, stat_date=None, in_week=None):
     full_name = row["full_name"]
     base = repo_dir(full_name)
-    shutil.rmtree(base, ignore_errors=True)
     os.makedirs(base, exist_ok=True)
-    clone_ok = clone(full_name, os.path.join(base, "code"))
-    wikis = {s: wiki(s, full_name, os.path.join(base, _wiki_dir(s))) for s in WIKI_SOURCES}
+    code_dir = os.path.join(base, "code")
+    shutil.rmtree(code_dir, ignore_errors=True)
+    clone_ok = clone(full_name, code_dir)
+    wikis = {}
+    for s in WIKI_SOURCES:
+        dest = _wiki_dest(base, s, date)
+        if stat_date is not None and in_week is not None:
+            d = stat_date(s, full_name)
+            fresh = d is not None and in_week(d)
+            if not fresh and _has_snapshot(base, s):   # 没更新(或 stat 失败)且已留过快照 → 复用,不再新打
+                wikis[s] = "reused"
+                continue
+        shutil.rmtree(dest, ignore_errors=True)
+        wikis[s] = wiki(s, full_name, dest)
     return {"full_name": full_name, "score": row.get("score"),
             "one_liner": row.get("one_liner", ""), "clone_ok": clone_ok, "wikis": wikis}
 
-def _safe_archive_one(row, clone, wiki):
+def _safe_archive_one(row, clone, wiki, date, stat_date=None, in_week=None):
     try:
-        return archive_one(row, clone, wiki)
+        return archive_one(row, clone, wiki, date, stat_date, in_week)
     except Exception as e:
         print(f"[archive failed] {row['full_name']}: {e}", file=sys.stderr)
         return {"full_name": row["full_name"], "score": row.get("score"),
                 "one_liner": row.get("one_liner", ""), "clone_ok": False,
                 "wikis": {s: "failed" for s in WIKI_SOURCES}}
 
-def run(cfg, date, clone=None, wiki=None):
+def run(cfg, date, clone=None, wiki=None, stat_date=None, in_week=None):
     clone = clone or clone_repo
     wiki = wiki or export_wiki
     min_score = int(cfg.get("llm", {}).get("min_score", 5))
@@ -105,7 +195,8 @@ def run(cfg, date, clone=None, wiki=None):
     # 低并发:网络工具(degit/repowiki-cli)串行太慢,但太高会触发 repowiki 限流。
     workers = max(1, int(cfg.get("archive", {}).get("concurrency", 4)))
     with ThreadPoolExecutor(max_workers=workers) as ex:
-        archived = list(ex.map(lambda r: _safe_archive_one(r, clone, wiki), keep))
+        archived = list(ex.map(
+            lambda r: _safe_archive_one(r, clone, wiki, date, stat_date, in_week), keep))
     common.dump_json(common.data_dir("archive", f"{date}.json"), archived)
     return archived
 
@@ -116,12 +207,13 @@ def main():
     a = ap.parse_args()
     cfg = common.load_config(a.config)
     date = a.date or common.today()
-    out = run(cfg, date)
+    in_week = lambda d: _in_week(d, date)
+    out = run(cfg, date, stat_date=_stat_date, in_week=in_week)
     ok_clone = sum(1 for r in out if r["clone_ok"])
     parts = [f"{len(out)} archived; clone ok {ok_clone}/{len(out)}"]
     for s in WIKI_SOURCES:
         counts = {st: sum(1 for r in out if r["wikis"].get(s) == st)
-                  for st in ("ok", "submitted", "not_indexed", "failed")}
+                  for st in ("ok", "submitted", "not_indexed", "failed", "reused")}
         nonzero = " ".join(f"{st}:{n}" for st, n in counts.items() if n)
         parts.append(f"{s} {nonzero or '-'}")
     print("; ".join(parts))
