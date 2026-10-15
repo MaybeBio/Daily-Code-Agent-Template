@@ -10,6 +10,10 @@ topic_desc: >
   也不属于本课题。
 window_days: 7
 site_base_url: ""
+# 本模板仓库的 owner/name + 默认分支,用于构造 wiki 快照的 GitHub blob 链接
+# (指向 code/{repo}/wikis/{date}/{source}/llms.txt)。
+github_repo: MaybeBio/Daily-Code-Agent-Template
+github_branch: main
 search_placeholder: 如 相分离、intrinsically disordered、Python
 llm:
   concurrency: 8
