@@ -77,7 +77,7 @@ def run(cfg, date, client=None, fetch=None, fetch_tree=None, fetch_deps=None, ca
             text, readme = _card_context(row, fetch, fetch_tree, fetch_deps)
             if not text.strip():
                 return card_record(row, "", readme=readme, window=window)
-            res = card_fn(client, model, prompts, common.topic_brief(cfg), text)
+            res = card_fn(client, model, prompts, text)
             card = res.get("card", "")
         except Exception as e:
             print(f"[card failed] {row['full_name']}: {e}", file=sys.stderr)

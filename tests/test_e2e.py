@@ -13,7 +13,7 @@ def _wire(monkeypatch, tmp_path, pushed_at):
     monkeypatch.setattr(merge.gh, "repo_meta",
                         lambda fn: {"pushed_at": pushed_at, "stars": 9, "language": "Py",
                                     "description": "d", "url": "u"})
-    monkeypatch.setattr(score, "load_prompts", lambda p: {"score": {"system": "", "user": "{topic}{readme}"}})
+    monkeypatch.setattr(score, "load_prompts", lambda p: {"score": {"system": "", "user": "{readme}"}})
     monkeypatch.setattr(score.agent, "score_repo", lambda *a, **k: {"score": 8, "one_liner": "n"})
     monkeypatch.setattr(score.agent, "model_name", lambda: "m")
 

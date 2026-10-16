@@ -4,11 +4,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts import common, agent, gh  # noqa: E402
 from scripts.agent import load_prompts  # noqa: E402
 
-def _score_one(row, cfg, client, prompts, model, fetch, fetch_tree):
+def _score_one(row, client, prompts, model, fetch, fetch_tree):
     text = common.repo_text(row, fetch, fetch_tree)
     if not text:
         return {"score": 0, "one_liner": "无 README/描述/目录树,跳过"}
-    return agent.score_repo(client, model, prompts, common.topic_brief(cfg), text)
+    return agent.score_repo(client, model, prompts, text)
 
 def run(cfg, date, client=None, fetch=None, fetch_tree=None):
     fetch = fetch or gh.fetch_readme
@@ -21,7 +21,7 @@ def run(cfg, date, client=None, fetch=None, fetch_tree=None):
     out = []
     def work(row):
         try:
-            res = _score_one(row, cfg, client, prompts, model, fetch, fetch_tree)
+            res = _score_one(row, client, prompts, model, fetch, fetch_tree)
         except Exception:
             res = {"score": None, "one_liner": "[llm failed]"}
         return {**row, **res}

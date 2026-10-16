@@ -1,7 +1,7 @@
 from scripts import score
 
 CFG = {"topic": "demo", "title": "D", "llm": {"concurrency": 2}}
-PROMPTS = {"score": {"system": "s", "user": "{topic}\n{readme}"}}
+PROMPTS = {"score": {"system": "s", "user": "{readme}"}}
 
 def test_run_scores_and_writes(monkeypatch, tmp_path):
     monkeypatch.setattr(score.common, "ROOT", str(tmp_path))
@@ -15,21 +15,6 @@ def test_run_scores_and_writes(monkeypatch, tmp_path):
     assert rows[0]["score"] == 9 and rows[0]["one_liner"] == "nice"
     saved = score.common.load_json(str(tmp_path / "data" / "scored" / "2026-10-04.json"))
     assert saved[0]["score"] == 9
-
-def test_run_passes_topic_brief_not_slug(monkeypatch, tmp_path):
-    monkeypatch.setattr(score.common, "ROOT", str(tmp_path))
-    score.common.dump_json(str(tmp_path / "data" / "candidates" / "2026-10-04.json"),
-                           [{"full_name": "a/b", "url": "u", "pushed_at": "t",
-                             "stars": 1, "language": "", "description": ""}])
-    monkeypatch.setattr(score, "load_prompts", lambda p: PROMPTS)
-    seen = {}
-    def capture(client, model, prompts, topic, readme):
-        seen["topic"] = topic
-        return {"score": 1, "one_liner": ""}
-    monkeypatch.setattr(score.agent, "score_repo", capture)
-    cfg = {"topic": "slug-x", "topic_desc": "A real description", "llm": {"concurrency": 1}}
-    score.run(cfg, "2026-10-04", client=object(), fetch=lambda fn: "r")
-    assert seen["topic"] == "A real description"
 
 def test_fetch_failure_without_description_or_tree_is_skipped(monkeypatch, tmp_path):
     monkeypatch.setattr(score.common, "ROOT", str(tmp_path))
@@ -56,7 +41,7 @@ def test_fetch_failure_falls_back_to_description(monkeypatch, tmp_path):
                              "stars": 1, "language": "Python", "description": "IDP phase separation tool"}])
     monkeypatch.setattr(score, "load_prompts", lambda p: PROMPTS)
     seen = {}
-    def capture(client, model, prompts, topic, text):
+    def capture(client, model, prompts, text):
         seen["text"] = text
         return {"score": 8, "one_liner": "n"}
     monkeypatch.setattr(score.agent, "score_repo", capture)
@@ -73,7 +58,7 @@ def test_fetch_failure_falls_back_to_tree(monkeypatch, tmp_path):
                              "stars": 1, "language": "", "description": ""}])
     monkeypatch.setattr(score, "load_prompts", lambda p: PROMPTS)
     seen = {}
-    def capture(client, model, prompts, topic, text):
+    def capture(client, model, prompts, text):
         seen["text"] = text
         return {"score": 6, "one_liner": "n"}
     monkeypatch.setattr(score.agent, "score_repo", capture)

@@ -39,7 +39,7 @@
 
 | 步骤 | 你要做的 | 具体内容 |
 |---|---|---|
-| **1 · 换课题** | 编辑 [`config.yaml`](./config.yaml) 与 [`prompts.yaml`](./prompts.yaml) | 改 `topic` / `title` / `topic_desc` / `search.queries`，换 `prompts.yaml` 里 2 个 prompt 的领域措辞；填 `monitor/lists/*.txt` |
+| **1 · 换课题** | 编辑 [`config.yaml`](./config.yaml) 与 [`prompts.yaml`](./prompts.yaml) | 改 `topic` / `title` / `search.queries`，换 `prompts.yaml` 里 2 个 prompt 的领域措辞（课题词就写在这里）；填 `monitor/lists/*.txt` |
 | **2 · 设密钥与 Pages** | 配置 Secrets / Variables 与 Pages | **Settings → Secrets and variables → Actions** 添加 `LLM_BASE_URL` / `LLM_API_KEY`（secrets）、`LLM_MODEL`（variable）；要 zread 归档再加 `ZREAD_TOKEN`（secret）。**Settings → Pages** 来源选 **GitHub Actions**。改 `config.yaml` 的 `site_base_url` |
 | **3 · 每周收报** | GitHub 原生 `schedule` 自动触发（每周日 08:00 上海时区），也可手动 `workflow_dispatch` | 有新仓库时自动开一条 **Issue 周报**，提交 `data/` 与 `code/`，并重建 **Pages 站点**：按分数排序，逐仓库一张 Code Card，支持全文检索 |
 
@@ -48,8 +48,8 @@
 ### 🔄 换课题（最终操作）
 
 1. GitHub 上 **Use this template** 建新仓库
-2. 改 [`config.yaml`](./config.yaml)：`topic`（slug）、`title`、`topic_desc`（喂给 LLM 的课题说明）、`window_days`、`search.queries`（盲搜式）、`github_repo` / `github_branch`（本仓库的 owner/name + 默认分支，用于构造 wiki 快照链接）、**`site_base_url`**（见「部署清单」）
-3. 改 [`prompts.yaml`](./prompts.yaml)：`score` 与 `code_card` 两段 prompt 里与领域相关的措辞
+2. 改 [`config.yaml`](./config.yaml)：`topic`（slug，站点标题兜底）、`title`、`window_days`、`search.queries`（盲搜式）、`github_repo` / `github_branch`（本仓库的 owner/name + 默认分支，用于构造 wiki 快照链接）、**`site_base_url`**（见「部署清单」）
+3. 改 [`prompts.yaml`](./prompts.yaml)：`score` 与 `code_card` 两段 prompt 里与领域相关的措辞（**课题词只在这里定义**，LLM 直接用）
 4. 填 [`monitor/lists/`](./monitor/lists) 三个清单：`users.txt` / `orgs.txt` / `users_core.txt`（每行一个真实 GitHub 用户或 org；`users_core.txt` 必须是 `users.txt` 的**子集**，它只收窄更嘈杂的 received 流）
 5. 配 Secrets / Variables（见「密钥与仓库配置」）
 6. **先启用 Pages**：Settings → Pages，来源设为 **GitHub Actions**（不启用则站点不会部署）
@@ -112,7 +112,7 @@
 ├── templates/            # 站点模板（首页 / 周 / 归档 / 搜索 / 卡片详情）+ 样式与搜索脚本
 ├── queries/search_repos.yaml   # 盲搜配置（每条查询的召回/噪声实测写在注释里）
 ├── monitor/lists/        # 你所关注的领域内大佬 / 课题组清单（users / users_core / orgs）
-├── config.yaml           # 课题与检索配置（topic / topic_desc / window_days / llm / search）
+├── config.yaml           # 课题与检索配置（topic / title / window_days / llm / search）
 ├── prompts.yaml          # 两个系统 prompt（score / code_card）集中于此
 ├── assets/banner.svg     # README 头图
 ├── requirements.txt      # 依赖：openai + jinja2 + markdown 等

@@ -1,7 +1,7 @@
 import types
 from scripts import cards, agent
 
-PROMPTS = {"code_card": {"system": "s", "user": "{topic}\n{readme}"}}
+PROMPTS = {"code_card": {"system": "s", "user": "{readme}"}}
 
 def _fake_client(content):
     msg = types.SimpleNamespace(content=content)
@@ -29,7 +29,7 @@ def test_run_cards_only_keepers(monkeypatch, tmp_path):
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     out = cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
                     client=object(), fetch=lambda fn: "README", fetch_tree=lambda fn: "",
-                    card_fn=lambda c, m, p, topic, readme: {"card": "card:" + readme})
+                    card_fn=lambda c, m, p, readme: {"card": "card:" + readme})
     assert [r["full_name"] for r in out] == ["hi/a"]
     saved = cards.common.load_json(str(tmp_path / "data" / "cards" / "2026-10-05.json"))
     assert saved[0]["card"].startswith("card:README")
@@ -48,7 +48,7 @@ def test_run_card_failure_is_isolated(monkeypatch, tmp_path):
         raise RuntimeError("fetch failed")
     out = cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
                     client=object(), fetch=boom, fetch_tree=boom,
-                    card_fn=lambda c, m, p, t, r: {"card": "x"})
+                    card_fn=lambda c, m, p, r: {"card": "x"})
     assert out[0]["card"] == ""
 
 def test_run_falls_back_to_description(monkeypatch, tmp_path):
@@ -59,7 +59,7 @@ def test_run_falls_back_to_description(monkeypatch, tmp_path):
                              "score": 8, "one_liner": "x"}])
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     seen = {}
-    def capture(c, m, p, t, text):
+    def capture(c, m, p, text):
         seen["text"] = text
         return {"card": "C"}
     def boom(fn):
@@ -76,7 +76,7 @@ def test_run_falls_back_to_tree(monkeypatch, tmp_path):
                              "score": 8, "one_liner": "x"}])
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     seen = {}
-    def capture(c, m, p, t, text):
+    def capture(c, m, p, text):
         seen["text"] = text
         return {"card": "C"}
     def boom(fn):
@@ -94,7 +94,7 @@ def test_run_no_text_skips_llm(monkeypatch, tmp_path):
                              "score": 8, "one_liner": "x"}])
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     called = {"n": 0}
-    def should_not_run(c, m, p, t, text):
+    def should_not_run(c, m, p, text):
         called["n"] += 1
         return {"card": "x"}
     def boom(fn):
@@ -113,7 +113,7 @@ def test_run_defaults_min_score_when_absent(monkeypatch, tmp_path):
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     out = cards.run({"topic": "t"}, "2026-10-05",
                     client=object(), fetch=lambda fn: "r", fetch_tree=lambda fn: "",
-                    card_fn=lambda c, m, p, t, r: {"card": "x"})
+                    card_fn=lambda c, m, p, r: {"card": "x"})
     assert [r["full_name"] for r in out] == ["c/d"]
 
 def test_run_missing_scored_yields_empty(monkeypatch, tmp_path):
@@ -122,23 +122,8 @@ def test_run_missing_scored_yields_empty(monkeypatch, tmp_path):
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     out = cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
                     client=object(), fetch=lambda fn: calls.append(fn) or "r",
-                    card_fn=lambda c, m, p, t, r: {"card": "x"})
+                    card_fn=lambda c, m, p, r: {"card": "x"})
     assert out == [] and calls == []
-
-def test_run_passes_topic_brief_not_slug(monkeypatch, tmp_path):
-    monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
-    cards.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
-                           [{"full_name": "a/b", "url": "u", "language": "Py", "stars": 1,
-                             "score": 8, "one_liner": "x"}])
-    monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
-    seen = {}
-    def capture(c, m, p, topic, readme):
-        seen["topic"] = topic
-        return {"card": "x"}
-    cards.run({"topic": "slug-x", "topic_desc": "A real description", "llm": {"min_score": 5}},
-              "2026-10-05", client=object(), fetch=lambda fn: "r", fetch_tree=lambda fn: "",
-              card_fn=capture)
-    assert seen["topic"] == "A real description"
 
 def test_run_feeds_readme_tree_and_deps(monkeypatch, tmp_path):
     monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))
@@ -147,7 +132,7 @@ def test_run_feeds_readme_tree_and_deps(monkeypatch, tmp_path):
                              "score": 8, "one_liner": "x"}])
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     seen = {}
-    def capture(c, m, p, t, text):
+    def capture(c, m, p, text):
         seen["text"] = text
         return {"card": "C"}
     cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
@@ -166,7 +151,7 @@ def test_run_stores_full_readme_not_capped(monkeypatch, tmp_path):
     monkeypatch.setattr(cards, "load_prompts", lambda p: PROMPTS)
     big = "x" * (cards._README_CAP + 500)
     seen = {}
-    def capture(c, m, p, t, text):
+    def capture(c, m, p, text):
         seen["text"] = text
         return {"card": "C"}
     out = cards.run({"llm": {"min_score": 5}, "topic": "t"}, "2026-10-05",
@@ -177,5 +162,5 @@ def test_run_stores_full_readme_not_capped(monkeypatch, tmp_path):
 
 def test_build_code_card_parses_json():
     client = _fake_client('{"card": "## 是什么\\nhello"}')
-    out = agent.build_code_card(client, "m", PROMPTS, "topic", "README")
+    out = agent.build_code_card(client, "m", PROMPTS, "README")
     assert out == {"card": "## 是什么\nhello"}

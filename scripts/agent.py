@@ -33,16 +33,16 @@ def _retry_json(client, model, msgs, parse, attempts=5):
                 raise
             time.sleep(2 ** (attempt + 2) + random.random())
 
-def score_repo(client, model, prompts, topic_desc, readme) -> dict:
+def score_repo(client, model, prompts, readme) -> dict:
     p = prompts["score"]
     msgs = [{"role": "system", "content": p["system"]},
-            {"role": "user", "content": p["user"].format(topic=topic_desc, readme=readme[:10000])}]
+            {"role": "user", "content": p["user"].format(readme=readme[:10000])}]
     return _retry_json(client, model, msgs,
                        lambda obj: {"score": int(obj["score"]),
                                     "one_liner": str(obj.get("one_liner", ""))})
 
-def build_code_card(client, model, prompts, topic_desc, readme) -> dict:
+def build_code_card(client, model, prompts, readme) -> dict:
     p = prompts["code_card"]
     msgs = [{"role": "system", "content": p["system"]},
-            {"role": "user", "content": p["user"].format(topic=topic_desc, readme=readme)}]
+            {"role": "user", "content": p["user"].format(readme=readme)}]
     return _retry_json(client, model, msgs, lambda obj: {"card": str(obj.get("card", ""))})
