@@ -9,7 +9,5 @@ __pycache__/
 .env
 
 # ── 开发期参考目录(各有自己的 .git,不属于模板)──
-GhResearcher/
-Repowiki-cli/
-Daily-GitHub-AI4Bio/
+CLAUDE.md
 docs/
