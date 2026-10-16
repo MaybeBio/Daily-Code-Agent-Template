@@ -43,7 +43,7 @@
 | **2 · 设密钥与 Pages** | 配置 Secrets / Variables 与 Pages | **Settings → Secrets and variables → Actions** 添加 `LLM_BASE_URL` / `LLM_API_KEY`（secrets）、`LLM_MODEL`（variable）；要 zread 归档再加 `ZREAD_TOKEN`（secret）。**Settings → Pages** 来源选 **GitHub Actions**。改 `config.yaml` 的 `site_base_url` |
 | **3 · 每周收报** | GitHub 原生 `schedule` 自动触发（每周日 08:00 上海时区），也可手动 `workflow_dispatch` | 有新仓库时自动开一条 **Issue 周报**，提交 `data/` 与 `code/`，并重建 **Pages 站点**：按分数排序，逐仓库一张 Code Card，支持全文检索 |
 
-> **⏰ 提醒：每周日自动跑，周一直接看。** 部署好后你不用动手——`weekly-discovery` **每周日 08:00**（上海时区）自动跑，`daily-feed` 每日 06:00 自动跑，跑完自动开 Issue、刷新站点。`weekly` 故意选在**自然周末尾**触发：站点是按「周一→周日」自然周分周的，跑在周日（那周最后一天）首页才能显示**完整的一周**；若改到周一跑，运行当天的仓库会落进刚开始的新一周，首页只剩零星几条。所以**周一上班打开这个仓库的 Issue 与 Pages 站点，就能看到刚过去的完整一周**；想立刻看或补跑，去 Actions 页手动 `workflow_dispatch` 一次即可。
+> **⏰ 提醒：每周日自动跑，周一直接看。** 部署好后你不用动手——`weekly-discovery` **每周日 08:00**（上海时区）自动跑，`daily-feed` 每日 06:00 自动跑，跑完自动开 Issue、刷新站点。站点按每次运行**记录的抓取窗口** `[run-window_days, run-1]` 分组（见 `build_site.py` 的 `_window_of`），**不是**按 `pushed_at` 自然周——所以换运行日只会让窗口标签整体平移、不会把首页打散。`weekly` 仍选**周日**，只是为了让窗口 = 「上周日→本周六」、与自然周对齐，贴合「周日为一周开始」的直觉。于是**周一上班打开这个仓库的 Issue 与 Pages 站点，就能看到刚过去的完整一周**；想立刻看或补跑，去 Actions 页手动 `workflow_dispatch` 一次即可。
 
 ### 🔄 换课题（最终操作）
 
@@ -83,7 +83,7 @@
 |---|---|---|---|
 | **每日动态** | `scripts/daily.py` | `daily-feed` workflow | 你关注的 领域内users/orgs → `monitor/{users,orgs,received}/…txt` + `data/daily/{date}.repos.json` + 每日 Issue |
 | **每周盲搜** | `scripts/search.py` | `weekly-discovery` | `search.queries` 逐条 `gh search repos` → `data/search/{date}.json`（按 `pushed_at` 客户端过滤） |
-| **合并去重** | `scripts/merge.py` | 同上 | 近 `window_days` 天的每日 feed ∪ 本周盲搜 → `data/candidates/{date}.json`（按 `full_name` 去重） |
+| **合并去重** | `scripts/merge.py` | 同上 | 窗口 `[run-window_days, run-1]` 内的每日 feed ∪ 本周盲搜 → `data/candidates/{date}.json`（按 `full_name` 去重） |
 | **LLM 打分** | `scripts/score.py` | 同上 | 候选池 → LLM 按 README 打 0–10 分 + 一句话 → `data/scored/{date}.json` |
 | **归档** | `scripts/archive.py` | 同上 | 高分仓库 → `degit` 浅克隆 + 三 wiki 快照 → `code/{repo}/` + `data/archive/{date}.json` |
 | **Code Card** | `scripts/cards.py` | 同上 | 高分仓库 README + 目录树 + 依赖 → LLM 生成一张卡片 → `data/cards/{date}.json` |
@@ -234,7 +234,7 @@ export LLM_BASE_URL=http://localhost LLM_API_KEY=x
 - `gh search repos` **没有 `--pushed` flag**，只能按 `--updated` 过滤 / 排序；
 - `pushed:` 限定符虽存在于 GitHub 搜索语法，但与 `in:name,description,readme,topics` 组合时会被**静默忽略**（本项目每条查询都带 `in:`）。
 
-因此采用「`--updated` 粗筛 + 客户端精确过滤」：搜索用 `--updated ">=$(date -d '7 days ago' +%Y-%m-%d)"` 圈定候选集（`updated_at` 窗口是 `pushed_at` 窗口的**超集**，不漏真 push），再由 `scripts/search.py` 读结果里自带的 `pushedAt` 字段，丢掉早于窗口的仓库。
+因此采用「`--updated` 粗筛 + 客户端精确过滤」：搜索用 `--updated ">=$(date -d "$WINDOW_DAYS days ago" +%Y-%m-%d)"`（`WINDOW_DAYS` 读自 `config.yaml`）圈定候选集（`updated_at` 窗口是 `pushed_at` 窗口的**超集**，不漏真 push），再由 `scripts/search.py` 读结果里自带的 `pushedAt` 字段、在客户端把窗口精筛成 **`[run-window_days, run-1]`**（下界丢早于窗口的、上界丢运行当天的；`gh` 无窗口上界参数，只能客户端裁）。
 
 > **盲搜式为什么拆成多条？** GitHub 硬限制「每条查询最多 5 个 AND/OR/NOT 运算符」，备选短语一多单条 `OR` 会被拒。故 `search.queries` 拆成多条（每条 ≤6 项）各自查询、按 `full_name` 取并集。每条查询的召回/噪声实测都写在各 query 正上方的注释里，改写时请务必保留。
 
@@ -255,7 +255,7 @@ LLM 与 zread 凭据一律走环境变量，**不写入仓库**：
 - 本地：`export LLM_BASE_URL=... LLM_API_KEY=... LLM_MODEL=...`。
 - GitHub Actions：**Settings → Secrets and variables → Actions**，分别建 Repository **secrets** 与 **variables**，workflow 以 `${{ secrets.* }}` / `${{ vars.* }}` 注入。
 
-**调度**：用 **GitHub 原生 `schedule`**。`daily.yml` 每日 **06:00**、`weekly.yml` 每周日 **08:00**，均 `timezone: "Asia/Shanghai"`（GitHub 按此时区换算 cron；job 内的 `date` 仍由 `TZ` 决定）；两者都保留 `workflow_dispatch` 供手动重跑。`weekly` 选在**周日**（自然周最后一天）触发，是为让站点首页显示**完整的一周**——站点按「周一→周日」分周（见 `build_site.py` 的 `natural_week`），跑在周一会让首页只剩运行当天零星几条。注意：原生 `schedule` **只在默认分支生效**；高负载时可能**延后**（实测可达数小时），故 `weekly` 留了一整个周日白天兜底，真要准点手动跑一次即可。
+**调度**：用 **GitHub 原生 `schedule`**。`daily.yml` 每日 **06:00**、`weekly.yml` 每周日 **08:00**，均 `timezone: "Asia/Shanghai"`（GitHub 按此时区换算 cron；job 内的 `date` 仍由 `TZ` 决定）；两者都保留 `workflow_dispatch` 供手动重跑。窗口统一取 **`[run-window_days, run-1]`**（不含运行当天，`search.py`/`merge.py`/`cards.py`/`issue.py` 同源），`cards.py` 把该窗口写进每条记录、站点据此分组（`build_site.py` 的 `_window_of`）——所以**换运行日不会把首页打散**，`weekly` 之所以选**周日**，只是让窗口 `[上周日→本周六]` 与自然周对齐、贴合「周日为一周开始」的直觉。注意：原生 `schedule` **只在默认分支生效**；高负载时可能**延后**（实测可达数小时），故 `weekly` 留了一整个周日白天兜底，真要准点手动跑一次即可。
 
 **模型选型提示**：打分走 `response_format={"type":"json_object"}`，所选模型必须支持 JSON mode（DeepSeek 的 `deepseek-reasoner` 通常不支持，不能直接替换）；评分要忠实、不宜用思考/推理模式。
 
@@ -299,7 +299,7 @@ python -m pytest -q
 - [ ] **Secrets / Variables** —— `LLM_BASE_URL` / `LLM_API_KEY`（secret）、`LLM_MODEL`（variable）、`ZREAD_TOKEN`（可选 secret）。
 - [ ] **`github_repo` / `github_branch`** —— 改成新仓的 `owner/name` 与默认分支，wiki 快照链接才会指对。
 - [ ] **监听清单** —— 填 `monitor/lists/{users,users_core,orgs}.txt`（`users_core` ⊂ `users`）。
-- [ ] **确认调度** —— 两个 workflow 已内置原生 `schedule`：`daily-feed` 每日 06:00、`weekly-discovery` 每周日 08:00（均上海时区）。想换时间就改 `.github/workflows/{daily,weekly}.yml` 里的 `cron`（day-of-week 里 **0 = 周日、1 = 周一**；cron 按 `timezone` 解释）。⚠️ `weekly` 建议保持**周日**——站点按「周一→周日」分周，改到周一首页会只剩零星几条。
+- [ ] **确认调度** —— 两个 workflow 已内置原生 `schedule`：`daily-feed` 每日 06:00、`weekly-discovery` 每周日 08:00（均上海时区）。想换时间就改 `.github/workflows/{daily,weekly}.yml` 里的 `cron`（day-of-week 里 **0 = 周日、1 = 周一**；cron 按 `timezone` 解释）。站点按每次运行记录的**抓取窗口**分组（窗口长度 = `config.yaml` 的 `window_days`），换运行日只会让窗口标签平移、不会打散首页；建议保持**周日**以对齐自然周。
 - [ ] **首次试跑** —— Actions 里手动 `workflow_dispatch` 跑一次 `weekly-discovery`，确认 Issue 与 Pages 都出得来。
 
 > **为什么「手动 push 触发不了部署」？** `deploy_pages.yml` 平时由 `weekly-discovery` 的 `workflow_run` 触发；而**手动 push 不含 `site/` 变化**（`site/` 已 gitignore，部署时才重建），没有触发源。所以本地跑完后需手动触发一次：`gh workflow run deploy_pages.yml --repo <owner>/<repo> --ref main`。

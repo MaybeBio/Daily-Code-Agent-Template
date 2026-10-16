@@ -22,7 +22,7 @@ def _queries(search_cfg: dict, qcfg_path: str) -> list[str]:
 def _bound_date(s: str) -> str:
     return (s or "").lstrip("<>=")
 
-def run(cfg: dict, date: str, since: str, until: str = None) -> list[dict]:
+def run(cfg: dict, date: str, since: str, until: str | None = None) -> list[dict]:
     qcfg = os.path.join(common.ROOT, cfg["search"]["config"])
     since_date = _bound_date(since)
     until_date = _bound_date(until)

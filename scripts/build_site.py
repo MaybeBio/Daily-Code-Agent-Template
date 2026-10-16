@@ -17,14 +17,6 @@ def load_config(path):
         raise ValueError("config must be a YAML mapping")
     return cfg
 
-def window_range(end_date, window_days):
-    """由本周运行日期与 window_days 反推搜索窗口 [start, end]。"""
-    try:
-        d = dt.date.fromisoformat((end_date or "")[:10])
-    except ValueError:
-        return "", ""
-    return (d - dt.timedelta(days=window_days - 1)).isoformat(), d.isoformat()
-
 def natural_week(iso):
     """由 ISO 日期反推自然周(周一~周日)。仅作 _window_of 的兜底,正常情况下不走这里。"""
     try:
