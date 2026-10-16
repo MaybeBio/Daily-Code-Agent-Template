@@ -34,8 +34,9 @@ def test_run_cards_only_keepers(monkeypatch, tmp_path):
     saved = cards.common.load_json(str(tmp_path / "data" / "cards" / "2026-10-05.json"))
     assert saved[0]["card"].startswith("card:README")
     assert saved[0]["readme"] == "README"
+    assert saved[0]["window"] == {"start": "2026-09-28", "end": "2026-10-04"}   # run-7 → run-1
     assert set(saved[0]) == {"full_name", "url", "language", "stars", "pushed_at",
-                             "score", "one_liner", "card", "readme"}
+                             "score", "one_liner", "card", "readme", "window"}
 
 def test_run_card_failure_is_isolated(monkeypatch, tmp_path):
     monkeypatch.setattr(cards.common, "ROOT", str(tmp_path))

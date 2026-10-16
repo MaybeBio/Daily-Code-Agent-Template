@@ -5,19 +5,23 @@ from scripts import common, gh  # noqa: E402
 
 def _recent_daily(date: str, window_days: int) -> list[str]:
     files = sorted(glob.glob(os.path.join(common.ROOT, "data", "daily", "*.repos.json")))
-    cutoff = _date.fromisoformat(date) - timedelta(days=window_days)
+    run_day = _date.fromisoformat(date)
+    # 窗口 = [run-window_days, run-1],与 search/cards/paper 同源(不含运行当天),
+    # 保证「收集范围」和站点记录的「抓取窗口」完全一致(否则会多出 run 当天这天)。
+    cutoff = run_day - timedelta(days=window_days)
+    upper = run_day - timedelta(days=1)
     keep = []
     for f in files:
-        d = os.path.basename(f)[:10]
         try:
-            if _date.fromisoformat(d) >= cutoff:
-                keep.append(f)
+            d = _date.fromisoformat(os.path.basename(f)[:10])
         except ValueError:
-            pass
+            continue
+        if cutoff <= d <= upper:
+            keep.append(f)
     return keep
 
 def run(cfg: dict, date: str) -> list[dict]:
-    # 池 = 近 window_days 天的每日 feed ∪ 本周搜索;按 full_name 去重。
+    # 池 = 窗口 [run-window_days, run-1] 内的每日 feed ∪ 本周搜索;按 full_name 去重。
     pool: dict[str, dict] = {}
     for f in _recent_daily(date, cfg.get("window_days", 7)):
         for r in common.load_json(f):

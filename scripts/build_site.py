@@ -26,13 +26,29 @@ def window_range(end_date, window_days):
     return (d - dt.timedelta(days=window_days - 1)).isoformat(), d.isoformat()
 
 def natural_week(iso):
-    """由 ISO 日期反推自然周(周一~周日),归档粒度同 paper 模板。"""
+    """由 ISO 日期反推自然周(周一~周日)。仅作 _window_of 的兜底,正常情况下不走这里。"""
     try:
         d = dt.date.fromisoformat((iso or "")[:10])
     except ValueError:
         return "", ""
     monday = d - dt.timedelta(days=d.weekday())
     return monday.isoformat(), (monday + dt.timedelta(days=6)).isoformat()
+
+def _window_of(rec):
+    """仓库归入哪个「抓取窗口」,逻辑同 paper 模板的 _window_of。
+
+    优先用 cards.py 写入的 rec["window"](= 本次运行真实抓取的 [run-window_days, run-1]),
+    这样同一次运行的仓库整块落进同一个桶;缺 window 的老数据才退回 pushed_at 所在自然周。
+
+    ⚠️ 不能只按 pushed_at 的自然周切:一次运行的仓库会按 pushed_at 落在周日/周一被劈成两周,
+    首页(取最新桶)几乎空白、归档也多出半个空周。
+    """
+    window = rec.get("window") or {}
+    start = window.get("start") or ""
+    end = window.get("end") or ""
+    if start and end:
+        return start, end
+    return natural_week(rec.get("pushed_at") or rec.get("date"))
 
 def site_base_path(site_base_url):
     url = (site_base_url or "").strip()
@@ -166,9 +182,10 @@ def build_site(out_dir, config=None):
     os.makedirs(data_dir, exist_ok=True)
     os.makedirs(assets_dir, exist_ok=True)
 
-    # 每个仓库归自然周(pushed_at 优先,缺则退运行日期);同周内同一 full_name 去重保留最新
+    # 每个仓库归入其「抓取窗口」(优先用卡片记录的 window,缺则退 pushed_at 自然周);
+    # 同一个桶内同一 full_name 去重保留 pushed_at 最新。
     for r in records:
-        w_start, w_end = natural_week(r.get("pushed_at") or r.get("date"))
+        w_start, w_end = _window_of(r)
         r["window_start"] = w_start
         r["window_end"] = w_end
         r["wiki_dates"] = wiki_dates_upto(out_dir, r["full_name"], r.get("date") or "")

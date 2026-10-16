@@ -41,7 +41,9 @@
 |---|---|---|
 | **1 · 换课题** | 编辑 [`config.yaml`](./config.yaml) 与 [`prompts.yaml`](./prompts.yaml) | 改 `topic` / `title` / `topic_desc` / `search.queries`，换 `prompts.yaml` 里 2 个 prompt 的领域措辞；填 `monitor/lists/*.txt` |
 | **2 · 设密钥与 Pages** | 配置 Secrets / Variables 与 Pages | **Settings → Secrets and variables → Actions** 添加 `LLM_BASE_URL` / `LLM_API_KEY`（secrets）、`LLM_MODEL`（variable）；要 zread 归档再加 `ZREAD_TOKEN`（secret）。**Settings → Pages** 来源选 **GitHub Actions**。改 `config.yaml` 的 `site_base_url` |
-| **3 · 每周收报** | 用外部 cron 触发（或手动 `workflow_dispatch`） | 有新仓库时自动开一条 **Issue 周报**，提交 `data/` 与 `code/`，并重建 **Pages 站点**：按分数排序，逐仓库一张 Code Card，支持全文检索 |
+| **3 · 每周收报** | GitHub 原生 `schedule` 自动触发（每周日 08:00 上海时区），也可手动 `workflow_dispatch` | 有新仓库时自动开一条 **Issue 周报**，提交 `data/` 与 `code/`，并重建 **Pages 站点**：按分数排序，逐仓库一张 Code Card，支持全文检索 |
+
+> **⏰ 提醒：每周日自动跑，周一直接看。** 部署好后你不用动手——`weekly-discovery` **每周日 08:00**（上海时区）自动跑，`daily-feed` 每日 06:00 自动跑，跑完自动开 Issue、刷新站点。`weekly` 故意选在**自然周末尾**触发：站点是按「周一→周日」自然周分周的，跑在周日（那周最后一天）首页才能显示**完整的一周**；若改到周一跑，运行当天的仓库会落进刚开始的新一周，首页只剩零星几条。所以**周一上班打开这个仓库的 Issue 与 Pages 站点，就能看到刚过去的完整一周**；想立刻看或补跑，去 Actions 页手动 `workflow_dispatch` 一次即可。
 
 ### 🔄 换课题（最终操作）
 
@@ -116,8 +118,8 @@
 ├── requirements.txt      # 依赖：openai + jinja2 + markdown 等
 ├── tests/                # pytest 自检用例（不参与部署，可删除）
 └── .github/workflows/
-    ├── daily.yml         # 每日动态 + Issue（workflow_dispatch）
-    ├── weekly.yml        # 每周发现 + 归档 + 卡片 + Issue（workflow_dispatch）
+    ├── daily.yml         # 每日动态 + Issue（schedule 每日 06:00 / workflow_dispatch）
+    ├── weekly.yml        # 每周发现 + 归档 + 卡片 + Issue（schedule 周日 08:00 / workflow_dispatch）
     └── deploy_pages.yml  # weekly 成功后自动构建并部署 site/
 ```
 
@@ -253,7 +255,7 @@ LLM 与 zread 凭据一律走环境变量，**不写入仓库**：
 - 本地：`export LLM_BASE_URL=... LLM_API_KEY=... LLM_MODEL=...`。
 - GitHub Actions：**Settings → Secrets and variables → Actions**，分别建 Repository **secrets** 与 **variables**，workflow 以 `${{ secrets.* }}` / `${{ vars.* }}` 注入。
 
-**调度**：两个 workflow 都只声明 `workflow_dispatch`——**GitHub 原生 `schedule` 在此不可靠**，请用**外部 cron**（如 [Cron-job.org](https://cron-job.org)）按需触发 `daily-feed` 与 `weekly-discovery`。cron 用 **UTC**（`TZ` 只影响 job 内的 `date`）。
+**调度**：用 **GitHub 原生 `schedule`**。`daily.yml` 每日 **06:00**、`weekly.yml` 每周日 **08:00**，均 `timezone: "Asia/Shanghai"`（GitHub 按此时区换算 cron；job 内的 `date` 仍由 `TZ` 决定）；两者都保留 `workflow_dispatch` 供手动重跑。`weekly` 选在**周日**（自然周最后一天）触发，是为让站点首页显示**完整的一周**——站点按「周一→周日」分周（见 `build_site.py` 的 `natural_week`），跑在周一会让首页只剩运行当天零星几条。注意：原生 `schedule` **只在默认分支生效**；高负载时可能**延后**（实测可达数小时），故 `weekly` 留了一整个周日白天兜底，真要准点手动跑一次即可。
 
 **模型选型提示**：打分走 `response_format={"type":"json_object"}`，所选模型必须支持 JSON mode（DeepSeek 的 `deepseek-reasoner` 通常不支持，不能直接替换）；评分要忠实、不宜用思考/推理模式。
 
@@ -297,7 +299,7 @@ python -m pytest -q
 - [ ] **Secrets / Variables** —— `LLM_BASE_URL` / `LLM_API_KEY`（secret）、`LLM_MODEL`（variable）、`ZREAD_TOKEN`（可选 secret）。
 - [ ] **`github_repo` / `github_branch`** —— 改成新仓的 `owner/name` 与默认分支，wiki 快照链接才会指对。
 - [ ] **监听清单** —— 填 `monitor/lists/{users,users_core,orgs}.txt`（`users_core` ⊂ `users`）。
-- [ ] **外部 cron** —— 用 Cron-job.org 等按 UTC 触发 `daily-feed` 与 `weekly-discovery`（原生 `schedule` 不可靠，故不使用）。
+- [ ] **确认调度** —— 两个 workflow 已内置原生 `schedule`：`daily-feed` 每日 06:00、`weekly-discovery` 每周日 08:00（均上海时区）。想换时间就改 `.github/workflows/{daily,weekly}.yml` 里的 `cron`（day-of-week 里 **0 = 周日、1 = 周一**；cron 按 `timezone` 解释）。⚠️ `weekly` 建议保持**周日**——站点按「周一→周日」分周，改到周一首页会只剩零星几条。
 - [ ] **首次试跑** —— Actions 里手动 `workflow_dispatch` 跑一次 `weekly-discovery`，确认 Issue 与 Pages 都出得来。
 
 > **为什么「手动 push 触发不了部署」？** `deploy_pages.yml` 平时由 `weekly-discovery` 的 `workflow_run` 触发；而**手动 push 不含 `site/` 变化**（`site/` 已 gitignore，部署时才重建），没有触发源。所以本地跑完后需手动触发一次：`gh workflow run deploy_pages.yml --repo <owner>/<repo> --ref main`。

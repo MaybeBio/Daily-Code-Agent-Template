@@ -1,5 +1,9 @@
 name: weekly-discovery
 on:
+  # 每周日 08:00（上海时区）自动触发；跑在自然周末尾，首页才能显示完整一周。
+  schedule:
+    - cron: "0 8 * * 0"
+      timezone: "Asia/Shanghai"
   workflow_dispatch: {}
 concurrency: {group: weekly-discovery, cancel-in-progress: false}
 permissions: {contents: write, issues: write}
@@ -11,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with: {python-version: '3.11'}
       - run: pip install ghresearcher pyrepowiki-cli -r requirements.txt
       - run: npm install -g degit
@@ -35,6 +39,19 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet && echo "no changes" && exit 0
-          git commit -m "weekly: $(date +%F)"
-          for i in 1 2 3; do git pull --rebase && git push && break || sleep $((i*5)); done
+          if git diff --cached --quiet; then
+            echo "no changes"
+          else
+            git commit -m "weekly: $(date +%F)"
+            # main 可能已前进(手动 push / 上一次运行),rebase 后再推;push 失败重试容忍远端瞬时抖动。
+            for attempt in 1 2 3; do
+              git pull --rebase --autostash
+              if git push; then
+                break
+              fi
+              if [ "$attempt" -eq 3 ]; then
+                exit 1
+              fi
+              sleep $((attempt * 5))
+            done
+          fi

@@ -19,12 +19,13 @@ def _queries(search_cfg: dict, qcfg_path: str) -> list[str]:
         return [q["query"]]
     raise ValueError(f"no queries in config search.queries or {qcfg_path}")
 
-def _since_date(since: str) -> str:
-    return (since or "").lstrip("<>=")
+def _bound_date(s: str) -> str:
+    return (s or "").lstrip("<>=")
 
-def run(cfg: dict, date: str, since: str) -> list[dict]:
+def run(cfg: dict, date: str, since: str, until: str = None) -> list[dict]:
     qcfg = os.path.join(common.ROOT, cfg["search"]["config"])
-    since_date = _since_date(since)
+    since_date = _bound_date(since)
+    until_date = _bound_date(until)
     merged: dict[str, dict] = {}
     for query in _queries(cfg["search"], qcfg):
         try:
@@ -38,8 +39,12 @@ def run(cfg: dict, date: str, since: str) -> list[dict]:
                 continue
             # gh search 只能按 updated_at 预过滤(--updated 与 in: 可共存),会漏进「被 star/watch
             # 顶掉 updated_at、但代码早已不 push」的旧仓库;这里再按 pushed_at(真·最后一次 push)
-            # 客户端过滤,只留窗口内真推过代码的仓库。pushed: 限定符不能和 in: 共存(会被忽略)。
-            if since_date and (n["pushed_at"] or "")[:10] < since_date:
+            # 客户端过滤,只留窗口内真推过代码的仓库。pushed: 限定符不能和 in: 共存(会被忽略),
+            # 且 gh 无上界参数,窗口上界(run-1)同样只能客户端裁。
+            p = (n["pushed_at"] or "")[:10]
+            if since_date and p < since_date:
+                continue
+            if until_date and p > until_date:
                 continue
             merged[n["full_name"]] = n
     rows = list(merged.values())
@@ -50,9 +55,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default=os.path.join(common.ROOT, "config.yaml"))
     ap.add_argument("--since", required=True)   # e.g. ">=2026-09-27"
+    ap.add_argument("--until", default=None)    # e.g. "2026-10-03"(窗口上界,不含运行当天)
     a = ap.parse_args()
     cfg = common.load_config(a.config)
-    print(len(run(cfg, common.today(), a.since)))
+    print(len(run(cfg, common.today(), a.since, a.until)))
 
 if __name__ == "__main__":
     main()
