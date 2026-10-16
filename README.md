@@ -22,6 +22,7 @@
   <a href="#-三步上手">三步上手</a> ·
   <a href="#-设计思路">设计思路</a> ·
   <a href="#-流水线各阶段">流水线</a> ·
+  <a href="#-无-ai-时的降级行为">无 AI 降级</a> ·
   <a href="#-code-card-与站点">Code Card 与站点</a> ·
   <a href="#-搜索要点">搜索要点</a> ·
   <a href="#-密钥与仓库配置">密钥与配置</a> ·
@@ -30,9 +31,7 @@
   <a href="#-faq">FAQ</a>
 </p>
 
-> **模板即实例。** 仓库内的 `config.yaml`、`prompts.yaml`、`queries/` 与 `monitor/lists/` 已内置一套完整可跑的示例——以 **「固有无序区 / 无序蛋白（IDR/IDP）× 相分离 / 生物分子凝聚体」** 为默认课题。拿到后你只需改**几个文件**：`config.yaml`（换课题与检索式）、`prompts.yaml`（换领域措辞）、`monitor/lists/*.txt`（换你要盯的人 / 组织）、`queries/search_repos.yaml`（可选，换盲搜式）。核心驱动为自研工具 [ghresearcher](https://github.com/MaybeBio/GhResearcher) 与 [repowiki-cli](https://github.com/MaybeBio/Repowiki-cli)。
-
-> 顶部名称 `BioCode Agent` 只是占位品牌，随你改成任意课题名。
+> **模板即实例。** 仓库内的 `config.yaml`、`prompts.yaml`、`queries/` 与 `monitor/lists/` 已内置一套完整可跑的示例——以 **「固有无序区 / 无序蛋白（IDR/IDP）× 相分离 / 生物分子凝聚体」** 为默认课题。拿到后你只需改**几个文件**：`config.yaml`（换课题与检索式）、`prompts.yaml`（换领域措辞）、`monitor/lists/*.txt`（换你关注的领域内的大佬 / 课题组）、`queries/search_repos.yaml`（可选，换盲搜式）。核心驱动为自研工具 [ghresearcher](https://github.com/MaybeBio/GhResearcher) 与 [repowiki-cli](https://github.com/MaybeBio/Repowiki-cli)。
 
 ---
 
@@ -62,12 +61,12 @@
 
 一句话：
 
-> **每天白捡一份「谁在这个领域动了代码」的免费动态流，每周再主动盲搜一遍 → 合并去重成候选池 → LLM 按 README 打分 → 高分仓库连同代码、AI wiki、一张 Code Card 一起永久沉淀下来 → 开一条 Issue 提醒、部署一个站点，供你博采众长、移植灵感。**
+> **每天刷新一份「你所关注的这个领域的大佬有什么coding更新」的免费动态流，每周再主动盲搜一遍该领域更新项目 → 合并去重成候选池 → LLM 按 README 打分 → 高分仓库连同代码、AI wiki、一张 Code Card 一起永久沉淀下来 → 开一条 Issue 提醒、部署一个站点，供你博采众长、移植灵感。**
 
 设计取舍：
 
-- **双通道发现，宽召回 + 打分过滤** —— 每日通道只吃 GitHub 免费事件流（零成本、按你盯的人/组织），每周通道用关键词盲搜（`in:name,description,readme,topics`，覆盖更宽）。两条并成候选池后，**统统交给 LLM 打分**决定取舍，而不是写死正则启发式。
-- **列表用 `pushed_at` 而非 `updated_at`** —— star/watch/fork 会顶掉 `updated_at`，只有真·代码 push 才动 `pushed_at`。搜索只能按 `--updated` 粗筛（超集），再由客户端按 `pushed_at` 精确过滤，保证「本周推荐」都是真推过代码的仓库。
+- **双通道发现，宽召回 + 打分过滤** —— 每日通道只吃 GitHub 免费事件流（零成本、按你关注的大佬/课题组），每周通道用关键词盲搜（`in:name,description,readme,topics`，覆盖更宽）。两条并成候选池后，**统统交给 LLM 打分**决定取舍，而不是写死正则启发式。
+- **列表用 `pushed_at` 而非 `updated_at`** —— star/watch/fork 会顶掉 `updated_at`，只有真·代码 push 才动 `pushed_at`。搜索只能按 `--updated` 粗筛（超集），再由客户端按 `pushed_at` 精确过滤，保证「本周推荐」都是真推过代码的仓库。因为实测发现code部分没有update的仓库，很多都是 README 改了点文字、或者被人 star 了一下，导致push日期更新而被误收集进近期更新清单中。
 - **代码 + wiki 一起归档，wiki 只增不删** —— 高分仓库 `degit` 浅克隆到 `code/{repo}/code/`；三个第三方 AI wiki 上游没有版本历史，故每周按日期落一份**快照**，过去周次永不被覆盖。
 - **AI 写卡片，你来做判断** —— 每个高分仓库自动产出一张 Code Card（是什么 / 亮点 / 为何对本课题有用 / 怎么用 / 核心 idea / 可搬移点），把「值不值得上手 / 能不能移植」的决策成本压到最低，但最终判断仍在你。
 - **Issue 即提醒，站点即沉淀** —— 不额外接推送，有命中才开、零命中不打扰；静态 Pages 把每周产出永久沉淀、可全文检索。
@@ -80,7 +79,7 @@
 
 | 阶段 | 脚本 | 触发 | 输入 → 输出 |
 |---|---|---|---|
-| **每日动态** | `scripts/daily.py` | `daily-feed` workflow | 你盯的 users/orgs → `monitor/{users,orgs,received}/…txt` + `data/daily/{date}.repos.json` + 每日 Issue |
+| **每日动态** | `scripts/daily.py` | `daily-feed` workflow | 你关注的 领域内users/orgs → `monitor/{users,orgs,received}/…txt` + `data/daily/{date}.repos.json` + 每日 Issue |
 | **每周盲搜** | `scripts/search.py` | `weekly-discovery` | `search.queries` 逐条 `gh search repos` → `data/search/{date}.json`（按 `pushed_at` 客户端过滤） |
 | **合并去重** | `scripts/merge.py` | 同上 | 近 `window_days` 天的每日 feed ∪ 本周盲搜 → `data/candidates/{date}.json`（按 `full_name` 去重） |
 | **LLM 打分** | `scripts/score.py` | 同上 | 候选池 → LLM 按 README 打 0–10 分 + 一句话 → `data/scored/{date}.json` |
@@ -110,7 +109,7 @@
 │   └── run_weekly.sh     # 每周流水线一键编排
 ├── templates/            # 站点模板（首页 / 周 / 归档 / 搜索 / 卡片详情）+ 样式与搜索脚本
 ├── queries/search_repos.yaml   # 盲搜配置（每条查询的召回/噪声实测写在注释里）
-├── monitor/lists/        # 你要盯的用户 / 组织清单（users / users_core / orgs）
+├── monitor/lists/        # 你所关注的领域内大佬 / 课题组清单（users / users_core / orgs）
 ├── config.yaml           # 课题与检索配置（topic / topic_desc / window_days / llm / search）
 ├── prompts.yaml          # 两个系统 prompt（score / code_card）集中于此
 ├── assets/banner.svg     # README 头图
@@ -123,6 +122,75 @@
 ```
 
 </details>
+
+---
+
+## 🧯 无 AI 时的降级行为
+
+本模板的 AI 环节只有两处——`scripts/score.py`（打分）与 `scripts/cards.py`（写卡片），都经 `scripts/agent.py` 调用 LLM。**AI 不可用时的行为，取决于「LLM 环境变量在不在」**，两种情况差别很大。
+
+### 情况 A：完全不设 LLM 环境变量
+
+`agent.make_client()` 直接抛 `KeyError: 'LLM_BASE_URL'`，`score.py` 一开始就非零退出；而 `run_weekly.sh` 是 `set -euo pipefail`，于是**整条流水线在 score 这步中断**：
+
+```
+search ✅ → merge ✅ → score ❌ 崩 → run_weekly.sh 整体退出
+                          ↳ archive / cards / issue 🚫 根本不执行
+```
+
+**你最终拿到：**
+
+| 产物 | 有无 |
+|---|---|
+| 每日 feed（独立的 `daily-feed` workflow） | ✅ |
+| `data/search/{date}.json`（本周盲搜原始结果） | ✅ |
+| `data/candidates/{date}.json`（合并去重后的候选池） | ✅ |
+| Issue / `data/weekly/{date}.csv` | ❌ 没有 |
+| Code Card / 克隆 / wiki | ❌ 没有 |
+| `site/` 站点 | ❌ 不生成内容 |
+
+### 情况 B：设了变量，但 key 失效 / 过期 / 欠费
+
+`make_client()` 能构造成功，首个请求失败（401 等 4xx 被 `_retry_json` 判为永久错误、立即抛出），但**逐仓库被 try/except 兜住**，于是流水线**能跑完全程**：
+
+```
+search ✅ → merge ✅ → score ⚠️ 每仓库记 score = null → archive 空 → cards 空 → issue ✅
+```
+
+**你最终拿到：**
+
+| 产物 | 有无 |
+|---|---|
+| 每日 feed | ✅ |
+| search / candidates | ✅ |
+| `data/scored/{date}.json` | ⚠️ 有，但 `score` 全为 `null`、`one_liner` 为 `[llm failed]` |
+| Issue / `data/weekly/{date}.csv` | ✅ 候选池照列，**分数列显示 `-`** |
+| Code Card / 克隆 / wiki | ❌ 空（`min_score` 门控一个都不留） |
+| `site/` 站点 | ⚠️ 能构建，但**没有任何条目** |
+
+### 为什么站点会是空的
+
+`build_site.py` **只从 `data/cards/*.json` 取数**（`load_cards` 是唯一的仓库数据源），而卡片由 `cards.py` 只为「高分仓库」生成。没有 AI → 没有高分 → 没有卡片 → 站点首页、归档页、搜索页**全空**。所以这**不是「照常运行」，而是「能构建、但没内容」**。
+
+### 对比与对策
+
+| | 情况 A（没设变量） | 情况 B（key 挂了） |
+|---|---|---|
+| 每周流程 | **中断在 score** | **跑完** |
+| Issue / CSV | ❌ 没有 | ✅ 有（分数 `-`） |
+| Code Card / 克隆 / wiki | ❌ | ❌ |
+| 站点条目 | ❌ | ❌ |
+| 实际价值 | 仅 `search` + `candidates` 落盘 | **一份纯仓库发现清单** |
+
+**想「无 AI 也出清单」，至少把占位变量设上：**
+
+```bash
+export LLM_BASE_URL=http://localhost LLM_API_KEY=x
+```
+
+让客户端能构造成功，之后调用逐仓库静默失败 → 降级为情况 B，不再中断。此时你得到的是一个**纯仓库发现清单**（谁在本周推了新仓库 + 元数据），只是没有打分与卡片。
+
+> **能力缺口**：本模板暂未提供 paper 模板那样的 `llm.enable: false` 开关。若要真正「关掉 AI 仍出完整站点」，需要：(1) 让 `run_weekly.sh` / `score.py` 支持跳过 `score` / `archive` / `cards`；(2) 让 `build_site.py` 在无卡片时回退渲染 `data/scored`（或 `candidates`）的纯列表。
 
 ---
 
@@ -241,7 +309,7 @@ python -m pytest -q
 <details>
 <summary><b>能不能不要 AI？</b></summary>
 
-可以。不配 LLM 密钥、或令打分全部失败时，`data/scored/*.json` 里 `score` 为 `null`，`archive` / `cards` 的高分门控（`llm.min_score`，默认 5）自然不产出任何卡片——检索、落盘、Issue、站点仍照常运行，只是少了打分与卡片。
+分两种情况，差别很大——**完全不设 LLM 变量**会在 score 这步整体中断流水线；**设了变量但 key 失效**能跑完全程，候选池照出、但没有卡片、**站点为空**。完整的逐环节对比见上文「[无 AI 时的降级行为](#-无-ai-时的降级行为)」。
 </details>
 
 <details>
