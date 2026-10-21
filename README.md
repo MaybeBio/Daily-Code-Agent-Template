@@ -258,6 +258,8 @@ LLM 与 zread 凭据一律走环境变量，**不写入仓库**：
 
 **调度**：用 **GitHub 原生 `schedule`**。`daily.yml` 每日 **06:00**、`weekly.yml` 每周日 **08:00**，均 `timezone: "Asia/Shanghai"`（GitHub 按此时区换算 cron；job 内的 `date` 仍由 `TZ` 决定）；两者都保留 `workflow_dispatch` 供手动重跑。窗口统一取 **`[run-window_days, run-1]`**（不含运行当天，`search.py`/`merge.py`/`cards.py`/`issue.py` 同源），`cards.py` 把该窗口写进每条记录、站点据此分组（`build_site.py` 的 `_window_of`）——所以**换运行日不会把首页打散**，`weekly` 之所以选**周日**，只是让窗口 `[上周日→本周六]` 与自然周对齐、贴合「周日为一周开始」的直觉。注意：原生 `schedule` **只在默认分支生效**；高负载时可能**延后**（实测可达数小时），故 `weekly` 留了一整个周日白天兜底，真要准点手动跑一次即可。
 
+**手动触发（网页端 Actions 页）一般跑什么**：在 Actions 页左侧点 `weekly-discovery` → 右上 **Run workflow** → 分支选 `main` → 确认，跑第一次/补跑周报；点 `daily-feed` 同样 **Run workflow**，跑当天的每日动态。**`deploy-pages` 不用点**——它会在 `weekly-discovery` 成功后自动跟跑建站；只有首次部署验证、或 weekly 失败修好后，才需要手动点一次 `deploy-pages`。
+
 **模型选型提示**：打分走 `response_format={"type":"json_object"}`，所选模型必须支持 JSON mode（DeepSeek 的 `deepseek-reasoner` 通常不支持，不能直接替换）；评分要忠实、不宜用思考/推理模式。
 
 ---
