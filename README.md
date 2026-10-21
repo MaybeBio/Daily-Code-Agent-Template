@@ -254,6 +254,7 @@ LLM 与 zread 凭据一律走环境变量，**不写入仓库**：
 
 - 本地：`export LLM_BASE_URL=... LLM_API_KEY=... LLM_MODEL=...`。
 - GitHub Actions：**Settings → Secrets and variables → Actions**，分别建 Repository **secrets** 与 **variables**，workflow 以 `${{ secrets.* }}` / `${{ vars.* }}` 注入。
+- **`ZREAD_TOKEN` 怎么拿**：浏览器登录 [zread.ai](https://zread.ai)，打开 DevTools Console，运行 `JSON.parse(localStorage.getItem('CGX_AUTH_STORAGE')).state.token`，输出即 token；再 `export ZREAD_TOKEN=...`（本地）或存进 Actions secret。这个 token 只用于 `repowiki-cli zread submit`（把尚未被 zread 收录的仓库提交上去），没有它 zread 就只复用已有快照、不新增。
 
 **调度**：用 **GitHub 原生 `schedule`**。`daily.yml` 每日 **06:00**、`weekly.yml` 每周日 **08:00**，均 `timezone: "Asia/Shanghai"`（GitHub 按此时区换算 cron；job 内的 `date` 仍由 `TZ` 决定）；两者都保留 `workflow_dispatch` 供手动重跑。窗口统一取 **`[run-window_days, run-1]`**（不含运行当天，`search.py`/`merge.py`/`cards.py`/`issue.py` 同源），`cards.py` 把该窗口写进每条记录、站点据此分组（`build_site.py` 的 `_window_of`）——所以**换运行日不会把首页打散**，`weekly` 之所以选**周日**，只是让窗口 `[上周日→本周六]` 与自然周对齐、贴合「周日为一周开始」的直觉。注意：原生 `schedule` **只在默认分支生效**；高负载时可能**延后**（实测可达数小时），故 `weekly` 留了一整个周日白天兜底，真要准点手动跑一次即可。
 
