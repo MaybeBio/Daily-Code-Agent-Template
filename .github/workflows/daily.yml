@@ -15,6 +15,9 @@ env:
 jobs:
   run:
     runs-on: ubuntu-latest
+    # 实测 daily 约 15~30 分钟(monitor + search + 约 1/7 的候选打分)。设 60 是两倍余量:
+    # 撞到 60 说明某步卡死,让它失败留日志,而不是耗尽 GitHub 默认的 360 分钟。
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
