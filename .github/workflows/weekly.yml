@@ -13,7 +13,9 @@ env:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # weekly 模式下这是 search+score+archive 的总预算;daily 模式下只剩聚合+归档,通常更短。
+    # 120 是给高分仓库较多时的归档(wiki 快照)留余量,不能再靠单次打分几千个仓库。
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7

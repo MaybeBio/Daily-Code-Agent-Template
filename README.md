@@ -90,7 +90,7 @@
 | **Issue + CSV** | `scripts/issue.py` | 同上 | 打分结果 → `data/weekly/{date}.csv` + 每周 Issue（并记 `data/latest_issue.txt`） |
 | **静态站点** | `scripts/build_site.py` | `deploy-pages` workflow | 遍历 `data/` + `code/` → 渲染 `site/` → 部署到 Pages |
 
-一次完整的每周流水线 = `bash scripts/run_weekly.sh`（`search → merge → score → archive → cards → issue`，见脚本）。
+一次完整的每周流水线 = `bash scripts/run_weekly.sh`（`search → merge → score → archive → cards → issue`，见脚本）。若候选量太大，可把 `ingest.mode` 切成 `daily`，见下一节。
 
 <details>
 <summary><b>🗂 仓库结构</b></summary>
@@ -99,16 +99,18 @@
 .
 ├── scripts/
 │   ├── daily.py          # 每日：ghresearcher monitor → 免费元数据流 + Issue
+│   ├── ingest_daily.py   # daily 模式：抓昨天 → merge → score（按被覆盖日落盘）
 │   ├── search.py         # 每周：逐条 gh search repos（pushed_at 客户端过滤）
 │   ├── merge.py          # 每日 feed ∪ 本周盲搜 → 候选池
 │   ├── score.py          # LLM 按 README 打分（min_score 门控）
+│   ├── aggregate.py      # daily 模式：聚合本周 7 份 scored（去重 + 缺天补跑）
 │   ├── archive.py        # degit 浅克隆 + 三 wiki 快照（只增不删）
 │   ├── cards.py          # LLM 生成 Code Card（README + 目录树 + 依赖）
 │   ├── issue.py          # 生成 CSV + 每周 Issue
 │   ├── agent.py          # LLM 层：OpenAI 兼容客户端 + score / code_card 两个生成函数
 │   ├── build_site.py     # 静态站点生成：遍历 data/ + code/ 渲染 Jinja2 模板
 │   ├── gh.py / logs.py   # gh CLI 封装 / 事件日志解析
-│   └── run_weekly.sh     # 每周流水线一键编排
+│   └── run_weekly.sh     # 每周流水线一键编排（按 ingest.mode 分支）
 ├── templates/            # 站点模板（首页 / 周 / 归档 / 搜索 / 卡片详情）+ 样式与搜索脚本
 ├── queries/search_repos.yaml   # 盲搜配置（每条查询的召回/噪声实测写在注释里）
 ├── monitor/lists/        # 你所关注的领域内大佬 / 课题组清单（users / users_core / orgs）
@@ -118,12 +120,76 @@
 ├── requirements.txt      # 依赖：openai + jinja2 + markdown 等
 ├── tests/                # pytest 自检用例（不参与部署，可删除）
 └── .github/workflows/
-    ├── daily.yml         # 每日动态 + Issue（schedule 每日 06:00 / workflow_dispatch）
-    ├── weekly.yml        # 每周发现 + 归档 + 卡片 + Issue（schedule 周日 08:00 / workflow_dispatch）
+    ├── daily.yml         # 每日动态 + Issue（daily 模式再加增量搜索/打分；每日 05:00）
+    ├── weekly.yml        # 每周发现 + 归档 + 卡片 + Issue（daily 模式只做聚合；周日 08:00）
     └── deploy_pages.yml  # weekly 成功后自动构建并部署 site/
 ```
 
 </details>
+
+---
+
+## ⚡ 运行模式：weekly（默认）与 daily 增量
+
+候选量小的课题，周日一次跑完最省事。但有些课题（例如盲搜面很宽的「蛋白质结构 × AI」）单周会召回 2000+ 个候选，而 `score.py` 对每个候选都要抓一次 README + 调一次 LLM；按 `llm.concurrency: 8` 估算约需 1 小时，正好撞满 workflow 的 `timeout-minutes`。这时可以把「搜索 + 打分」摊到每天，周末只做聚合。
+
+```yaml
+# config.yaml
+ingest:
+  mode: weekly        # weekly（默认）| daily
+  max_backfill_days: 2
+```
+
+### 两种模式各跑什么
+
+| | `weekly`（默认） | `daily` |
+|---|---|---|
+| 每天 05:00 `daily.yml` | watchlist feed + 每日 Issue | 同上，**再加** `search(昨天) → merge → score` |
+| 周日 08:00 `weekly.yml` | `search → merge → score → archive → cards → issue` | `aggregate → archive → cards → issue` |
+| 归档 / Code Card | 每周一次 | 每周一次（不变） |
+
+**归档与 Code Card 永远每周做一次。** wiki 快照按日期落盘且只增不删（`code/{repo}/wikis/{date}/`），如果每天归档，同一批仓库一周会多出 7 层快照，仓库体积直接 ×7。
+
+### 一个例子
+
+设本周窗口是 `2026-10-18（周日） ~ 2026-10-24（周六）`，weekly 在 `2026-10-25（周日）08:00` 触发。
+
+`daily` 模式下，每天的 daily 任务只处理「昨天」：
+
+| 运行时间 | 覆盖日期 | 产出 |
+|---|---|---|
+| 10-19 05:00 | 10-18 | `data/scored/2026-10-18.json` |
+| 10-20 05:00 | 10-19 | `data/scored/2026-10-19.json` |
+| … | … | … |
+| 10-25 05:00 | 10-24 | `data/scored/2026-10-24.json` |
+
+周日 08:00，`aggregate.py` 读这 7 份文件 → 按 `full_name` 去重（保留 `pushed_at` 最新的那次打分）→ 写出 `data/scored/2026-10-25.json`。之后的 `archive → cards → issue` 与 weekly 模式**完全同一段代码**，站点仍按 `[2026-10-18, 2026-10-24]` 这一个周桶分组。
+
+### 为什么 daily 的文件按「被覆盖日」命名？
+
+- 7 份 daily 文件恰好落在 `[run-window_days, run-1]`，weekly 聚合复用与 merge 完全相同的窗口选择逻辑；
+- weekly 自己写 `scored/{运行日}.json`，比 daily 的日期晚一天，永远不会撞名；
+- 下游（archive / cards / issue / site）只认路径和 `date` 参数，不需要知道文件是「一次打完」还是「聚合来的」。
+
+### 缺天怎么办
+
+daily 任务某天失败（Actions 抽风、API 限流）时，weekly 聚合会发现缺片，并按 `ingest.max_backfill_days`（默认 2）自动补跑：对缺失日期重新 `search → merge → score`。超过上限的缺失日期只打印警告并在日志里列出。
+
+**为什么是 2，而不是更大或不限？**
+
+- 每次补跑是一个完整的「搜索 + 打分」日批次，约 12–15 分钟；weekly 的 `timeout-minutes` 是 120，之后还要做 archive + cards（通常 20–40 分钟）。
+- 若整周 7 天全缺，串行补完约 85–100 分钟，再加归档会重新贴近超时线；一旦 weekly 被 cancel，连 Issue 和站点都出不来。
+- 2 天约 25–30 分钟，足以覆盖「单次 Actions 抽风 / 限流」这类随机故障，同时保证 weekly 一定能完整跑完。
+- 连续缺 3 天以上通常是 workflow 本身坏了（key 失效、依赖装不上），正确做法是先修 workflow 再手动补，而不是让 weekly 硬扛——否则这周补完，下周还会继续缺。
+
+取舍原则：**一个「缺几天但能出周报」的结果，好过一个「全补但被 cancel、什么都出不来」的结果。**
+
+### 切换前要知道
+
+- `daily` 模式的 Actions 时长约为「7 × 每日增量 + 每周归档」。公开仓库免费额度足够；私有仓库每月 270 分钟免费额度可能不够。
+- LLM 调用总量与 weekly 模式接近：同一仓库一周内被 push 多次时，聚合阶段会去重，但可能被重复打分，差异通常 <15%。
+- 从 `weekly` 切到 `daily` 的第一周只有切换之后那些天的数据。想补满当周，可临时把 `max_backfill_days` 调大后手动 dispatch 一次 `weekly-discovery`（值越大越接近一次集中打分，注意超时）。
+- 两种模式都保留 `workflow_dispatch`，可随时手动触发。
 
 ---
 
@@ -280,6 +346,11 @@ python scripts/daily.py --config config.yaml \
 
 # 每周：search → merge → score → archive → cards → issue
 bash scripts/run_weekly.sh
+
+# daily 模式：抓「昨天」→ merge → score（weekly 模式下会直接跳过）
+python scripts/ingest_daily.py --config config.yaml
+# daily 模式：聚合本周的 7 份 scored（缺天会按 max_backfill_days 补跑）
+python scripts/aggregate.py --config config.yaml
 
 # 站点：从 data/ + code/ 重建 site/
 python scripts/build_site.py --out-dir . --config config.yaml
