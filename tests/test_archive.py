@@ -27,24 +27,24 @@ def test_run_archives_only_threshold(monkeypatch, tmp_path):
         {"full_name": "lo/b", "score": 2, "one_liner": "y", "pushed_at": "t"},
     ]
     archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"), scored)
-    clone_calls, wiki_calls = [], []
+    copy_calls, wiki_calls = [], []
     out = archive.run({"llm": {"min_score": 5}}, "2026-10-05",
-                      clone=lambda fn, d: clone_calls.append(fn) or True,
+                      copy=lambda fn, d: copy_calls.append(fn) or True,
                       wiki=lambda s, fn, d: wiki_calls.append((s, fn)) or True)
     assert [r["full_name"] for r in out] == ["hi/a"]
-    assert clone_calls == ["hi/a"]
+    assert copy_calls == ["hi/a"]
     assert sorted(s for s, _ in wiki_calls) == ["codewiki", "deepwiki", "zread"]
     saved = archive.common.load_json(str(tmp_path / "data" / "archive" / "2026-10-05.json"))
     assert [r["full_name"] for r in saved] == ["hi/a"]
-    assert saved[0]["clone_ok"] is True
+    assert saved[0]["copy_ok"] is True
 
 def test_run_isolates_clone_failure(monkeypatch, tmp_path):
     monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
     archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
                              [{"full_name": "a/b", "score": 8, "one_liner": "x"}])
     out = archive.run({"llm": {"min_score": 5}}, "2026-10-05",
-                      clone=lambda fn, d: False, wiki=lambda s, fn, d: "ok")
-    assert out[0]["clone_ok"] is False
+                      copy=lambda fn, d: False, wiki=lambda s, fn, d: "ok")
+    assert out[0]["copy_ok"] is False
     assert out[0]["wikis"]["deepwiki"] == "ok"   # wiki 仍继续
 
 def test_run_isolates_wiki_failure(monkeypatch, tmp_path):
@@ -52,7 +52,7 @@ def test_run_isolates_wiki_failure(monkeypatch, tmp_path):
     archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
                              [{"full_name": "a/b", "score": 8, "one_liner": "x"}])
     out = archive.run({"llm": {"min_score": 5}}, "2026-10-05",
-                      clone=lambda fn, d: True,
+                      copy=lambda fn, d: True,
                       wiki=lambda s, fn, d: "ok" if s != "zread" else "failed")
     assert out[0]["wikis"] == {"deepwiki": "ok", "codewiki": "ok", "zread": "failed"}
 
@@ -63,14 +63,14 @@ def test_run_overwrites_existing_dir(monkeypatch, tmp_path):
     base = str(tmp_path / "code" / "a__b")
     os.makedirs(os.path.join(base, "code"), exist_ok=True)
     open(os.path.join(base, "code", "stale.txt"), "w").write("old")
-    def fake_clone(fn, dest):
+    def fake_copy(fn, dest):
         os.makedirs(dest, exist_ok=True)
         open(os.path.join(dest, "fresh.txt"), "w").write("new")
         return True
     def fake_wiki(src, fn, dest):
         os.makedirs(dest, exist_ok=True)
         return True
-    archive.run({"llm": {"min_score": 5}}, "2026-10-05", clone=fake_clone, wiki=fake_wiki)
+    archive.run({"llm": {"min_score": 5}}, "2026-10-05", copy=fake_copy, wiki=fake_wiki)
     assert not os.path.exists(os.path.join(base, "code", "stale.txt"))
     assert os.path.exists(os.path.join(base, "code", "fresh.txt"))
 
@@ -79,14 +79,14 @@ def test_run_defaults_min_score_when_absent(monkeypatch, tmp_path):
     archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
                              [{"full_name": "a/b", "score": 4, "one_liner": "x"},
                               {"full_name": "c/d", "score": 6, "one_liner": "y"}])
-    out = archive.run({}, "2026-10-05", clone=lambda fn, d: True, wiki=lambda s, fn, d: True)
+    out = archive.run({}, "2026-10-05", copy=lambda fn, d: True, wiki=lambda s, fn, d: True)
     assert [r["full_name"] for r in out] == ["c/d"]
 
 def test_run_missing_scored_yields_empty(monkeypatch, tmp_path):
     monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
     calls = []
     out = archive.run({"llm": {"min_score": 5}}, "2026-10-05",
-                      clone=lambda fn, d: calls.append(fn) or True,
+                      copy=lambda fn, d: calls.append(fn) or True,
                       wiki=lambda s, fn, d: calls.append(s) or True)
     assert out == [] and calls == []
 
@@ -97,6 +97,27 @@ def test_clone_repo_command(monkeypatch):
     monkeypatch.setattr(archive.subprocess, "run", fake_run)
     assert archive.clone_repo("a/b", "/dest") is True
     assert captured["cmd"] == ["degit", "a/b", "/dest", "--force"]
+
+def test_clone_repo_strips_only_lfs_gitattributes(monkeypatch, tmp_path):
+    dest = tmp_path / "code"
+    (dest / "sub").mkdir(parents=True)
+    (dest / "sub" / ".gitattributes").write_text("*.eqx filter=lfs diff=lfs merge=lfs -text\n")
+    (dest / ".gitattributes").write_text("* text=auto\n")
+    monkeypatch.setattr(archive.subprocess, "run", lambda cmd, **kw: None)
+    assert archive.clone_repo("a/b", str(dest)) is True
+    assert not (dest / "sub" / ".gitattributes").exists()   # LFS 声明被删
+    assert (dest / ".gitattributes").exists()               # 普通属性保留
+
+def test_clone_repo_git_fallback_skips_lfs_smudge(monkeypatch, tmp_path):
+    seen = {}
+    def fail_degit(cmd, **kw):
+        if cmd[0] == "degit":
+            raise RuntimeError("degit tarball 404")
+        seen["env"] = kw.get("env")
+    monkeypatch.setattr(archive.subprocess, "run", fail_degit)
+    monkeypatch.setattr(archive.time, "sleep", lambda s: None)
+    assert archive.clone_repo("a/b", str(tmp_path / "d")) is True
+    assert seen["env"]["GIT_LFS_SKIP_SMUDGE"] == "1"
 
 def test_export_wiki_command(monkeypatch):
     captured = []
@@ -110,12 +131,12 @@ def test_wiki_dest_uses_google_code_wiki_for_codewiki(monkeypatch, tmp_path):
     archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
                              [{"full_name": "a/b", "score": 8, "one_liner": "x"}])
     dests = {}
-    def fake_clone(fn, dest):
+    def fake_copy(fn, dest):
         return True
     def fake_wiki(src, fn, dest):
         dests[src] = dest
         return True
-    archive.run({"llm": {"min_score": 5}}, "2026-10-05", clone=fake_clone, wiki=fake_wiki)
+    archive.run({"llm": {"min_score": 5}}, "2026-10-05", copy=fake_copy, wiki=fake_wiki)
     assert dests["deepwiki"].endswith(os.path.join("wikis", "2026-10-05", "deepwiki"))
     assert dests["zread"].endswith(os.path.join("wikis", "2026-10-05", "zread"))
     assert dests["codewiki"].endswith(os.path.join("wikis", "2026-10-05", "google_code_wiki"))
@@ -129,7 +150,7 @@ def test_archive_one_reuses_stale_wiki(monkeypatch, tmp_path):
     calls = []
     out = archive.archive_one(
         {"full_name": "a/b", "score": 8, "one_liner": "x"},
-        clone=lambda fn, d: True,
+        copy=lambda fn, d: True,
         wiki=lambda s, fn, d: calls.append(s) or "ok",
         date="2026-10-05",
         stat_date=lambda s, fn: dt.date(2026, 9, 1),   # 过期 → 复用旧快照
@@ -149,7 +170,7 @@ def test_archive_one_refreshes_fresh_wiki(monkeypatch, tmp_path):
     calls = []
     out = archive.archive_one(
         {"full_name": "a/b", "score": 8, "one_liner": "x"},
-        clone=lambda fn, d: True,
+        copy=lambda fn, d: True,
         wiki=lambda s, fn, d: calls.append(s) or "ok",
         date="2026-10-05",
         stat_date=lambda s, fn: dt.date(2026, 10, 6),   # 本周 → 重拉新快照
@@ -165,7 +186,7 @@ def test_archive_one_reuses_when_stat_fails_but_dir_exists(monkeypatch, tmp_path
     calls = []
     out = archive.archive_one(
         {"full_name": "a/b", "score": 8, "one_liner": "x"},
-        clone=lambda fn, d: True,
+        copy=lambda fn, d: True,
         wiki=lambda s, fn, d: calls.append(s) or "ok",
         date="2026-10-05",
         stat_date=lambda s, fn: None,              # stat 失败 → 保守复用旧快照
@@ -178,7 +199,7 @@ def test_archive_one_cp_when_no_old_dir(monkeypatch, tmp_path):
     calls = []
     out = archive.archive_one(
         {"full_name": "a/b", "score": 8, "one_liner": "x"},
-        clone=lambda fn, d: True,
+        copy=lambda fn, d: True,
         wiki=lambda s, fn, d: calls.append(s) or "ok",
         date="2026-10-05",
         stat_date=lambda s, fn: dt.date(2026, 9, 1),   # 过期但无旧快照 → 仍要拉
@@ -191,15 +212,15 @@ def test_run_appends_snapshot_never_deletes_old(monkeypatch, tmp_path):
     for date in ("2026-10-05", "2026-10-12"):
         archive.common.dump_json(str(tmp_path / "data" / "scored" / f"{date}.json"),
                                  [{"full_name": "a/b", "score": 8, "one_liner": "x"}])
-    def fake_clone(fn, dest):
+    def fake_copy(fn, dest):
         os.makedirs(dest, exist_ok=True)
         return True
     def fake_wiki(src, fn, dest):
         os.makedirs(dest, exist_ok=True)
         open(os.path.join(dest, "page.md"), "w").write(src)
         return True
-    archive.run({"llm": {"min_score": 5}}, "2026-10-05", clone=fake_clone, wiki=fake_wiki)
-    archive.run({"llm": {"min_score": 5}}, "2026-10-12", clone=fake_clone, wiki=fake_wiki)
+    archive.run({"llm": {"min_score": 5}}, "2026-10-05", copy=fake_copy, wiki=fake_wiki)
+    archive.run({"llm": {"min_score": 5}}, "2026-10-12", copy=fake_copy, wiki=fake_wiki)
     base = archive.repo_dir("a/b")
     assert os.path.isfile(os.path.join(base, "wikis", "2026-10-05", "deepwiki", "page.md"))
     assert os.path.isfile(os.path.join(base, "wikis", "2026-10-12", "deepwiki", "page.md"))
@@ -278,7 +299,7 @@ def test_run_archives_all_keepers_concurrently(monkeypatch, tmp_path):
     scored = [{"full_name": f"o{i}/r", "score": 8, "one_liner": "x"} for i in range(6)]
     archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"), scored)
     out = archive.run({"llm": {"min_score": 5}, "archive": {"concurrency": 3}}, "2026-10-05",
-                      clone=lambda fn, d: True, wiki=lambda s, fn, d: True)
+                      copy=lambda fn, d: True, wiki=lambda s, fn, d: True)
     assert sorted(r["full_name"] for r in out) == sorted(r["full_name"] for r in scored)
 
 def test_run_isolates_raising_archive(monkeypatch, tmp_path):
@@ -287,9 +308,9 @@ def test_run_isolates_raising_archive(monkeypatch, tmp_path):
                              [{"full_name": "a/b", "score": 8, "one_liner": "x"}])
     def raise_clone(fn, dest):
         raise RuntimeError("boom")
-    out = archive.run({"llm": {"min_score": 5}}, "2026-10-05", clone=raise_clone,
+    out = archive.run({"llm": {"min_score": 5}}, "2026-10-05", copy=raise_clone,
                       wiki=lambda s, fn, d: "ok")
-    assert out[0]["clone_ok"] is False
+    assert out[0]["copy_ok"] is False
     assert out[0]["wikis"] == {"deepwiki": "failed", "codewiki": "failed", "zread": "failed"}
 
 def test_export_wiki_returns_ok(monkeypatch):
@@ -329,3 +350,228 @@ def test_export_wiki_zread_submit_skipped_without_token(monkeypatch):
     monkeypatch.setattr(archive.time, "sleep", lambda s: None)
     monkeypatch.delenv("ZREAD_TOKEN", raising=False)
     assert archive.export_wiki("zread", "a/b", "/d") == "not_indexed"
+
+def test_clone_repo_drops_git_dir(monkeypatch, tmp_path):
+    dest = tmp_path / "code"
+    (dest / ".git").mkdir(parents=True)
+    (dest / "a.py").write_text("x")
+    monkeypatch.setattr(archive.subprocess, "run", lambda cmd, **kw: None)
+    assert archive.clone_repo("a/b", str(dest)) is True
+    assert not (dest / ".git").exists() and (dest / "a.py").exists()
+
+def test_select_entries_keeps_source_drops_data():
+    entries = [
+        {"path": "src/a.py", "size": 100},
+        {"path": "data/small.json", "size": 1000},
+        {"path": "data/big.json", "size": 400 * 1024},
+        {"path": "weights/w.pt", "size": 10 ** 9},
+        {"path": "Makefile", "size": 200},
+        {"path": "README.md", "size": 5000},
+        {"path": "docs/fig.png", "size": 10 ** 6},
+        {"path": "vendor/sub", "size": 0, "type": "commit"},
+    ]
+    keep, omitted = archive.select_entries(entries, "code")
+    assert [k["path"] for k in keep] == ["src/a.py", "Makefile", "README.md"]
+    reasons = {o["path"]: o["reason"] for o in omitted}
+    assert reasons["data/small.json"] == "后缀不在白名单"
+    assert reasons["data/big.json"] == "后缀不在白名单"
+    assert reasons["weights/w.pt"] == "后缀不在白名单"
+    assert reasons["docs/fig.png"] == "后缀不在白名单"
+    assert reasons["vendor/sub"] == "子模块未拉取"
+
+def test_select_entries_readme_only():
+    entries = [{"path": "README.md", "size": 10},
+               {"path": "README_zh.md", "size": 10},
+               {"path": "a.py", "size": 10}]
+    keep, omitted = archive.select_entries(entries, "readme")
+    assert [k["path"] for k in keep] == ["README.md", "README_zh.md"]
+    assert all(o["reason"] == "仅保留 README" for o in omitted)
+
+def test_readme_variants_classified_as_readme():
+    for p in ("README.md", "readme.txt", "README_zh.md", "README-zh-CN.md",
+              "README.ch.md", "ReadMe.MD", "README.rst", "README"):
+        assert archive._classify(p) == "readme", p
+
+def test_readme_generator_is_source_not_readme():
+    assert archive._classify("readme_generator.py") == "source"
+
+def test_build_names_and_prefixes():
+    for p in ("requirements.txt", "requirements-dev.txt", "environment.yml",
+              "constraints.txt", "pyproject.toml", "package.json",
+              "Cargo.toml", "Makefile", "Dockerfile", "setup.py"):
+        assert archive._classify(p) == "build", p
+
+def test_config_extensions_are_build():
+    for p in ("config.yaml", "settings.toml", "a.ini", "b.cfg", "c.conf",
+              "poetry.lock"):
+        assert archive._classify(p) == "build", p
+
+def test_docs_by_name_and_ext():
+    for p in ("LICENSE", "LICENSE.txt", "CHANGELOG.txt", "CONTRIBUTING.md",
+              "docs/guide.md", "paper.tex", "refs.bib"):
+        assert archive._classify(p) == "docs", p
+
+def test_generic_data_files_dropped():
+    for p in ("data/a.txt", "run.log", "data.csv", "data.tsv", "data.json",
+              "data.xml", "config.json"):
+        assert archive._classify(p) is None, p
+
+def test_sparse_pattern_escapes_glob_chars():
+    assert archive._sparse_pattern("a/[x].py") == "/a/\\[x\\].py"
+
+def test_rewrite_md_relative_image_and_link():
+    md = ("![logo](./figs/logo.svg)\n"
+          "[guide](docs/guide.md#intro)\n"
+          "![abs](https://x/y.png)\n"
+          "[anchor](#top)\n")
+    out = archive.rewrite_md(md, "README.md", "o/r")
+    assert "https://github.com/o/r/raw/HEAD/figs/logo.svg" in out
+    assert "https://github.com/o/r/blob/HEAD/docs/guide.md#intro" in out
+    assert "(https://x/y.png)" in out and "(#top)" in out
+
+def test_rewrite_md_nested_and_parent_paths():
+    out = archive.rewrite_md("![](../assets/a.png)\n", "docs/sub/guide.md", "o/r")
+    assert "https://github.com/o/r/raw/HEAD/docs/assets/a.png" in out
+    assert "https://github.com/o/r/raw/HEAD/../../a.png" not in out
+
+def test_rewrite_md_reference_html_and_fence():
+    md = ('[id]: ./img/a.png\n'
+          '<img src="pics/b.png">\n'
+          '<a href="docs/x.md">x</a>\n'
+          '```\n'
+          '![x](./fenced.png)\n'
+          '```\n')
+    out = archive.rewrite_md(md, "README.md", "o/r")
+    assert "[id]: https://github.com/o/r/raw/HEAD/img/a.png" in out
+    assert 'src="https://github.com/o/r/raw/HEAD/pics/b.png"' in out
+    assert 'href="https://github.com/o/r/blob/HEAD/docs/x.md"' in out
+    assert "https://github.com/o/r/raw/HEAD/fenced.png" not in out
+
+def test_make_copy_dispatch(monkeypatch):
+    calls = []
+    monkeypatch.setattr(archive, "clone_repo",
+                        lambda fn, d: calls.append("full") or True)
+    monkeypatch.setattr(archive, "copy_corpus",
+                        lambda fn, d, mode, date: calls.append(mode) or True)
+    assert archive._make_copy("full", "2026-10-05")("a/b", "/d") is True
+    assert archive._make_copy("readme", "2026-10-05")("a/b", "/d") is True
+    assert calls == ["full", "readme"]
+
+def test_run_records_copy_mode(monkeypatch, tmp_path):
+    monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
+    archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"),
+                             [{"full_name": "a/b", "score": 8, "one_liner": "x"}])
+    out = archive.run({"llm": {"min_score": 5}, "archive": {"repo_copy": "readme"}},
+                      "2026-10-05", copy=lambda fn, d: True,
+                      wiki=lambda s, fn, d: True)
+    assert out[0]["copy"] == "readme"
+
+def test_write_manifest_lists_kept_and_omitted(tmp_path):
+    keep = [{"path": "a.py", "size": 100, "class": "source"},
+            {"path": "README.md", "size": 200, "class": "readme"}]
+    omitted = [{"path": "spec/big.h5", "size": 1024 * 1024,
+                "reason": "后缀不在白名单"}]
+    archive._write_manifest(str(tmp_path), "o/r", "code", keep, omitted,
+                            "abc123def456", "2026-10-05")
+    text = (tmp_path / "MANIFEST.md").read_text()
+    assert "代码摘录" in text
+    assert "`a.py`" not in text and "a.py" not in text.split("## 省略")[0].replace("1 KB", "")
+    assert "spec/big.h5" in text
+    assert "https://github.com/o/r/raw/HEAD/spec/big.h5" in text
+    assert "https://github.com/o/r/commit/abc123def456" in text
+
+def test_rewrite_md_skips_documenter_ref():
+    md = "[x](@ref)\n[y](@ref foo)\n"
+    assert archive.rewrite_md(md, "docs/a.md", "o/r") == md
+
+def test_select_entries_source_cap_is_2mb():
+    entries = [{"path": "big.py", "size": 3 * 1024 * 1024},
+               {"path": "ok.py", "size": 1024 * 1024}]
+    keep, omitted = archive.select_entries(entries, "code")
+    assert [k["path"] for k in keep] == ["ok.py"]
+    assert omitted == [{"path": "big.py", "size": 3 * 1024 * 1024,
+                        "reason": "超过大小上限"}]
+
+def test_ipynb_and_readme_unlimited():
+    entries = [{"path": "nb.ipynb", "size": 8 * 1024 * 1024},
+               {"path": "README.md", "size": 10 * 1024 * 1024},
+               {"path": "big.py", "size": 3 * 1024 * 1024}]
+    keep, omitted = archive.select_entries(entries, "code")
+    assert [k["path"] for k in keep] == ["nb.ipynb", "README.md"]
+    assert omitted == [{"path": "big.py", "size": 3 * 1024 * 1024,
+                        "reason": "超过大小上限"}]
+
+def test_docs_and_build_cap_is_1mb():
+    entries = [{"path": "docs/guide.md", "size": 2 * 1024 * 1024},
+               {"path": "docs/small.md", "size": 500 * 1024},
+               {"path": "config.yaml", "size": 2 * 1024 * 1024},
+               {"path": "config-small.yaml", "size": 100 * 1024}]
+    keep, omitted = archive.select_entries(entries, "code")
+    assert [k["path"] for k in keep] == ["docs/small.md", "config-small.yaml"]
+    assert {o["path"] for o in omitted} == {"docs/guide.md", "config.yaml"}
+
+def test_script_and_doc_extensions_whitelisted():
+    for p in ("run.pbs", "plot.plt", "notes.rmd", "a.mli", "job.slurm"):
+        assert archive._classify(p) is not None
+
+def test_render_tree_nested():
+    out = archive._render_tree(["src/a.py", "README.md"])
+    assert out.startswith("# 目录树")
+    assert "├── src/" in out
+    assert "│   └── a.py" in out
+    assert "└── README.md" in out
+
+def test_render_tree_empty():
+    assert "空仓库" in archive._render_tree([])
+
+def test_render_tree_truncates_to_limit():
+    out = archive._render_tree(["a.py", "b.py"], limit=1)
+    assert "共 2 个文件,只显示前 1 个" in out
+    assert "└── a.py" in out
+    assert "b.py" not in out
+
+def test_render_tree_truncated_note():
+    assert "已被 tree API 截断" in archive._render_tree(["a.py"], truncated=True)
+
+def test_copy_readme_writes_readme_and_tree(monkeypatch, tmp_path):
+    monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
+
+    def fake_json(cmd):
+        url = cmd[2]
+        if url == "repos/o/r/readme":
+            return {"name": "README.md",
+                    "content": archive.base64.b64encode(
+                        b"# Hi\n![x](./a.png)\n").decode(),
+                    "size": 10}
+        if url == "repos/o/r/git/trees/HEAD?recursive=1":
+            return {"tree": [{"path": "src/a.py", "type": "blob", "size": 1},
+                             {"path": "README.md", "type": "blob", "size": 1}],
+                    "truncated": False}
+        raise AssertionError(url)
+
+    monkeypatch.setattr(archive, "_run_json", fake_json)
+    monkeypatch.setattr(archive, "_run_text", lambda cmd: "abc123def456")
+    base = tmp_path / "code" / "o__r"
+    assert archive._copy_readme("o/r", str(base / "code"), "2026-10-05") is True
+    readme = (base / "code" / "README.md").read_text()
+    assert "https://github.com/o/r/raw/HEAD/a.png" in readme
+    tree = (base / "code" / "TREE.md").read_text()
+    assert "src/" in tree and "a.py" in tree and "README.md" in tree
+    manifest = (base / "MANIFEST.md").read_text()
+    assert "TREE.md" in manifest and "abc123def456" in manifest
+
+
+def test_run_noagent_archives_only_watchlist(monkeypatch, tmp_path):
+    monkeypatch.setattr(archive.common, "ROOT", str(tmp_path))
+    scored = [
+        {"full_name": "wl/a", "score": None, "one_liner": "d", "source": "watchlist", "stars": 5},
+        {"full_name": "srch/b", "score": None, "one_liner": "d", "source": "search", "stars": 9},
+        {"full_name": "wl/c", "score": None, "one_liner": "d", "source": "watchlist", "stars": 1},
+    ]
+    archive.common.dump_json(str(tmp_path / "data" / "scored" / "2026-10-05.json"), scored)
+    copy_calls = []
+    out = archive.run({"llm": {"enabled": False}}, "2026-10-05",
+                      copy=lambda fn, d: copy_calls.append(fn) or True,
+                      wiki=lambda s, fn, d: True)
+    assert [r["full_name"] for r in out] == ["wl/a", "wl/c"]    # watchlist 按 stars 降序
+    assert set(copy_calls) == {"wl/a", "wl/c"}                  # 并发下 copy 顺序不保证,只断言集合
