@@ -22,6 +22,7 @@
   <a href="#-三步上手">三步上手</a> ·
   <a href="#-设计思路">设计思路</a> ·
   <a href="#-流水线各阶段">流水线</a> ·
+  <a href="#-agent-与-noagent-模式切换">模式切换</a> ·
   <a href="#-无-ai-时的降级行为">无 AI 降级</a> ·
   <a href="#-code-card-与站点">Code Card 与站点</a> ·
   <a href="#-搜索要点">搜索要点</a> ·
@@ -193,6 +194,32 @@ daily 任务某天失败（Actions 抽风、API 限流）时，weekly 聚合会�
 
 ---
 
+## 🕹 agent 与 noagent 模式切换
+
+要不要 AI，由一个开关显式决定（`llm.enabled`，默认 `true`）：
+
+```yaml
+# config.yaml
+llm:
+  enabled: true          # true = agent 模式（默认）；false = noagent 模式
+archive:
+  repo_copy: code        # agent 推荐 code；noagent 建议改成 readme
+```
+
+| 阶段 | agent 模式（默认） | noagent 模式 |
+|---|---|---|
+| `score.py` | LLM 打 0–10 分 + 一句话 | 不打分：`score=None`、`one_liner` 用 description 兜底 |
+| `archive.py` | 高分仓库（`score ≥ min_score`） | **只留 watchlist 来源**（按 stars 降序），搜索仓库不进归档 |
+| `cards.py` | LLM 生成 Code Card | 不调 LLM，只抓 README + 目录树存盘 |
+| `issue.py` | 表含 score / one_liner 两列 | 去掉 AI 两列，按 stars 排序 |
+| 站点 | 分数徽章 + Code Card + README + 目录树 | 无分数、无卡片，只渲染 README + 目录树 |
+
+**为什么 noagent 只留 watchlist？** 打分是「宽召回 → 过滤」里的过滤环节；没有打分，就没法从关键词盲搜那批噪声里筛出值得看的仓库，于是只保留「你明确关注的大佬/课题组」这条免费动态流（`source == "watchlist"`），把搜索通道整个关掉。这正配 `archive.repo_copy: readme`（只存 README + `TREE.md`，不 clone）——没必要给没打分的仓库摘录代码语料。
+
+> **切换要点**：切到 noagent 只需 `llm.enabled: false`，并建议把 `archive.repo_copy` 一并改成 `readme`（保留 `code`/`full` 也行，只是会为 watchlist 仓库照样摘录语料）；切回 agent 把 `enabled` 改回 `true`，并确保 `LLM_BASE_URL` / `LLM_API_KEY` 已配好。
+
+---
+
 ## 🧯 无 AI 时的降级行为
 
 本模板的 AI 环节只有两处——`scripts/score.py`（打分）与 `scripts/cards.py`（写卡片），都经 `scripts/agent.py` 调用 LLM。**AI 不可用时的行为，取决于「LLM 环境变量在不在」**，两种情况差别很大。
@@ -250,15 +277,16 @@ search ✅ → merge ✅ → score ⚠️ 每仓库记 score = null → archive 
 | 站点条目 | ❌ | ❌ |
 | 实际价值 | 仅 `search` + `candidates` 落盘 | **一份纯仓库发现清单** |
 
-**想「无 AI 也出清单」，至少把占位变量设上：**
+**想「无 AI 也出清单」，两条路：**
+
+1. **正规做法——切 noagent**：`llm.enabled: false`（建议配 `archive.repo_copy: readme`），得到 watchlist 的 README + 目录树站点（见上节「agent 与 noagent 模式切换」）。
+2. **临时兜底——设占位变量**：不想改配置时，至少把占位变量设上，让客户端能构造成功、之后调用逐仓库静默失败 → 降级为情况 B，不再中断：
 
 ```bash
 export LLM_BASE_URL=http://localhost LLM_API_KEY=x
 ```
 
-让客户端能构造成功，之后调用逐仓库静默失败 → 降级为情况 B，不再中断。此时你得到的是一个**纯仓库发现清单**（谁在本周推了新仓库 + 元数据），只是没有打分与卡片。
-
-> **能力缺口**：本模板暂未提供 paper 模板那样的 `llm.enable: false` 开关。若要真正「关掉 AI 仍出完整站点」，需要：(1) 让 `run_weekly.sh` / `score.py` 支持跳过 `score` / `archive` / `cards`；(2) 让 `build_site.py` 在无卡片时回退渲染 `data/scored`（或 `candidates`）的纯列表。
+此时你得到的是一个**纯仓库发现清单**（谁在本周推了新仓库 + 元数据，含搜索通道），只是没有打分与卡片、没有归档与站点条目。
 
 ---
 
@@ -418,7 +446,9 @@ python -m pytest -q
 <details>
 <summary><b>能不能不要 AI？</b></summary>
 
-分两种情况，差别很大——**完全不设 LLM 变量**会在 score 这步整体中断流水线；**设了变量但 key 失效**能跑完全程，候选池照出、但没有卡片、**站点为空**。完整的逐环节对比见上文「[无 AI 时的降级行为](#-无-ai-时的降级行为)」。
+能——把 `llm.enabled` 设成 `false`（noagent 模式），关掉打分与 Code Card，但仍出 README + 目录树的站点与 Issue（只留 watchlist 来源，见「[agent 与 noagent 模式切换](#-agent-与-noagent-模式切换)」）。
+
+如果你**想用 AI 但凭据没配好**，则是另一回事：**完全不设 LLM 变量**会在 score 这步整体中断流水线；**设了变量但 key 失效**能跑完全程，候选池照出、但没有卡片、**站点为空**。完整的逐环节对比见上文「[无 AI 时的降级行为](#-无-ai-时的降级行为)」。
 </details>
 
 <details>
