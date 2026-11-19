@@ -45,7 +45,7 @@
 | **2 · 设密钥与 Pages** | 配置 Secrets / Variables 与 Pages | **Settings → Secrets and variables → Actions** 添加 `LLM_BASE_URL` / `LLM_API_KEY`（secrets）、`LLM_MODEL`（variable）；要 zread 归档再加 `ZREAD_TOKEN`（secret）。**Settings → Pages** 来源选 **GitHub Actions**。改 `config.yaml` 的 `site_base_url` |
 | **3 · 每周收报** | GitHub 原生 `schedule` 自动触发（每周日 08:00 上海时区），也可手动 `workflow_dispatch` | 有新仓库时自动开一条 **Issue 周报**，提交 `data/` 与 `code/`，并重建 **Pages 站点**：按分数排序，逐仓库一张 Code Card，支持全文检索 |
 
-> **⏰ 提醒：每周日自动跑，周一直接看。** 部署好后你不用动手——`weekly-discovery` **每周日 08:00**（上海时区）自动跑，`daily-feed` 每日 06:00 自动跑，跑完自动开 Issue、刷新站点。站点按每次运行**记录的抓取窗口** `[run-window_days, run-1]` 分组（见 `build_site.py` 的 `_window_of`），**不是**按 `pushed_at` 自然周——所以换运行日只会让窗口标签整体平移、不会把首页打散。`weekly` 仍选**周日**，只是为了让窗口 = 「上周日→本周六」、与自然周对齐，贴合「周日为一周开始」的直觉。于是**周一上班打开这个仓库的 Issue 与 Pages 站点，就能看到刚过去的完整一周**；想立刻看或补跑，去 Actions 页手动 `workflow_dispatch` 一次即可。
+> **每周日自动跑。** `weekly-discovery` 每周日 08:00、`daily-feed` 每日 05:00（上海时区）自动运行；站点按运行的抓取窗口分组，周一打开 Issue 与 Pages 即可看到过去一周。需要补跑时在 Actions 页手动 `workflow_dispatch`。
 
 ### 🔄 换课题（最终操作）
 
@@ -63,19 +63,13 @@
 
 ## 💡 设计思路
 
-一句话：
-
-> **每天刷新一份「你所关注的这个领域的大佬有什么coding更新」的免费动态流，每周再主动盲搜一遍该领域更新项目 → 合并去重成候选池 → LLM 按 README 打分 → 高分仓库连同代码、AI wiki、一张 Code Card 一起永久沉淀下来 → 开一条 Issue 提醒、部署一个站点，供你博采众长、移植灵感。**
-
-设计取舍：
-
-- **双通道发现，宽召回 + 打分过滤** —— 每日通道只吃 GitHub 免费事件流（零成本、按你关注的大佬/课题组），每周通道用关键词盲搜（`in:name,description,readme,topics`，覆盖更宽）。两条并成候选池后，**统统交给 LLM 打分**决定取舍，而不是写死正则启发式。
-- **列表用 `pushed_at` 而非 `updated_at`** —— star/watch/fork 会顶掉 `updated_at`，只有真·代码 push 才动 `pushed_at`。搜索只能按 `--updated` 粗筛（超集），再由客户端按 `pushed_at` 精确过滤，保证「本周推荐」都是真推过代码的仓库。因为实测发现code部分没有update的仓库，很多都是 README 改了点文字、或者被人 star 了一下，导致push日期更新而被误收集进近期更新清单中。
-- **代码 + wiki 一起归档，wiki 只增不删** —— 高分仓库按 `archive.repo_copy: code` 摘录到 `code/{repo}/code/`（只留源码/构建配置/README/文档；数据、图片、权重、二进制、通用 `.txt/.log/.csv/.json/.xml` 都不留，普通源码 >2 MB、文档/构建配置 >1 MB 也不留——README 与 `.ipynb` 不设限，省略明细与取回链接见该仓库的 `MANIFEST.md`）；三个第三方 AI wiki 上游没有版本历史，故每周按日期落一份**快照**，过去周次永不被覆盖。
-- **AI 写卡片，你来做判断** —— 每个高分仓库自动产出一张 Code Card（是什么 / 亮点 / 为何对本课题有用 / 怎么用 / 核心 idea / 可搬移点），把「值不值得上手 / 能不能移植」的决策成本压到最低，但最终判断仍在你。
-- **Issue 即提醒，站点即沉淀** —— 不额外接推送，有命中才开、零命中不打扰；静态 Pages 把每周产出永久沉淀、可全文检索。
-- **密钥不入库** —— LLM 凭据与 zread token 一律走环境变量 / Actions Secret。
-- **一个课题一个仓** —— 同一骨架可复制成多个独立仓库，并行追踪多个方向。
+- **双通道发现，宽召回 + 打分过滤** —— 每日走免费事件流（你关注的大佬/课题组），每周走关键词盲搜；合并成候选池后统一交给 LLM 打分。
+- **以 `pushed_at` 判断更新** —— star/watch/fork 会更新 `updated_at`，只有真实代码 push 才更新 `pushed_at`；搜索先按 `--updated` 粗筛，再由客户端精筛。
+- **代码与 wiki 一起归档** —— 高分仓库摘录代码语料；三个第三方 AI wiki 没有版本历史，故每周落一份快照，只增不删。
+- **AI 写卡片，人做判断** —— 每个高分仓库生成一张 Code Card，降低上手与移植的判断成本。
+- **Issue 即提醒，站点即沉淀** —— 有命中才开 Issue；静态 Pages 永久沉淀每周产出，可全文检索。
+- **密钥不入库** —— 凭据一律走环境变量或 Actions Secret。
+- **一个课题一个仓** —— 同一骨架可复制成多个独立仓库。
 
 ---
 
@@ -92,48 +86,13 @@
 | **Issue + CSV** | `scripts/issue.py` | 同上 | 打分结果 → `data/weekly/{date}.csv` + 每周 Issue（并记 `data/latest_issue.txt`） |
 | **静态站点** | `scripts/build_site.py` | `deploy-pages` workflow | 遍历 `data/` + `code/` → 渲染 `site/` → 部署到 Pages |
 
-一次完整的每周流水线 = `bash scripts/run_weekly.sh`（`search → merge → score → archive → cards → issue`，见脚本）。若候选量太大，可把 `ingest.mode` 切成 `daily`，见下一节。
-
-<details>
-<summary><b>🗂 仓库结构</b></summary>
-
-```
-.
-├── scripts/
-│   ├── daily.py          # 每日：ghresearcher monitor → 免费元数据流 + Issue
-│   ├── ingest_daily.py   # daily 模式：抓昨天 → merge → score（按被覆盖日落盘）
-│   ├── search.py         # 每周：逐条 gh search repos（pushed_at 客户端过滤）
-│   ├── merge.py          # 每日 feed ∪ 本周盲搜 → 候选池
-│   ├── score.py          # LLM 按 README 打分（min_score 门控）
-│   ├── aggregate.py      # daily 模式：聚合本周 7 份 scored（去重 + 缺天补跑）
-│   ├── archive.py        # 代码语料摘录 + 三 wiki 快照（只增不删）
-│   ├── cards.py          # LLM 生成 Code Card（README + 目录树 + 依赖）
-│   ├── issue.py          # 生成 CSV + 每周 Issue
-│   ├── agent.py          # LLM 层：OpenAI 兼容客户端 + score / code_card 两个生成函数
-│   ├── build_site.py     # 静态站点生成：遍历 data/ + code/ 渲染 Jinja2 模板
-│   ├── gh.py / logs.py   # gh CLI 封装 / 事件日志解析
-│   └── run_weekly.sh     # 每周流水线一键编排（按 ingest.mode 分支）
-├── templates/            # 站点模板（首页 / 周 / 归档 / 搜索 / 卡片详情）+ 样式与搜索脚本
-├── queries/search_repos.yaml   # 盲搜配置（每条查询的召回/噪声实测写在注释里）
-├── monitor/lists/        # 你所关注的领域内大佬 / 课题组清单（users / users_core / orgs）
-├── config.yaml           # 课题与检索配置（topic / title / window_days / llm / search）
-├── prompts.yaml          # 两个系统 prompt（score / code_card）集中于此
-├── assets/banner.svg     # README 头图
-├── requirements.txt      # 依赖：openai + jinja2 + markdown 等
-├── tests/                # pytest 自检用例（不参与部署，可删除）
-└── .github/workflows/
-    ├── daily.yml         # 每日动态 + Issue（daily 模式再加增量搜索/打分；每日 05:00）
-    ├── weekly.yml        # 每周发现 + 归档 + 卡片 + Issue（daily 模式只做聚合；周日 08:00）
-    └── deploy_pages.yml  # weekly 成功后自动构建并部署 site/
-```
-
-</details>
+一次完整的每周流水线 = `bash scripts/run_weekly.sh`（`search → merge → score → archive → cards → issue`）。若候选量太大，可把 `ingest.mode` 切成 `daily`，见下一节。
 
 ---
 
 ## ⚡ 运行模式：weekly（默认）与 daily 增量
 
-候选量小的课题，周日一次跑完最省事。但有些课题（例如盲搜面很宽的「蛋白质结构 × AI」）单周会召回 2000+ 个候选，而 `score.py` 对每个候选都要抓一次 README + 调一次 LLM；按 `llm.concurrency: 8` 估算约需 1 小时，正好撞满 workflow 的 `timeout-minutes`。这时可以把「搜索 + 打分」摊到每天，周末只做聚合。
+候选量小的课题用 `weekly`；单周上千时改用 `daily`，把搜索与打分分摊到每天。
 
 ```yaml
 # config.yaml
@@ -142,56 +101,13 @@ ingest:
   max_backfill_days: 2
 ```
 
-### 两种模式各跑什么
-
 | | `weekly`（默认） | `daily` |
 |---|---|---|
 | 每天 05:00 `daily.yml` | watchlist feed + 每日 Issue | 同上，**再加** `search(昨天) → merge → score` |
 | 周日 08:00 `weekly.yml` | `search → merge → score → archive → cards → issue` | `aggregate → archive → cards → issue` |
 | 归档 / Code Card | 每周一次 | 每周一次（不变） |
 
-**归档与 Code Card 永远每周做一次。** wiki 快照按日期落盘且只增不删（`code/{repo}/wikis/{date}/`），如果每天归档，同一批仓库一周会多出 7 层快照，仓库体积直接 ×7。
-
-### 一个例子
-
-设本周窗口是 `2026-10-18（周日） ~ 2026-10-24（周六）`，weekly 在 `2026-10-25（周日）08:00` 触发。
-
-`daily` 模式下，每天的 daily 任务只处理「昨天」：
-
-| 运行时间 | 覆盖日期 | 产出 |
-|---|---|---|
-| 10-19 05:00 | 10-18 | `data/scored/2026-10-18.json` |
-| 10-20 05:00 | 10-19 | `data/scored/2026-10-19.json` |
-| … | … | … |
-| 10-25 05:00 | 10-24 | `data/scored/2026-10-24.json` |
-
-周日 08:00，`aggregate.py` 读这 7 份文件 → 按 `full_name` 去重（保留 `pushed_at` 最新的那次打分）→ 写出 `data/scored/2026-10-25.json`。之后的 `archive → cards → issue` 与 weekly 模式**完全同一段代码**，站点仍按 `[2026-10-18, 2026-10-24]` 这一个周桶分组。
-
-### 为什么 daily 的文件按「被覆盖日」命名？
-
-- 7 份 daily 文件恰好落在 `[run-window_days, run-1]`，weekly 聚合复用与 merge 完全相同的窗口选择逻辑；
-- weekly 自己写 `scored/{运行日}.json`，比 daily 的日期晚一天，永远不会撞名；
-- 下游（archive / cards / issue / site）只认路径和 `date` 参数，不需要知道文件是「一次打完」还是「聚合来的」。
-
-### 缺天怎么办
-
-daily 任务某天失败（Actions 抽风、API 限流）时，weekly 聚合会发现缺片，并按 `ingest.max_backfill_days`（默认 2）自动补跑：对缺失日期重新 `search → merge → score`。超过上限的缺失日期只打印警告并在日志里列出。
-
-**为什么是 2，而不是更大或不限？**
-
-- 每次补跑是一个完整的「搜索 + 打分」日批次，约 12–15 分钟；weekly 的 `timeout-minutes` 是 120，之后还要做 archive + cards（通常 20–40 分钟）。
-- 若整周 7 天全缺，串行补完约 85–100 分钟，再加归档会重新贴近超时线；一旦 weekly 被 cancel，连 Issue 和站点都出不来。
-- 2 天约 25–30 分钟，足以覆盖「单次 Actions 抽风 / 限流」这类随机故障，同时保证 weekly 一定能完整跑完。
-- 连续缺 3 天以上通常是 workflow 本身坏了（key 失效、依赖装不上），正确做法是先修 workflow 再手动补，而不是让 weekly 硬扛——否则这周补完，下周还会继续缺。
-
-取舍原则：**一个「缺几天但能出周报」的结果，好过一个「全补但被 cancel、什么都出不来」的结果。**
-
-### 切换前要知道
-
-- `daily` 模式的 Actions 时长约为「7 × 每日增量 + 每周归档」。公开仓库免费额度足够；私有仓库每月 270 分钟免费额度可能不够。
-- LLM 调用总量与 weekly 模式接近：同一仓库一周内被 push 多次时，聚合阶段会去重，但可能被重复打分，差异通常 <15%。
-- 从 `weekly` 切到 `daily` 的第一周只有切换之后那些天的数据。想补满当周，可临时把 `max_backfill_days` 调大后手动 dispatch 一次 `weekly-discovery`（值越大越接近一次集中打分，注意超时）。
-- 两种模式都保留 `workflow_dispatch`，可随时手动触发。
+归档与 Code Card 始终每周执行一次，避免同一仓库一周产生 7 层 wiki 快照。daily 某天失败时，weekly 会按 `max_backfill_days`（默认 2）补跑缺失日期。从 `weekly` 切到 `daily` 的第一周只有切换后的数据；私有仓库需注意每月 Actions 免费额度。
 
 ---
 
@@ -215,85 +131,34 @@ archive:
 | `issue.py` | 表含 score / one_liner 两列 | 去掉 AI 两列，按 stars 排序 |
 | 站点 | 分数徽章 + Code Card + README + 目录树 | 无分数、无卡片，只渲染 README + 目录树 |
 
-**为什么 noagent 只留 watchlist？** 打分是「宽召回 → 过滤」里的过滤环节；没有打分，就没法从关键词盲搜那批噪声里筛出值得看的仓库，于是只保留「你明确关注的大佬/课题组」这条免费动态流（`source == "watchlist"`），把搜索通道整个关掉。这正配 `archive.repo_copy: readme`（只存 README + `TREE.md`，不 clone）——没必要给没打分的仓库摘录代码语料。
-
-> **切换要点**：切到 noagent 只需 `llm.enabled: false`，并建议把 `archive.repo_copy` 一并改成 `readme`（保留 `code`/`full` 也行，只是会为 watchlist 仓库照样摘录语料）；切回 agent 把 `enabled` 改回 `true`，并确保 `LLM_BASE_URL` / `LLM_API_KEY` 已配好。
+切到 noagent 只需 `llm.enabled: false`，建议同时把 `archive.repo_copy` 改为 `readme`。没有打分就无法从搜索噪声中筛选，因此 noagent 只保留 watchlist 来源。
 
 ---
 
 ## 🧯 无 AI 时的降级行为
 
-本模板的 AI 环节只有两处——`scripts/score.py`（打分）与 `scripts/cards.py`（写卡片），都经 `scripts/agent.py` 调用 LLM。**AI 不可用时的行为，取决于「LLM 环境变量在不在」**，两种情况差别很大。
+AI 环节只有打分与 Code Card 两处，行为取决于 LLM 变量是否存在：
 
-### 情况 A：完全不设 LLM 环境变量
-
-`agent.make_client()` 直接抛 `KeyError: 'LLM_BASE_URL'`，`score.py` 一开始就非零退出；而 `run_weekly.sh` 是 `set -euo pipefail`，于是**整条流水线在 score 这步中断**：
-
-```
-search ✅ → merge ✅ → score ❌ 崩 → run_weekly.sh 整体退出
-                          ↳ archive / cards / issue 🚫 根本不执行
-```
-
-**你最终拿到：**
-
-| 产物 | 有无 |
-|---|---|
-| 每日 feed（独立的 `daily-feed` workflow） | ✅ |
-| `data/search/{date}.json`（本周盲搜原始结果） | ✅ |
-| `data/candidates/{date}.json`（合并去重后的候选池） | ✅ |
-| Issue / `data/weekly/{date}.csv` | ❌ 没有 |
-| Code Card / 克隆 / wiki | ❌ 没有 |
-| `site/` 站点 | ❌ 不生成内容 |
-
-### 情况 B：设了变量，但 key 失效 / 过期 / 欠费
-
-`make_client()` 能构造成功，首个请求失败（401 等 4xx 被 `_retry_json` 判为永久错误、立即抛出），但**逐仓库被 try/except 兜住**，于是流水线**能跑完全程**：
-
-```
-search ✅ → merge ✅ → score ⚠️ 每仓库记 score = null → archive 空 → cards 空 → issue ✅
-```
-
-**你最终拿到：**
-
-| 产物 | 有无 |
-|---|---|
-| 每日 feed | ✅ |
-| search / candidates | ✅ |
-| `data/scored/{date}.json` | ⚠️ 有，但 `score` 全为 `null`、`one_liner` 为 `[llm failed]` |
-| Issue / `data/weekly/{date}.csv` | ✅ 候选池照列，**分数列显示 `-`** |
-| Code Card / 克隆 / wiki | ❌ 空（`min_score` 门控一个都不留） |
-| `site/` 站点 | ⚠️ 能构建，但**没有任何条目** |
-
-### 为什么站点会是空的
-
-`build_site.py` **只从 `data/cards/*.json` 取数**（`load_cards` 是唯一的仓库数据源），而卡片由 `cards.py` 只为「高分仓库」生成。没有 AI → 没有高分 → 没有卡片 → 站点首页、归档页、搜索页**全空**。所以这**不是「照常运行」，而是「能构建、但没内容」**。
-
-### 对比与对策
-
-| | 情况 A（没设变量） | 情况 B（key 挂了） |
+| | 完全不设 `LLM_BASE_URL` / `LLM_API_KEY` | 设了变量但 key 无效 |
 |---|---|---|
-| 每周流程 | **中断在 score** | **跑完** |
-| Issue / CSV | ❌ 没有 | ✅ 有（分数 `-`） |
-| Code Card / 克隆 / wiki | ❌ | ❌ |
-| 站点条目 | ❌ | ❌ |
-| 实际价值 | 仅 `search` + `candidates` 落盘 | **一份纯仓库发现清单** |
+| 流水线 | 在 score 步骤中断 | 能跑完 |
+| `data/scored` | 不生成 | 全部 `score=null` |
+| Issue / CSV | 不生成 | 生成，分数列为 `-` |
+| Code Card / 归档 / 站点 | 无 | 无（`min_score` 过滤后为空） |
 
-**想「无 AI 也出清单」，两条路：**
+站点只从 `data/cards/` 取数，没有卡片即没有内容。
 
-1. **正规做法——切 noagent**：`llm.enabled: false`（建议配 `archive.repo_copy: readme`），得到 watchlist 的 README + 目录树站点（见上节「agent 与 noagent 模式切换」）。
-2. **临时兜底——设占位变量**：不想改配置时，至少把占位变量设上，让客户端能构造成功、之后调用逐仓库静默失败 → 降级为情况 B，不再中断：
+需要保留仓库清单时，直接切 noagent（`llm.enabled: false`）；不想改配置可临时设占位变量，让流水线降级为「有候选、无分数」：
 
 ```bash
 export LLM_BASE_URL=http://localhost LLM_API_KEY=x
 ```
 
-此时你得到的是一个**纯仓库发现清单**（谁在本周推了新仓库 + 元数据，含搜索通道），只是没有打分与卡片、没有归档与站点条目。
-
 ---
 
 ## 🃏 Code Card 与站点
 
-站点由 `build_site.py` 遍历 `data/` 与 `code/` 生成，无后端，纯静态，由 `deploy_pages.yml` 部署到 GitHub Pages。页面包括：**本周推荐**、**按周归档**、**全文搜索**、**每仓库一张 Code Card 详情页**。
+站点由 `build_site.py` 从 `data/` 与 `code/` 生成，纯静态，由 `deploy_pages.yml` 部署。页面包括本周推荐、按周归档、全文搜索与仓库详情。
 
 **Code Card 六节**（`prompts.yaml` 的 `code_card` 定义，输出单字段 `{"card": "<markdown>"}`）：
 
@@ -301,7 +166,7 @@ export LLM_BASE_URL=http://localhost LLM_API_KEY=x
 ## 是什么 · ## 亮点 · ## 为何对本课题有用 · ## 怎么用 · ## 核心 idea · ## 可搬移点
 ```
 
-其中「怎么用」由 README + **目录树 + 依赖/构建文件**共同支撑（`cards.py` 三者一起喂给 LLM），「核心 idea / 可搬移点」瞄准的正是**移植**——这个仓库凭什么值得借鉴、哪个模块值得搬进你的 pipeline。
+「怎么用」由 README、目录树与依赖文件共同支撑；「核心 idea / 可搬移点」面向移植。
 
 **两套链接口径：**
 
@@ -310,8 +175,7 @@ export LLM_BASE_URL=http://localhost LLM_API_KEY=x
 | `site/repos/{repo}/` | **最新**（latest-wins） | 首页 / 站内搜索，永远指向最近一次卡片 |
 | `site/weeks/{week}/repos/{repo}/` | **当周冻结快照** | 周归档页，链到**当周那一刻**的卡片与 wiki 快照 |
 
-**wiki 快照链接**：卡片详情页给出三个 wiki 的 live 链接（deepwiki / codewiki / zread），并在有快照时附一个「快照」链接，指向本仓库里的
-`code/{repo}/wikis/{date}/{source}/llms.txt`（`github_repo` / `github_branch` 决定它的 GitHub blob 地址）。
+卡片详情页提供 deepwiki、codewiki、zread 的实时链接；有快照时链接到 `code/{repo}/wikis/{date}/{source}/llms.txt`。
 
 **站内搜索（两段式索引）**：索引在导出阶段预生成，浏览器端完成检索——
 
@@ -324,14 +188,9 @@ export LLM_BASE_URL=http://localhost LLM_API_KEY=x
 
 ## 🧩 搜索要点
 
-**时间窗以 `pushed_at` 为准，而非 `updated_at`。** 一个代码一年没动的仓库，被人 star 一下，`updated_at` 就变成今天，而 `pushed_at` 仍停在去年。两个约束：
+**时间窗以 `pushed_at` 为准。** star/watch/fork 会更新 `updated_at`，但不改变 `pushed_at`。`gh search repos` 没有 `--pushed`，且 `pushed:` 与 `in:` 组合会被忽略，因此先用 `--updated` 粗筛，再由 `search.py` 按 `pushedAt` 客户端精筛到 `[运行日 - window_days, 运行日 - 1]`。
 
-- `gh search repos` **没有 `--pushed` flag**，只能按 `--updated` 过滤 / 排序；
-- `pushed:` 限定符虽存在于 GitHub 搜索语法，但与 `in:name,description,readme,topics` 组合时会被**静默忽略**（本项目每条查询都带 `in:`）。
-
-因此采用「`--updated` 粗筛 + 客户端精确过滤」：搜索用 `--updated ">=$(date -d "$WINDOW_DAYS days ago" +%Y-%m-%d)"`（`WINDOW_DAYS` 读自 `config.yaml`）圈定候选集（`updated_at` 窗口是 `pushed_at` 窗口的**超集**，不漏真 push），再由 `scripts/search.py` 读结果里自带的 `pushedAt` 字段、在客户端把窗口精筛成 **`[run-window_days, run-1]`**（下界丢早于窗口的、上界丢运行当天的；`gh` 无窗口上界参数，只能客户端裁）。
-
-> **盲搜式为什么拆成多条？** GitHub 硬限制「每条查询最多 5 个 AND/OR/NOT 运算符」，备选短语一多单条 `OR` 会被拒。故 `search.queries` 拆成多条（每条 ≤6 项）各自查询、按 `full_name` 取并集。每条查询的召回/噪声实测都写在各 query 正上方的注释里，改写时请务必保留。
+> 查询拆成多条，是因为 GitHub 限制每条查询最多 5 个 AND/OR/NOT 运算符；各查询按 `full_name` 取并集。
 
 ---
 
@@ -349,11 +208,11 @@ LLM 与 zread 凭据一律走环境变量，**不写入仓库**：
 
 - 本地：`export LLM_BASE_URL=... LLM_API_KEY=... LLM_MODEL=...`。
 - GitHub Actions：**Settings → Secrets and variables → Actions**，分别建 Repository **secrets** 与 **variables**，workflow 以 `${{ secrets.* }}` / `${{ vars.* }}` 注入。
-- **`ZREAD_TOKEN` 怎么拿**：浏览器登录 [zread.ai](https://zread.ai)，打开 DevTools Console，运行 `JSON.parse(localStorage.getItem('CGX_AUTH_STORAGE')).state.token`，输出即 token；再 `export ZREAD_TOKEN=...`（本地）或存进 Actions secret。这个 token 只用于 `repowiki-cli zread submit`（把尚未被 zread 收录的仓库提交上去），没有它 zread 就只复用已有快照、不新增。
+- **`ZREAD_TOKEN`**：浏览器登录 zread.ai 后，在 DevTools 中取 `JSON.parse(localStorage.getItem('CGX_AUTH_STORAGE')).state.token`。它只用于 `repowiki-cli zread submit`；缺失时只复用已有快照。
 
-**调度**：用 **GitHub 原生 `schedule`**。`daily.yml` 每日 **06:00**、`weekly.yml` 每周日 **08:00**，均 `timezone: "Asia/Shanghai"`（GitHub 按此时区换算 cron；job 内的 `date` 仍由 `TZ` 决定）；两者都保留 `workflow_dispatch` 供手动重跑。窗口统一取 **`[run-window_days, run-1]`**（不含运行当天，`search.py`/`merge.py`/`cards.py`/`issue.py` 同源），`cards.py` 把该窗口写进每条记录、站点据此分组（`build_site.py` 的 `_window_of`）——所以**换运行日不会把首页打散**，`weekly` 之所以选**周日**，只是让窗口 `[上周日→本周六]` 与自然周对齐、贴合「周日为一周开始」的直觉。注意：原生 `schedule` **只在默认分支生效**；高负载时可能**延后**（实测可达数小时），故 `weekly` 留了一整个周日白天兜底，真要准点手动跑一次即可。
+**调度**：`daily.yml` 每日 05:00、`weekly.yml` 每周日 08:00（`Asia/Shanghai`），均保留 `workflow_dispatch`。窗口统一为 `[run-window_days, run-1]`，站点按该窗口分组。原生 `schedule` 只在默认分支生效，高负载时可能延后。
 
-**手动触发（网页端 Actions 页）一般跑什么**：在 Actions 页左侧点 `weekly-discovery` → 右上 **Run workflow** → 分支选 `main` → 确认，跑第一次/补跑周报；点 `daily-feed` 同样 **Run workflow**，跑当天的每日动态。**`deploy-pages` 不用点**——它会在 `weekly-discovery` 成功后自动跟跑建站；只有首次部署验证、或 weekly 失败修好后，才需要手动点一次 `deploy-pages`。
+**手动触发**：Actions 页选择 `weekly-discovery` 或 `daily-feed` → **Run workflow**。`deploy-pages` 会在 weekly 成功后自动运行，通常不需要手动触发。
 
 **模型选型提示**：打分走 `response_format={"type":"json_object"}`，所选模型必须支持 JSON mode（DeepSeek 的 `deepseek-reasoner` 通常不支持，不能直接替换）；评分要忠实、不宜用思考/推理模式。
 
@@ -403,21 +262,12 @@ GitHub Issue 正文上限 **65536 字符**。候选一多（几百上千），�
 
 ### `llm.concurrency` 与全局限速
 
-**不要用 `concurrency` 控制吞吐。** 真正的限速在 `scripts/agent.py`：
+真正的吞吐上限由 `scripts/agent.py` 的全局限速控制，不是 `concurrency`：
 
-```python
-MIN_REQUEST_INTERVAL_SECONDS = 7.5   # ≈ 8 次/分钟，所有线程共享
-```
+- 默认每 7.5 秒放行一次（约 8 次/分钟），所有线程共享；用 `LLM_MIN_INTERVAL` 覆盖（秒，0 关闭）；
+- `concurrency: 8` 只是同时等待的线程数，需要 ≥ 请求耗时 / 7.5s（请求通常 5~15s）；调到 2 反而喂不满限速。
 
-- 每次 LLM 请求前先排队一个时间槽，并发再高也不会同时打满服务商限额；
-- 默认 7.5 秒/次（约 8 次/分钟）；服务商限额更高/更低时用环境变量 `LLM_MIN_INTERVAL` 覆盖（单位秒，设 `0` 关闭）；
-- `concurrency: 8` 表示「同时等待的线程数」，需要 ≥ 单次请求耗时 / 7.5s（请求通常 5~15s）。**调到 2 反而喂不满限速、整体更慢**，尤其是候选多的时候更容易撞超时。
-
-配套的重试行为：
-
-- **429** 优先遵循服务端的 `Retry-After`，没有才用指数退避；
-- **`APIConnectionError`** 每个仓库最多试 3 次，再计入熔断（若该实例实现了 breaker）；
-- **429 / 5xx** 默认最多 8 次退避，单次退避上限 60s。
+重试：429 优先遵循 `Retry-After`；`APIConnectionError` 每个仓库最多 3 次；429/5xx 最多退避 8 次（单次上限 60s）。
 
 ### 时间预算（可选扩展）
 
@@ -469,50 +319,21 @@ python -m pytest -q
 
 从「Use this template」到站点跑通，逐项打勾：
 
-- [ ] **`site_base_url` 必填** —— 在 `config.yaml` 填成你的站点地址，例如 `https://<user>.github.io/<repo>`。**留空会导致站内链接变成根绝对路径（`/assets/…`），在项目型 Pages（`user.github.io/REPO/`）上全部 404。** 这是最容易踩的一条。
+- [ ] **`site_base_url` 必填** —— 填成 `https://<user>.github.io/<repo>`。留空会导致站内链接 404。
 - [ ] **启用 Pages** —— Settings → Pages，**Source = GitHub Actions**（不启用则 `deploy_pages.yml` 直接失败）。
 - [ ] **Secrets / Variables** —— `LLM_BASE_URL` / `LLM_API_KEY`（secret）、`LLM_MODEL`（variable）、`ZREAD_TOKEN`（可选 secret）。
 - [ ] **`github_repo` / `github_branch`** —— 改成新仓的 `owner/name` 与默认分支，wiki 快照链接才会指对。
 - [ ] **监听清单** —— 填 `monitor/lists/{users,users_core,orgs}.txt`（`users_core` ⊂ `users`）。
-- [ ] **确认调度** —— 两个 workflow 已内置原生 `schedule`：`daily-feed` 每日 06:00、`weekly-discovery` 每周日 08:00（均上海时区）。想换时间就改 `.github/workflows/{daily,weekly}.yml` 里的 `cron`（day-of-week 里 **0 = 周日、1 = 周一**；cron 按 `timezone` 解释）。站点按每次运行记录的**抓取窗口**分组（窗口长度 = `config.yaml` 的 `window_days`），换运行日只会让窗口标签平移、不会打散首页；建议保持**周日**以对齐自然周。
+- [ ] **确认调度** —— `daily-feed` 每日 05:00、`weekly-discovery` 每周日 08:00（上海时区）；改时间就改 workflow 里的 `cron`。
 - [ ] **首次试跑** —— Actions 里手动 `workflow_dispatch` 跑一次 `weekly-discovery`，确认 Issue 与 Pages 都出得来。
 
-> **为什么「手动 push 触发不了部署」？** `deploy_pages.yml` 平时由 `weekly-discovery` 的 `workflow_run` 触发；而**手动 push 不含 `site/` 变化**（`site/` 已 gitignore，部署时才重建），没有触发源。所以本地跑完后需手动触发一次：`gh workflow run deploy_pages.yml --repo <owner>/<repo> --ref main`。
+> **手动 push 不会触发部署。** `deploy_pages.yml` 由 `weekly-discovery` 的 `workflow_run` 触发；需要手动部署时运行：`gh workflow run deploy_pages.yml --repo <owner>/<repo> --ref main`。
 
 ---
 
 ## 🚧 待改进：打分吞吐
 
-> **已落地（2026-11）**：全局限速 8 次/分钟 + 429 `Retry-After` + 连接错误 3 次重试 + `score_sources` 来源过滤（详见「[打分与周报的配置项](#-打分与周报的配置项)」）。下面保留的是仍未采用的进一步方案。
-
-**问题**：score 阶段是「一个仓库一次 LLM 请求」。用免费共享网关（如 `models.sjtu.edu.cn`）时实测吞吐在 **6~77 次/分钟**之间波动（请求全部成功，是服务端排队，不是 429），输入长短影响不大。而本课题单日候选可达 **800+**（2026-10-22 实测 803 个，10-21 为 459 个），最差情况下 835 个要跑约 2 小时，超过 daily 的 `timeout-minutes: 60`，表现为日志停在 `[score] 400/835` 后 `Error: The operation was canceled.`。
-
-> **已落地的缓解：查询分层（protein 实例）**。把查询从「所有短语都搜 readme」改为两层：①身份字段（name/description/topics）出现短语即收；②主题短语 × AI 词成对 AND（README 里两个词都要出现）。2026-10-22 实测 803 → **385** 个/天（10-21 约 200），daily 超时相应设为 90 分钟、weekly 180（容纳补跑）。换新课题时若同样撞超时，优先套用这套分层思路。下面是保留给"仍然不够快"时的方案。
-
-
-
-**候选方案 A：批量打分（推荐，保留召回）**
-
-把 N 个仓库塞进一次请求：每个带 `id / full_name / description / README[:2000]`，让模型返回 JSON 数组：
-
-```
-请求: [系统提示] + 按 id 给下面 5 个仓库各打 0-10 分 → 
-      {"results": [{"id":1,"score":9,"one_liner":"..."}, ...]}
-```
-
-- 请求数变为 1/N（N=5 时 835 → 167），按最差 6.7 次/分算约 25 分钟；
-- 召回不变，所有候选仍由 LLM 打分（仍是「宽召回 → 打分过滤」，不是关键词过滤）；
-- 代价/风险：README 从 1 万砍到 2000 字符；模型可能串号（用 `id` 对齐可压制）；一批失败会带走 N 个——失败批次应回退成逐个单独打分，只回退失败的那批；
-- 实施前先做对照：取 30 个真实仓库分别单条/批量各打一次，要求 ≥80% 的分数差 ≤1 分再合并；
-- 触点：`prompts.yaml` 加 `score_batch`、`scripts/score.py` 加切块与合并、补测试。
-
-**候选方案 B：减量（最省事，有召回代价）**
-
-短语查询去掉 `,readme`（保留全部 `topic:` 行）。2026-10-22 实测：803 → **151** 个/天，最差也能在 25 分钟内跑完；代价是丢掉约 650 个「只在 README 里提到关键词」的仓库（其中 topic 独有的 29 个仍保留）。
-
-**硬件层面的两条路**：换成不限速的付费端点（最快，但有成本）；单纯调大 `llm.concurrency` 不会提升吞吐（已有全局限速封顶；早期实测 16 并发吞吐只从 12.8 提到 14.6 次/分，错误率还升到 41%，不推荐）。
-
-另外已落地的补丁：LLM 请求 `timeout=90, max_retries=0`、`gh` 调用 `timeout=120`（避免一个卡住请求占满整步），以及 `[ingest]` / `[score]` / `[score failed]` 分阶段日志——下次超时能直接看出卡在哪一步、什么原因。
+一个仓库一次 LLM 请求，候选上千时容易撞 workflow 超时。已落地：全局限速、`Retry-After`、连接重试与 `score_sources` 来源过滤。仍可考虑批量打分（一次 5 个仓库，需处理串号与批次失败）或去掉搜索里的 `readme` 降低候选量；若仍超时，换用不限速的付费端点。
 
 ---
 
@@ -521,9 +342,7 @@ python -m pytest -q
 <details>
 <summary><b>能不能不要 AI？</b></summary>
 
-能——把 `llm.enabled` 设成 `false`（noagent 模式），关掉打分与 Code Card，但仍出 README + 目录树的站点与 Issue（只留 watchlist 来源，见「[agent 与 noagent 模式切换](#-agent-与-noagent-模式切换)」）。
-
-如果你**想用 AI 但凭据没配好**，则是另一回事：**完全不设 LLM 变量**会在 score 这步整体中断流水线；**设了变量但 key 失效**能跑完全程，候选池照出、但没有卡片、**站点为空**。完整的逐环节对比见上文「[无 AI 时的降级行为](#-无-ai-时的降级行为)」。
+可以，设置 `llm.enabled: false`，见「agent 与 noagent 模式切换」。凭据未配好的行为见「无 AI 时的降级行为」。
 </details>
 
 <details>
